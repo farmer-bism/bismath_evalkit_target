@@ -1,0 +1,75 @@
+MEMORY
+{
+    FLASH (rx) : ORIGIN = 0xFFF00000, LENGTH = 1024K
+    SRAM (rwx) : ORIGIN = 0x00000000, LENGTH = 64K
+}
+
+PROVIDE(hardware_init_hook = 0);
+PROVIDE(software_init_hook = 0);
+PROVIDE(software_term_hook = 0);
+STARTUP(start.o)
+
+SECTIONS
+{
+
+	.text :
+	{
+		__text = .;
+		*(.vector)
+		*(.text)
+		*(.text.*)
+		*(P)
+	} > FLASH
+	_etext = .;
+	PROVIDE(etext = .);
+
+	.rodata :
+	{
+		*(.rodata)
+		*(.rodata.*)
+		*(C_1)
+		*(C_2)
+		*(C)
+		*(C$VECT)
+	} > FLASH
+
+	__exidx_start = .;
+	__exidx_end = .;
+
+	__idata_start = .;
+	.data : 
+	{
+		__data_start = .;
+		*(.data)
+		*(.data.*)
+		*(D)
+		*(D_1)
+		*(D_2)
+	    __data_end = .;
+	} > SRAM AT> FLASH
+	__idata_end = __idata_start + SIZEOF(.data);
+	_edata = .;
+	PROVIDE(edata = .);
+
+	. = ALIGN(4);
+	.bss : 
+	{
+		__bss_start  = .;
+		*(.bss)
+		*(.bss.*)
+		*(COMMON)
+		*(B)
+		*(B_1)
+		*(B_2)
+		*(SI)
+	    __bss_end = .;
+	} > SRAM
+
+	. = ALIGN(4);
+    .fvectors 0xFFFFFF80 :
+   {
+      *(.fvect)
+    } > FLASH
+	_end = .;
+	PROVIDE(end = .);
+}
