@@ -48,15 +48,6 @@
 #define TOPPERS_PRC_KERNEL_H
 
 /*
- *  カーネル本体をコンパイルするためのマクロ定義
- *
- *  本環境では1関数を1オブジェクトファイルにコンパイルすることができないため，
- *  ALLFUNCマクロを定義する．
- */
-#define ALLFUNC
-
-
-/*
  *  サポートする機能の定義
  */
 #define TOPPERS_TARGET_SUPPORT_DIS_INT		/* dis_intをサポートする */

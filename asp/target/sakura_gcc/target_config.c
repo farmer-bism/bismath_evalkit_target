@@ -45,7 +45,6 @@
 #include <sil.h>
 #include "target_board.h"
 #include "renesas/scic_uart.h"
-#include "dev_led.h"
 
 /*
  *  ターゲットシステム依存 初期化ルーチン

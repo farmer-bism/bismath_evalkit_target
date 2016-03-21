@@ -27,13 +27,13 @@ INCLUDES := $(INCLUDES) -I$(TARGETDIR) -I$(SRCDIR)/pdic
 #
 KERNEL_DIR := $(KERNEL_DIR) $(TARGETDIR)
 KERNEL_ASMOBJS := $(KERNEL_ASMOBJS) target_support.o
-KERNEL_COBJS := $(KERNEL_COBJS) target_config.o target_timer.o
+KERNEL_COBJS := $(KERNEL_COBJS) target_config.o target_timer.o 
 
 #
 #  システムサービスに関する定義
 #
 SYSSVC_DIR := $(SYSSVC_DIR) $(SRCDIR)/pdic/renesas
-SYSSVC_COBJS := $(SYSSVC_COBJS) target_serial.o scic_uart.o
+SYSSVC_COBJS := $(SYSSVC_COBJS) target_serial.o scic_uart.o tinet_target_config.o
 
 #
 #  コンフィギュレータ関係の変数の定義

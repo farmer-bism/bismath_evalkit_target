@@ -55,8 +55,6 @@
  *  プロセッサの特殊命令のインライン関数定義
  */
 #include "prc_insn.h"
-#include "interrupt.h"
-
 
 /*
  *  非タスクコンテキスト用のスタック初期値
