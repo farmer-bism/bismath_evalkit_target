@@ -191,7 +191,7 @@ x_config_int( INTNO intno, ATR intatr, PRI intpri )
 			irq_val = 0U;
 		}
 
-		*irqcr_reg_addr[irq_offset] = irq_val;
+		SET_ICU_IRQCR(irq_offset, irq_val);
 	}
 
 	/*
@@ -199,7 +199,7 @@ x_config_int( INTNO intno, ATR intatr, PRI intpri )
 	 *
 	 *  割込み番号に対応したIPR値を設定する.
 	 */
-	*ipr_reg_addr[intno] = cfg_int_table[intno].intpri;
+	SET_ICU_IPR(intno, cfg_int_table[intno].intpri);
 
 	/*
 	 *  割込みのマスク解除

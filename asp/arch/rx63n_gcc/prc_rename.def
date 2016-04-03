@@ -17,11 +17,5 @@ start_r
 interrupt
 exception
 
-# rx610_config.c
-ipr_reg_addr
-ier_reg_addr
-ir_reg_addr
-irqcr_reg_addr
-
 # kernel_cfg.c
 cfg_int_table

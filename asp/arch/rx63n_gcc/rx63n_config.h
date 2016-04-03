@@ -54,17 +54,6 @@
  */
 #define	INHNO_MAX	UINT_C( 256 )
 
-#ifndef TOPPERS_MACRO_ONLY
-
-/*
- *  割込み制御用型定義
- */
-typedef struct ier_info {
-	volatile uint8_t *addr;
-			 uint8_t offset;
-} IER_INFO;
-
-#endif
 
 /*
  *  割込み制御用定義
@@ -73,18 +62,6 @@ typedef struct ier_info {
 #define	INTNO_IRQ( intno )			( ( 64U <= ( intno ) ) && ( ( intno ) <= 79U ) )
 #define	INTNO_IRQ_OFFSET( intno )	( ( intno ) - 64U )
 #define	IRQ_MAX						UINT_C( 16 )
-
-
-#ifndef TOPPERS_MACRO_ONLY
-/*
- *  割込み制御用テーブル
- */
-extern volatile uint8_t * const ipr_reg_addr[];	/* 割込み要因プライオリティレジスタアドレス */
-extern const IER_INFO ier_reg_addr[];							/* 割込み要求許可レジスタアドレス */
-extern volatile uint8_t * const ir_reg_addr[];		/* 割込み要求レジスタアドレス */
-extern volatile uint8_t * const irqcr_reg_addr[];	/* IRQコントロールレジスタアドレス */
-
-#endif
 
 /*
  *  プロセッサ依存モジュール（RX63n用）

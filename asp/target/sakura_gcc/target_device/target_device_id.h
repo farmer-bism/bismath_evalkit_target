@@ -1,21 +1,25 @@
 /*
- * Copyright (c) 2015- Hisashi Hata
- * Released under the toppers license
- * https://www.toppers.jp/license.html
+ * Copyright (c) 2015- Hisashi Hata       
+ * Released under the toppers license     
+ * https://www.toppers.jp/license.html    
  */
 
+#ifdef TARGET_TARGET_DEVICE_ID_H
+#define TARGET_TARGET_DEVICE_ID_H
 
+#include "use_device.h"
 
-#ifndef SAURA_GCC_TARGET_DEVICE_ID
-#define SAURA_GCC_TARGET_DEVICE_ID
-
-#define NUM_TARGET_DEVICE 
-
-#define DID_TIMER 0
-#define DID_DTCA  1
-#define DID_SPI0  2
-#define DID_MMC_SPI 3
-
+enum use_device_id{
+#ifdef USE_MMC_RSPI_0
+  DEV_MMC_RSPI0,
+#endif
+#ifdef USE_DTCA_0
+  DEV_DTCA0,
+#endif
+#ifdef USE_LED_0
+  DEV_LED0,
+#endif
+  NUM_TARGET_DEVICE
+}
 
 #endif
-

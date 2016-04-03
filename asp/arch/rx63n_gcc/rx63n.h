@@ -462,388 +462,42 @@
 #define SYSTEM_CLKWAIT_HE   0xE
 #define SYSTEM_CLKWAIT_HF   0xF
 
-
 /*
  * 割り込み要求レジスタ
  */
-#define ICU_IR016_ADDR			( ( volatile uint8_t  * )0x00087010 )
-#define ICU_IR021_ADDR			( ( volatile uint8_t  * )0x00087015 )
-#define ICU_IR023_ADDR			( ( volatile uint8_t  * )0x00087017 )
-#define ICU_IR027_ADDR			( ( volatile uint8_t  * )0x0008701B )
-#define ICU_IR028_ADDR			( ( volatile uint8_t  * )0x0008701C )
-#define ICU_IR029_ADDR			( ( volatile uint8_t  * )0x0008701D )
-#define ICU_IR030_ADDR			( ( volatile uint8_t  * )0x0008701E )
-#define ICU_IR031_ADDR			( ( volatile uint8_t  * )0x0008701F )
-#define ICU_IR032_ADDR			( ( volatile uint8_t  * )0x00087020 )
-#define ICU_IR033_ADDR			( ( volatile uint8_t  * )0x00087021 )
-#define ICU_IR034_ADDR			( ( volatile uint8_t  * )0x00087022 )
-#define ICU_IR035_ADDR			( ( volatile uint8_t  * )0x00087023 )
-#define ICU_IR036_ADDR			( ( volatile uint8_t  * )0x00087024 )
-#define ICU_IR037_ADDR			( ( volatile uint8_t  * )0x00087025 )
-#define ICU_IR038_ADDR			( ( volatile uint8_t  * )0x00087026 )
-#define ICU_IR039_ADDR			( ( volatile uint8_t  * )0x00087027 )
-#define ICU_IR040_ADDR			( ( volatile uint8_t  * )0x00087028 )
-#define ICU_IR041_ADDR			( ( volatile uint8_t  * )0x00087029 )
-#define ICU_IR042_ADDR			( ( volatile uint8_t  * )0x0008702A )
-#define ICU_IR043_ADDR			( ( volatile uint8_t  * )0x0008702B )
-#define ICU_IR044_ADDR			( ( volatile uint8_t  * )0x0008702C )
-#define ICU_IR045_ADDR			( ( volatile uint8_t  * )0x0008702D )
-#define ICU_IR046_ADDR			( ( volatile uint8_t  * )0x0008702E )
-#define ICU_IR047_ADDR			( ( volatile uint8_t  * )0x0008702F )
-#define ICU_IR048_ADDR			( ( volatile uint8_t  * )0x00087030 )
-#define ICU_IR049_ADDR			( ( volatile uint8_t  * )0x00087031 )
-#define ICU_IR050_ADDR			( ( volatile uint8_t  * )0x00087032 )
-#define ICU_IR051_ADDR			( ( volatile uint8_t  * )0x00087033 )
-#define ICU_IR052_ADDR			( ( volatile uint8_t  * )0x00087034 )
-#define ICU_IR053_ADDR			( ( volatile uint8_t  * )0x00087035 )
-#define ICU_IR054_ADDR			( ( volatile uint8_t  * )0x00087036 )
-#define ICU_IR055_ADDR			( ( volatile uint8_t  * )0x00087037 )
-#define ICU_IR056_ADDR			( ( volatile uint8_t  * )0x00087038 )
-#define ICU_IR057_ADDR			( ( volatile uint8_t  * )0x00087039 )
-#define ICU_IR058_ADDR			( ( volatile uint8_t  * )0x0008703A )
-#define ICU_IR059_ADDR			( ( volatile uint8_t  * )0x0008703B )
-#define ICU_IR062_ADDR			( ( volatile uint8_t  * )0x0008703E )
-#define ICU_IR064_ADDR			( ( volatile uint8_t  * )0x00087040 )
-#define ICU_IR065_ADDR			( ( volatile uint8_t  * )0x00087041 )
-#define ICU_IR066_ADDR			( ( volatile uint8_t  * )0x00087042 )
-#define ICU_IR067_ADDR			( ( volatile uint8_t  * )0x00087043 )
-#define ICU_IR068_ADDR			( ( volatile uint8_t  * )0x00087044 )
-#define ICU_IR069_ADDR			( ( volatile uint8_t  * )0x00087045 )
-#define ICU_IR070_ADDR			( ( volatile uint8_t  * )0x00087046 )
-#define ICU_IR071_ADDR			( ( volatile uint8_t  * )0x00087047 )
-#define ICU_IR072_ADDR			( ( volatile uint8_t  * )0x00087048 )
-#define ICU_IR073_ADDR			( ( volatile uint8_t  * )0x00087049 )
-#define ICU_IR074_ADDR			( ( volatile uint8_t  * )0x0008704A )
-#define ICU_IR075_ADDR			( ( volatile uint8_t  * )0x0008704B )
-#define ICU_IR076_ADDR			( ( volatile uint8_t  * )0x0008704C )
-#define ICU_IR077_ADDR			( ( volatile uint8_t  * )0x0008704D )
-#define ICU_IR078_ADDR			( ( volatile uint8_t  * )0x0008704E )
-#define ICU_IR079_ADDR			( ( volatile uint8_t  * )0x0008704F )
-#define ICU_IR090_ADDR			( ( volatile uint8_t  * )0x0008705A )
-#define ICU_IR091_ADDR			( ( volatile uint8_t  * )0x0008705B )
-#define ICU_IR092_ADDR			( ( volatile uint8_t  * )0x0008705C )
-#define ICU_IR093_ADDR			( ( volatile uint8_t  * )0x0008705D )
-#define ICU_IR098_ADDR			( ( volatile uint8_t  * )0x00087062 )
-#define ICU_IR102_ADDR			( ( volatile uint8_t  * )0x00087066 )
-#define ICU_IR106_ADDR			( ( volatile uint8_t  * )0x0008706A )
-#define ICU_IR107_ADDR			( ( volatile uint8_t  * )0x0008706B )
-#define ICU_IR108_ADDR			( ( volatile uint8_t  * )0x0008706C )
-#define ICU_IR109_ADDR			( ( volatile uint8_t  * )0x0008706D )
-#define ICU_IR110_ADDR			( ( volatile uint8_t  * )0x0008706E )
-#define ICU_IR111_ADDR			( ( volatile uint8_t  * )0x0008706F )
-#define ICU_IR112_ADDR			( ( volatile uint8_t  * )0x00087070 )
-#define ICU_IR114_ADDR			( ( volatile uint8_t  * )0x00087072 )
-#define ICU_IR122_ADDR			( ( volatile uint8_t  * )0x0008707A )
-#define ICU_IR123_ADDR			( ( volatile uint8_t  * )0x0008707B )
-#define ICU_IR124_ADDR			( ( volatile uint8_t  * )0x0008707C )
-#define ICU_IR125_ADDR			( ( volatile uint8_t  * )0x0008707D )
-#define ICU_IR126_ADDR			( ( volatile uint8_t  * )0x0008707E )
-#define ICU_IR127_ADDR			( ( volatile uint8_t  * )0x0008707F )
-#define ICU_IR128_ADDR			( ( volatile uint8_t  * )0x00087080 )
-#define ICU_IR129_ADDR			( ( volatile uint8_t  * )0x00087081 )
-#define ICU_IR130_ADDR			( ( volatile uint8_t  * )0x00087082 )
-#define ICU_IR131_ADDR			( ( volatile uint8_t  * )0x00087083 )
-#define ICU_IR132_ADDR			( ( volatile uint8_t  * )0x00087084 )
-#define ICU_IR133_ADDR			( ( volatile uint8_t  * )0x00087085 )
-#define ICU_IR134_ADDR			( ( volatile uint8_t  * )0x00087086 )
-#define ICU_IR135_ADDR			( ( volatile uint8_t  * )0x00087087 )
-#define ICU_IR136_ADDR			( ( volatile uint8_t  * )0x00087088 )
-#define ICU_IR137_ADDR			( ( volatile uint8_t  * )0x00087089 )
-#define ICU_IR138_ADDR			( ( volatile uint8_t  * )0x0008708A )
-#define ICU_IR139_ADDR			( ( volatile uint8_t  * )0x0008708B )
-#define ICU_IR140_ADDR			( ( volatile uint8_t  * )0x0008708C )
-#define ICU_IR141_ADDR			( ( volatile uint8_t  * )0x0008708D )
-#define ICU_IR142_ADDR			( ( volatile uint8_t  * )0x0008708E )
-#define ICU_IR143_ADDR			( ( volatile uint8_t  * )0x0008708F )
-#define ICU_IR144_ADDR			( ( volatile uint8_t  * )0x00087090 )
-#define ICU_IR145_ADDR			( ( volatile uint8_t  * )0x00087091 )
-#define ICU_IR146_ADDR			( ( volatile uint8_t  * )0x00087092 )
-#define ICU_IR147_ADDR			( ( volatile uint8_t  * )0x00087093 )
-#define ICU_IR148_ADDR			( ( volatile uint8_t  * )0x00087094 )
-#define ICU_IR149_ADDR			( ( volatile uint8_t  * )0x00087095 )
-#define ICU_IR150_ADDR			( ( volatile uint8_t  * )0x00087096 )
-#define ICU_IR151_ADDR			( ( volatile uint8_t  * )0x00087097 )
-#define ICU_IR152_ADDR			( ( volatile uint8_t  * )0x00087098 )
-#define ICU_IR153_ADDR			( ( volatile uint8_t  * )0x00087099 )
-#define ICU_IR154_ADDR			( ( volatile uint8_t  * )0x0008709A )
-#define ICU_IR155_ADDR			( ( volatile uint8_t  * )0x0008709B )
-#define ICU_IR156_ADDR			( ( volatile uint8_t  * )0x0008709C )
-#define ICU_IR157_ADDR			( ( volatile uint8_t  * )0x0008709D )
-#define ICU_IR158_ADDR			( ( volatile uint8_t  * )0x0008709E )
-#define ICU_IR159_ADDR			( ( volatile uint8_t  * )0x0008709F )
-#define ICU_IR160_ADDR			( ( volatile uint8_t  * )0x000870A0 )
-#define ICU_IR161_ADDR			( ( volatile uint8_t  * )0x000870A1 )
-#define ICU_IR162_ADDR			( ( volatile uint8_t  * )0x000870A2 )
-#define ICU_IR163_ADDR			( ( volatile uint8_t  * )0x000870A3 )
-#define ICU_IR164_ADDR			( ( volatile uint8_t  * )0x000870A4 )
-#define ICU_IR165_ADDR			( ( volatile uint8_t  * )0x000870A5 )
-#define ICU_IR166_ADDR			( ( volatile uint8_t  * )0x000870A6 )
-#define ICU_IR167_ADDR			( ( volatile uint8_t  * )0x000870A7 )
-#define ICU_IR168_ADDR			( ( volatile uint8_t  * )0x000870A8 )
-#define ICU_IR169_ADDR			( ( volatile uint8_t  * )0x000870A9 )
-#define ICU_IR170_ADDR			( ( volatile uint8_t  * )0x000870AA )
-#define ICU_IR171_ADDR			( ( volatile uint8_t  * )0x000870AB )
-#define ICU_IR172_ADDR			( ( volatile uint8_t  * )0x000870AC )
-#define ICU_IR173_ADDR			( ( volatile uint8_t  * )0x000870AD )
-#define ICU_IR174_ADDR			( ( volatile uint8_t  * )0x000870AE )
-#define ICU_IR175_ADDR			( ( volatile uint8_t  * )0x000870AF )
-#define ICU_IR176_ADDR			( ( volatile uint8_t  * )0x000870B0 )
-#define ICU_IR177_ADDR			( ( volatile uint8_t  * )0x000870B1 )
-#define ICU_IR178_ADDR			( ( volatile uint8_t  * )0x000870B2 )
-#define ICU_IR179_ADDR			( ( volatile uint8_t  * )0x000870B3 )
-#define ICU_IR180_ADDR			( ( volatile uint8_t  * )0x000870B4 )
-#define ICU_IR181_ADDR			( ( volatile uint8_t  * )0x000870B5 )
-#define ICU_IR182_ADDR			( ( volatile uint8_t  * )0x000870B6 )
-#define ICU_IR183_ADDR			( ( volatile uint8_t  * )0x000870B7 )
-#define ICU_IR184_ADDR			( ( volatile uint8_t  * )0x000870B8 )
-#define ICU_IR185_ADDR			( ( volatile uint8_t  * )0x000870B9 )
-#define ICU_IR186_ADDR			( ( volatile uint8_t  * )0x000870BA )
-#define ICU_IR187_ADDR			( ( volatile uint8_t  * )0x000870BB )
-#define ICU_IR188_ADDR			( ( volatile uint8_t  * )0x000870BC )
-#define ICU_IR189_ADDR			( ( volatile uint8_t  * )0x000870BD )
-#define ICU_IR190_ADDR			( ( volatile uint8_t  * )0x000870BE )
-#define ICU_IR191_ADDR			( ( volatile uint8_t  * )0x000870BF )
-#define ICU_IR192_ADDR			( ( volatile uint8_t  * )0x000870C0 )
-#define ICU_IR193_ADDR			( ( volatile uint8_t  * )0x000870C1 )
-#define ICU_IR194_ADDR			( ( volatile uint8_t  * )0x000870C2 )
-#define ICU_IR195_ADDR			( ( volatile uint8_t  * )0x000870C3 )
-#define ICU_IR196_ADDR			( ( volatile uint8_t  * )0x000870C4 )
-#define ICU_IR197_ADDR			( ( volatile uint8_t  * )0x000870C5 )
-#define ICU_IR198_ADDR			( ( volatile uint8_t  * )0x000870C6 )
-#define ICU_IR199_ADDR			( ( volatile uint8_t  * )0x000870C7 )
-#define ICU_IR200_ADDR			( ( volatile uint8_t  * )0x000870C8 )
-#define ICU_IR201_ADDR			( ( volatile uint8_t  * )0x000870C9 )
-#define ICU_IR202_ADDR			( ( volatile uint8_t  * )0x000870CA )
-#define ICU_IR203_ADDR			( ( volatile uint8_t  * )0x000870CB )
-#define ICU_IR206_ADDR			( ( volatile uint8_t  * )0x000870CE )
-#define ICU_IR207_ADDR			( ( volatile uint8_t  * )0x000870CF )
-#define ICU_IR208_ADDR			( ( volatile uint8_t  * )0x000870D0 )
-#define ICU_IR209_ADDR			( ( volatile uint8_t  * )0x000870D1 )
-#define ICU_IR210_ADDR			( ( volatile uint8_t  * )0x000870D2 )
-#define ICU_IR214_ADDR			( ( volatile uint8_t  * )0x000870D6 )
-#define ICU_IR215_ADDR			( ( volatile uint8_t  * )0x000870D7 )
-#define ICU_IR216_ADDR			( ( volatile uint8_t  * )0x000870D8 )
-#define ICU_IR217_ADDR			( ( volatile uint8_t  * )0x000870D9 )
-#define ICU_IR218_ADDR			( ( volatile uint8_t  * )0x000870DA )
-#define ICU_IR219_ADDR			( ( volatile uint8_t  * )0x000870DB )
-#define ICU_IR220_ADDR			( ( volatile uint8_t  * )0x000870DC )
-#define ICU_IR221_ADDR			( ( volatile uint8_t  * )0x000870DD )
-#define ICU_IR222_ADDR			( ( volatile uint8_t  * )0x000870DE )
-#define ICU_IR223_ADDR			( ( volatile uint8_t  * )0x000870DF )
-#define ICU_IR224_ADDR			( ( volatile uint8_t  * )0x000870E0 )
-#define ICU_IR225_ADDR			( ( volatile uint8_t  * )0x000870E1 )
-#define ICU_IR226_ADDR			( ( volatile uint8_t  * )0x000870E2 )
-#define ICU_IR227_ADDR			( ( volatile uint8_t  * )0x000870E3 )
-#define ICU_IR228_ADDR			( ( volatile uint8_t  * )0x000870E4 )
-#define ICU_IR229_ADDR			( ( volatile uint8_t  * )0x000870E5 )
-#define ICU_IR230_ADDR			( ( volatile uint8_t  * )0x000870E6 )
-#define ICU_IR231_ADDR			( ( volatile uint8_t  * )0x000870E7 )
-#define ICU_IR232_ADDR			( ( volatile uint8_t  * )0x000870E8 )
-#define ICU_IR233_ADDR			( ( volatile uint8_t  * )0x000870E9 )
-#define ICU_IR234_ADDR			( ( volatile uint8_t  * )0x000870EA )
-#define ICU_IR235_ADDR			( ( volatile uint8_t  * )0x000870EB )
-#define ICU_IR236_ADDR			( ( volatile uint8_t  * )0x000870EC )
-#define ICU_IR237_ADDR			( ( volatile uint8_t  * )0x000870ED )
-#define ICU_IR238_ADDR			( ( volatile uint8_t  * )0x000870EE )
-#define ICU_IR239_ADDR			( ( volatile uint8_t  * )0x000870EF )
-#define ICU_IR240_ADDR			( ( volatile uint8_t  * )0x000870F0 )
-#define ICU_IR241_ADDR			( ( volatile uint8_t  * )0x000870F1 )
-#define ICU_IR242_ADDR			( ( volatile uint8_t  * )0x000870F2 )
-#define ICU_IR243_ADDR			( ( volatile uint8_t  * )0x000870F3 )
-#define ICU_IR244_ADDR			( ( volatile uint8_t  * )0x000870F4 )
-#define ICU_IR245_ADDR			( ( volatile uint8_t  * )0x000870F5 )
-#define ICU_IR246_ADDR			( ( volatile uint8_t  * )0x000870F6 )
-#define ICU_IR247_ADDR			( ( volatile uint8_t  * )0x000870F7 )
-#define ICU_IR248_ADDR			( ( volatile uint8_t  * )0x000870F8 )
-#define ICU_IR249_ADDR			( ( volatile uint8_t  * )0x000870F9 )
-#define ICU_IR250_ADDR			( ( volatile uint8_t  * )0x000870FA )
-#define ICU_IR251_ADDR			( ( volatile uint8_t  * )0x000870FB )
-#define ICU_IR252_ADDR			( ( volatile uint8_t  * )0x000870FC )
-#define ICU_IR253_ADDR			( ( volatile uint8_t  * )0x000870FD )
+#define ICU_IR_BASE 0x00087000
 #define ICU_IR_BIT				( 1U << 0U )
 
 /*
  * 割り込み要求許可レジスタ
  */
-#define ICU_IER02_ADDR			( ( volatile uint8_t  * )0x00087202 )
-#define ICU_IER03_ADDR			( ( volatile uint8_t  * )0x00087203 )
-#define ICU_IER04_ADDR			( ( volatile uint8_t  * )0x00087204 )
-#define ICU_IER05_ADDR			( ( volatile uint8_t  * )0x00087205 )
-#define ICU_IER06_ADDR			( ( volatile uint8_t  * )0x00087206 )
-#define ICU_IER07_ADDR			( ( volatile uint8_t  * )0x00087207 )
-#define ICU_IER08_ADDR			( ( volatile uint8_t  * )0x00087208 )
-#define ICU_IER09_ADDR			( ( volatile uint8_t  * )0x00087209 )
-#define ICU_IER0B_ADDR			( ( volatile uint8_t  * )0x0008720B )
-#define ICU_IER0C_ADDR			( ( volatile uint8_t  * )0x0008720C )
-#define ICU_IER0D_ADDR			( ( volatile uint8_t  * )0x0008720D )
-#define ICU_IER0E_ADDR			( ( volatile uint8_t  * )0x0008720E )
-#define ICU_IER0F_ADDR			( ( volatile uint8_t  * )0x0008720F )
-#define ICU_IER10_ADDR			( ( volatile uint8_t  * )0x00087210 )
-#define ICU_IER11_ADDR			( ( volatile uint8_t  * )0x00087211 )
-#define ICU_IER12_ADDR			( ( volatile uint8_t  * )0x00087212 )
-#define ICU_IER13_ADDR			( ( volatile uint8_t  * )0x00087213 )
-#define ICU_IER14_ADDR			( ( volatile uint8_t  * )0x00087214 )
-#define ICU_IER15_ADDR			( ( volatile uint8_t  * )0x00087215 )
-#define ICU_IER16_ADDR			( ( volatile uint8_t  * )0x00087216 )
-#define ICU_IER17_ADDR			( ( volatile uint8_t  * )0x00087217 )
-#define ICU_IER18_ADDR			( ( volatile uint8_t  * )0x00087218 )
-#define ICU_IER19_ADDR			( ( volatile uint8_t  * )0x00087219 )
-#define ICU_IER1A_ADDR			( ( volatile uint8_t  * )0x0008721A )
-#define ICU_IER1B_ADDR			( ( volatile uint8_t  * )0x0008721B )
-#define ICU_IER1C_ADDR			( ( volatile uint8_t  * )0x0008721C )
-#define ICU_IER1D_ADDR			( ( volatile uint8_t  * )0x0008721D )
-#define ICU_IER1E_ADDR			( ( volatile uint8_t  * )0x0008721E )
-#define ICU_IER1F_ADDR			( ( volatile uint8_t  * )0x0008721F )
-#define ICU_IEN0_BIT			( 1U << 0U )
-#define ICU_IEN1_BIT			( 1U << 1U )
-#define ICU_IEN2_BIT			( 1U << 2U )
-#define ICU_IEN3_BIT			( 1U << 3U )
-#define ICU_IEN4_BIT			( 1U << 4U )
-#define ICU_IEN5_BIT			( 1U << 5U )
-#define ICU_IEN6_BIT			( 1U << 6U )
-#define ICU_IEN7_BIT			( 1U << 7U )
+#define ICU_IER_BASE 0x00087202
 
 /* 
  * 割り込み要因プライオリティレジスタi(i=00h～8Fh)の設定
  */
-#define ICU_IPR00_ADDR			( ( volatile uint8_t  * )0x00087300 ) /* IPR000 */
-#define ICU_IPR01_ADDR			( ( volatile uint8_t  * )0x00087301 ) /* IPR001 */
-#define ICU_IPR02_ADDR			( ( volatile uint8_t  * )0x00087302 ) /* IPR002 */
-#define ICU_IPR03_ADDR			( ( volatile uint8_t  * )0x00087303 ) /* IPR003 */
-#define ICU_IPR04_ADDR			( ( volatile uint8_t  * )0x00087304 ) /* IPR004 */
-#define ICU_IPR05_ADDR			( ( volatile uint8_t  * )0x00087305 ) /* IPR005 */
-#define ICU_IPR06_ADDR			( ( volatile uint8_t  * )0x00087306 ) /* IPR006 */
-#define ICU_IPR07_ADDR			( ( volatile uint8_t  * )0x00087307 ) /* IPR007 */
-#define ICU_IPR20_ADDR			( ( volatile uint8_t  * )0x00087320 ) /* IPR032 */
-#define ICU_IPR21_ADDR			( ( volatile uint8_t  * )0x00087321 ) /* IPR033 */
-#define ICU_IPR22_ADDR			( ( volatile uint8_t  * )0x00087322 ) /* IPR034 */
-#define ICU_IPR23_ADDR			( ( volatile uint8_t  * )0x00087323 ) /* IPR035 */
-#define ICU_IPR24_ADDR			( ( volatile uint8_t  * )0x00087324 ) /* IPR036 */
-#define ICU_IPR25_ADDR			( ( volatile uint8_t  * )0x00087325 ) /* IPR037 */
-#define ICU_IPR26_ADDR			( ( volatile uint8_t  * )0x00087326 ) /* IPR038 */
-#define ICU_IPR27_ADDR			( ( volatile uint8_t  * )0x00087327 ) /* IPR039 */
-#define ICU_IPR2A_ADDR			( ( volatile uint8_t  * )0x0008732A ) /* IPR042 */
-#define ICU_IPR2D_ADDR			( ( volatile uint8_t  * )0x0008732D ) /* IPR045 */
-#define ICU_IPR30_ADDR			( ( volatile uint8_t  * )0x00087330 ) /* IPR048 */
-#define ICU_IPR34_ADDR			( ( volatile uint8_t  * )0x00087334 ) /* IPR052 */
-#define ICU_IPR38_ADDR			( ( volatile uint8_t  * )0x00087338 ) /* IPR056 */
-#define ICU_IPR3E_ADDR			( ( volatile uint8_t  * )0x0008733E ) /* IPR062 */
-#define ICU_IPR40_ADDR			( ( volatile uint8_t  * )0x00087340 ) /* IPR064 */
-#define ICU_IPR41_ADDR			( ( volatile uint8_t  * )0x00087341 ) /* IPR065 */
-#define ICU_IPR42_ADDR			( ( volatile uint8_t  * )0x00087342 ) /* IPR066 */
-#define ICU_IPR43_ADDR			( ( volatile uint8_t  * )0x00087343 ) /* IPR067 */
-#define ICU_IPR44_ADDR			( ( volatile uint8_t  * )0x00087344 ) /* IPR068 */
-#define ICU_IPR45_ADDR			( ( volatile uint8_t  * )0x00087345 ) /* IPR069 */
-#define ICU_IPR46_ADDR			( ( volatile uint8_t  * )0x00087346 ) /* IPR070 */
-#define ICU_IPR47_ADDR			( ( volatile uint8_t  * )0x00087347 ) /* IPR071 */
-#define ICU_IPR48_ADDR			( ( volatile uint8_t  * )0x00087348 ) /* IPR072 */
-#define ICU_IPR49_ADDR			( ( volatile uint8_t  * )0x00087349 ) /* IPR073 */
-#define ICU_IPR4A_ADDR			( ( volatile uint8_t  * )0x0008734A ) /* IPR074 */
-#define ICU_IPR4B_ADDR			( ( volatile uint8_t  * )0x0008734B ) /* IPR075 */
-#define ICU_IPR4C_ADDR			( ( volatile uint8_t  * )0x0008734C ) /* IPR076 */
-#define ICU_IPR4D_ADDR			( ( volatile uint8_t  * )0x0008734D ) /* IPR077 */
-#define ICU_IPR4E_ADDR			( ( volatile uint8_t  * )0x0008734E ) /* IPR078 */
-#define ICU_IPR4F_ADDR			( ( volatile uint8_t  * )0x0008734F ) /* IPR079 */
-#define ICU_IPR5A_ADDR			( ( volatile uint8_t  * )0x0008735A ) /* IPR090 */
-#define ICU_IPR5B_ADDR			( ( volatile uint8_t  * )0x0008735B ) /* IPR091 */
-#define ICU_IPR5C_ADDR			( ( volatile uint8_t  * )0x0008735C ) /* IPR092 */
-#define ICU_IPR5D_ADDR			( ( volatile uint8_t  * )0x0008735D ) /* IPR093 */
-#define ICU_IPR62_ADDR			( ( volatile uint8_t  * )0x00087362 ) /* IPR098 */
-#define ICU_IPR66_ADDR			( ( volatile uint8_t  * )0x00087366 ) /* IPR102 */
-#define ICU_IPR6A_ADDR			( ( volatile uint8_t  * )0x0008736A ) /* IPR106 */
-#define ICU_IPR6B_ADDR			( ( volatile uint8_t  * )0x0008736B ) /* IPR107 */
-#define ICU_IPR6C_ADDR			( ( volatile uint8_t  * )0x0008736C ) /* IPR108 */
-#define ICU_IPR6D_ADDR			( ( volatile uint8_t  * )0x0008736D ) /* IPR109 */
-#define ICU_IPR6E_ADDR			( ( volatile uint8_t  * )0x0008736E ) /* IPR110 */
-#define ICU_IPR6F_ADDR			( ( volatile uint8_t  * )0x0008736F ) /* IPR111 */
-#define ICU_IPR70_ADDR			( ( volatile uint8_t  * )0x00087370 ) /* IPR112 */
-#define ICU_IPR72_ADDR			( ( volatile uint8_t  * )0x00087372 ) /* IPR114 */
-#define ICU_IPR7A_ADDR			( ( volatile uint8_t  * )0x0008737A ) /* IPR122 */
-#define ICU_IPR7E_ADDR			( ( volatile uint8_t  * )0x0008737E ) /* IPR126 */
-#define ICU_IPR82_ADDR			( ( volatile uint8_t  * )0x00087382 ) /* IPR130 */
-#define ICU_IPR84_ADDR			( ( volatile uint8_t  * )0x00087384 ) /* IPR132 */
-#define ICU_IPR86_ADDR			( ( volatile uint8_t  * )0x00087386 ) /* IPR134 */
-#define ICU_IPR8A_ADDR			( ( volatile uint8_t  * )0x0008738A ) /* IPR138 */
-#define ICU_IPR8C_ADDR			( ( volatile uint8_t  * )0x0008738C ) /* IPR140 */
-#define ICU_IPR8E_ADDR			( ( volatile uint8_t  * )0x0008738E ) /* IPR142 */
-#define ICU_IPR92_ADDR			( ( volatile uint8_t  * )0x00087392 ) /* IPR146 */
-#define ICU_IPR94_ADDR			( ( volatile uint8_t  * )0x00087394 ) /* IPR148 */
-#define ICU_IPR96_ADDR			( ( volatile uint8_t  * )0x00087396 ) /* IPR150 */
-#define ICU_IPR98_ADDR			( ( volatile uint8_t  * )0x00087398 ) /* IPR152 */
-#define ICU_IPR9C_ADDR			( ( volatile uint8_t  * )0x0008739C ) /* IPR156 */
-#define ICU_IPRA0_ADDR			( ( volatile uint8_t  * )0x000873A0 ) /* IPR160 */
-#define ICU_IPRA1_ADDR			( ( volatile uint8_t  * )0x000873A1 ) /* IPR161 */
-#define ICU_IPRA4_ADDR			( ( volatile uint8_t  * )0x000873A4 ) /* IPR164 */
-#define ICU_IPRA6_ADDR			( ( volatile uint8_t  * )0x000873A6 ) /* IPR166 */
-#define ICU_IPRAA_ADDR			( ( volatile uint8_t  * )0x000873AA ) /* IPR170 */
-#define ICU_IPRAD_ADDR			( ( volatile uint8_t  * )0x000873AD ) /* IPR173 */
-#define ICU_IPRB0_ADDR			( ( volatile uint8_t  * )0x000873B0 ) /* IPR176 */
-#define ICU_IPRB3_ADDR			( ( volatile uint8_t  * )0x000873B3 ) /* IPR179 */
-#define ICU_IPRB6_ADDR			( ( volatile uint8_t  * )0x000873B6 ) /* IPR182 */
-#define ICU_IPRB7_ADDR			( ( volatile uint8_t  * )0x000873B7 ) /* IPR183 */
-#define ICU_IPRB8_ADDR			( ( volatile uint8_t  * )0x000873B8 ) /* IPR184 */
-#define ICU_IPRB9_ADDR			( ( volatile uint8_t  * )0x000873B9 ) /* IPR185 */
-#define ICU_IPRBA_ADDR			( ( volatile uint8_t  * )0x000873BA ) /* IPR186 */
-#define ICU_IPRBB_ADDR			( ( volatile uint8_t  * )0x000873BB ) /* IPR187 */
-#define ICU_IPRBC_ADDR			( ( volatile uint8_t  * )0x000873BC ) /* IPR188 */
-#define ICU_IPRBD_ADDR			( ( volatile uint8_t  * )0x000873BD ) /* IPR189 */
-#define ICU_IPRBE_ADDR			( ( volatile uint8_t  * )0x000873BE ) /* IPR190 */
-#define ICU_IPRBF_ADDR			( ( volatile uint8_t  * )0x000873BF ) /* IPR191 */
-#define ICU_IPRC0_ADDR			( ( volatile uint8_t  * )0x000873C0 ) /* IPR192 */
-#define ICU_IPRC1_ADDR			( ( volatile uint8_t  * )0x000873C1 ) /* IPR193 */
-#define ICU_IPRC2_ADDR			( ( volatile uint8_t  * )0x000873C2 ) /* IPR194 */
-#define ICU_IPRC3_ADDR			( ( volatile uint8_t  * )0x000873C3 ) /* IPR195 */
-#define ICU_IPRC4_ADDR			( ( volatile uint8_t  * )0x000873C4 ) /* IPR196 */
-#define ICU_IPRC5_ADDR			( ( volatile uint8_t  * )0x000873C5 ) /* IPR197 */
-#define ICU_IPRC6_ADDR			( ( volatile uint8_t  * )0x000873C6 ) /* IPR198 */
-#define ICU_IPRC7_ADDR			( ( volatile uint8_t  * )0x000873C7 ) /* IPR199 */
-#define ICU_IPRC8_ADDR			( ( volatile uint8_t  * )0x000873C8 ) /* IPR200 */
-#define ICU_IPRC9_ADDR			( ( volatile uint8_t  * )0x000873C9 ) /* IPR201 */
-#define ICU_IPRCA_ADDR			( ( volatile uint8_t  * )0x000873CA ) /* IPR202 */
-#define ICU_IPRCB_ADDR			( ( volatile uint8_t  * )0x000873CB ) /* IPR203 */
-#define ICU_IPRCE_ADDR			( ( volatile uint8_t  * )0x000873CE ) /* IPR206 */
-#define ICU_IPRCF_ADDR			( ( volatile uint8_t  * )0x000873CF ) /* IPR207 */
-#define ICU_IPRD0_ADDR			( ( volatile uint8_t  * )0x000873D0 ) /* IPR208 */
-#define ICU_IPRD1_ADDR			( ( volatile uint8_t  * )0x000873D1 ) /* IPR209 */
-#define ICU_IPRD2_ADDR			( ( volatile uint8_t  * )0x000873D2 ) /* IPR210 */
-#define ICU_IPRD6_ADDR			( ( volatile uint8_t  * )0x000873D6 ) /* IPR214 */
-#define ICU_IPRD9_ADDR			( ( volatile uint8_t  * )0x000873D9 ) /* IPR217 */
-#define ICU_IPRDC_ADDR			( ( volatile uint8_t  * )0x000873DC ) /* IPR220 */
-#define ICU_IPRDF_ADDR			( ( volatile uint8_t  * )0x000873DF ) /* IPR223 */
-#define ICU_IPRE2_ADDR			( ( volatile uint8_t  * )0x000873E2 ) /* IPR226 */
-#define ICU_IPRE5_ADDR			( ( volatile uint8_t  * )0x000873E5 ) /* IPR229 */
-#define ICU_IPRE8_ADDR			( ( volatile uint8_t  * )0x000873E8 ) /* IPR232 */
-#define ICU_IPREB_ADDR			( ( volatile uint8_t  * )0x000873EB ) /* IPR235 */
-#define ICU_IPREE_ADDR			( ( volatile uint8_t  * )0x000873EE ) /* IPR238 */
-#define ICU_IPRF1_ADDR			( ( volatile uint8_t  * )0x000873F1 ) /* IPR241 */
-#define ICU_IPRF4_ADDR			( ( volatile uint8_t  * )0x000873F4 ) /* IPR244 */
-#define ICU_IPRF7_ADDR			( ( volatile uint8_t  * )0x000873F7 ) /* IPR247 */
-#define ICU_IPRFA_ADDR			( ( volatile uint8_t  * )0x000873FA ) /* IPR250 */
-#define ICU_IPRFD_ADDR			( ( volatile uint8_t  * )0x000873FD ) /* IPR253 */
-#define ICU_IPR_BIT				( 7U << 0U )
+#define ICU_IPR_BASE 0x00087300
 
+
+#define SET_ICU_IPR(intno, pri_num)  ((*((volatile uint8_t *)(ICU_IPR_BASE | intno))) = pri_num)
+/*
+ *  DTCERコントロールレジスタ
+ */
+#define ICU_DTCER_BASE 0x00087100
+#define EN_ICU_DTCER_BIT 0x1
+#define DIS_ICU_DTCER_BIT 0x0
+
+#ifndef TOPPERS_MACRO_ONLY
+#define ENABLE_ICU_DTCER(intno)  (*((volatile uint8_t *)(ICU_IPR_BASE | intno)) = EN_ICU_DTCER_BIT)
+
+#define DISABLE_ICU_DTCER(intno) (*((volatile uint8_t *)(ICU_IPR_BASE | intno)) = DIS_ICU_DTCER_BIT)
+#endif
 
 /*
  *  IRQコントロールレジスタ
  */
-#define ICU_IRQ0_ADDR			( ( volatile uint8_t  * )0x00087500 )
-#define ICU_IRQ1_ADDR			( ( volatile uint8_t  * )0x00087501 )
-#define ICU_IRQ2_ADDR			( ( volatile uint8_t  * )0x00087502 )
-#define ICU_IRQ3_ADDR			( ( volatile uint8_t  * )0x00087503 )
-#define ICU_IRQ4_ADDR			( ( volatile uint8_t  * )0x00087504 )
-#define ICU_IRQ5_ADDR			( ( volatile uint8_t  * )0x00087505 )
-#define ICU_IRQ6_ADDR			( ( volatile uint8_t  * )0x00087506 )
-#define ICU_IRQ7_ADDR			( ( volatile uint8_t  * )0x00087507 )
-#define ICU_IRQ8_ADDR			( ( volatile uint8_t  * )0x00087508 )
-#define ICU_IRQ9_ADDR			( ( volatile uint8_t  * )0x00087509 )
-#define ICU_IRQ10_ADDR			( ( volatile uint8_t  * )0x0008750A )
-#define ICU_IRQ11_ADDR			( ( volatile uint8_t  * )0x0008750B )
-#define ICU_IRQ12_ADDR			( ( volatile uint8_t  * )0x0008750C )
-#define ICU_IRQ13_ADDR			( ( volatile uint8_t  * )0x0008750D )
-#define ICU_IRQ14_ADDR			( ( volatile uint8_t  * )0x0008750E )
-#define ICU_IRQ15_ADDR			( ( volatile uint8_t  * )0x0008750F )
-#define ICU_IRQMD_BIT			( 3U << 2U )
-
+#define ICU_IRQCR_BASE 0x00087500
+#define SET_ICU_IRQCR(intno, sel_edge) (*((volatile uint8_t *)(ICU_IRQCR_BASE | intno)) = sel_edge)
 
 /*
  *  各チャンネルのレジスタ及び設定ビット情報

@@ -7,6 +7,8 @@
 #ifndef SAURA_GCC_TARGET_DEVICE
 #define SAURA_GCC_TARGET_DEVICE
 
+#include "target_device_id.h"
+
 typedef struct device_info_t{
   uitn32_t status
   uint32_t dinfo;
@@ -14,8 +16,11 @@ typedef struct device_info_t{
 
 extern dev_info_t dev_info[NUM_TARGET_DEVICE};
 
-static inline uint32_t get_dev_info(uint16_t device_id){
+static inline uint32_t get_dev_info(enum use_device_id device_id){
   return dev_info[device_id].dinfo;
 }
+
+void target_device_init();
+
 
 #endif

@@ -339,7 +339,7 @@ x_disable_int( INTNO intno )
 		return ( false );
 	}
 
-	*ier_reg_addr[intno].addr &= ( ~ier_reg_addr[intno].offset );
+    *((volatile uint8_t *)(ICU_IER_BASE+(intno>>3))) &= ~(1 << (intno & 0x7));
 
 	return ( true );
 }
@@ -364,7 +364,7 @@ x_enable_int( INTNO intno )
 		return ( false );
 	}
 
-	*ier_reg_addr[intno].addr |= ier_reg_addr[intno].offset;
+    *((volatile uint8_t *)(ICU_IER_BASE+(intno>>3))) |= (1 << (intno & 0x7));
 
 	return ( true );
 }
@@ -379,7 +379,7 @@ x_enable_int( INTNO intno )
 Inline void
 x_clear_int( INTNO intno )
 {
-	*ir_reg_addr[intno] = 0U;
+  *((volatile uint8_t *)(ICU_IR_BASE + intno)) = 0U;
 }
 
 #define t_clear_int( intno )	x_clear_int( intno )
@@ -396,7 +396,7 @@ x_probe_int( INTNO intno )
 	 *  割込み要求レジスタは0 or 1でしかないため,
 	 *  そのままの値を返す.
 	 */
-	return ( *ir_reg_addr[intno] );
+	return ( *((volatile uint8_t *)(ICU_IR_BASE + intno)) );
 }
 
 #define t_probe_int( intno )	x_probe_int( intno )
@@ -423,18 +423,18 @@ i_begin_int( INTNO intno )
 	 *  フラグをクリアする.
 	 */
 	if( ( cfg_int_table[intno].intatr & TA_LOWLEVEL ) > 0 ){
-		if( *ir_reg_addr[intno] > 0U ){
+		if( *((volatile uint8_t *)(ICU_IR_BASE + intno)) > 0U ){
 			/*
 			 *  外部割込みの場合, IRQ端子がHighに戻っている
 			 *  ことを確認する旨が記載されているが, 省略する.
 			 */
-			*ir_reg_addr[intno] = 0U;
+			*((volatile uint8_t *)(ICU_IR_BASE + intno)) = 0U;
 
 			/*
 			 *  ハードウェアマニュアルに0になったことを
 			 *  確認する旨が記載あるため, レジスタ値を読み出す.
 			 */
-			reg = *ir_reg_addr[intno];
+			reg = *((volatile uint8_t *)(ICU_IR_BASE + intno));
 		}
 	}
 }

@@ -27,14 +27,6 @@
 #define exception					_kernel_exception
 
 /*
- *  rx63n_config.c
- */
-#define ipr_reg_addr				_kernel_ipr_reg_addr
-#define ier_reg_addr				_kernel_ier_reg_addr
-#define ir_reg_addr					_kernel_ir_reg_addr
-#define irqcr_reg_addr				_kernel_irqcr_reg_addr
-
-/*
  *  kernel_cfg.c
  */
 #define cfg_int_table				_kernel_cfg_int_table
