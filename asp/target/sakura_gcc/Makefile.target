@@ -81,7 +81,7 @@ CFG1_OUT_LDFLAGS := -nostdlib $(CFG1_OUT_LDFLAGS)
 LIBS := $(LIBS) -lgcc
 
 
-CFG_ASMOBJS := $(CFG_ASMOBJS) kernel_cfg_asm.o sectrx.o
+CFG_ASMOBJS := $(CFG_ASMOBJS) kernel_cfg_asm.o sectrx.o DTCa_vecter.o
 
 #
 #  依存関係の定義

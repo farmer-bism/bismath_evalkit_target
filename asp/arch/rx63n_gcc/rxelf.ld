@@ -36,6 +36,23 @@ SECTIONS
 	__exidx_start = .;
 	__exidx_end = .;
 
+	. = 0x0; /*SRAM START ADDRES*/
+	.bss : 
+	{
+		__bss_start  = .;
+        *(.DTCA_VECTOR_SEC)
+        __dtca_start = .;
+		*(.bss)
+		*(.bss.*)
+		*(COMMON)
+		*(B)
+		*(B_1)
+		*(B_2)
+		*(SI) /* SI is kernel stack section*/
+	    __bss_end = .;
+	} > SRAM
+
+	. = ALIGN(4);
 	__idata_start = .;
 	.data : 
 	{
@@ -50,21 +67,7 @@ SECTIONS
 	__idata_end = __idata_start + SIZEOF(.data);
 	_edata = .;
 	PROVIDE(edata = .);
-
-	. = ALIGN(4);
-	.bss : 
-	{
-		__bss_start  = .;
-		*(.bss)
-		*(.bss.*)
-		*(COMMON)
-		*(B)
-		*(B_1)
-		*(B_2)
-		*(SI)
-	    __bss_end = .;
-	} > SRAM
-
+    
 	. = ALIGN(4);
     .fvectors 0xFFFFFF80 :
    {

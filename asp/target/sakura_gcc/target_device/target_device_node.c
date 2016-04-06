@@ -7,13 +7,13 @@
 #include "target_device.h"
 
 #ifdef USE_MMC_RSPI_0
-  extern dev_mmc_rspi MMC_RSPI_0;
+  extern dev_node_t mmc_rspi_node_0;
 #endif
 #ifdef USE_DTCA_0
-  extern dev_dtca DTCA_0;
+  extern dev_node_t dtca_node_0;
 #endif
 #ifdef USE_LED_0
-  extern dev_led LED_0;
+  extern dev_node_t led_node_0;
 #endif
 
 dev_info_t dev_info[NUM_TARGET_DEVICE]{
@@ -33,7 +33,7 @@ void target_device_init(){
   target_dev_init_mmc_spi_0();
 #endif
 #ifdef USE_DTCA_0
-  target_dev_init_dtia_0();
+  target_dev_init_dtca_0();
 #endif
 #ifdef USE_LED_0
   target_dev_init_led_0();

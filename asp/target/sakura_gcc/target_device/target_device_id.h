@@ -4,10 +4,10 @@
  * https://www.toppers.jp/license.html    
  */
 
-#ifdef TARGET_TARGET_DEVICE_ID_H
-#define TARGET_TARGET_DEVICE_ID_H
+#ifdef TARGET_./TARGET_DEVICE_ID_H
+#define TARGET_./TARGET_DEVICE_ID_H
 
-#include "use_device.h"
+#include "./use_device.h"
 
 enum use_device_id{
 #ifdef USE_MMC_RSPI_0

@@ -22,5 +22,13 @@ static inline uint32_t get_dev_info(enum use_device_id device_id){
 
 void target_device_init();
 
+#include "target_device_id.h"
+
+typedef struct device_node_t{
+  uitn32_t baddr;
+  uint16_t irq_num;
+  
+}dev_node_t;
+
 
 #endif

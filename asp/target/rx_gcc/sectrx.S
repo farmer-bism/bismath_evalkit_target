@@ -52,14 +52,5 @@ _DEFAULT_ISTACK:
 DEFAULT_ISTACK_TOP:
 
 
-	;
-	;  可変ベクタテーブル領域のセクション
-	;
-	;  00100000h - 00107FFFh
-	;
-	.section	C$VECT
-	.glb VVECTOR_TOP
-VVECTOR_TOP:
-
 
 
