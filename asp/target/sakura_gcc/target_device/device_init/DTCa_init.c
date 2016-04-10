@@ -13,7 +13,7 @@
 //device info define
 dev_node_t dtca_node_0 = x{
   DTCA_BASE,
-  0xFFFF  //DTCA don't have irq
+  NULL  //DTCA don't have irq
 };
 
 void target_dev_init_dtca_0(){

@@ -44,6 +44,9 @@
 #include "rx63n_gcc/rx63n.h"
 
 
+#define F_PCLKA		96000000UL	/* PCLKA frequency (configured by SCKCR.PCK) */
+#define F_PCLKB		48000000UL	/* PCLKB frequency (configured by SCKCR.PCK) */
+
 /*
  *  ボーレート設定
  */
