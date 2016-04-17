@@ -18,34 +18,27 @@
 #define SSLND_OFFSET 0xD
 #define SPND_OFFSET 0xE
 #define SPCR2_OFFSET 0xF
-#define SPCMD0_OFFSET 0x10
-#define SPCMD1_OFFSET 0x12
-#define SPCMD2_OFFSET 0x14
-#define SPCMD3_OFFSET 0x16
-#define SPCMD4_OFFSET 0x18
-#define SPCMD5_OFFSET 0x1A
-#define SPCMD6_OFFSET 0x1C
-#define SPCMD7_OFFSET 0x1E
+#define SPCMD_OFFSET 0x10
 
 #define SPRI_IRQ 0
 #define SPTI_IRQ 1
 #define SPII_IRQ 2
 
-void rspi_slave_select(dev_node_t *dnode, uint8_t sel){
+void rspi_slave_select(rspi_dstat *rspi_stat, uint8_t sel){
   uint8_t st;
   uint32_t base_addr;
   
-  base_addr = dnode->baddr;
+  base_addr = rspi_stat->baddr;
   st = DEV_REB(base_addr, SSLP_OFFSET);
   DEV_WRB(base_addr, SSLP_OFFSET, st | sel);
 }
   
 
-void rspi_slave_unselect(dev_node_t *dnode, uint8_t unsel){
+void rspi_slave_unselect(rspi_dstat *rspi_stat, uint8_t unsel){
   uint8_t st;
   uint32_t base_addr;
   
-  base_addr = dnode->baddr;
+  base_addr = rspi_stat->baddr;
   st = DEV_REB(base_addr, SSLP_OFFSET);
   DEV_WRB(base_addr, SSLP_OFFSET, st & ~unsel);
 }
@@ -53,30 +46,75 @@ void rspi_slave_unselect(dev_node_t *dnode, uint8_t unsel){
 //
 //trs_freq is bit rate
 //if bit rate is 400 khz, set 400000;
-void rspi_init(dev_node_t *dnode, rspi_param_t* params){
+void rspi_init(rspi_dstat *rspi_stat, rspi_param_t* params){
   uint32_t base_addr;
   
-  base_addr = dnode->baddr;
+  base_addr = rspi_stat->baddr;
   DEV_WRB(base_addr, SPCR_OFFSET, 0); //disable RSPI
   DEV_WRB(base_addr, SSLP_OFFSET, params->sslp);
   DEV_WRB(base_addr, SPPCR_OFFSET, params->sppcr);
   DEV_WRB(base_addr, SPSCR_OFFSET, params->spscr);
   DEV_WRB(base_addr, SPDCR_OFFSET, params->spdcr);
-  DEV_WRH(base_addr, SPCMD0_OFFSET, params->spcmd0);  //Set Transfar length 8bit
+  DEV_WRH(base_addr, SPCMD_OFFSET, params->spcmd0);  //Set Transfar length 8bit
   DEV_WRB(base_addr, SPBR_OFFSET, (F_PCLK/2/(params->bit_rate) -1));
   DEV_WRB(base_addr, SPCR_OFFSET, params->spcr); //Enable RSPI 
 }
 
-void disable_rspi(dev_node_t *dnode){
+void rspi_disable(rspi_dstat *rspi_stat){
   uint32_t base_addr;
   
-  base_addr = dnode->baddr;
+  base_addr = rspi_stat->baddr;
   DEV_WRB(base_addr, SPCR_OFFSET, 0); //disable RSPI
 }
   
-void send_w_with_dtc();
-void send_b_with_dtc();
-void send_clock_with_dtc();
+void rspi_dtc_send_w();
+void rspi_dtc_send_b();
+void rspi_dtc_send_clock();
+
+void rspi_send_w(rspi_dstat *rspi_stat, uint32_t dat){
+  DEV_WRW(rspi_stat->baddr, SPDR_OFFSET, dat);
+}
+
+void rspi_send_h(rspi_dstat *rspi_stat, uint16_t dat){
+  DEV_WRW(rspi_stat->baddr, SPDR_OFFSET, (uint32_t)dat);
+}
+
+void rspi_send_b(rspi_dstat *rspi_stat, uint8_t dat){
+  DEV_WRW(rspi_stat->baddr, SPDR_OFFSET, (uint32_t)dat);
+}
+
+void rspi_send_clock();
 
 void rcv_w_with_dtc();
 void rcv_b_with_dtc();
+
+uint32_t rspi_rcv_w(rspi_dstat *rspi_stat){
+  return DEV_REW(rspi_stat->baddr, SPDR_OFFSET)
+}
+
+uint16_t rspi_rcv_h(rspi_dstat *rspi_stat){
+  return (uint16_t)DEV_REW(rspi_stat->baddr, SPDR_OFFSET)
+}
+
+uint8_t rspi_rcv_b(rspi_dstat *rspi_stat){
+  return (uint8_t) DEV_REW(rspi_stat->baddr, SPDR_OFFSET)
+};
+
+uint8_t rspi_status(rspi_dstat *rspi_stat){
+  return DEV_REB(rspi_stat->baddr, SPSR_OFFSET)
+}
+
+void rspi_set_cmd(rspi_dstat *rspi_stat, uint8_t cmd_buff_num, uint8_t cmd){
+  DEV_WRB(rspi_stat->baddr, SPCMD_OFFSET+(cmd_buff_num<<1), cmd );
+}
+
+void rspi_chg_dwidth(rspi_dstat *rspi_stat, uint8_t cmd_buff_num, uint8_t width){
+  uint8_t current;
+  uint32_t cmd_offset;
+  uint32_t *base_addr;
+
+  cmd_offset = SPCMD_OFFSET+(cmd_buff_num<<1);
+  base_addr = rspi_stat->addr;
+  current = DEV_REB(base_addr, cmd_offset);
+  DEV_WRB(base_addr, cmd_offset, (current & ~SPCMD_SPB_MASK)|width);
+}

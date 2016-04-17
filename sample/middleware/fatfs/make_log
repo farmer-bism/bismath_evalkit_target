@@ -1,0 +1,26 @@
+if ! [ -f Makefile.depend ]; then \
+	rm -f kernel_cfg.timestamp kernel_cfg.h kernel_cfg.c ; \
+	rm -f cfg1_out.c cfg1_out.o cfg1_out cfg1_out.syms cfg1_out.srec; \
+	rm -f makeoffset.s offset.h; \
+fi
+rm -f Makefile.depend
+../../../asp/cfg/cfg/cfg --pass 1 --kernel asp -I. -I../../../asp/include -I../../../asp/arch -I../../../asp  -I../../../asp/target/sakura_gcc -I../../../asp/pdic -I../../../asp/arch/rx63n_gcc -I../../../asp/arch/gcc --api-table ../../../asp/kernel/kernel_api.csv --cfg1-def-table ../../../asp/kernel/kernel_def.csv  --cfg1-def-table ../../../asp/target/sakura_gcc/target_def.csv --cfg1-def-table ../../../asp/arch/rx63n_gcc/prc_def.csv   fatfs_sample.cfg
+rx-elf-gcc -c  -g  -Wall -O2   -I. -I../../../asp/include -I../../../asp/arch -I../../../asp  -I../../../asp/target/sakura_gcc -I../../../asp/pdic -I../../../asp/arch/rx63n_gcc -I../../../asp/arch/gcc   -DALLFUNC  -I../../../asp/kernel cfg1_out.c
+rx-elf-gcc -c  -g  -Wall -O2   -I. -I../../../asp/include -I../../../asp/arch -I../../../asp  -I../../../asp/target/sakura_gcc -I../../../asp/pdic -I../../../asp/arch/rx63n_gcc -I../../../asp/arch/gcc -DALLFUNC  -I../../../asp/kernel ../../../asp/arch/rx63n_gcc/start.S
+rx-elf-gcc  -g  -Wall -O2   -I. -I../../../asp/include -I../../../asp/arch -I../../../asp  -I../../../asp/target/sakura_gcc -I../../../asp/pdic -I../../../asp/arch/rx63n_gcc -I../../../asp/arch/gcc -nostdlib   -T ../../../asp/arch/rx63n_gcc/rxelf.ld -o cfg1_out \
+					 cfg1_out.o 
+rx-elf-nm -n cfg1_out > cfg1_out.syms
+rx-elf-objcopy -O srec -S cfg1_out cfg1_out.srec
+../../../asp/cfg/cfg/cfg --pass 2 --kernel asp -I. -I../../../asp/include -I../../../asp/arch -I../../../asp  -I../../../asp/target/sakura_gcc -I../../../asp/pdic -I../../../asp/arch/rx63n_gcc -I../../../asp/arch/gcc \
+			-T ../../../asp/target/sakura_gcc/target.tf --api-table ../../../asp/kernel/kernel_api.csv --cfg1-def-table ../../../asp/kernel/kernel_def.csv  --cfg1-def-table ../../../asp/target/sakura_gcc/target_def.csv --cfg1-def-table ../../../asp/arch/rx63n_gcc/prc_def.csv   fatfs_sample.cfg
+/*
+ *  Target-dependent Definitions (GR-SAKURA)
+ */
+
+
+touch -r kernel_cfg.c kernel_cfg.timestamp
+../../../asp/cfg/cfg/cfg --pass 3 --kernel asp -I. -I../../../asp/include -I../../../asp/arch -I../../../asp  -I../../../asp/target/sakura_gcc -I../../../asp/pdic -I../../../asp/arch/rx63n_gcc -I../../../asp/arch/gcc \
+			--rom-image cfg1_out.srec --symbol-table cfg1_out.syms \
+			-T ../../../asp/target/sakura_gcc/target_offset.tf --api-table ../../../asp/kernel/kernel_api.csv --cfg1-def-table ../../../asp/kernel/kernel_def.csv  --cfg1-def-table ../../../asp/target/sakura_gcc/target_def.csv --cfg1-def-table ../../../asp/arch/rx63n_gcc/prc_def.csv   fatfs_sample.cfg
+
+Generating Makefile.depend.

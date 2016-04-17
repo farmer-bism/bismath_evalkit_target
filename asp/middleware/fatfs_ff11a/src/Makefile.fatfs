@@ -1,0 +1,6 @@
+#
+#		Driver Makefile (FatFs用）
+#
+
+
+APPL_COBJS := diskio.o ff.o

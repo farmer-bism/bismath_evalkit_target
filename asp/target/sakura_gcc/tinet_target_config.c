@@ -42,11 +42,12 @@
 
 #include <sil.h>
 
+#if defined(SUPPORT_ETHER)
+
 #include <tinet_defs.h>
 #include <tinet_config.h>
 #include "target_board.h"
 
-#if defined(SUPPORT_ETHER)
 
 /*
  *  rx62n_bus_init -- ターゲット依存部のバスの初期化

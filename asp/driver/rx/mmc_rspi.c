@@ -113,10 +113,10 @@ static volatile
 DSTATUS Stat = STA_NOINIT;	/* Physical drive status */
 
 static volatile
-WORD Timer1, Timer2;	/* 1000Hz decrement timer stopped at zero (driven by disk_timerproc()) */
+uint16_t Timer1, Timer2;	/* 1000Hz decrement timer stopped at zero (driven by disk_timerproc()) */
 
 static
-BYTE CardType;			/* Card type flags */
+uint8_t CardType;			/* Card type flags */
 
 
 
@@ -130,15 +130,18 @@ BYTE CardType;			/* Card type flags */
 /* Enable SPI and MMC/SDC controls */
 /*---------------------------------*/
 static
-void power_on (void)
+void power_on (mmc_rspi_dstat* mmc_stat)
 {
 
   rspi_param_t rspi_param;
+  rspi_dstat* rspi_stat;
   /* Initialize CS/INS/WP port */
   CTRL_INIT();
   
   /* Attach RSPI module to I/O pads, disable module stop */
   RSPI_ATTACH();
+
+  rspi_stat = (rspi_dstat*)GET_DEV_STAT(mmc_stat->rspi_id);
   
   /* Initialize RSPI module */
   rspi_param.spcr = (SPCR_SPE | SPCR_MSTR | SPCR_SPMS);
@@ -148,7 +151,8 @@ void power_on (void)
   rspi_param.bit_rate = SCLK_SLOW;
   rspi_param.spdcr = SPDCR_SPLW;
   rspi_param_spcmd0 = SPCMD_SPB_8;
-  rspi_init(MMC_SPI_ID, &rspi_param);
+  
+  rspi_init(rspi_stat, &rspi_param);
   
   //RSPI.SPCR.BYTE = 0;		/* Stop RSPI module */
   //RSPI.SPPCR.BYTE = 0;	/* Fixed idle value, disable loop-back mode */
@@ -165,9 +169,9 @@ void power_on (void)
 /*    Disable SPI      */
 /*---------------------*/
 static
-void power_off (void)	/* Disable MMC/SDC interface */
+void power_off (mmc_rspi_dstat* mmc_stat)	/* Disable MMC/SDC interface */
 {
-  disable_rspi(GET_DEV_INFO(MMC_SPI_ID));
+  rspi_disable((rspi_dstat*)GET_DEV_STAT(mmc_stat->rspi_id));
   //RSPI.SPCR.BYTE = 0;		/* Stop RSPI module */
 }
 
@@ -176,13 +180,17 @@ void power_off (void)	/* Disable MMC/SDC interface */
 /* Send/Receive a byte */
 /*---------------------*/
 static
-BYTE xchg_spi (
-	BYTE dat	/* Data to send */
-)
+uint8_t xchg_spi (
+                  mmc_rspi_dstat *mmc_stat,
+                  uint8_t dat	/* Data to send */
+                  )
 {
-	RSPI.SPDR.LONG = dat;			/* Start transmission (lower 8bits) */
-	while (!RSPI.SPSR.BIT.SPRF) ;	/* Wait for end of transfer */
-	return RSPI.SPDR.LONG;			/* Returen received byte (lower 8bits) */
+  rspi_dstat *rspi_stat;
+
+  rspi_stat = (rspi_dstat*)GET_DEV_STAT(mmc_stat->rspi_id);
+  rspi_send_w(rspi_stat, dat);			/* Start transmission (lower 8bits) */
+  while (rspi_status(rspi_stat) & SPSR_IDLNF) ;	/* Wait for end of transfer */
+  return rspi_rcv_b(rspi_stat);			/* Returen received byte (lower 8bits) */
 }
 
 
@@ -191,22 +199,24 @@ BYTE xchg_spi (
 /*---------------------*/
 static
 void xmit_spi_multi (
-	const BYTE *buff,	/* Pointer to the data */
-	UINT btx			/* Number of bytes to send (multiple of 4) */
-)
+                     mmc_rspi_dstat *mmc_stat,
+                     const uint8_t *buff,	/* Pointer to the data */
+                     UINT btx			/* Number of bytes to send (multiple of 4) */
+                     )
 {
-	const DWORD *lp = (const DWORD*)buff;
+  const uint32_t *lp = (const uint32_t*)buff;
+  rspi_dstat *rspi_stat;
 
-
-	RSPI.SPCMD0.BIT.SPB = 3;	/* Set 32-bit mode */
-
-	do {
-		RSPI.SPDR.LONG = LDDW(*lp++);	/* Send four data bytes */
-		while (!RSPI.SPSR.BIT.SPRF) ;	/* Wait for end of transfer */
-		RSPI.SPDR.LONG;					/* Discard four received bytes */
-	} while (btx -= 4);					/* Repeat until all data sent */
-
-	RSPI.SPCMD0.BIT.SPB = 7;	/* Set 8-bit mode */
+  rspi_stat = (rspi_dstat*)GET_DEV_STAT(mmc_stat->rspi_id);
+  rspi_chg_dwidth(rspi_stat, 0, SPCMD_SPB_32);	/* Set 32-bit mode */
+  
+  do {
+    rspi_send_w(rspi_stat, LDDW(*lp++));	/* Send four data bytes */
+    while (rspi_status(rspi_stat) & SPSR_IDLNF) ;	/* Wait for end of transfer */
+    rspi_rcv_w(rspi_stat);					/* Discard four received bytes */
+  } while (btx -= 4);					/* Repeat until all data sent */
+  
+  rspi_chg_dwidth(rspi_stat, 0, SPCMD_SPB_8);	/* Set 8-bit mode */
 }
 
 
@@ -215,22 +225,25 @@ void xmit_spi_multi (
 /*------------------------*/
 static
 void rcvr_spi_multi (
-	BYTE *buff,		/* Pointer to data buffer */
-	UINT btr		/* Number of bytes to receive (multiple of 4) */
-)
+                     mmc_rspi_dstat *mmc_stat,
+                     uint8_t *buff,		/* Pointer to data buffer */
+                     UINT btr		/* Number of bytes to receive (multiple of 4) */
+                     )
 {
-	DWORD *lp = (DWORD*)buff;
+  uint32_t *lp = (uint32_t*)buff;
+  rspi_dstat *rspi_stat;
 
+  rspi_stat = (rspi_dstat*)GET_DEV_STAT(mmc_stat->rspi_id);
 
-	RSPI.SPCMD0.BIT.SPB = 3;	/* Set 32-bit mode */
-
-	do {
-		RSPI.SPDR.LONG = 0xFFFFFFFF;	/* Send four 0xFFs */
-		while (!RSPI.SPSR.BIT.SPRF) ;	/* Wait for end of transfer */
-		*lp++ = LDDW(RSPI.SPDR.LONG);	/* Store four received bytes */
-	} while (btr -= 4);					/* Repeat until all data received */
-
-	RSPI.SPCMD0.BIT.SPB = 7;	/* Set 8-bit mode */
+  rspi_chg_dwidth(rspi_stat, 0, SPCMD_SPB_32);	/* Set 32-bit mode */
+  
+  do {
+    rspi_send_w(rspi_stat, 0xFFFFFFFF);	/* Send four 0xFFs */
+    while (rspi_status(rspi_stat) & SPSR_IDLNF);/* Wait for end of transfer */
+    *lp++ = LDDW(rspi_rcv_w(rspi_stat));	/* Store four received bytes */
+  } while (btr -= 4);					/* Repeat until all data received */
+  
+  rspi_chg_dwidth(rspi_stat, 0, SPCMD_SPB_8);	/* Set 8-bit mode */
 }
 
 
@@ -242,17 +255,18 @@ void rcvr_spi_multi (
 
 static
 int wait_ready (	/* 1:Ready, 0:Timeout */
-	UINT wt			/* Timeout [ms] */
-)
+                mmc_rspi_dstat *mmc_stat,
+                UINT wt			/* Timeout [ms] */
+                    )
 {
-	Timer2 = (WORD)wt;
-
-	do {
-		if (xchg_spi(0xFF) == 0xFF) return 1;	/* Card goes ready */
-		/* This loop takes a time. Insert rot_rdq() here for multitask envilonment. */
-	} while (Timer2);	/* Wait until card goes ready or timeout */
-
-	return 0;	/* Timeout occured */
+  Timer2 = (uint16_t)wt;
+  
+  do {
+    if (xchg_spi(mmc_stat, 0xFF) == 0xFF) return 1;	/* Card goes ready */
+    /* This loop takes a time. Insert rot_rdq() here for multitask envilonment. */
+  } while (Timer2);	/* Wait until card goes ready or timeout */
+  
+  return 0;	/* Timeout occured */
 }
 
 
@@ -262,10 +276,10 @@ int wait_ready (	/* 1:Ready, 0:Timeout */
 /*-----------------------------------------------------------------------*/
 
 static
-void deselect (void)
+void deselect (mmc_rspi_dstat *mmc_stat)
 {
 	CS_HIGH();		/* Set CS# high */
-	xchg_spi(0xFF);	/* Dummy clock (force DO hi-z for multiple slave SPI) */
+	xchg_spi(mmc_stat, 0xFF);	/* Dummy clock (force DO hi-z for multiple slave SPI) */
 }
 
 
@@ -275,14 +289,14 @@ void deselect (void)
 /*-----------------------------------------------------------------------*/
 
 static
-int select (void)	/* 1:OK, 0:Timeout */
+int select (mmc_rspi_dstat* mmc_stat)	/* 1:OK, 0:Timeout */
 {
 	CS_LOW();		/* Set CS# low */
-	xchg_spi(0xFF);	/* Dummy clock (force DO enabled) */
+	xchg_spi(mmc_stat, 0xFF);	/* Dummy clock (force DO enabled) */
 
 	if (wait_ready(500)) return 1;	/* Wait for card ready */
 
-	deselect();
+	deselect(mmc_stat);
 	return 0;	/* Failed to select the card due to timeout */
 }
 
@@ -294,23 +308,24 @@ int select (void)	/* 1:OK, 0:Timeout */
 
 static
 int rcvr_datablock (	/* 1:OK, 0:Error */
-	BYTE *buff,			/* Data buffer */
-	UINT btr			/* Data block length (byte) */
-)
+                    mmc_rspi_dstat *mmc_stat,
+                    uint8_t *buff,			/* Data buffer */
+                    UINT btr			/* Data block length (byte) */
+                        )
 {
-	BYTE token;
-
-
-	Timer1 = 200;
+  uint8_t token;
+  
+  
+  Timer1 = 200;
 	do {							/* Wait for DataStart token in timeout of 200ms */
-		token = xchg_spi(0xFF);
-		/* This loop will take a time. Insert rot_rdq() here for multitask envilonment. */
+      token = xchg_spi(mmc_stat, 0xFF);
+      /* This loop will take a time. Insert rot_rdq() here for multitask envilonment. */
 	} while ((token == 0xFF) && Timer1);
 	if (token != 0xFE) return 0;	/* Function fails if invalid DataStart token or timeout */
-
-	rcvr_spi_multi(buff, btr);		/* Store trailing data to the buffer */
-	xchg_spi(0xFF); xchg_spi(0xFF);	/* Discard CRC */
-
+    
+	rcvr_spi_multi(mmc_stat, buff, btr);		/* Store trailing data to the buffer */
+	xchg_spi(mmc_stat, 0xFF); xchg_spi(mmc_stat, 0xFF);	/* Discard CRC */
+    
 	return 1;						/* Function succeeded */
 }
 
@@ -323,21 +338,22 @@ int rcvr_datablock (	/* 1:OK, 0:Error */
 #if _USE_WRITE
 static
 int xmit_datablock (	/* 1:OK, 0:Failed */
-	const BYTE *buff,	/* Ponter to 512 byte data to be sent */
-	BYTE token			/* Token */
+                    mmc_rspi_dstat *mmc_stat,
+                    const uint8_t *buff,	/* Ponter to 512 byte data to be sent */
+                    uint8_t token			/* Token */
 )
 {
-	BYTE resp;
+	uint8_t resp;
 
 
 	if (!wait_ready(500)) return 0;		/* Wait for card ready */
 
-	xchg_spi(token);					/* Send token */
+	xchg_spi(mmc_stat, token);					/* Send token */
 	if (token != 0xFD) {				/* Send data if token is other than StopTran */
 		xmit_spi_multi(buff, 512);		/* Data */
-		xchg_spi(0xFF); xchg_spi(0xFF);	/* Dummy CRC */
+		xchg_spi(mmc_stat, 0xFF); xchg_spi(mmc_stat, 0xFF);	/* Dummy CRC */
 
-		resp = xchg_spi(0xFF);			/* Receive data resp */
+		resp = xchg_spi(mmc_stat, 0xFF);			/* Receive data resp */
 		if ((resp & 0x1F) != 0x05)		/* Function fails if the data packet was not accepted */
 			return 0;
 	}
@@ -352,42 +368,43 @@ int xmit_datablock (	/* 1:OK, 0:Failed */
 /*-----------------------------------------------------------------------*/
 
 static
-BYTE send_cmd (		/* Return value: R1 resp (bit7==1:Failed to send) */
-	BYTE cmd,		/* Command index */
-	DWORD arg		/* Argument */
-)
+uint8_t send_cmd (		/* Return value: R1 resp (bit7==1:Failed to send) */
+                  mmc_rspi_dstat *mmc_stat,
+                  uint8_t cmd,		/* Command index */
+                  uint32_t arg		/* Argument */
+                        )
 {
-	BYTE n, res;
+	uint8_t n, res;
 
 
 	if (cmd & 0x80) {	/* Send a CMD55 prior to ACMD<n> */
 		cmd &= 0x7F;
-		res = send_cmd(CMD55, 0);
+		res = send_cmd(mmc_stat, CMD55, 0);
 		if (res > 1) return res;
 	}
 
 	/* Select the card and wait for ready except to stop multiple block read */
 	if (cmd != CMD12) {
-		deselect();
-		if (!select()) return 0xFF;
+		deselect(mmc_stat);
+		if (!select(mmc_stat)) return 0xFF;
 	}
 
 	/* Send command packet */
-	xchg_spi(0x40 | cmd);			/* Start + command index */
-	xchg_spi((BYTE)(arg >> 24));	/* Argument[31..24] */
-	xchg_spi((BYTE)(arg >> 16));	/* Argument[23..16] */
-	xchg_spi((BYTE)(arg >> 8));		/* Argument[15..8] */
-	xchg_spi((BYTE)arg);			/* Argument[7..0] */
+	xchg_spi(mmc_stat, 0x40 | cmd);			/* Start + command index */
+	xchg_spi(mmc_stat, (uint8_t)(arg >> 24));	/* Argument[31..24] */
+	xchg_spi(mmc_stat, (uint8_t)(arg >> 16));	/* Argument[23..16] */
+	xchg_spi(mmc_stat, (uint8_t)(arg >> 8));		/* Argument[15..8] */
+	xchg_spi(mmc_stat, (uint8_t)arg);			/* Argument[7..0] */
 	n = 0x01;						/* Dummy CRC + Stop */
 	if (cmd == CMD0) n = 0x95;		/* Valid CRC for CMD0(0) */
 	if (cmd == CMD8) n = 0x87;		/* Valid CRC for CMD8(0x1AA) */
-	xchg_spi(n);
+	xchg_spi(mmc_stat, n);
 
 	/* Receive command resp */
-	if (cmd == CMD12) xchg_spi(0xFF);	/* Diacard stuff byte on CMD12 */
+	if (cmd == CMD12) xchg_spi(mmc_stat, 0xFF);	/* Diacard stuff byte on CMD12 */
 	n = 10;							/* Wait for response (10 bytes max) */
 	do
-		res = xchg_spi(0xFF);
+      res = xchg_spi(mmc_stat, 0xFF);
 	while ((res & 0x80) && --n);
 
 	return res;						/* Return received response */
@@ -407,51 +424,50 @@ BYTE send_cmd (		/* Return value: R1 resp (bit7==1:Failed to send) */
 /*-----------------------------------------------------------------------*/
 
 DSTATUS disk_initialize (
-	BYTE drv		/* Physical drive number (0) */
+	uint8_t drv		/* Physical drive number (0) */
 )
 {
-	BYTE n, cmd, ty, ocr[4];
+	uint8_t n, cmd, ty, ocr[4];
+    mmc_rspi_dstat *mmc_stat;
 
-
-	if (drv) return STA_NOINIT;			/* Supports only drive 0 */
-
-	power_on();							/* Initialize RSPI */
-	for (n = 10; n; n--) xchg_spi(0xFF);/* Send 80 dummy clocks */
-
+    mmc_stat = (mmc_rspi_dstat *)GET_DEV_STAT(drv_to_id[drv]);
+	power_on(mmc_stat);							/* Initialize RSPI */
+	for (n = 10; n; n--) xchg_spi(mmc_stat, 0xFF);/* Send 80 dummy clocks */
+    
 	ty = 0;
-	if (send_cmd(CMD0, 0) == 1) {			/* Put the card SPI/Idle state */
-		Timer1 = 1000;						/* Initialization timeout = 1 sec */
-		if (send_cmd(CMD8, 0x1AA) == 1) {	/* SDv2? */
-			for (n = 0; n < 4; n++) ocr[n] = xchg_spi(0xFF);	/* Get 32 bit return value of R7 resp */
-			if (ocr[2] == 0x01 && ocr[3] == 0xAA) {				/* Is the card supports vcc of 2.7-3.6V? */
-				while (Timer1 && send_cmd(ACMD41, 1UL << 30)) ;	/* Wait for end of initialization with ACMD41(HCS) */
-				if (Timer1 && send_cmd(CMD58, 0) == 0) {		/* Check CCS bit in the OCR */
-					for (n = 0; n < 4; n++) ocr[n] = xchg_spi(0xFF);
-					ty = (ocr[0] & 0x40) ? CT_SD2 | CT_BLOCK : CT_SD2;	/* Card id SDv2 */
-				}
-			}
-		} else {	/* Not SDv2 card */
-			if (send_cmd(ACMD41, 0) <= 1) 	{	/* SDv1 or MMC? */
-				ty = CT_SD1; cmd = ACMD41;	/* SDv1 (ACMD41(0)) */
-			} else {
-				ty = CT_MMC; cmd = CMD1;	/* MMCv3 (CMD1(0)) */
-			}
-			while (Timer1 && send_cmd(cmd, 0)) ;		/* Wait for end of initialization */
-			if (!Timer1 || send_cmd(CMD16, 512) != 0)	/* Set block length: 512 */
-				ty = 0;
-		}
+	if (send_cmd(mmc_stat, CMD0, 0) == 1) {			/* Put the card SPI/Idle state */
+      Timer1 = 1000;						/* Initialization timeout = 1 sec */
+      if (send_cmd(mmc_stat, CMD8, 0x1AA) == 1) {	/* SDv2? */
+        for (n = 0; n < 4; n++) ocr[n] = xchg_spi(mmc_stat, 0xFF);	/* Get 32 bit return value of R7 resp */
+        if (ocr[2] == 0x01 && ocr[3] == 0xAA) {				/* Is the card supports vcc of 2.7-3.6V? */
+          while (Timer1 && send_cmd(mmc_stat, ACMD41, 1UL << 30)) ;	/* Wait for end of initialization with ACMD41(HCS) */
+          if (Timer1 && send_cmd(mmc_stat, CMD58, 0) == 0) {		/* Check CCS bit in the OCR */
+            for (n = 0; n < 4; n++) ocr[n] = xchg_spi(mmc_stat, 0xFF);
+            ty = (ocr[0] & 0x40) ? CT_SD2 | CT_BLOCK : CT_SD2;	/* Card id SDv2 */
+          }
+        }
+      } else {	/* Not SDv2 card */
+        if (send_cmd(mmc_stat, ACMD41, 0) <= 1) 	{	/* SDv1 or MMC? */
+          ty = CT_SD1; cmd = ACMD41;	/* SDv1 (ACMD41(0)) */
+        } else {
+          ty = CT_MMC; cmd = CMD1;	/* MMCv3 (CMD1(0)) */
+        }
+        while (Timer1 && send_cmd(mmc_stat, cmd, 0)) ;		/* Wait for end of initialization */
+        if (!Timer1 || send_cmd(mmc_stat, CMD16, 512) != 0)	/* Set block length: 512 */
+          ty = 0;
+      }
 	}
-	CardType = ty;	/* Card type */
-	deselect();
-
+	mmc_stat->CardType = ty;	/* Card type */
+	deselect(mmc_stat);
+    
 	if (ty) {			/* OK */
-		FCLK_FAST();			/* Set fast clock */
-		Stat &= ~STA_NOINIT;	/* Clear STA_NOINIT flag */
+      FCLK_FAST();			/* Set fast clock */
+      mmc_stat->Stat &= ~STA_NOINIT;	/* Clear STA_NOINIT flag */
 	} else {			/* Failed */
-		power_off();
-		Stat = STA_NOINIT;
+      power_off(mmc_stat);
+      mmc_stat->Stat = STA_NOINIT;
 	}
-
+    
 	return Stat;
 }
 
@@ -462,12 +478,13 @@ DSTATUS disk_initialize (
 /*-----------------------------------------------------------------------*/
 
 DSTATUS disk_status (
-	BYTE drv		/* Physical drive number (0) */
+	void* row_stat		/* Physical drive number (0) */
 )
 {
-	if (drv) return STA_NOINIT;		/* Supports only drive 0 */
+    mmc_rspi_dstat *mmc_stat;
+    mmc_stat = (mmc_rspi_dstat *)row_stat;
 
-	return Stat;	/* Return disk status */
+	return mmc_stat->Stat;	/* Return disk status */
 }
 
 
@@ -477,33 +494,36 @@ DSTATUS disk_status (
 /*-----------------------------------------------------------------------*/
 
 DRESULT disk_read (
-	BYTE drv,		/* Physical drive number (0) */
-	BYTE *buff,		/* Pointer to the data buffer to store read data */
-	DWORD sector,	/* Start sector number (LBA) */
+	void* row_stat,		/* Status of mmc rspi */
+	uint8_t *buff,		/* Pointer to the data buffer to store read data */
+	uint32_t sector,	/* Start sector number (LBA) */
 	UINT count		/* Number of sectors to read (1..128) */
 )
 {
-	if (drv || !count) return RES_PARERR;		/* Check parameter */
-	if (Stat & STA_NOINIT) return RES_NOTRDY;	/* Check if drive is ready */
+    mmc_rspi_dstat *mmc_stat;
 
-	if (!(CardType & CT_BLOCK)) sector *= 512;	/* LBA ot BA conversion (byte addressing cards) */
-
+    mmc_stat = (mmc_rspi_dstat *)row_stat;
+	if (!count) return RES_PARERR;		/* Check parameter */
+	if (mmc_stat->Stat & STA_NOINIT) return RES_NOTRDY;	/* Check if drive is ready */
+    
+	if (!(mmc_stat->CardType & CT_BLOCK)) sector *= 512;	/* LBA ot BA conversion (byte addressing cards) */
+    
 	if (count == 1) {	/* Single sector read */
-		if ((send_cmd(CMD17, sector) == 0)	/* READ_SINGLE_BLOCK */
-			&& rcvr_datablock(buff, 512))
-			count = 0;
+      if ((send_cmd(mmc_stat, CMD17, sector) == 0)	/* READ_SINGLE_BLOCK */
+          && rcvr_datablock(mmc_stat, buff, 512))
+        count = 0;
 	}
 	else {				/* Multiple sector read */
-		if (send_cmd(CMD18, sector) == 0) {	/* READ_MULTIPLE_BLOCK */
-			do {
-				if (!rcvr_datablock(buff, 512)) break;
-				buff += 512;
-			} while (--count);
-			send_cmd(CMD12, 0);				/* STOP_TRANSMISSION */
-		}
+      if (send_cmd(mmc_stat, CMD18, sector) == 0) {	/* READ_MULTIPLE_BLOCK */
+        do {
+          if (!rcvr_datablock(mmc_stat, buff, 512)) break;
+          buff += 512;
+        } while (--count);
+        send_cmd(mmc_stat, CMD12, 0);				/* STOP_TRANSMISSION */
+      }
 	}
-	deselect();
-
+	deselect(mmc_stat);
+    
 	return count ? RES_ERROR : RES_OK;	/* Return result */
 }
 
@@ -515,36 +535,39 @@ DRESULT disk_read (
 
 #if _USE_WRITE
 DRESULT disk_write (
-	BYTE drv,			/* Physical drive number (0) */
-	const BYTE *buff,	/* Ponter to the data to write */
-	DWORD sector,		/* Start sector number (LBA) */
+	void* row_stat,		/* Status of mmc rspi */
+	const uint8_t *buff,	/* Ponter to the data to write */
+	uint32_t sector,		/* Start sector number (LBA) */
 	UINT count			/* Number of sectors to write (1..128) */
 )
 {
-	if (drv || !count) return RES_PARERR;		/* Check parameter */
-	if (Stat & STA_NOINIT) return RES_NOTRDY;	/* Check drive status */
-	if (Stat & STA_PROTECT) return RES_WRPRT;	/* Check write protect */
+    mmc_rspi_dstat *mmc_stat;
+    
+    mmc_stat = (mmc_rspi_dstat *)row_stat;
+	if (!count) return RES_PARERR;		/* Check parameter */
+	if (mmc_stat->Stat & STA_NOINIT) return RES_NOTRDY;	/* Check drive status */
+	if (mmc_stat->Stat & STA_PROTECT) return RES_WRPRT;	/* Check write protect */
 
-	if (!(CardType & CT_BLOCK)) sector *= 512;	/* LBA ==> BA conversion (byte addressing cards) */
-
+	if (!(mmc_stat->CardType & CT_BLOCK)) sector *= 512;	/* LBA ==> BA conversion (byte addressing cards) */
+    
 	if (count == 1) {	/* Single sector write */
-		if ((send_cmd(CMD24, sector) == 0)	/* WRITE_BLOCK */
-			&& xmit_datablock(buff, 0xFE))
-			count = 0;
+      if ((send_cmd(mmc_stat, CMD24, sector) == 0)	/* WRITE_BLOCK */
+          && xmit_datablock(mmc_stat, buff, 0xFE))
+        count = 0;
 	}
 	else {				/* Multiple sector write */
-		if (CardType & CT_SDC) send_cmd(ACMD23, count);
-		if (send_cmd(CMD25, sector) == 0) {	/* WRITE_MULTIPLE_BLOCK */
+      if (mmc_stat->CardType & CT_SDC) send_cmd(mmc_stat, ACMD23, count);
+      if (send_cmd(mmc_stat, CMD25, sector) == 0) {	/* WRITE_MULTIPLE_BLOCK */
 			do {
-				if (!xmit_datablock(buff, 0xFC)) break;
-				buff += 512;
+              if (!xmit_datablock(mmc_stat, buff, 0xFC)) break;
+              buff += 512;
 			} while (--count);
-			if (!xmit_datablock(0, 0xFD))	/* STOP_TRAN token */
-				count = 1;
-		}
+			if (!xmit_datablock(mmc_stat, 0, 0xFD))	/* STOP_TRAN token */
+              count = 1;
+      }
 	}
-	deselect();
-
+	deselect(mmc_stat);
+    
 	return count ? RES_ERROR : RES_OK;	/* Return result */
 }
 #endif /* _USE_WRITE */
@@ -557,114 +580,114 @@ DRESULT disk_write (
 
 #if _USE_IOCTL
 DRESULT disk_ioctl (
-	BYTE drv,		/* Physical drive number (0) */
-	BYTE ctrl,		/* Control command code */
+	void* row_stat,		/* Status of mmc rspi */
+	uint8_t ctrl,		/* Control command code */
 	void *buff		/* Pointer to the conrtol data */
 )
 {
 	DRESULT res;
-	BYTE n, csd[16], *ptr = buff;
-	DWORD *dp, st, ed, csz;
+	uint8_t n, csd[16], *ptr = buff;
+	uint32_t *dp, st, ed, csz;
+    mmc_rspi_dstat *mmc_stat;
 
-
-	if (drv) return RES_PARERR;					/* Check parameter */
-	if (Stat & STA_NOINIT) return RES_NOTRDY;	/* Check if drive is ready */
+    mmc_stat = (mmc_rspi_dstat *)row_stat;
+	if (mmc_stat->Stat & STA_NOINIT) return RES_NOTRDY;	/* Check if drive is ready */
 
 	res = RES_ERROR;
 
 	switch (ctrl) {
 	case CTRL_SYNC :		/* Wait for end of internal write process of the drive */
-		if (select()) res = RES_OK;
-		break;
-
-	case GET_SECTOR_COUNT :	/* Get drive capacity in unit of sector (DWORD) */
-		if ((send_cmd(CMD9, 0) == 0) && rcvr_datablock(csd, 16)) {
-			if ((csd[0] >> 6) == 1) {	/* SDC ver 2.00 */
-				csz = csd[9] + ((WORD)csd[8] << 8) + ((DWORD)(csd[7] & 63) << 16) + 1;
-				*(DWORD*)buff = csz << 10;
-			} else {					/* SDC ver 1.XX or MMC ver 3 */
-				n = (csd[5] & 15) + ((csd[10] & 128) >> 7) + ((csd[9] & 3) << 1) + 2;
-				csz = (csd[8] >> 6) + ((WORD)csd[7] << 2) + ((WORD)(csd[6] & 3) << 10) + 1;
-				*(DWORD*)buff = csz << (n - 9);
-			}
-			res = RES_OK;
-		}
-		break;
-
-	case GET_BLOCK_SIZE :	/* Get erase block size in unit of sector (DWORD) */
-		if (CardType & CT_SD2) {	/* SDC ver 2.00 */
-			if (send_cmd(ACMD13, 0) == 0) {	/* Read SD status */
-				xchg_spi(0xFF);	/* Discard 2nd byte of R2 resp. */
-				if (rcvr_datablock(csd, 16)) {					/* Read partial block */
-					for (n = 64 - 16; n; n--) xchg_spi(0xFF);	/* Purge trailing data */
-					*(DWORD*)buff = 16UL << (csd[10] >> 4);
-					res = RES_OK;
-				}
-			}
-		} else {					/* SDC ver 1.XX or MMC */
-			if ((send_cmd(CMD9, 0) == 0) && rcvr_datablock(csd, 16)) {	/* Read CSD */
-				if (CardType & CT_SD1) {	/* SDC ver 1.XX */
-					*(DWORD*)buff = (((csd[10] & 63) << 1) + ((WORD)(csd[11] & 128) >> 7) + 1) << ((csd[13] >> 6) - 1);
-				} else {					/* MMC */
-					*(DWORD*)buff = ((WORD)((csd[10] & 124) >> 2) + 1) * (((csd[11] & 3) << 3) + ((csd[11] & 224) >> 5) + 1);
-				}
-				res = RES_OK;
-			}
-		}
-		break;
-
+      if (select(mmc_stat)) res = RES_OK;
+      break;
+      
+	case GET_SECTOR_COUNT :	/* Get drive capacity in unit of sector (uint32_t) */
+      if ((send_cmd(mmc_stat, CMD9, 0) == 0) && rcvr_datablock(mmc_stat, csd, 16)) {
+        if ((csd[0] >> 6) == 1) {	/* SDC ver 2.00 */
+          csz = csd[9] + ((uint16_t)csd[8] << 8) + ((uint32_t)(csd[7] & 63) << 16) + 1;
+          *(uint32_t*)buff = csz << 10;
+        } else {					/* SDC ver 1.XX or MMC ver 3 */
+          n = (csd[5] & 15) + ((csd[10] & 128) >> 7) + ((csd[9] & 3) << 1) + 2;
+          csz = (csd[8] >> 6) + ((uint16_t)csd[7] << 2) + ((uint16_t)(csd[6] & 3) << 10) + 1;
+          *(uint32_t*)buff = csz << (n - 9);
+        }
+        res = RES_OK;
+      }
+      break;
+      
+	case GET_BLOCK_SIZE :	/* Get erase block size in unit of sector (uint32_t) */
+      if (mmc_stat->CardType & CT_SD2) {	/* SDC ver 2.00 */
+        if (send_cmd(mmc_stat, ACMD13, 0) == 0) {	/* Read SD status */
+          xchg_spi(mmc_stat, 0xFF);	/* Discard 2nd byte of R2 resp. */
+          if (rcvr_datablock(mmc_stat, csd, 16)) {					/* Read partial block */
+            for (n = 64 - 16; n; n--) xchg_spi(mmc_stat, 0xFF);	/* Purge trailing data */
+            *(uint32_t*)buff = 16UL << (csd[10] >> 4);
+            res = RES_OK;
+          }
+        }
+      } else {					/* SDC ver 1.XX or MMC */
+        if ((send_cmd(mmc_stat, CMD9, 0) == 0) && rcvr_datablock(csd, 16)) {	/* Read CSD */
+          if (mmc_stat->CardType & CT_SD1) {	/* SDC ver 1.XX */
+            *(uint32_t*)buff = (((csd[10] & 63) << 1) + ((uint16_t)(csd[11] & 128) >> 7) + 1) << ((csd[13] >> 6) - 1);
+          } else {					/* MMC */
+            *(uint32_t*)buff = ((uint16_t)((csd[10] & 124) >> 2) + 1) * (((csd[11] & 3) << 3) + ((csd[11] & 224) >> 5) + 1);
+          }
+          res = RES_OK;
+        }
+      }
+      break;
+      
 	case CTRL_TRIM :	/* Erase a block of sectors (used when _USE_TRIM == 1) */
-		if (!(CardType & CT_SDC)) break;				/* Check if the card is SDC */
-		if (disk_ioctl(drv, MMC_GET_CSD, csd)) break;	/* Get CSD */
+      if (!(mmc_stat->CardType & CT_SDC)) break;				/* Check if the card is SDC */
+      if (disk_ioctl((void*)mmc_stat, MMC_GET_CSD, csd)) break;	/* Get CSD */
 		if (!(csd[0] >> 6) && !(csd[10] & 0x40)) break;	/* Check if sector erase can be applied to the card */
 		dp = buff; st = dp[0]; ed = dp[1];				/* Load sector block */
-		if (!(CardType & CT_BLOCK)) {
-			st *= 512; ed *= 512;
+		if (!(mmc_stat->CardType & CT_BLOCK)) {
+          st *= 512; ed *= 512;
 		}
-		if (send_cmd(CMD32, st) == 0 && send_cmd(CMD33, ed) == 0 && send_cmd(CMD38, 0) == 0 && wait_ready(30000))	/* Erase sector block */
-			res = RES_OK;
+		if (send_cmd(mmc_stat, CMD32, st) == 0 && send_cmd(mmc_stat, CMD33, ed) == 0 && send_cmd(mmc_stat, CMD38, 0) == 0 && wait_ready(mmc_stat, 30000))	/* Erase sector block */
+          res = RES_OK;
 		break;
-
-	/* Following command are not used by FatFs module */
-
-	case MMC_GET_TYPE :		/* Get MMC/SDC type (BYTE) */
-		*ptr = CardType;
-		res = RES_OK;
-		break;
-
+        
+        /* Following command are not used by FatFs module */
+        
+	case MMC_GET_TYPE :		/* Get MMC/SDC type (uint8_t) */
+      *ptr = mmc_stat->CardType;
+      res = RES_OK;
+      break;
+      
 	case MMC_GET_CSD :		/* Read CSD (16 bytes) */
-		if (send_cmd(CMD9, 0) == 0		/* READ_CSD */
-			&& rcvr_datablock(ptr, 16))
-			res = RES_OK;
-		break;
-
+      if (send_cmd(mmc_stat, CMD9, 0) == 0		/* READ_CSD */
+          && rcvr_datablock(mmc_stat, ptr, 16))
+        res = RES_OK;
+      break;
+      
 	case MMC_GET_CID :		/* Read CID (16 bytes) */
-		if (send_cmd(CMD10, 0) == 0		/* READ_CID */
-			&& rcvr_datablock(ptr, 16))
+      if (send_cmd(mmc_stat, CMD10, 0) == 0		/* READ_CID */
+          && rcvr_datablock(mmc_stat, ptr, 16))
 			res = RES_OK;
-		break;
-
+      break;
+      
 	case MMC_GET_OCR :		/* Read OCR (4 bytes) */
-		if (send_cmd(CMD58, 0) == 0) {	/* READ_OCR */
-			for (n = 4; n; n--) *ptr++ = xchg_spi(0xFF);
-			res = RES_OK;
-		}
-		break;
-
+      if (send_cmd(mmc_stat, CMD58, 0) == 0) {	/* READ_OCR */
+        for (n = 4; n; n--) *ptr++ = xchg_spi(mmc_stat, 0xFF);
+        res = RES_OK;
+      }
+      break;
+      
 	case MMC_GET_SDSTAT :	/* Read SD status (64 bytes) */
-		if (send_cmd(ACMD13, 0) == 0) {	/* SD_STATUS */
-			xchg_spi(0xFF);
-			if (rcvr_datablock(ptr, 64))
-				res = RES_OK;
-		}
-		break;
-
+      if (send_cmd(mmc_stat, ACMD13, 0) == 0) {	/* SD_STATUS */
+        xchg_spi(mmc_stat, 0xFF);
+        if (rcvr_datablock(mmc_stat, ptr, 64))
+          res = RES_OK;
+      }
+      break;
+      
 	default:
-		res = RES_PARERR;
+      res = RES_PARERR;
 	}
-
-	deselect();
-
+    
+	deselect(mmc_stat);
+    
 	return res;
 }
 #endif /* _USE_IOCTL */
@@ -674,29 +697,29 @@ DRESULT disk_ioctl (
 /* Device timer function                                                 */
 /*-----------------------------------------------------------------------*/
 /* This function must be called from system timer process
-/  in period of 1 ms to generate card control timing.
+   /  in period of 1 ms to generate card control timing.
 */
 
 void disk_timerproc (void)
 {
-	WORD n;
-	BYTE s;
-
-
-	n = Timer1;						/* 1kHz decrement timer stopped at 0 */
-	if (n) Timer1 = --n;
-	n = Timer2;
-	if (n) Timer2 = --n;
-
-	s = Stat;
-	if (WP)		/* Write protected */
-		s |= STA_PROTECT;
-	else		/* Write enabled */
-		s &= ~STA_PROTECT;
-	if (INS)	/* Card is in socket */
-		s &= ~STA_NODISK;
-	else		/* Socket empty */
-		s |= (STA_NODISK | STA_NOINIT);
-	Stat = s;
+  uint16_t n;
+  uint8_t s;
+  
+  
+  n = Timer1;						/* 1kHz decrement timer stopped at 0 */
+  if (n) Timer1 = --n;
+  n = Timer2;
+  if (n) Timer2 = --n;
+  
+  s = Stat;
+  if (WP)		/* Write protected */
+    s |= STA_PROTECT;
+  else		/* Write enabled */
+    s &= ~STA_PROTECT;
+  if (INS)	/* Card is in socket */
+    s &= ~STA_NODISK;
+  else		/* Socket empty */
+    s |= (STA_NODISK | STA_NOINIT);
+  Stat = s;
 }
 

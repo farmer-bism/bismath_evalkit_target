@@ -1,0 +1,6 @@
+#
+#		Driver Makefile (DTCa用）
+#
+
+
+APPL_COBJS := DTCa.o

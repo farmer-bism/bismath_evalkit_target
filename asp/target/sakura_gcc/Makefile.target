@@ -94,3 +94,6 @@ $(OBJFILE): $(TARGETDIR)/target_check.tf
 #  プロセッサ依存部のインクルード
 #
 include $(SRCDIR)/arch/$(PRC)_$(TOOL)/Makefile.prc
+
+
+include $(TARGETDIR)/target_device/Makefile.target_device

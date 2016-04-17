@@ -1,0 +1,2 @@
+
+APPL_COBJS := target_device.o  target_device_node.o

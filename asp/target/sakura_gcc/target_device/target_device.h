@@ -11,16 +11,18 @@
 
 typedef struct device_info_t{
   uitn32_t status;
-  void* dev_node;
+  void* func;
+  void* stat;
 }dev_info_t;
 
 extern dev_info_t dev_info[NUM_TARGET_DEVICE};
 
-static inline uint32_t get_dev_info(enum use_device_id device_id){
-  return dev_info[device_id].dev_node;
+static inline dev_info_t* get_dev_info(enum use_device_id device_id){
+  return &dev_info[device_id];
 }
 
-#define GET_DEV_INFO(device_id) ((dev_node_t *) get_dev_info(device_id))
+#define GET_DEV_STAT(device_id) get_dev_info(device_id)->stat
+#define GET_DEV_FUNC(device_id) get_dev_info(device_id)->stat
 
 void target_device_init();
 

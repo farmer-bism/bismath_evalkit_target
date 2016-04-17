@@ -99,3 +99,10 @@ typedef struct rspi_param_type{
   uint16_t spcmd0;
 } rspi_param_t;
   
+//device node type
+//rspi node's api is null
+
+//device node status
+typedef struct rspi_dev_status_type{
+  uint32_t baddr;
+} rspi_dstat;

@@ -18,13 +18,13 @@
 
 dev_info_t dev_info[NUM_TARGET_DEVICE]{
 #ifdef USE_MMC_RSPI_0
-  {0x0, (uint32_t*)(&MMC_RSPI_0)},
+  {0x0, (void*)(&MMC_RSPI_0_FUNC), (void*)(&MMC_RSPI_0_STATUS)},
 #endif
 #ifdef USE_DTCA_0
-  {0x0, (uint32_t*)(&DTCA_0)},
+  {0x0, (void*)(&DTCA_0), NULL},
 #endif
 #ifdef USE_LED_0
-  {0x0, (uint32_t*)(&LED_0)}
+  {0x0, (void*)(&LED_0), NULL}
 #endif
 }
 
