@@ -1,6 +1,0 @@
-#
-#		Driver Makefile （mmc_rspi用）
-#
-
-
-APPL_COBJS := RSPI.o

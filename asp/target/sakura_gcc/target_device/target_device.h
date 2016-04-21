@@ -7,39 +7,32 @@
 #ifndef SAURA_GCC_TARGET_DEVICE
 #define SAURA_GCC_TARGET_DEVICE
 
-#include "target_device_id.h"
-
-typedef struct device_info_t{
-  uitn32_t status;
-  void* func;
-  void* stat;
-}dev_info_t;
-
-extern dev_info_t dev_info[NUM_TARGET_DEVICE};
-
-static inline dev_info_t* get_dev_info(enum use_device_id device_id){
-  return &dev_info[device_id];
-}
-
-#define GET_DEV_STAT(device_id) get_dev_info(device_id)->stat
-#define GET_DEV_FUNC(device_id) get_dev_info(device_id)->stat
-
-void target_device_init();
-
-#include "target_device_id.h"
+#include <target_device/target_device_id.h>
 
 typedef struct device_node_t{
-  uitn32_t baddr;
-  uint32_t* irq_num;
-  
+  void* func;
+  void* stat;
 }dev_node_t;
+
+typedef struct device_info_t{
+  uint32_t status;
+  dev_node_t *dnode;
+}dev_info_t;
+
+extern dev_info_t dev_info[NUM_TARGET_DEVICE];
+
+#define GET_DEV_NODE(device_id) (dev_info[device_id].dnode)
+#define GET_DEV_STAT(device_id) (dev_info[device_id].dnode->stat)
+#define GET_DEV_FUNC(device_id) (dev_info[device_id].dnode->stat)
+
+void target_device_init();
 
 #define DEV_WRB(base, offset, data) sil_wrb_mem(((uint8_t *)(base+offset)), data)
 #define DEV_WRH(base, offset, data) sil_wrh_mem(((uint16_t *)(base+offset)), data)
 #define DEV_WRW(base, offset, data) sil_wrw_mem(((uint32_t *)(base+offset)), data)
 
-#define DEV_REB(base, offset) sil_reb_mem(((uint8_t*)(base+offset))
-#define DEV_REH(base, offset) sil_reh_mem(((uint16_t*)(base+offset))
-#define DEV_REW(base, offset) sil_rew_mem(((uint32_t*)(base+offset))
+#define DEV_REB(base, offset) sil_reb_mem((uint8_t*)(base+offset))
+#define DEV_REH(base, offset) sil_reh_mem((uint16_t*)(base+offset))
+#define DEV_REW(base, offset) sil_rew_mem((uint32_t*)(base+offset))
 
 #endif

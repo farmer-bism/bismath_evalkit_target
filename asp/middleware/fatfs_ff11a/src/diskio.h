@@ -13,20 +13,7 @@ extern "C" {
 #define _USE_IOCTL	1	/* 1: Enable disk_ioctl fucntion */
 
 #include "integer.h"
-
-
-/* Status of Disk Functions */
-typedef BYTE	DSTATUS;
-
-/* Results of Disk Functions */
-typedef enum {
-	RES_OK = 0,		/* 0: Successful */
-	RES_ERROR,		/* 1: R/W Error */
-	RES_WRPRT,		/* 2: Write Protected */
-	RES_NOTRDY,		/* 3: Not Ready */
-	RES_PARERR		/* 4: Invalid Parameter */
-} DRESULT;
-
+#include "mmc_sdcard.h"
 
 /*---------------------------------------*/
 /* Prototypes for disk control functions */

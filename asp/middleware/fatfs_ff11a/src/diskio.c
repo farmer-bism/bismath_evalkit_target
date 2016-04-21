@@ -1,230 +1,55 @@
-/*-----------------------------------------------------------------------*/
-/* Low level disk I/O module skeleton for FatFs     (C)ChaN, 2014        */
-/*-----------------------------------------------------------------------*/
-/* If a working storage control module is available, it should be        */
-/* attached to the FatFs via a glue function rather than modifying it.   */
-/* This is an example of glue functions to attach various exsisting      */
-/* storage control modules to the FatFs module with a defined API.       */
-/*-----------------------------------------------------------------------*/
+/*
+ * Copyright (c) 2016- Hisashi Hata
+ * Released under the toppers license
+ * https://www.toppers.jp/license.html
+ */
 
-#include "diskio.h"		/* FatFs lower layer API */
-#include "usbdisk.h"	/* Example: Header file of existing USB MSD control module */
-#include "atadrive.h"	/* Example: Header file of existing ATA harddisk control module */
-#include "sdcard.h"		/* Example: Header file of existing MMC/SDC contorl module */
-
-/* Definitions of physical drive number for each drive */
-#define ATA		0	/* Example: Map ATA harddisk to physical drive 0 */
-#define MMC		1	/* Example: Map MMC/SD card to physical drive 1 */
-#define USB		2	/* Example: Map USB MSD to physical drive 2 */
+#include "diskio.h"
 
 
-/*-----------------------------------------------------------------------*/
-/* Get Drive Status                                                      */
-/*-----------------------------------------------------------------------*/
 
-DSTATUS disk_status (
-	BYTE pdrv		/* Physical drive nmuber to identify the drive */
-)
-{
-	DSTATUS stat;
-	int result;
+DSTATUS disk_initialize (BYTE pdrv){
+  mmc_func_t *mmc_func;
+  dnode_id mmc_did;
 
-	switch (pdrv) {
-	case ATA :
-		result = ATA_disk_status();
+  mmc_did = pdrv_to_dev[pdrv];
+  mmc_func = GET_DEV_FUNC(mmc_did);
+  return (*mmc_func->mmc_disk_initialize)(GET_DEV_STAT(mmc_did));
+}
+  
+  
+DSTATUS disk_status (BYTE pdrv){
+  mmc_func_t *mmc_func;
+  dnode_id mmc_did;
 
-		// translate the reslut code here
-
-		return stat;
-
-	case MMC :
-		result = MMC_disk_status();
-
-		// translate the reslut code here
-
-		return stat;
-
-	case USB :
-		result = USB_disk_status();
-
-		// translate the reslut code here
-
-		return stat;
-	}
-	return STA_NOINIT;
+  mmc_did = pdrv_to_dev[pdrv];
+  mmc_func = GET_DEV_FUNC(mmc_did);
+  return (*mmc_func->mmc_disk_status)(GET_DEV_STAT(mmc_did));
 }
 
-
-
-/*-----------------------------------------------------------------------*/
-/* Inidialize a Drive                                                    */
-/*-----------------------------------------------------------------------*/
-
-DSTATUS disk_initialize (
-	BYTE pdrv				/* Physical drive nmuber to identify the drive */
-)
-{
-	DSTATUS stat;
-	int result;
-
-	switch (pdrv) {
-	case ATA :
-		result = ATA_disk_initialize();
-
-		// translate the reslut code here
-
-		return stat;
-
-	case MMC :
-		result = MMC_disk_initialize();
-
-		// translate the reslut code here
-
-		return stat;
-
-	case USB :
-		result = USB_disk_initialize();
-
-		// translate the reslut code here
-
-		return stat;
-	}
-	return STA_NOINIT;
+DRESULT disk_read (BYTE pdrv, BYTE* buff, DWORD sector, UINT count){
+  mmc_func_t *mmc_func;
+  dnode_id mmc_did;
+  
+  mmc_did = pdrv_to_dev[pdrv];
+  mmc_func = GET_DEV_FUNC(mmc_did);
+  return (*mmc_func->mmc_disk_read)(GET_DEV_STAT(mmc_did), buff, sector, count);
 }
 
-
-
-/*-----------------------------------------------------------------------*/
-/* Read Sector(s)                                                        */
-/*-----------------------------------------------------------------------*/
-
-DRESULT disk_read (
-	BYTE pdrv,		/* Physical drive nmuber to identify the drive */
-	BYTE *buff,		/* Data buffer to store read data */
-	DWORD sector,	/* Sector address in LBA */
-	UINT count		/* Number of sectors to read */
-)
-{
-	DRESULT res;
-	int result;
-
-	switch (pdrv) {
-	case ATA :
-		// translate the arguments here
-
-		result = ATA_disk_read(buff, sector, count);
-
-		// translate the reslut code here
-
-		return res;
-
-	case MMC :
-		// translate the arguments here
-
-		result = MMC_disk_read(buff, sector, count);
-
-		// translate the reslut code here
-
-		return res;
-
-	case USB :
-		// translate the arguments here
-
-		result = USB_disk_read(buff, sector, count);
-
-		// translate the reslut code here
-
-		return res;
-	}
-
-	return RES_PARERR;
+DRESULT disk_write (BYTE pdrv, const BYTE* buff, DWORD sector, UINT count){
+  mmc_func_t *mmc_func;
+  dnode_id mmc_did;
+  
+  mmc_did = pdrv_to_dev[pdrv];
+  mmc_func = GET_DEV_FUNC(mmc_did);
+  return (*mmc_func->mmc_disk_write)(GET_DEV_STAT(mmc_did), buff, sector, count);
 }
 
-
-
-/*-----------------------------------------------------------------------*/
-/* Write Sector(s)                                                       */
-/*-----------------------------------------------------------------------*/
-
-#if _USE_WRITE
-DRESULT disk_write (
-	BYTE pdrv,			/* Physical drive nmuber to identify the drive */
-	const BYTE *buff,	/* Data to be written */
-	DWORD sector,		/* Sector address in LBA */
-	UINT count			/* Number of sectors to write */
-)
-{
-	DRESULT res;
-	int result;
-
-	switch (pdrv) {
-	case ATA :
-		// translate the arguments here
-
-		result = ATA_disk_write(buff, sector, count);
-
-		// translate the reslut code here
-
-		return res;
-
-	case MMC :
-		// translate the arguments here
-
-		result = MMC_disk_write(buff, sector, count);
-
-		// translate the reslut code here
-
-		return res;
-
-	case USB :
-		// translate the arguments here
-
-		result = USB_disk_write(buff, sector, count);
-
-		// translate the reslut code here
-
-		return res;
-	}
-
-	return RES_PARERR;
+DRESULT disk_ioctl (BYTE pdrv, BYTE cmd, void* buff){
+  mmc_func_t *mmc_func;
+  dnode_id mmc_did;
+  
+  mmc_did = pdrv_to_dev[pdrv];
+  mmc_func = GET_DEV_FUNC(mmc_did);
+  return (*mmc_func->mmc_disk_write)(GET_DEV_STAT(mmc_did), cmd, buff);
 }
-#endif
-
-
-/*-----------------------------------------------------------------------*/
-/* Miscellaneous Functions                                               */
-/*-----------------------------------------------------------------------*/
-
-#if _USE_IOCTL
-DRESULT disk_ioctl (
-	BYTE pdrv,		/* Physical drive nmuber (0..) */
-	BYTE cmd,		/* Control code */
-	void *buff		/* Buffer to send/receive control data */
-)
-{
-	DRESULT res;
-	int result;
-
-	switch (pdrv) {
-	case ATA :
-
-		// Process of the command for the ATA drive
-
-		return res;
-
-	case MMC :
-
-		// Process of the command for the MMC/SD card
-
-		return res;
-
-	case USB :
-
-		// Process of the command the USB drive
-
-		return res;
-	}
-
-	return RES_PARERR;
-}
-#endif

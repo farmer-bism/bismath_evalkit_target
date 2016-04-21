@@ -4,12 +4,12 @@
  * https://www.toppers.jp/license.html    
  */
 
-#ifdef TARGET_./TARGET_DEVICE_ID_H
-#define TARGET_./TARGET_DEVICE_ID_H
+#ifndef TARGET_TARGET_DEVICE_ID_H
+#define TARGET_TARGET_DEVICE_ID_H
 
-#include "./use_device.h"
+#include "use_device.h"
 
-enum use_device_id{
+typedef enum device_node_id_t{
 #ifdef USE_MMC_RSPI_0
   DEV_MMC_RSPI0,
 #endif
@@ -20,6 +20,6 @@ enum use_device_id{
   DEV_LED0,
 #endif
   NUM_TARGET_DEVICE
-}
+}dnode_id;
 
 #endif

@@ -97,7 +97,7 @@ ENABLE_TRACE =
 #
 #  ユーティリティプログラムの名称
 #
-PERL = /usr/bin/perl
+PERL = /usr/local/bin/perl
 CFG = $(SRCDIR)/cfg/cfg/cfg
 
 #
@@ -171,9 +171,6 @@ APPL_LIBS =
 ifdef APPLDIR
   INCLUDES := $(INCLUDES) $(foreach dir,$(APPLDIR),-I$(dir))
 endif
-
-include $(SRCDIR)/driver/rx/Makefile.RSPI
-include $(SRCDIR)/driver/rx/Makefile.mmc_rspi
 
 #
 #  システムサービスに関する定義
@@ -573,4 +570,3 @@ $(APPL_ASMOBJS:.o=.d): %.d: %.S
 %.o: %.S
 	@echo "*** Default compile rules should not be used."
 	$(CC) -c $(CFLAGS) $<
-

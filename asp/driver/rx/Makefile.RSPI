@@ -1,6 +1,0 @@
-#
-#		Driver Makefile (RSPI用）
-#
-
-
-APPL_COBJS := $(APPL_COBJS) $(SRCDIR)/driver/rx/RSPI.o

@@ -41,8 +41,11 @@
 /*
  *  MCUàÀë∂èÓïÒÇÃì«Ç›çûÇ›
  */
-#include "rx63n_gcc/rx63n.h"
+#include <rx63n_gcc/rx63n.h>
 
+#ifndef TOPPERS_MACRO_ONLY
+#include "target_device/target_device.h"
+#endif
 
 #define F_PCLKA		96000000UL	/* PCLKA frequency (configured by SCKCR.PCK) */
 #define F_PCLKB		48000000UL	/* PCLKB frequency (configured by SCKCR.PCK) */

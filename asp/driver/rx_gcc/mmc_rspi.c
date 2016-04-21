@@ -315,7 +315,6 @@ int rcvr_datablock (	/* 1:OK, 0:Error */
 {
   uint8_t token;
   
-  
   Timer1 = 200;
 	do {							/* Wait for DataStart token in timeout of 200ms */
       token = xchg_spi(mmc_stat, 0xFF);
@@ -345,6 +344,7 @@ int xmit_datablock (	/* 1:OK, 0:Failed */
 {
 	uint8_t resp;
 
+	mmc_stat = v_stat;
 
 	if (!wait_ready(500)) return 0;		/* Wait for card ready */
 
@@ -375,7 +375,6 @@ uint8_t send_cmd (		/* Return value: R1 resp (bit7==1:Failed to send) */
                         )
 {
 	uint8_t n, res;
-
 
 	if (cmd & 0x80) {	/* Send a CMD55 prior to ACMD<n> */
 		cmd &= 0x7F;
@@ -424,13 +423,13 @@ uint8_t send_cmd (		/* Return value: R1 resp (bit7==1:Failed to send) */
 /*-----------------------------------------------------------------------*/
 
 DSTATUS disk_initialize (
-	uint8_t drv		/* Physical drive number (0) */
+	void v_stat		/* Physical drive number (0) */
 )
 {
 	uint8_t n, cmd, ty, ocr[4];
     mmc_rspi_dstat *mmc_stat;
 
-    mmc_stat = (mmc_rspi_dstat *)GET_DEV_STAT(drv_to_id[drv]);
+    mmc_stat = (mmc_rspi_dstat *)v_stat;
 	power_on(mmc_stat);							/* Initialize RSPI */
 	for (n = 10; n; n--) xchg_spi(mmc_stat, 0xFF);/* Send 80 dummy clocks */
     
@@ -478,11 +477,11 @@ DSTATUS disk_initialize (
 /*-----------------------------------------------------------------------*/
 
 DSTATUS disk_status (
-	void* row_stat		/* Physical drive number (0) */
+	void* v_stat		/* Physical drive number (0) */
 )
 {
     mmc_rspi_dstat *mmc_stat;
-    mmc_stat = (mmc_rspi_dstat *)row_stat;
+    mmc_stat = (mmc_rspi_dstat *)v_stat;
 
 	return mmc_stat->Stat;	/* Return disk status */
 }
@@ -494,15 +493,15 @@ DSTATUS disk_status (
 /*-----------------------------------------------------------------------*/
 
 DRESULT disk_read (
-	void* row_stat,		/* Status of mmc rspi */
+	void* v_stat,		/* Status of mmc rspi */
 	uint8_t *buff,		/* Pointer to the data buffer to store read data */
 	uint32_t sector,	/* Start sector number (LBA) */
 	UINT count		/* Number of sectors to read (1..128) */
 )
 {
-    mmc_rspi_dstat *mmc_stat;
+    mmc_rspi_dstat *v_stat;
 
-    mmc_stat = (mmc_rspi_dstat *)row_stat;
+    mmc_stat = (mmc_rspi_dstat *)v_stat;
 	if (!count) return RES_PARERR;		/* Check parameter */
 	if (mmc_stat->Stat & STA_NOINIT) return RES_NOTRDY;	/* Check if drive is ready */
     
@@ -535,7 +534,7 @@ DRESULT disk_read (
 
 #if _USE_WRITE
 DRESULT disk_write (
-	void* row_stat,		/* Status of mmc rspi */
+	void* v_stat,		/* Status of mmc rspi */
 	const uint8_t *buff,	/* Ponter to the data to write */
 	uint32_t sector,		/* Start sector number (LBA) */
 	UINT count			/* Number of sectors to write (1..128) */
@@ -543,7 +542,7 @@ DRESULT disk_write (
 {
     mmc_rspi_dstat *mmc_stat;
     
-    mmc_stat = (mmc_rspi_dstat *)row_stat;
+    mmc_stat = (mmc_rspi_dstat *)v_stat;
 	if (!count) return RES_PARERR;		/* Check parameter */
 	if (mmc_stat->Stat & STA_NOINIT) return RES_NOTRDY;	/* Check drive status */
 	if (mmc_stat->Stat & STA_PROTECT) return RES_WRPRT;	/* Check write protect */
@@ -580,7 +579,7 @@ DRESULT disk_write (
 
 #if _USE_IOCTL
 DRESULT disk_ioctl (
-	void* row_stat,		/* Status of mmc rspi */
+	void* v_stat,		/* Status of mmc rspi */
 	uint8_t ctrl,		/* Control command code */
 	void *buff		/* Pointer to the conrtol data */
 )
@@ -590,7 +589,7 @@ DRESULT disk_ioctl (
 	uint32_t *dp, st, ed, csz;
     mmc_rspi_dstat *mmc_stat;
 
-    mmc_stat = (mmc_rspi_dstat *)row_stat;
+    mmc_stat = (mmc_rspi_dstat *)v_stat;
 	if (mmc_stat->Stat & STA_NOINIT) return RES_NOTRDY;	/* Check if drive is ready */
 
 	res = RES_ERROR;
