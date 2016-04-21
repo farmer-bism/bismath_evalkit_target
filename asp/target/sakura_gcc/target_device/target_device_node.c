@@ -18,7 +18,7 @@
 
 dev_info_t dev_info[NUM_TARGET_DEVICE]{
 #ifdef USE_MMC_RSPI_0
-  {0x0, (void*)(&MMC_RSPI_0_FUNC), (void*)(&MMC_RSPI_0_STATUS)},
+  {0x0, (void*)(&mmc_rspi_0_node)},
 #endif
 #ifdef USE_DTCA_0
   {0x0, (void*)(&DTCA_0), NULL},
@@ -29,8 +29,8 @@ dev_info_t dev_info[NUM_TARGET_DEVICE]{
 }
 
 void target_device_init(){
-#ifdef USE_MMC_RSPI_0
-  target_dev_init_mmc_spi_0();
+#ifdef USE_MMC_SDCARD_RSPI_0
+  target_dev_init_mmc_sdcard_rspi_0();
 #endif
 #ifdef USE_DTCA_0
   target_dev_init_dtca_0();

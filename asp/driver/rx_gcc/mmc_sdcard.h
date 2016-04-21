@@ -3,6 +3,7 @@
  * Released under the toppers license
  * https://www.toppers.jp/license.html
  */
+#include <target_board.h>
 
 /* Status of Disk Functions */
 typedef uint8_t DSTATUS;
@@ -15,8 +16,6 @@ typedef enum {
 	RES_NOTRDY,		/* 3: Not Ready */
 	RES_PARERR		/* 4: Invalid Parameter */
 } DRESULT;
-
-extern mmc_ pdrv_to_dev[];
 
 
 typedef struct mmc_status_t{

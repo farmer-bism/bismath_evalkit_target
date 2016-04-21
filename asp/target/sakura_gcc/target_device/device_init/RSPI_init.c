@@ -4,7 +4,7 @@
  * https://www.toppers.jp/license.html
  */
 #include "target_board.h"
-#include "driver/rx/RSPI.h"
+#include "RSPI.h"
 
 #define RSPI_CH0_BASE 0x00088380
 #define RSPI_CH1_BASE 0x000883A0

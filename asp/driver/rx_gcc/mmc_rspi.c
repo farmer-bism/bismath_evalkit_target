@@ -422,7 +422,7 @@ uint8_t send_cmd (		/* Return value: R1 resp (bit7==1:Failed to send) */
 /* Initialize disk drive                                                 */
 /*-----------------------------------------------------------------------*/
 
-DSTATUS disk_initialize (
+DSTATUS rspi_disk_initialize (
 	void v_stat		/* Physical drive number (0) */
 )
 {
@@ -476,7 +476,7 @@ DSTATUS disk_initialize (
 /* Get disk status                                                       */
 /*-----------------------------------------------------------------------*/
 
-DSTATUS disk_status (
+DSTATUS rspi_disk_status (
 	void* v_stat		/* Physical drive number (0) */
 )
 {
@@ -492,7 +492,7 @@ DSTATUS disk_status (
 /* Read sector(s)                                                        */
 /*-----------------------------------------------------------------------*/
 
-DRESULT disk_read (
+DRESULT rspi_disk_read (
 	void* v_stat,		/* Status of mmc rspi */
 	uint8_t *buff,		/* Pointer to the data buffer to store read data */
 	uint32_t sector,	/* Start sector number (LBA) */
@@ -533,7 +533,7 @@ DRESULT disk_read (
 /*-----------------------------------------------------------------------*/
 
 #if _USE_WRITE
-DRESULT disk_write (
+DRESULT rspi_disk_write (
 	void* v_stat,		/* Status of mmc rspi */
 	const uint8_t *buff,	/* Ponter to the data to write */
 	uint32_t sector,		/* Start sector number (LBA) */
@@ -578,7 +578,7 @@ DRESULT disk_write (
 /*-----------------------------------------------------------------------*/
 
 #if _USE_IOCTL
-DRESULT disk_ioctl (
+DRESULT rspi_disk_ioctl (
 	void* v_stat,		/* Status of mmc rspi */
 	uint8_t ctrl,		/* Control command code */
 	void *buff		/* Pointer to the conrtol data */
@@ -722,3 +722,19 @@ void disk_timerproc (void)
   Stat = s;
 }
 
+mmc_func_t mmc_rspi_fucn = {
+  rspi_disk_initialize,
+  rspi_disk_status,
+  rspi_disk_read,
+#ifdef _USE_WRITE
+  rspi_disk_write,
+#else
+  NULL,
+#endif
+  
+#ifdef _USE_IOCTL
+  rspi_disk_ioctl
+#else
+  NULL
+#endif
+}
