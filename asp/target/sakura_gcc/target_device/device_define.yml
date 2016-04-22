@@ -2,22 +2,22 @@
 
 - id: MMC_RSPI
   num_dev: 1
-  header: drv_mmc_rspi.h
-  init_func: target_dev_init_mmc_spi
-  node_type: dev_node_t
+  init_func: target_dev_ini_mmc_sdcard_rspi
   node_obj: mmc_rspi_node
+
+- id: RSPI
+  num_dev: 1
+  init_func: target_dev_ini_rspi
+  node_obj: rspi_node
+  
   
 - id: DTCA
   num_dev: 1
-  header: drv_dtca.h
   init_func: target_dev_init_dtca
-  node_type: dev_node_t
   node_obj: dtca_node
   
 - id: LED
   num_dev: 1
-  header: drv_led.h
   init_func: target_dev_init_led
-  node_type: dev_node_t
   node_obj: led_node
   

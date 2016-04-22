@@ -110,13 +110,8 @@
 
 
 static volatile
-DSTATUS Stat = STA_NOINIT;	/* Physical drive status */
-
-static volatile
 uint16_t Timer1, Timer2;	/* 1000Hz decrement timer stopped at zero (driven by disk_timerproc()) */
 
-static
-uint8_t CardType;			/* Card type flags */
 
 
 
@@ -130,7 +125,7 @@ uint8_t CardType;			/* Card type flags */
 /* Enable SPI and MMC/SDC controls */
 /*---------------------------------*/
 static
-void power_on (mmc_rspi_dstat* mmc_stat)
+void power_on (mmc_rspi_stat_t* mmc_stat)
 {
 
   rspi_param_t rspi_param;
@@ -169,7 +164,7 @@ void power_on (mmc_rspi_dstat* mmc_stat)
 /*    Disable SPI      */
 /*---------------------*/
 static
-void power_off (mmc_rspi_dstat* mmc_stat)	/* Disable MMC/SDC interface */
+void power_off (mmc_rspi_stat_t* mmc_stat)	/* Disable MMC/SDC interface */
 {
   rspi_disable((rspi_dstat*)GET_DEV_STAT(mmc_stat->rspi_id));
   //RSPI.SPCR.BYTE = 0;		/* Stop RSPI module */
@@ -181,7 +176,7 @@ void power_off (mmc_rspi_dstat* mmc_stat)	/* Disable MMC/SDC interface */
 /*---------------------*/
 static
 uint8_t xchg_spi (
-                  mmc_rspi_dstat *mmc_stat,
+                  mmc_rspi_stat_t *mmc_stat,
                   uint8_t dat	/* Data to send */
                   )
 {
@@ -199,7 +194,7 @@ uint8_t xchg_spi (
 /*---------------------*/
 static
 void xmit_spi_multi (
-                     mmc_rspi_dstat *mmc_stat,
+                     mmc_rspi_stat_t *mmc_stat,
                      const uint8_t *buff,	/* Pointer to the data */
                      UINT btx			/* Number of bytes to send (multiple of 4) */
                      )
@@ -225,7 +220,7 @@ void xmit_spi_multi (
 /*------------------------*/
 static
 void rcvr_spi_multi (
-                     mmc_rspi_dstat *mmc_stat,
+                     mmc_rspi_stat_t *mmc_stat,
                      uint8_t *buff,		/* Pointer to data buffer */
                      UINT btr		/* Number of bytes to receive (multiple of 4) */
                      )
@@ -255,7 +250,7 @@ void rcvr_spi_multi (
 
 static
 int wait_ready (	/* 1:Ready, 0:Timeout */
-                mmc_rspi_dstat *mmc_stat,
+                mmc_rspi_stat_t *mmc_stat,
                 UINT wt			/* Timeout [ms] */
                     )
 {
@@ -276,7 +271,7 @@ int wait_ready (	/* 1:Ready, 0:Timeout */
 /*-----------------------------------------------------------------------*/
 
 static
-void deselect (mmc_rspi_dstat *mmc_stat)
+void deselect (mmc_rspi_stat_t *mmc_stat)
 {
 	CS_HIGH();		/* Set CS# high */
 	xchg_spi(mmc_stat, 0xFF);	/* Dummy clock (force DO hi-z for multiple slave SPI) */
@@ -289,7 +284,7 @@ void deselect (mmc_rspi_dstat *mmc_stat)
 /*-----------------------------------------------------------------------*/
 
 static
-int select (mmc_rspi_dstat* mmc_stat)	/* 1:OK, 0:Timeout */
+int select (mmc_rspi_stat_t* mmc_stat)	/* 1:OK, 0:Timeout */
 {
 	CS_LOW();		/* Set CS# low */
 	xchg_spi(mmc_stat, 0xFF);	/* Dummy clock (force DO enabled) */
@@ -308,7 +303,7 @@ int select (mmc_rspi_dstat* mmc_stat)	/* 1:OK, 0:Timeout */
 
 static
 int rcvr_datablock (	/* 1:OK, 0:Error */
-                    mmc_rspi_dstat *mmc_stat,
+                    mmc_rspi_stat_t *mmc_stat,
                     uint8_t *buff,			/* Data buffer */
                     UINT btr			/* Data block length (byte) */
                         )
@@ -337,7 +332,7 @@ int rcvr_datablock (	/* 1:OK, 0:Error */
 #if _USE_WRITE
 static
 int xmit_datablock (	/* 1:OK, 0:Failed */
-                    mmc_rspi_dstat *mmc_stat,
+                    mmc_rspi_stat_t *mmc_stat,
                     const uint8_t *buff,	/* Ponter to 512 byte data to be sent */
                     uint8_t token			/* Token */
 )
@@ -369,7 +364,7 @@ int xmit_datablock (	/* 1:OK, 0:Failed */
 
 static
 uint8_t send_cmd (		/* Return value: R1 resp (bit7==1:Failed to send) */
-                  mmc_rspi_dstat *mmc_stat,
+                  mmc_rspi_stat_t *mmc_stat,
                   uint8_t cmd,		/* Command index */
                   uint32_t arg		/* Argument */
                         )
@@ -427,9 +422,9 @@ DSTATUS rspi_disk_initialize (
 )
 {
 	uint8_t n, cmd, ty, ocr[4];
-    mmc_rspi_dstat *mmc_stat;
+    mmc_rspi_stat_t *mmc_stat;
 
-    mmc_stat = (mmc_rspi_dstat *)v_stat;
+    mmc_stat = (mmc_rspi_stat_t *)v_stat;
 	power_on(mmc_stat);							/* Initialize RSPI */
 	for (n = 10; n; n--) xchg_spi(mmc_stat, 0xFF);/* Send 80 dummy clocks */
     
@@ -480,8 +475,8 @@ DSTATUS rspi_disk_status (
 	void* v_stat		/* Physical drive number (0) */
 )
 {
-    mmc_rspi_dstat *mmc_stat;
-    mmc_stat = (mmc_rspi_dstat *)v_stat;
+    mmc_rspi_stat_t *mmc_stat;
+    mmc_stat = (mmc_rspi_stat_t *)v_stat;
 
 	return mmc_stat->Stat;	/* Return disk status */
 }
@@ -499,9 +494,9 @@ DRESULT rspi_disk_read (
 	UINT count		/* Number of sectors to read (1..128) */
 )
 {
-    mmc_rspi_dstat *v_stat;
+    mmc_rspi_stat_t *v_stat;
 
-    mmc_stat = (mmc_rspi_dstat *)v_stat;
+    mmc_stat = (mmc_rspi_stat_t *)v_stat;
 	if (!count) return RES_PARERR;		/* Check parameter */
 	if (mmc_stat->Stat & STA_NOINIT) return RES_NOTRDY;	/* Check if drive is ready */
     
@@ -540,9 +535,9 @@ DRESULT rspi_disk_write (
 	UINT count			/* Number of sectors to write (1..128) */
 )
 {
-    mmc_rspi_dstat *mmc_stat;
+    mmc_rspi_stat_t *mmc_stat;
     
-    mmc_stat = (mmc_rspi_dstat *)v_stat;
+    mmc_stat = (mmc_rspi_stat_t *)v_stat;
 	if (!count) return RES_PARERR;		/* Check parameter */
 	if (mmc_stat->Stat & STA_NOINIT) return RES_NOTRDY;	/* Check drive status */
 	if (mmc_stat->Stat & STA_PROTECT) return RES_WRPRT;	/* Check write protect */
@@ -587,9 +582,9 @@ DRESULT rspi_disk_ioctl (
 	DRESULT res;
 	uint8_t n, csd[16], *ptr = buff;
 	uint32_t *dp, st, ed, csz;
-    mmc_rspi_dstat *mmc_stat;
+    mmc_rspi_stat_t *mmc_stat;
 
-    mmc_stat = (mmc_rspi_dstat *)v_stat;
+    mmc_stat = (mmc_rspi_stat_t *)v_stat;
 	if (mmc_stat->Stat & STA_NOINIT) return RES_NOTRDY;	/* Check if drive is ready */
 
 	res = RES_ERROR;

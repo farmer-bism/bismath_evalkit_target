@@ -8,9 +8,9 @@
 
 //rspi_mmc_node's status
 typedef struct mmc_rspi_dev_status_type{
-  uint32_t rspi_id;
-  uint32_t cs_val;
+  dnode_id mmc_drv_id;  //mmc driver id
+  dnode_id mmc_ins_id;  //mmc card detect driver id
   DSTATUS Stat;
   uint8_t CardType;
   uint8_t tout_flg;
-} mmc_rspi_dstat;
+} mmc_rspi_stat_t;

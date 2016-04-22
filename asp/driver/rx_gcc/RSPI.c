@@ -26,9 +26,11 @@
 #define SPTI_IRQ 1
 #define SPII_IRQ 2
 
-void rspi_slave_select(rspi_dstat *rspi_stat, uint8_t sel){
+void rspi_slave_select(void *v_rspi_stat, uint8_t sel){
   uint8_t st;
   uint32_t base_addr;
+  rspi_dstat *rspi_stat;
+  rspi_stat = v_rspi_stat;
   
   base_addr = rspi_stat->baddr;
   st = DEV_REB(base_addr, SSLP_OFFSET);
@@ -36,9 +38,11 @@ void rspi_slave_select(rspi_dstat *rspi_stat, uint8_t sel){
 }
   
 
-void rspi_slave_unselect(rspi_dstat *rspi_stat, uint8_t unsel){
+void rspi_slave_unselect(void *v_rspi_stat, uint8_t unsel){
   uint8_t st;
   uint32_t base_addr;
+  rspi_dstat *rspi_stat;
+  rspi_stat = v_rspi_stat;
   
   base_addr = rspi_stat->baddr;
   st = DEV_REB(base_addr, SSLP_OFFSET);
@@ -48,8 +52,10 @@ void rspi_slave_unselect(rspi_dstat *rspi_stat, uint8_t unsel){
 //
 //trs_freq is bit rate
 //if bit rate is 400 khz, set 400000;
-void rspi_init(rspi_dstat *rspi_stat, rspi_param_t* params){
+void rspi_init(void *v_rspi_stat, rspi_param_t* params){
   uint32_t base_addr;
+  rspi_dstat *rspi_stat;
+  rspi_stat = v_rspi_stat;
   
   base_addr = rspi_stat->baddr;
   DEV_WRB(base_addr, SPCR_OFFSET, 0); //disable RSPI
@@ -62,8 +68,10 @@ void rspi_init(rspi_dstat *rspi_stat, rspi_param_t* params){
   DEV_WRB(base_addr, SPCR_OFFSET, params->spcr); //Enable RSPI 
 }
 
-void rspi_disable(rspi_dstat *rspi_stat){
+void rspi_disable(void *v_rspi_stat){
   uint32_t base_addr;
+  rspi_dstat *rspi_stat;
+  rspi_stat = v_rspi_stat;
   
   base_addr = rspi_stat->baddr;
   DEV_WRB(base_addr, SPCR_OFFSET, 0); //disable RSPI
@@ -73,16 +81,16 @@ void rspi_dtc_send_w();
 void rspi_dtc_send_b();
 void rspi_dtc_send_clock();
 
-void rspi_send_w(rspi_dstat *rspi_stat, uint32_t dat){
-  DEV_WRW(rspi_stat->baddr, SPDR_OFFSET, dat);
+void rspi_send_w(void *v_rspi_stat, uint32_t dat){
+  DEV_WRW(((rspi_dstat*)v_rspi_stat)->baddr, SPDR_OFFSET, dat);
 }
 
-void rspi_send_h(rspi_dstat *rspi_stat, uint16_t dat){
-  DEV_WRW(rspi_stat->baddr, SPDR_OFFSET, (uint32_t)dat);
+void rspi_send_h(void *v_rspi_stat, uint16_t dat){
+  DEV_WRW(((rspi_dstat*)v_rspi_stat)->baddr, SPDR_OFFSET, (uint32_t)dat);
 }
 
-void rspi_send_b(rspi_dstat *rspi_stat, uint8_t dat){
-  DEV_WRW(rspi_stat->baddr, SPDR_OFFSET, (uint32_t)dat);
+void rspi_send_b(void *v_rspi_stat, uint8_t dat){
+  DEV_WRW(((rspi_dstat*)v_rspi_stat)->baddr, SPDR_OFFSET, (uint32_t)dat);
 }
 
 void rspi_send_clock();
@@ -90,30 +98,32 @@ void rspi_send_clock();
 void rcv_w_with_dtc();
 void rcv_b_with_dtc();
 
-uint32_t rspi_rcv_w(rspi_dstat *rspi_stat){
-  return DEV_REW(rspi_stat->baddr, SPDR_OFFSET);
+uint32_t rspi_rcv_w(void *v_rspi_stat){
+  return DEV_REW(((rspi_dstat*)v_rspi_stat)->baddr, SPDR_OFFSET);
 }
 
-uint16_t rspi_rcv_h(rspi_dstat *rspi_stat){
-  return (uint16_t)DEV_REW(rspi_stat->baddr, SPDR_OFFSET);
+uint16_t rspi_rcv_h(void *v_rspi_stat){
+  return (uint16_t)DEV_REW(((rspi_dstat*)v_rspi_stat)->baddr, SPDR_OFFSET);
 }
 
-uint8_t rspi_rcv_b(rspi_dstat *rspi_stat){
-  return (uint8_t) DEV_REW(rspi_stat->baddr, SPDR_OFFSET);
+uint8_t rspi_rcv_b(void *v_rspi_stat){
+  return (uint8_t) DEV_REW(((rspi_dstat*)v_rspi_stat)->baddr, SPDR_OFFSET);
 };
 
-uint8_t rspi_status(rspi_dstat *rspi_stat){
-  return DEV_REB(rspi_stat->baddr, SPSR_OFFSET);
+uint8_t rspi_status(void *v_rspi_stat){
+  return DEV_REB(((rspi_dstat*)v_rspi_stat)->baddr, SPSR_OFFSET);
 }
 
-void rspi_set_cmd(rspi_dstat *rspi_stat, uint8_t cmd_buff_num, uint8_t cmd){
-  DEV_WRB(rspi_stat->baddr, SPCMD_OFFSET+(cmd_buff_num<<1), cmd );
+void rspi_set_cmd(void *v_rspi_stat, uint8_t cmd_buff_num, uint8_t cmd){
+  DEV_WRB(((rspi_dstat*)v_rspi_stat)->baddr, SPCMD_OFFSET+(cmd_buff_num<<1), cmd );
 }
 
-void rspi_chg_dwidth(rspi_dstat *rspi_stat, uint8_t cmd_buff_num, uint8_t width){
+void rspi_chg_dwidth(void *v_rspi_stat, uint8_t cmd_buff_num, uint8_t width){
   uint8_t current;
   uint32_t cmd_offset;
   uint32_t *base_addr;
+  rspi_dstat *rspi_stat;
+  rspi_stat = v_rspi_stat;
 
   cmd_offset = SPCMD_OFFSET+(cmd_buff_num<<1);
   base_addr = rspi_stat->baddr;

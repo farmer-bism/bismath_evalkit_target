@@ -104,5 +104,8 @@ typedef struct rspi_param_type{
 
 //device node status
 typedef struct rspi_dev_status_type{
-  uint32_t baddr;
+  uint32_t baddr; //base address
+  uint8_t spri; //irq number of spri
+  uint8_t spti; //irq number of spti
+  uint8_t spii; //irq number of spii
 } rspi_dstat;

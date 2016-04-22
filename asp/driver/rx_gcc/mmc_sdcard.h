@@ -18,11 +18,6 @@ typedef enum {
 } DRESULT;
 
 
-typedef struct mmc_status_t{
-  dnode_id mmc_drv_id;  //mmc driver id
-  dnode_id mmc_ins_id;  //mmc card detect driver id
-}mmc_stat_t;
-
 typedef struct mmc_function_t{
   DSTATUS (*mmc_disk_initialize)(void*);
   DSTATUS (*mmc_disk_status)(void*);

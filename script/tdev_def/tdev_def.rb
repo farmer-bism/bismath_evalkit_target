@@ -39,7 +39,7 @@ def node_obj_str(node_obj, index)
 end
 
 def dev_info_str(node_obj)
-  "{0x0, (uint32_t*)(&#{node_obj})}"
+  "{0x0, &#{node_obj}}"
 end
 
 def init_func_str(init_func, index)
@@ -50,6 +50,7 @@ def if_def_code(dev_id, index, w_str)
   "#ifdef #{use_dev_str(dev_id, index)}\n  #{w_str}\n#endif\n"
 end
 
+#make use_device.h
 def generate_use_device(dev_def)
   wr_str = []
   wr_str << "#{LICENSE_HEADER_TXT}\n"
@@ -68,6 +69,7 @@ def generate_use_device(dev_def)
   fw.close
 end
 
+#make target_device_id.h
 def generate_device_id(dev_def)
   wr_str = []  
   wr_str << "#{LICENSE_HEADER_TXT}\n"
@@ -79,14 +81,15 @@ def generate_device_id(dev_def)
   wr_str << "\n"
   
   #generate id code
-  wr_str << "enum use_device_id{\n"
+  wr_str << "typedef enum use_device_id{\n"
+  wr_str << "  DEV_NULL,\n"
   dev_def.each{|dev_i|
     dev_i[NUM_DEV_KEY].times{|i|
       dev_id = "#{dev_id_str(dev_i[ID_KEY], i)},"
       wr_str << if_def_code(dev_i[ID_KEY], i, dev_id)
     }
   }
-  wr_str << "  #{NUM_OF_DEVICE}\n}\n\n"
+  wr_str << "  #{NUM_OF_DEVICE}\n}dnode_id;\n\n"
   wr_str << "#endif\n"
   
   fw = open("#{DEVICE_ID_FILE}.h", "w")
@@ -94,6 +97,7 @@ def generate_device_id(dev_def)
   fw.close
 end
 
+#make target_device_node.c
 def generate_device_node(dev_def)
   wr_str = []  
   wr_str << "#{LICENSE_HEADER_TXT}\n"
@@ -105,7 +109,7 @@ def generate_device_node(dev_def)
   #generate extern node obj code
   dev_def.each{|dev_i|
     dev_i[NUM_DEV_KEY].times{|i|
-      ext_obj = "extern #{dev_i[NODE_TYPE_KEY]} #{node_obj_str(dev_i[NODE_OBJ_KEY], i)};"
+      ext_obj = "extern dev_node_t #{node_obj_str(dev_i[NODE_OBJ_KEY], i)};\n  void #{init_func_str(dev_i[INIT_FUNC_KEY], i)}();"
       wr_str << if_def_code(dev_i[ID_KEY], i, ext_obj)
     }
   }
@@ -113,6 +117,7 @@ def generate_device_node(dev_def)
   
   #generate node code
   wr_str << "dev_info_t dev_info[#{NUM_OF_DEVICE}]{\n"
+  wr_str << "  {0x0, NULL}, //NULL DEVICE\n"
   dev_def_size = dev_def.size
   dev_def_size.times{|di|
     dev_i = dev_def[di]
