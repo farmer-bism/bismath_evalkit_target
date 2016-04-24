@@ -18,6 +18,8 @@ INIT_FUNC_KEY = "init_func"
 NODE_TYPE_KEY = "node_type"
 NODE_OBJ_KEY = "node_obj"
 
+USE_DEFAULT = ""
+
 LICENSE_HEADER_TXT =<<"LICENSE_EOS"
 /*
  * Copyright (c) 2015- Hisashi Hata       
@@ -54,12 +56,12 @@ end
 def generate_use_device(dev_def)
   wr_str = []
   wr_str << "#{LICENSE_HEADER_TXT}\n"
-  wr_str << "#ifdef TARGET_#{USE_DEVICE_FILE.upcase}_H\n"
+  wr_str << "#ifndef TARGET_#{USE_DEVICE_FILE.upcase}_H\n"
   wr_str << "#define TARGET_#{USE_DEVICE_FILE.upcase}_H\n\n"
   
   dev_def.each{|dev_i|
     dev_i[NUM_DEV_KEY].times{|i|
-      wr_str << "//#define #{use_dev_str(dev_i[ID_KEY], i)}\n"
+      wr_str << "#{USE_DEFAULT}#define #{use_dev_str(dev_i[ID_KEY], i)}\n"
     }
   }
   
@@ -74,7 +76,7 @@ def generate_device_id(dev_def)
   wr_str = []  
   wr_str << "#{LICENSE_HEADER_TXT}\n"
 
-  wr_str << "#ifdef TARGET_#{DEVICE_ID_FILE.upcase}_H\n"
+  wr_str << "#ifndef TARGET_#{DEVICE_ID_FILE.upcase}_H\n"
   wr_str << "#define TARGET_#{DEVICE_ID_FILE.upcase}_H\n\n"
   #gererate include code
   wr_str << "#include \"#{USE_DEVICE_FILE}.h\"\n"
@@ -103,7 +105,8 @@ def generate_device_node(dev_def)
   wr_str << "#{LICENSE_HEADER_TXT}\n"
 
   #gererate include code
-  wr_str << "#include \"target_device.h\"\n"
+  wr_str << "#include <kernel.h>\n"
+  wr_str << "#include <target_device/target_device.h>\n"
   wr_str << "\n"
   
   #generate extern node obj code
@@ -116,7 +119,7 @@ def generate_device_node(dev_def)
   wr_str << "\n"
   
   #generate node code
-  wr_str << "dev_info_t dev_info[#{NUM_OF_DEVICE}]{\n"
+  wr_str << "dev_info_t dev_info[#{NUM_OF_DEVICE}] = {\n"
   wr_str << "  {0x0, NULL}, //NULL DEVICE\n"
   dev_def_size = dev_def.size
   dev_def_size.times{|di|
@@ -130,11 +133,11 @@ def generate_device_node(dev_def)
       else
         separator = ","
       end
-      node_s = "#{dev_info_str(node_obj_str(dev_i[ID_KEY], i))}#{separator}"
+      node_s = "#{dev_info_str(node_obj_str(dev_i[NODE_OBJ_KEY], i))}#{separator}"
       wr_str << if_def_code(dev_i[ID_KEY], i, node_s)
     }
   }
-  wr_str << "}\n"
+  wr_str << "};\n"
   wr_str << "\n"
   #generate target driver init code
   wr_str << "void target_device_init(){\n"
@@ -164,8 +167,8 @@ def tdev_def()
 
   devdef = YAML.load_file(devdef_file)
   
-  generate_use_device(devdef)
-  generate_device_id(devdef)
+#  generate_use_device(devdef)
+#  generate_device_id(devdef)
   generate_device_node(devdef)
 end
   

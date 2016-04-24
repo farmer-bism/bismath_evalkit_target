@@ -4,8 +4,10 @@
  * https://www.toppers.jp/license.html
  */
 
+#include <kernel.h>
+#include <sil.h>
 #include <target_board.h>
-#include "RSPI.h"
+#include <driver/rx_gcc/RSPI.h>
 
 #define SPCR_OFFSET 0x0
 #define SSLP_OFFSET 0x1
@@ -34,7 +36,7 @@ void rspi_slave_select(void *v_rspi_stat, uint8_t sel){
   
   base_addr = rspi_stat->baddr;
   st = DEV_REB(base_addr, SSLP_OFFSET);
-  DEV_WRB(base_addr, SSLP_OFFSET, st | sel);
+  DEV_WRB(base_addr, SSLP_OFFSET, st & ~sel);
 }
   
 
@@ -46,7 +48,7 @@ void rspi_slave_unselect(void *v_rspi_stat, uint8_t unsel){
   
   base_addr = rspi_stat->baddr;
   st = DEV_REB(base_addr, SSLP_OFFSET);
-  DEV_WRB(base_addr, SSLP_OFFSET, st & ~unsel);
+  DEV_WRB(base_addr, SSLP_OFFSET, st | unsel);
 }
 
 //
@@ -71,15 +73,40 @@ void rspi_init(void *v_rspi_stat, rspi_param_t* params){
 void rspi_disable(void *v_rspi_stat){
   uint32_t base_addr;
   rspi_dstat *rspi_stat;
+  uint8_t rd;
   rspi_stat = v_rspi_stat;
   
   base_addr = rspi_stat->baddr;
-  DEV_WRB(base_addr, SPCR_OFFSET, 0); //disable RSPI
+  rd = DEV_REB(base_addr, SPCR_OFFSET);
+  DEV_WRB(base_addr, SPCR_OFFSET, rd & ~SPCR_SPE); //disable RSPI
 }
   
+void rspi_enable(void *v_rspi_stat){
+  uint32_t base_addr;
+  uint8_t rd;
+  rspi_dstat *rspi_stat;
+  rspi_stat = v_rspi_stat;
+  
+  base_addr = rspi_stat->baddr;
+  rd = DEV_REB(base_addr, SPCR_OFFSET);
+  DEV_WRB(base_addr, SPCR_OFFSET, rd | SPCR_SPE); //disable RSPI
+}
+
+//Bit rate controll register
+void rspi_chg_bit_rate(void *v_rspi_stat, uint8_t bit_rate){
+  rspi_dstat *rspi_stat;
+  rspi_stat = v_rspi_stat;
+
+  DEV_WRB(rspi_stat->baddr, SPBR_OFFSET, bit_rate);
+}
+
+
+//SEND/RECIVE DATA REGISTER
+/*
 void rspi_dtc_send_w();
 void rspi_dtc_send_b();
 void rspi_dtc_send_clock();
+*/
 
 void rspi_send_w(void *v_rspi_stat, uint32_t dat){
   DEV_WRW(((rspi_dstat*)v_rspi_stat)->baddr, SPDR_OFFSET, dat);
@@ -118,10 +145,10 @@ void rspi_set_cmd(void *v_rspi_stat, uint8_t cmd_buff_num, uint8_t cmd){
   DEV_WRB(((rspi_dstat*)v_rspi_stat)->baddr, SPCMD_OFFSET+(cmd_buff_num<<1), cmd );
 }
 
-void rspi_chg_dwidth(void *v_rspi_stat, uint8_t cmd_buff_num, uint8_t width){
+void rspi_chg_dwidth(void *v_rspi_stat, uint8_t cmd_buff_num, uint32_t width){
   uint8_t current;
   uint32_t cmd_offset;
-  uint32_t *base_addr;
+  uint32_t base_addr;
   rspi_dstat *rspi_stat;
   rspi_stat = v_rspi_stat;
 

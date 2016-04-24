@@ -73,8 +73,8 @@
 #define SPCMD_SSLA_SSL3 0x30
 #define SPCMD_SSLKP 0x80
 #define SPCMD_SPB_MASK 0xF00
-#define SPCMD_SPB_08 0x700
-#define SPCMD_SPB_09 0x800
+#define SPCMD_SPB_8 0x700
+#define SPCMD_SPB_9 0x800
 #define SPCMD_SPB_10 0x900
 #define SPCMD_SPB_11 0xA00
 #define SPCMD_SPB_12 0xB00
@@ -109,3 +109,34 @@ typedef struct rspi_dev_status_type{
   uint8_t spti; //irq number of spti
   uint8_t spii; //irq number of spii
 } rspi_dstat;
+
+
+
+void rspi_slave_select(void *, uint8_t);
+void rspi_slave_unselect(void *, uint8_t);
+void rspi_init(void *, rspi_param_t* );
+void rspi_disable(void *);
+void rspi_enable(void *);
+void rspi_chg_bit_rate(void *, uint8_t );
+
+//SEND/RECIVE DATA REGISTER
+/*
+void rspi_dtc_send_w();
+void rspi_dtc_send_b();
+void rspi_dtc_send_clock();
+*/
+void rspi_send_w(void *, uint32_t);
+void rspi_send_h(void *, uint16_t);
+void rspi_send_b(void *, uint8_t);
+/*
+void rspi_send_clock();
+void rcv_w_with_dtc();
+void rcv_b_with_dtc();
+*/
+uint32_t rspi_rcv_w(void *);
+uint16_t rspi_rcv_h(void *);
+uint8_t rspi_rcv_b(void *);
+
+uint8_t rspi_status(void *);
+void rspi_set_cmd(void *, uint8_t, uint8_t);
+void rspi_chg_dwidth(void *, uint8_t, uint32_t);

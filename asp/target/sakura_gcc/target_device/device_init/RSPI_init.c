@@ -3,8 +3,8 @@
  * Released under the toppers license
  * https://www.toppers.jp/license.html
  */
-#include "target_board.h"
-#include "RSPI.h"
+#include <target_board.h>
+#include <driver/rx_gcc/RSPI.h>
 
 #define RSPI_CH0_BASE 0x00088380
 #define RSPI_CH1_BASE 0x000883A0
@@ -18,7 +18,7 @@ const rspi_dstat rspi_st_0 = {
   INT_RSPI0_SPRI0,
   INT_RSPI0_SPTI0,
   INT_RSPI0_SPII0
-}
+};
 
 const dev_node_t rspi_node_0 = {
   NULL,
@@ -48,7 +48,7 @@ const rspi_dstat rspi_st_1 = {
   INT_RSPI1_SPRI1,
   INT_RSPI1_SPTI1,
   INT_RSPI1_SPII1
-}
+};
 
 const dev_node_t rspi_node_1 = {
   NULL,
@@ -80,7 +80,7 @@ const rspi_dstat rspi_st_2 = {
   INT_RSPI2_SPRI2,
   INT_RSPI2_SPTI2,
   INT_RSPI2_SPII2
-}
+};
 
 const dev_node_t rspi_node_2 = {
   NULL,

@@ -12,64 +12,18 @@
 /
 /-------------------------------------------------------------------------*/
 
-#include "diskio.h"		/* Common include file for ff.c and disk layer */
-#include "kernel.h"
+#include <kernel.h>
+#include <sil.h>
+#include <driver/rx_gcc/mmc_rspi.h>
+#include <driver/rx_gcc/mmc_gpio.h>
 
 #define RSPI_CH	0	/* RSPI channel: 0:RSPIA-A, 1:RSPIB-A, 10:RSPIA-B, 11:RSPIB-B */
 
-#define	CS_LOW()	PORTC.DR.BIT.B4 = 0		/* Set CS Low */
-#define	CS_HIGH()	PORTC.DR.BIT.B4 = 1		/* Set CS High */
-#define	INS			(!PORT0.PORT.BIT.B7)	/* Card status switch (Exist:True, Empty:False) */
 #define	WP			0 						/* Write protect switch (Protected:True, Enabled:False) */
-#define CTRL_INIT()	{	/* Initialize CS,INS,WP control port */\
-	PORTC.DR.BIT.B4 = 1; /* CS=OUT */	\
-	PORTC.DDR.BIT.B4 = 1; /* CS=H */	\
-	PORT0.ICR.BIT.B7 = 1; /* INS=IN */	\
-}
 
 #define SCLK_FAST	12000000UL	/* SCLK frequency (R/W) */
 #define	SCLK_SLOW	400000UL	/* SCLK frequency (Init) */
 
-
-#if RSPI_CH == 0	/* RSPIA-A */
-#define RSPI	RSPI0
-#define	RSPI_ATTACH() {			\
-	PORTC.ICR.BIT.B7 = 1;		\
-	IOPORT.PFGSPI.BYTE = 0x0E;	\
-	MSTP_RSPI0 = 0;				\
-}
-
-#elif RSPI_CH == 10	/* RSPIA-B */
-#define RSPI	RSPI0
-#define	RSPI_ATTACH() {			\
-	PORTA.ICR.BIT.B7 = 1;		\
-	IOPORT.PFGSPI.BYTE = 0x0F;	\
-	MSTP_RSPI0 = 0;				\
-}
-
-#elif RSPI_CH == 1	/* RSPIB-A */
-#define RSPI	RSPI1
-#define	RSPI_ATTACH() {			\
-	PORT3.ICR.BIT.B0 = 1;		\
-	IOPORT.PFHSPI.BYTE = 0x0E;	\
-	MSTP_RSPI1 = 0;				\
-}
-
-#elif RSPI_CH == 11	/* RSPIB-B */
-#define RSPI	RSPI1
-#define	RSPI_ATTACH() {			\
-	PORTE.ICR.BIT.B7 = 1;		\
-	IOPORT.PFHSPI.BYTE = 0x0F;	\
-	MSTP_RSPI1 = 0;				\
-}
-
-#endif
-
-#define FCLK_FAST() {					\
-	RSPI.SPCR.BIT.SPE = 0;				\
-	RSPI.SPBR.BYTE = F_PCLKB/SCLK_FAST-1;	\
-	RSPI.SPCR.BIT.SPE = 1;				\
-}
 
 #ifdef __LIT
 #define LDDW(x) revl(x)	/* Little endian: swap bytes */
@@ -112,8 +66,11 @@
 static volatile
 uint16_t Timer1, Timer2;	/* 1000Hz decrement timer stopped at zero (driven by disk_timerproc()) */
 
-
-
+void fast_clk_mode(rspi_dstat* rspi_stat){
+    rspi_disable(rspi_stat);
+    rspi_chg_bit_rate(rspi_stat, F_PCLKB/SCLK_FAST-1);
+    rspi_enable(rspi_stat);
+}
 
 /*-----------------------------------------------------------------------*/
 /* Control SPI module                                                    */
@@ -130,13 +87,8 @@ void power_on (mmc_rspi_stat_t* mmc_stat)
 
   rspi_param_t rspi_param;
   rspi_dstat* rspi_stat;
-  /* Initialize CS/INS/WP port */
-  CTRL_INIT();
-  
-  /* Attach RSPI module to I/O pads, disable module stop */
-  RSPI_ATTACH();
 
-  rspi_stat = (rspi_dstat*)GET_DEV_STAT(mmc_stat->rspi_id);
+  rspi_stat = (rspi_dstat*)GET_DEV_STAT(mmc_stat->mmc_drv_id);
   
   /* Initialize RSPI module */
   rspi_param.spcr = (SPCR_SPE | SPCR_MSTR | SPCR_SPMS);
@@ -145,7 +97,7 @@ void power_on (mmc_rspi_stat_t* mmc_stat)
   rspi_param.spscr = 0;
   rspi_param.bit_rate = SCLK_SLOW;
   rspi_param.spdcr = SPDCR_SPLW;
-  rspi_param_spcmd0 = SPCMD_SPB_8;
+  rspi_param.spcmd0 = SPCMD_SPB_8;
   
   rspi_init(rspi_stat, &rspi_param);
   
@@ -166,7 +118,7 @@ void power_on (mmc_rspi_stat_t* mmc_stat)
 static
 void power_off (mmc_rspi_stat_t* mmc_stat)	/* Disable MMC/SDC interface */
 {
-  rspi_disable((rspi_dstat*)GET_DEV_STAT(mmc_stat->rspi_id));
+  rspi_disable((rspi_dstat*)GET_DEV_STAT(mmc_stat->mmc_drv_id));
   //RSPI.SPCR.BYTE = 0;		/* Stop RSPI module */
 }
 
@@ -182,7 +134,7 @@ uint8_t xchg_spi (
 {
   rspi_dstat *rspi_stat;
 
-  rspi_stat = (rspi_dstat*)GET_DEV_STAT(mmc_stat->rspi_id);
+  rspi_stat = (rspi_dstat*)GET_DEV_STAT(mmc_stat->mmc_drv_id);
   rspi_send_w(rspi_stat, dat);			/* Start transmission (lower 8bits) */
   while (rspi_status(rspi_stat) & SPSR_IDLNF) ;	/* Wait for end of transfer */
   return rspi_rcv_b(rspi_stat);			/* Returen received byte (lower 8bits) */
@@ -196,13 +148,13 @@ static
 void xmit_spi_multi (
                      mmc_rspi_stat_t *mmc_stat,
                      const uint8_t *buff,	/* Pointer to the data */
-                     UINT btx			/* Number of bytes to send (multiple of 4) */
+                     uint32_t btx			/* Number of bytes to send (multiple of 4) */
                      )
 {
   const uint32_t *lp = (const uint32_t*)buff;
   rspi_dstat *rspi_stat;
 
-  rspi_stat = (rspi_dstat*)GET_DEV_STAT(mmc_stat->rspi_id);
+  rspi_stat = (rspi_dstat*)GET_DEV_STAT(mmc_stat->mmc_drv_id);
   rspi_chg_dwidth(rspi_stat, 0, SPCMD_SPB_32);	/* Set 32-bit mode */
   
   do {
@@ -222,13 +174,13 @@ static
 void rcvr_spi_multi (
                      mmc_rspi_stat_t *mmc_stat,
                      uint8_t *buff,		/* Pointer to data buffer */
-                     UINT btr		/* Number of bytes to receive (multiple of 4) */
+                     uint32_t btr		/* Number of bytes to receive (multiple of 4) */
                      )
 {
   uint32_t *lp = (uint32_t*)buff;
   rspi_dstat *rspi_stat;
 
-  rspi_stat = (rspi_dstat*)GET_DEV_STAT(mmc_stat->rspi_id);
+  rspi_stat = (rspi_dstat*)GET_DEV_STAT(mmc_stat->mmc_drv_id);
 
   rspi_chg_dwidth(rspi_stat, 0, SPCMD_SPB_32);	/* Set 32-bit mode */
   
@@ -251,7 +203,7 @@ void rcvr_spi_multi (
 static
 int wait_ready (	/* 1:Ready, 0:Timeout */
                 mmc_rspi_stat_t *mmc_stat,
-                UINT wt			/* Timeout [ms] */
+                uint32_t wt			/* Timeout [ms] */
                     )
 {
   Timer2 = (uint16_t)wt;
@@ -273,8 +225,10 @@ int wait_ready (	/* 1:Ready, 0:Timeout */
 static
 void deselect (mmc_rspi_stat_t *mmc_stat)
 {
-	CS_HIGH();		/* Set CS# high */
-	xchg_spi(mmc_stat, 0xFF);	/* Dummy clock (force DO hi-z for multiple slave SPI) */
+  rspi_dstat* rspi_stat;
+  rspi_stat = (rspi_dstat*)GET_DEV_STAT(mmc_stat->mmc_drv_id);
+  rspi_slave_unselect(rspi_stat,   mmc_stat->slave_cs);		/* Set CS# high */
+  xchg_spi(mmc_stat, 0xFF);	/* Dummy clock (force DO hi-z for multiple slave SPI) */
 }
 
 
@@ -286,13 +240,16 @@ void deselect (mmc_rspi_stat_t *mmc_stat)
 static
 int select (mmc_rspi_stat_t* mmc_stat)	/* 1:OK, 0:Timeout */
 {
-	CS_LOW();		/* Set CS# low */
-	xchg_spi(mmc_stat, 0xFF);	/* Dummy clock (force DO enabled) */
-
-	if (wait_ready(500)) return 1;	/* Wait for card ready */
-
-	deselect(mmc_stat);
-	return 0;	/* Failed to select the card due to timeout */
+    
+  rspi_dstat* rspi_stat;
+  rspi_stat = (rspi_dstat*)GET_DEV_STAT(mmc_stat->mmc_drv_id);
+  rspi_slave_select(rspi_stat,   mmc_stat->slave_cs);		/* Set CS# low */
+  xchg_spi(mmc_stat, 0xFF);	/* Dummy clock (force DO enabled) */
+  
+  if (wait_ready(mmc_stat, 500)) return 1;	/* Wait for card ready */
+  
+  deselect(mmc_stat);
+  return 0;	/* Failed to select the card due to timeout */
 }
 
 
@@ -305,7 +262,7 @@ static
 int rcvr_datablock (	/* 1:OK, 0:Error */
                     mmc_rspi_stat_t *mmc_stat,
                     uint8_t *buff,			/* Data buffer */
-                    UINT btr			/* Data block length (byte) */
+                    uint32_t btr			/* Data block length (byte) */
                         )
 {
   uint8_t token;
@@ -332,25 +289,26 @@ int rcvr_datablock (	/* 1:OK, 0:Error */
 #if _USE_WRITE
 static
 int xmit_datablock (	/* 1:OK, 0:Failed */
-                    mmc_rspi_stat_t *mmc_stat,
+                    void *v_stat,
                     const uint8_t *buff,	/* Ponter to 512 byte data to be sent */
                     uint8_t token			/* Token */
 )
 {
 	uint8_t resp;
+    mmc_rspi_stat_t *mmc_stat;
 
-	mmc_stat = v_stat;
+	mmc_stat = (mmc_rspi_stat_t*)v_stat;
 
-	if (!wait_ready(500)) return 0;		/* Wait for card ready */
+	if (!wait_ready(mmc_stat, 500)) return 0;		/* Wait for card ready */
 
 	xchg_spi(mmc_stat, token);					/* Send token */
 	if (token != 0xFD) {				/* Send data if token is other than StopTran */
-		xmit_spi_multi(buff, 512);		/* Data */
-		xchg_spi(mmc_stat, 0xFF); xchg_spi(mmc_stat, 0xFF);	/* Dummy CRC */
-
-		resp = xchg_spi(mmc_stat, 0xFF);			/* Receive data resp */
-		if ((resp & 0x1F) != 0x05)		/* Function fails if the data packet was not accepted */
-			return 0;
+      xmit_spi_multi(mmc_stat, buff, 512);		/* Data */
+      xchg_spi(mmc_stat, 0xFF); xchg_spi(mmc_stat, 0xFF);	/* Dummy CRC */
+      
+      resp = xchg_spi(mmc_stat, 0xFF);			/* Receive data resp */
+      if ((resp & 0x1F) != 0x05)		/* Function fails if the data packet was not accepted */
+        return 0;
 	}
 	return 1;
 }
@@ -418,7 +376,7 @@ uint8_t send_cmd (		/* Return value: R1 resp (bit7==1:Failed to send) */
 /*-----------------------------------------------------------------------*/
 
 DSTATUS rspi_disk_initialize (
-	void v_stat		/* Physical drive number (0) */
+	void *v_stat		/* Physical drive number (0) */
 )
 {
 	uint8_t n, cmd, ty, ocr[4];
@@ -455,14 +413,14 @@ DSTATUS rspi_disk_initialize (
 	deselect(mmc_stat);
     
 	if (ty) {			/* OK */
-      FCLK_FAST();			/* Set fast clock */
+      fast_clk_mode(GET_DEV_STAT(mmc_stat->mmc_drv_id));			/* Set fast clock */
       mmc_stat->Stat &= ~STA_NOINIT;	/* Clear STA_NOINIT flag */
 	} else {			/* Failed */
       power_off(mmc_stat);
       mmc_stat->Stat = STA_NOINIT;
 	}
     
-	return Stat;
+	return mmc_stat->Stat;
 }
 
 
@@ -491,10 +449,10 @@ DRESULT rspi_disk_read (
 	void* v_stat,		/* Status of mmc rspi */
 	uint8_t *buff,		/* Pointer to the data buffer to store read data */
 	uint32_t sector,	/* Start sector number (LBA) */
-	UINT count		/* Number of sectors to read (1..128) */
+	uint32_t count		/* Number of sectors to read (1..128) */
 )
 {
-    mmc_rspi_stat_t *v_stat;
+    mmc_rspi_stat_t *mmc_stat;
 
     mmc_stat = (mmc_rspi_stat_t *)v_stat;
 	if (!count) return RES_PARERR;		/* Check parameter */
@@ -532,7 +490,7 @@ DRESULT rspi_disk_write (
 	void* v_stat,		/* Status of mmc rspi */
 	const uint8_t *buff,	/* Ponter to the data to write */
 	uint32_t sector,		/* Start sector number (LBA) */
-	UINT count			/* Number of sectors to write (1..128) */
+	uint32_t count			/* Number of sectors to write (1..128) */
 )
 {
     mmc_rspi_stat_t *mmc_stat;
@@ -619,7 +577,7 @@ DRESULT rspi_disk_ioctl (
           }
         }
       } else {					/* SDC ver 1.XX or MMC */
-        if ((send_cmd(mmc_stat, CMD9, 0) == 0) && rcvr_datablock(csd, 16)) {	/* Read CSD */
+        if ((send_cmd(mmc_stat, CMD9, 0) == 0) && rcvr_datablock(mmc_stat, csd, 16)) {	/* Read CSD */
           if (mmc_stat->CardType & CT_SD1) {	/* SDC ver 1.XX */
             *(uint32_t*)buff = (((csd[10] & 63) << 1) + ((uint16_t)(csd[11] & 128) >> 7) + 1) << ((csd[13] >> 6) - 1);
           } else {					/* MMC */
@@ -632,7 +590,7 @@ DRESULT rspi_disk_ioctl (
       
 	case CTRL_TRIM :	/* Erase a block of sectors (used when _USE_TRIM == 1) */
       if (!(mmc_stat->CardType & CT_SDC)) break;				/* Check if the card is SDC */
-      if (disk_ioctl((void*)mmc_stat, MMC_GET_CSD, csd)) break;	/* Get CSD */
+      if (rspi_disk_ioctl((void*)mmc_stat, MMC_GET_CSD, csd)) break;	/* Get CSD */
 		if (!(csd[0] >> 6) && !(csd[10] & 0x40)) break;	/* Check if sector erase can be applied to the card */
 		dp = buff; st = dp[0]; ed = dp[1];				/* Load sector block */
 		if (!(mmc_stat->CardType & CT_BLOCK)) {
@@ -693,6 +651,7 @@ DRESULT rspi_disk_ioctl (
 /* This function must be called from system timer process
    /  in period of 1 ms to generate card control timing.
 */
+uint8_t Stat = 0;
 
 void disk_timerproc (void)
 {
@@ -704,19 +663,23 @@ void disk_timerproc (void)
   if (n) Timer1 = --n;
   n = Timer2;
   if (n) Timer2 = --n;
+
+  
   
   s = Stat;
   if (WP)		/* Write protected */
     s |= STA_PROTECT;
   else		/* Write enabled */
     s &= ~STA_PROTECT;
-  if (INS)	/* Card is in socket */
+  if (check_ins_sw(GET_DEV_STAT(DEV_MMC_GPIO0)))	/* Card is in socket */
     s &= ~STA_NODISK;
   else		/* Socket empty */
     s |= (STA_NODISK | STA_NOINIT);
   Stat = s;
 }
 
+
+// register call back api of mmc_rspi api
 mmc_func_t mmc_rspi_fucn = {
   rspi_disk_initialize,
   rspi_disk_status,
@@ -726,10 +689,9 @@ mmc_func_t mmc_rspi_fucn = {
 #else
   NULL,
 #endif
-  
 #ifdef _USE_IOCTL
   rspi_disk_ioctl
 #else
   NULL
 #endif
-}
+};
