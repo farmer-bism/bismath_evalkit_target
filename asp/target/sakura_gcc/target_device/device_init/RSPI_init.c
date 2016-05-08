@@ -25,7 +25,7 @@ const dev_node_t rspi_node_0 = {
   (void*)&rspi_st_0
 };
 
-void target_dev_init_rspi_0(){
+void target_dev_ini_rspi_0(){
 	/* MPC setting */
 	/* unlock PFS write protection */
 	sil_wrb_mem((void *)(MPC_PWPR_ADDR), MPC_PWPR_PFSW_CLEAR);

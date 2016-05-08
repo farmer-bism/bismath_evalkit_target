@@ -16,3 +16,10 @@ typedef struct mmc_rspi_dev_status_type{
   uint8_t CardType;
   uint8_t tout_flg;
 } mmc_rspi_stat_t;
+
+//alarm handler
+extern void disk_timerproc(intptr_t exinf);
+
+//mmc_rspi_fucn is driver api.
+//  refer from device node.
+extern const mmc_func_t mmc_rspi_func;

@@ -385,13 +385,17 @@ uint8_t send_cmd (		/* Return value: R1 resp (bit7==1:Failed to send) */
 /*-----------------------------------------------------------------------*/
 
 DSTATUS rspi_disk_initialize (
-	void *v_stat		/* Physical drive number (0) */
+	void *v_stat		/* mmc_rspi status */
 )
 {
 	uint8_t n, cmd, ty, ocr[4];
     mmc_rspi_stat_t *mmc_stat;
 
     mmc_stat = (mmc_rspi_stat_t *)v_stat;
+    mmc_stat->Stat = STA_NOINIT;
+    mmc_stat->CardType = 0; 
+    mmc_stat->tout_flg = 0; //clear condition of time out.
+    
 	power_on(mmc_stat);							/* Initialize RSPI */
 	for (n = 10; n; n--) xchg_spi(mmc_stat, 0xFF);/* Send 80 dummy clocks */
     
@@ -439,7 +443,7 @@ DSTATUS rspi_disk_initialize (
 /*-----------------------------------------------------------------------*/
 
 DSTATUS rspi_disk_status (
-	void* v_stat		/* Physical drive number (0) */
+	void* v_stat		/* mmc_rspi status */
 )
 {
     mmc_rspi_stat_t *mmc_stat;
@@ -662,7 +666,7 @@ DRESULT rspi_disk_ioctl (
 */
 uint8_t Stat = 0;
 
-void disk_timerproc (void)
+void disk_timerproc (intptr_t exinf)
 {
   uint16_t n;
   uint8_t s;
@@ -693,7 +697,7 @@ uint32_t rspi_get_fattime(){
 
 
 // register call back api of mmc_rspi api
-mmc_func_t mmc_rspi_fucn = {
+const mmc_func_t mmc_rspi_func = {
   rspi_disk_initialize,
   rspi_disk_status,
   rspi_disk_read,
