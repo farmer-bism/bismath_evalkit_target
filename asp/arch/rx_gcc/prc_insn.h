@@ -128,7 +128,7 @@ enaint( void )
 /*
  *  エンディアン変換 16bit
  */
-static uint16_t
+static inline uint16_t
 rev_endian_uint16( uint16_t data )
 {
   __asm__("revw	%0, %1":"=r"(data):"r"(data));
@@ -138,7 +138,7 @@ rev_endian_uint16( uint16_t data )
 /*
  *  エンディアン変換 32bit
  */
-static uint32_t
+static inline uint32_t
 rev_endian_uint32( uint32_t data )
 {
   __asm__("revl	%1, %0":"=r"(data):"r"(data));

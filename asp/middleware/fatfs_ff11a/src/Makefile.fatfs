@@ -2,5 +2,5 @@
 #		Driver Makefile (FatFs)
 #
 
-
-APPL_COBJS := diskio.o ff.o
+APPL_DIR := $(APPL_DIR) $(MIDDLEDIR)/fatfs_ff11a/src
+APPL_COBJS := $(APPL_COBJS) diskio.o ff.o

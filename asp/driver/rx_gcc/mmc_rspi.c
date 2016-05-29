@@ -26,9 +26,18 @@
 
 
 #ifdef __LIT
-#define LDDW(x) revl(x)	/* Little endian: swap bytes */
+
+static inline uint32_t LDDW( uint32_t data )
+{
+  __asm__("revl	%1, %0":"=r"(data):"r"(data));
+  return data;
+}
 #else
-#define LDDW(x) x		/* Big endian: no swap */
+/* Big endian: no swap */
+static inline uint32_t LDDW( uint32_t data )
+{
+  return data;
+}
 #endif
 
 
@@ -678,6 +687,10 @@ void disk_timerproc (void)
   Stat = s;
 }
 
+uint32_t rspi_get_fattime(){
+  return 0;
+}
+
 
 // register call back api of mmc_rspi api
 mmc_func_t mmc_rspi_fucn = {
@@ -690,7 +703,7 @@ mmc_func_t mmc_rspi_fucn = {
   NULL,
 #endif
 #ifdef _USE_IOCTL
-  rspi_disk_ioctl
+  rspi_disk_ioctl,
 #else
   NULL
 #endif

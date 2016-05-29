@@ -19,11 +19,11 @@ typedef enum {
 
 
 typedef struct mmc_function_t{
-  DSTATUS (*mmc_disk_initialize)(void*);
-  DSTATUS (*mmc_disk_status)(void*);
-  DRESULT (*mmc_disk_read)(void*, uint8_t*, uint32_t, uint32_t);
-  DRESULT (*mmc_disk_write)(void*, const uint8_t*, uint32_t, uint32_t);
-  DRESULT (*mmc_disk_ioctl)(void*, uint8_t, void*);
+  DSTATUS (*mmc_disk_initialize)(void* stat);
+  DSTATUS (*mmc_disk_status)(void* stat);
+  DRESULT (*mmc_disk_read)(void* stat, uint8_t* buff, uint32_t sector, uint32_t count);
+  DRESULT (*mmc_disk_write)(void* stat, const uint8_t* buf, uint32_t sector, uint32_t count);
+  DRESULT (*mmc_disk_ioctl)(void* stat, uint8_t cmd, void* buff);
 }mmc_func_t;
   
 /* Disk Status Bits (DSTATUS) */

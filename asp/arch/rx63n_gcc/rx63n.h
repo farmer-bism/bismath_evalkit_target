@@ -471,7 +471,7 @@
 /*
  * 割り込み要求許可レジスタ
  */
-#define ICU_IER_BASE 0x00087202
+#define ICU_IER_BASE 0x00087200
 
 /* 
  * 割り込み要因プライオリティレジスタi(i=00h～8Fh)の設定
