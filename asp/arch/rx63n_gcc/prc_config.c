@@ -199,7 +199,7 @@ x_config_int( INTNO intno, ATR intatr, PRI intpri )
 	 *
 	 *  割込み番号に対応したIPR値を設定する.
 	 */
-	SET_ICU_IPR(intno, cfg_int_table[intno].intpri);
+    *ipr_reg_addr[intno] = cfg_int_table[intno].intpri;
 
 	/*
 	 *  割込みのマスク解除

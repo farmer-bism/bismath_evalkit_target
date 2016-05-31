@@ -63,6 +63,12 @@
 #define	INTNO_IRQ_OFFSET( intno )	( ( intno ) - 64U )
 #define	IRQ_MAX						UINT_C( 16 )
 
+#ifndef TOPPERS_MACRO_ONLY
+
+extern volatile uint8_t* const ipr_reg_addr[];
+
+#endif
+
 /*
  *  プロセッサ依存モジュール（RX63n用）
  */
