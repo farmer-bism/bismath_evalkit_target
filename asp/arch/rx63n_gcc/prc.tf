@@ -243,12 +243,15 @@ $END$
 
 
 $ 未登録割込みハンドラ入口処理
-$TAB$.extern$TAB$__kernel_default_int_handler_entry$NL$
-__kernel_default_int_handler_entry:$NL$
-$TAB$pushm	r1-r5								; スクラッチレジスタをタスクスタックへ退避 $NL$
-$TAB$mov.l	#0FFFFFFFFH, r1						; 割込みハンドラ番号をr1へ $NL$
-$TAB$mov.l	#__kernel_default_int_handler, r2	; ハンドラのアドレスをr2へ $NL$
-$TAB$bra.a	_kernel_interrupt					; 共通ルーチンへ $NL$$NL$$NL$
+
+$FOREACH inhno INHNO_RANGE$
+  $TAB$.extern$TAB$__kernel_default_int_handler_entry_$inhno$$NL$
+  __kernel_default_int_handler_entry_$inhno$:$NL$
+  $TAB$pushm	r1-r5								; スクラッチレジスタをタスクスタックへ退避 $NL$
+  $TAB$mov.l	#$+inhno$, r1						; 割込みハンドラ番号をr1へ $NL$
+  $TAB$mov.l	#__kernel_default_int_handler, r2	; ハンドラのアドレスをr2へ $NL$
+  $TAB$bra.a	_kernel_interrupt					; 共通ルーチンへ $NL$$NL$$NL$
+$END$
 
 
 $ 
@@ -308,7 +311,7 @@ $FOREACH inhno INHNO_RANGE$
 			$inhhdr = INH.INTHDR[inhno]$
 		$END$
 	$ELSE$
-		$inhhdr = "_kernel_default_int_handler_entry"$
+		$inhhdr = CONCAT("_kernel_default_int_handler_entry_", inhno)$
 	$END$
 
 	$TAB$.word$TAB$_$inhhdr$ $TAB$ $TAB$ $FORMAT("; %02d" , inhno)$ $NL$

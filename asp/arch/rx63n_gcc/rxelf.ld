@@ -32,7 +32,7 @@ SECTIONS
 		*(C)
 		*(C$VECT)
 	} > FLASH
-
+    __rodata_end = .;
 	__exidx_start = .;
 	__exidx_end = .;
 
@@ -52,6 +52,7 @@ SECTIONS
 	    __bss_end = .;
 	} > SRAM
 
+    . = __rodata_end;
 	. = ALIGN(4);
 	__idata_start = .;
 	.data : 
@@ -64,6 +65,7 @@ SECTIONS
 		*(D_2)
 	    __data_end = .;
 	} > SRAM AT> FLASH
+    
 	__idata_end = __idata_start + SIZEOF(.data);
 	_edata = .;
 	PROVIDE(edata = .);

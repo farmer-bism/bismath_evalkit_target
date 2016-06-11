@@ -23,7 +23,7 @@ extern dev_info_t dev_info[NUM_TARGET_DEVICE];
 
 #define GET_DEV_NODE(device_id) (dev_info[device_id].dnode)
 #define GET_DEV_STAT(device_id) (dev_info[device_id].dnode->stat)
-#define GET_DEV_FUNC(device_id) (dev_info[device_id].dnode->stat)
+#define GET_DEV_FUNC(device_id) (dev_info[device_id].dnode->func)
 
 void target_device_init();
 

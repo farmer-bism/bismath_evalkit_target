@@ -112,7 +112,7 @@ clear_B:
     mov.l	#__bss_end, r3
     mov.l	#__bss_start, r1
     sub	r1, r3
-    sstr.l
+    sstr.b
 
 	;
 	;  software_init_hook ‚ğŒÄo‚µi0 ‚Å‚È‚¢ê‡j

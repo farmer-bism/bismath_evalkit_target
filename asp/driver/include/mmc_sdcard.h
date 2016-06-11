@@ -67,7 +67,7 @@ typedef struct mmc_function_t{
 #define CT_SDC          (CT_SD1|CT_SD2) /* SD */
 #define CT_BLOCK        0x08            /* Block addressing */
 
-extern dnode_id pdrv_to_dev[];
+extern const dnode_id pdrv_to_dev[];
 
 #define _USE_WRITE 1
 #define _USE_IOCTL 1
