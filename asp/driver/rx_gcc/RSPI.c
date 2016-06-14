@@ -146,7 +146,7 @@ void rspi_set_cmd(void *v_rspi_stat, uint8_t cmd_buff_num, uint8_t cmd){
 }
 
 void rspi_chg_dwidth(void *v_rspi_stat, uint8_t cmd_buff_num, uint32_t width){
-  uint8_t current;
+  uint16_t current;
   uint32_t cmd_offset;
   uint32_t base_addr;
   rspi_dstat *rspi_stat;
@@ -155,5 +155,5 @@ void rspi_chg_dwidth(void *v_rspi_stat, uint8_t cmd_buff_num, uint32_t width){
   cmd_offset = SPCMD_OFFSET+(cmd_buff_num<<1);
   base_addr = rspi_stat->baddr;
   current = DEV_REB(base_addr, cmd_offset);
-  DEV_WRB(base_addr, cmd_offset, (current & ~SPCMD_SPB_MASK)|width);
+  DEV_WRH(base_addr, cmd_offset, (current & ~SPCMD_SPB_MASK)|width);
 }

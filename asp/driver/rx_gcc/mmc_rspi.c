@@ -25,20 +25,11 @@
 #define	SCLK_SLOW	400000UL	/* SCLK frequency (Init) */
 
 
-#ifdef __LIT
-
 static inline uint32_t LDDW( uint32_t data )
 {
   __asm__("revl	%1, %0":"=r"(data):"r"(data));
   return data;
 }
-#else
-/* Big endian: no swap */
-static inline uint32_t LDDW( uint32_t data )
-{
-  return data;
-}
-#endif
 
 
 
