@@ -234,9 +234,7 @@ int wait_ready (	/* 1:Ready, 0:Timeout */
 static
 void deselect (mmc_rspi_stat_t *mmc_stat)
 {
-  rspi_dstat* rspi_stat;
-  rspi_stat = (rspi_dstat*)GET_DEV_STAT(mmc_stat->mmc_drv_id);
-  rspi_slave_unselect(rspi_stat,   mmc_stat->slave_cs);		/* Set CS# high */
+  deselect_gpio_cs(GET_DEV_STAT(mmc_stat->mmc_ins_id)); /* Set CS# high */
   xchg_spi(mmc_stat, 0xFF);	/* Dummy clock (force DO hi-z for multiple slave SPI) */
 }
 
@@ -250,9 +248,7 @@ static
 int select (mmc_rspi_stat_t* mmc_stat)	/* 1:OK, 0:Timeout */
 {
     
-  rspi_dstat* rspi_stat;
-  rspi_stat = (rspi_dstat*)GET_DEV_STAT(mmc_stat->mmc_drv_id);
-  rspi_slave_select(rspi_stat,   mmc_stat->slave_cs);		/* Set CS# low */
+  select_gpio_cs(GET_DEV_STAT(mmc_stat->mmc_ins_id)); //set cs# low
   xchg_spi(mmc_stat, 0xFF);	/* Dummy clock (force DO enabled) */
   
   if (wait_ready(mmc_stat, 500)) return 1;	/* Wait for card ready */

@@ -5,6 +5,7 @@
  */
 #include <target_board.h>
 #include <driver/rx_gcc/mmc_rspi.h>
+#include <target_device/target_device.h>
 
 const dnode_id pdrv_to_dev[1] = {DEV_MMC_RSPI0};
 

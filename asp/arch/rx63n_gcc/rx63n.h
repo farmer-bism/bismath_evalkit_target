@@ -5,57 +5,57 @@
  * 
  *  Copyright (C) 2008-2010 by Witz Corporation, JAPAN
  * 
- *  ã‹L’˜ìŒ ŽÒ‚ÍCˆÈ‰º‚Ì(1)`(4)‚ÌðŒ‚ð–ž‚½‚·ê‡‚ÉŒÀ‚èC–{ƒ\ƒtƒgƒEƒF
- *  ƒAi–{ƒ\ƒtƒgƒEƒFƒA‚ð‰ü•Ï‚µ‚½‚à‚Ì‚ðŠÜ‚ÞDˆÈ‰º“¯‚¶j‚ðŽg—pE•¡»E‰ü
- *  •ÏEÄ”z•ziˆÈ‰ºC—˜—p‚ÆŒÄ‚Ôj‚·‚é‚±‚Æ‚ð–³ž‚Å‹–‘ø‚·‚éD
- *  (1) –{ƒ\ƒtƒgƒEƒFƒA‚ðƒ\[ƒXƒR[ƒh‚ÌŒ`‚Å—˜—p‚·‚éê‡‚É‚ÍCã‹L‚Ì’˜ì
- *      Œ •\Ž¦C‚±‚Ì—˜—pðŒ‚¨‚æ‚Ñ‰º‹L‚Ì–³•ÛØ‹K’è‚ªC‚»‚Ì‚Ü‚Ü‚ÌŒ`‚Åƒ\[
- *      ƒXƒR[ƒh’†‚ÉŠÜ‚Ü‚ê‚Ä‚¢‚é‚±‚ÆD
- *  (2) –{ƒ\ƒtƒgƒEƒFƒA‚ðCƒ‰ƒCƒuƒ‰ƒŠŒ`Ž®‚È‚ÇC‘¼‚Ìƒ\ƒtƒgƒEƒFƒAŠJ”­‚ÉŽg
- *      —p‚Å‚«‚éŒ`‚ÅÄ”z•z‚·‚éê‡‚É‚ÍCÄ”z•z‚É”º‚¤ƒhƒLƒ…ƒƒ“ƒgi—˜—p
- *      ŽÒƒ}ƒjƒ…ƒAƒ‹‚È‚Çj‚ÉCã‹L‚Ì’˜ìŒ •\Ž¦C‚±‚Ì—˜—pðŒ‚¨‚æ‚Ñ‰º‹L
- *      ‚Ì–³•ÛØ‹K’è‚ðŒfÚ‚·‚é‚±‚ÆD
- *  (3) –{ƒ\ƒtƒgƒEƒFƒA‚ðC‹@Ší‚É‘g‚Ýž‚Þ‚È‚ÇC‘¼‚Ìƒ\ƒtƒgƒEƒFƒAŠJ”­‚ÉŽg
- *      —p‚Å‚«‚È‚¢Œ`‚ÅÄ”z•z‚·‚éê‡‚É‚ÍCŽŸ‚Ì‚¢‚¸‚ê‚©‚ÌðŒ‚ð–ž‚½‚·‚±
- *      ‚ÆD
- *    (a) Ä”z•z‚É”º‚¤ƒhƒLƒ…ƒƒ“ƒgi—˜—pŽÒƒ}ƒjƒ…ƒAƒ‹‚È‚Çj‚ÉCã‹L‚Ì’˜
- *        ìŒ •\Ž¦C‚±‚Ì—˜—pðŒ‚¨‚æ‚Ñ‰º‹L‚Ì–³•ÛØ‹K’è‚ðŒfÚ‚·‚é‚±‚ÆD
- *    (b) Ä”z•z‚ÌŒ`‘Ô‚ðC•Ê‚É’è‚ß‚é•û–@‚É‚æ‚Á‚ÄCTOPPERSƒvƒƒWƒFƒNƒg‚É
- *        •ñ‚·‚é‚±‚ÆD
- *  (4) –{ƒ\ƒtƒgƒEƒFƒA‚Ì—˜—p‚É‚æ‚è’¼Ú“I‚Ü‚½‚ÍŠÔÚ“I‚É¶‚¶‚é‚¢‚©‚È‚é‘¹
- *      ŠQ‚©‚ç‚àCã‹L’˜ìŒ ŽÒ‚¨‚æ‚ÑTOPPERSƒvƒƒWƒFƒNƒg‚ð–ÆÓ‚·‚é‚±‚ÆD
- *      ‚Ü‚½C–{ƒ\ƒtƒgƒEƒFƒA‚Ìƒ†[ƒU‚Ü‚½‚ÍƒGƒ“ƒhƒ†[ƒU‚©‚ç‚Ì‚¢‚©‚È‚é—
- *      —R‚ÉŠî‚Ã‚­¿‹‚©‚ç‚àCã‹L’˜ìŒ ŽÒ‚¨‚æ‚ÑTOPPERSƒvƒƒWƒFƒNƒg‚ð
- *      –ÆÓ‚·‚é‚±‚ÆD
+ *  ï¿½ï¿½Lï¿½ï¿½ï¿½ìŒ ï¿½Ò‚ÍCï¿½È‰ï¿½ï¿½ï¿½(1)ï¿½`(4)ï¿½Ìï¿½ï¿½ï¿½ï¿½ð–ž‚ï¿½ï¿½ï¿½ï¿½ê‡ï¿½ÉŒï¿½ï¿½ï¿½Cï¿½{ï¿½\ï¿½tï¿½gï¿½Eï¿½F
+ *  ï¿½Aï¿½iï¿½{ï¿½\ï¿½tï¿½gï¿½Eï¿½Fï¿½Aï¿½ï¿½ï¿½ï¿½ï¿½Ï‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì‚ï¿½ï¿½Ü‚ÞDï¿½È‰ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½jï¿½ï¿½ï¿½gï¿½pï¿½Eï¿½ï¿½ï¿½ï¿½ï¿½Eï¿½ï¿½
+ *  ï¿½ÏEï¿½Ä”zï¿½zï¿½iï¿½È‰ï¿½ï¿½Cï¿½ï¿½ï¿½pï¿½ÆŒÄ‚Ôjï¿½ï¿½ï¿½é‚±ï¿½Æ‚ð–³ï¿½ï¿½Å‹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½D
+ *  (1) ï¿½{ï¿½\ï¿½tï¿½gï¿½Eï¿½Fï¿½Aï¿½ï¿½ï¿½\ï¿½[ï¿½Xï¿½Rï¿½[ï¿½hï¿½ÌŒ`ï¿½Å—ï¿½ï¿½pï¿½ï¿½ï¿½ï¿½ê‡ï¿½É‚ÍCï¿½ï¿½Lï¿½Ì’ï¿½ï¿½ï¿½
+ *      ï¿½ï¿½ï¿½\ï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½Ì—ï¿½ï¿½pï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ‰ï¿½ï¿½Lï¿½Ì–ï¿½ï¿½ÛØ‹Kï¿½è‚ªï¿½Cï¿½ï¿½ï¿½Ì‚Ü‚Ü‚ÌŒ`ï¿½Åƒ\ï¿½[
+ *      ï¿½Xï¿½Rï¿½[ï¿½hï¿½ï¿½ï¿½ÉŠÜ‚Ü‚ï¿½Ä‚ï¿½ï¿½é‚±ï¿½ÆD
+ *  (2) ï¿½{ï¿½\ï¿½tï¿½gï¿½Eï¿½Fï¿½Aï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½Cï¿½uï¿½ï¿½ï¿½ï¿½ï¿½`ï¿½ï¿½ï¿½È‚ÇCï¿½ï¿½ï¿½Ìƒ\ï¿½tï¿½gï¿½Eï¿½Fï¿½Aï¿½Jï¿½ï¿½ï¿½ÉŽg
+ *      ï¿½pï¿½Å‚ï¿½ï¿½ï¿½`ï¿½ÅÄ”zï¿½zï¿½ï¿½ï¿½ï¿½ê‡ï¿½É‚ÍCï¿½Ä”zï¿½zï¿½É”ï¿½ï¿½ï¿½ï¿½hï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½gï¿½iï¿½ï¿½ï¿½p
+ *      ï¿½Òƒ}ï¿½jï¿½ï¿½ï¿½Aï¿½ï¿½ï¿½È‚Çjï¿½ÉCï¿½ï¿½Lï¿½Ì’ï¿½ï¿½ìŒ ï¿½\ï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½Ì—ï¿½ï¿½pï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ‰ï¿½ï¿½L
+ *      ï¿½Ì–ï¿½ï¿½ÛØ‹Kï¿½ï¿½ï¿½ï¿½fï¿½Ú‚ï¿½ï¿½é‚±ï¿½ÆD
+ *  (3) ï¿½{ï¿½\ï¿½tï¿½gï¿½Eï¿½Fï¿½Aï¿½ï¿½ï¿½Cï¿½@ï¿½ï¿½É‘gï¿½Ýï¿½ï¿½Þ‚È‚ÇCï¿½ï¿½ï¿½Ìƒ\ï¿½tï¿½gï¿½Eï¿½Fï¿½Aï¿½Jï¿½ï¿½ï¿½ÉŽg
+ *      ï¿½pï¿½Å‚ï¿½ï¿½È‚ï¿½ï¿½`ï¿½ÅÄ”zï¿½zï¿½ï¿½ï¿½ï¿½ê‡ï¿½É‚ÍCï¿½ï¿½ï¿½Ì‚ï¿½ï¿½ï¿½ï¿½ê‚©ï¿½Ìï¿½ï¿½ï¿½ï¿½ð–ž‚ï¿½ï¿½ï¿½ï¿½ï¿½
+ *      ï¿½ÆD
+ *    (a) ï¿½Ä”zï¿½zï¿½É”ï¿½ï¿½ï¿½ï¿½hï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½gï¿½iï¿½ï¿½ï¿½pï¿½Òƒ}ï¿½jï¿½ï¿½ï¿½Aï¿½ï¿½ï¿½È‚Çjï¿½ÉCï¿½ï¿½Lï¿½Ì’ï¿½
+ *        ï¿½ìŒ ï¿½\ï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½Ì—ï¿½ï¿½pï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ‰ï¿½ï¿½Lï¿½Ì–ï¿½ï¿½ÛØ‹Kï¿½ï¿½ï¿½ï¿½fï¿½Ú‚ï¿½ï¿½é‚±ï¿½ÆD
+ *    (b) ï¿½Ä”zï¿½zï¿½ÌŒ`ï¿½Ô‚ï¿½ï¿½Cï¿½Ê‚É’ï¿½ß‚ï¿½ï¿½ï¿½@ï¿½É‚ï¿½ï¿½ï¿½ÄCTOPPERSï¿½vï¿½ï¿½ï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½
+ *        ï¿½ñ‚ï¿½ï¿½é‚±ï¿½ÆD
+ *  (4) ï¿½{ï¿½\ï¿½tï¿½gï¿½Eï¿½Fï¿½Aï¿½Ì—ï¿½ï¿½pï¿½É‚ï¿½è’¼ï¿½Ú“Iï¿½Ü‚ï¿½ï¿½ÍŠÔÚ“Iï¿½Éï¿½ï¿½ï¿½ï¿½é‚¢ï¿½ï¿½ï¿½È‚é‘¹
+ *      ï¿½Qï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Cï¿½ï¿½Lï¿½ï¿½ï¿½ìŒ ï¿½Ò‚ï¿½ï¿½ï¿½ï¿½TOPPERSï¿½vï¿½ï¿½ï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½ÆÓ‚ï¿½ï¿½é‚±ï¿½ÆD
+ *      ï¿½Ü‚ï¿½ï¿½Cï¿½{ï¿½\ï¿½tï¿½gï¿½Eï¿½Fï¿½Aï¿½Ìƒï¿½ï¿½[ï¿½Uï¿½Ü‚ï¿½ï¿½ÍƒGï¿½ï¿½ï¿½hï¿½ï¿½ï¿½[ï¿½Uï¿½ï¿½ï¿½ï¿½Ì‚ï¿½ï¿½ï¿½ï¿½È‚é—
+ *      ï¿½Rï¿½ÉŠï¿½Ã‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Cï¿½ï¿½Lï¿½ï¿½ï¿½ìŒ ï¿½Ò‚ï¿½ï¿½ï¿½ï¿½TOPPERSï¿½vï¿½ï¿½ï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½
+ *      ï¿½ÆÓ‚ï¿½ï¿½é‚±ï¿½ÆD
  * 
- *  –{ƒ\ƒtƒgƒEƒFƒA‚ÍC–³•ÛØ‚Å’ñ‹Ÿ‚³‚ê‚Ä‚¢‚é‚à‚Ì‚Å‚ ‚éDã‹L’˜ìŒ ŽÒ‚¨
- *  ‚æ‚ÑTOPPERSƒvƒƒWƒFƒNƒg‚ÍC–{ƒ\ƒtƒgƒEƒFƒA‚ÉŠÖ‚µ‚ÄC“Á’è‚ÌŽg—p–Ú“I
- *  ‚É‘Î‚·‚é“K‡«‚àŠÜ‚ß‚ÄC‚¢‚©‚È‚é•ÛØ‚às‚í‚È‚¢D‚Ü‚½C–{ƒ\ƒtƒgƒEƒF
- *  ƒA‚Ì—˜—p‚É‚æ‚è’¼Ú“I‚Ü‚½‚ÍŠÔÚ“I‚É¶‚¶‚½‚¢‚©‚È‚é‘¹ŠQ‚ÉŠÖ‚µ‚Ä‚àC‚»
- *  ‚ÌÓ”C‚ð•‰‚í‚È‚¢D
+ *  ï¿½{ï¿½\ï¿½tï¿½gï¿½Eï¿½Fï¿½Aï¿½ÍCï¿½ï¿½ï¿½ÛØ‚Å’ñ‹Ÿ‚ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½Ì‚Å‚ï¿½ï¿½ï¿½Dï¿½ï¿½Lï¿½ï¿½ï¿½ìŒ ï¿½Ò‚ï¿½
+ *  ï¿½ï¿½ï¿½TOPPERSï¿½vï¿½ï¿½ï¿½Wï¿½Fï¿½Nï¿½gï¿½ÍCï¿½{ï¿½\ï¿½tï¿½gï¿½Eï¿½Fï¿½Aï¿½ÉŠÖ‚ï¿½ï¿½ÄCï¿½ï¿½ï¿½ï¿½ÌŽgï¿½pï¿½Ú“I
+ *  ï¿½É‘Î‚ï¿½ï¿½ï¿½Kï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ß‚ÄCï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½ÛØ‚ï¿½ï¿½sï¿½ï¿½È‚ï¿½ï¿½Dï¿½Ü‚ï¿½ï¿½Cï¿½{ï¿½\ï¿½tï¿½gï¿½Eï¿½F
+ *  ï¿½Aï¿½Ì—ï¿½ï¿½pï¿½É‚ï¿½è’¼ï¿½Ú“Iï¿½Ü‚ï¿½ï¿½ÍŠÔÚ“Iï¿½Éï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚é‘¹ï¿½Qï¿½ÉŠÖ‚ï¿½ï¿½Ä‚ï¿½ï¿½Cï¿½ï¿½
+ *  ï¿½ÌÓ”Cï¿½ð•‰‚ï¿½È‚ï¿½ï¿½D
  * 
  */
 
 /*
- *  RX63N‚ÉˆË‘¶‚·‚é’è‹`
+ *  RX63Nï¿½ÉˆË‘ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½`
  */
 #ifndef TOPPERS_RX63N_H
 #define TOPPERS_RX63N_H
 
 #include <sil.h>
 /*
- *  CPU—áŠOƒnƒ“ƒhƒ‰”Ô†‚Ì’è‹`(ŒÅ’èƒxƒNƒ^ƒe[ƒuƒ‹)
+ *  CPUï¿½ï¿½Oï¿½nï¿½ï¿½ï¿½hï¿½ï¿½ï¿½Ôï¿½ï¿½Ì’ï¿½`(ï¿½Å’ï¿½xï¿½Nï¿½^ï¿½eï¿½[ï¿½uï¿½ï¿½)
  *
- *  ”Ô†‚Ì”ÍˆÍ‚Í0 - 31
+ *  ï¿½Ôï¿½ï¿½Ì”ÍˆÍ‚ï¿½0 - 31
  */
-#define INT_PRIVILEGED_INSTRUNCTION		20		/* “ÁŒ –½—ß—áŠO */
-#define INT_UNDEF_INSTRUNCTION			23		/* –¢’è‹`–½—ß—áŠO */
-#define INT_FLOATINGPOINT_INSTRUCTION	25		/* •‚“®¬”“_—áŠO */
-#define INT_NMI							30		/* ƒmƒ“ƒ}ƒXƒJƒuƒ‹Š„‚èž‚Ý */
-#define INT_RESET						31		/* ƒŠƒZƒbƒg */
+#define INT_PRIVILEGED_INSTRUNCTION		20		/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß—ï¿½O */
+#define INT_UNDEF_INSTRUNCTION			23		/* ï¿½ï¿½ï¿½ï¿½`ï¿½ï¿½ï¿½ß—ï¿½O */
+#define INT_FLOATINGPOINT_INSTRUCTION	25		/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½_ï¿½ï¿½O */
+#define INT_NMI							30		/* ï¿½mï¿½ï¿½ï¿½}ï¿½Xï¿½Jï¿½uï¿½ï¿½ï¿½ï¿½ï¿½èžï¿½ï¿½ */
+#define INT_RESET						31		/* ï¿½ï¿½ï¿½Zï¿½bï¿½g */
 
 /*
- *  Š„ž‚Ý”Ô†‚Ì’è‹`(‰Â•ÏƒxƒNƒ^ƒe[ƒuƒ‹)
+ *  ï¿½ï¿½ï¿½ï¿½ï¿½Ý”Ôï¿½ï¿½Ì’ï¿½`(ï¿½Â•Ïƒxï¿½Nï¿½^ï¿½eï¿½[ï¿½uï¿½ï¿½)
  */
 #define INT_BUSERR			16
 #define INT_FCU_FCUERR		21
@@ -267,7 +267,7 @@
 #define INT_IEB_IEBINT		253
 
 /*
- *  Šeƒ‚ƒWƒ…[ƒ‹‚ÌƒŒƒWƒXƒ^‹y‚ÑÝ’èƒrƒbƒgî•ñ
+ *  ï¿½eï¿½ï¿½ï¿½Wï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Ìƒï¿½ï¿½Wï¿½Xï¿½^ï¿½yï¿½ÑÝ’ï¿½rï¿½bï¿½gï¿½ï¿½ï¿½
  */
 
 /*
@@ -371,7 +371,7 @@
 
 
 /*
- * ƒ‚ƒWƒ…[ƒ‹ƒXƒgƒbƒvƒRƒ“ƒgƒ[ƒ‹ƒŒƒWƒXƒ^AiMSTPCRAj
+ * ï¿½ï¿½ï¿½Wï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Xï¿½gï¿½bï¿½vï¿½Rï¿½ï¿½ï¿½gï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½Wï¿½Xï¿½^Aï¿½iMSTPCRAï¿½j
  */
 #define SYSTEM_MSTPCRA_ADDR			( ( volatile uint32_t  * )0x00080010 )
 #define SYSTEM_MSTPCRA_MSTPA4_BIT	( 1UL << 4U )
@@ -393,7 +393,7 @@
 #define SYSTEM_MSTPCRA_ACSE_BIT		( 1UL << 31U)
 
 /*
- * ƒ‚ƒWƒ…[ƒ‹ƒXƒgƒbƒvƒRƒ“ƒgƒ[ƒ‹ƒŒƒWƒXƒ^BiMSTPCRBj
+ * ï¿½ï¿½ï¿½Wï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Xï¿½gï¿½bï¿½vï¿½Rï¿½ï¿½ï¿½gï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½Wï¿½Xï¿½^Bï¿½iMSTPCRBï¿½j
  */
 #define SYSTEM_MSTPCRB_ADDR			( ( volatile uint32_t  * )0x00080014 )
 #define SYSTEM_MSTPCRB_MSTPB0_BIT	( 1UL << 0U )
@@ -420,7 +420,7 @@
 #define SYSTEM_MSTPCRB_MSTPB31_BIT	( 1UL << 31U )
 
 /*
- * ƒ‚ƒWƒ…[ƒ‹ƒXƒgƒbƒvƒRƒ“ƒgƒ[ƒ‹ƒŒƒWƒXƒ^CiMSTPCRCj
+ * ï¿½ï¿½ï¿½Wï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Xï¿½gï¿½bï¿½vï¿½Rï¿½ï¿½ï¿½gï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½Wï¿½Xï¿½^Cï¿½iMSTPCRCï¿½j
  */
 #define SYSTEM_MSTPCRC_ADDR			( ( volatile uint32_t  * )0x00080018 )
 #define SYSTEM_MSTPCRC_MSTPC0_BIT	( 1UL << 0U )
@@ -435,7 +435,7 @@
 #define SYSTEM_MSTPCRC_MSTPC27_BIT	( 1UL << 27U )
 
 /*
- * ƒ‚ƒWƒ…[ƒ‹ƒXƒgƒbƒvƒRƒ“ƒgƒ[ƒ‹ƒŒƒWƒXƒ^DiMSTPCRDj
+ * ï¿½ï¿½ï¿½Wï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Xï¿½gï¿½bï¿½vï¿½Rï¿½ï¿½ï¿½gï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½Wï¿½Xï¿½^Dï¿½iMSTPCRDï¿½j
  */
 #define SYSTEM_MSTPCRD_ADDR			( ( volatile uint32_t  * )0x0008001C )
 #define SYSTEM_MSTPCRD_MSTPD31_BIT	( 1UL << 31U )
@@ -463,18 +463,18 @@
 #define SYSTEM_CLKWAIT_HF   0xF
 
 /*
- * Š„‚èž‚Ý—v‹ƒŒƒWƒXƒ^
+ * ï¿½ï¿½ï¿½èžï¿½Ý—vï¿½ï¿½ï¿½ï¿½ï¿½Wï¿½Xï¿½^
  */
 #define ICU_IR_BASE 0x00087000
 #define ICU_IR_BIT				( 1U << 0U )
 
 /*
- * Š„‚èž‚Ý—v‹‹–‰ÂƒŒƒWƒXƒ^
+ * ï¿½ï¿½ï¿½èžï¿½Ý—vï¿½ï¿½ï¿½ï¿½ï¿½Âƒï¿½ï¿½Wï¿½Xï¿½^
  */
 #define ICU_IER_BASE 0x00087200
 
 /* 
- * Š„‚èž‚Ý—vˆöƒvƒ‰ƒCƒIƒŠƒeƒBƒŒƒWƒXƒ^i(i=00h`8Fh)‚ÌÝ’è
+ * ï¿½ï¿½ï¿½èžï¿½Ý—vï¿½ï¿½ï¿½vï¿½ï¿½ï¿½Cï¿½Iï¿½ï¿½ï¿½eï¿½Bï¿½ï¿½ï¿½Wï¿½Xï¿½^i(i=00hï¿½`8Fh)ï¿½ÌÝ’ï¿½
  */
 #define ICU_IPR00_ADDR			( ( volatile uint8_t  * )0x00087300 ) /* IPR000 */
 #define ICU_IPR01_ADDR			( ( volatile uint8_t  * )0x00087301 ) /* IPR001 */
@@ -595,7 +595,7 @@
 
 #define SET_ICU_IPR(intno, pri_num)  ((*((volatile uint8_t *)(ICU_IPR_BASE | intno))) = pri_num)
 /*
- *  DTCERƒRƒ“ƒgƒ[ƒ‹ƒŒƒWƒXƒ^
+ *  DTCERï¿½Rï¿½ï¿½ï¿½gï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½Wï¿½Xï¿½^
  */
 #define ICU_DTCER_BASE 0x00087100
 #define EN_ICU_DTCER_BIT 0x1
@@ -608,13 +608,13 @@
 #endif
 
 /*
- *  IRQƒRƒ“ƒgƒ[ƒ‹ƒŒƒWƒXƒ^
+ *  IRQï¿½Rï¿½ï¿½ï¿½gï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½Wï¿½Xï¿½^
  */
 #define ICU_IRQCR_BASE 0x00087500
 #define SET_ICU_IRQCR(intno, sel_edge) (*((volatile uint8_t *)(ICU_IRQCR_BASE | intno)) = sel_edge)
 
 /*
- *  Šeƒ`ƒƒƒ“ƒlƒ‹‚ÌƒŒƒWƒXƒ^‹y‚ÑÝ’èƒrƒbƒgî•ñ
+ *  ï¿½eï¿½`ï¿½ï¿½ï¿½ï¿½ï¿½lï¿½ï¿½ï¿½Ìƒï¿½ï¿½Wï¿½Xï¿½^ï¿½yï¿½ÑÝ’ï¿½rï¿½bï¿½gï¿½ï¿½ï¿½
  */
 #define CMT_CMSTR0_ADDR			( ( volatile uint16_t  * )0x00088000 )
 #define CMT_CMSTR0_STR0_BIT		( 1U << 0U )
@@ -903,7 +903,7 @@
 #define MPC_PFS_ASEL           ( 1U << 7 )
 
 /*
- *  I/Oƒ|[ƒg‚ÌƒŒƒWƒXƒ^‹y‚ÑÝ’èƒrƒbƒgî•ñ
+ *  I/Oï¿½|ï¿½[ï¿½gï¿½Ìƒï¿½ï¿½Wï¿½Xï¿½^ï¿½yï¿½ÑÝ’ï¿½rï¿½bï¿½gï¿½ï¿½ï¿½
  */
 #define PORT0_PDR_ADDR			( ( volatile uint8_t  * )0x0008C000 )
 #define PORT1_PDR_ADDR			( ( volatile uint8_t  * )0x0008C001 )
@@ -948,7 +948,7 @@
 #define PORTE_PODR_ADDR			( ( volatile uint8_t  * )0x0008C02E )
 #define PORTF_PODR_ADDR			( ( volatile uint8_t  * )0x0008C02F )
 #define PORTG_PODR_ADDR			( ( volatile uint8_t  * )0x0008C030 )
-#define PORTH_PODR_ADDR			( ( volatile uint8_t  * )0x0008C031 )
+#define PORTH_PODR_ADDR			( ( volatile uint8_t  * )0x0008C032 )
 #define PORT_PODR_B0_BIT			( 0x01U << 0U )
 #define PORT_PODR_B1_BIT			( 0x01U << 1U )
 #define PORT_PODR_B2_BIT			( 0x01U << 2U )
@@ -957,6 +957,32 @@
 #define PORT_PODR_B5_BIT			( 0x01U << 5U )
 #define PORT_PODR_B6_BIT			( 0x01U << 6U )
 #define PORT_PODR_B7_BIT			( 0x01U << 7U )
+#define PORT0_PIDR_ADDR			( ( volatile uint8_t  * )0x0008C040 )
+#define PORT1_PIDR_ADDR			( ( volatile uint8_t  * )0x0008C041 )
+#define PORT2_PIDR_ADDR			( ( volatile uint8_t  * )0x0008C042 )
+#define PORT3_PIDR_ADDR			( ( volatile uint8_t  * )0x0008C043 )
+#define PORT4_PIDR_ADDR			( ( volatile uint8_t  * )0x0008C044 )
+#define PORT5_PIDR_ADDR			( ( volatile uint8_t  * )0x0008C045 )
+#define PORT6_PIDR_ADDR			( ( volatile uint8_t  * )0x0008C046 )
+#define PORT7_PIDR_ADDR			( ( volatile uint8_t  * )0x0008C047 )
+#define PORT8_PIDR_ADDR			( ( volatile uint8_t  * )0x0008C048 )
+#define PORT9_PIDR_ADDR			( ( volatile uint8_t  * )0x0008C049 )
+#define PORTA_PIDR_ADDR			( ( volatile uint8_t  * )0x0008C04A )
+#define PORTB_PIDR_ADDR			( ( volatile uint8_t  * )0x0008C04B )
+#define PORTC_PIDR_ADDR			( ( volatile uint8_t  * )0x0008C04C )
+#define PORTD_PIDR_ADDR			( ( volatile uint8_t  * )0x0008C04D )
+#define PORTE_PIDR_ADDR			( ( volatile uint8_t  * )0x0008C04E )
+#define PORTF_PIDR_ADDR			( ( volatile uint8_t  * )0x0008C04F )
+#define PORTG_PIDR_ADDR			( ( volatile uint8_t  * )0x0008C050 )
+#define PORTH_PIDR_ADDR			( ( volatile uint8_t  * )0x0008C052 )
+#define PORT_PIDR_B0_BIT			( 0x01U << 0U )
+#define PORT_PIDR_B1_BIT			( 0x01U << 1U )
+#define PORT_PIDR_B2_BIT			( 0x01U << 2U )
+#define PORT_PIDR_B3_BIT			( 0x01U << 3U )
+#define PORT_PIDR_B4_BIT			( 0x01U << 4U )
+#define PORT_PIDR_B5_BIT			( 0x01U << 5U )
+#define PORT_PIDR_B6_BIT			( 0x01U << 6U )
+#define PORT_PIDR_B7_BIT			( 0x01U << 7U )
 #define PORT0_PMR_ADDR			( ( volatile uint8_t  * )0x0008C060 )
 #define PORT1_PMR_ADDR			( ( volatile uint8_t  * )0x0008C061 )
 #define PORT2_PMR_ADDR			( ( volatile uint8_t  * )0x0008C062 )
@@ -985,12 +1011,12 @@
 #define PORT_PMR_B7_BIT			( 0x01U << 7U )
 
 /*
- *  UARTŠÖ˜A‚Ì’è‹`
+ *  UARTï¿½Ö˜Aï¿½Ì’ï¿½`
  *
- *  pdic‚Ìrenesas/scic_uart.c‚ÅŽg—p‚·‚éD
+ *  pdicï¿½ï¿½renesas/scic_uart.cï¿½ÅŽgï¿½pï¿½ï¿½ï¿½ï¿½D
  */
 /*
- *  ƒVƒŠƒAƒ‹I/O‚ÌŒÂ”
+ *  ï¿½Vï¿½ï¿½ï¿½Aï¿½ï¿½I/Oï¿½ÌŒÂï¿½
  */
 #define TNUM_SIOP			( 7 )
 

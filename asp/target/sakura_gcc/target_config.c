@@ -9,45 +9,46 @@
  *              Graduate School of Information Science, Nagoya Univ., JAPAN
  *  Copyright (C) 2008-2010 by Witz Corporation, JAPAN
  * 
- *  ã‹L’˜ìŒ ŽÒ‚ÍCFree Software Foundation ‚É‚æ‚Á‚ÄŒö•\‚³‚ê‚Ä‚¢‚é 
- *  GNU General Public License ‚Ì Version 2 ‚É‹Lq‚³‚ê‚Ä‚¢‚éðŒ‚©CˆÈ
- *  ‰º‚Ì(1)`(4)‚ÌðŒ‚ð–ž‚½‚·ê‡‚ÉŒÀ‚èC–{ƒ\ƒtƒgƒEƒFƒAi–{ƒ\ƒtƒgƒEƒF
- *  ƒA‚ð‰ü•Ï‚µ‚½‚à‚Ì‚ðŠÜ‚ÞDˆÈ‰º“¯‚¶j‚ðŽg—pE•¡»E‰ü•ÏEÄ”z•ziˆÈ‰ºC
- *  —˜—p‚ÆŒÄ‚Ôj‚·‚é‚±‚Æ‚ð–³ž‚Å‹–‘ø‚·‚éD
- *  (1) –{ƒ\ƒtƒgƒEƒFƒA‚ðƒ\[ƒXƒR[ƒh‚ÌŒ`‚Å—˜—p‚·‚éê‡‚É‚ÍCã‹L‚Ì’˜ì
- *      Œ •\Ž¦C‚±‚Ì—˜—pðŒ‚¨‚æ‚Ñ‰º‹L‚Ì–³•ÛØ‹K’è‚ªC‚»‚Ì‚Ü‚Ü‚ÌŒ`‚Åƒ\[
- *      ƒXƒR[ƒh’†‚ÉŠÜ‚Ü‚ê‚Ä‚¢‚é‚±‚ÆD
- *  (2) –{ƒ\ƒtƒgƒEƒFƒA‚ðÄ—˜—p‰Â”\‚ÈƒoƒCƒiƒŠƒR[ƒhiƒŠƒƒP[ƒ^ƒuƒ‹ƒIƒu
- *      ƒWƒFƒNƒgƒtƒ@ƒCƒ‹‚âƒ‰ƒCƒuƒ‰ƒŠ‚È‚Çj‚ÌŒ`‚Å—˜—p‚·‚éê‡‚É‚ÍC—˜—p
- *      ‚É”º‚¤ƒhƒLƒ…ƒƒ“ƒgi—˜—pŽÒƒ}ƒjƒ…ƒAƒ‹‚È‚Çj‚ÉCã‹L‚Ì’˜ìŒ •\Ž¦C
- *      ‚±‚Ì—˜—pðŒ‚¨‚æ‚Ñ‰º‹L‚Ì–³•ÛØ‹K’è‚ðŒfÚ‚·‚é‚±‚ÆD
- *  (3) –{ƒ\ƒtƒgƒEƒFƒA‚ðÄ—˜—p•s‰Â”\‚ÈƒoƒCƒiƒŠƒR[ƒh‚ÌŒ`‚Ü‚½‚Í‹@Ší‚É‘g
- *      ‚Ýž‚ñ‚¾Œ`‚Å—˜—p‚·‚éê‡‚É‚ÍCŽŸ‚Ì‚¢‚¸‚ê‚©‚ÌðŒ‚ð–ž‚½‚·‚±‚ÆD
- *    (a) —˜—p‚É”º‚¤ƒhƒLƒ…ƒƒ“ƒgi—˜—pŽÒƒ}ƒjƒ…ƒAƒ‹‚È‚Çj‚ÉCã‹L‚Ì’˜ì
- *        Œ •\Ž¦C‚±‚Ì—˜—pðŒ‚¨‚æ‚Ñ‰º‹L‚Ì–³•ÛØ‹K’è‚ðŒfÚ‚·‚é‚±‚ÆD
- *    (b) —˜—p‚ÌŒ`‘Ô‚ðC•Ê‚É’è‚ß‚é•û–@‚É‚æ‚Á‚ÄCã‹L’˜ìŒ ŽÒ‚É•ñ‚·‚é
- *        ‚±‚ÆD
- *  (4) –{ƒ\ƒtƒgƒEƒFƒA‚Ì—˜—p‚É‚æ‚è’¼Ú“I‚Ü‚½‚ÍŠÔÚ“I‚É¶‚¶‚é‚¢‚©‚È‚é‘¹
- *      ŠQ‚©‚ç‚àCã‹L’˜ìŒ ŽÒ‚ð–ÆÓ‚·‚é‚±‚ÆD
+ *  ï¿½ï¿½Lï¿½ï¿½ï¿½ìŒ ï¿½Ò‚ÍCFree Software Foundation ï¿½É‚ï¿½ï¿½ï¿½ÄŒï¿½ï¿½\ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ 
+ *  GNU General Public License ï¿½ï¿½ Version 2 ï¿½É‹Lï¿½qï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Cï¿½ï¿½
+ *  ï¿½ï¿½ï¿½ï¿½(1)ï¿½`(4)ï¿½Ìï¿½ï¿½ï¿½ï¿½ð–ž‚ï¿½ï¿½ï¿½ï¿½ê‡ï¿½ÉŒï¿½ï¿½ï¿½Cï¿½{ï¿½\ï¿½tï¿½gï¿½Eï¿½Fï¿½Aï¿½iï¿½{ï¿½\ï¿½tï¿½gï¿½Eï¿½F
+ *  ï¿½Aï¿½ï¿½ï¿½ï¿½ï¿½Ï‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì‚ï¿½ï¿½Ü‚ÞDï¿½È‰ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½jï¿½ï¿½ï¿½gï¿½pï¿½Eï¿½ï¿½ï¿½ï¿½ï¿½Eï¿½ï¿½ï¿½ÏEï¿½Ä”zï¿½zï¿½iï¿½È‰ï¿½ï¿½C
+ *  ï¿½ï¿½ï¿½pï¿½ÆŒÄ‚Ôjï¿½ï¿½ï¿½é‚±ï¿½Æ‚ð–³ï¿½ï¿½Å‹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½D
+ *  (1) ï¿½{ï¿½\ï¿½tï¿½gï¿½Eï¿½Fï¿½Aï¿½ï¿½ï¿½\ï¿½[ï¿½Xï¿½Rï¿½[ï¿½hï¿½ÌŒ`ï¿½Å—ï¿½ï¿½pï¿½ï¿½ï¿½ï¿½ê‡ï¿½É‚ÍCï¿½ï¿½Lï¿½Ì’ï¿½ï¿½ï¿½
+ *      ï¿½ï¿½ï¿½\ï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½Ì—ï¿½ï¿½pï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ‰ï¿½ï¿½Lï¿½Ì–ï¿½ï¿½ÛØ‹Kï¿½è‚ªï¿½Cï¿½ï¿½ï¿½Ì‚Ü‚Ü‚ÌŒ`ï¿½Åƒ\ï¿½[
+ *      ï¿½Xï¿½Rï¿½[ï¿½hï¿½ï¿½ï¿½ÉŠÜ‚Ü‚ï¿½Ä‚ï¿½ï¿½é‚±ï¿½ÆD
+ *  (2) ï¿½{ï¿½\ï¿½tï¿½gï¿½Eï¿½Fï¿½Aï¿½ï¿½ï¿½Ä—ï¿½ï¿½pï¿½Â”\ï¿½Èƒoï¿½Cï¿½iï¿½ï¿½ï¿½Rï¿½[ï¿½hï¿½iï¿½ï¿½ï¿½ï¿½ï¿½Pï¿½[ï¿½^ï¿½uï¿½ï¿½ï¿½Iï¿½u
+ *      ï¿½Wï¿½Fï¿½Nï¿½gï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½âƒ‰ï¿½Cï¿½uï¿½ï¿½ï¿½ï¿½ï¿½È‚Çjï¿½ÌŒ`ï¿½Å—ï¿½ï¿½pï¿½ï¿½ï¿½ï¿½ê‡ï¿½É‚ÍCï¿½ï¿½ï¿½p
+ *      ï¿½É”ï¿½ï¿½ï¿½ï¿½hï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½gï¿½iï¿½ï¿½ï¿½pï¿½Òƒ}ï¿½jï¿½ï¿½ï¿½Aï¿½ï¿½ï¿½È‚Çjï¿½ÉCï¿½ï¿½Lï¿½Ì’ï¿½ï¿½ìŒ ï¿½\ï¿½ï¿½ï¿½C
+ *      ï¿½ï¿½ï¿½Ì—ï¿½ï¿½pï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ‰ï¿½ï¿½Lï¿½Ì–ï¿½ï¿½ÛØ‹Kï¿½ï¿½ï¿½ï¿½fï¿½Ú‚ï¿½ï¿½é‚±ï¿½ÆD
+ *  (3) ï¿½{ï¿½\ï¿½tï¿½gï¿½Eï¿½Fï¿½Aï¿½ï¿½ï¿½Ä—ï¿½ï¿½pï¿½sï¿½Â”\ï¿½Èƒoï¿½Cï¿½iï¿½ï¿½ï¿½Rï¿½[ï¿½hï¿½ÌŒ`ï¿½Ü‚ï¿½ï¿½Í‹@ï¿½ï¿½É‘g
+ *      ï¿½Ýï¿½ï¿½ñ‚¾Œ`ï¿½Å—ï¿½ï¿½pï¿½ï¿½ï¿½ï¿½ê‡ï¿½É‚ÍCï¿½ï¿½ï¿½Ì‚ï¿½ï¿½ï¿½ï¿½ê‚©ï¿½Ìï¿½ï¿½ï¿½ï¿½ð–ž‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÆD
+ *    (a) ï¿½ï¿½ï¿½pï¿½É”ï¿½ï¿½ï¿½ï¿½hï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½gï¿½iï¿½ï¿½ï¿½pï¿½Òƒ}ï¿½jï¿½ï¿½ï¿½Aï¿½ï¿½ï¿½È‚Çjï¿½ÉCï¿½ï¿½Lï¿½Ì’ï¿½ï¿½ï¿½
+ *        ï¿½ï¿½ï¿½\ï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½Ì—ï¿½ï¿½pï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ‰ï¿½ï¿½Lï¿½Ì–ï¿½ï¿½ÛØ‹Kï¿½ï¿½ï¿½ï¿½fï¿½Ú‚ï¿½ï¿½é‚±ï¿½ÆD
+ *    (b) ï¿½ï¿½ï¿½pï¿½ÌŒ`ï¿½Ô‚ï¿½ï¿½Cï¿½Ê‚É’ï¿½ß‚ï¿½ï¿½ï¿½@ï¿½É‚ï¿½ï¿½ï¿½ÄCï¿½ï¿½Lï¿½ï¿½ï¿½ìŒ ï¿½Ò‚É•ñ‚ï¿½ï¿½ï¿½
+ *        ï¿½ï¿½ï¿½ÆD
+ *  (4) ï¿½{ï¿½\ï¿½tï¿½gï¿½Eï¿½Fï¿½Aï¿½Ì—ï¿½ï¿½pï¿½É‚ï¿½è’¼ï¿½Ú“Iï¿½Ü‚ï¿½ï¿½ÍŠÔÚ“Iï¿½Éï¿½ï¿½ï¿½ï¿½é‚¢ï¿½ï¿½ï¿½È‚é‘¹
+ *      ï¿½Qï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Cï¿½ï¿½Lï¿½ï¿½ï¿½ìŒ ï¿½Ò‚ï¿½ÆÓ‚ï¿½ï¿½é‚±ï¿½ÆD
  * 
- *  –{ƒ\ƒtƒgƒEƒFƒA‚ÍC–³•ÛØ‚Å’ñ‹Ÿ‚³‚ê‚Ä‚¢‚é‚à‚Ì‚Å‚ ‚éDã‹L’˜ìŒ ŽÒ‚ÍC
- *  –{ƒ\ƒtƒgƒEƒFƒA‚ÉŠÖ‚µ‚ÄC‚»‚Ì“K—p‰Â”\«‚àŠÜ‚ß‚ÄC‚¢‚©‚È‚é•ÛØ‚às‚í
- *  ‚È‚¢D‚Ü‚½C–{ƒ\ƒtƒgƒEƒFƒA‚Ì—˜—p‚É‚æ‚è’¼Ú“I‚Ü‚½‚ÍŠÔÚ“I‚É¶‚¶‚½‚¢
- *  ‚©‚È‚é‘¹ŠQ‚ÉŠÖ‚µ‚Ä‚àC‚»‚ÌÓ”C‚ð•‰‚í‚È‚¢D
+ *  ï¿½{ï¿½\ï¿½tï¿½gï¿½Eï¿½Fï¿½Aï¿½ÍCï¿½ï¿½ï¿½ÛØ‚Å’ñ‹Ÿ‚ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½Ì‚Å‚ï¿½ï¿½ï¿½Dï¿½ï¿½Lï¿½ï¿½ï¿½ìŒ ï¿½Ò‚ÍC
+ *  ï¿½{ï¿½\ï¿½tï¿½gï¿½Eï¿½Fï¿½Aï¿½ÉŠÖ‚ï¿½ï¿½ÄCï¿½ï¿½ï¿½Ì“Kï¿½pï¿½Â”\ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ß‚ÄCï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½ÛØ‚ï¿½ï¿½sï¿½ï¿½
+ *  ï¿½È‚ï¿½ï¿½Dï¿½Ü‚ï¿½ï¿½Cï¿½{ï¿½\ï¿½tï¿½gï¿½Eï¿½Fï¿½Aï¿½Ì—ï¿½ï¿½pï¿½É‚ï¿½è’¼ï¿½Ú“Iï¿½Ü‚ï¿½ï¿½ÍŠÔÚ“Iï¿½Éï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ *  ï¿½ï¿½ï¿½È‚é‘¹ï¿½Qï¿½ÉŠÖ‚ï¿½ï¿½Ä‚ï¿½ï¿½Cï¿½ï¿½ï¿½ÌÓ”Cï¿½ð•‰‚ï¿½È‚ï¿½ï¿½D
  * 
  */
 
 /*
- *	ƒ^[ƒQƒbƒgƒVƒXƒeƒ€ˆË‘¶ƒ‚ƒWƒ…[ƒ‹iGR-SAKURA—pj
+ *	ï¿½^ï¿½[ï¿½Qï¿½bï¿½gï¿½Vï¿½Xï¿½eï¿½ï¿½ï¿½Ë‘ï¿½ï¿½ï¿½ï¿½Wï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½iGR-SAKURAï¿½pï¿½j
  */
 
 #include "kernel_impl.h"
 #include <sil.h>
 #include "target_board.h"
 #include "renesas/scic_uart.h"
+#include <target_device/target_device.h>
 
 /*
- *  ƒ^[ƒQƒbƒgƒVƒXƒeƒ€ˆË‘¶ ‰Šú‰»ƒ‹[ƒ`ƒ“
+ *  ï¿½^ï¿½[ï¿½Qï¿½bï¿½gï¿½Vï¿½Xï¿½eï¿½ï¿½ï¿½Ë‘ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½`ï¿½ï¿½
  */
 void
 sakura_clock_waitcount_config(void){
@@ -108,11 +109,11 @@ void
 sakura_port_config( void )
 {
 	/*
-	 *  ƒ|[ƒg‚ÌÝ’è
+	 *  ï¿½|ï¿½[ï¿½gï¿½ÌÝ’ï¿½
 	 */
 	scic_uart_init( TARGET_PUTC_PORTID, UART_BAUDRATE, UART_CLKSRC );
 
-	/* ƒ|[ƒgP50‚ðTxD2, ƒ|[ƒgP52‚ðRxD2‚É */
+	/* ï¿½|ï¿½[ï¿½gP50ï¿½ï¿½TxD2, ï¿½|ï¿½[ï¿½gP52ï¿½ï¿½RxD2ï¿½ï¿½ */
 	/* MPC setting */
 	/* unlock PFS write protection */
 	sil_wrb_mem((void *)(MPC_PWPR_ADDR), MPC_PWPR_PFSW_CLEAR);
@@ -137,7 +138,7 @@ sakura_ip_wakeup( void )
   //unlock register access 
   sil_wrh_mem((void *)(SYSTEM_PRCR_ADDR), SYSTEM_PRKEY | SYSTEM_PRC1);
   /*
-   * ƒ‚ƒWƒ…[ƒ‹ƒXƒgƒbƒv‹@”\‚ÌÝ’è(SCI2)
+   * ï¿½ï¿½ï¿½Wï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Xï¿½gï¿½bï¿½vï¿½@ï¿½\ï¿½ÌÝ’ï¿½(SCI2)
    */
   *SYSTEM_MSTPCRB_ADDR &= ~(SYSTEM_MSTPCRB_MSTPB29_BIT); /* CMT0 */
   //lock register access
@@ -147,7 +148,7 @@ void
 target_initialize( void )
 {
 	/*
-	 *  ƒvƒƒZƒbƒTˆË‘¶‚Ì‰Šú‰»
+	 *  ï¿½vï¿½ï¿½ï¿½Zï¿½bï¿½Tï¿½Ë‘ï¿½ï¿½Ìï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 
   prc_initialize();
@@ -155,18 +156,19 @@ target_initialize( void )
   //set port direction
   sakura_port_config();
   sakura_ip_wakeup();
+  target_device_init();
 
 }
 
 
 /*
- *  ƒ^[ƒQƒbƒgƒVƒXƒeƒ€‚ÌI—¹ƒ‹[ƒ`ƒ“
+ *  ï¿½^ï¿½[ï¿½Qï¿½bï¿½gï¿½Vï¿½Xï¿½eï¿½ï¿½ï¿½ÌIï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½`ï¿½ï¿½
  */
 void
 target_exit( void )
 {
 	/*
-	 *	ƒvƒƒZƒbƒTˆË‘¶‚ÌI—¹ˆ—
+	 *	ï¿½vï¿½ï¿½ï¿½Zï¿½bï¿½Tï¿½Ë‘ï¿½ï¿½ÌIï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	prc_terminate();
 
@@ -175,7 +177,7 @@ target_exit( void )
 
 
 /*
- *  ƒVƒXƒeƒ€ƒƒO‚Ì’áƒŒƒxƒ‹o—Í‚Ì‚½‚ß‚Ì•¶Žšo—Í
+ *  ï¿½Vï¿½Xï¿½eï¿½ï¿½ï¿½ï¿½ï¿½Oï¿½Ì’áƒŒï¿½xï¿½ï¿½ï¿½oï¿½Í‚Ì‚ï¿½ï¿½ß‚Ì•ï¿½ï¿½ï¿½ï¿½oï¿½ï¿½
  */
 void
 target_fput_log( char c )

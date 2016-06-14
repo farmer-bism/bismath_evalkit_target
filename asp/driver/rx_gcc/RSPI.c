@@ -12,8 +12,8 @@
 #define SPCR_OFFSET 0x0
 #define SSLP_OFFSET 0x1
 #define SPPCR_OFFSET 0x2
-#define SPSR_OFFSET 0x4
-#define SPDR_OFFSET 0x5
+#define SPSR_OFFSET 0x3
+#define SPDR_OFFSET 0x4
 #define SPSCR_OFFSET 0x8
 #define SPSSR_OFFSET 0x9
 #define SPBR_OFFSET 0xA
