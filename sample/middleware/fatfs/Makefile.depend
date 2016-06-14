@@ -1,0 +1,1173 @@
+cfg1_out.c: fatfs_sample.cfg ./src_asp/driver/rx_gcc/mmc_rspi.cfg ./src_asp/syssvc/banner.cfg ./src_asp/syssvc/logtask.cfg ./src_asp/syssvc/serial.cfg ./src_asp/syssvc/syslog.cfg ./src_asp/target/sakura_gcc/target_serial.cfg ./src_asp/target/sakura_gcc/target_timer.cfg 
+cfg1_out.o: cfg1_out.c fatfs_sample.cfg ./src_asp/syssvc/serial.h \
+	./src_asp/driver/rx_gcc/RSPI.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include-fixed/limits.h \
+	./src_asp/target/sakura_gcc/target_serial.h \
+	./src_asp/kernel/mempfix.h ./src_asp/kernel/wait.h \
+	./src_asp/syssvc/banner.h ./src_asp/syssvc/banner.cfg \
+	./src_asp/driver/include/mmc_sdcard.h \
+	./src_asp/target/sakura_gcc/target_stddef.h \
+	./src_asp/syssvc/serial.cfg ./src_asp/include/queue.h \
+	./src_asp/kernel/alarm.h ./src_asp/kernel/semaphore.h \
+	./src_asp/target/sakura_gcc/target_sil.h \
+	./src_asp/kernel/eventflag.h \
+	./src_asp/target/sakura_gcc/target_kernel.h \
+	./src_asp/kernel/kernel_impl.h ./src_asp/kernel/exception.h \
+	./src_asp/arch/rx63n_gcc/prc_syssvc.h \
+	./src_asp/kernel/kernel_rename.h ./src_asp/kernel/allfunc.h \
+	./src_asp/syssvc/syslog.h ./src_asp/kernel/time_event.h \
+	./src_asp/kernel/dataqueue.h ./src_asp/include/sil.h \
+	./src_asp/arch/rx63n_gcc/rx63n.h \
+	./src_asp/target/sakura_gcc/target_cfg1_out.h \
+	./src_asp/arch/rx63n_gcc/prc_rename.h \
+	./src_asp/target/sakura_gcc/target_rename.h \
+	./src_asp/arch/rx63n_gcc/prc_cfg1_out.h \
+	./src_asp/syssvc/logtask.cfg \
+	./src_asp/target/sakura_gcc/target_config.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include/stddef.h \
+	./src_asp/arch/gcc/tool_stddef.h ./src_asp/kernel/cyclic.h \
+	./src_asp/kernel/task.h ./src_asp/kernel/kernel_unrename.h \
+	./src_asp/target/sakura_gcc/target_unrename.h \
+	./src_asp/arch/rx63n_gcc/prc_stddef.h \
+	./src_asp/arch/rx63n_gcc/prc_sil.h \
+	./src_asp/kernel/kernel_int.h \
+	./src_asp/target/sakura_gcc/target_serial.cfg \
+	./src_asp/pdic/renesas/scic_uart.h fatfs_sample.h \
+	./src_asp/include/t_syslog.h \
+	./src_asp/arch/rx63n_gcc/rx63n_config.h \
+	./src_asp/kernel/interrupt.h \
+	./src_asp/target/sakura_gcc/target_device/target_device.h \
+	./src_asp/driver/rx_gcc/mmc_rspi.cfg \
+	./src_asp/target/sakura_gcc/target_device/target_device_id.h \
+	./src_asp/target/sakura_gcc/target_timer.h \
+	./src_asp/arch/rx63n_gcc/prc_kernel.h \
+	./src_asp/syssvc/syslog.cfg ./src_asp/syssvc/logtask.h \
+	./src_asp/driver/rx_gcc/mmc_rspi.h \
+	./src_asp/arch/rx63n_gcc/prc_config.h \
+	./src_asp/arch/rx63n_gcc/prc_insn.h \
+	./src_asp/kernel/mailbox.h ./src_asp/kernel/pridataq.h \
+	./src_asp/target/sakura_gcc/target_device/use_device.h \
+	./src_asp/include/t_stddef.h \
+	./src_asp/target/sakura_gcc/target_syssvc.h \
+	./src_asp/target/sakura_gcc/target_board.h \
+	./src_asp/include/kernel.h \
+	./src_asp/target/sakura_gcc/target_timer.cfg 
+target_support.o: ./src_asp/target/sakura_gcc/target_support.S 
+prc_test.o: ./src_asp/arch/rx63n_gcc/prc_test.S 
+prc_support.o: ./src_asp/arch/rx63n_gcc/prc_support.S \
+	./src_asp/arch/rx63n_gcc/asm_config.h ./offset.h 
+target_config.o: ./src_asp/target/sakura_gcc/target_config.c \
+	./src_asp/arch/gcc/tool_stddef.h \
+	./src_asp/arch/rx63n_gcc/prc_kernel.h \
+	./src_asp/arch/rx63n_gcc/prc_insn.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include/stddef.h \
+	./src_asp/kernel/allfunc.h \
+	./src_asp/target/sakura_gcc/target_sil.h \
+	./src_asp/target/sakura_gcc/target_device/use_device.h \
+	./src_asp/kernel/kernel_rename.h \
+	./src_asp/target/sakura_gcc/target_config.h \
+	./src_asp/target/sakura_gcc/target_rename.h \
+	./src_asp/target/sakura_gcc/target_stddef.h \
+	./src_asp/arch/rx63n_gcc/prc_stddef.h \
+	./src_asp/target/sakura_gcc/target_kernel.h \
+	./src_asp/include/kernel.h \
+	./src_asp/arch/rx63n_gcc/prc_sil.h ./src_asp/include/sil.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include-fixed/limits.h \
+	./src_asp/arch/rx63n_gcc/prc_config.h \
+	./src_asp/include/t_syslog.h \
+	./src_asp/target/sakura_gcc/target_device/target_device.h \
+	./src_asp/target/sakura_gcc/target_board.h \
+	./src_asp/pdic/renesas/scic_uart.h \
+	./src_asp/target/sakura_gcc/target_device/target_device_id.h \
+	./src_asp/arch/rx63n_gcc/rx63n.h \
+	./src_asp/arch/rx63n_gcc/prc_rename.h \
+	./src_asp/include/t_stddef.h \
+	./src_asp/arch/rx63n_gcc/rx63n_config.h \
+	./src_asp/kernel/kernel_impl.h 
+target_timer.o: ./src_asp/arch/rx63n_gcc/rx63n_config.h \
+	./src_asp/kernel/kernel_rename.h ./src_asp/include/sil.h \
+	./src_asp/include/kernel.h ./src_asp/include/t_syslog.h \
+	./src_asp/include/t_stddef.h \
+	./src_asp/target/sakura_gcc/target_board.h \
+	./src_asp/arch/rx63n_gcc/rx63n.h \
+	./src_asp/target/sakura_gcc/target_timer.c \
+	./src_asp/target/sakura_gcc/target_rename.h \
+	./src_asp/target/sakura_gcc/target_syssvc.h \
+	./src_asp/arch/rx63n_gcc/prc_stddef.h \
+	./src_asp/arch/rx63n_gcc/prc_insn.h \
+	./src_asp/kernel/time_event.h \
+	./src_asp/arch/rx63n_gcc/prc_config.h \
+	./src_asp/target/sakura_gcc/target_device/target_device.h \
+	./src_asp/target/sakura_gcc/target_stddef.h \
+	./src_asp/kernel/kernel_impl.h \
+	./src_asp/arch/rx63n_gcc/prc_rename.h \
+	./src_asp/arch/rx63n_gcc/prc_syssvc.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include/stddef.h \
+	./src_asp/target/sakura_gcc/target_config.h \
+	./src_asp/arch/rx63n_gcc/prc_sil.h \
+	./src_asp/arch/rx63n_gcc/prc_kernel.h \
+	./src_asp/kernel/allfunc.h \
+	./src_asp/target/sakura_gcc/target_device/target_device_id.h \
+	./src_asp/target/sakura_gcc/target_device/use_device.h \
+	./src_asp/target/sakura_gcc/target_sil.h \
+	./src_asp/target/sakura_gcc/target_kernel.h \
+	./src_asp/arch/gcc/tool_stddef.h \
+	./src_asp/target/sakura_gcc/target_timer.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include-fixed/limits.h 
+RSPI.o: ./src_asp/target/sakura_gcc/target_kernel.h \
+	./src_asp/target/sakura_gcc/target_device/target_device_id.h \
+	./src_asp/arch/rx63n_gcc/rx63n.h \
+	./src_asp/arch/rx63n_gcc/prc_stddef.h \
+	./src_asp/target/sakura_gcc/target_sil.h \
+	./src_asp/arch/rx63n_gcc/prc_kernel.h \
+	./src_asp/target/sakura_gcc/target_device/use_device.h \
+	./src_asp/arch/rx63n_gcc/prc_insn.h \
+	./src_asp/arch/rx63n_gcc/prc_sil.h \
+	./src_asp/arch/gcc/tool_stddef.h \
+	./src_asp/target/sakura_gcc/target_device/target_device.h \
+	./src_asp/target/sakura_gcc/target_stddef.h \
+	./src_asp/driver/rx_gcc/RSPI.h \
+	./src_asp/driver/rx_gcc/RSPI.c \
+	./src_asp/target/sakura_gcc/target_board.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include-fixed/limits.h \
+	./src_asp/include/kernel.h ./src_asp/include/t_stddef.h \
+	./src_asp/include/sil.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include/stddef.h 
+mmc_rspi.o: ./src_asp/target/sakura_gcc/target_kernel.h \
+	./src_asp/arch/rx63n_gcc/prc_sil.h \
+	./src_asp/target/sakura_gcc/target_stddef.h \
+	./src_asp/target/sakura_gcc/target_board.h \
+	./src_asp/target/sakura_gcc/target_device/target_device.h \
+	./src_asp/target/sakura_gcc/target_device/target_device_id.h \
+	./src_asp/include/sil.h ./src_asp/arch/gcc/tool_stddef.h \
+	./src_asp/driver/rx_gcc/RSPI.h \
+	./src_asp/arch/rx63n_gcc/prc_stddef.h \
+	./src_asp/arch/rx63n_gcc/prc_kernel.h \
+	./src_asp/target/sakura_gcc/target_device/use_device.h \
+	./src_asp/target/sakura_gcc/target_sil.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include/stddef.h \
+	./src_asp/include/kernel.h ./src_asp/include/t_stddef.h \
+	./src_asp/driver/rx_gcc/mmc_gpio.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include-fixed/limits.h \
+	./src_asp/driver/rx_gcc/mmc_rspi.h \
+	./src_asp/arch/rx63n_gcc/prc_insn.h \
+	./src_asp/driver/rx_gcc/mmc_rspi.c \
+	./src_asp/arch/rx63n_gcc/rx63n.h \
+	./src_asp/driver/include/mmc_sdcard.h 
+mmc_gpio.o: \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include-fixed/limits.h \
+	./src_asp/target/sakura_gcc/target_device/use_device.h \
+	./src_asp/arch/rx63n_gcc/rx63n.h \
+	./src_asp/target/sakura_gcc/target_stddef.h \
+	./src_asp/include/t_stddef.h ./src_asp/include/sil.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include/stddef.h \
+	./src_asp/target/sakura_gcc/target_device/target_device_id.h \
+	./src_asp/arch/gcc/tool_stddef.h \
+	./src_asp/arch/rx63n_gcc/prc_insn.h \
+	./src_asp/arch/rx63n_gcc/prc_stddef.h \
+	./src_asp/driver/rx_gcc/mmc_gpio.h \
+	./src_asp/target/sakura_gcc/target_sil.h \
+	./src_asp/driver/rx_gcc/mmc_gpio.c \
+	./src_asp/target/sakura_gcc/target_device/target_device.h \
+	./src_asp/target/sakura_gcc/target_board.h \
+	./src_asp/arch/rx63n_gcc/prc_sil.h 
+rx63n_config.o: \
+	./src_asp/target/sakura_gcc/target_device/target_device.h \
+	./src_asp/target/sakura_gcc/target_board.h \
+	./src_asp/kernel/kernel_rename.h \
+	./src_asp/target/sakura_gcc/target_stddef.h \
+	./src_asp/kernel/allfunc.h \
+	./src_asp/arch/rx63n_gcc/rx63n_config.h \
+	./src_asp/include/t_syslog.h \
+	./src_asp/arch/rx63n_gcc/prc_stddef.h \
+	./src_asp/arch/gcc/tool_stddef.h \
+	./src_asp/target/sakura_gcc/target_rename.h \
+	./src_asp/arch/rx63n_gcc/rx63n.h \
+	./src_asp/arch/rx63n_gcc/prc_sil.h \
+	./src_asp/arch/rx63n_gcc/prc_config.h \
+	./src_asp/target/sakura_gcc/target_device/use_device.h \
+	./src_asp/include/kernel.h \
+	./src_asp/arch/rx63n_gcc/prc_kernel.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include/stddef.h \
+	./src_asp/target/sakura_gcc/target_device/target_device_id.h \
+	./src_asp/arch/rx63n_gcc/prc_rename.h \
+	./src_asp/kernel/kernel_impl.h ./src_asp/include/t_stddef.h \
+	./src_asp/target/sakura_gcc/target_config.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include-fixed/limits.h \
+	./src_asp/include/sil.h \
+	./src_asp/target/sakura_gcc/target_kernel.h \
+	./src_asp/arch/rx63n_gcc/rx63n_config.c \
+	./src_asp/arch/rx63n_gcc/prc_insn.h \
+	./src_asp/target/sakura_gcc/target_sil.h 
+prc_config.o: ./src_asp/target/sakura_gcc/target_config.h \
+	./src_asp/target/sakura_gcc/target_device/target_device.h \
+	./src_asp/arch/rx63n_gcc/prc_insn.h \
+	./src_asp/arch/rx63n_gcc/prc_kernel.h \
+	./src_asp/target/sakura_gcc/target_sil.h \
+	./src_asp/target/sakura_gcc/target_device/use_device.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include-fixed/limits.h \
+	./src_asp/arch/gcc/tool_stddef.h \
+	./src_asp/target/sakura_gcc/target_rename.h \
+	./src_asp/target/sakura_gcc/target_kernel.h \
+	./src_asp/arch/rx63n_gcc/prc_stddef.h \
+	./src_asp/kernel/kernel_impl.h ./src_asp/include/t_stddef.h \
+	./src_asp/arch/rx63n_gcc/prc_config.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include/stddef.h \
+	./src_asp/arch/rx63n_gcc/rx63n_config.h \
+	./src_asp/arch/rx63n_gcc/prc_config.c \
+	./src_asp/target/sakura_gcc/target_device/target_device_id.h \
+	./src_asp/arch/rx63n_gcc/prc_sil.h ./src_asp/include/sil.h \
+	./src_asp/kernel/kernel_rename.h \
+	./src_asp/target/sakura_gcc/target_board.h \
+	./src_asp/arch/rx63n_gcc/prc_rename.h \
+	./src_asp/target/sakura_gcc/target_stddef.h \
+	./src_asp/kernel/allfunc.h ./src_asp/arch/rx63n_gcc/rx63n.h \
+	./src_asp/include/kernel.h ./src_asp/include/t_syslog.h 
+target_device_node.o: \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include/stddef.h \
+	./src_asp/arch/gcc/tool_stddef.h \
+	./src_asp/target/sakura_gcc/target_device/use_device.h \
+	./src_asp/include/t_stddef.h \
+	./src_asp/target/sakura_gcc/target_device/target_device.h \
+	./src_asp/target/sakura_gcc/target_stddef.h \
+	./src_asp/target/sakura_gcc/target_device/target_device_node.c \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include-fixed/limits.h \
+	./src_asp/arch/rx63n_gcc/prc_stddef.h \
+	./src_asp/arch/rx63n_gcc/prc_kernel.h \
+	./src_asp/target/sakura_gcc/target_kernel.h \
+	./src_asp/include/kernel.h \
+	./src_asp/target/sakura_gcc/target_device/target_device_id.h 
+RSPI_init.o: \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include/stddef.h \
+	./src_asp/target/sakura_gcc/target_stddef.h \
+	./src_asp/include/sil.h ./src_asp/arch/rx63n_gcc/prc_sil.h \
+	./src_asp/target/sakura_gcc/target_device/device_init/RSPI_init.c \
+	./src_asp/target/sakura_gcc/target_board.h \
+	./src_asp/target/sakura_gcc/target_device/use_device.h \
+	./src_asp/arch/rx63n_gcc/prc_insn.h \
+	./src_asp/target/sakura_gcc/target_device/target_device_id.h \
+	./src_asp/arch/gcc/tool_stddef.h \
+	./src_asp/target/sakura_gcc/target_sil.h \
+	./src_asp/driver/rx_gcc/RSPI.h \
+	./src_asp/arch/rx63n_gcc/prc_stddef.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include-fixed/limits.h \
+	./src_asp/arch/rx63n_gcc/rx63n.h \
+	./src_asp/target/sakura_gcc/target_device/target_device.h \
+	./src_asp/include/t_stddef.h 
+mmc_rspi_init.o: \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include/stddef.h \
+	./src_asp/target/sakura_gcc/target_device/target_device.h \
+	./src_asp/target/sakura_gcc/target_board.h \
+	./src_asp/driver/include/mmc_sdcard.h \
+	./src_asp/target/sakura_gcc/target_device/use_device.h \
+	./src_asp/arch/rx63n_gcc/prc_insn.h \
+	./src_asp/include/t_stddef.h \
+	./src_asp/arch/rx63n_gcc/prc_sil.h \
+	./src_asp/target/sakura_gcc/target_sil.h \
+	./src_asp/arch/rx63n_gcc/prc_stddef.h \
+	./src_asp/include/sil.h \
+	./src_asp/target/sakura_gcc/target_stddef.h \
+	./src_asp/target/sakura_gcc/target_device/device_init/mmc_rspi_init.c \
+	./src_asp/driver/rx_gcc/RSPI.h \
+	./src_asp/driver/rx_gcc/mmc_rspi.h \
+	./src_asp/arch/rx63n_gcc/rx63n.h \
+	./src_asp/arch/gcc/tool_stddef.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include-fixed/limits.h \
+	./src_asp/target/sakura_gcc/target_device/target_device_id.h 
+mmc_gpio_init.o: ./src_asp/arch/rx63n_gcc/prc_stddef.h \
+	./src_asp/arch/rx63n_gcc/prc_sil.h \
+	./src_asp/arch/rx63n_gcc/rx63n.h \
+	./src_asp/arch/gcc/tool_stddef.h \
+	./src_asp/target/sakura_gcc/target_sil.h \
+	./src_asp/arch/rx63n_gcc/prc_insn.h \
+	./src_asp/target/sakura_gcc/target_device/use_device.h \
+	./src_asp/include/t_stddef.h ./src_asp/include/sil.h \
+	./src_asp/target/sakura_gcc/target_device/target_device_id.h \
+	./src_asp/target/sakura_gcc/target_stddef.h \
+	./src_asp/driver/rx_gcc/mmc_gpio.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include/stddef.h \
+	./src_asp/target/sakura_gcc/target_board.h \
+	./src_asp/target/sakura_gcc/target_device/device_init/mmc_gpio_init.c \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include-fixed/limits.h \
+	./src_asp/target/sakura_gcc/target_device/target_device.h 
+startup.o: ./src_asp/include/sil.h \
+	./src_asp/arch/rx63n_gcc/prc_insn.h \
+	./src_asp/include/t_stddef.h \
+	./src_asp/kernel/kernel_rename.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include-fixed/limits.h \
+	./src_asp/target/sakura_gcc/target_device/target_device.h \
+	./src_asp/arch/rx63n_gcc/prc_sil.h \
+	./src_asp/target/sakura_gcc/target_rename.h \
+	./src_asp/arch/rx63n_gcc/prc_rename.h \
+	./src_asp/kernel/time_event.h \
+	./src_asp/target/sakura_gcc/target_device/use_device.h \
+	./src_asp/arch/gcc/tool_stddef.h ./src_asp/include/kernel.h \
+	./src_asp/arch/rx63n_gcc/rx63n_config.h \
+	./src_asp/target/sakura_gcc/target_kernel.h \
+	./src_asp/target/sakura_gcc/target_board.h \
+	./src_asp/arch/rx63n_gcc/prc_kernel.h \
+	./src_asp/include/t_syslog.h \
+	./src_asp/arch/rx63n_gcc/rx63n.h ./src_asp/kernel/allfunc.h \
+	./src_asp/target/sakura_gcc/target_config.h \
+	./src_asp/target/sakura_gcc/target_sil.h \
+	./src_asp/arch/rx63n_gcc/prc_config.h \
+	./src_asp/target/sakura_gcc/target_device/target_device_id.h \
+	./src_asp/arch/rx63n_gcc/prc_stddef.h \
+	./src_asp/kernel/startup.c \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include/stddef.h \
+	./src_asp/target/sakura_gcc/target_stddef.h \
+	./src_asp/kernel/kernel_impl.h 
+task.o: ./src_asp/include/queue.h \
+	./src_asp/arch/rx63n_gcc/rx63n_config.h \
+	./src_asp/kernel/task.h ./src_asp/arch/rx63n_gcc/prc_sil.h \
+	./src_asp/kernel/kernel_impl.h \
+	./src_asp/arch/gcc/tool_stddef.h ./src_asp/kernel/wait.h \
+	./src_asp/include/kernel.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include-fixed/limits.h \
+	./src_asp/arch/rx63n_gcc/prc_config.h \
+	./src_asp/target/sakura_gcc/target_board.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include/stddef.h \
+	./src_asp/include/sil.h ./src_asp/kernel/allfunc.h \
+	./src_asp/arch/rx63n_gcc/prc_stddef.h \
+	./src_asp/kernel/task.c ./src_asp/include/t_stddef.h \
+	./src_asp/include/t_syslog.h \
+	./src_asp/target/sakura_gcc/target_rename.h \
+	./src_asp/target/sakura_gcc/target_config.h \
+	./src_asp/target/sakura_gcc/target_device/target_device.h \
+	./src_asp/arch/rx63n_gcc/prc_rename.h \
+	./src_asp/target/sakura_gcc/target_device/use_device.h \
+	./src_asp/arch/rx63n_gcc/rx63n.h \
+	./src_asp/target/sakura_gcc/target_sil.h \
+	./src_asp/arch/rx63n_gcc/prc_kernel.h \
+	./src_asp/arch/rx63n_gcc/prc_insn.h \
+	./src_asp/kernel/time_event.h \
+	./src_asp/kernel/kernel_rename.h \
+	./src_asp/target/sakura_gcc/target_stddef.h \
+	./src_asp/target/sakura_gcc/target_device/target_device_id.h \
+	./src_asp/target/sakura_gcc/target_kernel.h 
+wait.o: ./src_asp/arch/rx63n_gcc/rx63n.h \
+	./src_asp/arch/gcc/tool_stddef.h \
+	./src_asp/include/t_syslog.h ./src_asp/kernel/time_event.h \
+	./src_asp/include/sil.h \
+	./src_asp/target/sakura_gcc/target_config.h \
+	./src_asp/target/sakura_gcc/target_sil.h \
+	./src_asp/include/queue.h \
+	./src_asp/target/sakura_gcc/target_stddef.h \
+	./src_asp/arch/rx63n_gcc/prc_stddef.h \
+	./src_asp/kernel/allfunc.h ./src_asp/kernel/task.h \
+	./src_asp/target/sakura_gcc/target_device/target_device.h \
+	./src_asp/arch/rx63n_gcc/prc_config.h \
+	./src_asp/target/sakura_gcc/target_device/target_device_id.h \
+	./src_asp/arch/rx63n_gcc/rx63n_config.h \
+	./src_asp/target/sakura_gcc/target_device/use_device.h \
+	./src_asp/target/sakura_gcc/target_rename.h \
+	./src_asp/kernel/kernel_rename.h \
+	./src_asp/target/sakura_gcc/target_kernel.h \
+	./src_asp/arch/rx63n_gcc/prc_rename.h \
+	./src_asp/kernel/wait.c ./src_asp/kernel/kernel_impl.h \
+	./src_asp/kernel/wait.h ./src_asp/include/kernel.h \
+	./src_asp/arch/rx63n_gcc/prc_sil.h \
+	./src_asp/arch/rx63n_gcc/prc_insn.h \
+	./src_asp/arch/rx63n_gcc/prc_kernel.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include/stddef.h \
+	./src_asp/target/sakura_gcc/target_board.h \
+	./src_asp/include/t_stddef.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include-fixed/limits.h 
+time_event.o: \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include/stddef.h \
+	./src_asp/kernel/kernel_impl.h \
+	./src_asp/arch/rx63n_gcc/prc_stddef.h \
+	./src_asp/target/sakura_gcc/target_kernel.h \
+	./src_asp/arch/rx63n_gcc/rx63n.h \
+	./src_asp/arch/rx63n_gcc/prc_kernel.h \
+	./src_asp/target/sakura_gcc/target_stddef.h \
+	./src_asp/kernel/allfunc.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include-fixed/limits.h \
+	./src_asp/target/sakura_gcc/target_sil.h \
+	./src_asp/arch/rx63n_gcc/rx63n_config.h \
+	./src_asp/target/sakura_gcc/target_device/target_device_id.h \
+	./src_asp/arch/gcc/tool_stddef.h \
+	./src_asp/arch/rx63n_gcc/prc_insn.h \
+	./src_asp/arch/rx63n_gcc/prc_rename.h \
+	./src_asp/kernel/kernel_rename.h \
+	./src_asp/target/sakura_gcc/target_device/use_device.h \
+	./src_asp/target/sakura_gcc/target_rename.h \
+	./src_asp/include/kernel.h ./src_asp/include/t_syslog.h \
+	./src_asp/kernel/time_event.h ./src_asp/kernel/time_event.c \
+	./src_asp/include/sil.h \
+	./src_asp/target/sakura_gcc/target_device/target_device.h \
+	./src_asp/include/t_stddef.h \
+	./src_asp/arch/rx63n_gcc/prc_sil.h \
+	./src_asp/target/sakura_gcc/target_board.h \
+	./src_asp/arch/rx63n_gcc/prc_config.h \
+	./src_asp/target/sakura_gcc/target_config.h 
+task_manage.o: ./src_asp/kernel/task_manage.c \
+	./src_asp/kernel/check.h ./src_asp/kernel/kernel_impl.h \
+	./src_asp/target/sakura_gcc/target_config.h \
+	./src_asp/kernel/task.h \
+	./src_asp/target/sakura_gcc/target_rename.h \
+	./src_asp/kernel/allfunc.h \
+	./src_asp/target/sakura_gcc/target_device/target_device_id.h \
+	./src_asp/kernel/time_event.h \
+	./src_asp/arch/rx63n_gcc/prc_insn.h \
+	./src_asp/include/t_syslog.h \
+	./src_asp/arch/gcc/tool_stddef.h \
+	./src_asp/target/sakura_gcc/target_sil.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include/stddef.h \
+	./src_asp/include/t_stddef.h ./src_asp/include/sil.h \
+	./src_asp/arch/rx63n_gcc/prc_rename.h \
+	./src_asp/arch/rx63n_gcc/prc_stddef.h \
+	./src_asp/include/queue.h ./src_asp/arch/rx63n_gcc/prc_sil.h \
+	./src_asp/include/kernel.h \
+	./src_asp/target/sakura_gcc/target_stddef.h \
+	./src_asp/arch/rx63n_gcc/rx63n_config.h \
+	./src_asp/target/sakura_gcc/target_device/target_device.h \
+	./src_asp/target/sakura_gcc/target_kernel.h \
+	./src_asp/target/sakura_gcc/target_board.h \
+	./src_asp/target/sakura_gcc/target_device/use_device.h \
+	./src_asp/kernel/wait.h ./src_asp/kernel/kernel_rename.h \
+	./src_asp/arch/rx63n_gcc/prc_config.h \
+	./src_asp/arch/rx63n_gcc/prc_kernel.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include-fixed/limits.h \
+	./src_asp/arch/rx63n_gcc/rx63n.h 
+task_refer.o: ./src_asp/kernel/dataqueue.h \
+	./src_asp/target/sakura_gcc/target_stddef.h \
+	./src_asp/arch/rx63n_gcc/prc_stddef.h \
+	./src_asp/arch/rx63n_gcc/rx63n.h \
+	./src_asp/arch/rx63n_gcc/prc_sil.h \
+	./src_asp/target/sakura_gcc/target_rename.h \
+	./src_asp/kernel/semaphore.h \
+	./src_asp/arch/rx63n_gcc/rx63n_config.h \
+	./src_asp/include/t_stddef.h ./src_asp/include/queue.h \
+	./src_asp/include/t_syslog.h ./src_asp/kernel/kernel_impl.h \
+	./src_asp/kernel/allfunc.h ./src_asp/include/sil.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include/stddef.h \
+	./src_asp/include/kernel.h ./src_asp/kernel/mempfix.h \
+	./src_asp/arch/gcc/tool_stddef.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include-fixed/limits.h \
+	./src_asp/kernel/kernel_rename.h ./src_asp/kernel/mailbox.h \
+	./src_asp/target/sakura_gcc/target_kernel.h \
+	./src_asp/arch/rx63n_gcc/prc_config.h \
+	./src_asp/kernel/wait.h \
+	./src_asp/target/sakura_gcc/target_device/use_device.h \
+	./src_asp/target/sakura_gcc/target_sil.h \
+	./src_asp/target/sakura_gcc/target_board.h \
+	./src_asp/target/sakura_gcc/target_config.h \
+	./src_asp/kernel/pridataq.h ./src_asp/kernel/task_refer.c \
+	./src_asp/kernel/eventflag.h \
+	./src_asp/arch/rx63n_gcc/prc_insn.h ./src_asp/kernel/check.h \
+	./src_asp/target/sakura_gcc/target_device/target_device_id.h \
+	./src_asp/arch/rx63n_gcc/prc_kernel.h \
+	./src_asp/kernel/task.h \
+	./src_asp/arch/rx63n_gcc/prc_rename.h \
+	./src_asp/kernel/time_event.h \
+	./src_asp/target/sakura_gcc/target_device/target_device.h 
+task_sync.o: ./src_asp/target/sakura_gcc/target_rename.h \
+	./src_asp/target/sakura_gcc/target_config.h \
+	./src_asp/kernel/wait.h \
+	./src_asp/target/sakura_gcc/target_sil.h \
+	./src_asp/kernel/task.h ./src_asp/include/sil.h \
+	./src_asp/arch/rx63n_gcc/prc_kernel.h \
+	./src_asp/target/sakura_gcc/target_device/use_device.h \
+	./src_asp/arch/rx63n_gcc/prc_config.h \
+	./src_asp/target/sakura_gcc/target_kernel.h \
+	./src_asp/include/t_stddef.h \
+	./src_asp/arch/rx63n_gcc/prc_sil.h \
+	./src_asp/include/kernel.h ./src_asp/kernel/kernel_rename.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include-fixed/limits.h \
+	./src_asp/kernel/time_event.h ./src_asp/include/queue.h \
+	./src_asp/target/sakura_gcc/target_device/target_device_id.h \
+	./src_asp/kernel/task_sync.c ./src_asp/kernel/allfunc.h \
+	./src_asp/arch/rx63n_gcc/rx63n.h \
+	./src_asp/kernel/kernel_impl.h \
+	./src_asp/arch/rx63n_gcc/prc_insn.h \
+	./src_asp/arch/rx63n_gcc/prc_rename.h \
+	./src_asp/target/sakura_gcc/target_device/target_device.h \
+	./src_asp/include/t_syslog.h \
+	./src_asp/target/sakura_gcc/target_stddef.h \
+	./src_asp/kernel/check.h \
+	./src_asp/target/sakura_gcc/target_board.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include/stddef.h \
+	./src_asp/arch/rx63n_gcc/prc_stddef.h \
+	./src_asp/arch/rx63n_gcc/rx63n_config.h \
+	./src_asp/arch/gcc/tool_stddef.h 
+task_except.o: ./src_asp/arch/rx63n_gcc/prc_config.h \
+	./src_asp/arch/rx63n_gcc/prc_insn.h \
+	./src_asp/arch/rx63n_gcc/prc_sil.h \
+	./src_asp/target/sakura_gcc/target_device/use_device.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include/stddef.h \
+	./src_asp/arch/rx63n_gcc/rx63n_config.h \
+	./src_asp/target/sakura_gcc/target_board.h \
+	./src_asp/include/sil.h ./src_asp/arch/rx63n_gcc/rx63n.h \
+	./src_asp/target/sakura_gcc/target_device/target_device.h \
+	./src_asp/include/kernel.h \
+	./src_asp/target/sakura_gcc/target_stddef.h \
+	./src_asp/target/sakura_gcc/target_rename.h \
+	./src_asp/kernel/task_except.c \
+	./src_asp/target/sakura_gcc/target_device/target_device_id.h \
+	./src_asp/kernel/task.h \
+	./src_asp/arch/rx63n_gcc/prc_kernel.h \
+	./src_asp/include/t_syslog.h \
+	./src_asp/kernel/kernel_rename.h \
+	./src_asp/target/sakura_gcc/target_sil.h \
+	./src_asp/target/sakura_gcc/target_kernel.h \
+	./src_asp/arch/rx63n_gcc/prc_stddef.h \
+	./src_asp/arch/rx63n_gcc/prc_rename.h \
+	./src_asp/kernel/time_event.h \
+	./src_asp/arch/gcc/tool_stddef.h ./src_asp/kernel/allfunc.h \
+	./src_asp/kernel/kernel_impl.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include-fixed/limits.h \
+	./src_asp/kernel/check.h ./src_asp/include/t_stddef.h \
+	./src_asp/include/queue.h \
+	./src_asp/target/sakura_gcc/target_config.h 
+semaphore.o: ./src_asp/target/sakura_gcc/target_board.h \
+	./src_asp/kernel/semaphore.h \
+	./src_asp/target/sakura_gcc/target_kernel.h \
+	./src_asp/target/sakura_gcc/target_device/target_device.h \
+	./src_asp/include/t_syslog.h \
+	./src_asp/arch/rx63n_gcc/rx63n_config.h \
+	./src_asp/kernel/kernel_rename.h ./src_asp/kernel/check.h \
+	./src_asp/include/queue.h ./src_asp/kernel/time_event.h \
+	./src_asp/target/sakura_gcc/target_device/use_device.h \
+	./src_asp/arch/rx63n_gcc/prc_config.h \
+	./src_asp/include/t_stddef.h \
+	./src_asp/arch/gcc/tool_stddef.h \
+	./src_asp/arch/rx63n_gcc/rx63n.h \
+	./src_asp/arch/rx63n_gcc/prc_kernel.h \
+	./src_asp/kernel/wait.h ./src_asp/kernel/semaphore.c \
+	./src_asp/include/sil.h \
+	./src_asp/arch/rx63n_gcc/prc_rename.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include-fixed/limits.h \
+	./src_asp/kernel/task.h ./src_asp/arch/rx63n_gcc/prc_insn.h \
+	./src_asp/kernel/kernel_impl.h ./src_asp/include/kernel.h \
+	./src_asp/target/sakura_gcc/target_rename.h \
+	./src_asp/arch/rx63n_gcc/prc_sil.h \
+	./src_asp/target/sakura_gcc/target_sil.h \
+	./src_asp/target/sakura_gcc/target_stddef.h \
+	./src_asp/target/sakura_gcc/target_config.h \
+	./src_asp/kernel/allfunc.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include/stddef.h \
+	./src_asp/target/sakura_gcc/target_device/target_device_id.h \
+	./src_asp/arch/rx63n_gcc/prc_stddef.h 
+eventflag.o: ./src_asp/target/sakura_gcc/target_rename.h \
+	./src_asp/include/t_syslog.h \
+	./src_asp/arch/rx63n_gcc/prc_config.h \
+	./src_asp/arch/rx63n_gcc/prc_stddef.h \
+	./src_asp/target/sakura_gcc/target_board.h \
+	./src_asp/kernel/allfunc.h \
+	./src_asp/target/sakura_gcc/target_stddef.h \
+	./src_asp/arch/rx63n_gcc/rx63n_config.h \
+	./src_asp/kernel/kernel_rename.h \
+	./src_asp/include/t_stddef.h \
+	./src_asp/arch/gcc/tool_stddef.h \
+	./src_asp/target/sakura_gcc/target_sil.h \
+	./src_asp/include/queue.h \
+	./src_asp/arch/rx63n_gcc/prc_insn.h \
+	./src_asp/arch/rx63n_gcc/prc_kernel.h \
+	./src_asp/kernel/eventflag.c ./src_asp/include/sil.h \
+	./src_asp/kernel/check.h \
+	./src_asp/target/sakura_gcc/target_device/use_device.h \
+	./src_asp/kernel/kernel_impl.h \
+	./src_asp/arch/rx63n_gcc/rx63n.h \
+	./src_asp/target/sakura_gcc/target_device/target_device.h \
+	./src_asp/kernel/task.h ./src_asp/arch/rx63n_gcc/prc_sil.h \
+	./src_asp/target/sakura_gcc/target_kernel.h \
+	./src_asp/kernel/time_event.h \
+	./src_asp/target/sakura_gcc/target_config.h \
+	./src_asp/kernel/eventflag.h \
+	./src_asp/target/sakura_gcc/target_device/target_device_id.h \
+	./src_asp/arch/rx63n_gcc/prc_rename.h \
+	./src_asp/include/kernel.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include-fixed/limits.h \
+	./src_asp/kernel/wait.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include/stddef.h 
+dataqueue.o: \
+	./src_asp/target/sakura_gcc/target_device/target_device_id.h \
+	./src_asp/include/queue.h ./src_asp/arch/rx63n_gcc/rx63n.h \
+	./src_asp/kernel/allfunc.h \
+	./src_asp/target/sakura_gcc/target_device/target_device.h \
+	./src_asp/arch/rx63n_gcc/prc_sil.h \
+	./src_asp/kernel/dataqueue.c ./src_asp/kernel/kernel_impl.h \
+	./src_asp/include/t_syslog.h \
+	./src_asp/arch/rx63n_gcc/prc_config.h \
+	./src_asp/kernel/check.h \
+	./src_asp/target/sakura_gcc/target_kernel.h \
+	./src_asp/target/sakura_gcc/target_stddef.h \
+	./src_asp/kernel/time_event.h \
+	./src_asp/arch/rx63n_gcc/prc_stddef.h \
+	./src_asp/include/t_stddef.h \
+	./src_asp/target/sakura_gcc/target_board.h \
+	./src_asp/arch/gcc/tool_stddef.h ./src_asp/include/sil.h \
+	./src_asp/kernel/task.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include-fixed/limits.h \
+	./src_asp/arch/rx63n_gcc/rx63n_config.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include/stddef.h \
+	./src_asp/arch/rx63n_gcc/prc_insn.h \
+	./src_asp/include/kernel.h ./src_asp/kernel/wait.h \
+	./src_asp/arch/rx63n_gcc/prc_kernel.h \
+	./src_asp/target/sakura_gcc/target_config.h \
+	./src_asp/arch/rx63n_gcc/prc_rename.h \
+	./src_asp/target/sakura_gcc/target_rename.h \
+	./src_asp/kernel/kernel_rename.h \
+	./src_asp/target/sakura_gcc/target_device/use_device.h \
+	./src_asp/kernel/dataqueue.h \
+	./src_asp/target/sakura_gcc/target_sil.h 
+pridataq.o: ./src_asp/arch/rx63n_gcc/prc_config.h \
+	./src_asp/arch/rx63n_gcc/prc_insn.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include/stddef.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include-fixed/limits.h \
+	./src_asp/kernel/check.h \
+	./src_asp/target/sakura_gcc/target_stddef.h \
+	./src_asp/target/sakura_gcc/target_device/use_device.h \
+	./src_asp/include/kernel.h \
+	./src_asp/arch/rx63n_gcc/prc_sil.h ./src_asp/include/queue.h \
+	./src_asp/target/sakura_gcc/target_device/target_device.h \
+	./src_asp/kernel/wait.h ./src_asp/kernel/kernel_impl.h \
+	./src_asp/include/t_stddef.h ./src_asp/kernel/task.h \
+	./src_asp/arch/rx63n_gcc/prc_rename.h \
+	./src_asp/target/sakura_gcc/target_config.h \
+	./src_asp/include/sil.h ./src_asp/kernel/allfunc.h \
+	./src_asp/arch/gcc/tool_stddef.h \
+	./src_asp/target/sakura_gcc/target_sil.h \
+	./src_asp/include/t_syslog.h \
+	./src_asp/arch/rx63n_gcc/prc_stddef.h \
+	./src_asp/target/sakura_gcc/target_board.h \
+	./src_asp/target/sakura_gcc/target_rename.h \
+	./src_asp/target/sakura_gcc/target_device/target_device_id.h \
+	./src_asp/arch/rx63n_gcc/rx63n_config.h \
+	./src_asp/kernel/pridataq.c ./src_asp/kernel/pridataq.h \
+	./src_asp/target/sakura_gcc/target_kernel.h \
+	./src_asp/arch/rx63n_gcc/rx63n.h \
+	./src_asp/kernel/time_event.h \
+	./src_asp/kernel/kernel_rename.h \
+	./src_asp/arch/rx63n_gcc/prc_kernel.h 
+mailbox.o: ./src_asp/arch/gcc/tool_stddef.h \
+	./src_asp/target/sakura_gcc/target_config.h \
+	./src_asp/kernel/kernel_rename.h ./src_asp/kernel/allfunc.h \
+	./src_asp/kernel/time_event.h ./src_asp/include/sil.h \
+	./src_asp/target/sakura_gcc/target_board.h \
+	./src_asp/target/sakura_gcc/target_sil.h \
+	./src_asp/kernel/task.h \
+	./src_asp/target/sakura_gcc/target_device/target_device.h \
+	./src_asp/include/kernel.h ./src_asp/kernel/wait.h \
+	./src_asp/target/sakura_gcc/target_rename.h \
+	./src_asp/kernel/kernel_impl.h ./src_asp/include/t_stddef.h \
+	./src_asp/arch/rx63n_gcc/rx63n_config.h \
+	./src_asp/target/sakura_gcc/target_device/target_device_id.h \
+	./src_asp/arch/rx63n_gcc/prc_kernel.h \
+	./src_asp/arch/rx63n_gcc/prc_rename.h \
+	./src_asp/arch/rx63n_gcc/prc_insn.h \
+	./src_asp/arch/rx63n_gcc/prc_sil.h \
+	./src_asp/arch/rx63n_gcc/rx63n.h \
+	./src_asp/target/sakura_gcc/target_stddef.h \
+	./src_asp/include/queue.h ./src_asp/kernel/mailbox.c \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include/stddef.h \
+	./src_asp/target/sakura_gcc/target_device/use_device.h \
+	./src_asp/kernel/mailbox.h \
+	./src_asp/arch/rx63n_gcc/prc_config.h \
+	./src_asp/target/sakura_gcc/target_kernel.h \
+	./src_asp/arch/rx63n_gcc/prc_stddef.h \
+	./src_asp/kernel/check.h ./src_asp/include/t_syslog.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include-fixed/limits.h 
+mempfix.o: ./src_asp/arch/rx63n_gcc/prc_insn.h \
+	./src_asp/target/sakura_gcc/target_device/target_device_id.h \
+	./src_asp/arch/rx63n_gcc/prc_rename.h \
+	./src_asp/kernel/task.h \
+	./src_asp/target/sakura_gcc/target_board.h \
+	./src_asp/include/t_syslog.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include/stddef.h \
+	./src_asp/target/sakura_gcc/target_stddef.h \
+	./src_asp/include/kernel.h ./src_asp/kernel/kernel_impl.h \
+	./src_asp/kernel/mempfix.c \
+	./src_asp/target/sakura_gcc/target_device/target_device.h \
+	./src_asp/kernel/kernel_rename.h \
+	./src_asp/include/t_stddef.h \
+	./src_asp/target/sakura_gcc/target_rename.h \
+	./src_asp/arch/rx63n_gcc/prc_sil.h \
+	./src_asp/target/sakura_gcc/target_kernel.h \
+	./src_asp/include/queue.h \
+	./src_asp/target/sakura_gcc/target_device/use_device.h \
+	./src_asp/include/sil.h \
+	./src_asp/arch/rx63n_gcc/prc_kernel.h \
+	./src_asp/kernel/check.h \
+	./src_asp/target/sakura_gcc/target_config.h \
+	./src_asp/kernel/time_event.h ./src_asp/kernel/mempfix.h \
+	./src_asp/kernel/wait.h ./src_asp/arch/gcc/tool_stddef.h \
+	./src_asp/arch/rx63n_gcc/rx63n_config.h \
+	./src_asp/target/sakura_gcc/target_sil.h \
+	./src_asp/arch/rx63n_gcc/prc_stddef.h \
+	./src_asp/kernel/allfunc.h ./src_asp/arch/rx63n_gcc/rx63n.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include-fixed/limits.h \
+	./src_asp/arch/rx63n_gcc/prc_config.h 
+time_manage.o: \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include/stddef.h \
+	./src_asp/arch/rx63n_gcc/prc_rename.h \
+	./src_asp/kernel/time_event.h \
+	./src_asp/target/sakura_gcc/target_kernel.h \
+	./src_asp/arch/rx63n_gcc/prc_sil.h \
+	./src_asp/target/sakura_gcc/target_board.h \
+	./src_asp/include/t_syslog.h \
+	./src_asp/target/sakura_gcc/target_syssvc.h \
+	./src_asp/target/sakura_gcc/target_stddef.h \
+	./src_asp/arch/rx63n_gcc/prc_kernel.h \
+	./src_asp/arch/rx63n_gcc/prc_stddef.h \
+	./src_asp/include/t_stddef.h \
+	./src_asp/arch/rx63n_gcc/rx63n.h \
+	./src_asp/target/sakura_gcc/target_device/use_device.h \
+	./src_asp/kernel/kernel_rename.h \
+	./src_asp/target/sakura_gcc/target_device/target_device.h \
+	./src_asp/include/sil.h ./src_asp/kernel/kernel_impl.h \
+	./src_asp/arch/rx63n_gcc/prc_insn.h \
+	./src_asp/kernel/allfunc.h \
+	./src_asp/target/sakura_gcc/target_device/target_device_id.h \
+	./src_asp/target/sakura_gcc/target_timer.h \
+	./src_asp/target/sakura_gcc/target_sil.h \
+	./src_asp/kernel/time_manage.c \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include-fixed/limits.h \
+	./src_asp/arch/rx63n_gcc/prc_config.h \
+	./src_asp/target/sakura_gcc/target_rename.h \
+	./src_asp/arch/rx63n_gcc/prc_syssvc.h \
+	./src_asp/arch/rx63n_gcc/rx63n_config.h \
+	./src_asp/kernel/check.h ./src_asp/include/kernel.h \
+	./src_asp/target/sakura_gcc/target_config.h \
+	./src_asp/arch/gcc/tool_stddef.h 
+cyclic.o: ./src_asp/arch/rx63n_gcc/prc_rename.h \
+	./src_asp/arch/rx63n_gcc/prc_config.h \
+	./src_asp/kernel/check.h ./src_asp/include/t_stddef.h \
+	./src_asp/arch/rx63n_gcc/prc_sil.h \
+	./src_asp/arch/gcc/tool_stddef.h ./src_asp/kernel/allfunc.h \
+	./src_asp/target/sakura_gcc/target_sil.h \
+	./src_asp/arch/rx63n_gcc/prc_stddef.h \
+	./src_asp/arch/rx63n_gcc/rx63n.h \
+	./src_asp/target/sakura_gcc/target_device/use_device.h \
+	./src_asp/target/sakura_gcc/target_device/target_device.h \
+	./src_asp/kernel/cyclic.c \
+	./src_asp/arch/rx63n_gcc/prc_insn.h \
+	./src_asp/target/sakura_gcc/target_rename.h \
+	./src_asp/target/sakura_gcc/target_stddef.h \
+	./src_asp/kernel/kernel_rename.h ./src_asp/include/kernel.h \
+	./src_asp/target/sakura_gcc/target_kernel.h \
+	./src_asp/kernel/kernel_impl.h \
+	./src_asp/target/sakura_gcc/target_config.h \
+	./src_asp/include/t_syslog.h \
+	./src_asp/arch/rx63n_gcc/rx63n_config.h \
+	./src_asp/include/sil.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include-fixed/limits.h \
+	./src_asp/target/sakura_gcc/target_board.h \
+	./src_asp/arch/rx63n_gcc/prc_kernel.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include/stddef.h \
+	./src_asp/target/sakura_gcc/target_device/target_device_id.h \
+	./src_asp/kernel/time_event.h ./src_asp/kernel/cyclic.h 
+alarm.o: ./src_asp/target/sakura_gcc/target_sil.h \
+	./src_asp/target/sakura_gcc/target_device/target_device.h \
+	./src_asp/target/sakura_gcc/target_rename.h \
+	./src_asp/arch/rx63n_gcc/prc_insn.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include-fixed/limits.h \
+	./src_asp/arch/rx63n_gcc/prc_stddef.h \
+	./src_asp/arch/rx63n_gcc/prc_rename.h \
+	./src_asp/target/sakura_gcc/target_device/target_device_id.h \
+	./src_asp/arch/rx63n_gcc/prc_sil.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include/stddef.h \
+	./src_asp/kernel/alarm.c ./src_asp/kernel/check.h \
+	./src_asp/target/sakura_gcc/target_device/use_device.h \
+	./src_asp/include/t_syslog.h \
+	./src_asp/kernel/kernel_rename.h ./src_asp/include/kernel.h \
+	./src_asp/kernel/alarm.h ./src_asp/include/sil.h \
+	./src_asp/kernel/allfunc.h ./src_asp/kernel/time_event.h \
+	./src_asp/arch/rx63n_gcc/rx63n_config.h \
+	./src_asp/kernel/kernel_impl.h \
+	./src_asp/arch/rx63n_gcc/prc_kernel.h \
+	./src_asp/target/sakura_gcc/target_config.h \
+	./src_asp/target/sakura_gcc/target_kernel.h \
+	./src_asp/target/sakura_gcc/target_board.h \
+	./src_asp/arch/gcc/tool_stddef.h \
+	./src_asp/arch/rx63n_gcc/rx63n.h \
+	./src_asp/target/sakura_gcc/target_stddef.h \
+	./src_asp/include/t_stddef.h \
+	./src_asp/arch/rx63n_gcc/prc_config.h 
+sys_manage.o: ./src_asp/target/sakura_gcc/target_device/use_device.h \
+	./src_asp/include/kernel.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include-fixed/limits.h \
+	./src_asp/include/t_stddef.h ./src_asp/kernel/check.h \
+	./src_asp/arch/rx63n_gcc/prc_sil.h ./src_asp/kernel/task.h \
+	./src_asp/arch/gcc/tool_stddef.h \
+	./src_asp/target/sakura_gcc/target_kernel.h \
+	./src_asp/kernel/allfunc.h \
+	./src_asp/target/sakura_gcc/target_sil.h \
+	./src_asp/kernel/kernel_rename.h ./src_asp/include/queue.h \
+	./src_asp/target/sakura_gcc/target_device/target_device_id.h \
+	./src_asp/target/sakura_gcc/target_board.h \
+	./src_asp/include/sil.h \
+	./src_asp/target/sakura_gcc/target_device/target_device.h \
+	./src_asp/target/sakura_gcc/target_config.h \
+	./src_asp/arch/rx63n_gcc/prc_rename.h \
+	./src_asp/arch/rx63n_gcc/rx63n_config.h \
+	./src_asp/arch/rx63n_gcc/prc_insn.h \
+	./src_asp/kernel/sys_manage.c ./src_asp/kernel/time_event.h \
+	./src_asp/arch/rx63n_gcc/prc_stddef.h \
+	./src_asp/target/sakura_gcc/target_rename.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include/stddef.h \
+	./src_asp/arch/rx63n_gcc/prc_config.h \
+	./src_asp/include/t_syslog.h \
+	./src_asp/target/sakura_gcc/target_stddef.h \
+	./src_asp/kernel/kernel_impl.h \
+	./src_asp/arch/rx63n_gcc/rx63n.h \
+	./src_asp/arch/rx63n_gcc/prc_kernel.h 
+interrupt.o: ./src_asp/arch/rx63n_gcc/prc_config.h \
+	./src_asp/target/sakura_gcc/target_config.h \
+	./src_asp/include/sil.h \
+	./src_asp/arch/rx63n_gcc/prc_rename.h \
+	./src_asp/arch/rx63n_gcc/prc_sil.h \
+	./src_asp/target/sakura_gcc/target_kernel.h \
+	./src_asp/kernel/check.h \
+	./src_asp/target/sakura_gcc/target_sil.h \
+	./src_asp/target/sakura_gcc/target_rename.h \
+	./src_asp/arch/rx63n_gcc/rx63n.h \
+	./src_asp/include/t_stddef.h \
+	./src_asp/target/sakura_gcc/target_board.h \
+	./src_asp/kernel/kernel_rename.h \
+	./src_asp/arch/rx63n_gcc/prc_insn.h \
+	./src_asp/target/sakura_gcc/target_device/target_device.h \
+	./src_asp/target/sakura_gcc/target_stddef.h \
+	./src_asp/kernel/interrupt.h ./src_asp/kernel/time_event.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include-fixed/limits.h \
+	./src_asp/arch/rx63n_gcc/rx63n_config.h \
+	./src_asp/target/sakura_gcc/target_device/use_device.h \
+	./src_asp/kernel/interrupt.c \
+	./src_asp/arch/rx63n_gcc/prc_kernel.h \
+	./src_asp/include/kernel.h \
+	./src_asp/arch/rx63n_gcc/prc_stddef.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include/stddef.h \
+	./src_asp/target/sakura_gcc/target_device/target_device_id.h \
+	./src_asp/kernel/task.h ./src_asp/arch/gcc/tool_stddef.h \
+	./src_asp/kernel/allfunc.h ./src_asp/include/queue.h \
+	./src_asp/include/t_syslog.h ./src_asp/kernel/kernel_impl.h 
+exception.o: ./src_asp/kernel/kernel_rename.h \
+	./src_asp/target/sakura_gcc/target_device/target_device.h \
+	./src_asp/arch/rx63n_gcc/prc_config.h \
+	./src_asp/target/sakura_gcc/target_board.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include-fixed/limits.h \
+	./src_asp/kernel/exception.c \
+	./src_asp/target/sakura_gcc/target_stddef.h \
+	./src_asp/target/sakura_gcc/target_config.h \
+	./src_asp/kernel/exception.h ./src_asp/kernel/kernel_impl.h \
+	./src_asp/include/kernel.h \
+	./src_asp/arch/rx63n_gcc/prc_insn.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include/stddef.h \
+	./src_asp/arch/rx63n_gcc/prc_kernel.h \
+	./src_asp/kernel/allfunc.h \
+	./src_asp/target/sakura_gcc/target_device/target_device_id.h \
+	./src_asp/kernel/task.h ./src_asp/include/t_stddef.h \
+	./src_asp/include/sil.h \
+	./src_asp/arch/rx63n_gcc/rx63n_config.h \
+	./src_asp/target/sakura_gcc/target_sil.h \
+	./src_asp/arch/rx63n_gcc/prc_rename.h \
+	./src_asp/arch/rx63n_gcc/prc_sil.h \
+	./src_asp/arch/rx63n_gcc/prc_stddef.h \
+	./src_asp/target/sakura_gcc/target_kernel.h \
+	./src_asp/target/sakura_gcc/target_device/use_device.h \
+	./src_asp/kernel/time_event.h ./src_asp/include/t_syslog.h \
+	./src_asp/include/queue.h \
+	./src_asp/target/sakura_gcc/target_rename.h \
+	./src_asp/arch/gcc/tool_stddef.h \
+	./src_asp/arch/rx63n_gcc/rx63n.h 
+fatfs_sample.o: ./src_asp/arch/gcc/tool_stddef.h \
+	./src_asp/middleware/fatfs_ff11a/src/integer.h \
+	./src_asp/target/sakura_gcc/target_kernel.h \
+	./src_asp/include/t_stddef.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include-fixed/limits.h \
+	./src_asp/include/t_stdlib.h \
+	./src_asp/arch/rx63n_gcc/prc_stddef.h \
+	./src_asp/middleware/fatfs_ff11a/src/ffconf.h \
+	./src_asp/middleware/include/ff.h \
+	./src_asp/include/t_syslog.h kernel_cfg.h \
+	./src_asp/syssvc/syslog.h ./src_asp/syssvc/serial.h \
+	./src_asp/arch/rx63n_gcc/prc_kernel.h fatfs_sample.c \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include/stddef.h \
+	./src_asp/include/kernel.h \
+	./src_asp/target/sakura_gcc/target_stddef.h 
+log_output.o: ./src_asp/include/t_syslog.h \
+	./src_asp/arch/rx63n_gcc/prc_stddef.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include/stddef.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include-fixed/limits.h \
+	./src_asp/target/sakura_gcc/target_stddef.h \
+	./src_asp/include/log_output.h ./src_asp/include/t_stddef.h \
+	./src_asp/library/log_output.c \
+	./src_asp/arch/gcc/tool_stddef.h 
+vasyslog.o: ./src_asp/arch/gcc/tool_stddef.h \
+	./src_asp/include/t_stddef.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include/stddef.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include-fixed/limits.h \
+	./src_asp/target/sakura_gcc/target_stddef.h \
+	./src_asp/arch/rx63n_gcc/prc_stddef.h \
+	./src_asp/include/t_syslog.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include/stdarg.h \
+	./src_asp/library/vasyslog.c 
+t_perror.o: ./src_asp/arch/gcc/tool_stddef.h \
+	./src_asp/target/sakura_gcc/target_stddef.h \
+	./src_asp/include/t_syslog.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include/stddef.h \
+	./src_asp/library/t_perror.c \
+	./src_asp/arch/rx63n_gcc/prc_stddef.h \
+	./src_asp/include/t_stdlib.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include-fixed/limits.h \
+	./src_asp/include/t_stddef.h 
+strerror.o: ./src_asp/library/strerror.c \
+	./src_asp/arch/gcc/tool_stddef.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include/stddef.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include-fixed/limits.h \
+	./src_asp/target/sakura_gcc/target_stddef.h \
+	./src_asp/include/t_stddef.h \
+	./src_asp/arch/rx63n_gcc/prc_stddef.h \
+	./src_asp/include/t_stdlib.h 
+diskio.o: ./src_asp/arch/rx63n_gcc/rx63n.h \
+	./src_asp/arch/rx63n_gcc/prc_sil.h \
+	./src_asp/middleware/fatfs_ff11a/src/integer.h \
+	./src_asp/middleware/fatfs_ff11a/src/diskio.c \
+	./src_asp/target/sakura_gcc/target_device/target_device.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include/stddef.h \
+	./src_asp/target/sakura_gcc/target_sil.h \
+	./src_asp/arch/gcc/tool_stddef.h \
+	./src_asp/target/sakura_gcc/target_device/target_device_id.h \
+	./src_asp/arch/rx63n_gcc/prc_stddef.h \
+	./src_asp/include/sil.h \
+	./src_asp/target/sakura_gcc/target_device/use_device.h \
+	./src_asp/include/t_stddef.h \
+	./src_asp/arch/rx63n_gcc/prc_insn.h \
+	./src_asp/target/sakura_gcc/target_board.h \
+	./src_asp/middleware/fatfs_ff11a/src/diskio.h \
+	./src_asp/driver/include/mmc_sdcard.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include-fixed/limits.h \
+	./src_asp/target/sakura_gcc/target_stddef.h 
+ff.o: /home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include/stddef.h \
+	./src_asp/middleware/fatfs_ff11a/src/diskio.h \
+	./src_asp/include/t_stddef.h \
+	./src_asp/middleware/fatfs_ff11a/src/ff.c \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include-fixed/limits.h \
+	./src_asp/target/sakura_gcc/target_sil.h \
+	./src_asp/target/sakura_gcc/target_board.h \
+	./src_asp/arch/rx63n_gcc/rx63n.h \
+	./src_asp/target/sakura_gcc/target_device/target_device_id.h \
+	./src_asp/target/sakura_gcc/target_device/use_device.h \
+	./src_asp/middleware/fatfs_ff11a/src/ff.h \
+	./src_asp/arch/rx63n_gcc/prc_stddef.h \
+	./src_asp/arch/gcc/tool_stddef.h \
+	./src_asp/arch/rx63n_gcc/prc_sil.h \
+	./src_asp/target/sakura_gcc/target_stddef.h \
+	./src_asp/middleware/fatfs_ff11a/src/ffconf.h \
+	./src_asp/arch/rx63n_gcc/prc_insn.h \
+	./src_asp/target/sakura_gcc/target_device/target_device.h \
+	./src_asp/driver/include/mmc_sdcard.h \
+	./src_asp/include/sil.h \
+	./src_asp/middleware/fatfs_ff11a/src/integer.h 
+target_serial.o: ./src_asp/include/t_syslog.h \
+	./src_asp/arch/rx63n_gcc/prc_sil.h \
+	./src_asp/arch/rx63n_gcc/rx63n.h ./src_asp/include/kernel.h \
+	./src_asp/target/sakura_gcc/target_device/target_device_id.h \
+	./src_asp/include/t_stddef.h ./src_asp/include/sil.h \
+	./src_asp/arch/rx63n_gcc/prc_stddef.h \
+	./src_asp/pdic/renesas/scic_uart.h \
+	./src_asp/target/sakura_gcc/target_device/target_device.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include-fixed/limits.h \
+	./src_asp/target/sakura_gcc/target_board.h \
+	./src_asp/target/sakura_gcc/target_serial.h \
+	./src_asp/target/sakura_gcc/target_device/use_device.h \
+	./src_asp/arch/rx63n_gcc/prc_kernel.h \
+	./src_asp/arch/rx63n_gcc/prc_insn.h \
+	./src_asp/target/sakura_gcc/target_stddef.h \
+	./src_asp/target/sakura_gcc/target_kernel.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include/stddef.h \
+	./src_asp/target/sakura_gcc/target_sil.h \
+	./src_asp/target/sakura_gcc/target_serial.c \
+	./src_asp/arch/gcc/tool_stddef.h 
+scic_uart.o: ./src_asp/target/sakura_gcc/target_kernel.h \
+	./src_asp/target/sakura_gcc/target_device/target_device_id.h \
+	./src_asp/target/sakura_gcc/target_board.h \
+	./src_asp/pdic/renesas/scic_uart.h \
+	./src_asp/include/t_syslog.h \
+	./src_asp/arch/rx63n_gcc/rx63n.h \
+	./src_asp/arch/rx63n_gcc/prc_insn.h \
+	./src_asp/target/sakura_gcc/target_stddef.h \
+	./src_asp/arch/rx63n_gcc/prc_stddef.h \
+	./src_asp/target/sakura_gcc/target_device/use_device.h \
+	./src_asp/target/sakura_gcc/target_sil.h \
+	./src_asp/arch/rx63n_gcc/prc_kernel.h \
+	./src_asp/arch/rx63n_gcc/prc_syssvc.h \
+	./src_asp/target/sakura_gcc/target_device/target_device.h \
+	./src_asp/include/kernel.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include/stddef.h \
+	./src_asp/include/sil.h ./src_asp/pdic/renesas/scic_uart.c \
+	./src_asp/arch/rx63n_gcc/prc_sil.h \
+	./src_asp/include/t_stddef.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include-fixed/limits.h \
+	./src_asp/target/sakura_gcc/target_syssvc.h \
+	./src_asp/arch/gcc/tool_stddef.h 
+tinet_target_config.o: \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include-fixed/limits.h \
+	./src_asp/include/sil.h \
+	./src_asp/target/sakura_gcc/target_stddef.h \
+	./src_asp/include/t_stddef.h \
+	./src_asp/arch/gcc/tool_stddef.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include/stddef.h \
+	./src_asp/arch/rx63n_gcc/prc_sil.h \
+	./src_asp/target/sakura_gcc/target_sil.h \
+	./src_asp/arch/rx63n_gcc/prc_stddef.h \
+	./src_asp/arch/rx63n_gcc/prc_insn.h \
+	./src_asp/target/sakura_gcc/tinet_target_config.c 
+banner.o: ./src_asp/syssvc/banner.c ./src_asp/arch/rx63n_gcc/rx63n.h \
+	./src_asp/target/sakura_gcc/target_board.h \
+	./src_asp/syssvc/banner.h \
+	./src_asp/arch/rx63n_gcc/prc_kernel.h \
+	./src_asp/arch/rx63n_gcc/prc_sil.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include/stddef.h \
+	./src_asp/target/sakura_gcc/target_syssvc.h \
+	./src_asp/arch/rx63n_gcc/prc_syssvc.h \
+	./src_asp/target/sakura_gcc/target_kernel.h \
+	./src_asp/target/sakura_gcc/target_device/target_device_id.h \
+	./src_asp/include/sil.h ./src_asp/arch/gcc/tool_stddef.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include-fixed/limits.h \
+	./src_asp/target/sakura_gcc/target_sil.h \
+	./src_asp/target/sakura_gcc/target_stddef.h \
+	./src_asp/include/t_syslog.h ./src_asp/include/t_stddef.h \
+	./src_asp/include/kernel.h \
+	./src_asp/target/sakura_gcc/target_device/use_device.h \
+	./src_asp/target/sakura_gcc/target_device/target_device.h \
+	./src_asp/arch/rx63n_gcc/prc_stddef.h \
+	./src_asp/arch/rx63n_gcc/prc_insn.h 
+syslog.o: ./src_asp/target/sakura_gcc/target_stddef.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include/stddef.h \
+	./src_asp/target/sakura_gcc/target_sil.h \
+	./src_asp/syssvc/syslog.h \
+	./src_asp/target/sakura_gcc/target_syssvc.h \
+	./src_asp/syssvc/syslog.c ./src_asp/arch/gcc/tool_stddef.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include-fixed/limits.h \
+	./src_asp/include/t_syslog.h \
+	./src_asp/target/sakura_gcc/target_device/use_device.h \
+	./src_asp/include/sil.h ./src_asp/include/t_stddef.h \
+	./src_asp/target/sakura_gcc/target_board.h \
+	./src_asp/arch/rx63n_gcc/prc_insn.h \
+	./src_asp/target/sakura_gcc/target_device/target_device.h \
+	./src_asp/arch/rx63n_gcc/prc_sil.h \
+	./src_asp/arch/rx63n_gcc/prc_syssvc.h \
+	./src_asp/arch/rx63n_gcc/prc_stddef.h \
+	./src_asp/arch/rx63n_gcc/rx63n.h \
+	./src_asp/target/sakura_gcc/target_device/target_device_id.h \
+	./src_asp/include/log_output.h 
+serial.o: ./src_asp/include/kernel.h \
+	./src_asp/arch/gcc/tool_stddef.h \
+	./src_asp/target/sakura_gcc/target_syssvc.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include-fixed/limits.h \
+	./src_asp/arch/rx63n_gcc/prc_kernel.h \
+	./src_asp/target/sakura_gcc/target_kernel.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include/stddef.h \
+	./src_asp/include/sil.h \
+	./src_asp/target/sakura_gcc/target_stddef.h \
+	./src_asp/arch/rx63n_gcc/prc_insn.h \
+	./src_asp/include/t_syslog.h \
+	./src_asp/pdic/renesas/scic_uart.h ./kernel_cfg.h \
+	./src_asp/include/t_stddef.h \
+	./src_asp/arch/rx63n_gcc/rx63n.h \
+	./src_asp/target/sakura_gcc/target_board.h \
+	./src_asp/arch/rx63n_gcc/prc_sil.h \
+	./src_asp/target/sakura_gcc/target_device/target_device_id.h \
+	./src_asp/target/sakura_gcc/target_sil.h \
+	./src_asp/target/sakura_gcc/target_device/use_device.h \
+	./src_asp/target/sakura_gcc/target_serial.h \
+	./src_asp/syssvc/serial.c \
+	./src_asp/target/sakura_gcc/target_device/target_device.h \
+	./src_asp/arch/rx63n_gcc/prc_syssvc.h \
+	./src_asp/arch/rx63n_gcc/prc_stddef.h \
+	./src_asp/syssvc/serial.h 
+logtask.o: ./src_asp/target/sakura_gcc/target_syssvc.h \
+	./src_asp/target/sakura_gcc/target_kernel.h \
+	./src_asp/arch/gcc/tool_stddef.h ./src_asp/syssvc/logtask.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include-fixed/limits.h \
+	./src_asp/target/sakura_gcc/target_stddef.h \
+	./src_asp/include/sil.h ./src_asp/syssvc/serial.h \
+	./src_asp/include/kernel.h \
+	./src_asp/target/sakura_gcc/target_board.h \
+	./src_asp/arch/rx63n_gcc/prc_syssvc.h \
+	./src_asp/arch/rx63n_gcc/prc_stddef.h \
+	./src_asp/arch/rx63n_gcc/prc_insn.h \
+	./src_asp/include/log_output.h ./src_asp/syssvc/logtask.c \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include/stddef.h \
+	./src_asp/target/sakura_gcc/target_sil.h \
+	./src_asp/arch/rx63n_gcc/prc_kernel.h \
+	./src_asp/arch/rx63n_gcc/rx63n.h \
+	./src_asp/target/sakura_gcc/target_device/target_device_id.h \
+	./src_asp/target/sakura_gcc/target_device/use_device.h \
+	./src_asp/include/t_syslog.h \
+	./src_asp/target/sakura_gcc/target_device/target_device.h \
+	./src_asp/include/t_stddef.h \
+	./src_asp/arch/rx63n_gcc/prc_sil.h ./src_asp/syssvc/syslog.h 
+kernel_cfg_asm.o: kernel_cfg_asm.S 
+sectrx.o: ./src_asp/target/sakura_gcc/sectrx.S 
+DTCa_vecter.o: \
+	./src_asp/target/sakura_gcc/target_device/use_device.h \
+	./src_asp/target/sakura_gcc/DTCa_vecter.S 
+kernel_cfg.o: ./src_asp/include/t_syslog.h fatfs_sample.h \
+	kernel_cfg.h ./src_asp/kernel/task.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include-fixed/limits.h \
+	./src_asp/target/sakura_gcc/target_device/target_device_id.h \
+	./src_asp/target/sakura_gcc/target_serial.h \
+	./src_asp/target/sakura_gcc/target_device/target_device.h \
+	./src_asp/target/sakura_gcc/target_timer.h \
+	./src_asp/kernel/kernel_unrename.h \
+	./src_asp/include/kernel.h ./src_asp/kernel/mailbox.h \
+	./src_asp/kernel/interrupt.h \
+	./src_asp/arch/rx63n_gcc/prc_config.h \
+	./src_asp/kernel/cyclic.h ./src_asp/kernel/semaphore.h \
+	./src_asp/target/sakura_gcc/target_device/use_device.h \
+	./src_asp/target/sakura_gcc/target_kernel.h \
+	./src_asp/kernel/allfunc.h \
+	./src_asp/arch/rx63n_gcc/prc_syssvc.h \
+	./src_asp/arch/rx63n_gcc/prc_stddef.h \
+	./src_asp/target/sakura_gcc/target_board.h \
+	./src_asp/driver/include/mmc_sdcard.h \
+	./src_asp/kernel/eventflag.h kernel_cfg.c \
+	./src_asp/arch/rx63n_gcc/prc_sil.h \
+	./src_asp/driver/rx_gcc/RSPI.h \
+	./src_asp/pdic/renesas/scic_uart.h \
+	./src_asp/kernel/time_event.h ./src_asp/kernel/pridataq.h \
+	./src_asp/syssvc/banner.h ./src_asp/syssvc/serial.h \
+	./src_asp/include/sil.h \
+	./src_asp/target/sakura_gcc/target_config.h \
+	./src_asp/target/sakura_gcc/target_sil.h \
+	/home/hatahi/usr/local/lib/gcc/rx-elf/4.9.2/include/stddef.h \
+	./src_asp/target/sakura_gcc/target_rename.h \
+	./src_asp/kernel/kernel_impl.h ./src_asp/include/queue.h \
+	./src_asp/kernel/kernel_int.h \
+	./src_asp/driver/rx_gcc/mmc_rspi.h \
+	./src_asp/kernel/dataqueue.h ./src_asp/include/t_stddef.h \
+	./src_asp/arch/rx63n_gcc/prc_kernel.h \
+	./src_asp/kernel/wait.h \
+	./src_asp/arch/rx63n_gcc/prc_rename.h \
+	./src_asp/syssvc/syslog.h ./src_asp/kernel/mempfix.h \
+	./src_asp/arch/gcc/tool_stddef.h \
+	./src_asp/arch/rx63n_gcc/prc_insn.h \
+	./src_asp/target/sakura_gcc/target_syssvc.h \
+	./src_asp/arch/rx63n_gcc/rx63n_config.h \
+	./src_asp/kernel/kernel_rename.h \
+	./src_asp/arch/rx63n_gcc/rx63n.h ./src_asp/syssvc/logtask.h \
+	./src_asp/kernel/exception.h ./src_asp/kernel/alarm.h \
+	./src_asp/target/sakura_gcc/target_stddef.h \
+	./src_asp/target/sakura_gcc/target_unrename.h 
+start.o: ./src_asp/arch/rx63n_gcc/rx63n.h ./src_asp/kernel/allfunc.h \
+	./src_asp/target/sakura_gcc/target_stddef.h \
+	./src_asp/include/sil.h ./src_asp/arch/rx63n_gcc/start.S \
+	./src_asp/target/sakura_gcc/target_board.h \
+	./src_asp/target/sakura_gcc/target_sil.h \
+	./src_asp/arch/rx63n_gcc/prc_sil.h \
+	./src_asp/arch/gcc/tool_stddef.h \
+	./src_asp/arch/rx63n_gcc/prc_config.h \
+	./src_asp/target/sakura_gcc/target_config.h \
+	./src_asp/target/sakura_gcc/target_rename.h \
+	./src_asp/arch/rx63n_gcc/rx63n_config.h \
+	./src_asp/arch/rx63n_gcc/prc_rename.h \
+	./src_asp/kernel/kernel_impl.h ./src_asp/include/kernel.h \
+	./src_asp/target/sakura_gcc/target_kernel.h \
+	./src_asp/include/t_stddef.h \
+	./src_asp/kernel/kernel_rename.h \
+	./src_asp/arch/rx63n_gcc/prc_stddef.h \
+	./src_asp/include/t_syslog.h \
+	./src_asp/arch/rx63n_gcc/prc_kernel.h 
