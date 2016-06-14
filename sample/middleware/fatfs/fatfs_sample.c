@@ -41,7 +41,7 @@ void main_task(intptr_t exinf)
   // release mount point
   f_mount(NULL, "", 0);
 
-  ?:  comp_result=0;
+  /*  comp_result=0;
   for(i=0;i<128;i++)
     if(buf[i] != i)
       comp_result = -1;
