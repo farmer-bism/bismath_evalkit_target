@@ -7,9 +7,12 @@
 #include <driver/rx_gcc/mmc_rspi.h>
 #include <target_device/target_device.h>
 
-const dnode_id pdrv_to_dev[1] = {DEV_MMC_RSPI0};
-
 #ifdef USE_MMC_RSPI_0
+
+const dnode_id pdrv_to_dev[1] = {
+  DEV_MMC_RSPI0
+};
+
 mmc_rspi_stat_t mmc_sdcard_rspi0_stat={
   DEV_RSPI0, //Drive ID of MMC disk io
   DEV_MMC_GPIO0, //Driver ID of Card detect io
