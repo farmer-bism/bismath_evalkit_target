@@ -1,2 +1,2 @@
 # bismath_evalkit_target
-Toppers/asp of gcc editions for Renesas RX. 
+Unofficial porting of TOPPERS/ASP with GCC for Renesas RX.
