@@ -44,7 +44,7 @@
 ;  ƒIƒvƒVƒ‡ƒ“‚É‚ÄŽÀŽ{‚·‚é.
 ;
 
-	.section	SI,"aw"
+	.section	SI,"aw",@nobits
 	.glb _DEFAULT_ISTACK
 _DEFAULT_ISTACK:
 	.blkb		0x0500
