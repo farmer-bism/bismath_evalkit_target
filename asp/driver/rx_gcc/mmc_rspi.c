@@ -61,10 +61,18 @@ static inline uint32_t LDDW( uint32_t data )
 #define CMD55	(55)		/* APP_CMD */
 #define CMD58	(58)		/* READ_OCR */
 
+//time out flag
+#define DATA_TRANS_TIME 0x1
+#define WAIT_TIME 0x2
 
+//time out flag management function
+inline void clear_timeout_timer(mmc_rspi_stat_t *mmc_stat, uint8_t flg_bit){
+  mmc_stat->tout_flg &= ~flg_bit;
+}
 
-static volatile
-uint16_t Timer1, Timer2;	/* 1000Hz decrement timer stopped at zero (driven by disk_timerproc()) */
+inline uint8_t is_timeout(mmc_rspi_stat_t *mmc_stat, uint8_t flg_bit){
+  return mmc_stat->tout_flg & flg_bit;
+}
 
 void fast_clk_mode(rspi_dstat* rspi_stat){
     rspi_disable(rspi_stat);
@@ -206,12 +214,19 @@ int wait_ready (	/* 1:Ready, 0:Timeout */
                 uint32_t wt			/* Timeout [ms] */
                     )
 {
-  Timer2 = (uint16_t)wt;
+  clear_timeout_timer(mmc_stat, WAIT_TIME);
+  sta_alm(mmc_stat-> tout_task_id_1, wt);
   
   do {
-    if (xchg_spi(mmc_stat, 0xFF) == 0xFF) return 1;	/* Card goes ready */
+    if (xchg_spi(mmc_stat, 0xFF) == 0xFF){
+    	/* Card goes ready */
+    	stp_alm(mmc_stat-> tout_task_id_1);
+    	return 1;
+    }
     /* This loop takes a time. Insert rot_rdq() here for multitask envilonment. */
-  } while (Timer2);	/* Wait until card goes ready or timeout */
+    //rot_rdq();
+  } while (!is_timeout(mmc_stat, WAIT_TIME));    /* Wait until card goes ready or timeout */
+  stp_alm(mmc_stat-> tout_task_id_1);
   
   return 0;	/* Timeout occured */
 }
@@ -262,12 +277,15 @@ int rcvr_datablock (	/* 1:OK, 0:Error */
                         )
 {
   uint8_t token;
-  
-  Timer1 = 200;
+
+  clear_timeout_timer(mmc_stat, DATA_TRANS_TIME);
+  sta_alm(mmc_stat-> tout_task_id_0, 200);
 	do {							/* Wait for DataStart token in timeout of 200ms */
       token = xchg_spi(mmc_stat, 0xFF);
       /* This loop will take a time. Insert rot_rdq() here for multitask envilonment. */
-	} while ((token == 0xFF) && Timer1);
+	} while ((token == 0xFF) && (!is_timeout(mmc_stat, DATA_TRANS_TIME)));
+	stp_alm(mmc_stat-> tout_task_id_0);
+
 	if (token != 0xFE) return 0;	/* Function fails if invalid DataStart token or timeout */
     
 	rcvr_spi_multi(mmc_stat, buff, btr);		/* Store trailing data to the buffer */
@@ -379,7 +397,12 @@ DSTATUS rspi_disk_initialize (
     mmc_rspi_stat_t *mmc_stat;
 
     mmc_stat = (mmc_rspi_stat_t *)v_stat;
-    mmc_stat->Stat = STA_NOINIT;
+
+    if (check_ins_sw(GET_DEV_STAT(DEV_MMC_GPIO0)))    /* Card is in socket */
+      mmc_stat->Stat = STA_NOINIT;
+    else        /* Socket empty */
+      mmc_stat->Stat = (STA_NODISK | STA_NOINIT);
+
     mmc_stat->CardType = 0; 
     mmc_stat->tout_flg = 0; //clear condition of time out.
     
@@ -388,12 +411,13 @@ DSTATUS rspi_disk_initialize (
     
 	ty = 0;
 	if (send_cmd(mmc_stat, CMD0, 0) == 1) {			/* Put the card SPI/Idle state */
-      Timer1 = 1000;						/* Initialization timeout = 1 sec */
+      clear_timeout_timer(mmc_stat, DATA_TRANS_TIME);
+      sta_alm(mmc_stat-> tout_task_id_0, 1000); /* Initialization timeout = 1 sec */
       if (send_cmd(mmc_stat, CMD8, 0x1AA) == 1) {	/* SDv2? */
         for (n = 0; n < 4; n++) ocr[n] = xchg_spi(mmc_stat, 0xFF);	/* Get 32 bit return value of R7 resp */
         if (ocr[2] == 0x01 && ocr[3] == 0xAA) {				/* Is the card supports vcc of 2.7-3.6V? */
-          while (Timer1 && send_cmd(mmc_stat, ACMD41, 1UL << 30)) ;	/* Wait for end of initialization with ACMD41(HCS) */
-          if (Timer1 && send_cmd(mmc_stat, CMD58, 0) == 0) {		/* Check CCS bit in the OCR */
+          while (!is_timeout(mmc_stat, DATA_TRANS_TIME) && send_cmd(mmc_stat, ACMD41, 1UL << 30)) ;	/* Wait for end of initialization with ACMD41(HCS) */
+          if (!is_timeout(mmc_stat, DATA_TRANS_TIME) && send_cmd(mmc_stat, CMD58, 0) == 0) {		/* Check CCS bit in the OCR */
             for (n = 0; n < 4; n++) ocr[n] = xchg_spi(mmc_stat, 0xFF);
             ty = (ocr[0] & 0x40) ? CT_SD2 | CT_BLOCK : CT_SD2;	/* Card id SDv2 */
           }
@@ -404,10 +428,11 @@ DSTATUS rspi_disk_initialize (
         } else {
           ty = CT_MMC; cmd = CMD1;	/* MMCv3 (CMD1(0)) */
         }
-        while (Timer1 && send_cmd(mmc_stat, cmd, 0)) ;		/* Wait for end of initialization */
-        if (!Timer1 || send_cmd(mmc_stat, CMD16, 512) != 0)	/* Set block length: 512 */
+        while (!is_timeout(mmc_stat, DATA_TRANS_TIME) && send_cmd(mmc_stat, cmd, 0)) ;		/* Wait for end of initialization */
+        if (is_timeout(mmc_stat, DATA_TRANS_TIME) || send_cmd(mmc_stat, CMD16, 512) != 0)	/* Set block length: 512 */
           ty = 0;
       }
+      stp_alm(mmc_stat-> tout_task_id_0);
 	}
 	mmc_stat->CardType = ty;	/* Card type */
 	deselect(mmc_stat);
@@ -438,8 +463,6 @@ DSTATUS rspi_disk_status (
 
 	return mmc_stat->Stat;	/* Return disk status */
 }
-
-
 
 /*-----------------------------------------------------------------------*/
 /* Read sector(s)                                                        */
@@ -498,7 +521,9 @@ DRESULT rspi_disk_write (
     mmc_stat = (mmc_rspi_stat_t *)v_stat;
 	if (!count) return RES_PARERR;		/* Check parameter */
 	if (mmc_stat->Stat & STA_NOINIT) return RES_NOTRDY;	/* Check drive status */
-	if (mmc_stat->Stat & STA_PROTECT) return RES_WRPRT;	/* Check write protect */
+
+    if (WP) return RES_WRPRT;                           /* Check write protect (check is disable)*/
+//	if (mmc_stat->Stat & STA_PROTECT) return RES_WRPRT;	/* Check write protect */
 
 	if (!(mmc_stat->CardType & CT_BLOCK)) sector *= 512;	/* LBA ==> BA conversion (byte addressing cards) */
     
@@ -648,35 +673,26 @@ DRESULT rspi_disk_ioctl (
 /*-----------------------------------------------------------------------*/
 /* Device timer function                                                 */
 /*-----------------------------------------------------------------------*/
-/* This function must be called from system timer process
-   /  in period of 1 ms to generate card control timing.
+
+/* This function must be called from RTOS alarm handler
 */
-uint8_t Stat = 0;
+void mmc_rspi_tout0_handler(intptr_t exinf){
+  mmc_rspi_stat_t* mmc_stat;
+  mmc_stat = (mmc_rspi_stat_t *)GET_DEV_STAT((dnode_id) exinf);
 
-void disk_timerproc (intptr_t exinf)
-{
-  uint16_t n;
-  uint8_t s;
-  
-  
-  n = Timer1;						/* 1kHz decrement timer stopped at 0 */
-  if (n) Timer1 = --n;
-  n = Timer2;
-  if (n) Timer2 = --n;
-
-  
-  
-  s = Stat;
-  if (WP)		/* Write protected */
-    s |= STA_PROTECT;
-  else		/* Write enabled */
-    s &= ~STA_PROTECT;
-  if (check_ins_sw(GET_DEV_STAT(DEV_MMC_GPIO0)))	/* Card is in socket */
-    s &= ~STA_NODISK;
-  else		/* Socket empty */
-    s |= (STA_NODISK | STA_NOINIT);
-  Stat = s;
+  mmc_stat->tout_flg |= DATA_TRANS_TIME;
 }
+
+void mmc_rspi_tout1_handler(intptr_t exinf){
+  mmc_rspi_stat_t* mmc_stat;
+  mmc_stat = (mmc_rspi_stat_t *)GET_DEV_STAT((dnode_id) exinf);
+
+  mmc_stat->tout_flg |= WAIT_TIME;
+}
+
+/*
+ * fatfs API get_fattime
+ */
 
 uint32_t rspi_get_fattime(){
   return 0;

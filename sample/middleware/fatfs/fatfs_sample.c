@@ -14,7 +14,7 @@
 
 FATFS FatFs;
 
-uint32_t buf[128];
+uint32_t buf[128], buf_2[128];
 
 void main_task(intptr_t exinf)
 {
@@ -24,29 +24,29 @@ void main_task(intptr_t exinf)
 
   //create mount point
   for(i=0; i<128;i++) buf[i] = i;
-  f_mount(&FatFs, "", 0);
+  fr = f_mount(&FatFs, "", 0);
 
   //write test
   //open test file
-  fr = f_open(&fil, "test.bin", FA_CREATE_ALWAYS|FA_WRITE);
+  fr = f_open(&fil, "test.bin", FA_CREATE_ALWAYS|FA_WRITE|FA_READ);
   if (fr) return (int)fr;
   //write data
   f_write(&fil, buf, 512, res_b);
   
-  /*  //read test
-  for(i=0; i<128; i++) buf[i] = 0;
-  f_read(&fil, buf, 512, res_b);
-  */
+  f_lseek(&fil, 0);
+  //read test
+  for(i=0; i<128; i++) buf_2[i] = 0;
+  f_read(&fil, buf_2, 512, res_b);
+
   f_close(&fil);
   // release mount point
   f_mount(NULL, "", 0);
 
-  /*  comp_result=0;
+  comp_result=0;
   for(i=0;i<128;i++)
-    if(buf[i] != i)
+    if(buf_2[i] != i)
       comp_result = -1;
 
   if(comp_result)
     assert(0);
-  */
 }
