@@ -7,6 +7,11 @@
 #include <driver/rx_gcc/RSPI.h>
 #include <driver/include/mmc_sdcard.h>
 
+//mode switch
+//  use dtc transfer
+#define RSPI_MMC_DTCA_TRANS
+
+
 //rspi_mmc_node's status
 typedef struct mmc_rspi_dev_status_type{
   dnode_id mmc_drv_id;  //mmc driver id
@@ -28,4 +33,5 @@ extern const mmc_func_t mmc_rspi_func;
 //time out alarm handler
 void mmc_rspi_tout0_handler(intptr_t exinf);
 void mmc_rspi_tout1_handler(intptr_t exinf);
+
 

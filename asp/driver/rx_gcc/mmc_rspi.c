@@ -17,13 +17,10 @@
 #include <driver/rx_gcc/mmc_rspi.h>
 #include <driver/rx_gcc/mmc_gpio.h>
 
-#define RSPI_CH	0	/* RSPI channel: 0:RSPIA-A, 1:RSPIB-A, 10:RSPIA-B, 11:RSPIB-B */
-
 #define	WP			0 						/* Write protect switch (Protected:True, Enabled:False) */
 
 #define SCLK_FAST	12000000UL	/* SCLK frequency (R/W) */
 #define	SCLK_SLOW	400000UL	/* SCLK frequency (Init) */
-
 
 static inline uint32_t LDDW( uint32_t data )
 {
@@ -31,7 +28,15 @@ static inline uint32_t LDDW( uint32_t data )
   return data;
 }
 
+#ifdef RSPI_MMC_DTCA_TRANS
+#include <driver/rx_gcc/DTCa.h>
 
+/*
+ * define dtca buffer
+ */
+uint32_t rspi_mmc_dtca_buffer[128]; //512byte
+
+#endif
 
 /*--------------------------------------------------------------------------
 
@@ -99,24 +104,15 @@ void power_on (mmc_rspi_stat_t* mmc_stat)
   rspi_stat = (rspi_dstat*)GET_DEV_STAT(mmc_stat->mmc_drv_id);
   
   /* Initialize RSPI module */
-  rspi_param.spcr = (SPCR_SPE | SPCR_MSTR | SPCR_SPMS);
+  rspi_param.spcr = (SPCR_SPE | SPCR_MSTR | SPCR_SPMS); //enable rspi, set master mode, s clock synchronized mode
   rspi_param.sslp = 0;
   rspi_param.sppcr = 0;
   rspi_param.spscr = 0;
   rspi_param.bit_rate = SCLK_SLOW;
-  rspi_param.spdcr = SPDCR_SPLW;
-  rspi_param.spcmd0 = SPCMD_SPB_8;
+  rspi_param.spdcr = SPDCR_SPLW; //access type is long word(32 bit)
+  rspi_param.spcmd0 = SPCMD_SPB_8; //8bit transfer mode
   
   rspi_init(rspi_stat, &rspi_param);
-  
-  //RSPI.SPCR.BYTE = 0;		/* Stop RSPI module */
-  //RSPI.SPPCR.BYTE = 0;	/* Fixed idle value, disable loop-back mode */
-  //RSPI.SPSCR.BYTE = 0;	/* Disable sequence control */
-  //RSPI.SPDCR.BYTE = 0x20;	/* SPLW=1 */
-  //RSPI.SPCMD0.WORD = 0x0700;	/* LSBF=0, SPB=7, BRDV=0, CPOL=0, CPHA=0 */
-  //RSPI.SPBR.BYTE = F_PCLK / 2 / SCLK_SLOW - 1;	/* Bit rate */
-  //RSPI.SPCR.BYTE = 0x49;	/* Start RSPI in master mode */
-  
 }
 
 
@@ -135,23 +131,49 @@ void power_off (mmc_rspi_stat_t* mmc_stat)	/* Disable MMC/SDC interface */
 /* Send/Receive a byte */
 /*---------------------*/
 static
-uint8_t xchg_spi (
+uint32_t xchg_spi (
                   mmc_rspi_stat_t *mmc_stat,
-                  uint8_t dat	/* Data to send */
+                  uint32_t dat	/* Data to send */
                   )
 {
   rspi_dstat *rspi_stat;
 
   rspi_stat = (rspi_dstat*)GET_DEV_STAT(mmc_stat->mmc_drv_id);
-  rspi_send_w(rspi_stat, dat);			/* Start transmission (lower 8bits) */
-  while (rspi_status(rspi_stat) & SPSR_IDLNF) ;	/* Wait for end of transfer */
-  return rspi_rcv_b(rspi_stat);			/* Returen received byte (lower 8bits) */
+  return rspi_xchg_rw(rspi_stat, dat);
 }
 
 
-/*---------------------*/
-/* Send multiple bytes */
-/*---------------------*/
+#ifdef RSPI_MMC_DTCA_TRANS
+/*-------------------------------------*/
+/* Send multiple bytes by dtca write */
+/*-------------------------------------*/
+static
+void xmit_spi_multi (
+                     mmc_rspi_stat_t *mmc_stat,
+                     const uint8_t *buff,	/* Pointer to the data */
+                     uint32_t btx			/* Number of bytes to send (multiple of 4) */
+                     )
+{
+  const uint32_t *lp = (const uint32_t*)buff;
+  uint32_t i;
+  rspi_dstat *rspi_stat;
+
+  rspi_stat = (rspi_dstat*)GET_DEV_STAT(mmc_stat->mmc_drv_id);
+  rspi_chg_dwidth(rspi_stat, 0, SPCMD_SPB_32);	/* Set 32-bit mode */
+
+  for(i=0; i<(btx/4); i++){
+    rspi_mmc_dtca_buffer[i] = LDDW(*(lp + i));
+  }
+
+  rspi_send_by_dtca(rspi_stat, rspi_mmc_dtca_buffer, btx);
+
+  rspi_chg_dwidth(rspi_stat, 0, SPCMD_SPB_8);	/* Set 8-bit mode */
+}
+
+#else
+/*-------------------------------------*/
+/* Send multiple bytes by single write */
+/*-------------------------------------*/
 static
 void xmit_spi_multi (
                      mmc_rspi_stat_t *mmc_stat,
@@ -174,10 +196,36 @@ void xmit_spi_multi (
   rspi_chg_dwidth(rspi_stat, 0, SPCMD_SPB_8);	/* Set 8-bit mode */
 }
 
-
+#endif
 /*------------------------*/
 /* Receive multiple bytes */
 /*------------------------*/
+#ifdef RSPI_MMC_DTCA_TRANS
+static
+void rcvr_spi_multi (
+                     mmc_rspi_stat_t *mmc_stat,
+                     uint8_t *buff,		/* Pointer to data buffer */
+                     uint32_t btr		/* Number of bytes to receive (multiple of 4) */
+                     )
+{
+  uint32_t *lp = (uint32_t*)buff;
+  uint32_t i;
+  rspi_dstat *rspi_stat;
+
+  rspi_stat = (rspi_dstat*)GET_DEV_STAT(mmc_stat->mmc_drv_id);
+
+  rspi_chg_dwidth(rspi_stat, 0, SPCMD_SPB_32);	/* Set 32-bit mode */
+
+  rspi_recieve_by_dtca(rspi_stat, lp, btr);
+
+  for(i=0; i<(btr/4); i++){
+    lp[i] = LDDW(lp[i]);
+  }
+
+  rspi_chg_dwidth(rspi_stat, 0, SPCMD_SPB_8);	/* Set 8-bit mode */
+}
+
+#else
 static
 void rcvr_spi_multi (
                      mmc_rspi_stat_t *mmc_stat,
@@ -200,7 +248,7 @@ void rcvr_spi_multi (
   
   rspi_chg_dwidth(rspi_stat, 0, SPCMD_SPB_8);	/* Set 8-bit mode */
 }
-
+#endif
 
 
 
@@ -280,18 +328,18 @@ int rcvr_datablock (	/* 1:OK, 0:Error */
 
   clear_timeout_timer(mmc_stat, DATA_TRANS_TIME);
   sta_alm(mmc_stat-> tout_task_id_0, 200);
-	do {							/* Wait for DataStart token in timeout of 200ms */
-      token = xchg_spi(mmc_stat, 0xFF);
-      /* This loop will take a time. Insert rot_rdq() here for multitask envilonment. */
-	} while ((token == 0xFF) && (!is_timeout(mmc_stat, DATA_TRANS_TIME)));
-	stp_alm(mmc_stat-> tout_task_id_0);
+  do {							/* Wait for DataStart token in timeout of 200ms */
+    token = xchg_spi(mmc_stat, 0xFF);
+    /* This loop will take a time. Insert rot_rdq() here for multitask envilonment. */
+  } while ((token == 0xFF) && (!is_timeout(mmc_stat, DATA_TRANS_TIME)));
+  stp_alm(mmc_stat-> tout_task_id_0);
 
-	if (token != 0xFE) return 0;	/* Function fails if invalid DataStart token or timeout */
+  if (token != 0xFE) return 0;	/* Function fails if invalid DataStart token or timeout */
     
-	rcvr_spi_multi(mmc_stat, buff, btr);		/* Store trailing data to the buffer */
-	xchg_spi(mmc_stat, 0xFF); xchg_spi(mmc_stat, 0xFF);	/* Discard CRC */
+  rcvr_spi_multi(mmc_stat, buff, btr);		/* Store trailing data to the buffer */
+  xchg_spi(mmc_stat, 0xFF); xchg_spi(mmc_stat, 0xFF);	/* Discard CRC */
     
-	return 1;						/* Function succeeded */
+  return 1;						/* Function succeeded */
 }
 
 
@@ -397,6 +445,7 @@ DSTATUS rspi_disk_initialize (
     mmc_rspi_stat_t *mmc_stat;
 
     mmc_stat = (mmc_rspi_stat_t *)v_stat;
+    rspi_get_right(GET_DEV_STAT(mmc_stat->mmc_drv_id));
 
     if (check_ins_sw(GET_DEV_STAT(DEV_MMC_GPIO0)))    /* Card is in socket */
       mmc_stat->Stat = STA_NOINIT;
@@ -445,6 +494,7 @@ DSTATUS rspi_disk_initialize (
       mmc_stat->Stat = STA_NOINIT;
 	}
     
+    rspi_relese_right(GET_DEV_STAT(mmc_stat->mmc_drv_id));
 	return mmc_stat->Stat;
 }
 
@@ -478,8 +528,11 @@ DRESULT rspi_disk_read (
     mmc_rspi_stat_t *mmc_stat;
 
     mmc_stat = (mmc_rspi_stat_t *)v_stat;
+    
 	if (!count) return RES_PARERR;		/* Check parameter */
 	if (mmc_stat->Stat & STA_NOINIT) return RES_NOTRDY;	/* Check if drive is ready */
+    
+    rspi_get_right(GET_DEV_STAT(mmc_stat->mmc_drv_id));
     
 	if (!(mmc_stat->CardType & CT_BLOCK)) sector *= 512;	/* LBA ot BA conversion (byte addressing cards) */
     
@@ -498,6 +551,7 @@ DRESULT rspi_disk_read (
       }
 	}
 	deselect(mmc_stat);
+    rspi_relese_right(GET_DEV_STAT(mmc_stat->mmc_drv_id));
     
 	return count ? RES_ERROR : RES_OK;	/* Return result */
 }
@@ -525,6 +579,8 @@ DRESULT rspi_disk_write (
     if (WP) return RES_WRPRT;                           /* Check write protect (check is disable)*/
 //	if (mmc_stat->Stat & STA_PROTECT) return RES_WRPRT;	/* Check write protect */
 
+    rspi_get_right(GET_DEV_STAT(mmc_stat->mmc_drv_id));
+
 	if (!(mmc_stat->CardType & CT_BLOCK)) sector *= 512;	/* LBA ==> BA conversion (byte addressing cards) */
     
 	if (count == 1) {	/* Single sector write */
@@ -545,6 +601,7 @@ DRESULT rspi_disk_write (
 	}
 	deselect(mmc_stat);
     
+    rspi_relese_right(GET_DEV_STAT(mmc_stat->mmc_drv_id));
 	return count ? RES_ERROR : RES_OK;	/* Return result */
 }
 #endif /* _USE_WRITE */
@@ -570,6 +627,8 @@ DRESULT rspi_disk_ioctl (
     mmc_stat = (mmc_rspi_stat_t *)v_stat;
 	if (mmc_stat->Stat & STA_NOINIT) return RES_NOTRDY;	/* Check if drive is ready */
 
+    rspi_get_right(GET_DEV_STAT(mmc_stat->mmc_drv_id));
+    
 	res = RES_ERROR;
 
 	switch (ctrl) {
@@ -665,6 +724,7 @@ DRESULT rspi_disk_ioctl (
     
 	deselect(mmc_stat);
     
+    rspi_relese_right(GET_DEV_STAT(mmc_stat->mmc_drv_id));
 	return res;
 }
 #endif /* _USE_IOCTL */

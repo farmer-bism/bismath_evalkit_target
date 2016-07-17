@@ -15,3 +15,8 @@
   init_func: target_dev_ini_mmc_sdcard_gpio
   node_obj: mmc_sdcard_gpio_node
   
+- id: DTCA
+  num_dev: 1
+  init_func: target_dev_ini_dtca
+  node_obj: NULL
+  

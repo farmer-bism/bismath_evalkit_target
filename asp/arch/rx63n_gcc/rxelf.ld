@@ -40,7 +40,7 @@ SECTIONS
 	.bss : 
 	{
 		__bss_start  = .;
-        *(.DTCA_VECTOR_SEC)
+        *(DTCA_VECTOR_SEC)
         __dtca_start = .;
 		*(.bss)
 		*(.bss.*)

@@ -558,7 +558,7 @@ x_define_exc( EXCNO excno, FP exchdr )
 #define INT_ENTRY(inhno, inthdr)				_INT_ENTRY(inhno , inthdr)
 
 #define _INTHDR_ENTRY(inhno, inhno_num ,inthdr)	\
-		extern _kernel_##inthdr##_##inhno##_entry(void);
+		extern void _kernel_##inthdr##_##inhno##_entry(void);
 #define INTHDR_ENTRY(inhno, inhno_num ,inthdr)	_INTHDR_ENTRY(inhno, inhno_num ,inthdr)
 
 

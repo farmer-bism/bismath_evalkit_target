@@ -9,9 +9,6 @@
 
 #ifdef USE_MMC_RSPI_0
 
-const dnode_id pdrv_to_dev[1] = {
-  DEV_MMC_RSPI0
-};
 
 mmc_rspi_stat_t mmc_sdcard_rspi0_stat={
   DEV_RSPI0, //Drive ID of MMC disk io

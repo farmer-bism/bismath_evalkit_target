@@ -7,11 +7,12 @@
 #include "target_device/use_device.h"
     
 .section DTCA_VECTOR_SEC, "aw", @nobits
-.glb _dtca_vector
+.balign 1024
+.glb _dtca_table
     
-_dtca_vector:
+_dtca_table:
 #ifdef USE_DTCA_0
-	.blkb		0400H
+	.space		0400H
 #endif
 	.glb _dtca_vector_end
 _dtca_vector_end:

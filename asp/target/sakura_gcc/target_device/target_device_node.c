@@ -19,6 +19,10 @@
   extern dev_node_t mmc_sdcard_gpio_node_0;
   void target_dev_ini_mmc_sdcard_gpio_0();
 #endif
+#ifdef USE_DTCA_0
+  extern dev_node_t _0;
+  void target_dev_ini_dtca_0();
+#endif
 
 dev_info_t dev_info[NUM_TARGET_DEVICE] = {
   {0x0, NULL}, //NULL DEVICE
@@ -29,7 +33,10 @@ dev_info_t dev_info[NUM_TARGET_DEVICE] = {
   {0x0, &mmc_sdcard_rspi_node_0},
 #endif
 #ifdef USE_MMC_GPIO_0
-  {0x0, &mmc_sdcard_gpio_node_0}
+  {0x0, &mmc_sdcard_gpio_node_0},
+#endif
+#ifdef USE_DTCA_0
+  {0x0, NULL}
 #endif
 };
 
@@ -42,5 +49,8 @@ void target_device_init(){
 #endif
 #ifdef USE_MMC_GPIO_0
   target_dev_ini_mmc_sdcard_gpio_0();
+#endif
+#ifdef USE_DTCA_0
+  target_dev_ini_dtca_0();
 #endif
 }

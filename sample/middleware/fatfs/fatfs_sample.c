@@ -11,10 +11,16 @@
 #include "syssvc/syslog.h"
 #include "kernel_cfg.h"
 #include <middleware/include/ff.h>
+#include <target_board.h>
 
 FATFS FatFs;
 
 uint32_t buf[128], buf_2[128];
+
+//define driver id of fatfs drive
+const dnode_id pdrv_to_dev[1] = {
+  DEV_MMC_RSPI0 //drive 1 is mmc_rspi
+};
 
 void main_task(intptr_t exinf)
 {

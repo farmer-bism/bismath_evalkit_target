@@ -3,7 +3,72 @@
  * Released under the toppers license
  * https://www.toppers.jp/license.html
  */
+#ifndef RX_GCC_DRIVER_RSPI_H
+#define RX_GCC_DRIVER_RSPI_H
 
+#include <target_board.h>
+#include <target_device/device_init/RSPI_init.h>
+
+//target defined parameter
+#ifdef USE_RSPI_0
+  #ifndef RSPI_0_TX_INT_NO
+    "plese define TX int number in target initilize code"
+    "ex. #define RSPI_0_TX_INT_NO 0"
+  #endif
+  #ifndef RSPI_0_RX_INT_NO
+    "plese define RX int number in target initilize code"
+    "ex. #define RSPI_0_RX_INT_NO 0"
+  #endif
+#endif
+#ifdef USE_RSPI_1
+  #ifndef RSPI_1_TX_INT_NO
+    "plese define TX int number in target initilize code"
+    "ex. #define RSPI_1_TX_INT_NO 0"
+  #endif
+  #ifndef RSPI_1_RX_INT_NO2
+    "plese define RX int number in target initilize code"
+    "ex. #define RSPI_1_RX_INT_NO 0"
+  #endif
+#endif
+#ifdef USE_RSPI_2
+  #ifndef RSPI_2_TX_INT_NO
+    "plese define TX int number in target initilize code"
+    "ex. #define RSPI_2_TX_INT_NO 0"
+  #endif
+  #ifndef RSPI_2_RX_INT_NO
+    "plese define RX int number in target initilize code"
+    "ex. #define RSPI_2_RX_INT_NO 0"
+  #endif
+#endif
+#ifdef USE_RSPI_3
+  #ifndef RSPI_3_TX_INT_NO
+    "plese define TX int number in target initilize code"
+    "ex. #define RSPI_3_TX_INT_NO 0"
+  #endif
+  #ifndef RSPI_3_RX_INT_NO
+    "plese define RX int number in target initilize code"
+    "ex. #define RSPI_3_RX_INT_NO 0"
+  #endif
+#endif
+  
+//device node type
+//rspi node's api is null
+
+//device node status
+typedef struct rspi_dev_status_type{
+  uint32_t baddr; //base address
+  uint16_t interrupt_wait_flg; //define sort of interrupt(tx or rx)
+  uint8_t spri; //int number of spri
+  uint8_t spti; //int number of spti
+  ID ip_lock_sem; //ip lock semaphore id
+  ID int_sync_sem; //interrupt sync semaphore id
+} rspi_dstat;
+
+#define RSPI_INT_ATR TA_ENAINT| TA_EDGE
+
+//interrupt wait type
+#define RSPI_TX_INT_WAIT 0x1
+#define RSPI_RX_INT_WAIT 0x2
 
 //SPCR BIT Define
 #define SPCR_SPMS 0x1
@@ -89,6 +154,7 @@
 #define SPCMD_LSBF_MSB 0x0
 #define SPCMD_LSBF_LSB 0x1000
 
+//rspi_param_t is argument of rspi_init
 typedef struct rspi_param_type{
   uint8_t spcr;
   uint8_t sslp;
@@ -98,45 +164,49 @@ typedef struct rspi_param_type{
   uint8_t spdcr;
   uint16_t spcmd0;
 } rspi_param_t;
-  
-//device node type
-//rspi node's api is null
 
-//device node status
-typedef struct rspi_dev_status_type{
-  uint32_t baddr; //base address
-  uint8_t spri; //irq number of spri
-  uint8_t spti; //irq number of spti
-  uint8_t spii; //irq number of spii
-} rspi_dstat;
-
-
-
-void rspi_slave_select(void *, uint8_t);
-void rspi_slave_unselect(void *, uint8_t);
 void rspi_init(void *, rspi_param_t* );
+
 void rspi_disable(void *);
 void rspi_enable(void *);
+
+//bit rate config
 void rspi_chg_bit_rate(void *, uint8_t );
 
-//SEND/RECIVE DATA REGISTER
-/*
-void rspi_dtc_send_w();
-void rspi_dtc_send_b();
-void rspi_dtc_send_clock();
-*/
+//SEND/RECIVE data function
+//  read or write spdr register
 void rspi_send_w(void *, uint32_t);
 void rspi_send_h(void *, uint16_t);
 void rspi_send_b(void *, uint8_t);
-/*
-void rspi_send_clock();
-void rcv_w_with_dtc();
-void rcv_b_with_dtc();
-*/
 uint32_t rspi_rcv_w(void *);
 uint16_t rspi_rcv_h(void *);
 uint8_t rspi_rcv_b(void *);
 
+#ifdef USE_DTCA_0
+//read or write data block by dtca
+void rspi_send_by_dtca(void *v_rspi_stat, uint32_t* s_buff, uint32_t s_size);
+void rspi_recieve_by_dtca(void *v_rspi_stat, uint32_t* s_buff, uint32_t s_size);
+#endif
+
+//send dat and return recive data
+//  this fucntion is used interrupt.
+uint32_t rspi_xchg_rw(void *v_rspi_stat,  uint32_t dat);
+
+//read rspi status
+// return spsr register
 uint8_t rspi_status(void *);
+
+
 void rspi_set_cmd(void *, uint8_t, uint8_t);
+
+//change data width of transfer
 void rspi_chg_dwidth(void *, uint8_t, uint32_t);
+
+//lock rspi device
+void rspi_get_right(void *v_rspi_stat);
+void rspi_relese_right(void *v_rspi_stat);
+
+//interrupt handler
+void rspi_tx_int_handler(intptr_t exinf);
+void rspi_rx_int_handler(intptr_t exinf);
+#endif

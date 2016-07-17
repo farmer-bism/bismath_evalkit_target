@@ -20,6 +20,9 @@ typedef enum use_device_id{
 #ifdef USE_MMC_GPIO_0
   DEV_MMC_GPIO0,
 #endif
+#ifdef USE_DTCA_0
+  DEV_DTCA0,
+#endif
   NUM_TARGET_DEVICE
 }dnode_id;
 
