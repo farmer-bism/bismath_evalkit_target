@@ -5,110 +5,110 @@
  * 
  *  Copyright (C) 2010 by Witz Corporation, JAPAN
  * 
- *  ã‹L’˜ìŒ ŽÒ‚ÍCˆÈ‰º‚Ì(1)`(4)‚ÌðŒ‚ð–ž‚½‚·ê‡‚ÉŒÀ‚èC–{ƒ\ƒtƒgƒEƒF
- *  ƒAi–{ƒ\ƒtƒgƒEƒFƒA‚ð‰ü•Ï‚µ‚½‚à‚Ì‚ðŠÜ‚ÞDˆÈ‰º“¯‚¶j‚ðŽg—pE•¡»E‰ü
- *  •ÏEÄ”z•ziˆÈ‰ºC—˜—p‚ÆŒÄ‚Ôj‚·‚é‚±‚Æ‚ð–³ž‚Å‹–‘ø‚·‚éD
- *  (1) –{ƒ\ƒtƒgƒEƒFƒA‚ðƒ\[ƒXƒR[ƒh‚ÌŒ`‚Å—˜—p‚·‚éê‡‚É‚ÍCã‹L‚Ì’˜ì
- *      Œ •\Ž¦C‚±‚Ì—˜—pðŒ‚¨‚æ‚Ñ‰º‹L‚Ì–³•ÛØ‹K’è‚ªC‚»‚Ì‚Ü‚Ü‚ÌŒ`‚Åƒ\[
- *      ƒXƒR[ƒh’†‚ÉŠÜ‚Ü‚ê‚Ä‚¢‚é‚±‚ÆD
- *  (2) –{ƒ\ƒtƒgƒEƒFƒA‚ðCƒ‰ƒCƒuƒ‰ƒŠŒ`Ž®‚È‚ÇC‘¼‚Ìƒ\ƒtƒgƒEƒFƒAŠJ”­‚ÉŽg
- *      —p‚Å‚«‚éŒ`‚ÅÄ”z•z‚·‚éê‡‚É‚ÍCÄ”z•z‚É”º‚¤ƒhƒLƒ…ƒƒ“ƒgi—˜—p
- *      ŽÒƒ}ƒjƒ…ƒAƒ‹‚È‚Çj‚ÉCã‹L‚Ì’˜ìŒ •\Ž¦C‚±‚Ì—˜—pðŒ‚¨‚æ‚Ñ‰º‹L
- *      ‚Ì–³•ÛØ‹K’è‚ðŒfÚ‚·‚é‚±‚ÆD
- *  (3) –{ƒ\ƒtƒgƒEƒFƒA‚ðC‹@Ší‚É‘g‚Ýž‚Þ‚È‚ÇC‘¼‚Ìƒ\ƒtƒgƒEƒFƒAŠJ”­‚ÉŽg
- *      —p‚Å‚«‚È‚¢Œ`‚ÅÄ”z•z‚·‚éê‡‚É‚ÍCŽŸ‚Ì‚¢‚¸‚ê‚©‚ÌðŒ‚ð–ž‚½‚·‚±
- *      ‚ÆD
- *    (a) Ä”z•z‚É”º‚¤ƒhƒLƒ…ƒƒ“ƒgi—˜—pŽÒƒ}ƒjƒ…ƒAƒ‹‚È‚Çj‚ÉCã‹L‚Ì’˜
- *        ìŒ •\Ž¦C‚±‚Ì—˜—pðŒ‚¨‚æ‚Ñ‰º‹L‚Ì–³•ÛØ‹K’è‚ðŒfÚ‚·‚é‚±‚ÆD
- *    (b) Ä”z•z‚ÌŒ`‘Ô‚ðC•Ê‚É’è‚ß‚é•û–@‚É‚æ‚Á‚ÄCTOPPERSƒvƒƒWƒFƒNƒg‚É
- *        •ñ‚·‚é‚±‚ÆD
- *  (4) –{ƒ\ƒtƒgƒEƒFƒA‚Ì—˜—p‚É‚æ‚è’¼Ú“I‚Ü‚½‚ÍŠÔÚ“I‚É¶‚¶‚é‚¢‚©‚È‚é‘¹
- *      ŠQ‚©‚ç‚àCã‹L’˜ìŒ ŽÒ‚¨‚æ‚ÑTOPPERSƒvƒƒWƒFƒNƒg‚ð–ÆÓ‚·‚é‚±‚ÆD
- *      ‚Ü‚½C–{ƒ\ƒtƒgƒEƒFƒA‚Ìƒ†[ƒU‚Ü‚½‚ÍƒGƒ“ƒhƒ†[ƒU‚©‚ç‚Ì‚¢‚©‚È‚é—
- *      —R‚ÉŠî‚Ã‚­¿‹‚©‚ç‚àCã‹L’˜ìŒ ŽÒ‚¨‚æ‚ÑTOPPERSƒvƒƒWƒFƒNƒg‚ð
- *      –ÆÓ‚·‚é‚±‚ÆD
+ *  ä¸Šè¨˜è‘—ä½œæ¨©è€…ã¯ï¼Œä»¥ä¸‹ã®(1)ã€œ(4)ã®æ¡ä»¶ã‚’æº€ãŸã™å ´åˆã«é™ã‚Šï¼Œæœ¬ã‚½ãƒ•ãƒˆã‚¦ã‚§
+ *  ã‚¢ï¼ˆæœ¬ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚’æ”¹å¤‰ã—ãŸã‚‚ã®ã‚’å«ã‚€ï¼Žä»¥ä¸‹åŒã˜ï¼‰ã‚’ä½¿ç”¨ãƒ»è¤‡è£½ãƒ»æ”¹
+ *  å¤‰ãƒ»å†é…å¸ƒï¼ˆä»¥ä¸‹ï¼Œåˆ©ç”¨ã¨å‘¼ã¶ï¼‰ã™ã‚‹ã“ã¨ã‚’ç„¡å„Ÿã§è¨±è«¾ã™ã‚‹ï¼Ž
+ *  (1) æœ¬ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚’ã‚½ãƒ¼ã‚¹ã‚³ãƒ¼ãƒ‰ã®å½¢ã§åˆ©ç”¨ã™ã‚‹å ´åˆã«ã¯ï¼Œä¸Šè¨˜ã®è‘—ä½œ
+ *      æ¨©è¡¨ç¤ºï¼Œã“ã®åˆ©ç”¨æ¡ä»¶ãŠã‚ˆã³ä¸‹è¨˜ã®ç„¡ä¿è¨¼è¦å®šãŒï¼Œãã®ã¾ã¾ã®å½¢ã§ã‚½ãƒ¼
+ *      ã‚¹ã‚³ãƒ¼ãƒ‰ä¸­ã«å«ã¾ã‚Œã¦ã„ã‚‹ã“ã¨ï¼Ž
+ *  (2) æœ¬ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚’ï¼Œãƒ©ã‚¤ãƒ–ãƒ©ãƒªå½¢å¼ãªã©ï¼Œä»–ã®ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢é–‹ç™ºã«ä½¿
+ *      ç”¨ã§ãã‚‹å½¢ã§å†é…å¸ƒã™ã‚‹å ´åˆã«ã¯ï¼Œå†é…å¸ƒã«ä¼´ã†ãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆï¼ˆåˆ©ç”¨
+ *      è€…ãƒžãƒ‹ãƒ¥ã‚¢ãƒ«ãªã©ï¼‰ã«ï¼Œä¸Šè¨˜ã®è‘—ä½œæ¨©è¡¨ç¤ºï¼Œã“ã®åˆ©ç”¨æ¡ä»¶ãŠã‚ˆã³ä¸‹è¨˜
+ *      ã®ç„¡ä¿è¨¼è¦å®šã‚’æŽ²è¼‰ã™ã‚‹ã“ã¨ï¼Ž
+ *  (3) æœ¬ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚’ï¼Œæ©Ÿå™¨ã«çµ„ã¿è¾¼ã‚€ãªã©ï¼Œä»–ã®ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢é–‹ç™ºã«ä½¿
+ *      ç”¨ã§ããªã„å½¢ã§å†é…å¸ƒã™ã‚‹å ´åˆã«ã¯ï¼Œæ¬¡ã®ã„ãšã‚Œã‹ã®æ¡ä»¶ã‚’æº€ãŸã™ã“
+ *      ã¨ï¼Ž
+ *    (a) å†é…å¸ƒã«ä¼´ã†ãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆï¼ˆåˆ©ç”¨è€…ãƒžãƒ‹ãƒ¥ã‚¢ãƒ«ãªã©ï¼‰ã«ï¼Œä¸Šè¨˜ã®è‘—
+ *        ä½œæ¨©è¡¨ç¤ºï¼Œã“ã®åˆ©ç”¨æ¡ä»¶ãŠã‚ˆã³ä¸‹è¨˜ã®ç„¡ä¿è¨¼è¦å®šã‚’æŽ²è¼‰ã™ã‚‹ã“ã¨ï¼Ž
+ *    (b) å†é…å¸ƒã®å½¢æ…‹ã‚’ï¼Œåˆ¥ã«å®šã‚ã‚‹æ–¹æ³•ã«ã‚ˆã£ã¦ï¼ŒTOPPERSãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã«
+ *        å ±å‘Šã™ã‚‹ã“ã¨ï¼Ž
+ *  (4) æœ¬ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã®åˆ©ç”¨ã«ã‚ˆã‚Šç›´æŽ¥çš„ã¾ãŸã¯é–“æŽ¥çš„ã«ç”Ÿã˜ã‚‹ã„ã‹ãªã‚‹æ
+ *      å®³ã‹ã‚‰ã‚‚ï¼Œä¸Šè¨˜è‘—ä½œæ¨©è€…ãŠã‚ˆã³TOPPERSãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã‚’å…è²¬ã™ã‚‹ã“ã¨ï¼Ž
+ *      ã¾ãŸï¼Œæœ¬ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã®ãƒ¦ãƒ¼ã‚¶ã¾ãŸã¯ã‚¨ãƒ³ãƒ‰ãƒ¦ãƒ¼ã‚¶ã‹ã‚‰ã®ã„ã‹ãªã‚‹ç†
+ *      ç”±ã«åŸºã¥ãè«‹æ±‚ã‹ã‚‰ã‚‚ï¼Œä¸Šè¨˜è‘—ä½œæ¨©è€…ãŠã‚ˆã³TOPPERSãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã‚’
+ *      å…è²¬ã™ã‚‹ã“ã¨ï¼Ž
  * 
- *  –{ƒ\ƒtƒgƒEƒFƒA‚ÍC–³•ÛØ‚Å’ñ‹Ÿ‚³‚ê‚Ä‚¢‚é‚à‚Ì‚Å‚ ‚éDã‹L’˜ìŒ ŽÒ‚¨
- *  ‚æ‚ÑTOPPERSƒvƒƒWƒFƒNƒg‚ÍC–{ƒ\ƒtƒgƒEƒFƒA‚ÉŠÖ‚µ‚ÄC“Á’è‚ÌŽg—p–Ú“I
- *  ‚É‘Î‚·‚é“K‡«‚àŠÜ‚ß‚ÄC‚¢‚©‚È‚é•ÛØ‚às‚í‚È‚¢D‚Ü‚½C–{ƒ\ƒtƒgƒEƒF
- *  ƒA‚Ì—˜—p‚É‚æ‚è’¼Ú“I‚Ü‚½‚ÍŠÔÚ“I‚É¶‚¶‚½‚¢‚©‚È‚é‘¹ŠQ‚ÉŠÖ‚µ‚Ä‚àC‚»
- *  ‚ÌÓ”C‚ð•‰‚í‚È‚¢D
+ *  æœ¬ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã¯ï¼Œç„¡ä¿è¨¼ã§æä¾›ã•ã‚Œã¦ã„ã‚‹ã‚‚ã®ã§ã‚ã‚‹ï¼Žä¸Šè¨˜è‘—ä½œæ¨©è€…ãŠ
+ *  ã‚ˆã³TOPPERSãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã¯ï¼Œæœ¬ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã«é–¢ã—ã¦ï¼Œç‰¹å®šã®ä½¿ç”¨ç›®çš„
+ *  ã«å¯¾ã™ã‚‹é©åˆæ€§ã‚‚å«ã‚ã¦ï¼Œã„ã‹ãªã‚‹ä¿è¨¼ã‚‚è¡Œã‚ãªã„ï¼Žã¾ãŸï¼Œæœ¬ã‚½ãƒ•ãƒˆã‚¦ã‚§
+ *  ã‚¢ã®åˆ©ç”¨ã«ã‚ˆã‚Šç›´æŽ¥çš„ã¾ãŸã¯é–“æŽ¥çš„ã«ç”Ÿã˜ãŸã„ã‹ãªã‚‹æå®³ã«é–¢ã—ã¦ã‚‚ï¼Œã
+ *  ã®è²¬ä»»ã‚’è² ã‚ãªã„ï¼Ž
  * 
  */
 
 /*
- *		ƒvƒƒZƒbƒTˆË‘¶ƒ‚ƒWƒ…[ƒ‹iRX610—pj
+ *		ãƒ—ãƒ­ã‚»ãƒƒã‚µä¾å­˜ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ï¼ˆRX610ç”¨ï¼‰
  */
 
 #include "kernel_impl.h"
 
 
 /*
- *  Š„ž‚Ý—vˆöƒvƒ‰ƒCƒIƒŠƒeƒBƒŒƒWƒXƒ^ƒAƒhƒŒƒXƒe[ƒuƒ‹
+ *  å‰²è¾¼ã¿è¦å› ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ãƒ¬ã‚¸ã‚¹ã‚¿ã‚¢ãƒ‰ãƒ¬ã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«
  */
 volatile uint8_t * const ipr_reg_addr[ INHNO_MAX ] = {
-	NULL, NULL, NULL, NULL, NULL,	/* No.0 - 4   —\–ñ */
-	NULL, NULL, NULL, NULL, NULL,	/* No.5 - 9   —\–ñ */
-	NULL, NULL, NULL, NULL, NULL,	/* No.10 - 14 —\–ñ */
-	NULL,							/* No.15  —\–ñ */
-	ICU_IPR00_ADDR,					/* No.16  ƒoƒXƒGƒ‰[ BUSERR */
-	NULL, NULL, NULL, NULL,			/* No.17 - 20 —\–ñ */
+	NULL, NULL, NULL, NULL, NULL,	/* No.0 - 4   äºˆç´„ */
+	NULL, NULL, NULL, NULL, NULL,	/* No.5 - 9   äºˆç´„ */
+	NULL, NULL, NULL, NULL, NULL,	/* No.10 - 14 äºˆç´„ */
+	NULL,							/* No.15  äºˆç´„ */
+	ICU_IPR00_ADDR,					/* No.16  ãƒã‚¹ã‚¨ãƒ©ãƒ¼ BUSERR */
+	NULL, NULL, NULL, NULL,			/* No.17 - 20 äºˆç´„ */
 	ICU_IPR01_ADDR,					/* No.21  FCU FIFERR */
-	NULL,							/* No.22  —\–ñ */
+	NULL,							/* No.22  äºˆç´„ */
 	ICU_IPR02_ADDR,					/* No.23  FCU FRDYI */
-	NULL, NULL, NULL, NULL,			/* No.24 -27  —\–ñ */
-	ICU_IPR04_ADDR,					/* No.28  CMTƒ†ƒjƒbƒg0 CMT0 */
-	ICU_IPR05_ADDR,					/* No.29  CMTƒ†ƒjƒbƒg0 CMT1 */
-	ICU_IPR06_ADDR,					/* No.30  CMTƒ†ƒjƒbƒg1 CMT2 */
-	ICU_IPR07_ADDR,					/* No.31  CMTƒ†ƒjƒbƒg1 CMT3 */
-	NULL, NULL, NULL, NULL, NULL,	/* No.32 - 36 —\–ñ */
-	NULL, NULL, NULL, NULL, NULL,	/* No.37 - 41 —\–ñ */
-	NULL, NULL, NULL, NULL, NULL,	/* No.42 - 46 —\–ñ */
-	NULL, NULL, NULL, NULL, NULL,	/* No.47 - 51 —\–ñ */
-	NULL, NULL, NULL, NULL, NULL,	/* No.52 - 56 —\–ñ */
-	NULL, NULL, NULL, NULL, NULL,	/* No.57 - 61 —\–ñ */
-	NULL, NULL,						/* No.62 - 63 —\–ñ */
-	ICU_IPR20_ADDR,					/* No.64  ŠO•”’[Žq IRQ0 */
-	ICU_IPR21_ADDR,					/* No.65  ŠO•”’[Žq IRQ1 */
-	ICU_IPR22_ADDR,					/* No.66  ŠO•”’[Žq IRQ2 */
-	ICU_IPR23_ADDR,					/* No.67  ŠO•”’[Žq IRQ3 */
-	ICU_IPR24_ADDR,					/* No.68  ŠO•”’[Žq IRQ4 */
-	ICU_IPR25_ADDR,					/* No.69  ŠO•”’[Žq IRQ5 */
-	ICU_IPR26_ADDR,					/* No.70  ŠO•”’[Žq IRQ6 */
-	ICU_IPR27_ADDR,					/* No.71  ŠO•”’[Žq IRQ7 */
-	ICU_IPR28_ADDR,					/* No.72  ŠO•”’[Žq IRQ8 */
-	ICU_IPR29_ADDR,					/* No.73  ŠO•”’[Žq IRQ9 */
-	ICU_IPR2A_ADDR,					/* No.74  ŠO•”’[Žq IRQ10 */
-	ICU_IPR2B_ADDR,					/* No.75  ŠO•”’[Žq IRQ11 */
-	ICU_IPR2C_ADDR,					/* No.76  ŠO•”’[Žq IRQ12 */
-	ICU_IPR2D_ADDR,					/* No.77  ŠO•”’[Žq IRQ13 */
-	ICU_IPR2E_ADDR,					/* No.78  ŠO•”’[Žq IRQ14 */
-	ICU_IPR2F_ADDR,					/* No.79  ŠO•”’[Žq IRQ15 */
-	NULL, NULL, NULL, NULL, NULL,	/* No.80 - 84 —\–ñ */
-	NULL, NULL, NULL, NULL, NULL,	/* No.85 - 89 —\–ñ */
-	NULL, NULL, NULL, NULL, NULL,	/* No.90 - 94 —\–ñ */
-	NULL,							/* No.95  —\–ñ */
+	NULL, NULL, NULL, NULL,			/* No.24 -27  äºˆç´„ */
+	ICU_IPR04_ADDR,					/* No.28  CMTãƒ¦ãƒ‹ãƒƒãƒˆ0 CMT0 */
+	ICU_IPR05_ADDR,					/* No.29  CMTãƒ¦ãƒ‹ãƒƒãƒˆ0 CMT1 */
+	ICU_IPR06_ADDR,					/* No.30  CMTãƒ¦ãƒ‹ãƒƒãƒˆ1 CMT2 */
+	ICU_IPR07_ADDR,					/* No.31  CMTãƒ¦ãƒ‹ãƒƒãƒˆ1 CMT3 */
+	NULL, NULL, NULL, NULL, NULL,	/* No.32 - 36 äºˆç´„ */
+	NULL, NULL, NULL, NULL, NULL,	/* No.37 - 41 äºˆç´„ */
+	NULL, NULL, NULL, NULL, NULL,	/* No.42 - 46 äºˆç´„ */
+	NULL, NULL, NULL, NULL, NULL,	/* No.47 - 51 äºˆç´„ */
+	NULL, NULL, NULL, NULL, NULL,	/* No.52 - 56 äºˆç´„ */
+	NULL, NULL, NULL, NULL, NULL,	/* No.57 - 61 äºˆç´„ */
+	NULL, NULL,						/* No.62 - 63 äºˆç´„ */
+	ICU_IPR20_ADDR,					/* No.64  å¤–éƒ¨ç«¯å­ IRQ0 */
+	ICU_IPR21_ADDR,					/* No.65  å¤–éƒ¨ç«¯å­ IRQ1 */
+	ICU_IPR22_ADDR,					/* No.66  å¤–éƒ¨ç«¯å­ IRQ2 */
+	ICU_IPR23_ADDR,					/* No.67  å¤–éƒ¨ç«¯å­ IRQ3 */
+	ICU_IPR24_ADDR,					/* No.68  å¤–éƒ¨ç«¯å­ IRQ4 */
+	ICU_IPR25_ADDR,					/* No.69  å¤–éƒ¨ç«¯å­ IRQ5 */
+	ICU_IPR26_ADDR,					/* No.70  å¤–éƒ¨ç«¯å­ IRQ6 */
+	ICU_IPR27_ADDR,					/* No.71  å¤–éƒ¨ç«¯å­ IRQ7 */
+	ICU_IPR28_ADDR,					/* No.72  å¤–éƒ¨ç«¯å­ IRQ8 */
+	ICU_IPR29_ADDR,					/* No.73  å¤–éƒ¨ç«¯å­ IRQ9 */
+	ICU_IPR2A_ADDR,					/* No.74  å¤–éƒ¨ç«¯å­ IRQ10 */
+	ICU_IPR2B_ADDR,					/* No.75  å¤–éƒ¨ç«¯å­ IRQ11 */
+	ICU_IPR2C_ADDR,					/* No.76  å¤–éƒ¨ç«¯å­ IRQ12 */
+	ICU_IPR2D_ADDR,					/* No.77  å¤–éƒ¨ç«¯å­ IRQ13 */
+	ICU_IPR2E_ADDR,					/* No.78  å¤–éƒ¨ç«¯å­ IRQ14 */
+	ICU_IPR2F_ADDR,					/* No.79  å¤–éƒ¨ç«¯å­ IRQ15 */
+	NULL, NULL, NULL, NULL, NULL,	/* No.80 - 84 äºˆç´„ */
+	NULL, NULL, NULL, NULL, NULL,	/* No.85 - 89 äºˆç´„ */
+	NULL, NULL, NULL, NULL, NULL,	/* No.90 - 94 äºˆç´„ */
+	NULL,							/* No.95  äºˆç´„ */
 	ICU_IPR40_ADDR,					/* No.96  WDT WOVI */
-	NULL,							/* No.97  —\–ñ */
+	NULL,							/* No.97  äºˆç´„ */
 	ICU_IPR44_ADDR,					/* No.98  AD0 ADI0 */
 	ICU_IPR45_ADDR,					/* No.99  AD1 ADI1 */
 	ICU_IPR46_ADDR,					/* No.100 AD2 ADI2 */
 	ICU_IPR47_ADDR,					/* No.101 AD3 ADI3 */
-	NULL, NULL,						/* No.102 - 103 —\–ñ */
+	NULL, NULL,						/* No.102 - 103 äºˆç´„ */
 	ICU_IPR4C_ADDR,					/* No.104 TPU0 TGI0A */
 	ICU_IPR4C_ADDR,					/* No.105 TPU0 TGI0B */
 	ICU_IPR4C_ADDR,					/* No.106 TPU0 TGI0C */
 	ICU_IPR4C_ADDR,					/* No.107 TPU0 TGI0D */
 	ICU_IPR4D_ADDR,					/* No.108 TPU0 TCI0V */
-	NULL, NULL,						/* No.109 - 110 —\–ñ */
+	NULL, NULL,						/* No.109 - 110 äºˆç´„ */
 	ICU_IPR4E_ADDR,					/* No.111 TPU1 TGI1A */
 	ICU_IPR4E_ADDR,					/* No.112 TPU1 TGI1B */
-	NULL, NULL,						/* No.113 - 114 —\–ñ */
+	NULL, NULL,						/* No.113 - 114 äºˆç´„ */
 	ICU_IPR4F_ADDR,					/* No.115 TPU1 TCI1V */
 	ICU_IPR4F_ADDR,					/* No.116 TPU1 TCI1U */
 	ICU_IPR50_ADDR,					/* No.117 TPU2 TGI2A */
 	ICU_IPR50_ADDR,					/* No.118 TPU2 TGI2B */
-	NULL,							/* No.119 —\–ñ */
+	NULL,							/* No.119 äºˆç´„ */
 	ICU_IPR51_ADDR,					/* No.120 TPU2 TCI2V */
 	ICU_IPR51_ADDR,					/* No.121 TPU2 TCI2U */
 	ICU_IPR52_ADDR,					/* No.122 TPU3 TGI3A */
@@ -118,12 +118,12 @@ volatile uint8_t * const ipr_reg_addr[ INHNO_MAX ] = {
 	ICU_IPR53_ADDR,					/* No.126 TPU3 TCI3V */
 	ICU_IPR54_ADDR,					/* No.127 TPU4 TGI4A */
 	ICU_IPR54_ADDR,					/* No.128 TPU4 TGI4B */
-	NULL, NULL,						/* No.129 - 130 —\–ñ */
+	NULL, NULL,						/* No.129 - 130 äºˆç´„ */
 	ICU_IPR55_ADDR,					/* No.131 TPU4 TCI4V */
 	ICU_IPR55_ADDR,					/* No.132 TPU4 TCI4U */
 	ICU_IPR56_ADDR,					/* No.133 TPU5 TGI5A */
 	ICU_IPR56_ADDR,					/* No.134 TPU5 TGI5B */
-	NULL,							/* No.135 —\–ñ */
+	NULL,							/* No.135 äºˆç´„ */
 	ICU_IPR57_ADDR,					/* No.136 TPU5 TCI5V */
 	ICU_IPR57_ADDR,					/* No.137 TPU5 TCI5U */
 	ICU_IPR58_ADDR,					/* No.138 TPU6 TGI6A */
@@ -131,15 +131,15 @@ volatile uint8_t * const ipr_reg_addr[ INHNO_MAX ] = {
 	ICU_IPR58_ADDR,					/* No.140 TPU6 TGI6C */
 	ICU_IPR58_ADDR,					/* No.141 TPU6 TGI6D */
 	ICU_IPR59_ADDR,					/* No.142 TPU6 TCI6V */
-	NULL, NULL,						/* No.143 - 144 —\–ñ */
+	NULL, NULL,						/* No.143 - 144 äºˆç´„ */
 	ICU_IPR5A_ADDR,					/* No.145 TPU7 TGI7A */
 	ICU_IPR5A_ADDR,					/* No.146 TPU7 TGI7B */
-	NULL, NULL,						/* No.147 - 148 —\–ñ */
+	NULL, NULL,						/* No.147 - 148 äºˆç´„ */
 	ICU_IPR5B_ADDR,					/* No.149 TPU7 TCI7V */
 	ICU_IPR5B_ADDR,					/* No.150 TPU7 TCI7U */
 	ICU_IPR5C_ADDR,					/* No.151 TPU8 TGI8A */
 	ICU_IPR5C_ADDR,					/* No.152 TPU8 TGI8B */
-	NULL,							/* No.153 —\–ñ */
+	NULL,							/* No.153 äºˆç´„ */
 	ICU_IPR5D_ADDR,					/* No.154 TPU8 TCI8V */
 	ICU_IPR5D_ADDR,					/* No.155 TPU8 TCI8U */
 	ICU_IPR5E_ADDR,					/* No.156 TPU9 TGI9A */
@@ -149,15 +149,15 @@ volatile uint8_t * const ipr_reg_addr[ INHNO_MAX ] = {
 	ICU_IPR5F_ADDR,					/* No.160 TPU9 TCI9V */
 	ICU_IPR60_ADDR,					/* No.161 TPU10 TGI10A */
 	ICU_IPR60_ADDR,					/* No.162 TPU10 TGI10B */
-	NULL, NULL,						/* No.163 - 164 —\–ñ */
+	NULL, NULL,						/* No.163 - 164 äºˆç´„ */
 	ICU_IPR61_ADDR,					/* No.165 TPU10 TCI10V */
 	ICU_IPR61_ADDR,					/* No.166 TPU10 TCI10U */
 	ICU_IPR62_ADDR,					/* No.167 TPU11 TGI11A */
 	ICU_IPR62_ADDR,					/* No.168 TPU11 TGI11B */
-	NULL,							/* No.169 —\–ñ */
+	NULL,							/* No.169 äºˆç´„ */
 	ICU_IPR63_ADDR,					/* No.170 TPU11 TCI11V */
 	ICU_IPR63_ADDR,					/* No.171 TPU11 TCI11U */
-	NULL, NULL,						/* No.172 - 173 —\–ñ */
+	NULL, NULL,						/* No.172 - 173 äºˆç´„ */
 	ICU_IPR68_ADDR,					/* No.174 TMR0 CMIA0 */
 	ICU_IPR68_ADDR,					/* No.175 TMR0 CMIB0 */
 	ICU_IPR68_ADDR,					/* No.176 TMR0 OVI0 */
@@ -170,16 +170,16 @@ volatile uint8_t * const ipr_reg_addr[ INHNO_MAX ] = {
 	ICU_IPR6B_ADDR,					/* No.183 TMR3 CMIA3 */
 	ICU_IPR6B_ADDR,					/* No.184 TMR3 CMIB3 */
 	ICU_IPR6B_ADDR,					/* No.185 TMR3 OVI3 */
-	NULL, NULL, NULL, NULL, NULL,	/* No.186 - 190 —\–ñ */
-	NULL, NULL, NULL, NULL, NULL,	/* No.191 - 195 —\–ñ */
-	NULL, NULL,						/* No.196 - 197 —\–ñ */
+	NULL, NULL, NULL, NULL, NULL,	/* No.186 - 190 äºˆç´„ */
+	NULL, NULL, NULL, NULL, NULL,	/* No.191 - 195 äºˆç´„ */
+	NULL, NULL,						/* No.196 - 197 äºˆç´„ */
 	ICU_IPR70_ADDR,					/* No.198 DMAC DMTEND0 */
 	ICU_IPR71_ADDR,					/* No.199 DMAC DMTEND1 */
 	ICU_IPR72_ADDR,					/* No.200 DMAC DMTEND2 */
 	ICU_IPR73_ADDR,					/* No.201 DMAC DMTEND3 */
-	NULL, NULL, NULL, NULL, NULL,	/* No.202 - 206 —\–ñ */
-	NULL, NULL, NULL, NULL, NULL,	/* No.207 - 211 —\–ñ */
-	NULL, NULL,						/* No.212 - 213 —\–ñ */
+	NULL, NULL, NULL, NULL, NULL,	/* No.202 - 206 äºˆç´„ */
+	NULL, NULL, NULL, NULL, NULL,	/* No.207 - 211 äºˆç´„ */
+	NULL, NULL,						/* No.212 - 213 äºˆç´„ */
 	ICU_IPR80_ADDR,					/* No.214 SCI0 ERI0 */
 	ICU_IPR80_ADDR,					/* No.215 SCI0 RXI0 */
 	ICU_IPR80_ADDR,					/* No.216 SCI0 TXI0 */
@@ -208,7 +208,7 @@ volatile uint8_t * const ipr_reg_addr[ INHNO_MAX ] = {
 	ICU_IPR86_ADDR,					/* No.239 SCI6 RXI6 */
 	ICU_IPR86_ADDR,					/* No.240 SCI6 TXI6 */
 	ICU_IPR86_ADDR,					/* No.241 SCI6 TEI6 */
-	NULL, NULL, NULL, NULL,			/* No.242 - 245 —\–ñ */
+	NULL, NULL, NULL, NULL,			/* No.242 - 245 äºˆç´„ */
 	ICU_IPR88_ADDR,					/* No.246 RIIC0 ICEEI0 */
 	ICU_IPR89_ADDR,					/* No.247 RIIC0 ICRXI0 */
 	ICU_IPR8A_ADDR,					/* No.248 RIIC0 ICTXI0 */
@@ -217,134 +217,134 @@ volatile uint8_t * const ipr_reg_addr[ INHNO_MAX ] = {
 	ICU_IPR8D_ADDR,					/* No.251 RIIC1 ICRXI1 */
 	ICU_IPR8E_ADDR,					/* No.252 RIIC1 ICTXI1 */
 	ICU_IPR8F_ADDR,					/* No.253 RIIC1 ICTEI1 */
-	NULL, NULL,						/* No.254 - 255 —\–ñ */
+	NULL, NULL,						/* No.254 - 255 äºˆç´„ */
 };
 
 
 /*
- *  Š„ž‚Ý—v‹‹–‰ÂƒŒƒWƒXƒ^ƒAƒhƒŒƒXƒe[ƒuƒ‹
+ *  å‰²è¾¼ã¿è¦æ±‚è¨±å¯ãƒ¬ã‚¸ã‚¹ã‚¿ã‚¢ãƒ‰ãƒ¬ã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«
  */
 const IER_INFO ier_reg_addr[ INHNO_MAX ] = {
-	{ NULL, INVALID_OFFSET },			/* No.0   —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.1   —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.2   —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.3   —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.4   —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.5   —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.6   —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.7   —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.8   —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.9   —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.10  —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.11  —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.12  —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.13  —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.14  —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.15  —\–ñ */
-	{ ICU_IER02_ADDR, ICU_IEN0_BIT },	/* No.16  ƒoƒXƒGƒ‰[ BUSERR */
-	{ NULL, INVALID_OFFSET },			/* No.17  —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.18  —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.19  —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.20  —\–ñ */
+	{ NULL, INVALID_OFFSET },			/* No.0   äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.1   äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.2   äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.3   äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.4   äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.5   äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.6   äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.7   äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.8   äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.9   äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.10  äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.11  äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.12  äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.13  äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.14  äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.15  äºˆç´„ */
+	{ ICU_IER02_ADDR, ICU_IEN0_BIT },	/* No.16  ãƒã‚¹ã‚¨ãƒ©ãƒ¼ BUSERR */
+	{ NULL, INVALID_OFFSET },			/* No.17  äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.18  äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.19  äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.20  äºˆç´„ */
 	{ ICU_IER02_ADDR, ICU_IEN5_BIT },	/* No.21  FCU FIFERR */
-	{ NULL, INVALID_OFFSET },			/* No.22  —\–ñ */
+	{ NULL, INVALID_OFFSET },			/* No.22  äºˆç´„ */
 	{ ICU_IER02_ADDR, ICU_IEN7_BIT },	/* No.23  FCU FRDYI */
-	{ NULL, INVALID_OFFSET },			/* No.24  —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.25  —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.26  —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.27  —\–ñ */
-	{ ICU_IER03_ADDR, ICU_IEN4_BIT },	/* No.28  CMTƒ†ƒjƒbƒg0 CMT0 */
-	{ ICU_IER03_ADDR, ICU_IEN5_BIT },	/* No.29  CMTƒ†ƒjƒbƒg0 CMT1 */
-	{ ICU_IER03_ADDR, ICU_IEN6_BIT },	/* No.30  CMTƒ†ƒjƒbƒg1 CMT2 */
-	{ ICU_IER03_ADDR, ICU_IEN7_BIT },	/* No.31  CMTƒ†ƒjƒbƒg1 CMT3 */
-	{ NULL, INVALID_OFFSET },			/* No.32  —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.33  —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.34  —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.35  —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.36  —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.37  —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.38  —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.39  —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.40  —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.41  —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.42  —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.43  —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.44  —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.45  —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.46  —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.47  —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.48  —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.49  —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.50  —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.51  —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.52  —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.53  —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.54  —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.55  —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.56  —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.57  —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.58  —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.59  —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.60  —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.61  —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.62  —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.63  —\–ñ */
-	{ ICU_IER08_ADDR, ICU_IEN0_BIT },	/* No.64  ŠO•”’[Žq IRQ0 */
-	{ ICU_IER08_ADDR, ICU_IEN1_BIT },	/* No.65  ŠO•”’[Žq IRQ1 */
-	{ ICU_IER08_ADDR, ICU_IEN2_BIT },	/* No.66  ŠO•”’[Žq IRQ2 */
-	{ ICU_IER08_ADDR, ICU_IEN3_BIT },	/* No.67  ŠO•”’[Žq IRQ3 */
-	{ ICU_IER08_ADDR, ICU_IEN4_BIT },	/* No.68  ŠO•”’[Žq IRQ4 */
-	{ ICU_IER08_ADDR, ICU_IEN5_BIT },	/* No.69  ŠO•”’[Žq IRQ5 */
-	{ ICU_IER08_ADDR, ICU_IEN6_BIT },	/* No.70  ŠO•”’[Žq IRQ6 */
-	{ ICU_IER08_ADDR, ICU_IEN7_BIT },	/* No.71  ŠO•”’[Žq IRQ7 */
-	{ ICU_IER09_ADDR, ICU_IEN0_BIT },	/* No.72  ŠO•”’[Žq IRQ8 */
-	{ ICU_IER09_ADDR, ICU_IEN1_BIT },	/* No.73  ŠO•”’[Žq IRQ9 */
-	{ ICU_IER09_ADDR, ICU_IEN2_BIT },	/* No.74  ŠO•”’[Žq IRQ10 */
-	{ ICU_IER09_ADDR, ICU_IEN3_BIT },	/* No.75  ŠO•”’[Žq IRQ11 */
-	{ ICU_IER09_ADDR, ICU_IEN4_BIT },	/* No.76  ŠO•”’[Žq IRQ12 */
-	{ ICU_IER09_ADDR, ICU_IEN5_BIT },	/* No.77  ŠO•”’[Žq IRQ13 */
-	{ ICU_IER09_ADDR, ICU_IEN6_BIT },	/* No.78  ŠO•”’[Žq IRQ14 */
-	{ ICU_IER09_ADDR, ICU_IEN7_BIT },	/* No.79  ŠO•”’[Žq IRQ15 */
-	{ NULL, INVALID_OFFSET },			/* No.80  —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.81  —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.82  —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.83  —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.84  —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.85  —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.86  —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.87  —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.88  —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.89  —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.90  —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.91  —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.92  —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.93  —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.94  —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.95  —\–ñ */
+	{ NULL, INVALID_OFFSET },			/* No.24  äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.25  äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.26  äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.27  äºˆç´„ */
+	{ ICU_IER03_ADDR, ICU_IEN4_BIT },	/* No.28  CMTãƒ¦ãƒ‹ãƒƒãƒˆ0 CMT0 */
+	{ ICU_IER03_ADDR, ICU_IEN5_BIT },	/* No.29  CMTãƒ¦ãƒ‹ãƒƒãƒˆ0 CMT1 */
+	{ ICU_IER03_ADDR, ICU_IEN6_BIT },	/* No.30  CMTãƒ¦ãƒ‹ãƒƒãƒˆ1 CMT2 */
+	{ ICU_IER03_ADDR, ICU_IEN7_BIT },	/* No.31  CMTãƒ¦ãƒ‹ãƒƒãƒˆ1 CMT3 */
+	{ NULL, INVALID_OFFSET },			/* No.32  äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.33  äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.34  äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.35  äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.36  äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.37  äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.38  äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.39  äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.40  äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.41  äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.42  äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.43  äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.44  äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.45  äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.46  äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.47  äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.48  äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.49  äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.50  äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.51  äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.52  äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.53  äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.54  äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.55  äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.56  äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.57  äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.58  äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.59  äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.60  äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.61  äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.62  äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.63  äºˆç´„ */
+	{ ICU_IER08_ADDR, ICU_IEN0_BIT },	/* No.64  å¤–éƒ¨ç«¯å­ IRQ0 */
+	{ ICU_IER08_ADDR, ICU_IEN1_BIT },	/* No.65  å¤–éƒ¨ç«¯å­ IRQ1 */
+	{ ICU_IER08_ADDR, ICU_IEN2_BIT },	/* No.66  å¤–éƒ¨ç«¯å­ IRQ2 */
+	{ ICU_IER08_ADDR, ICU_IEN3_BIT },	/* No.67  å¤–éƒ¨ç«¯å­ IRQ3 */
+	{ ICU_IER08_ADDR, ICU_IEN4_BIT },	/* No.68  å¤–éƒ¨ç«¯å­ IRQ4 */
+	{ ICU_IER08_ADDR, ICU_IEN5_BIT },	/* No.69  å¤–éƒ¨ç«¯å­ IRQ5 */
+	{ ICU_IER08_ADDR, ICU_IEN6_BIT },	/* No.70  å¤–éƒ¨ç«¯å­ IRQ6 */
+	{ ICU_IER08_ADDR, ICU_IEN7_BIT },	/* No.71  å¤–éƒ¨ç«¯å­ IRQ7 */
+	{ ICU_IER09_ADDR, ICU_IEN0_BIT },	/* No.72  å¤–éƒ¨ç«¯å­ IRQ8 */
+	{ ICU_IER09_ADDR, ICU_IEN1_BIT },	/* No.73  å¤–éƒ¨ç«¯å­ IRQ9 */
+	{ ICU_IER09_ADDR, ICU_IEN2_BIT },	/* No.74  å¤–éƒ¨ç«¯å­ IRQ10 */
+	{ ICU_IER09_ADDR, ICU_IEN3_BIT },	/* No.75  å¤–éƒ¨ç«¯å­ IRQ11 */
+	{ ICU_IER09_ADDR, ICU_IEN4_BIT },	/* No.76  å¤–éƒ¨ç«¯å­ IRQ12 */
+	{ ICU_IER09_ADDR, ICU_IEN5_BIT },	/* No.77  å¤–éƒ¨ç«¯å­ IRQ13 */
+	{ ICU_IER09_ADDR, ICU_IEN6_BIT },	/* No.78  å¤–éƒ¨ç«¯å­ IRQ14 */
+	{ ICU_IER09_ADDR, ICU_IEN7_BIT },	/* No.79  å¤–éƒ¨ç«¯å­ IRQ15 */
+	{ NULL, INVALID_OFFSET },			/* No.80  äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.81  äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.82  äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.83  äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.84  äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.85  äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.86  äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.87  äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.88  äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.89  äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.90  äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.91  äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.92  äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.93  äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.94  äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.95  äºˆç´„ */
 	{ ICU_IER0C_ADDR, ICU_IEN0_BIT },	/* No.96  WDT WOVI */
-	{ NULL, INVALID_OFFSET },			/* No.97  —\–ñ */
+	{ NULL, INVALID_OFFSET },			/* No.97  äºˆç´„ */
 	{ ICU_IER0C_ADDR, ICU_IEN2_BIT },	/* No.98  AD0 ADI0 */
 	{ ICU_IER0C_ADDR, ICU_IEN3_BIT },	/* No.99  AD1 ADI1 */
 	{ ICU_IER0C_ADDR, ICU_IEN4_BIT },	/* No.100 AD2 ADI2 */
 	{ ICU_IER0C_ADDR, ICU_IEN5_BIT },	/* No.101 AD3 ADI3 */
-	{ NULL, INVALID_OFFSET },			/* No.102 —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.103 —\–ñ */
+	{ NULL, INVALID_OFFSET },			/* No.102 äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.103 äºˆç´„ */
 	{ ICU_IER0D_ADDR, ICU_IEN0_BIT },	/* No.104 TPU0 TGI0A */
 	{ ICU_IER0D_ADDR, ICU_IEN1_BIT },	/* No.105 TPU0 TGI0B */
 	{ ICU_IER0D_ADDR, ICU_IEN2_BIT },	/* No.106 TPU0 TGI0C */
 	{ ICU_IER0D_ADDR, ICU_IEN3_BIT },	/* No.107 TPU0 TGI0D */
 	{ ICU_IER0D_ADDR, ICU_IEN4_BIT },	/* No.108 TPU0 TCI0V */
-	{ NULL, INVALID_OFFSET },			/* No.109 —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.110 —\–ñ */
+	{ NULL, INVALID_OFFSET },			/* No.109 äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.110 äºˆç´„ */
 	{ ICU_IER0D_ADDR, ICU_IEN7_BIT },	/* No.111 TPU1 TGI1A */
 	{ ICU_IER0E_ADDR, ICU_IEN0_BIT },	/* No.112 TPU1 TGI1B */
-	{ NULL, INVALID_OFFSET },			/* No.113 —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.114 —\–ñ */
+	{ NULL, INVALID_OFFSET },			/* No.113 äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.114 äºˆç´„ */
 	{ ICU_IER0E_ADDR, ICU_IEN3_BIT },	/* No.115 TPU1 TCI1V */
 	{ ICU_IER0E_ADDR, ICU_IEN4_BIT },	/* No.116 TPU1 TCI1U */
 	{ ICU_IER0E_ADDR, ICU_IEN5_BIT },	/* No.117 TPU2 TGI2A */
 	{ ICU_IER0E_ADDR, ICU_IEN6_BIT },	/* No.118 TPU2 TGI2B */
-	{ NULL, INVALID_OFFSET },			/* No.119 —\–ñ */
+	{ NULL, INVALID_OFFSET },			/* No.119 äºˆç´„ */
 	{ ICU_IER0F_ADDR, ICU_IEN0_BIT },	/* No.120 TPU2 TCI2V */
 	{ ICU_IER0F_ADDR, ICU_IEN1_BIT },	/* No.121 TPU2 TCI2U */
 	{ ICU_IER0F_ADDR, ICU_IEN2_BIT },	/* No.122 TPU3 TGI3A */
@@ -354,13 +354,13 @@ const IER_INFO ier_reg_addr[ INHNO_MAX ] = {
 	{ ICU_IER0F_ADDR, ICU_IEN6_BIT },	/* No.126 TPU3 TCI3V */
 	{ ICU_IER0F_ADDR, ICU_IEN7_BIT },	/* No.127 TPU4 TGI4A */
 	{ ICU_IER10_ADDR, ICU_IEN0_BIT },	/* No.128 TPU4 TGI4B */
-	{ NULL, INVALID_OFFSET },			/* No.129 —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.130 —\–ñ */
+	{ NULL, INVALID_OFFSET },			/* No.129 äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.130 äºˆç´„ */
 	{ ICU_IER10_ADDR, ICU_IEN3_BIT },	/* No.131 TPU4 TCI4V */
 	{ ICU_IER10_ADDR, ICU_IEN4_BIT },	/* No.132 TPU4 TCI4U */
 	{ ICU_IER10_ADDR, ICU_IEN5_BIT },	/* No.133 TPU5 TGI5A */
 	{ ICU_IER10_ADDR, ICU_IEN6_BIT },	/* No.134 TPU5 TGI5B */
-	{ NULL, INVALID_OFFSET },			/* No.135 —\–ñ */
+	{ NULL, INVALID_OFFSET },			/* No.135 äºˆç´„ */
 	{ ICU_IER11_ADDR, ICU_IEN0_BIT },	/* No.136 TPU5 TCI5V */
 	{ ICU_IER11_ADDR, ICU_IEN1_BIT },	/* No.137 TPU5 TCI5U */
 	{ ICU_IER11_ADDR, ICU_IEN2_BIT },	/* No.138 TPU6 TGI6A */
@@ -368,17 +368,17 @@ const IER_INFO ier_reg_addr[ INHNO_MAX ] = {
 	{ ICU_IER11_ADDR, ICU_IEN4_BIT },	/* No.140 TPU6 TGI6C */
 	{ ICU_IER11_ADDR, ICU_IEN5_BIT },	/* No.141 TPU6 TGI6D */
 	{ ICU_IER11_ADDR, ICU_IEN6_BIT },	/* No.142 TPU6 TCI6V */
-	{ NULL, INVALID_OFFSET },			/* No.143 —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.144 —\–ñ */
+	{ NULL, INVALID_OFFSET },			/* No.143 äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.144 äºˆç´„ */
 	{ ICU_IER12_ADDR, ICU_IEN1_BIT },	/* No.145 TPU7 TGI7A */
 	{ ICU_IER12_ADDR, ICU_IEN2_BIT },	/* No.146 TPU7 TGI7B */
-	{ NULL, INVALID_OFFSET },			/* No.147 —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.148 —\–ñ */
+	{ NULL, INVALID_OFFSET },			/* No.147 äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.148 äºˆç´„ */
 	{ ICU_IER12_ADDR, ICU_IEN5_BIT },	/* No.149 TPU7 TCI7V */
 	{ ICU_IER12_ADDR, ICU_IEN6_BIT },	/* No.150 TPU7 TCI7U */
 	{ ICU_IER12_ADDR, ICU_IEN7_BIT },	/* No.151 TPU8 TGI8A */
 	{ ICU_IER13_ADDR, ICU_IEN0_BIT },	/* No.152 TPU8 TGI8B */
-	{ NULL, INVALID_OFFSET },			/* No.153 —\–ñ */
+	{ NULL, INVALID_OFFSET },			/* No.153 äºˆç´„ */
 	{ ICU_IER13_ADDR, ICU_IEN2_BIT },	/* No.154 TPU8 TCI8V */
 	{ ICU_IER13_ADDR, ICU_IEN3_BIT },	/* No.155 TPU8 TCI8U */
 	{ ICU_IER13_ADDR, ICU_IEN4_BIT },	/* No.156 TPU9 TGI9A */
@@ -388,17 +388,17 @@ const IER_INFO ier_reg_addr[ INHNO_MAX ] = {
 	{ ICU_IER14_ADDR, ICU_IEN0_BIT },	/* No.160 TPU9 TCI9V */
 	{ ICU_IER14_ADDR, ICU_IEN1_BIT },	/* No.161 TPU10 TGI10A */
 	{ ICU_IER14_ADDR, ICU_IEN2_BIT },	/* No.162 TPU10 TGI10B */
-	{ NULL, INVALID_OFFSET },			/* No.163 —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.164 —\–ñ */
+	{ NULL, INVALID_OFFSET },			/* No.163 äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.164 äºˆç´„ */
 	{ ICU_IER14_ADDR, ICU_IEN5_BIT },	/* No.165 TPU10 TCI10V */
 	{ ICU_IER14_ADDR, ICU_IEN6_BIT },	/* No.166 TPU10 TCI10U */
 	{ ICU_IER14_ADDR, ICU_IEN7_BIT },	/* No.167 TPU11 TGI11A */
 	{ ICU_IER15_ADDR, ICU_IEN0_BIT },	/* No.168 TPU11 TGI11B */
-	{ NULL, INVALID_OFFSET },			/* No.169 —\–ñ */
+	{ NULL, INVALID_OFFSET },			/* No.169 äºˆç´„ */
 	{ ICU_IER15_ADDR, ICU_IEN2_BIT },	/* No.170 TPU11 TCI11V */
 	{ ICU_IER15_ADDR, ICU_IEN3_BIT },	/* No.171 TPU11 TCI11U */
-	{ NULL, INVALID_OFFSET },			/* No.172 —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.173 —\–ñ */
+	{ NULL, INVALID_OFFSET },			/* No.172 äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.173 äºˆç´„ */
 	{ ICU_IER15_ADDR, ICU_IEN6_BIT },	/* No.174 TMR0 CMIA0 */
 	{ ICU_IER15_ADDR, ICU_IEN7_BIT },	/* No.175 TMR0 CMIB0 */
 	{ ICU_IER16_ADDR, ICU_IEN0_BIT },	/* No.176 TMR0 OVI0 */
@@ -411,34 +411,34 @@ const IER_INFO ier_reg_addr[ INHNO_MAX ] = {
 	{ ICU_IER16_ADDR, ICU_IEN7_BIT },	/* No.183 TMR3 CMIA3 */
 	{ ICU_IER17_ADDR, ICU_IEN0_BIT },	/* No.184 TMR3 CMIB3 */
 	{ ICU_IER17_ADDR, ICU_IEN1_BIT },	/* No.185 TMR3 OVI3 */
-	{ NULL, INVALID_OFFSET },			/* No.186 —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.187 —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.188 —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.189 —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.190 —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.191 —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.192 —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.193 —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.194 —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.195 —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.196 —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.197 —\–ñ */
+	{ NULL, INVALID_OFFSET },			/* No.186 äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.187 äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.188 äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.189 äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.190 äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.191 äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.192 äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.193 äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.194 äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.195 äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.196 äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.197 äºˆç´„ */
 	{ ICU_IER18_ADDR, ICU_IEN6_BIT },	/* No.198 DMAC DMTEND0 */
 	{ ICU_IER18_ADDR, ICU_IEN7_BIT },	/* No.199 DMAC DMTEND1 */
 	{ ICU_IER19_ADDR, ICU_IEN0_BIT },	/* No.200 DMAC DMTEND2 */
 	{ ICU_IER19_ADDR, ICU_IEN1_BIT },	/* No.201 DMAC DMTEND3 */
-	{ NULL, INVALID_OFFSET },			/* No.202 —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.203 —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.204 —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.205 —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.206 —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.207 —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.208 —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.209 —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.210 —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.211 —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.212 —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.213 —\–ñ */
+	{ NULL, INVALID_OFFSET },			/* No.202 äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.203 äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.204 äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.205 äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.206 äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.207 äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.208 äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.209 äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.210 äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.211 äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.212 äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.213 äºˆç´„ */
 	{ ICU_IER1A_ADDR, ICU_IEN6_BIT },	/* No.214 SCI0 ERI0 */
 	{ ICU_IER1A_ADDR, ICU_IEN7_BIT },	/* No.215 SCI0 RXI0 */
 	{ ICU_IER1B_ADDR, ICU_IEN0_BIT },	/* No.216 SCI0 TXI0 */
@@ -467,10 +467,10 @@ const IER_INFO ier_reg_addr[ INHNO_MAX ] = {
 	{ ICU_IER1D_ADDR, ICU_IEN7_BIT },	/* No.239 SCI6 RXI6 */
 	{ ICU_IER1E_ADDR, ICU_IEN0_BIT },	/* No.240 SCI6 TXI6 */
 	{ ICU_IER1E_ADDR, ICU_IEN1_BIT },	/* No.241 SCI6 TEI6 */
-	{ NULL, INVALID_OFFSET },			/* No.242 —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.243 —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.244 —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.245 —\–ñ */
+	{ NULL, INVALID_OFFSET },			/* No.242 äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.243 äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.244 äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.245 äºˆç´„ */
 	{ ICU_IER1E_ADDR, ICU_IEN6_BIT },	/* No.246 RIIC0 ICEEI0 */
 	{ ICU_IER1E_ADDR, ICU_IEN7_BIT },	/* No.247 RIIC0 ICRXI0 */
 	{ ICU_IER1F_ADDR, ICU_IEN0_BIT },	/* No.248 RIIC0 ICTXI0 */
@@ -479,77 +479,77 @@ const IER_INFO ier_reg_addr[ INHNO_MAX ] = {
 	{ ICU_IER1F_ADDR, ICU_IEN3_BIT },	/* No.251 RIIC1 ICRXI1 */
 	{ ICU_IER1F_ADDR, ICU_IEN4_BIT },	/* No.252 RIIC1 ICTXI1 */
 	{ ICU_IER1F_ADDR, ICU_IEN5_BIT },	/* No.253 RIIC1 ICTEI1 */
-	{ NULL, INVALID_OFFSET },			/* No.254 —\–ñ */
-	{ NULL, INVALID_OFFSET },			/* No.255 —\–ñ */
+	{ NULL, INVALID_OFFSET },			/* No.254 äºˆç´„ */
+	{ NULL, INVALID_OFFSET },			/* No.255 äºˆç´„ */
 };
 
 
 /*
- *  Š„ž‚Ý—v‹ƒŒƒWƒXƒ^ƒAƒhƒŒƒXƒe[ƒuƒ‹
+ *  å‰²è¾¼ã¿è¦æ±‚ãƒ¬ã‚¸ã‚¹ã‚¿ã‚¢ãƒ‰ãƒ¬ã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«
  */
 volatile uint8_t  * const ir_reg_addr[ INHNO_MAX ] = {
-	NULL, NULL, NULL, NULL, NULL,	/* No.0 - 4   —\–ñ */
-	NULL, NULL, NULL, NULL, NULL,	/* No.5 - 9   —\–ñ */
-	NULL, NULL, NULL, NULL, NULL,	/* No.10 - 14 —\–ñ */
-	NULL,							/* No.15  —\–ñ */
-	ICU_IR016_ADDR,					/* No.16  ƒoƒXƒGƒ‰[ BUSERR */
-	NULL, NULL, NULL, NULL,			/* No.17 - 20 —\–ñ */
+	NULL, NULL, NULL, NULL, NULL,	/* No.0 - 4   äºˆç´„ */
+	NULL, NULL, NULL, NULL, NULL,	/* No.5 - 9   äºˆç´„ */
+	NULL, NULL, NULL, NULL, NULL,	/* No.10 - 14 äºˆç´„ */
+	NULL,							/* No.15  äºˆç´„ */
+	ICU_IR016_ADDR,					/* No.16  ãƒã‚¹ã‚¨ãƒ©ãƒ¼ BUSERR */
+	NULL, NULL, NULL, NULL,			/* No.17 - 20 äºˆç´„ */
 	ICU_IR021_ADDR,					/* No.21  FCU FIFERR */
-	NULL,							/* No.22  —\–ñ */
+	NULL,							/* No.22  äºˆç´„ */
 	ICU_IR023_ADDR,					/* No.23  FCU FRDYI */
-	NULL, NULL, NULL, NULL,			/* No.24 -27  —\–ñ */
-	ICU_IR028_ADDR,					/* No.28  CMTƒ†ƒjƒbƒg0 CMT0 */
-	ICU_IR029_ADDR,					/* No.29  CMTƒ†ƒjƒbƒg0 CMT1 */
-	ICU_IR030_ADDR,					/* No.30  CMTƒ†ƒjƒbƒg1 CMT2 */
-	ICU_IR031_ADDR,					/* No.31  CMTƒ†ƒjƒbƒg1 CMT3 */
-	NULL, NULL, NULL, NULL, NULL,	/* No.32 - 36 —\–ñ */
-	NULL, NULL, NULL, NULL, NULL,	/* No.37 - 41 —\–ñ */
-	NULL, NULL, NULL, NULL, NULL,	/* No.42 - 46 —\–ñ */
-	NULL, NULL, NULL, NULL, NULL,	/* No.47 - 51 —\–ñ */
-	NULL, NULL, NULL, NULL, NULL,	/* No.52 - 56 —\–ñ */
-	NULL, NULL, NULL, NULL, NULL,	/* No.57 - 61 —\–ñ */
-	NULL, NULL,						/* No.62 - 63 —\–ñ */
-	ICU_IR064_ADDR,					/* No.64  ŠO•”’[Žq IRQ0 */
-	ICU_IR065_ADDR,					/* No.65  ŠO•”’[Žq IRQ1 */
-	ICU_IR066_ADDR,					/* No.66  ŠO•”’[Žq IRQ2 */
-	ICU_IR067_ADDR,					/* No.67  ŠO•”’[Žq IRQ3 */
-	ICU_IR068_ADDR,					/* No.68  ŠO•”’[Žq IRQ4 */
-	ICU_IR069_ADDR,					/* No.69  ŠO•”’[Žq IRQ5 */
-	ICU_IR070_ADDR,					/* No.70  ŠO•”’[Žq IRQ6 */
-	ICU_IR071_ADDR,					/* No.71  ŠO•”’[Žq IRQ7 */
-	ICU_IR072_ADDR,					/* No.72  ŠO•”’[Žq IRQ8 */
-	ICU_IR073_ADDR,					/* No.73  ŠO•”’[Žq IRQ9 */
-	ICU_IR074_ADDR,					/* No.74  ŠO•”’[Žq IRQ10 */
-	ICU_IR075_ADDR,					/* No.75  ŠO•”’[Žq IRQ11 */
-	ICU_IR076_ADDR,					/* No.76  ŠO•”’[Žq IRQ12 */
-	ICU_IR077_ADDR,					/* No.77  ŠO•”’[Žq IRQ13 */
-	ICU_IR078_ADDR,					/* No.78  ŠO•”’[Žq IRQ14 */
-	ICU_IR079_ADDR,					/* No.79  ŠO•”’[Žq IRQ15 */
-	NULL, NULL, NULL, NULL, NULL,	/* No.80 - 84 —\–ñ */
-	NULL, NULL, NULL, NULL, NULL,	/* No.85 - 89 —\–ñ */
-	NULL, NULL, NULL, NULL, NULL,	/* No.90 - 94 —\–ñ */
-	NULL,							/* No.95  —\–ñ */
+	NULL, NULL, NULL, NULL,			/* No.24 -27  äºˆç´„ */
+	ICU_IR028_ADDR,					/* No.28  CMTãƒ¦ãƒ‹ãƒƒãƒˆ0 CMT0 */
+	ICU_IR029_ADDR,					/* No.29  CMTãƒ¦ãƒ‹ãƒƒãƒˆ0 CMT1 */
+	ICU_IR030_ADDR,					/* No.30  CMTãƒ¦ãƒ‹ãƒƒãƒˆ1 CMT2 */
+	ICU_IR031_ADDR,					/* No.31  CMTãƒ¦ãƒ‹ãƒƒãƒˆ1 CMT3 */
+	NULL, NULL, NULL, NULL, NULL,	/* No.32 - 36 äºˆç´„ */
+	NULL, NULL, NULL, NULL, NULL,	/* No.37 - 41 äºˆç´„ */
+	NULL, NULL, NULL, NULL, NULL,	/* No.42 - 46 äºˆç´„ */
+	NULL, NULL, NULL, NULL, NULL,	/* No.47 - 51 äºˆç´„ */
+	NULL, NULL, NULL, NULL, NULL,	/* No.52 - 56 äºˆç´„ */
+	NULL, NULL, NULL, NULL, NULL,	/* No.57 - 61 äºˆç´„ */
+	NULL, NULL,						/* No.62 - 63 äºˆç´„ */
+	ICU_IR064_ADDR,					/* No.64  å¤–éƒ¨ç«¯å­ IRQ0 */
+	ICU_IR065_ADDR,					/* No.65  å¤–éƒ¨ç«¯å­ IRQ1 */
+	ICU_IR066_ADDR,					/* No.66  å¤–éƒ¨ç«¯å­ IRQ2 */
+	ICU_IR067_ADDR,					/* No.67  å¤–éƒ¨ç«¯å­ IRQ3 */
+	ICU_IR068_ADDR,					/* No.68  å¤–éƒ¨ç«¯å­ IRQ4 */
+	ICU_IR069_ADDR,					/* No.69  å¤–éƒ¨ç«¯å­ IRQ5 */
+	ICU_IR070_ADDR,					/* No.70  å¤–éƒ¨ç«¯å­ IRQ6 */
+	ICU_IR071_ADDR,					/* No.71  å¤–éƒ¨ç«¯å­ IRQ7 */
+	ICU_IR072_ADDR,					/* No.72  å¤–éƒ¨ç«¯å­ IRQ8 */
+	ICU_IR073_ADDR,					/* No.73  å¤–éƒ¨ç«¯å­ IRQ9 */
+	ICU_IR074_ADDR,					/* No.74  å¤–éƒ¨ç«¯å­ IRQ10 */
+	ICU_IR075_ADDR,					/* No.75  å¤–éƒ¨ç«¯å­ IRQ11 */
+	ICU_IR076_ADDR,					/* No.76  å¤–éƒ¨ç«¯å­ IRQ12 */
+	ICU_IR077_ADDR,					/* No.77  å¤–éƒ¨ç«¯å­ IRQ13 */
+	ICU_IR078_ADDR,					/* No.78  å¤–éƒ¨ç«¯å­ IRQ14 */
+	ICU_IR079_ADDR,					/* No.79  å¤–éƒ¨ç«¯å­ IRQ15 */
+	NULL, NULL, NULL, NULL, NULL,	/* No.80 - 84 äºˆç´„ */
+	NULL, NULL, NULL, NULL, NULL,	/* No.85 - 89 äºˆç´„ */
+	NULL, NULL, NULL, NULL, NULL,	/* No.90 - 94 äºˆç´„ */
+	NULL,							/* No.95  äºˆç´„ */
 	ICU_IR096_ADDR,					/* No.96  WDT WOVI */
-	NULL,							/* No.97  —\–ñ */
+	NULL,							/* No.97  äºˆç´„ */
 	ICU_IR098_ADDR,					/* No.98  AD0 ADI0 */
 	ICU_IR099_ADDR,					/* No.99  AD1 ADI1 */
 	ICU_IR100_ADDR,					/* No.100 AD2 ADI2 */
 	ICU_IR101_ADDR,					/* No.101 AD3 ADI3 */
-	NULL, NULL,						/* No.102 - 103 —\–ñ */
+	NULL, NULL,						/* No.102 - 103 äºˆç´„ */
 	ICU_IR104_ADDR,					/* No.104 TPU0 TGI0A */
 	ICU_IR105_ADDR,					/* No.105 TPU0 TGI0B */
 	ICU_IR106_ADDR,					/* No.106 TPU0 TGI0C */
 	ICU_IR107_ADDR,					/* No.107 TPU0 TGI0D */
 	ICU_IR108_ADDR,					/* No.108 TPU0 TCI0V */
-	NULL, NULL,						/* No.109 - 110 —\–ñ */
+	NULL, NULL,						/* No.109 - 110 äºˆç´„ */
 	ICU_IR111_ADDR,					/* No.111 TPU1 TGI1A */
 	ICU_IR112_ADDR,					/* No.112 TPU1 TGI1B */
-	NULL, NULL,						/* No.113 - 114 —\–ñ */
+	NULL, NULL,						/* No.113 - 114 äºˆç´„ */
 	ICU_IR115_ADDR,					/* No.115 TPU1 TCI1V */
 	ICU_IR116_ADDR,					/* No.116 TPU1 TCI1U */
 	ICU_IR117_ADDR,					/* No.117 TPU2 TGI2A */
 	ICU_IR118_ADDR,					/* No.118 TPU2 TGI2B */
-	NULL,							/* No.119 —\–ñ */
+	NULL,							/* No.119 äºˆç´„ */
 	ICU_IR120_ADDR,					/* No.120 TPU2 TCI2V */
 	ICU_IR121_ADDR,					/* No.121 TPU2 TCI2U */
 	ICU_IR122_ADDR,					/* No.122 TPU3 TGI3A */
@@ -559,12 +559,12 @@ volatile uint8_t  * const ir_reg_addr[ INHNO_MAX ] = {
 	ICU_IR126_ADDR,					/* No.126 TPU3 TCI3V */
 	ICU_IR127_ADDR,					/* No.127 TPU4 TGI4A */
 	ICU_IR128_ADDR,					/* No.128 TPU4 TGI4B */
-	NULL, NULL,						/* No.129 - 130 —\–ñ */
+	NULL, NULL,						/* No.129 - 130 äºˆç´„ */
 	ICU_IR131_ADDR,					/* No.131 TPU4 TCI4V */
 	ICU_IR132_ADDR,					/* No.132 TPU4 TCI4U */
 	ICU_IR133_ADDR,					/* No.133 TPU5 TGI5A */
 	ICU_IR134_ADDR,					/* No.134 TPU5 TGI5B */
-	NULL,							/* No.135 —\–ñ */
+	NULL,							/* No.135 äºˆç´„ */
 	ICU_IR136_ADDR,					/* No.136 TPU5 TCI5V */
 	ICU_IR137_ADDR,					/* No.137 TPU5 TCI5U */
 	ICU_IR138_ADDR,					/* No.138 TPU6 TGI6A */
@@ -572,15 +572,15 @@ volatile uint8_t  * const ir_reg_addr[ INHNO_MAX ] = {
 	ICU_IR140_ADDR,					/* No.140 TPU6 TGI6C */
 	ICU_IR141_ADDR,					/* No.141 TPU6 TGI6D */
 	ICU_IR142_ADDR,					/* No.142 TPU6 TCI6V */
-	NULL, NULL,						/* No.143 - 144 —\–ñ */
+	NULL, NULL,						/* No.143 - 144 äºˆç´„ */
 	ICU_IR145_ADDR,					/* No.145 TPU7 TGI7A */
 	ICU_IR146_ADDR,					/* No.146 TPU7 TGI7B */
-	NULL, NULL,						/* No.147 - 148 —\–ñ */
+	NULL, NULL,						/* No.147 - 148 äºˆç´„ */
 	ICU_IR149_ADDR,					/* No.149 TPU7 TCI7V */
 	ICU_IR150_ADDR,					/* No.150 TPU7 TCI7U */
 	ICU_IR151_ADDR,					/* No.151 TPU8 TGI8A */
 	ICU_IR152_ADDR,					/* No.152 TPU8 TGI8B */
-	NULL,							/* No.153 —\–ñ */
+	NULL,							/* No.153 äºˆç´„ */
 	ICU_IR154_ADDR,					/* No.154 TPU8 TCI8V */
 	ICU_IR155_ADDR,					/* No.155 TPU8 TCI8U */
 	ICU_IR156_ADDR,					/* No.156 TPU9 TGI9A */
@@ -590,15 +590,15 @@ volatile uint8_t  * const ir_reg_addr[ INHNO_MAX ] = {
 	ICU_IR160_ADDR,					/* No.160 TPU9 TCI9V */
 	ICU_IR161_ADDR,					/* No.161 TPU10 TGI10A */
 	ICU_IR162_ADDR,					/* No.162 TPU10 TGI10B */
-	NULL, NULL,						/* No.163 - 164 —\–ñ */
+	NULL, NULL,						/* No.163 - 164 äºˆç´„ */
 	ICU_IR165_ADDR,					/* No.165 TPU10 TCI10V */
 	ICU_IR166_ADDR,					/* No.166 TPU10 TCI10U */
 	ICU_IR167_ADDR,					/* No.167 TPU11 TGI11A */
 	ICU_IR168_ADDR,					/* No.168 TPU11 TGI11B */
-	NULL,							/* No.169 —\–ñ */
+	NULL,							/* No.169 äºˆç´„ */
 	ICU_IR170_ADDR,					/* No.170 TPU11 TCI11V */
 	ICU_IR171_ADDR,					/* No.171 TPU11 TCI11U */
-	NULL, NULL,						/* No.172 - 173 —\–ñ */
+	NULL, NULL,						/* No.172 - 173 äºˆç´„ */
 	ICU_IR174_ADDR,					/* No.174 TMR0 CMIA0 */
 	ICU_IR175_ADDR,					/* No.175 TMR0 CMIB0 */
 	ICU_IR176_ADDR,					/* No.176 TMR0 OVI0 */
@@ -611,16 +611,16 @@ volatile uint8_t  * const ir_reg_addr[ INHNO_MAX ] = {
 	ICU_IR183_ADDR,					/* No.183 TMR3 CMIA3 */
 	ICU_IR184_ADDR,					/* No.184 TMR3 CMIB3 */
 	ICU_IR185_ADDR,					/* No.185 TMR3 OVI3 */
-	NULL, NULL, NULL, NULL, NULL,	/* No.186 - 190 —\–ñ */
-	NULL, NULL, NULL, NULL, NULL,	/* No.191 - 195 —\–ñ */
-	NULL, NULL,						/* No.196 - 197 —\–ñ */
+	NULL, NULL, NULL, NULL, NULL,	/* No.186 - 190 äºˆç´„ */
+	NULL, NULL, NULL, NULL, NULL,	/* No.191 - 195 äºˆç´„ */
+	NULL, NULL,						/* No.196 - 197 äºˆç´„ */
 	ICU_IR198_ADDR,					/* No.198 DMAC DMTEND0 */
 	ICU_IR199_ADDR,					/* No.199 DMAC DMTEND1 */
 	ICU_IR200_ADDR,					/* No.200 DMAC DMTEND2 */
 	ICU_IR201_ADDR,					/* No.201 DMAC DMTEND3 */
-	NULL, NULL, NULL, NULL, NULL,	/* No.202 - 206 —\–ñ */
-	NULL, NULL, NULL, NULL, NULL,	/* No.207 - 211 —\–ñ */
-	NULL, NULL,						/* No.212 - 213 —\–ñ */
+	NULL, NULL, NULL, NULL, NULL,	/* No.202 - 206 äºˆç´„ */
+	NULL, NULL, NULL, NULL, NULL,	/* No.207 - 211 äºˆç´„ */
+	NULL, NULL,						/* No.212 - 213 äºˆç´„ */
 	ICU_IR214_ADDR,					/* No.214 SCI0 ERI0 */
 	ICU_IR215_ADDR,					/* No.215 SCI0 RXI0 */
 	ICU_IR216_ADDR,					/* No.216 SCI0 TXI0 */
@@ -649,7 +649,7 @@ volatile uint8_t  * const ir_reg_addr[ INHNO_MAX ] = {
 	ICU_IR239_ADDR,					/* No.239 SCI6 RXI6 */
 	ICU_IR240_ADDR,					/* No.240 SCI6 TXI6 */
 	ICU_IR241_ADDR,					/* No.241 SCI6 TEI6 */
-	NULL, NULL, NULL, NULL,			/* No.242 - 245 —\–ñ */
+	NULL, NULL, NULL, NULL,			/* No.242 - 245 äºˆç´„ */
 	ICU_IR246_ADDR,					/* No.246 RIIC0 ICEEI0 */
 	ICU_IR247_ADDR,					/* No.247 RIIC0 ICRXI0 */
 	ICU_IR248_ADDR,					/* No.248 RIIC0 ICTXI0 */
@@ -658,12 +658,12 @@ volatile uint8_t  * const ir_reg_addr[ INHNO_MAX ] = {
 	ICU_IR251_ADDR,					/* No.251 RIIC1 ICRXI1 */
 	ICU_IR252_ADDR,					/* No.252 RIIC1 ICTXI1 */
 	ICU_IR253_ADDR,					/* No.253 RIIC1 ICTEI1 */
-	NULL, NULL,						/* No.254 - 255 —\–ñ */
+	NULL, NULL,						/* No.254 - 255 äºˆç´„ */
 };
 
 
 /*
- *  IRQƒRƒ“ƒgƒ[ƒ‹ƒŒƒWƒXƒ^ƒAƒhƒŒƒXƒe[ƒuƒ‹
+ *  IRQã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ¬ã‚¸ã‚¹ã‚¿ã‚¢ãƒ‰ãƒ¬ã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«
  */
 volatile uint8_t  * const irqcr_reg_addr[ IRQ_MAX ] = {
 	ICU_IRQ0_ADDR,

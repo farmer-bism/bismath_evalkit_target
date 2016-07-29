@@ -4,29 +4,29 @@
  *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
- *  �嵭����Ԥϡ��ʲ��� (1)��(4) �ξ�狼��Free Software Foundation 
- *  �ˤ�äƸ�ɽ����Ƥ��� GNU General Public License �� Version 2 �˵�
- *  �Ҥ���Ƥ���������������˸¤ꡤ�ܥ��եȥ��������ܥ��եȥ�����
- *  ����Ѥ�����Τ�ޤࡥ�ʲ�Ʊ���ˤ���ѡ�ʣ�������ѡ������ۡʰʲ���
- *  ���ѤȸƤ֡ˤ��뤳�Ȥ�̵���ǵ������롥
- *  (1) �ܥ��եȥ������򥽡��������ɤη������Ѥ�����ˤϡ��嵭������
- *      ��ɽ�����������Ѿ�浪��Ӳ�����̵�ݾڵ��꤬�����Τޤޤη��ǥ���
- *      ����������˴ޤޤ�Ƥ��뤳�ȡ�
- *  (2) �ܥ��եȥ������򡤥饤�֥������ʤɡ�¾�Υ��եȥ�������ȯ�˻�
- *      �ѤǤ�����Ǻ����ۤ�����ˤϡ������ۤ�ȼ���ɥ�����ȡ�����
- *      �ԥޥ˥奢��ʤɡˤˡ��嵭�����ɽ�����������Ѿ�浪��Ӳ���
- *      ��̵�ݾڵ����Ǻܤ��뤳�ȡ�
- *  (3) �ܥ��եȥ������򡤵�����Ȥ߹���ʤɡ�¾�Υ��եȥ�������ȯ�˻�
- *      �ѤǤ��ʤ����Ǻ����ۤ�����ˤϡ����ξ������������ȡ�
- *    (a) �����ۤ�ȼ���ɥ�����ȡ����Ѽԥޥ˥奢��ʤɡˤˡ��嵭����
- *        �ɽ�����������Ѿ�浪��Ӳ�����̵�ݾڵ����Ǻܤ��뤳�ȡ�
- *  (4) �ܥ��եȥ����������Ѥˤ��ľ��Ū�ޤ��ϴ���Ū�������뤤���ʤ�»
- *      ������⡤�嵭����Ԥ����TOPPERS�ץ��������Ȥ����դ��뤳�ȡ�
+ *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
+ *  によって公表されている GNU General Public License の Version 2 に記
+ *  述されている条件を満たす場合に限り，本ソフトウェア（本ソフトウェア
+ *  を改変したものを含む．以下同じ）を使用・複製・改変・再配布（以下，
+ *  利用と呼ぶ）することを無償で許諾する．
+ *  (1) 本ソフトウェアをソースコードの形で利用する場合には，上記の著作
+ *      権表示，この利用条件および下記の無保証規定が，そのままの形でソー
+ *      スコード中に含まれていること．
+ *  (2) 本ソフトウェアを，ライブラリ形式など，他のソフトウェア開発に使
+ *      用できる形で再配布する場合には，再配布に伴うドキュメント（利用
+ *      者マニュアルなど）に，上記の著作権表示，この利用条件および下記
+ *      の無保証規定を掲載すること．
+ *  (3) 本ソフトウェアを，機器に組み込むなど，他のソフトウェア開発に使
+ *      用できない形で再配布する場合には，次の条件を満たすこと．
+ *    (a) 再配布に伴うドキュメント（利用者マニュアルなど）に，上記の著
+ *        作権表示，この利用条件および下記の無保証規定を掲載すること．
+ *  (4) 本ソフトウェアの利用により直接的または間接的に生じるいかなる損
+ *      害からも，上記著作権者およびTOPPERSプロジェクトを免責すること．
  *
- *  �ܥ��եȥ������ϡ�̵�ݾڤ��󶡤���Ƥ����ΤǤ��롥�嵭����Ԥ�
- *  ���TOPPERS�ץ��������Ȥϡ��ܥ��եȥ������˴ؤ��ơ�����Ŭ�Ѳ�ǽ����
- *  �ޤ�ơ������ʤ��ݾڤ�Ԥ�ʤ����ޤ����ܥ��եȥ����������Ѥˤ��ľ
- *  ��Ū�ޤ��ϴ���Ū�������������ʤ�»���˴ؤ��Ƥ⡤������Ǥ�����ʤ���
+ *  本ソフトウェアは，無保証で提供されているものである．上記著作権者お
+ *  よびTOPPERSプロジェクトは，本ソフトウェアに関して，その適用可能性も
+ *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
+ *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
  *  @(#) $Id: ip6_output.c,v 1.5.4.1 2015/02/05 02:11:26 abe Exp abe $
  */
@@ -140,15 +140,15 @@
 #ifdef SUPPORT_INET6
 
 /*
- *  �����ѿ�
+ *  全域変数
  */
 
-/* ��� MTU */
+/* リンク MTU */
 
 uint32_t	linkmtu = IF_MTU;
 
 /*
- *  �ɽ��ѿ�
+ *  局所変数
  */
 
 #ifdef IP6_CFG_FRAGMENT
@@ -158,7 +158,7 @@ static uint32_t	ip6_id;
 #endif	/* of #ifdef IP6_CFG_FRAGMENT */
 
 /*
- *  ip6_output -- IPv6 �ν��ϴؿ�
+ *  ip6_output -- IPv6 の出力関数
  */
 
 ER
@@ -189,22 +189,22 @@ ip6_output (T_NET_BUF *output, uint16_t flags, TMO tmout)
 	NET_COUNT_MIB(in6_ifstat.ipv6IfStatsOutRequests, 1);
 
 	/*
-	 *  ��ʣ���ɥ쥹���������ʳ��ˤϡ����������ɥ쥹��
-	 *  ̵��������Ǥ��ʤ���
+	 *  重複アドレス検出要請以外には、送信元アドレスに
+	 *  無指定を指定できない。
 	 */
 	if (IN6_IS_ADDR_UNSPECIFIED(&ip6h->src) && (flags & IPV6_OUT_FLG_DAD) == 0) {
 		error = E_PAR;
 		goto drop;
 		}
 
-	/* ���������ɥ쥹�ˤϥޥ�����㥹�ȥ��ɥ쥹�����Ǥ��ʤ���*/
+	/* 送信元アドレスにはマルチキャストアドレスを指定できない。*/
 	if (IN6_IS_ADDR_MULTICAST(&ip6h->src)) {
 		error = E_PAR;
 		goto drop;
 		}
 
 	/*
-	 *  ��ϩ�����Ԥ���
+	 *  経路選択を行う。
 	 */
 	if ((gw = in6_rtalloc(ifp, &ip6h->dst)) == NULL) {
 		error = E_PAR;
@@ -212,10 +212,10 @@ ip6_output (T_NET_BUF *output, uint16_t flags, TMO tmout)
 		}
 
 	if (!IN6_IS_ADDR_MULTICAST(&ip6h->dst)) {
-		/* ��˥��㥹�ȥ��ɥ쥹�ν��� */
+		/* ユニキャストアドレスの処理 */
 		}
 	else {
-		/* �ޥ�����㥹�ȥ��ɥ쥹�ν��� */
+		/* マルチキャストアドレスの処理 */
 		NET_COUNT_MIB(in6_ifstat.ipv6IfStatsOutMcastPkts, 1);
 		if (flags & IPV6_OUT_FLG_HOP_LIMIT)
 			ip6h->hlim = IPV6_OUT_GET_HOP_LIMIT(flags);
@@ -223,7 +223,7 @@ ip6_output (T_NET_BUF *output, uint16_t flags, TMO tmout)
 			ip6h->hlim = IPV6_DEFAULT_MULTICAST_HOPS;
 		}
 
-	/* Traffic Class �� Flow Label �򥵥ݡ��Ȥ��ʤ��Τ� 0 �����ꤹ�롣*/
+	/* Traffic Class と Flow Label をサポートしないので 0 に設定する。*/
 	ip6h->vcf = htonl(IP6_MAKE_VCF(IPV6_VERSION, 0));
 
 #ifdef IP6_CFG_FRAGMENT
@@ -236,9 +236,9 @@ ip6_output (T_NET_BUF *output, uint16_t flags, TMO tmout)
 	if (0 < mtu && mtu <= IPV6_MMTU) {
 
 		/*
-		 *  Path MTU ����Ͽ����Ƥ����硢
-		 *  MTU �� IPv6 MMTU��1280 �����ƥåȡ˰ʲ��ξ��ϡ�
-		 *  MTU �� IPv6 MMTU �����ꤷʬ�䤷���������롣
+		 *  Path MTU が登録されている場合、
+		 *  MTU が IPv6 MMTU（1280 オクテット）以下の場合は、
+		 *  MTU を IPv6 MMTU に設定し分割して送信する。
 		 */
 		mtu = IPV6_MMTU;
 		alwaysfrag = true;
@@ -255,7 +255,7 @@ ip6_output (T_NET_BUF *output, uint16_t flags, TMO tmout)
 	plen = ntohs(ip6h->plen);
 	if (plen + IP6_HDR_SIZE <= mtu && !alwaysfrag) {
 
-		/* ʬ�䤹��ɬ�פ��ʤ��Ȥ��ν��� */
+		/* 分割する必要がないときの処理 */
 		if ((error = nd6_output(ifp, output, gw, NULL, tmout)) != E_OK) {
 			NET_COUNT_IP6(net_count_ip6[NC_IP6_OUT_ERR_PACKETS], 1);
 			NET_COUNT_MIB(in6_ifstat.ipv6IfStatsOutDiscards, 1);
@@ -263,18 +263,18 @@ ip6_output (T_NET_BUF *output, uint16_t flags, TMO tmout)
 		}
 	else {
 
-		/* ���� ID �����ꤹ�롣*/
+		/* 断片 ID を設定する。*/
 		id = ip6_id ++;
 
-		/* MTU �� IPv6 �κ���ѥ��åȥ�������Ķ���ʤ��褦�ˤ��롣*/
+		/* MTU が IPv6 の最大パケットサイズを超えないようにする。*/
 		if (mtu > IPV6_MAXPACKET)
 			mtu = IPV6_MAXPACKET;
 
 		/*
-		 *  MTU ���顢ʬ����ǽ��ʬ��TINET-1.4 �Ǥϡ�ʬ��إå��ʳ���
-		 *  ��ĥ�إå��ν��Ϥ�̤�����Τ��� 0 �����ƥåȡ�
-		 *  �����ҥإå��Υ�������������Ȥ���8 �����ƥåȰʾ�ʤ����
-		 *  ʬ�䤷�������Ǥ��ʤ����ᥨ�顼�ˤ��롣
+		 *  MTU から、分割不能部分（TINET-1.4 では、分割ヘッダ以外の
+		 *  拡張ヘッダの出力は未実装のため 0 オクテット）
+		 *  と断片ヘッダのサイズを引いたとき、8 オクテット以上なければ
+		 *  分割して送信できないためエラーにする。
 		 */
 		if (((mtu - sizeof(T_IP6_FRAG_HDR)) & ~7) < 8) {
 			error = E_PAR;
@@ -282,34 +282,34 @@ ip6_output (T_NET_BUF *output, uint16_t flags, TMO tmout)
 			}
 
 		/*
-		 *  IPv6 �إå��� next �ե�����ɤ����ꤹ���ͤϡ����ҥإå���
-		 *  ���ҥإå���  next �ե�����ɤ����ꤹ���ͤϡ�
-		 *  ���Υǡ��������� next �ե�����ɤ��͡�
+		 *  IPv6 ヘッダの next フィールドに設定する値は、断片ヘッダ。
+		 *  断片ヘッダの  next フィールドに設定する値は、
+		 *  元のデータグラムの next フィールドの値。
 		 */
 		nextproto  = ip6h->next;
 		ip6h->next = IPPROTO_FRAGMENT;
 
-		/* ʬ�䤷���������롣*/
+		/* 分割して送信する。*/
 		NET_COUNT_IP6(net_count_ip6[NC_IP6_FRAG_OUT], 1);
 		for (foff = 0; foff < plen; foff += flen) {
 
-			/* ���Ҥ�Ĺ����׻�����8 �����ƥåȶ�����Ĵ�����롣*/
+			/* 断片の長さを計算し、8 オクテット境界に調整する。*/
 			if (foff + (mtu - (IP6_HDR_SIZE + sizeof(T_IP6_FRAG_HDR))) < plen)
 				flen = (mtu - (IP6_HDR_SIZE + sizeof(T_IP6_FRAG_HDR))) >> 3 << 3;
 			else
 				flen = plen - foff;
 
-			/* �ͥåȥ���Хåե���������롣*/
+			/* ネットワークバッファを獲得する。*/
 			if (tget_net_buf(&frag, flen + IF_IP6_HDR_SIZE + sizeof(T_IP6_FRAG_HDR), TMO_IP6_FRAG_GET_NET_BUF) == E_OK) {
 
-				/* IPv6 �إå��򥳥ԡ����롣*/
+				/* IPv6 ヘッダをコピーする。*/
 				fip6h = GET_IP6_HDR(frag);
 				*fip6h = *ip6h;
 
-				/* IPv6 �إå������롣*/
+				/* IPv6 ヘッダを埋める。*/
 				fip6h->plen	= htons(flen + sizeof(T_IP6_FRAG_HDR));
 
-				/* ���ҥإå������롣*/
+				/* 断片ヘッダを埋める。*/
 				fip6f = (T_IP6_FRAG_HDR *)GET_IP6_NEXT_HDR(frag);
 				fip6f->off_flag	= htons((uint16_t)(foff & ~7));
 				if (foff + (mtu - (IP6_HDR_SIZE + sizeof(T_IP6_FRAG_HDR))) < plen)
@@ -318,25 +318,25 @@ ip6_output (T_NET_BUF *output, uint16_t flags, TMO tmout)
 				fip6f->ident	= htonl(id);
 				fip6f->next	= nextproto;
 
-				/* SDU �򥳥ԡ����롣*/
+				/* SDU をコピーする。*/
 				memcpy((uint8_t*)(fip6f + 1), GET_IP6_NEXT_HDR(output) + foff, flen);
 				NET_COUNT_IP6(net_count_ip6[NC_IP6_FRAG_OUT_FRAGS], 1);
 				NET_COUNT_MIB(in6_ifstat.ipv6IfStatsOutFragCreates, 1);
 
-				/* �������롣*/
+				/* 送信する。*/
 				if ((error = nd6_output(ifp, frag, gw, NULL, tmout)) != E_OK) {
 					NET_COUNT_MIB(in6_ifstat.ipv6IfStatsOutFragFails, 1);
 					goto drop;
 					}
 				}
 			else {
-				/* �ͥåȥ���Хåե��������Ǥ��ʤ���С������򤢤����롣*/
+				/* ネットワークバッファが獲得できなければ、送信をあきらめる。*/
 				error = E_NOMEM;
 				goto drop;
 				}
 			}
 
-		/* IF �ǥͥåȥ���Хåե��������ʤ��ե饰������å����롣*/
+		/* IF でネットワークバッファを開放しないフラグをチェックする。*/
 		if ((output->flags & NB_FLG_NOREL_IFOUT) == 0) {
 			syscall(rel_net_buf(output));
 			}
@@ -358,7 +358,7 @@ ip6_output (T_NET_BUF *output, uint16_t flags, TMO tmout)
 	return error;
 
 drop:
-	/* IF �ǥͥåȥ���Хåե��������ʤ��ե饰������å����롣*/
+	/* IF でネットワークバッファを開放しないフラグをチェックする。*/
 	if ((output->flags & NB_FLG_NOREL_IFOUT) == 0) {
 		syscall(rel_net_buf(output));
 		}

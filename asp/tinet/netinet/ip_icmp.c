@@ -4,29 +4,29 @@
  *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
- *  �嵭����Ԥϡ��ʲ��� (1)��(4) �ξ�狼��Free Software Foundation 
- *  �ˤ�äƸ�ɽ����Ƥ��� GNU General Public License �� Version 2 �˵�
- *  �Ҥ���Ƥ���������������˸¤ꡤ�ܥ��եȥ��������ܥ��եȥ�����
- *  ����Ѥ�����Τ�ޤࡥ�ʲ�Ʊ���ˤ���ѡ�ʣ�������ѡ������ۡʰʲ���
- *  ���ѤȸƤ֡ˤ��뤳�Ȥ�̵���ǵ������롥
- *  (1) �ܥ��եȥ������򥽡��������ɤη������Ѥ�����ˤϡ��嵭������
- *      ��ɽ�����������Ѿ�浪��Ӳ�����̵�ݾڵ��꤬�����Τޤޤη��ǥ���
- *      ����������˴ޤޤ�Ƥ��뤳�ȡ�
- *  (2) �ܥ��եȥ������򡤥饤�֥������ʤɡ�¾�Υ��եȥ�������ȯ�˻�
- *      �ѤǤ�����Ǻ����ۤ�����ˤϡ������ۤ�ȼ���ɥ�����ȡ�����
- *      �ԥޥ˥奢��ʤɡˤˡ��嵭�����ɽ�����������Ѿ�浪��Ӳ���
- *      ��̵�ݾڵ����Ǻܤ��뤳�ȡ�
- *  (3) �ܥ��եȥ������򡤵�����Ȥ߹���ʤɡ�¾�Υ��եȥ�������ȯ�˻�
- *      �ѤǤ��ʤ����Ǻ����ۤ�����ˤϡ����ξ������������ȡ�
- *    (a) �����ۤ�ȼ���ɥ�����ȡ����Ѽԥޥ˥奢��ʤɡˤˡ��嵭����
- *        �ɽ�����������Ѿ�浪��Ӳ�����̵�ݾڵ����Ǻܤ��뤳�ȡ�
- *  (4) �ܥ��եȥ����������Ѥˤ��ľ��Ū�ޤ��ϴ���Ū�������뤤���ʤ�»
- *      ������⡤�嵭����Ԥ����TOPPERS�ץ��������Ȥ����դ��뤳�ȡ�
+ *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
+ *  によって公表されている GNU General Public License の Version 2 に記
+ *  述されている条件を満たす場合に限り，本ソフトウェア（本ソフトウェア
+ *  を改変したものを含む．以下同じ）を使用・複製・改変・再配布（以下，
+ *  利用と呼ぶ）することを無償で許諾する．
+ *  (1) 本ソフトウェアをソースコードの形で利用する場合には，上記の著作
+ *      権表示，この利用条件および下記の無保証規定が，そのままの形でソー
+ *      スコード中に含まれていること．
+ *  (2) 本ソフトウェアを，ライブラリ形式など，他のソフトウェア開発に使
+ *      用できる形で再配布する場合には，再配布に伴うドキュメント（利用
+ *      者マニュアルなど）に，上記の著作権表示，この利用条件および下記
+ *      の無保証規定を掲載すること．
+ *  (3) 本ソフトウェアを，機器に組み込むなど，他のソフトウェア開発に使
+ *      用できない形で再配布する場合には，次の条件を満たすこと．
+ *    (a) 再配布に伴うドキュメント（利用者マニュアルなど）に，上記の著
+ *        作権表示，この利用条件および下記の無保証規定を掲載すること．
+ *  (4) 本ソフトウェアの利用により直接的または間接的に生じるいかなる損
+ *      害からも，上記著作権者およびTOPPERSプロジェクトを免責すること．
  *
- *  �ܥ��եȥ������ϡ�̵�ݾڤ��󶡤���Ƥ����ΤǤ��롥�嵭����Ԥ�
- *  ���TOPPERS�ץ��������Ȥϡ��ܥ��եȥ������˴ؤ��ơ�����Ŭ�Ѳ�ǽ����
- *  �ޤ�ơ������ʤ��ݾڤ�Ԥ�ʤ����ޤ����ܥ��եȥ����������Ѥˤ��ľ
- *  ��Ū�ޤ��ϴ���Ū�������������ʤ�»���˴ؤ��Ƥ⡤������Ǥ�����ʤ���
+ *  本ソフトウェアは，無保証で提供されているものである．上記著作権者お
+ *  よびTOPPERSプロジェクトは，本ソフトウェアに関して，その適用可能性も
+ *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
+ *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
  *  @(#) $Id: ip_icmp.c,v 1.5.4.1 2015/02/05 02:10:53 abe Exp abe $
  */
@@ -109,13 +109,13 @@
 #include <netinet/tcp_var.h>
 
 /*
- *  �ѿ�
+ *  変数
  */
 
 #ifdef SUPPORT_MIB
 
 /*
- *  SNMP �� ��������١��� (MIB)
+ *  SNMP の 管理情報ベース (MIB)
  */
 
 T_ICMP_STATS icmp_stats;
@@ -123,7 +123,7 @@ T_ICMP_STATS icmp_stats;
 #endif	/* of #ifdef SUPPORT_MIB */
 
 /*
- *  �ؿ�
+ *  関数
  */
 
 static void icmp_echo (T_NET_BUF *input, uint_t ihoff);
@@ -136,9 +136,9 @@ static void icmp_redirect (T_NET_BUF *input, uint_t ihoff);
 #endif	/* of #if NUM_REDIRECT_ROUTE_ENTRY > 0 */
 
 /*
- *  icmp_echo -- �������׵����������Ȥ��ν���
+ *  icmp_echo -- エコー要求を受信したときの処理
  *
- *    input �ˤ� IF �إå��� IP �إå���ޤޤ�Ƥ��롣
+ *    input には IF ヘッダと IP ヘッダも含まれている。
  */
 
 static void
@@ -150,24 +150,24 @@ icmp_echo (T_NET_BUF *input, uint_t ihoff)
 
 	NET_COUNT_MIB(icmp_stats.icmpInEchos, 1);
 
-	/* ��å������η��򥨥����׵� (8) ���� ���������� (0) ��	*/
-	/* �ѹ����������֤���					*/
+	/* メッセージの型をエコー要求 (8) から エコー応答 (0) に	*/
+	/* 変更して送り返す。					*/
 
 	icmp4h = GET_ICMP4_HDR(input, ihoff);
 	icmp4h->type = ICMP4_ECHO_REPLY;
 
-	/* IP �إå��ΰ����ȯ������򴹤��롣*/
+	/* IP ヘッダの宛先と発信元を交換する。*/
 	ip4h      = GET_IP4_HDR(input);
 	addr      = ip4h->src;
 	ip4h->src = ip4h->dst;
 	ip4h->dst = addr;
 
-	/* �����å������׻����롣*/
+	/* チェックサムを計算する。*/
 	icmp4h->sum = 0;
 	icmp4h->sum = in_cksum(icmp4h,
 	                       (uint_t)(((input->len - GET_IF_IP4_HDR_SIZE(input)) + 3) >> 2 << 2));
 
-	/* �������롣*/
+	/* 送信する。*/
 	NET_COUNT_ICMP4(net_count_icmp4.out_octets,
 	               input->len - GET_IF_IP4_HDR_SIZE(input));
 	NET_COUNT_ICMP4(net_count_icmp4.out_packets, 1);
@@ -177,7 +177,7 @@ icmp_echo (T_NET_BUF *input, uint_t ihoff)
 	}
 
 /*
- *  icmp_unreach -- ICMP4_UNREACH ����������Ȥ��ν���
+ *  icmp_unreach -- ICMP4_UNREACH を受信したときの処理
  */
 
 static const int8_t code2error[] = {
@@ -229,9 +229,9 @@ icmp_unreach (T_NET_BUF *input, uint_t ihoff)
 #if NUM_REDIRECT_ROUTE_ENTRY > 0
 
 /*
- *  icmp_redirect -- ����ľ����å���������������Ȥ��ν���
+ *  icmp_redirect -- 向け直しメッセージを受信したときの処理
  *
- *    input �ˤ� IF �إå��� IP �إå���ޤޤ�Ƥ��롣
+ *    input には IF ヘッダと IP ヘッダも含まれている。
  */
 
 static void
@@ -245,12 +245,12 @@ icmp_redirect (T_NET_BUF *input, uint_t ihoff)
 	sip4h  = (T_IP4_HDR *)GET_ICMP4_SDU(input, ihoff);
 
 	/*
-	 *  ���ƥ����å����ʲ��ξ��ϥ��顼
+	 *  内容チェック、以下の場合はエラー
 	 *
-	 *    ��ICMP �����ɤ���ICMP4_REDIRECT_PORT_AND_HOST (3) �ʾ�
-	 *    ���ǡ��������Ĺ����ICMP �κǾ�Ĺ���û�� (IP �إå� + ICMP �إå� + IP �إå� + 8)
-	 *    ���ǡ��������Ĺ����ICMP �κ���Ĺ���û��
-	 *    ��
+	 *    ・ICMP コードが、ICMP4_REDIRECT_PORT_AND_HOST (3) 以上
+	 *    ・データグラム長が、ICMP の最小長より短い (IP ヘッダ + ICMP ヘッダ + IP ヘッダ + 8)
+	 *    ・データグラム長が、ICMP の最大長より短い
+	 *    ・
 	 */
 	if (icmp4h->code > ICMP4_REDIRECT_PORT_AND_HOST ||
 	    ip4h->len < GET_IP4_ICMP4_HDR_SIZE(input) + 8 + IP4_HDR_SIZE ||
@@ -265,9 +265,9 @@ icmp_redirect (T_NET_BUF *input, uint_t ihoff)
 #endif	/* of #if NUM_REDIRECT_ROUTE_ENTRY > 0 */
 
 /*
- *  icmp_input -- ICMP �����ϴؿ�
+ *  icmp_input -- ICMP の入力関数
  *
- *    input �ˤ� IF �إå��� IP �إå���ޤޤ�Ƥ��롣
+ *    input には IF ヘッダと IP ヘッダも含まれている。
  */
 
 uint_t
@@ -282,7 +282,7 @@ icmp_input (T_NET_BUF **inputp, uint_t *offp, uint_t *nextp)
 	               input->len - GET_IF_IP4_HDR_SIZE(input));
 	NET_COUNT_ICMP4(net_count_icmp4.in_packets, 1);
 
-	/* ICMP �إå���Ĺ��������å����롣*/
+	/* ICMP ヘッダの長さをチェックする。*/
 	if (input->len < IF_IP4_ICMP4_HDR_SIZE) {
 		NET_COUNT_ICMP4(net_count_icmp4.in_err_packets, 1);
 		NET_COUNT_MIB(icmp_stats.icmpInErrors, 1);
@@ -291,21 +291,21 @@ icmp_input (T_NET_BUF **inputp, uint_t *offp, uint_t *nextp)
 
 	icmp4h = (T_ICMP4_HDR *)(input->buf + *offp);
 
-	/* 4 �����ƥåȶ����Υǡ���Ĺ */
+	/* 4 オクテット境界のデータ長 */
 	len   = input->len - *offp;
 	align = (len + 3) >> 2 << 2;
 
-	/* 4 �����ƥåȶ����ޤǥѥǥ��󥰤����롣*/
+	/* 4 オクテット境界までパディングで埋める。*/
 	if (align > len)
 		memset((uint8_t*)input->buf + input->len, 0, (size_t)(align - len));
 
-	/* �����å������׻����롣*/
+	/* チェックサムを計算する。*/
 	if (in_cksum(icmp4h, align) != 0) {
 		NET_COUNT_ICMP4(net_count_icmp4.in_err_packets, 1);
 		goto buf_rel;
 		}
 
-	/* ��å������η��ˤ��ʬ�����롣*/
+	/* メッセージの型により分岐する。*/
 	switch (icmp4h->type) {
 	case ICMP4_ECHO_REQUEST:
 		icmp_echo(input, *offp);
@@ -353,11 +353,11 @@ buf_rel:
 #ifdef ICMP_REPLY_ERROR
 
 /*
- *  icmp_error -- ICMP ���顼�����ؿ���
+ *  icmp_error -- ICMP エラー送信関数。
  *
- *    input �ˤ� IF �إå��� IP �إå���ޤޤ�Ƥ��롣
- *    icmp_error �Ǥϡ��ͥåȥ���Хåե� input ���ֵѤ��ʤ��Τǡ�
- *    �ƽФ�¦�ǡ��������Ƥ��齪λ���롣	
+ *    input には IF ヘッダと IP ヘッダも含まれている。
+ *    icmp_error では、ネットワークバッファ input を返却しないので、
+ *    呼出し側で、開放してから終了する。	
  */
 
 void
@@ -372,7 +372,7 @@ icmp_error (uint8_t code, T_NET_BUF *input)
 	ip4h  = GET_IP4_HDR(input);
 	ip4hl = GET_IP4_HDR_SIZE(ip4h);
 
-	/* �����Ѥ� IP �ǡ���������������롣*/
+	/* 送信用の IP データグラムを獲得する。*/
 	if (input->len - ip4hl < 8)
 		len = input->len - ip4hl;
 	else
@@ -384,29 +384,29 @@ icmp_error (uint8_t code, T_NET_BUF *input)
 	                     NBA_SEARCH_ASCENT, TMO_ICMP_OUTPUT) != E_OK)
 		return;
 
-	/* ICMP �إå������ꤹ�롣*/
+	/* ICMP ヘッダを設定する。*/
 	icmp4h		= GET_ICMP4_HDR(output, IF_IP4_ICMP4_HDR_OFFSET);
 	icmp4h->type	= ICMP4_UNREACH;
 	icmp4h->code	= code;
 	icmp4h->data.addr= 0;
 
-	/* ���顼��ȯ������ IP �إå��� �ǡ��� 8 �����ƥåȤ򥳥ԡ����롣*/
+	/* エラーが発生した IP ヘッダと データ 8 オクテットをコピーする。*/
 	memcpy(GET_ICMP4_SDU(output, IF_IP4_ICMP4_HDR_OFFSET),
 	       GET_IP4_HDR(input), (size_t)(ip4hl + len));
 
-	/* 4 �����ƥåȶ����Υǡ���Ĺ */
+	/* 4 オクテット境界のデータ長 */
 	align = (len + 3) >> 2 << 2;
 
-	/* 4 �����ƥåȶ����ޤǥѥǥ��󥰤����롣*/
+	/* 4 オクテット境界までパディングで埋める。*/
 	if (align > len)
 		memset((uint8_t*)GET_ICMP4_SDU(output, IF_IP4_ICMP4_HDR_OFFSET) + ip4hl + len,
 		       0, (size_t)(align - len));
 
-	/* �����å������׻����롣*/
+	/* チェックサムを計算する。*/
 	icmp4h->sum = 0;
 	icmp4h->sum = in_cksum(icmp4h, (uint_t)(ICMP4_HDR_SIZE + ip4hl + align));
 
-	/* �������롣*/
+	/* 送信する。*/
 	NET_COUNT_ICMP4(net_count_icmp4.out_octets,
 	               output->len - GET_IF_IP4_HDR_SIZE(output));
 	NET_COUNT_ICMP4(net_count_icmp4.out_packets, 1);

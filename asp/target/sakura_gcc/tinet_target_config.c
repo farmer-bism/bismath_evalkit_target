@@ -4,40 +4,40 @@
  *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  * 
- *  ��L���쌠�҂́C�ȉ���(1)�`(4)�̏����𖞂����ꍇ�Ɍ���C�{�\�t�g�E�F
- *  �A�i�{�\�t�g�E�F�A�����ς������̂��܂ށD�ȉ������j���g�p�E�����E��
- *  �ρE�Ĕz�z�i�ȉ��C���p�ƌĂԁj���邱�Ƃ𖳏��ŋ�������D
- *  (1) �{�\�t�g�E�F�A���\�[�X�R�[�h�̌`�ŗ��p����ꍇ�ɂ́C��L�̒���
- *      ���\���C���̗��p��������щ��L�̖��ۏ؋K�肪�C���̂܂܂̌`�Ń\�[
- *      �X�R�[�h���Ɋ܂܂�Ă��邱�ƁD
- *  (2) �{�\�t�g�E�F�A���C���C�u�����`���ȂǁC���̃\�t�g�E�F�A�J���Ɏg
- *      �p�ł���`�ōĔz�z����ꍇ�ɂ́C�Ĕz�z�ɔ����h�L�������g�i���p
- *      �҃}�j���A���Ȃǁj�ɁC��L�̒��쌠�\���C���̗��p��������щ��L
- *      �̖��ۏ؋K����f�ڂ��邱�ƁD
- *  (3) �{�\�t�g�E�F�A���C�@��ɑg�ݍ��ނȂǁC���̃\�t�g�E�F�A�J���Ɏg
- *      �p�ł��Ȃ��`�ōĔz�z����ꍇ�ɂ́C���̂����ꂩ�̏����𖞂�����
- *      �ƁD
- *    (a) �Ĕz�z�ɔ����h�L�������g�i���p�҃}�j���A���Ȃǁj�ɁC��L�̒�
- *        �쌠�\���C���̗��p��������щ��L�̖��ۏ؋K����f�ڂ��邱�ƁD
- *    (b) �Ĕz�z�̌`�Ԃ��C�ʂɒ�߂���@�ɂ���āCTOPPERS�v���W�F�N�g��
- *        �񍐂��邱�ƁD
- *  (4) �{�\�t�g�E�F�A�̗��p�ɂ�蒼�ړI�܂��͊ԐړI�ɐ����邢���Ȃ鑹
- *      �Q������C��L���쌠�҂����TOPPERS�v���W�F�N�g��Ɛӂ��邱�ƁD
- *      �܂��C�{�\�t�g�E�F�A�̃��[�U�܂��̓G���h���[�U����̂����Ȃ闝
- *      �R�Ɋ�Â�����������C��L���쌠�҂����TOPPERS�v���W�F�N�g��
- *      �Ɛӂ��邱�ƁD
+ *  上記著作権者は，以下の(1)〜(4)の条件を満たす場合に限り，本ソフトウェ
+ *  ア（本ソフトウェアを改変したものを含む．以下同じ）を使用・複製・改
+ *  変・再配布（以下，利用と呼ぶ）することを無償で許諾する．
+ *  (1) 本ソフトウェアをソースコードの形で利用する場合には，上記の著作
+ *      権表示，この利用条件および下記の無保証規定が，そのままの形でソー
+ *      スコード中に含まれていること．
+ *  (2) 本ソフトウェアを，ライブラリ形式など，他のソフトウェア開発に使
+ *      用できる形で再配布する場合には，再配布に伴うドキュメント（利用
+ *      者マニュアルなど）に，上記の著作権表示，この利用条件および下記
+ *      の無保証規定を掲載すること．
+ *  (3) 本ソフトウェアを，機器に組み込むなど，他のソフトウェア開発に使
+ *      用できない形で再配布する場合には，次のいずれかの条件を満たすこ
+ *      と．
+ *    (a) 再配布に伴うドキュメント（利用者マニュアルなど）に，上記の著
+ *        作権表示，この利用条件および下記の無保証規定を掲載すること．
+ *    (b) 再配布の形態を，別に定める方法によって，TOPPERSプロジェクトに
+ *        報告すること．
+ *  (4) 本ソフトウェアの利用により直接的または間接的に生じるいかなる損
+ *      害からも，上記著作権者およびTOPPERSプロジェクトを免責すること．
+ *      また，本ソフトウェアのユーザまたはエンドユーザからのいかなる理
+ *      由に基づく請求からも，上記著作権者およびTOPPERSプロジェクトを
+ *      免責すること．
  * 
- *  �{�\�t�g�E�F�A�́C���ۏ؂Œ񋟂���Ă�����̂ł���D��L���쌠�҂�
- *  ���TOPPERS�v���W�F�N�g�́C�{�\�t�g�E�F�A�Ɋւ��āC����̎g�p�ړI
- *  �ɑ΂���K�������܂߂āC�����Ȃ�ۏ؂��s��Ȃ��D�܂��C�{�\�t�g�E�F
- *  �A�̗��p�ɂ�蒼�ړI�܂��͊ԐړI�ɐ����������Ȃ鑹�Q�Ɋւ��Ă��C��
- *  �̐ӔC�𕉂�Ȃ��D
+ *  本ソフトウェアは，無保証で提供されているものである．上記著作権者お
+ *  よびTOPPERSプロジェクトは，本ソフトウェアに関して，特定の使用目的
+ *  に対する適合性も含めて，いかなる保証も行わない．また，本ソフトウェ
+ *  アの利用により直接的または間接的に生じたいかなる損害に関しても，そ
+ *  の責任を負わない．
  * 
  *  @(#) $Id$
  */
 
 /*
- *  �^�[�Q�b�g�ˑ����W���[���iRX63N�p�j
+ *  ターゲット依存モジュール（RX63N用）
  */
 
 #include <sil.h>
@@ -50,61 +50,61 @@
 
 
 /*
- *  rx62n_bus_init -- �^�[�Q�b�g�ˑ����̃o�X�̏�����
+ *  rx62n_bus_init -- ターゲット依存部のバスの初期化
  */
 
 void
 rx62n_bus_init (void)
 {
-	/* �C�[�T�l�b�g�E�R���g���[���̓�������� */
-	sil_wrh_mem((uint16_t *)SYSTEM_PRCR_ADDR, (uint16_t)0xA502);	/* �����݋��� */
+	/* イーサネット・コントローラの動作を許可 */
+	sil_wrh_mem((uint16_t *)SYSTEM_PRCR_ADDR, (uint16_t)0xA502);	/* 書込み許可 */
 	sil_wrw_mem((uint32_t *)SYSTEM_MSTPCRB_ADDR,
 		sil_rew_mem((uint32_t *)SYSTEM_MSTPCRB_ADDR) & ~SYSTEM_MSTPCRB_MSTPB15_BIT);
-	sil_wrh_mem((uint16_t *)SYSTEM_PRCR_ADDR, (uint16_t)0xA500);	/* �����݋֎~ */
+	sil_wrh_mem((uint16_t *)SYSTEM_PRCR_ADDR, (uint16_t)0xA500);	/* 書込み禁止 */
 
-	/* EtherNET�L�� */
-	/* PA3�`5 RMII_MDIO, RMII_MDC, RMII_LINKSTA */
+	/* EtherNET有効 */
+	/* PA3〜5 RMII_MDIO, RMII_MDC, RMII_LINKSTA */
 	sil_wrb_mem((uint8_t *)PORTA_PMR_ADDR,
 		sil_reb_mem((uint8_t *)PORTA_PMR_ADDR) | (1 << 3) | (1 << 4) | (1 << 5));
-	/* PB0�`7 RXD1, RXD0, REF50CK, RX-ER, TXD-EN, TXD0, TXD1, CRS */
+	/* PB0〜7 RXD1, RXD0, REF50CK, RX-ER, TXD-EN, TXD0, TXD1, CRS */
 	sil_wrb_mem((uint8_t *)PORTB_PMR_ADDR,
 		sil_reb_mem((uint8_t *)PORTB_PMR_ADDR) | 0xFF);
 
-	/* �������݃v���e�N�g���W�X�^�̐ݒ� PFSWE�r�b�g�ւ̏������݂����� */
+	/* 書き込みプロテクトレジスタの設定 PFSWEビットへの書き込みを許可 */
 	sil_wrb_mem((uint8_t *)(MPC_PWPR_ADDR) , 0x00);
-	/* �������݃v���e�N�g���W�X�^�̐ݒ� PxxFS���W�X�^�ւ̏������݂����� */
+	/* 書き込みプロテクトレジスタの設定 PxxFSレジスタへの書き込みを許可 */
 	sil_wrb_mem((uint8_t *)(MPC_PWPR_ADDR) , 0x40);
 
-	/* PA3��ET_MDIO�Ƃ��� */
+	/* PA3をET_MDIOとする */
 	sil_wrb_mem((uint8_t *)MPC_PA3PFS_ADDR, 0x11); 
-	/* PA4��ET_MDC�Ƃ��� */
+	/* PA4をET_MDCとする */
 	sil_wrb_mem((uint8_t *)MPC_PA4PFS_ADDR, 0x11); 
-	/* PA5��ET_LINKSTA�Ƃ��� */
+	/* PA5をET_LINKSTAとする */
 	sil_wrb_mem((uint8_t *)MPC_PA5PFS_ADDR, 0x11); 
 
-	/* PB0��RXD1�Ƃ��� */
+	/* PB0をRXD1とする */
 	sil_wrb_mem((uint8_t *)MPC_PB0PFS_ADDR, 0x12);
-	/* PB1��RXD0�Ƃ��� */
+	/* PB1をRXD0とする */
 	sil_wrb_mem((uint8_t *)MPC_PB1PFS_ADDR, 0x12);
-	/* PB2��REF50CK�Ƃ��� */
+	/* PB2をREF50CKとする */
 	sil_wrb_mem((uint8_t *)MPC_PB2PFS_ADDR, 0x12);
-	/* PB3��RX-ER�Ƃ��� */
+	/* PB3をRX-ERとする */
 	sil_wrb_mem((uint8_t *)MPC_PB3PFS_ADDR, 0x12);
-	/* PB4��TXD-EN�Ƃ��� */
+	/* PB4をTXD-ENとする */
 	sil_wrb_mem((uint8_t *)MPC_PB4PFS_ADDR, 0x12);
-	/* PB5��TXD0�Ƃ��� */
+	/* PB5をTXD0とする */
 	sil_wrb_mem((uint8_t *)MPC_PB5PFS_ADDR, 0x12);
-	/* PB6��TXD1�Ƃ��� */
+	/* PB6をTXD1とする */
 	sil_wrb_mem((uint8_t *)MPC_PB6PFS_ADDR, 0x12);
-	/* PB7��CRS�Ƃ��� */
+	/* PB7をCRSとする */
 	sil_wrb_mem((uint8_t *)MPC_PB7PFS_ADDR, 0x12);
 
-	/* �������݃v���e�N�g���W�X�^�̐ݒ� �������݂��֎~ */
+	/* 書き込みプロテクトレジスタの設定 書き込みを禁止 */
 	sil_wrb_mem((uint8_t *)(MPC_PWPR_ADDR) , 0x80);
 }
 
 /*
- *  rx62n_inter_init -- �^�[�Q�b�g�ˑ����̊����݂̏�����
+ *  rx62n_inter_init -- ターゲット依存部の割込みの初期化
  */
 
 void

@@ -5,56 +5,56 @@
  * 
  *  Copyright (C) 2008-2010 by Witz Corporation, JAPAN
  * 
- *  ��L���쌠�҂́C�ȉ���(1)�`(4)�̏����𖞂����ꍇ�Ɍ���C�{�\�t�g�E�F
- *  �A�i�{�\�t�g�E�F�A�����ς������̂��܂ށD�ȉ������j���g�p�E�����E��
- *  �ρE�Ĕz�z�i�ȉ��C���p�ƌĂԁj���邱�Ƃ𖳏��ŋ�������D
- *  (1) �{�\�t�g�E�F�A���\�[�X�R�[�h�̌`�ŗ��p����ꍇ�ɂ́C��L�̒���
- *      ���\���C���̗��p��������щ��L�̖��ۏ؋K�肪�C���̂܂܂̌`�Ń\�[
- *      �X�R�[�h���Ɋ܂܂�Ă��邱�ƁD
- *  (2) �{�\�t�g�E�F�A���C���C�u�����`���ȂǁC���̃\�t�g�E�F�A�J���Ɏg
- *      �p�ł���`�ōĔz�z����ꍇ�ɂ́C�Ĕz�z�ɔ����h�L�������g�i���p
- *      �҃}�j���A���Ȃǁj�ɁC��L�̒��쌠�\���C���̗��p��������щ��L
- *      �̖��ۏ؋K����f�ڂ��邱�ƁD
- *  (3) �{�\�t�g�E�F�A���C�@��ɑg�ݍ��ނȂǁC���̃\�t�g�E�F�A�J���Ɏg
- *      �p�ł��Ȃ��`�ōĔz�z����ꍇ�ɂ́C���̂����ꂩ�̏����𖞂�����
- *      �ƁD
- *    (a) �Ĕz�z�ɔ����h�L�������g�i���p�҃}�j���A���Ȃǁj�ɁC��L�̒�
- *        �쌠�\���C���̗��p��������щ��L�̖��ۏ؋K����f�ڂ��邱�ƁD
- *    (b) �Ĕz�z�̌`�Ԃ��C�ʂɒ�߂���@�ɂ���āCTOPPERS�v���W�F�N�g��
- *        �񍐂��邱�ƁD
- *  (4) �{�\�t�g�E�F�A�̗��p�ɂ�蒼�ړI�܂��͊ԐړI�ɐ����邢���Ȃ鑹
- *      �Q������C��L���쌠�҂����TOPPERS�v���W�F�N�g��Ɛӂ��邱�ƁD
- *      �܂��C�{�\�t�g�E�F�A�̃��[�U�܂��̓G���h���[�U����̂����Ȃ闝
- *      �R�Ɋ�Â�����������C��L���쌠�҂����TOPPERS�v���W�F�N�g��
- *      �Ɛӂ��邱�ƁD
+ *  上記著作権者は，以下の(1)〜(4)の条件を満たす場合に限り，本ソフトウェ
+ *  ア（本ソフトウェアを改変したものを含む．以下同じ）を使用・複製・改
+ *  変・再配布（以下，利用と呼ぶ）することを無償で許諾する．
+ *  (1) 本ソフトウェアをソースコードの形で利用する場合には，上記の著作
+ *      権表示，この利用条件および下記の無保証規定が，そのままの形でソー
+ *      スコード中に含まれていること．
+ *  (2) 本ソフトウェアを，ライブラリ形式など，他のソフトウェア開発に使
+ *      用できる形で再配布する場合には，再配布に伴うドキュメント（利用
+ *      者マニュアルなど）に，上記の著作権表示，この利用条件および下記
+ *      の無保証規定を掲載すること．
+ *  (3) 本ソフトウェアを，機器に組み込むなど，他のソフトウェア開発に使
+ *      用できない形で再配布する場合には，次のいずれかの条件を満たすこ
+ *      と．
+ *    (a) 再配布に伴うドキュメント（利用者マニュアルなど）に，上記の著
+ *        作権表示，この利用条件および下記の無保証規定を掲載すること．
+ *    (b) 再配布の形態を，別に定める方法によって，TOPPERSプロジェクトに
+ *        報告すること．
+ *  (4) 本ソフトウェアの利用により直接的または間接的に生じるいかなる損
+ *      害からも，上記著作権者およびTOPPERSプロジェクトを免責すること．
+ *      また，本ソフトウェアのユーザまたはエンドユーザからのいかなる理
+ *      由に基づく請求からも，上記著作権者およびTOPPERSプロジェクトを
+ *      免責すること．
  * 
- *  �{�\�t�g�E�F�A�́C���ۏ؂Œ񋟂���Ă�����̂ł���D��L���쌠�҂�
- *  ���TOPPERS�v���W�F�N�g�́C�{�\�t�g�E�F�A�Ɋւ��āC����̎g�p�ړI
- *  �ɑ΂���K�������܂߂āC�����Ȃ�ۏ؂��s��Ȃ��D�܂��C�{�\�t�g�E�F
- *  �A�̗��p�ɂ�蒼�ړI�܂��͊ԐړI�ɐ����������Ȃ鑹�Q�Ɋւ��Ă��C��
- *  �̐ӔC�𕉂�Ȃ��D
+ *  本ソフトウェアは，無保証で提供されているものである．上記著作権者お
+ *  よびTOPPERSプロジェクトは，本ソフトウェアに関して，特定の使用目的
+ *  に対する適合性も含めて，いかなる保証も行わない．また，本ソフトウェ
+ *  アの利用により直接的または間接的に生じたいかなる損害に関しても，そ
+ *  の責任を負わない．
  * 
  */
 
 /*
- *  RX610�Ɉˑ������`
+ *  RX610に依存する定義
  */
 #ifndef TOPPERS_RX610_H
 #define TOPPERS_RX610_H
 
 /*
- *  CPU��O�n���h���ԍ��̒�`(�Œ�x�N�^�e�[�u��)
+ *  CPU例外ハンドラ番号の定義(固定ベクタテーブル)
  *
- *  �ԍ��͈̔͂�0 - 31
+ *  番号の範囲は0 - 31
  */
-#define INT_PRIVILEGED_INSTRUNCTION		20		/* �������ߗ�O */
-#define INT_UNDEF_INSTRUNCTION			23		/* ����`���ߗ�O */
-#define INT_FLOATINGPOINT_INSTRUCTION	25		/* ���������_��O */
-#define INT_NMI							30		/* �m���}�X�J�u�����荞�� */
-#define INT_RESET						31		/* ���Z�b�g */
+#define INT_PRIVILEGED_INSTRUNCTION		20		/* 特権命令例外 */
+#define INT_UNDEF_INSTRUNCTION			23		/* 未定義命令例外 */
+#define INT_FLOATINGPOINT_INSTRUCTION	25		/* 浮動小数点例外 */
+#define INT_NMI							30		/* ノンマスカブル割り込み */
+#define INT_RESET						31		/* リセット */
 
 /*
- *  �����ݔԍ��̒�`(�σx�N�^�e�[�u��)
+ *  割込み番号の定義(可変ベクタテーブル)
  */
 #define INT_BUSERR			16
 #define INT_FCU_FCUERR		21
@@ -190,10 +190,10 @@
 #define INT_RIIC1_TEI1		253
 
 /*
- *  �e���W���[���̃��W�X�^�y�ѐݒ�r�b�g���
+ *  各モジュールのレジスタ及び設定ビット情報
  */
 /*
- * ���W���[���X�g�b�v�R���g���[�����W�X�^A�iMSTPCRA�j
+ * モジュールストップコントロールレジスタA（MSTPCRA）
  */
 #define SYSTEM_MSTPCRA_ADDR			( ( volatile uint32_t  * )0x00080010 )
 #define SYSTEM_MSTPCRA_MSTPA4_BIT	( 1UL << 4U )
@@ -214,7 +214,7 @@
 #define SYSTEM_MSTPCRA_ACSE_BIT		( 1UL << 31U)
 
 /*
- * ���W���[���X�g�b�v�R���g���[�����W�X�^B�iMSTPCRB�j
+ * モジュールストップコントロールレジスタB（MSTPCRB）
  */
 #define SYSTEM_MSTPCRB_ADDR			( ( volatile uint32_t  * )0x00080014 )
 #define SYSTEM_MSTPCRB_MSTPB20_BIT	( 1UL << 20U )
@@ -229,14 +229,14 @@
 #define SYSTEM_MSTPCRB_MSTPB31_BIT	( 1UL << 31U )
 
 /*
- * ���W���[���X�g�b�v�R���g���[�����W�X�^C�iMSTPCRC�j
+ * モジュールストップコントロールレジスタC（MSTPCRC）
  */
 #define SYSTEM_MSTPCRC_ADDR			( ( volatile uint32_t  * )0x00080018 )
 #define SYSTEM_MSTPCRC_MSTPC0_BIT	( 1UL << 0U )
 #define SYSTEM_MSTPCRC_MSTPC1_BIT	( 1UL << 1U )
 
 /*
- * ���荞�ݗv�����W�X�^
+ * 割り込み要求レジスタ
  */
 #define ICU_IR016_ADDR			( ( volatile uint8_t  * )0x00087010 )
 #define ICU_IR021_ADDR			( ( volatile uint8_t  * )0x00087015 )
@@ -373,7 +373,7 @@
 #define ICU_IR_BIT				( 1U << 0U )
 
 /*
- * ���荞�ݗv����ݒ背�W�X�^
+ * 割り込み要求先設定レジスタ
  */
 #define ICU_ISELR028_ADDR		( ( volatile uint8_t  * )0x0008711C )
 #define ICU_ISELR029_ADDR		( ( volatile uint8_t  * )0x0008711D )
@@ -464,7 +464,7 @@
 #define ICU_ISEL_BIT			( 3U << 0U )
 
 /*
- * ���荞�ݗv�������W�X�^
+ * 割り込み要求許可レジスタ
  */
 #define ICU_IER02_ADDR			( ( volatile uint8_t  * )0x00087202 )
 #define ICU_IER03_ADDR			( ( volatile uint8_t  * )0x00087203 )
@@ -500,7 +500,7 @@
 #define ICU_IEN7_BIT			( 1U << 7U )
 
 /* 
- * ���荞�ݗv���v���C�I���e�B���W�X�^i(i=00h�`8Fh)�̐ݒ�
+ * 割り込み要因プライオリティレジスタi(i=00h〜8Fh)の設定
  */
 #define ICU_IPR00_ADDR			( ( volatile uint8_t  * )0x00087300 )
 #define ICU_IPR01_ADDR			( ( volatile uint8_t  * )0x00087301 )
@@ -581,7 +581,7 @@
 
 
 /*
- *  IRQ�R���g���[�����W�X�^
+ *  IRQコントロールレジスタ
  */
 #define ICU_IRQ0_ADDR			( ( volatile uint8_t  * )0x0008C320 )
 #define ICU_IRQ1_ADDR			( ( volatile uint8_t  * )0x0008C321 )
@@ -603,7 +603,7 @@
 
 
 /*
- *  �e�`�����l���̃��W�X�^�y�ѐݒ�r�b�g���
+ *  各チャンネルのレジスタ及び設定ビット情報
  */
 #define CMT_CMSTR0_ADDR			( ( volatile uint16_t  * )0x00088000 )
 #define CMT_CMSTR0_STR0_BIT		( 1U << 0U )
@@ -712,7 +712,7 @@
 #define SCI_SEMR_ABCS_BIT		( 1U << 4U )
 
 /*
- *  I/O�|�[�g�̃��W�X�^�y�ѐݒ�r�b�g���
+ *  I/Oポートのレジスタ及び設定ビット情報
  */
 #define PORT0_DDR_ADDR			( ( volatile uint8_t  * )0x0008C000 )
 #define PORT1_DDR_ADDR			( ( volatile uint8_t  * )0x0008C001 )
@@ -794,12 +794,12 @@
 #define PORT_ICR_B7_BIT			( 0x01U << 7U )
 
 /*
- *  UART�֘A�̒�`
+ *  UART関連の定義
  *
- *  pdic��rx600/rx610_uart.c�Ŏg�p����D
+ *  pdicのrx600/rx610_uart.cで使用する．
  */
 /*
- *  �V���A��I/O�̌�
+ *  シリアルI/Oの個数
  */
 #define TNUM_SIOP			( 7 )
 

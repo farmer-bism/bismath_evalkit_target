@@ -4,29 +4,29 @@
  *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
- *  ¾åµ­Ãøºî¸¢¼Ô¤Ï¡¤°Ê²¼¤Î (1)¡Á(4) ¤Î¾ò·ï¤«¡¤Free Software Foundation 
- *  ¤Ë¤è¤Ã¤Æ¸øÉ½¤µ¤ì¤Æ¤¤¤ë GNU General Public License ¤Î Version 2 ¤Ëµ­
- *  ½Ò¤µ¤ì¤Æ¤¤¤ë¾ò·ï¤òËş¤¿¤¹¾ì¹ç¤Ë¸Â¤ê¡¤ËÜ¥½¥Õ¥È¥¦¥§¥¢¡ÊËÜ¥½¥Õ¥È¥¦¥§¥¢
- *  ¤ò²şÊÑ¤·¤¿¤â¤Î¤ò´Ş¤à¡¥°Ê²¼Æ±¤¸¡Ë¤ò»ÈÍÑ¡¦Ê£À½¡¦²şÊÑ¡¦ºÆÇÛÉÛ¡Ê°Ê²¼¡¤
- *  ÍøÍÑ¤È¸Æ¤Ö¡Ë¤¹¤ë¤³¤È¤òÌµ½ş¤ÇµöÂú¤¹¤ë¡¥
- *  (1) ËÜ¥½¥Õ¥È¥¦¥§¥¢¤ò¥½¡¼¥¹¥³¡¼¥É¤Î·Á¤ÇÍøÍÑ¤¹¤ë¾ì¹ç¤Ë¤Ï¡¤¾åµ­¤ÎÃøºî
- *      ¸¢É½¼¨¡¤¤³¤ÎÍøÍÑ¾ò·ï¤ª¤è¤Ó²¼µ­¤ÎÌµÊİ¾Úµ¬Äê¤¬¡¤¤½¤Î¤Ş¤Ş¤Î·Á¤Ç¥½¡¼
- *      ¥¹¥³¡¼¥ÉÃæ¤Ë´Ş¤Ş¤ì¤Æ¤¤¤ë¤³¤È¡¥
- *  (2) ËÜ¥½¥Õ¥È¥¦¥§¥¢¤ò¡¤¥é¥¤¥Ö¥é¥ê·Á¼°¤Ê¤É¡¤Â¾¤Î¥½¥Õ¥È¥¦¥§¥¢³«È¯¤Ë»È
- *      ÍÑ¤Ç¤­¤ë·Á¤ÇºÆÇÛÉÛ¤¹¤ë¾ì¹ç¤Ë¤Ï¡¤ºÆÇÛÉÛ¤ËÈ¼¤¦¥É¥­¥å¥á¥ó¥È¡ÊÍøÍÑ
- *      ¼Ô¥Ş¥Ë¥å¥¢¥ë¤Ê¤É¡Ë¤Ë¡¤¾åµ­¤ÎÃøºî¸¢É½¼¨¡¤¤³¤ÎÍøÍÑ¾ò·ï¤ª¤è¤Ó²¼µ­
- *      ¤ÎÌµÊİ¾Úµ¬Äê¤ò·ÇºÜ¤¹¤ë¤³¤È¡¥
- *  (3) ËÜ¥½¥Õ¥È¥¦¥§¥¢¤ò¡¤µ¡´ï¤ËÁÈ¤ß¹ş¤à¤Ê¤É¡¤Â¾¤Î¥½¥Õ¥È¥¦¥§¥¢³«È¯¤Ë»È
- *      ÍÑ¤Ç¤­¤Ê¤¤·Á¤ÇºÆÇÛÉÛ¤¹¤ë¾ì¹ç¤Ë¤Ï¡¤¼¡¤Î¾ò·ï¤òËş¤¿¤¹¤³¤È¡¥
- *    (a) ºÆÇÛÉÛ¤ËÈ¼¤¦¥É¥­¥å¥á¥ó¥È¡ÊÍøÍÑ¼Ô¥Ş¥Ë¥å¥¢¥ë¤Ê¤É¡Ë¤Ë¡¤¾åµ­¤ÎÃø
- *        ºî¸¢É½¼¨¡¤¤³¤ÎÍøÍÑ¾ò·ï¤ª¤è¤Ó²¼µ­¤ÎÌµÊİ¾Úµ¬Äê¤ò·ÇºÜ¤¹¤ë¤³¤È¡¥
- *  (4) ËÜ¥½¥Õ¥È¥¦¥§¥¢¤ÎÍøÍÑ¤Ë¤è¤êÄ¾ÀÜÅª¤Ş¤¿¤Ï´ÖÀÜÅª¤ËÀ¸¤¸¤ë¤¤¤«¤Ê¤ëÂ»
- *      ³²¤«¤é¤â¡¤¾åµ­Ãøºî¸¢¼Ô¤ª¤è¤ÓTOPPERS¥×¥í¥¸¥§¥¯¥È¤òÌÈÀÕ¤¹¤ë¤³¤È¡¥
+ *  ä¸Šè¨˜è‘—ä½œæ¨©è€…ã¯ï¼Œä»¥ä¸‹ã® (1)ã€œ(4) ã®æ¡ä»¶ã‹ï¼ŒFree Software Foundation 
+ *  ã«ã‚ˆã£ã¦å…¬è¡¨ã•ã‚Œã¦ã„ã‚‹ GNU General Public License ã® Version 2 ã«è¨˜
+ *  è¿°ã•ã‚Œã¦ã„ã‚‹æ¡ä»¶ã‚’æº€ãŸã™å ´åˆã«é™ã‚Šï¼Œæœ¬ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ï¼ˆæœ¬ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢
+ *  ã‚’æ”¹å¤‰ã—ãŸã‚‚ã®ã‚’å«ã‚€ï¼ä»¥ä¸‹åŒã˜ï¼‰ã‚’ä½¿ç”¨ãƒ»è¤‡è£½ãƒ»æ”¹å¤‰ãƒ»å†é…å¸ƒï¼ˆä»¥ä¸‹ï¼Œ
+ *  åˆ©ç”¨ã¨å‘¼ã¶ï¼‰ã™ã‚‹ã“ã¨ã‚’ç„¡å„Ÿã§è¨±è«¾ã™ã‚‹ï¼
+ *  (1) æœ¬ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚’ã‚½ãƒ¼ã‚¹ã‚³ãƒ¼ãƒ‰ã®å½¢ã§åˆ©ç”¨ã™ã‚‹å ´åˆã«ã¯ï¼Œä¸Šè¨˜ã®è‘—ä½œ
+ *      æ¨©è¡¨ç¤ºï¼Œã“ã®åˆ©ç”¨æ¡ä»¶ãŠã‚ˆã³ä¸‹è¨˜ã®ç„¡ä¿è¨¼è¦å®šãŒï¼Œãã®ã¾ã¾ã®å½¢ã§ã‚½ãƒ¼
+ *      ã‚¹ã‚³ãƒ¼ãƒ‰ä¸­ã«å«ã¾ã‚Œã¦ã„ã‚‹ã“ã¨ï¼
+ *  (2) æœ¬ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚’ï¼Œãƒ©ã‚¤ãƒ–ãƒ©ãƒªå½¢å¼ãªã©ï¼Œä»–ã®ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢é–‹ç™ºã«ä½¿
+ *      ç”¨ã§ãã‚‹å½¢ã§å†é…å¸ƒã™ã‚‹å ´åˆã«ã¯ï¼Œå†é…å¸ƒã«ä¼´ã†ãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆï¼ˆåˆ©ç”¨
+ *      è€…ãƒãƒ‹ãƒ¥ã‚¢ãƒ«ãªã©ï¼‰ã«ï¼Œä¸Šè¨˜ã®è‘—ä½œæ¨©è¡¨ç¤ºï¼Œã“ã®åˆ©ç”¨æ¡ä»¶ãŠã‚ˆã³ä¸‹è¨˜
+ *      ã®ç„¡ä¿è¨¼è¦å®šã‚’æ²è¼‰ã™ã‚‹ã“ã¨ï¼
+ *  (3) æœ¬ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚’ï¼Œæ©Ÿå™¨ã«çµ„ã¿è¾¼ã‚€ãªã©ï¼Œä»–ã®ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢é–‹ç™ºã«ä½¿
+ *      ç”¨ã§ããªã„å½¢ã§å†é…å¸ƒã™ã‚‹å ´åˆã«ã¯ï¼Œæ¬¡ã®æ¡ä»¶ã‚’æº€ãŸã™ã“ã¨ï¼
+ *    (a) å†é…å¸ƒã«ä¼´ã†ãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆï¼ˆåˆ©ç”¨è€…ãƒãƒ‹ãƒ¥ã‚¢ãƒ«ãªã©ï¼‰ã«ï¼Œä¸Šè¨˜ã®è‘—
+ *        ä½œæ¨©è¡¨ç¤ºï¼Œã“ã®åˆ©ç”¨æ¡ä»¶ãŠã‚ˆã³ä¸‹è¨˜ã®ç„¡ä¿è¨¼è¦å®šã‚’æ²è¼‰ã™ã‚‹ã“ã¨ï¼
+ *  (4) æœ¬ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã®åˆ©ç”¨ã«ã‚ˆã‚Šç›´æ¥çš„ã¾ãŸã¯é–“æ¥çš„ã«ç”Ÿã˜ã‚‹ã„ã‹ãªã‚‹æ
+ *      å®³ã‹ã‚‰ã‚‚ï¼Œä¸Šè¨˜è‘—ä½œæ¨©è€…ãŠã‚ˆã³TOPPERSãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã‚’å…è²¬ã™ã‚‹ã“ã¨ï¼
  *
- *  ËÜ¥½¥Õ¥È¥¦¥§¥¢¤Ï¡¤ÌµÊİ¾Ú¤ÇÄó¶¡¤µ¤ì¤Æ¤¤¤ë¤â¤Î¤Ç¤¢¤ë¡¥¾åµ­Ãøºî¸¢¼Ô¤ª
- *  ¤è¤ÓTOPPERS¥×¥í¥¸¥§¥¯¥È¤Ï¡¤ËÜ¥½¥Õ¥È¥¦¥§¥¢¤Ë´Ø¤·¤Æ¡¤¤½¤ÎÅ¬ÍÑ²ÄÇ½À­¤â
- *  ´Ş¤á¤Æ¡¤¤¤¤«¤Ê¤ëÊİ¾Ú¤â¹Ô¤ï¤Ê¤¤¡¥¤Ş¤¿¡¤ËÜ¥½¥Õ¥È¥¦¥§¥¢¤ÎÍøÍÑ¤Ë¤è¤êÄ¾
- *  ÀÜÅª¤Ş¤¿¤Ï´ÖÀÜÅª¤ËÀ¸¤¸¤¿¤¤¤«¤Ê¤ëÂ»³²¤Ë´Ø¤·¤Æ¤â¡¤¤½¤ÎÀÕÇ¤¤òÉé¤ï¤Ê¤¤¡¥
+ *  æœ¬ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã¯ï¼Œç„¡ä¿è¨¼ã§æä¾›ã•ã‚Œã¦ã„ã‚‹ã‚‚ã®ã§ã‚ã‚‹ï¼ä¸Šè¨˜è‘—ä½œæ¨©è€…ãŠ
+ *  ã‚ˆã³TOPPERSãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã¯ï¼Œæœ¬ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã«é–¢ã—ã¦ï¼Œãã®é©ç”¨å¯èƒ½æ€§ã‚‚
+ *  å«ã‚ã¦ï¼Œã„ã‹ãªã‚‹ä¿è¨¼ã‚‚è¡Œã‚ãªã„ï¼ã¾ãŸï¼Œæœ¬ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã®åˆ©ç”¨ã«ã‚ˆã‚Šç›´
+ *  æ¥çš„ã¾ãŸã¯é–“æ¥çš„ã«ç”Ÿã˜ãŸã„ã‹ãªã‚‹æå®³ã«é–¢ã—ã¦ã‚‚ï¼Œãã®è²¬ä»»ã‚’è² ã‚ãªã„ï¼
  * 
  *  @(#) $Id: tcp_subr.c,v 1.5.4.1 2015/02/05 02:10:53 abe Exp abe $
  */
@@ -123,19 +123,19 @@
 #ifdef SUPPORT_TCP
 
 /*
- *  Á´°èÊÑ¿ô
+ *  å…¨åŸŸå¤‰æ•°
  */
 
 /*
- *  TCP ¤Î SEQ ¤Î½é´üÃÍ¡¢¥×¥í¥°¥é¥à¤¬µ¯Æ°¤·¤Æ¡¢ºÇ½é¤Ë TCP ¥»¥°¥á¥ó¥È¤ò
- *  Á÷¼õ¿®¤¹¤ë¤È¤­¤Ë¡¢get_tim() ¤Ë¤è¤ê½é´ü²½¤¹¤ë¡£
+ *  TCP ã® SEQ ã®åˆæœŸå€¤ã€ãƒ—ãƒ­ã‚°ãƒ©ãƒ ãŒèµ·å‹•ã—ã¦ã€æœ€åˆã« TCP ã‚»ã‚°ãƒ¡ãƒ³ãƒˆã‚’
+ *  é€å—ä¿¡ã™ã‚‹ã¨ãã«ã€get_tim() ã«ã‚ˆã‚ŠåˆæœŸåŒ–ã™ã‚‹ã€‚
  */
 T_TCP_SEQ tcp_iss = 0;
 
 #ifdef SUPPORT_MIB
 
 /*
- *  SNMP ¤Î ´ÉÍı¾ğÊó¥Ù¡¼¥¹ (MIB)
+ *  SNMP ã® ç®¡ç†æƒ…å ±ãƒ™ãƒ¼ã‚¹ (MIB)
  */
 
 T_TCP_STATS tcp_stats;
@@ -143,17 +143,17 @@ T_TCP_STATS tcp_stats;
 #endif	/* of #ifdef SUPPORT_MIB */
 
 /*
- *  ¶É½êÊÑ¿ô
+ *  å±€æ‰€å¤‰æ•°
  */
 
-static uint16_t tcp_port_auto = TCP_PORT_FIRST_AUTO;	/* ¼«Æ°³ä¤êÅö¤ÆÈÖ¹æ	*/
+static uint16_t tcp_port_auto = TCP_PORT_FIRST_AUTO;	/* è‡ªå‹•å‰²ã‚Šå½“ã¦ç•ªå·	*/
 
 /*
- *  tcp_free_reassq -- ¼õ¿®ºÆ¹½À®¥­¥å¡¼¤Î¥Í¥Ã¥È¥ï¡¼¥¯¥Ğ¥Ã¥Õ¥¡¤ò²òÊü¤¹¤ë¡£
+ *  tcp_free_reassq -- å—ä¿¡å†æ§‹æˆã‚­ãƒ¥ãƒ¼ã®ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒãƒƒãƒ•ã‚¡ã‚’è§£æ”¾ã™ã‚‹ã€‚
  *
- *    Ãí°Õ:
- *      É¬Í×¤Ç¤¢¤ì¤Ğ¡¢¤³¤Î´Ø¿ô¤ò¸Æ¤Ó½Ğ¤¹Á°¤Ë¡¢ÄÌ¿®Ã¼ÅÀ¤ò¥í¥Ã¥¯¤·¡¢
- *      Ìá¤Ã¤¿¸å¡¢²ò½ü¤¹¤ëÉ¬Í×¤¬¤¢¤ë¡£
+ *    æ³¨æ„:
+ *      å¿…è¦ã§ã‚ã‚Œã°ã€ã“ã®é–¢æ•°ã‚’å‘¼ã³å‡ºã™å‰ã«ã€é€šä¿¡ç«¯ç‚¹ã‚’ãƒ­ãƒƒã‚¯ã—ã€
+ *      æˆ»ã£ãŸå¾Œã€è§£é™¤ã™ã‚‹å¿…è¦ãŒã‚ã‚‹ã€‚
  */
 
 void
@@ -170,7 +170,7 @@ tcp_free_reassq (T_TCP_CEP *cep)
 	}
 
 /*
- *  tcp_alloc_auto_port -- ¼«Æ°³ä¤êÅö¤Æ¥İ¡¼¥ÈÈÖ¹æ¤òÀßÄê¤¹¤ë¡£
+ *  tcp_alloc_auto_port -- è‡ªå‹•å‰²ã‚Šå½“ã¦ãƒãƒ¼ãƒˆç•ªå·ã‚’è¨­å®šã™ã‚‹ã€‚
  */
 
 void
@@ -229,7 +229,7 @@ tcp_alloc_auto_port (T_TCP_CEP *cep)
 	}
 
 /*
- *  tcp_alloc_port -- »ØÄê¤µ¤ì¤¿¥İ¡¼¥ÈÈÖ¹æ¤òÀßÄê¤¹¤ë¡£
+ *  tcp_alloc_port -- æŒ‡å®šã•ã‚ŒãŸãƒãƒ¼ãƒˆç•ªå·ã‚’è¨­å®šã™ã‚‹ã€‚
  */
 
 ER
@@ -249,7 +249,7 @@ tcp_alloc_port (T_TCP_CEP *cep, uint16_t portno)
 	}
 
 /*
- *  tcp_init -- TCP ¥â¥¸¥å¡¼¥ë¤Î½é´ü²½
+ *  tcp_init -- TCP ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã®åˆæœŸåŒ–
  */
 
 void
@@ -265,7 +265,7 @@ tcp_init (void)
 	}
 
 /*
- * tcp_init_iss ¥·¡¼¥±¥ó¥¹ÈÖ¹æ¤ò½é´ü²½¤¹¤ë¡£
+ * tcp_init_iss ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·ã‚’åˆæœŸåŒ–ã™ã‚‹ã€‚
  */
 
 void
@@ -295,30 +295,30 @@ tcp_init_iss (void)
 	}
 
 /*
- *  tcp_close -- ¥³¥Í¥¯¥·¥ç¥ó¤ò³«Êü¤¹¤ë¡£
+ *  tcp_close -- ã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³ã‚’é–‹æ”¾ã™ã‚‹ã€‚
  */
 
 T_TCP_CEP *
 tcp_close (T_TCP_CEP *cep)
 {
-	/* ¥¿¥¤¥Ş¡¼¤òÄä»ß¤¹¤ë¡£*/
+	/* ã‚¿ã‚¤ãƒãƒ¼ã‚’åœæ­¢ã™ã‚‹ã€‚*/
 	tcp_cancel_timers(cep);
 
 	/* 
-	 *  ÄÌ¿®Ã¼ÅÀ¤ò¥í¥Ã¥¯¤·¡¢
-	 *  ¼õ¿®ºÆ¹½À®¥­¥å¡¼¤Î¥Í¥Ã¥È¥ï¡¼¥¯¥Ğ¥Ã¥Õ¥¡¤ò²òÊü¤¹¤ë¡£
+	 *  é€šä¿¡ç«¯ç‚¹ã‚’ãƒ­ãƒƒã‚¯ã—ã€
+	 *  å—ä¿¡å†æ§‹æˆã‚­ãƒ¥ãƒ¼ã®ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒãƒƒãƒ•ã‚¡ã‚’è§£æ”¾ã™ã‚‹ã€‚
 	 */
 	syscall(wai_sem(cep->semid_lock));
 	tcp_free_reassq(cep);
 	syscall(sig_sem(cep->semid_lock));
 
-	/* ¾õÂÖ¤òÌ¤»ÈÍÑ¤Ë¤¹¤ë¡£*/
+	/* çŠ¶æ…‹ã‚’æœªä½¿ç”¨ã«ã™ã‚‹ã€‚*/
 	cep->fsm_state = TCP_FSM_CLOSED;
 
 	/*
-	 * °Ê²¼¤Ë´Ø·¸¤·¤Ê¤¤¥Õ¥é¥°¤ò¥¯¥ê¥¢¡¼¤¹¤ë¡£
-	 * ¡¦Á÷¼õ¿®¥¦¥£¥ó¥É¥Ğ¥Ã¥Õ¥¡¤Î¾Ê¥³¥Ô¡¼µ¡Ç½
-	 * ¡¦Æ°Åª¤ÊÄÌ¿®Ã¼ÅÀ¤ÎÀ¸À®¡¦ºï½üµ¡Ç½
+	 * ä»¥ä¸‹ã«é–¢ä¿‚ã—ãªã„ãƒ•ãƒ©ã‚°ã‚’ã‚¯ãƒªã‚¢ãƒ¼ã™ã‚‹ã€‚
+	 * ãƒ»é€å—ä¿¡ã‚¦ã‚£ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã®çœã‚³ãƒ”ãƒ¼æ©Ÿèƒ½
+	 * ãƒ»å‹•çš„ãªé€šä¿¡ç«¯ç‚¹ã®ç”Ÿæˆãƒ»å‰Šé™¤æ©Ÿèƒ½
 	 */
 	cep->flags &= (TCP_CEP_FLG_WBCS_NBUF_REQ | TCP_CEP_FLG_WBCS_MASK | 
 	               TCP_CEP_FLG_DYNAMIC       | TCP_CEP_FLG_VALID);
@@ -326,7 +326,7 @@ tcp_close (T_TCP_CEP *cep)
 #ifdef TCP_CFG_NON_BLOCKING
 
 	if (cep->snd_nblk_tfn != TFN_TCP_UNDEF || cep->rcv_nblk_tfn != TFN_TCP_UNDEF) {
-		/* ¥Î¥ó¥Ö¥í¥Ã¥­¥ó¥°¥³¡¼¥ë */
+		/* ãƒãƒ³ãƒ–ãƒ­ãƒƒã‚­ãƒ³ã‚°ã‚³ãƒ¼ãƒ« */
 
 #ifdef TCP_CFG_NON_BLOCKING_COMPAT14
 
@@ -339,17 +339,17 @@ tcp_close (T_TCP_CEP *cep)
 				switch (cep->rcv_nblk_tfn) {
 
 				case TFN_TCP_ACP_CEP:
-					/* TCP ÄÌ¿®Ã¼ÅÀ¤«¤éTCP ¼õÉÕ¸ı¤ò²òÊü¤¹¤ë¡£*/
+					/* TCP é€šä¿¡ç«¯ç‚¹ã‹ã‚‰TCP å—ä»˜å£ã‚’è§£æ”¾ã™ã‚‹ã€‚*/
 					cep->rep = NULL;
 					(*cep->callback)(GET_TCP_CEPID(cep), cep->rcv_nblk_tfn, (void*)E_CLS);
 					break;
 
 				case TFN_TCP_RCV_BUF:
 
-					/* ¼õ¿®¥¦¥£¥ó¥É¥Ğ¥Ã¥Õ¥¡¤Î¶õ¥¢¥É¥ì¥¹¤ò³ÍÆÀ¤¹¤ë¡£*/
+					/* å—ä¿¡ã‚¦ã‚£ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã®ç©ºã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ç²å¾—ã™ã‚‹ã€‚*/
 					len = TCP_GET_RWBUF_ADDR(cep, cep->rcv_p_buf);
 
-					/* °Û¾ïÀÚÃÇÅù¤Î¥¨¥é¡¼¤òÀßÄê¤¹¤ë¡£*/
+					/* ç•°å¸¸åˆ‡æ–­ç­‰ã®ã‚¨ãƒ©ãƒ¼ã‚’è¨­å®šã™ã‚‹ã€‚*/
 					if (cep->error == E_TMOUT)
 						len = E_CLS;
 					else if (cep->error < 0)
@@ -360,10 +360,10 @@ tcp_close (T_TCP_CEP *cep)
 
 				case TFN_TCP_RCV_DAT:
 
-					/* ¼õ¿®¥¦¥£¥ó¥É¥Ğ¥Ã¥Õ¥¡¤«¤é¥Ç¡¼¥¿¤ò¼è¤ê½Ğ¤¹¡£*/
+					/* å—ä¿¡ã‚¦ã‚£ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ã‚’å–ã‚Šå‡ºã™ã€‚*/
 					len = TCP_READ_RWBUF(cep, cep->rcv_data, (uint_t)cep->rcv_len);
 
-					/* °Û¾ïÀÚÃÇÅù¤Î¥¨¥é¡¼¤òÀßÄê¤¹¤ë¡£*/
+					/* ç•°å¸¸åˆ‡æ–­ç­‰ã®ã‚¨ãƒ©ãƒ¼ã‚’è¨­å®šã™ã‚‹ã€‚*/
 					if (cep->error == E_TMOUT)
 						len = E_CLS;
 					else if (cep->error != E_OK)
@@ -385,7 +385,7 @@ tcp_close (T_TCP_CEP *cep)
 					break;
 					}
 
-				/* µ­²±¤µ¤ì¤Æ¤¤¤ë¥¿¥¹¥¯ ID ¤È API µ¡Ç½¥³¡¼¥É¤ò¥¯¥ê¥¢¡¼¤¹¤ë¡£*/
+				/* è¨˜æ†¶ã•ã‚Œã¦ã„ã‚‹ã‚¿ã‚¹ã‚¯ ID ã¨ API æ©Ÿèƒ½ã‚³ãƒ¼ãƒ‰ã‚’ã‚¯ãƒªã‚¢ãƒ¼ã™ã‚‹ã€‚*/
 				cep->rcv_tskid = TA_NULL;
 				cep->rcv_tfn   = cep->rcv_nblk_tfn = TFN_TCP_UNDEF;
 				}
@@ -395,7 +395,7 @@ tcp_close (T_TCP_CEP *cep)
 				switch (cep->snd_nblk_tfn) {
 
 				case TFN_TCP_CON_CEP:
-					/* TCP ÄÌ¿®Ã¼ÅÀ¤«¤é TCP ¼õÉÕ¸ı¤ò²òÊü¤¹¤ë¡£*/
+					/* TCP é€šä¿¡ç«¯ç‚¹ã‹ã‚‰ TCP å—ä»˜å£ã‚’è§£æ”¾ã™ã‚‹ã€‚*/
 					cep->rep = NULL;
 					(*cep->callback)(GET_TCP_CEPID(cep), cep->snd_nblk_tfn, (void*)E_CLS);
 					break;
@@ -413,7 +413,7 @@ tcp_close (T_TCP_CEP *cep)
 					break;
 					}
 
-				/* µ­²±¤µ¤ì¤Æ¤¤¤ë¥¿¥¹¥¯ ID ¤È API µ¡Ç½¥³¡¼¥É¤ò¥¯¥ê¥¢¡¼¤¹¤ë¡£*/
+				/* è¨˜æ†¶ã•ã‚Œã¦ã„ã‚‹ã‚¿ã‚¹ã‚¯ ID ã¨ API æ©Ÿèƒ½ã‚³ãƒ¼ãƒ‰ã‚’ã‚¯ãƒªã‚¢ãƒ¼ã™ã‚‹ã€‚*/
 				cep->snd_tskid = TA_NULL;
 				cep->snd_tfn   = cep->snd_nblk_tfn = TFN_TCP_UNDEF;
 				}
@@ -431,7 +431,7 @@ tcp_close (T_TCP_CEP *cep)
 				switch (cep->rcv_nblk_tfn) {
 
 				case TFN_TCP_ACP_CEP:
-					/* TCP ÄÌ¿®Ã¼ÅÀ¤«¤éTCP ¼õÉÕ¸ı¤ò²òÊü¤¹¤ë¡£*/
+					/* TCP é€šä¿¡ç«¯ç‚¹ã‹ã‚‰TCP å—ä»˜å£ã‚’è§£æ”¾ã™ã‚‹ã€‚*/
 					cep->rep = NULL;
 					len      = E_CLS;
 					(*cep->callback)(GET_TCP_CEPID(cep), cep->rcv_nblk_tfn, (void*)&len);
@@ -439,10 +439,10 @@ tcp_close (T_TCP_CEP *cep)
 
 				case TFN_TCP_RCV_BUF:
 
-					/* ¼õ¿®¥¦¥£¥ó¥É¥Ğ¥Ã¥Õ¥¡¤Î¶õ¥¢¥É¥ì¥¹¤ò³ÍÆÀ¤¹¤ë¡£*/
+					/* å—ä¿¡ã‚¦ã‚£ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã®ç©ºã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ç²å¾—ã™ã‚‹ã€‚*/
 					len = TCP_GET_RWBUF_ADDR(cep, cep->rcv_p_buf);
 
-					/* °Û¾ïÀÚÃÇÅù¤Î¥¨¥é¡¼¤òÀßÄê¤¹¤ë¡£*/
+					/* ç•°å¸¸åˆ‡æ–­ç­‰ã®ã‚¨ãƒ©ãƒ¼ã‚’è¨­å®šã™ã‚‹ã€‚*/
 					if (cep->error == E_TMOUT)
 						len = E_CLS;
 					else if (cep->error < 0)
@@ -453,10 +453,10 @@ tcp_close (T_TCP_CEP *cep)
 
 				case TFN_TCP_RCV_DAT:
 
-					/* ¼õ¿®¥¦¥£¥ó¥É¥Ğ¥Ã¥Õ¥¡¤«¤é¥Ç¡¼¥¿¤ò¼è¤ê½Ğ¤¹¡£*/
+					/* å—ä¿¡ã‚¦ã‚£ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ã‚’å–ã‚Šå‡ºã™ã€‚*/
 					len = TCP_READ_RWBUF(cep, cep->rcv_data, (uint_t)cep->rcv_len);
 
-					/* °Û¾ïÀÚÃÇÅù¤Î¥¨¥é¡¼¤òÀßÄê¤¹¤ë¡£*/
+					/* ç•°å¸¸åˆ‡æ–­ç­‰ã®ã‚¨ãƒ©ãƒ¼ã‚’è¨­å®šã™ã‚‹ã€‚*/
 					if (cep->error == E_TMOUT)
 						len = E_CLS;
 					else if (cep->error != E_OK)
@@ -478,7 +478,7 @@ tcp_close (T_TCP_CEP *cep)
 					break;
 					}
 
-				/* µ­²±¤µ¤ì¤Æ¤¤¤ë¥¿¥¹¥¯ ID ¤È API µ¡Ç½¥³¡¼¥É¤ò¥¯¥ê¥¢¡¼¤¹¤ë¡£*/
+				/* è¨˜æ†¶ã•ã‚Œã¦ã„ã‚‹ã‚¿ã‚¹ã‚¯ ID ã¨ API æ©Ÿèƒ½ã‚³ãƒ¼ãƒ‰ã‚’ã‚¯ãƒªã‚¢ãƒ¼ã™ã‚‹ã€‚*/
 				cep->rcv_tskid = TA_NULL;
 				cep->rcv_tfn   = cep->rcv_nblk_tfn = TFN_TCP_UNDEF;
 				}
@@ -489,7 +489,7 @@ tcp_close (T_TCP_CEP *cep)
 				switch (cep->snd_nblk_tfn) {
 
 				case TFN_TCP_CON_CEP:
-					/* TCP ÄÌ¿®Ã¼ÅÀ¤«¤é TCP ¼õÉÕ¸ı¤ò²òÊü¤¹¤ë¡£*/
+					/* TCP é€šä¿¡ç«¯ç‚¹ã‹ã‚‰ TCP å—ä»˜å£ã‚’è§£æ”¾ã™ã‚‹ã€‚*/
 					cep->rep = NULL;
 					len      = E_CLS;
 					(*cep->callback)(GET_TCP_CEPID(cep), cep->snd_nblk_tfn, (void*)&len);
@@ -509,7 +509,7 @@ tcp_close (T_TCP_CEP *cep)
 					break;
 					}
 
-				/* µ­²±¤µ¤ì¤Æ¤¤¤ë¥¿¥¹¥¯ ID ¤È API µ¡Ç½¥³¡¼¥É¤ò¥¯¥ê¥¢¡¼¤¹¤ë¡£*/
+				/* è¨˜æ†¶ã•ã‚Œã¦ã„ã‚‹ã‚¿ã‚¹ã‚¯ ID ã¨ API æ©Ÿèƒ½ã‚³ãƒ¼ãƒ‰ã‚’ã‚¯ãƒªã‚¢ãƒ¼ã™ã‚‹ã€‚*/
 				cep->snd_tskid = TA_NULL;
 				cep->snd_tfn   = cep->snd_nblk_tfn = TFN_TCP_UNDEF;
 				}
@@ -519,40 +519,40 @@ tcp_close (T_TCP_CEP *cep)
 #endif	/* of #ifdef TCP_CFG_NON_BLOCKING_COMPAT14 */
 
 		/* 
-		 *  ÄÌ¿®Ã¼ÅÀ¤ò¥í¥Ã¥¯¤·¡¢
-		 *  Á÷¼õ¿®¥¦¥£¥ó¥É¥Ğ¥Ã¥Õ¥¡¥­¥å¡¼¤Î¥Í¥Ã¥È¥ï¡¼¥¯¥Ğ¥Ã¥Õ¥¡¤ò²òÊü¤¹¤ë¡£
+		 *  é€šä¿¡ç«¯ç‚¹ã‚’ãƒ­ãƒƒã‚¯ã—ã€
+		 *  é€å—ä¿¡ã‚¦ã‚£ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã‚­ãƒ¥ãƒ¼ã®ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒãƒƒãƒ•ã‚¡ã‚’è§£æ”¾ã™ã‚‹ã€‚
 		 */
 		syscall(wai_sem(cep->semid_lock));
 		TCP_FREE_RWBUFQ(cep);
 		TCP_FREE_SWBUFQ(cep);
 		syscall(sig_sem(cep->semid_lock));
 
-		/* Ì¤»ÈÍÑ¤Ë¤Ê¤Ã¤¿¤³¤È¤òÃÎ¤é¤»¤ë¡£*/
+		/* æœªä½¿ç”¨ã«ãªã£ãŸã“ã¨ã‚’çŸ¥ã‚‰ã›ã‚‹ã€‚*/
 		syscall(set_flg(cep->est_flgid, TCP_CEP_EVT_CLOSED));
 		}
-	else {	/* Èó¥Î¥ó¥Ö¥í¥Ã¥­¥ó¥°¥³¡¼¥ë */
+	else {	/* éãƒãƒ³ãƒ–ãƒ­ãƒƒã‚­ãƒ³ã‚°ã‚³ãƒ¼ãƒ« */
 
 #endif	/* of #ifdef TCP_CFG_NON_BLOCKING */
 
-		/* µ­²±¤µ¤ì¤Æ¤¤¤ë¥¿¥¹¥¯ ID ¤È API µ¡Ç½¥³¡¼¥É¤ò¥¯¥ê¥¢¡¼¤¹¤ë¡£*/
+		/* è¨˜æ†¶ã•ã‚Œã¦ã„ã‚‹ã‚¿ã‚¹ã‚¯ ID ã¨ API æ©Ÿèƒ½ã‚³ãƒ¼ãƒ‰ã‚’ã‚¯ãƒªã‚¢ãƒ¼ã™ã‚‹ã€‚*/
 		cep->snd_tskid = cep->rcv_tskid = TA_NULL;
 		cep->snd_tfn   = cep->rcv_tfn   = TFN_TCP_UNDEF;
 
 		/* 
-		 *  ÄÌ¿®Ã¼ÅÀ¤ò¥í¥Ã¥¯¤·¡¢
-		 *  Á÷¼õ¿®¥¦¥£¥ó¥É¥Ğ¥Ã¥Õ¥¡¥­¥å¡¼¤Î¥Í¥Ã¥È¥ï¡¼¥¯¥Ğ¥Ã¥Õ¥¡¤ò²òÊü¤¹¤ë¡£
+		 *  é€šä¿¡ç«¯ç‚¹ã‚’ãƒ­ãƒƒã‚¯ã—ã€
+		 *  é€å—ä¿¡ã‚¦ã‚£ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã‚­ãƒ¥ãƒ¼ã®ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒãƒƒãƒ•ã‚¡ã‚’è§£æ”¾ã™ã‚‹ã€‚
 		 */
 		syscall(wai_sem(cep->semid_lock));
 		TCP_FREE_RWBUFQ(cep);
 		TCP_FREE_SWBUFQ(cep);
 		syscall(sig_sem(cep->semid_lock));
 
-		/* Ì¤»ÈÍÑ¤Ë¤Ê¤Ã¤¿¤³¤È¤òÃÎ¤é¤»¤ë¡£*/
+		/* æœªä½¿ç”¨ã«ãªã£ãŸã“ã¨ã‚’çŸ¥ã‚‰ã›ã‚‹ã€‚*/
 		syscall(set_flg(cep->est_flgid, TCP_CEP_EVT_CLOSED));
 
 		/*
-		 * Æş½ĞÎÏ¥¿¥¹¥¯¤òµ¯¾²¤·¤Æ¡¢
-		 * Á÷¼õ¿®ÉÔ²Ä¤Ë¤Ê¤Ã¤¿¤³¤È¤òÃÎ¤é¤»¤ë¡£
+		 * å…¥å‡ºåŠ›ã‚¿ã‚¹ã‚¯ã‚’èµ·åºŠã—ã¦ã€
+		 * é€å—ä¿¡ä¸å¯ã«ãªã£ãŸã“ã¨ã‚’çŸ¥ã‚‰ã›ã‚‹ã€‚
 		 */
 		syscall(set_flg(cep->snd_flgid, TCP_CEP_EVT_SWBUF_READY));
 		syscall(set_flg(cep->rcv_flgid, TCP_CEP_EVT_RWBUF_READY));
@@ -567,7 +567,7 @@ tcp_close (T_TCP_CEP *cep)
 	}
 
 /*
- *  tcp_drop -- TCP ÀÜÂ³¤òÇË´ş¤¹¤ë¡£
+ *  tcp_drop -- TCP æ¥ç¶šã‚’ç ´æ£„ã™ã‚‹ã€‚
  */
 
 T_TCP_CEP *
@@ -585,7 +585,7 @@ tcp_drop (T_TCP_CEP *cep, ER errno)
 	if (TCP_FSM_HAVE_RCVD_SYN(cep->fsm_state)) {
 		cep->fsm_state = TCP_FSM_CLOSED;
 
-		/* Á÷¿®¤È¡¢Á÷¿®¸å¥³¥Í¥¯¥·¥ç¥ó¤ÎÀÚÃÇ¤ò»Ø¼¨¤¹¤ë¡£*/
+		/* é€ä¿¡ã¨ã€é€ä¿¡å¾Œã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³ã®åˆ‡æ–­ã‚’æŒ‡ç¤ºã™ã‚‹ã€‚*/
 		cep->flags |=  TCP_CEP_FLG_POST_OUTPUT | TCP_CEP_FLG_CLOSE_AFTER_OUTPUT;
 		sig_sem(SEM_TCP_POST_OUTPUT);
 		}
@@ -595,7 +595,7 @@ tcp_drop (T_TCP_CEP *cep, ER errno)
 	}
 
 /*
- *  tcp_respond -- TCP ¤ÎÃ±°ì¥á¥Ã¥»¡¼¥¸¤òÁ÷¿®¤¹¤ë¡£
+ *  tcp_respond -- TCP ã®å˜ä¸€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’é€ä¿¡ã™ã‚‹ã€‚
  */
 
 void
@@ -610,16 +610,16 @@ tcp_respond (T_NET_BUF *output, T_TCP_CEP *cep,
 		win = rbfree;
 
 	/*
-	 *  output ¤¬ NULL ¤Ç¤Ê¤±¤ì¤Ğ¡¢¤³¤ì¤ÏÆşÎÏ¤·¤¿¥»¥°¥á¥ó¥È¤Î
-	 *  net_buf ¤Ç¡¢¤½¤Î¤Ş¤ŞºÆÍøÍÑ¤¹¤ë¡£
+	 *  output ãŒ NULL ã§ãªã‘ã‚Œã°ã€ã“ã‚Œã¯å…¥åŠ›ã—ãŸã‚»ã‚°ãƒ¡ãƒ³ãƒˆã®
+	 *  net_buf ã§ã€ãã®ã¾ã¾å†åˆ©ç”¨ã™ã‚‹ã€‚
 	 */
 	if (output != NULL) {
 		T_IN_ADDR	ipaddr;
 		uint16_t		portno;
 
 		/*
-		 * IPv4 ¤Ç¤Ï¡¢IP ¥Ø¥Ã¥À¤Î¥ª¥×¥·¥ç¥ó¤òºï½ü¤¹¤ë¡£
-		 * IPv6 ¤Ç¤Ï¡¢³ÈÄ¥¥Ø¥Ã¥À¤òºï½ü¤¹¤ë¡£
+		 * IPv4 ã§ã¯ã€IP ãƒ˜ãƒƒãƒ€ã®ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’å‰Šé™¤ã™ã‚‹ã€‚
+		 * IPv6 ã§ã¯ã€æ‹¡å¼µãƒ˜ãƒƒãƒ€ã‚’å‰Šé™¤ã™ã‚‹ã€‚
 		 */
 		if (IP_REMOVE_OPTIONS(output) != E_OK) {
 			syscall(rel_net_buf(output));
@@ -628,33 +628,33 @@ tcp_respond (T_NET_BUF *output, T_TCP_CEP *cep,
 
 		iph  = GET_IP_HDR(output);
 
-		/* IP ¥¢¥É¥ì¥¹¤ò¸ò´¹¤¹¤ë¡£*/
+		/* IP ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’äº¤æ›ã™ã‚‹ã€‚*/
 		ipaddr = iph->src;
 		iph->src = iph->dst;
 		iph->dst = ipaddr;
 
 #if defined(SUPPORT_INET6)
 
-		/* ¥È¥é¥Ò¥Ã¥¯¥¯¥é¥¹¤È¥Õ¥í¡¼¥é¥Ù¥ë¤ò¥¯¥ê¥¢¤¹¤ë¡£*/
+		/* ãƒˆãƒ©ãƒ’ãƒƒã‚¯ã‚¯ãƒ©ã‚¹ã¨ãƒ•ãƒ­ãƒ¼ãƒ©ãƒ™ãƒ«ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹ã€‚*/
 		iph->vcf = htonl(IP6_MAKE_VCF(IP6_VCF_V(ntohl(iph->vcf)), 0));
 
 #endif	/* of #if defined(SUPPORT_INET6) */
 
-		/* TCP SDU Ä¹¤ò 0 ¤Ë¤¹¤ë¡£*/
+		/* TCP SDU é•·ã‚’ 0 ã«ã™ã‚‹ã€‚*/
 		SET_IP_SDU_SIZE(iph, TCP_HDR_SIZE);
 
 		tcph = GET_TCP_HDR(output, IF_IP_TCP_HDR_OFFSET);
 
-		/* ¥İ¡¼¥ÈÈÖ¹æ¤ò¸ò´¹¤¹¤ë¡£*/
+		/* ãƒãƒ¼ãƒˆç•ªå·ã‚’äº¤æ›ã™ã‚‹ã€‚*/
 		portno = tcph->sport;
 		tcph->sport = tcph->dport;
 		tcph->dport = portno;
 
-		/* TCP ¥Ø¥Ã¥À¤Ë¾ğÊó¤òÀßÄê¤¹¤ë¡£*/
+		/* TCP ãƒ˜ãƒƒãƒ€ã«æƒ…å ±ã‚’è¨­å®šã™ã‚‹ã€‚*/
 		tcph->doff = TCP_MAKE_DATA_OFF(TCP_HDR_SIZE);
 		}
 	
-	/* cep ¤¬ NULL ¤Ç¤¢¤ì¤Ğ¡¢²¿¤â¤·¤Ê¤¤¤Ç½ªÎ»¤¹¤ë¡£*/
+	/* cep ãŒ NULL ã§ã‚ã‚Œã°ã€ä½•ã‚‚ã—ãªã„ã§çµ‚äº†ã™ã‚‹ã€‚*/
 	else if (cep == NULL)
 		return;
 	else {
@@ -673,12 +673,12 @@ tcp_respond (T_NET_BUF *output, T_TCP_CEP *cep,
 	tcph->urp   = tcph->sum = 0;
 
 	/*
-	 *  ¥Á¥§¥Ã¥¯¥µ¥à¤òÀßÄê¤¹¤ë¡£
+	 *  ãƒã‚§ãƒƒã‚¯ã‚µãƒ ã‚’è¨­å®šã™ã‚‹ã€‚
 	 */
 	tcph->sum = IN_CKSUM(output, IPPROTO_TCP, IF_IP_TCP_HDR_OFFSET, 
 	                     (uint_t)GET_TCP_HDR_SIZE2(output, IF_IP_TCP_HDR_OFFSET));
 
-	/* ¥Í¥Ã¥È¥ï¡¼¥¯¥Ğ¥Ã¥Õ¥¡Ä¹¤òÄ´À°¤¹¤ë¡£*/
+	/* ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒãƒƒãƒ•ã‚¡é•·ã‚’èª¿æ•´ã™ã‚‹ã€‚*/
 	output->len = (uint16_t)GET_IF_IP_TCP_HDR_SIZE2(output, IF_IP_TCP_HDR_OFFSET);
 
 #ifdef TCP_CFG_TRACE
@@ -687,12 +687,12 @@ tcp_respond (T_NET_BUF *output, T_TCP_CEP *cep,
 
 #endif	/* of #ifdef TCP_CFG_TRACE */
 
-	/* ¥Í¥Ã¥È¥ï¡¼¥¯ÁØ (IP) ¤Î½ĞÎÏ´Ø¿ô¤ò¸Æ¤Ó½Ğ¤¹¡£*/
+	/* ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯å±¤ (IP) ã®å‡ºåŠ›é–¢æ•°ã‚’å‘¼ã³å‡ºã™ã€‚*/
 	IP_OUTPUT(output, TMO_TCP_OUTPUT);
 	}
 
 /*
- *  tcp_set_header -- TCP ¥Ø¥Ã¥À¤òÀßÄê¤¹¤ë¡£
+ *  tcp_set_header -- TCP ãƒ˜ãƒƒãƒ€ã‚’è¨­å®šã™ã‚‹ã€‚
  */
 
 void
@@ -700,7 +700,7 @@ tcp_set_header (T_NET_BUF *nbuf, T_TCP_CEP *cep, uint_t thoff, uint_t optlen)
 {
 	T_TCP_HDR	*tcph = GET_TCP_HDR(nbuf, thoff);
 
-	/* TCP ¥Ø¥Ã¥À¤Ë¾ğÊó¤òÀßÄê¤¹¤ë¡£*/
+	/* TCP ãƒ˜ãƒƒãƒ€ã«æƒ…å ±ã‚’è¨­å®šã™ã‚‹ã€‚*/
 	tcph->sport	= htons(cep->myaddr.portno);
 	tcph->dport	= htons(cep->dstaddr.portno);
 	tcph->doff	= TCP_MAKE_DATA_OFF(TCP_HDR_SIZE + optlen);
@@ -708,11 +708,11 @@ tcp_set_header (T_NET_BUF *nbuf, T_TCP_CEP *cep, uint_t thoff, uint_t optlen)
 	}
 
 /*
- *  tcp_get_segment -- TCP ¥»¥°¥á¥ó¥È¤ò³ÍÆÀ¤·¡¢¥Ø¥Ã¥À¤òÀßÄê¤¹¤ë¡£
+ *  tcp_get_segment -- TCP ã‚»ã‚°ãƒ¡ãƒ³ãƒˆã‚’ç²å¾—ã—ã€ãƒ˜ãƒƒãƒ€ã‚’è¨­å®šã™ã‚‹ã€‚
  *
- *    Ìá¤êÃÍ	¥¨¥é¡¼¥³¡¼¥É
- *    optlen	¥ª¥×¥·¥ç¥ó¥µ¥¤¥º¡¢4 ¥ª¥¯¥Æ¥Ã¥ÈÃ±°Ì
- *    len	TCP SDU ¥µ¥¤¥º
+ *    æˆ»ã‚Šå€¤	ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
+ *    optlen	ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚µã‚¤ã‚ºã€4 ã‚ªã‚¯ãƒ†ãƒƒãƒˆå˜ä½
+ *    len	TCP SDU ã‚µã‚¤ã‚º
  */
 
 ER
@@ -721,7 +721,7 @@ tcp_get_segment (T_NET_BUF **nbuf, T_TCP_CEP *cep,
 {
 	ER		error;
 
-	/* IP ¥Ç¡¼¥¿¥°¥é¥à¤ò³ÍÆÀ¤¹¤ë¡£*/
+	/* IP ãƒ‡ãƒ¼ã‚¿ã‚°ãƒ©ãƒ ã‚’ç²å¾—ã™ã‚‹ã€‚*/
 	if ((error = IN_GET_DATAGRAM(nbuf,
 	                             (uint_t)(TCP_HDR_SIZE + optlen + len),
 	                             (uint_t)(TCP_HDR_SIZE + maxlen),
@@ -733,14 +733,14 @@ tcp_get_segment (T_NET_BUF **nbuf, T_TCP_CEP *cep,
 		return error;
 		}
 
-	/* TCP ¥Ø¥Ã¥À¤Ë¾ğÊó¤òÀßÄê¤¹¤ë¡£*/
+	/* TCP ãƒ˜ãƒƒãƒ€ã«æƒ…å ±ã‚’è¨­å®šã™ã‚‹ã€‚*/
 	tcp_set_header(*nbuf, cep, IF_IP_TCP_HDR_OFFSET, optlen);
 
 	return E_OK;
 	}
 
 /*
- *  tcp_can_send_more -- Á÷¿®¤Ç¤­¤ë¤«¡¢ÄÌ¿®Ã¼ÅÀ¤Î¾õÂÖ¤ò¸«¤ë¡£
+ *  tcp_can_send_more -- é€ä¿¡ã§ãã‚‹ã‹ã€é€šä¿¡ç«¯ç‚¹ã®çŠ¶æ…‹ã‚’è¦‹ã‚‹ã€‚
  */
 
 ER
@@ -748,15 +748,15 @@ tcp_can_send_more (T_TCP_CEP *cep, FN fncd, TMO tmout)
 {
 	ER	error;
 
-	/* Á÷¿®¤Ç¤­¤ë¤«¡¢CEP ¤Î FSM ¾õÂÖ¤ò¸«¤ë¡£*/
+	/* é€ä¿¡ã§ãã‚‹ã‹ã€CEP ã® FSM çŠ¶æ…‹ã‚’è¦‹ã‚‹ã€‚*/
 	if (!TCP_FSM_CAN_SEND_MORE(cep->fsm_state)) {
 		if ((error = cep->error) == E_OK)
 			error = E_OBJ;
 
 #ifdef TCP_CFG_NON_BLOCKING
 
-		/* ¥¿¥¤¥à¥¢¥¦¥È¤ò¥Á¥§¥Ã¥¯¤¹¤ë¡£*/
-		if (tmout == TMO_NBLK) {	/* ¥Î¥ó¥Ö¥í¥Ã¥­¥ó¥°¥³¡¼¥ë */
+		/* ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã€‚*/
+		if (tmout == TMO_NBLK) {	/* ãƒãƒ³ãƒ–ãƒ­ãƒƒã‚­ãƒ³ã‚°ã‚³ãƒ¼ãƒ« */
 
 			if (!IS_PTR_DEFINED(cep->callback))
 				error = E_OBJ;
@@ -764,12 +764,12 @@ tcp_can_send_more (T_TCP_CEP *cep, FN fncd, TMO tmout)
 
 #ifdef TCP_CFG_NON_BLOCKING_COMPAT14
 
-				/* ¥³¡¼¥ë¥Ğ¥Ã¥¯´Ø¿ô¤ò¸Æ¤Ó½Ğ¤¹¡£*/
+				/* ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’å‘¼ã³å‡ºã™ã€‚*/
 				(*cep->callback)(GET_TCP_CEPID(cep), fncd, (void*)error);
 
 #else	/* of #ifdef TCP_CFG_NON_BLOCKING_COMPAT14 */
 
-				/* ¥³¡¼¥ë¥Ğ¥Ã¥¯´Ø¿ô¤ò¸Æ¤Ó½Ğ¤¹¡£*/
+				/* ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’å‘¼ã³å‡ºã™ã€‚*/
 				(*cep->callback)(GET_TCP_CEPID(cep), fncd, (void*)&error);
 
 #endif	/* of #ifdef TCP_CFG_NON_BLOCKING_COMPAT14 */
@@ -793,20 +793,20 @@ tcp_can_send_more (T_TCP_CEP *cep, FN fncd, TMO tmout)
 
 #ifdef TCP_CFG_NON_BLOCKING
 
-			/* ¥¿¥¤¥à¥¢¥¦¥È¤ò¥Á¥§¥Ã¥¯¤¹¤ë¡£*/
-			if (tmout == TMO_NBLK) {	/* ¥Î¥ó¥Ö¥í¥Ã¥­¥ó¥°¥³¡¼¥ë */
+			/* ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã€‚*/
+			if (tmout == TMO_NBLK) {	/* ãƒãƒ³ãƒ–ãƒ­ãƒƒã‚­ãƒ³ã‚°ã‚³ãƒ¼ãƒ« */
 				if (!IS_PTR_DEFINED(cep->callback))
 					error = E_OBJ;
 				else {
 
 #ifdef TCP_CFG_NON_BLOCKING_COMPAT14
 
-					/* ¥³¡¼¥ë¥Ğ¥Ã¥¯´Ø¿ô¤ò¸Æ¤Ó½Ğ¤¹¡£*/
+					/* ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’å‘¼ã³å‡ºã™ã€‚*/
 					(*cep->callback)(GET_TCP_CEPID(cep), fncd, (void*)E_OBJ);
 
 #else	/* of #ifdef TCP_CFG_NON_BLOCKING_COMPAT14 */
 
-					/* ¥³¡¼¥ë¥Ğ¥Ã¥¯´Ø¿ô¤ò¸Æ¤Ó½Ğ¤¹¡£*/
+					/* ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’å‘¼ã³å‡ºã™ã€‚*/
 					error = E_OBJ;
 					(*cep->callback)(GET_TCP_CEPID(cep), fncd, (void*)&error);
 
@@ -832,20 +832,20 @@ tcp_can_send_more (T_TCP_CEP *cep, FN fncd, TMO tmout)
 	}
 
 /*
- *  tcp_can_recv_more -- ¼õ¿®¤Ç¤­¤ë¤«¡¢ÄÌ¿®Ã¼ÅÀ¤Î¾õÂÖ¤ò¸«¤ë¡£
+ *  tcp_can_recv_more -- å—ä¿¡ã§ãã‚‹ã‹ã€é€šä¿¡ç«¯ç‚¹ã®çŠ¶æ…‹ã‚’è¦‹ã‚‹ã€‚
  *
- *  Ãí°Õ: Ìá¤êÃÍ
+ *  æ³¨æ„: æˆ»ã‚Šå€¤
  *
- *	E_OK	¼õ¿®²ÄÇ½
- *	E_OBJ	Áê¼ê¤«¤éÀÚÃÇ¤µ¤ì¤¿¤«¡¢¥¨¥é¡¼¤¬È¯À¸¤·¤¿¡£
+ *	E_OK	å—ä¿¡å¯èƒ½
+ *	E_OBJ	ç›¸æ‰‹ã‹ã‚‰åˆ‡æ–­ã•ã‚ŒãŸã‹ã€ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸã€‚
  */
 
 ER
 tcp_can_recv_more (ER *error, T_TCP_CEP *cep, FN fncd, TMO tmout)
 {
 	/*
-	 *  ¼õ¿®¤Ç¤­¤ë¤«¡¢fsm_state ¤ò¸«¤ë¡£¼õ¿®¤Ç¤­¤Ê¤¤¾ì¹ç¤Ï
-	 *  Ä¹¤µ 0¡¢¤Ş¤¿¤Ï¥¨¥é¡¼¤òÊÖ¤¹¡£
+	 *  å—ä¿¡ã§ãã‚‹ã‹ã€fsm_state ã‚’è¦‹ã‚‹ã€‚å—ä¿¡ã§ããªã„å ´åˆã¯
+	 *  é•·ã• 0ã€ã¾ãŸã¯ã‚¨ãƒ©ãƒ¼ã‚’è¿”ã™ã€‚
 	 */
 	if (!TCP_FSM_CAN_RECV_MORE(cep->fsm_state) &&
 	    cep->rwbuf_count == 0 && cep->reassq == NULL) {
@@ -853,20 +853,20 @@ tcp_can_recv_more (ER *error, T_TCP_CEP *cep, FN fncd, TMO tmout)
 
 #ifdef TCP_CFG_NON_BLOCKING
 
-		/* ¥¿¥¤¥à¥¢¥¦¥È¤ò¥Á¥§¥Ã¥¯¤¹¤ë¡£*/
-		if (tmout == TMO_NBLK) {	/* ¥Î¥ó¥Ö¥í¥Ã¥­¥ó¥°¥³¡¼¥ë */
+		/* ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã€‚*/
+		if (tmout == TMO_NBLK) {	/* ãƒãƒ³ãƒ–ãƒ­ãƒƒã‚­ãƒ³ã‚°ã‚³ãƒ¼ãƒ« */
 
 			if (!IS_PTR_DEFINED(cep->callback))
 				*error = E_OBJ;
 			else {
 #ifdef TCP_CFG_NON_BLOCKING_COMPAT14
 
-				/* ¥³¡¼¥ë¥Ğ¥Ã¥¯´Ø¿ô¤ò¸Æ¤Ó½Ğ¤¹¡£*/
+				/* ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’å‘¼ã³å‡ºã™ã€‚*/
 				(*cep->callback)(GET_TCP_CEPID(cep), fncd, (void*)*error);
 
 #else	/* of #ifdef TCP_CFG_NON_BLOCKING_COMPAT14 */
 
-				/* ¥³¡¼¥ë¥Ğ¥Ã¥¯´Ø¿ô¤ò¸Æ¤Ó½Ğ¤¹¡£*/
+				/* ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’å‘¼ã³å‡ºã™ã€‚*/
 				(*cep->callback)(GET_TCP_CEPID(cep), fncd, (void*)error);
 
 #endif	/* of #ifdef TCP_CFG_NON_BLOCKING_COMPAT14 */
@@ -878,8 +878,8 @@ tcp_can_recv_more (ER *error, T_TCP_CEP *cep, FN fncd, TMO tmout)
 #endif	/* of #ifdef TCP_CFG_NON_BLOCKING */
 
 		/*
-		 *  ÄÌ¿®Ã¼ÅÀ¤ò¥í¥Ã¥¯¤·¤Æ¡¢
-		 *  ¼õ¿®¥¦¥£¥ó¥É¥Ğ¥Ã¥Õ¥¡¥­¥å¡¼¤Î¥Í¥Ã¥È¥ï¡¼¥¯¥Ğ¥Ã¥Õ¥¡¤ò²òÊü¤¹¤ë¡£
+		 *  é€šä¿¡ç«¯ç‚¹ã‚’ãƒ­ãƒƒã‚¯ã—ã¦ã€
+		 *  å—ä¿¡ã‚¦ã‚£ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã‚­ãƒ¥ãƒ¼ã®ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒãƒƒãƒ•ã‚¡ã‚’è§£æ”¾ã™ã‚‹ã€‚
 		 */
 		syscall(wai_sem(cep->semid_lock));
 		TCP_FREE_RWBUFQ(cep);
@@ -895,20 +895,20 @@ tcp_can_recv_more (ER *error, T_TCP_CEP *cep, FN fncd, TMO tmout)
 
 #ifdef TCP_CFG_NON_BLOCKING
 
-			/* ¥¿¥¤¥à¥¢¥¦¥È¤ò¥Á¥§¥Ã¥¯¤¹¤ë¡£*/
-			if (tmout == TMO_NBLK) {	/* ¥Î¥ó¥Ö¥í¥Ã¥­¥ó¥°¥³¡¼¥ë */
+			/* ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã€‚*/
+			if (tmout == TMO_NBLK) {	/* ãƒãƒ³ãƒ–ãƒ­ãƒƒã‚­ãƒ³ã‚°ã‚³ãƒ¼ãƒ« */
 				if (!IS_PTR_DEFINED(cep->callback))
 					*error = E_OBJ;
 				else {
 
 #ifdef TCP_CFG_NON_BLOCKING_COMPAT14
 
-					/* ¥³¡¼¥ë¥Ğ¥Ã¥¯´Ø¿ô¤ò¸Æ¤Ó½Ğ¤¹¡£*/
+					/* ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’å‘¼ã³å‡ºã™ã€‚*/
 					(*cep->callback)(GET_TCP_CEPID(cep), fncd, (void*)E_OBJ);
 
 #else	/* of #ifdef TCP_CFG_NON_BLOCKING_COMPAT14 */
 
-					/* ¥³¡¼¥ë¥Ğ¥Ã¥¯´Ø¿ô¤ò¸Æ¤Ó½Ğ¤¹¡£*/
+					/* ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’å‘¼ã³å‡ºã™ã€‚*/
 					*error = E_OBJ;
 					(*cep->callback)(GET_TCP_CEPID(cep), fncd, (void*)error);
 
@@ -933,7 +933,7 @@ tcp_can_recv_more (ER *error, T_TCP_CEP *cep, FN fncd, TMO tmout)
 	}
 
 /*
- *  tcp_wait_rwbuf -- ¼õ¿®¥¦¥£¥ó¥É¥Ğ¥Ã¥Õ¥¡¤Ë¥Ç¡¼¥¿¤¬Æş¤ë¤Î¤òÂÔ¤Ä¡£
+ *  tcp_wait_rwbuf -- å—ä¿¡ã‚¦ã‚£ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã«ãƒ‡ãƒ¼ã‚¿ãŒå…¥ã‚‹ã®ã‚’å¾…ã¤ã€‚
  */
 
 ER
@@ -943,7 +943,7 @@ tcp_wait_rwbuf (T_TCP_CEP *cep, TMO tmout)
 	FLGPTN	flag;
 
 	if (cep->rwbuf_count == 0) {
-		/* ¼õ¿®¥¦¥£¥ó¥É¥Ğ¥Ã¥Õ¥¡¤Ë¥Ç¡¼¥¿¤¬¤Ê¤±¤ì¤Ğ¡¢ÆşÎÏ¤¬¤¢¤ë¤Ş¤ÇÂÔ¤Ä¡£*/
+		/* å—ä¿¡ã‚¦ã‚£ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã«ãƒ‡ãƒ¼ã‚¿ãŒãªã‘ã‚Œã°ã€å…¥åŠ›ãŒã‚ã‚‹ã¾ã§å¾…ã¤ã€‚*/
 		while (cep->rwbuf_count == 0) {
 			if ((error = twai_flg(cep->rcv_flgid, TCP_CEP_EVT_RWBUF_READY, TWF_ORW, &flag, tmout)) != E_OK) {
 				return error;
@@ -951,15 +951,15 @@ tcp_wait_rwbuf (T_TCP_CEP *cep, TMO tmout)
 			syscall(clr_flg(cep->rcv_flgid, (FLGPTN)(~TCP_CEP_EVT_RWBUF_READY)));
 
 			/*
-			 *  ¼õ¿®¤Ç¤­¤ë¤«¡¢fsm_state ¤ò¸«¤ë¡£¼õ¿®¤Ç¤­¤Ê¤¤¾õÂÖ¤Ç¡¢
-			 *  ¼õ¿®¥¦¥£¥ó¥É¥Ğ¥Ã¥Õ¥¡¤ËÊ¸»ú¤¬¤Ê¤¤¾ì¹ç¤Ï½ªÎ»¤¹¤ë¡£
+			 *  å—ä¿¡ã§ãã‚‹ã‹ã€fsm_state ã‚’è¦‹ã‚‹ã€‚å—ä¿¡ã§ããªã„çŠ¶æ…‹ã§ã€
+			 *  å—ä¿¡ã‚¦ã‚£ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã«æ–‡å­—ãŒãªã„å ´åˆã¯çµ‚äº†ã™ã‚‹ã€‚
 			 */
 			if (!TCP_FSM_CAN_RECV_MORE(cep->fsm_state) &&
 			    cep->rwbuf_count == 0 && cep->reassq == NULL) {
 
 				/*
-				 *  ÄÌ¿®Ã¼ÅÀ¤ò¥í¥Ã¥¯¤·¤Æ¡¢
-				 *  ¼õ¿®¥¦¥£¥ó¥É¥Ğ¥Ã¥Õ¥¡¥­¥å¡¼¤Î¥Í¥Ã¥È¥ï¡¼¥¯¥Ğ¥Ã¥Õ¥¡¤ò²òÊü¤¹¤ë¡£
+				 *  é€šä¿¡ç«¯ç‚¹ã‚’ãƒ­ãƒƒã‚¯ã—ã¦ã€
+				 *  å—ä¿¡ã‚¦ã‚£ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã‚­ãƒ¥ãƒ¼ã®ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒãƒƒãƒ•ã‚¡ã‚’è§£æ”¾ã™ã‚‹ã€‚
 				 */
 #ifdef TCP_CFG_RWBUF_CSAVE
 #endif
@@ -978,7 +978,7 @@ tcp_wait_rwbuf (T_TCP_CEP *cep, TMO tmout)
 	}
 
 /*
- *  tcp_move_ra2rw -- ¼õ¿®ºÆ¹½À®¥­¥å¡¼¤ÇºÆ¹½À®¤·¤¿¥»¥°¥á¥ó¥È¤ò¼õ¿®¥¦¥£¥ó¥É¥Ğ¥Ã¥Õ¥¡¤Ë½ñ¤­¹ş¤à¡£
+ *  tcp_move_ra2rw -- å—ä¿¡å†æ§‹æˆã‚­ãƒ¥ãƒ¼ã§å†æ§‹æˆã—ãŸã‚»ã‚°ãƒ¡ãƒ³ãƒˆã‚’å—ä¿¡ã‚¦ã‚£ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã«æ›¸ãè¾¼ã‚€ã€‚
  */
 
 uint8_t
@@ -988,8 +988,8 @@ tcp_move_ra2rw (T_TCP_CEP *cep, uint8_t flags)
 	T_TCP_Q_HDR	*qhdr;
 
 	/*
-	 *  ¼õ¿®¥Ç¡¼¥¿¤ò¼õ¿®¥¦¥£¥ó¥É¥Ğ¥Ã¥Õ¥¡¤Ë½ñ¤­¹ş¤ß¡¢
-	 *  rcv_nxt ¤ò´°Î»¤·¤¿ SEQ ¤À¤±¿Ê¤á¤ë¡£
+	 *  å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚’å—ä¿¡ã‚¦ã‚£ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã«æ›¸ãè¾¼ã¿ã€
+	 *  rcv_nxt ã‚’å®Œäº†ã—ãŸ SEQ ã ã‘é€²ã‚ã‚‹ã€‚
 	 */
 	if (TCP_FSM_HAVE_ESTABLISHED(cep->fsm_state)) {
 		while (cep->reassq != NULL) {
@@ -998,13 +998,13 @@ tcp_move_ra2rw (T_TCP_CEP *cep, uint8_t flags)
 			if (qhdr->seq != cep->rcv_nxt)
 				break;
 
-			/* ¼¡¤Î¥»¥°¥á¥ó¥È¤Ë¿Ê¤à¡£*/
+			/* æ¬¡ã®ã‚»ã‚°ãƒ¡ãƒ³ãƒˆã«é€²ã‚€ã€‚*/
 			cep->reassq = qhdr->next;
 
-			/* FIN ¥Õ¥é¥°¤Î¤ß»Ä¤¹¡£*/
+			/* FIN ãƒ•ãƒ©ã‚°ã®ã¿æ®‹ã™ã€‚*/
 			flags &= TCP_FLG_FIN;
 
-			/* ¥Ç¡¼¥¿¤ò¼õ¿®¥¦¥£¥ó¥É¥Ğ¥Ã¥Õ¥¡¤Ë½ñ¤­¹ş¤à¡£*/
+			/* ãƒ‡ãƒ¼ã‚¿ã‚’å—ä¿¡ã‚¦ã‚£ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã«æ›¸ãè¾¼ã‚€ã€‚*/
 			TCP_WRITE_RWBUF(cep, q, (uint_t)(GET_TCP_IP_Q_HDR(q)->thoff));
 			}
 		}
@@ -1016,7 +1016,7 @@ tcp_move_ra2rw (T_TCP_CEP *cep, uint8_t flags)
 	}
 
 /*
- *  tcp_write_raque -- ¼õ¿®¥»¥°¥á¥ó¥È¤òºÆ¹½À®¤·¤Æ¡¢¼õ¿®ºÆ¹½À®¥­¥å¡¼¤Ë·Ò¤°¡£
+ *  tcp_write_raque -- å—ä¿¡ã‚»ã‚°ãƒ¡ãƒ³ãƒˆã‚’å†æ§‹æˆã—ã¦ã€å—ä¿¡å†æ§‹æˆã‚­ãƒ¥ãƒ¼ã«ç¹‹ãã€‚
  */
 
 uint8_t
@@ -1027,20 +1027,20 @@ tcp_write_raque (T_NET_BUF *input, T_TCP_CEP *cep, uint_t thoff, uint8_t flags)
 	T_TCP_Q_HDR	*qhdr, *inqhdr = GET_TCP_Q_HDR(input, thoff);
 	int32_t		len;
 
-	/*  TCP ¥Ø¥Ã¥À¤Î°ÌÃÖ¤òÊİÂ¸¤¹¤ë¡£*/
+	/*  TCP ãƒ˜ãƒƒãƒ€ã®ä½ç½®ã‚’ä¿å­˜ã™ã‚‹ã€‚*/
 	GET_TCP_IP_Q_HDR(input)->thoff = thoff;
 
 	/*
-	 *  MAX_TCP_REALLOC_SIZE °Ê²¼¤Î¾ì¹ç¤Ï¡¢¿·¤¿¤Ë¥Í¥Ã¥È¥ï¡¼¥¯¥Ğ¥Ã¥Õ¥¡¤ò
-	 *  ³äÅö¤Æ¤Æ¡¢¥Ç¡¼¥¿¤ò¥³¥Ô¡¼¤¹¤ë¡£
-	 *  ¤³¤Î¤È¤­¡¢IP ¤Î¥ª¥×¥·¥ç¥ó¡Ê³ÈÄ¥¥Ø¥Ã¥À¡Ë¤È TCP ¤Î¥ª¥×¥·¥ç¥ó¤Ïºï½ü¤¹¤ë¡£
+	 *  MAX_TCP_REALLOC_SIZE ä»¥ä¸‹ã®å ´åˆã¯ã€æ–°ãŸã«ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒãƒƒãƒ•ã‚¡ã‚’
+	 *  å‰²å½“ã¦ã¦ã€ãƒ‡ãƒ¼ã‚¿ã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹ã€‚
+	 *  ã“ã®ã¨ãã€IP ã®ã‚ªãƒ—ã‚·ãƒ§ãƒ³ï¼ˆæ‹¡å¼µãƒ˜ãƒƒãƒ€ï¼‰ã¨ TCP ã®ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã¯å‰Šé™¤ã™ã‚‹ã€‚
 	 */
 	len  = IF_IP_TCP_HDR_SIZE + inqhdr->slen;
 
 	if (len <= MAX_TCP_REALLOC_SIZE) {
 
 		/*
-		 *  ¥Í¥Ã¥È¥ï¡¼¥¯¥Ğ¥Ã¥Õ¥¡¤¬³ÎÊİ¤Ç¤­¤Ê¤¤¤È¤­¤Ï³äÅö¤Æ¤Ê¤¤¡£
+		 *  ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒãƒƒãƒ•ã‚¡ãŒç¢ºä¿ã§ããªã„ã¨ãã¯å‰²å½“ã¦ãªã„ã€‚
 		 */
 		if (tget_net_buf(&new, (uint_t)len, TMO_TCP_GET_NET_BUF) != E_OK)
 			new = NULL;
@@ -1065,7 +1065,7 @@ tcp_write_raque (T_NET_BUF *input, T_TCP_CEP *cep, uint_t thoff, uint8_t flags)
 	inqhdr->soff = 0;
 
 	/*
-	 *  º£²óÄÉ²Ã¤¹¤ë¥»¥°¥á¥ó¥È¤è¤êÁ°(p)¤È¸å(q)¤Î¥»¥°¥á¥ó¥È¤òÃµ¤¹¡£
+	 *  ä»Šå›è¿½åŠ ã™ã‚‹ã‚»ã‚°ãƒ¡ãƒ³ãƒˆã‚ˆã‚Šå‰(p)ã¨å¾Œ(q)ã®ã‚»ã‚°ãƒ¡ãƒ³ãƒˆã‚’æ¢ã™ã€‚
 	 *
 	 *    +-------------------------+
 	 *    |            p            |
@@ -1088,8 +1088,8 @@ tcp_write_raque (T_NET_BUF *input, T_TCP_CEP *cep, uint_t thoff, uint8_t flags)
 		}
 
 	/*
-	 *  Á°(p)¤Î¥»¥°¥á¥ó¥È¤¬¤¢¤ì¤Ğ¡¢´û¤Ë¡¢º£²ó¤ÈÆ±¤¸¥»¥°¥á¥ó¥È¤¬
-	 *  ¤¢¤ë¤³¤È¤â¤¢¤ë¡£¤½¤Î¾ì¹ç¤Ï¡¢¤½¤ÎÉôÊ¬¤Ş¤¿¤ÏÁ´¤Æ¤òÇË´ş¤¹¤ë¡£
+	 *  å‰(p)ã®ã‚»ã‚°ãƒ¡ãƒ³ãƒˆãŒã‚ã‚Œã°ã€æ—¢ã«ã€ä»Šå›ã¨åŒã˜ã‚»ã‚°ãƒ¡ãƒ³ãƒˆãŒ
+	 *  ã‚ã‚‹ã“ã¨ã‚‚ã‚ã‚‹ã€‚ãã®å ´åˆã¯ã€ãã®éƒ¨åˆ†ã¾ãŸã¯å…¨ã¦ã‚’ç ´æ£„ã™ã‚‹ã€‚
 	 *
 	 *    qhdr->seq
 	 *    |
@@ -1111,14 +1111,14 @@ tcp_write_raque (T_NET_BUF *input, T_TCP_CEP *cep, uint_t thoff, uint8_t flags)
 		if (len > 0) {
 
 			/*
-			 *  len ¤¬Àµ¤Ç¤¢¤ì¤Ğ¡¢Á°(p) ¤Î¥»¥°¥á¥ó¥È¤Èº£²ó¤Î
-			 *  ¥»¥°¥á¥ó¥È¤¬½Å¤Ê¤Ã¤Æ¤¤¤ë¡£
+			 *  len ãŒæ­£ã§ã‚ã‚Œã°ã€å‰(p) ã®ã‚»ã‚°ãƒ¡ãƒ³ãƒˆã¨ä»Šå›ã®
+			 *  ã‚»ã‚°ãƒ¡ãƒ³ãƒˆãŒé‡ãªã£ã¦ã„ã‚‹ã€‚
 			 */
 			if (len >= inqhdr->slen) {
 
 				/*
-				 *  len ¤¬º£²ó¤Î¥»¥°¥á¥ó¥È¤ÈÆ±¤¸¤Ê¤é
-				 *  ¤Ş¤Ã¤¿¤¯Æ±¤¸¥»¥°¥á¥ó¥È¤Ê¤Î¤Ç²¿¤â¤·¤Ê¤¤¡£
+				 *  len ãŒä»Šå›ã®ã‚»ã‚°ãƒ¡ãƒ³ãƒˆã¨åŒã˜ãªã‚‰
+				 *  ã¾ã£ãŸãåŒã˜ã‚»ã‚°ãƒ¡ãƒ³ãƒˆãªã®ã§ä½•ã‚‚ã—ãªã„ã€‚
 				 */
 				if (new != NULL) {
 					syscall(rel_net_buf(new));
@@ -1129,7 +1129,7 @@ tcp_write_raque (T_NET_BUF *input, T_TCP_CEP *cep, uint_t thoff, uint8_t flags)
 				}
 
 			/*
-			 *  ÄÉ²Ã¤¹¤ë¥»¥°¥á¥ó¥È¤Î SDU ¤ò len Ê¬Á°¤ËµÍ¤á¤ë¡£
+			 *  è¿½åŠ ã™ã‚‹ã‚»ã‚°ãƒ¡ãƒ³ãƒˆã® SDU ã‚’ len åˆ†å‰ã«è©°ã‚ã‚‹ã€‚
 			 */
 			inqhdr->seq  += len;
 			inqhdr->soff += (uint16_t)len;
@@ -1138,8 +1138,8 @@ tcp_write_raque (T_NET_BUF *input, T_TCP_CEP *cep, uint_t thoff, uint8_t flags)
 		}
 
 	/*
-	 *  ¥­¥å¡¼¤Ë¤Ä¤Ê¤°Á°¤Ë¡¢¿·¤·¤¤¥Í¥Ã¥È¥ï¡¼¥¯¥Ğ¥Ã¥Õ¥¡¤Ë¥Ç¡¼¥¿¤ò°Ü¤¹¡£
-	 *  TCP ¤Î¥ª¥×¥·¥ç¥ó¤Ïºï½ü¤¹¤ë¡£
+	 *  ã‚­ãƒ¥ãƒ¼ã«ã¤ãªãå‰ã«ã€æ–°ã—ã„ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒãƒƒãƒ•ã‚¡ã«ãƒ‡ãƒ¼ã‚¿ã‚’ç§»ã™ã€‚
+	 *  TCP ã®ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã¯å‰Šé™¤ã™ã‚‹ã€‚
 	 */
 	if (new != NULL) {
 		memcpy(new->buf, input->buf, (size_t)(thoff + TCP_HDR_SIZE));
@@ -1152,7 +1152,7 @@ tcp_write_raque (T_NET_BUF *input, T_TCP_CEP *cep, uint_t thoff, uint8_t flags)
 		}
 
 	/*
-	 *  ½Å¤Ê¤ë¸å(q)¤Î¥»¥°¥á¥ó¥È¤òÄ´À°¤¹¤ë¡£
+	 *  é‡ãªã‚‹å¾Œ(q)ã®ã‚»ã‚°ãƒ¡ãƒ³ãƒˆã‚’èª¿æ•´ã™ã‚‹ã€‚
 	 *
 	 *    inqhdr->seq
 	 *    |
@@ -1172,12 +1172,12 @@ tcp_write_raque (T_NET_BUF *input, T_TCP_CEP *cep, uint_t thoff, uint8_t flags)
 		qhdr = GET_TCP_Q_HDR(q, GET_TCP_IP_Q_HDR(q)->thoff);
 		len = inqhdr->seq + inqhdr->slen - qhdr->seq;
 		if (len <= 0)
-			/* len ¤¬Éé¤Ê¤é½Å¤Ê¤Ã¤Æ¤¤¤Ê¤¤¡£*/
+			/* len ãŒè² ãªã‚‰é‡ãªã£ã¦ã„ãªã„ã€‚*/
 			break;
 		else if (len < qhdr->slen) {
 
 			/*
-			 *  ¸å¤í¤Ç½Å¤Ê¤Ã¤Æ¤¤¤ë¥»¥°¥á¥ó¥È¤Î SDU ¤ò len Ê¬Á°¤ËµÍ¤á¤ë¡£
+			 *  å¾Œã‚ã§é‡ãªã£ã¦ã„ã‚‹ã‚»ã‚°ãƒ¡ãƒ³ãƒˆã® SDU ã‚’ len åˆ†å‰ã«è©°ã‚ã‚‹ã€‚
 			 *
 			 *    inqhdr->seq
 			 *    |
@@ -1221,7 +1221,7 @@ tcp_write_raque (T_NET_BUF *input, T_TCP_CEP *cep, uint_t thoff, uint8_t flags)
 	}
 
 /*
- *  tcp_rexmt_val -- ºÆÁ÷¥¿¥¤¥à¥¢¥¦¥ÈÃÍ¤òÊÖ¤¹¡£
+ *  tcp_rexmt_val -- å†é€ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆå€¤ã‚’è¿”ã™ã€‚
  */
 
 T_TCP_TIME
@@ -1237,7 +1237,7 @@ tcp_rexmt_val (T_TCP_CEP *cep)
 	}
 
 /*
- *  tcp_init_cep -- ÄÌ¿®Ã¼ÅÀ¤ò½é´ü²½¤¹¤ë¡£
+ *  tcp_init_cep -- é€šä¿¡ç«¯ç‚¹ã‚’åˆæœŸåŒ–ã™ã‚‹ã€‚
  */
 
 void
@@ -1245,9 +1245,9 @@ tcp_init_cep (T_TCP_CEP *cep)
 {
 #ifdef TCP_CFG_RWBUF_CSAVE
 	/*
-	 * ¼õ¿®¥¦¥£¥ó¥É¥Ğ¥Ã¥Õ¥¡¤Î¾Ê¥³¥Ô¡¼µ¡Ç½¤òÍ­¸ú¤Ë¤·¤¿¾ì¹ç¡¢
-	 * ¼õ¿®¥¦¥£¥ó¥É¥Ğ¥Ã¥Õ¥¡¤¬Á´¤Æ²òÊü¤µ¤ì¤Ê¤¤¤³¤È¤¬¤¢¤ë¤Î¤Ç¡¢
-	 * ¤³¤³¤Ç²òÊü¤¹¤ë¡£
+	 * å—ä¿¡ã‚¦ã‚£ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã®çœã‚³ãƒ”ãƒ¼æ©Ÿèƒ½ã‚’æœ‰åŠ¹ã«ã—ãŸå ´åˆã€
+	 * å—ä¿¡ã‚¦ã‚£ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ãŒå…¨ã¦è§£æ”¾ã•ã‚Œãªã„ã“ã¨ãŒã‚ã‚‹ã®ã§ã€
+	 * ã“ã“ã§è§£æ”¾ã™ã‚‹ã€‚
 	 */
 	if (cep->rwbufq != NULL) {
 		cep->rwbuf_count = 0;
@@ -1261,32 +1261,32 @@ tcp_init_cep (T_TCP_CEP *cep)
 	cep->sbuf_rptr	= cep->sbuf_wptr = cep->sbuf;
 	cep->rbuf_rptr	= cep->rbuf_wptr = cep->rbuf;
 
-	cep->maxseg	= DEF_TCP_SND_SEG;		/* Á÷¿®ºÇÂç¥»¥°¥á¥ó¥È¥µ¥¤¥º		*/
-	cep->srtt	= TCP_TVAL_SRTT_BASE;		/* ³ê¤é¤«¤Ê°ÜÆ°Ê¿¶Ñ			*/
+	cep->maxseg	= DEF_TCP_SND_SEG;		/* é€ä¿¡æœ€å¤§ã‚»ã‚°ãƒ¡ãƒ³ãƒˆã‚µã‚¤ã‚º		*/
+	cep->srtt	= TCP_TVAL_SRTT_BASE;		/* æ»‘ã‚‰ã‹ãªç§»å‹•å¹³å‡			*/
 	cep->rttvar	= ((TCP_TVAL_RTO_BASE - TCP_TVAL_SRTT_BASE) << TCP_RTTVAR_SHIFT) / 4;
-							/* ³ê¤é¤«¤ÊÊ¬»¶				*/
-	cep->rxtcur	= TCP_TVAL_RTO_BASE;		/* ¸½ºß¤ÎºÆÁ÷ÃÍ				*/
-	cep->snd_cwnd	=  MAX_TCP_WIN_SIZE;		/* íÕíÔ¥¦¥£¥ó¥É¥µ¥¤¥º			*/
-	cep->snd_ssthresh= MAX_TCP_WIN_SIZE;		/* íÕíÔ¥¦¥£¥ó¥É¥µ¥¤¥º(snd_cwnd)¤Î	À©¸ÂÃÍ	*/
+							/* æ»‘ã‚‰ã‹ãªåˆ†æ•£				*/
+	cep->rxtcur	= TCP_TVAL_RTO_BASE;		/* ç¾åœ¨ã®å†é€å€¤				*/
+	cep->snd_cwnd	=  MAX_TCP_WIN_SIZE;		/* è¼»è¼³ã‚¦ã‚£ãƒ³ãƒ‰ã‚µã‚¤ã‚º			*/
+	cep->snd_ssthresh= MAX_TCP_WIN_SIZE;		/* è¼»è¼³ã‚¦ã‚£ãƒ³ãƒ‰ã‚µã‚¤ã‚º(snd_cwnd)ã®	åˆ¶é™å€¤	*/
 
 	/*
-	 * °Ê²¼¤Ë´Ø·¸¤·¤Ê¤¤¥Õ¥é¥°¤ò¥¯¥ê¥¢¡¼¤¹¤ë¡£
-	 * ¡¦Á÷¼õ¿®¥¦¥£¥ó¥É¥Ğ¥Ã¥Õ¥¡¤Î¾Ê¥³¥Ô¡¼µ¡Ç½
-	 * ¡¦Æ°Åª¤ÊÄÌ¿®Ã¼ÅÀ¤ÎÀ¸À®¡¦ºï½üµ¡Ç½
+	 * ä»¥ä¸‹ã«é–¢ä¿‚ã—ãªã„ãƒ•ãƒ©ã‚°ã‚’ã‚¯ãƒªã‚¢ãƒ¼ã™ã‚‹ã€‚
+	 * ãƒ»é€å—ä¿¡ã‚¦ã‚£ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã®çœã‚³ãƒ”ãƒ¼æ©Ÿèƒ½
+	 * ãƒ»å‹•çš„ãªé€šä¿¡ç«¯ç‚¹ã®ç”Ÿæˆãƒ»å‰Šé™¤æ©Ÿèƒ½
 	 */
 	cep->flags &= (TCP_CEP_FLG_WBCS_NBUF_REQ | TCP_CEP_FLG_WBCS_MASK | 
 	               TCP_CEP_FLG_DYNAMIC       | TCP_CEP_FLG_VALID);
 
-	/* ¥»¥Ş¥Õ¥©¤ò½é´ü²½¤¹¤ë¡£*/
+	/* ã‚»ãƒãƒ•ã‚©ã‚’åˆæœŸåŒ–ã™ã‚‹ã€‚*/
 	sig_sem (cep->semid_lock);
 
-	/* ¥Õ¥é¥°¤ò½é´ü²½¤¹¤ë¡£*/
+	/* ãƒ•ãƒ©ã‚°ã‚’åˆæœŸåŒ–ã™ã‚‹ã€‚*/
 	syscall(set_flg(cep->snd_flgid, TCP_CEP_EVT_SWBUF_READY));
 	syscall(clr_flg(cep->rcv_flgid, TCP_CEP_EVT_RWBUF_READY));
 	}
 
 /*
- *  tcp_notify -- ICMP ¥¨¥é¡¼¤Î½èÍı
+ *  tcp_notify -- ICMP ã‚¨ãƒ©ãƒ¼ã®å‡¦ç†
  */
 
 void
@@ -1302,16 +1302,16 @@ tcp_notify (T_NET_BUF *input, ER error)
 	if ((cep = tcp_find_cep(&iph->src, tcph->sport, &iph->dst, tcph->dport)) != NULL) {
 
 		/*
-		 *  ¥³¥Í¥¯¥·¥ç¥ó³«ÀßºÑ¤Ç¡¢¥Û¥¹¥ÈÅşÃ£ÉÔÇ½¥¨¥é¡¼¤Î¾ì¹ç¤Ï¡¢
-		 *  ºÆÁ÷¤Ë¤è¤ê½èÍı¤¹¤ë¡£
+		 *  ã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³é–‹è¨­æ¸ˆã§ã€ãƒ›ã‚¹ãƒˆåˆ°é”ä¸èƒ½ã‚¨ãƒ©ãƒ¼ã®å ´åˆã¯ã€
+		 *  å†é€ã«ã‚ˆã‚Šå‡¦ç†ã™ã‚‹ã€‚
 		 */
 		if (cep->fsm_state == TCP_FSM_ESTABLISHED &&
 		    (error == EV_NURCH || error == EV_HURCH || error == EV_HDOWN))
 			return;
 
 		/*
-		 *  ¥³¥Í¥¯¥·¥ç¥ó³«ÀßÃæ¡¢Æ±¤¸¥¨¥é¡¼¤ò²¿ÅÙ¤«¼õ¿®¤·¤¿¾ì¹ç¤Ï¡¢
-		 *  ÂÔ¤Á¾õÂÖ¤ò²ò½ü¤·¡¢ÂĞ±ş¤¹¤ë´Ø¿ô¤Ë¥¨¥é¡¼¤òÊÖ¤µ¤»¤ë¡£
+		 *  ã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³é–‹è¨­ä¸­ã€åŒã˜ã‚¨ãƒ©ãƒ¼ã‚’ä½•åº¦ã‹å—ä¿¡ã—ãŸå ´åˆã¯ã€
+		 *  å¾…ã¡çŠ¶æ…‹ã‚’è§£é™¤ã—ã€å¯¾å¿œã™ã‚‹é–¢æ•°ã«ã‚¨ãƒ©ãƒ¼ã‚’è¿”ã•ã›ã‚‹ã€‚
 		 */
 		if (cep->fsm_state < TCP_FSM_ESTABLISHED && cep->rxtshift > 3 && cep->net_error != E_OK) {
 			cep->error = E_CLS;
@@ -1320,7 +1320,7 @@ tcp_notify (T_NET_BUF *input, ER error)
 		else {
 			cep->net_error = error;
 
-			/* Á÷¿®¤ò»Ø¼¨¤¹¤ë¡£*/
+			/* é€ä¿¡ã‚’æŒ‡ç¤ºã™ã‚‹ã€‚*/
 			cep->flags |=  TCP_CEP_FLG_POST_OUTPUT;
 			sig_sem(SEM_TCP_POST_OUTPUT);
 			}
@@ -1328,11 +1328,11 @@ tcp_notify (T_NET_BUF *input, ER error)
 	}
 
 /*
- *  tcp_find_cep -- ¥İ¡¼¥ÈÈÖ¹æ¤«¤é TCP ÄÌ¿®Ã¼ÅÀ¤òÆÀ¤ë¡£
+ *  tcp_find_cep -- ãƒãƒ¼ãƒˆç•ªå·ã‹ã‚‰ TCP é€šä¿¡ç«¯ç‚¹ã‚’å¾—ã‚‹ã€‚
  *
- *    Ãí°Õ: dstaddr ¤Ï¡¢
- *          TINET-1.2 ¤«¤é¥Í¥Ã¥È¥ï¡¼¥¯¥Ğ¥¤¥È¥ª¡¼¥À¡¢
- *          TINET-1.1 ¤Ş¤Ç¤Ï¡¢¥Û¥¹¥È¥Ğ¥¤¥È¥ª¡¼¥À
+ *    æ³¨æ„: dstaddr ã¯ã€
+ *          TINET-1.2 ã‹ã‚‰ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒˆã‚ªãƒ¼ãƒ€ã€
+ *          TINET-1.1 ã¾ã§ã¯ã€ãƒ›ã‚¹ãƒˆãƒã‚¤ãƒˆã‚ªãƒ¼ãƒ€
  */
 
 T_TCP_CEP*
@@ -1341,8 +1341,8 @@ tcp_find_cep (T_IN_ADDR *dstaddr, uint16_t dstport, T_IN_ADDR *peeraddr, uint16_
 	T_TCP_CEP*	cep;
 	
 	/*
-	 *  ¾õÂÖ¤¬ SYN Á÷¿®ºÑ¤ß°Ê¸å¤Ï¡¢
-	 *  IP ¥¢¥É¥ì¥¹¤È¥İ¡¼¥ÈÈÖ¹æ¤¬°ìÃ×¤¹¤ëÄÌ¿®Ã¼ÅÀ¤òÃµº÷¤¹¤ë¡£
+	 *  çŠ¶æ…‹ãŒ SYN é€ä¿¡æ¸ˆã¿ä»¥å¾Œã¯ã€
+	 *  IP ã‚¢ãƒ‰ãƒ¬ã‚¹ã¨ãƒãƒ¼ãƒˆç•ªå·ãŒä¸€è‡´ã™ã‚‹é€šä¿¡ç«¯ç‚¹ã‚’æ¢ç´¢ã™ã‚‹ã€‚
 	 */
 	for (cep = &tcp_cep[tmax_tcp_cepid]; cep -- != tcp_cep; ) {
 		if (cep->fsm_state >= TCP_FSM_SYN_SENT                    &&
@@ -1353,7 +1353,7 @@ tcp_find_cep (T_IN_ADDR *dstaddr, uint16_t dstport, T_IN_ADDR *peeraddr, uint16_
 			return cep;
 		}
 
-	/* ¼õÆ°¥ª¡¼¥×¥óÃæ¤ÎÄÌ¿®Ã¼ÅÀ¤òÃµº÷¤¹¤ë¡£*/	
+	/* å—å‹•ã‚ªãƒ¼ãƒ—ãƒ³ä¸­ã®é€šä¿¡ç«¯ç‚¹ã‚’æ¢ç´¢ã™ã‚‹ã€‚*/	
 	for (cep = &tcp_cep[tmax_tcp_cepid]; cep -- != tcp_cep; ) {
 		if (cep->fsm_state == TCP_FSM_LISTEN &&
 		    IN_IS_DSTADDR_ACCEPT(&cep->myaddr.ipaddr, dstaddr) &&
@@ -1365,7 +1365,7 @@ tcp_find_cep (T_IN_ADDR *dstaddr, uint16_t dstport, T_IN_ADDR *peeraddr, uint16_
 	}
 
 /*
- *  tcp_lock_cep -- TCP ÄÌ¿®Ã¼ÅÀ¤ò¥í¥Ã¥¯¤¹¤ë¡£
+ *  tcp_lock_cep -- TCP é€šä¿¡ç«¯ç‚¹ã‚’ãƒ­ãƒƒã‚¯ã™ã‚‹ã€‚
  */
 
 ER
@@ -1376,25 +1376,25 @@ tcp_lock_cep (ID cepid, T_TCP_CEP **p_cep, FN tfn)
 
 	*p_cep = NULL;
 
-	/* TCP ÄÌ¿®Ã¼ÅÀ ID ¤ò¥Á¥§¥Ã¥¯¤¹¤ë¡£*/
+	/* TCP é€šä¿¡ç«¯ç‚¹ ID ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã€‚*/
 	if (!VAID_TCP_CEPID(cepid))
 		return E_ID;
 
-	/* TCP ÄÌ¿®Ã¼ÅÀ¤òÆÀ¤ë¡£*/
+	/* TCP é€šä¿¡ç«¯ç‚¹ã‚’å¾—ã‚‹ã€‚*/
 	cep = GET_TCP_CEP(cepid);
 
-	/* TCP ÄÌ¿®Ã¼ÅÀ¤ò¥í¥Ã¥¯¤¹¤ë¡£*/
+	/* TCP é€šä¿¡ç«¯ç‚¹ã‚’ãƒ­ãƒƒã‚¯ã™ã‚‹ã€‚*/
 	syscall(wai_sem(cep->semid_lock));
 
-	/* TCP ÄÌ¿®Ã¼ÅÀ¤ò¥Á¥§¥Ã¥¯¤¹¤ë¡£*/
+	/* TCP é€šä¿¡ç«¯ç‚¹ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã€‚*/
 	if (!VALID_TCP_CEP(cep)) {
 		syscall(sig_sem(cep->semid_lock));
 		return E_NOEXS;
 		}
 
 	/*
-	 *  API µ¡Ç½¥³¡¼¥É¤È¥¿¥¹¥¯¼±ÊÌ»Ò¤òµ­Ï¿¤¹¤ë¡£
-	 *  ¤¹¤Ç¤Ëµ­Ï¿¤µ¤ì¤Æ¤¤¤ì¤Ğ¡¢¥Ú¥ó¥Ç¥£¥ó¥°Ãæ¤Ê¤Î¤Ç¥¨¥é¡¼
+	 *  API æ©Ÿèƒ½ã‚³ãƒ¼ãƒ‰ã¨ã‚¿ã‚¹ã‚¯è­˜åˆ¥å­ã‚’è¨˜éŒ²ã™ã‚‹ã€‚
+	 *  ã™ã§ã«è¨˜éŒ²ã•ã‚Œã¦ã„ã‚Œã°ã€ãƒšãƒ³ãƒ‡ã‚£ãƒ³ã‚°ä¸­ãªã®ã§ã‚¨ãƒ©ãƒ¼
 	 */
 	if (IS_TFN_TCP_RCV(tfn)) {
 		if (cep->rcv_tfn != TFN_TCP_UNDEF ||
@@ -1416,7 +1416,7 @@ tcp_lock_cep (ID cepid, T_TCP_CEP **p_cep, FN tfn)
 			}
 		}
 
-	/* ÄÌ¿®Ã¼ÅÀ¤Î¥í¥Ã¥¯¤ò²ò½ü¤¹¤ë¡£*/
+	/* é€šä¿¡ç«¯ç‚¹ã®ãƒ­ãƒƒã‚¯ã‚’è§£é™¤ã™ã‚‹ã€‚*/
 	syscall(sig_sem(cep->semid_lock));
 
 	*p_cep = cep;
@@ -1430,7 +1430,7 @@ tcp_lock_cep (ID cepid, T_TCP_CEP **p_cep, FN tfn)
 #endif
 
 /*
- *  ¥³¥Í¥¯¥·¥ç¥ó¤Î¾õÂÖ
+ *  ã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³ã®çŠ¶æ…‹
  */
 
 static const char tcp_strfsm[][3] = {
@@ -1448,7 +1448,7 @@ static const char tcp_strfsm[][3] = {
 	};
 
 /*
- *  trace_putchar -- ¥·¥ê¥¢¥ë¥İ¡¼¥È¤Ø¤ÎÊ¸»ú½ĞÎÏ
+ *  trace_putchar -- ã‚·ãƒªã‚¢ãƒ«ãƒãƒ¼ãƒˆã¸ã®æ–‡å­—å‡ºåŠ›
  */
 
 static void
@@ -1459,18 +1459,18 @@ trace_putchar (ID portid, char ch)
 	}
 
 /*
- *  ¥·¥ê¥¢¥ë¥İ¡¼¥È¤Ø¤Î½ñ¼°ÉÕÊ¸»úÎó½ĞÎÏ¥é¥¤¥Ö¥é¥ê
+ *  ã‚·ãƒªã‚¢ãƒ«ãƒãƒ¼ãƒˆã¸ã®æ›¸å¼ä»˜æ–‡å­—åˆ—å‡ºåŠ›ãƒ©ã‚¤ãƒ–ãƒ©ãƒª
  */
 
 /*
- *  ¿ôÃÍÊÑ´¹¤Î¤¿¤á¤ÎÊÑ´¹É½
+ *  æ•°å€¤å¤‰æ›ã®ãŸã‚ã®å¤‰æ›è¡¨
  */
 
 static const char radhex[] = "0123456789abcdef";
 static const char radHEX[] = "0123456789ABCDEF";
 
 /*
- *  convert -- trace_printf ¤Î¿ôÃÍÊÑ´¹
+ *  convert -- trace_printf ã®æ•°å€¤å¤‰æ›
  */
 
 static int_t
@@ -1507,7 +1507,7 @@ convert (ID portid, long_t val, int_t radix,
 	}
 
 /*
- *  trace_printf -- ¥·¥ê¥¢¥ë¥İ¡¼¥È¤Ø¤Î½ñ¼°ÉÕÊ¸»úÎó½ĞÎÏ
+ *  trace_printf -- ã‚·ãƒªã‚¢ãƒ«ãƒãƒ¼ãƒˆã¸ã®æ›¸å¼ä»˜æ–‡å­—åˆ—å‡ºåŠ›
  */
 
 static void
@@ -1520,24 +1520,24 @@ trace_printf (ID portid, const char *fmt, ...)
 
 	va_start(ap, fmt);
 	while ((ch = *fmt ++) != '\0') {
-		if (ch != '%') {		/* ½ñ¼°»ØÄê°Ê³° */
+		if (ch != '%') {		/* æ›¸å¼æŒ‡å®šä»¥å¤– */
 			trace_putchar(portid, (char)ch);
 			continue;
 			}
 
 		width = longflag = 0;
 		padchar = ' ';
-		if ((ch = *fmt ++) == '0') {	/* ¾å°Ì·å¤Î 0 */
+		if ((ch = *fmt ++) == '0') {	/* ä¸Šä½æ¡ã® 0 */
 			padchar = '0';
 			ch = *fmt ++;
 			}
 
-		while ('0' <= ch && ch <= '9') {	/* ½ĞÎÏÉı */
+		while ('0' <= ch && ch <= '9') {	/* å‡ºåŠ›å¹… */
 			width = width * 10 + ch - '0';
 			ch = *fmt ++;
 			}
 
-		while (ch == 'l') {		/* long (long) ¤Î»ØÄê */
+		while (ch == 'l') {		/* long (long) ã®æŒ‡å®š */
 			longflag ++;
 			ch = *fmt ++;
 			}
@@ -1598,7 +1598,7 @@ trace_printf (ID portid, const char *fmt, ...)
 	}
 
 /*
- *  TCP ¥Õ¥é¥°Ê¸»úÎó
+ *  TCP ãƒ•ãƒ©ã‚°æ–‡å­—åˆ—
  */
 
 static char *
@@ -1617,7 +1617,7 @@ get_tcp_flag_str (char *buf, uint8_t flags)
 	}
 
 /*
- *  Á÷¿® TCP ¥Ø¥Ã¥À¤Î¥È¥ì¡¼¥¹½ĞÎÏ
+ *  é€ä¿¡ TCP ãƒ˜ãƒƒãƒ€ã®ãƒˆãƒ¬ãƒ¼ã‚¹å‡ºåŠ›
  */
 
 void
@@ -1668,9 +1668,9 @@ tcp_output_trace (T_NET_BUF *output, T_TCP_CEP *cep)
 	}
 
 /*
- *  ¼õ¿® TCP ¥Ø¥Ã¥À¤Î¥È¥ì¡¼¥¹½ĞÎÏ
+ *  å—ä¿¡ TCP ãƒ˜ãƒƒãƒ€ã®ãƒˆãƒ¬ãƒ¼ã‚¹å‡ºåŠ›
  *
- *    Ãí°Õ: TCP ¥Ø¥Ã¥ÀÆâ¤Ï¡¢¤¹¤Ç¤Ë¥Û¥¹¥È¥Ğ¥¤¥È¥ª¡¼¥À
+ *    æ³¨æ„: TCP ãƒ˜ãƒƒãƒ€å†…ã¯ã€ã™ã§ã«ãƒ›ã‚¹ãƒˆãƒã‚¤ãƒˆã‚ªãƒ¼ãƒ€
  */
 
 void

@@ -4,29 +4,29 @@
  *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
- *  ╛х╡н├°║ю╕в╝╘д╧бд░╩▓╝д╬ (1)б┴(4) д╬╛Є╖ядлбдFree Software Foundation 
- *  д╦дшд├д╞╕°╔╜д╡дьд╞ддды GNU General Public License д╬ Version 2 д╦╡н
- *  ╜╥д╡дьд╞ддды╛Є╖ядЄ╦■д┐д╣╛ь╣чд╦╕┬дъбд╦▄е╜е╒е╚ежезевб╩╦▄е╜е╒е╚ежезев
- *  дЄ▓■╩╤д╖д┐дтд╬дЄ┤▐дрбе░╩▓╝╞▒д╕б╦дЄ╗╚═╤бж╩г└╜бж▓■╩╤бж║╞╟█╔█б╩░╩▓╝бд
- *  ═°═╤д╚╕╞д╓б╦д╣дыд│д╚дЄ╠╡╜■д╟╡Ў┬·д╣дыбе
- *  (1) ╦▄е╜е╒е╚ежезевдЄе╜б╝е╣е│б╝е╔д╬╖┴д╟═°═╤д╣ды╛ь╣чд╦д╧бд╛х╡нд╬├°║ю
- *      ╕в╔╜╝ибдд│д╬═°═╤╛Є╖ядкдшд╙▓╝╡нд╬╠╡╩▌╛┌╡м─ъдмбдд╜д╬д▐д▐д╬╖┴д╟е╜б╝
- *      е╣е│б╝е╔├цд╦┤▐д▐дьд╞дддыд│д╚бе
- *  (2) ╦▄е╜е╒е╚ежезевдЄбдещеде╓ещеъ╖┴╝░д╩д╔бд┬╛д╬е╜е╒е╚ежезев│л╚пд╦╗╚
- *      ═╤д╟днды╖┴д╟║╞╟█╔█д╣ды╛ь╣чд╦д╧бд║╞╟█╔█д╦╚╝дже╔енехесеєе╚б╩═°═╤
- *      ╝╘е▐е╦ехевеыд╩д╔б╦д╦бд╛х╡нд╬├°║ю╕в╔╜╝ибдд│д╬═°═╤╛Є╖ядкдшд╙▓╝╡н
- *      д╬╠╡╩▌╛┌╡м─ъдЄ╖╟║▄д╣дыд│д╚бе
- *  (3) ╦▄е╜е╒е╚ежезевдЄбд╡б┤яд╦┴╚д▀╣■дрд╩д╔бд┬╛д╬е╜е╒е╚ежезев│л╚пд╦╗╚
- *      ═╤д╟днд╩дд╖┴д╟║╞╟█╔█д╣ды╛ь╣чд╦д╧бд╝бд╬╛Є╖ядЄ╦■д┐д╣д│д╚бе
- *    (a) ║╞╟█╔█д╦╚╝дже╔енехесеєе╚б╩═°═╤╝╘е▐е╦ехевеыд╩д╔б╦д╦бд╛х╡нд╬├°
- *        ║ю╕в╔╜╝ибдд│д╬═°═╤╛Є╖ядкдшд╙▓╝╡нд╬╠╡╩▌╛┌╡м─ъдЄ╖╟║▄д╣дыд│д╚бе
- *  (4) ╦▄е╜е╒е╚ежезевд╬═°═╤д╦дшдъ─╛└▄┼кд▐д┐д╧┤╓└▄┼кд╦└╕д╕дыдддлд╩ды┬╗
- *      │▓длдщдтбд╛х╡н├°║ю╕в╝╘дкдшд╙TOPPERSе╫еэе╕езепе╚дЄ╠╚└╒д╣дыд│д╚бе
+ *  ф╕КшиШшСЧф╜ЬцийшАЕуБпя╝Мф╗еф╕ЛуБо (1)уАЬ(4) уБоцЭбф╗╢уБЛя╝МFree Software Foundation 
+ *  уБлуВИуБгуБжхЕмшбиуБХуВМуБжуБДуВЛ GNU General Public License уБо Version 2 уБлшиШ
+ *  ш┐░уБХуВМуБжуБДуВЛцЭбф╗╢уВТц║АуБЯуБЩха┤хРИуБлщЩРуВКя╝МцЬмуВ╜уГХуГИуВжуВзуВвя╝ИцЬмуВ╜уГХуГИуВжуВзуВв
+ *  уВТцФ╣хдЙуБЧуБЯуВВуБоуВТхРлуВАя╝Оф╗еф╕ЛхРМуБШя╝ЙуВТф╜┐чФиуГ╗шдЗшг╜уГ╗цФ╣хдЙуГ╗хЖНщЕНх╕Гя╝Иф╗еф╕Ля╝М
+ *  хИйчФиуБихС╝уБ╢я╝ЙуБЩуВЛуБУуБиуВТчДбхДЯуБзши▒шл╛уБЩуВЛя╝О
+ *  (1) цЬмуВ╜уГХуГИуВжуВзуВвуВТуВ╜уГ╝уВ╣уВ│уГ╝уГЙуБох╜вуБзхИйчФиуБЩуВЛха┤хРИуБлуБпя╝Мф╕КшиШуБошСЧф╜Ь
+ *      цийшбичд║я╝МуБУуБохИйчФицЭбф╗╢уБКуВИуБ│ф╕ЛшиШуБочДбф┐Эши╝шжПхоЪуБМя╝МуБЭуБоуБ╛уБ╛уБох╜вуБзуВ╜уГ╝
+ *      уВ╣уВ│уГ╝уГЙф╕нуБлхРлуБ╛уВМуБжуБДуВЛуБУуБия╝О
+ *  (2) цЬмуВ╜уГХуГИуВжуВзуВвуВТя╝МуГйуВдуГЦуГйуГкх╜вх╝ПуБкуБйя╝Мф╗ЦуБоуВ╜уГХуГИуВжуВзуВвщЦЛчЩ║уБлф╜┐
+ *      чФиуБзуБНуВЛх╜вуБзхЖНщЕНх╕ГуБЩуВЛха┤хРИуБлуБпя╝МхЖНщЕНх╕ГуБлф╝┤уБЖуГЙуВнуГеуГбуГ│уГИя╝ИхИйчФи
+ *      шАЕуГЮуГЛуГеуВвуГлуБкуБйя╝ЙуБля╝Мф╕КшиШуБошСЧф╜Ьцийшбичд║я╝МуБУуБохИйчФицЭбф╗╢уБКуВИуБ│ф╕ЛшиШ
+ *      уБочДбф┐Эши╝шжПхоЪуВТцО▓ш╝ЙуБЩуВЛуБУуБия╝О
+ *  (3) цЬмуВ╜уГХуГИуВжуВзуВвуВТя╝МцйЯхЩиуБлч╡ДуБ┐ш╛╝уВАуБкуБйя╝Мф╗ЦуБоуВ╜уГХуГИуВжуВзуВвщЦЛчЩ║уБлф╜┐
+ *      чФиуБзуБНуБкуБДх╜вуБзхЖНщЕНх╕ГуБЩуВЛха┤хРИуБлуБпя╝МцмбуБоцЭбф╗╢уВТц║АуБЯуБЩуБУуБия╝О
+ *    (a) хЖНщЕНх╕ГуБлф╝┤уБЖуГЙуВнуГеуГбуГ│уГИя╝ИхИйчФишАЕуГЮуГЛуГеуВвуГлуБкуБйя╝ЙуБля╝Мф╕КшиШуБошСЧ
+ *        ф╜Ьцийшбичд║я╝МуБУуБохИйчФицЭбф╗╢уБКуВИуБ│ф╕ЛшиШуБочДбф┐Эши╝шжПхоЪуВТцО▓ш╝ЙуБЩуВЛуБУуБия╝О
+ *  (4) цЬмуВ╜уГХуГИуВжуВзуВвуБохИйчФиуБлуВИуВКчЫ┤цОечЪДуБ╛уБЯуБпщЦУцОечЪДуБлчФЯуБШуВЛуБДуБЛуБкуВЛцРН
+ *      хо│уБЛуВЙуВВя╝Мф╕КшиШшСЧф╜ЬцийшАЕуБКуВИуБ│TOPPERSуГЧуГнуВ╕уВзуВпуГИуВТхЕНш▓муБЩуВЛуБУуБия╝О
  *
- *  ╦▄е╜е╒е╚ежезевд╧бд╠╡╩▌╛┌д╟─є╢бд╡дьд╞дддыдтд╬д╟двдыбе╛х╡н├°║ю╕в╝╘дк
- *  дшд╙TOPPERSе╫еэе╕езепе╚д╧бд╦▄е╜е╒е╚ежезевд╦┤╪д╖д╞бдд╜д╬┼м═╤▓─╟╜└ндт
- *  ┤▐дсд╞бддддлд╩ды╩▌╛┌дт╣╘дяд╩ддбед▐д┐бд╦▄е╜е╒е╚ежезевд╬═°═╤д╦дшдъ─╛
- *  └▄┼кд▐д┐д╧┤╓└▄┼кд╦└╕д╕д┐дддлд╩ды┬╗│▓д╦┤╪д╖д╞дтбдд╜д╬└╒╟ддЄ╔щдяд╩ддбе
+ *  цЬмуВ╜уГХуГИуВжуВзуВвуБпя╝МчДбф┐Эши╝уБзцПРф╛ЫуБХуВМуБжуБДуВЛуВВуБоуБзуБВуВЛя╝Оф╕КшиШшСЧф╜ЬцийшАЕуБК
+ *  уВИуБ│TOPPERSуГЧуГнуВ╕уВзуВпуГИуБпя╝МцЬмуВ╜уГХуГИуВжуВзуВвуБлщЦвуБЧуБжя╝МуБЭуБощБйчФихПпшГ╜цАзуВВ
+ *  хРлуВБуБжя╝МуБДуБЛуБкуВЛф┐Эши╝уВВшбМуВПуБкуБДя╝ОуБ╛уБЯя╝МцЬмуВ╜уГХуГИуВжуВзуВвуБохИйчФиуБлуВИуВКчЫ┤
+ *  цОечЪДуБ╛уБЯуБпщЦУцОечЪДуБлчФЯуБШуБЯуБДуБЛуБкуВЛцРНхо│уБлщЦвуБЧуБжуВВя╝МуБЭуБош▓мф╗╗уВТш▓ауВПуБкуБДя╝О
  * 
  *  @(#) $Id: tinet_config.h,v 1.5.4.1 2015/02/05 02:07:56 abe Exp abe $
  */
@@ -35,24 +35,24 @@
 #define _TINET_CONFIG_H_
 
 /*
- *  TINET 1.2 д╚д╬╕▀┤╣└нд╬д┐дсд╬─ъ╡┴
+ *  TINET 1.2 уБиуБоф║ТцПЫцАзуБоуБЯуВБуБохоЪч╛й
  */
 
-/* TCPд╬╝ї╞░екб╝е╫еєдЄе╡е▌б╝е╚д╣дыбг*/
+/* TCPуБохПЧхЛХуВкуГ╝уГЧуГ│уВТуВ╡уГЭуГ╝уГИуБЩуВЛуАВ*/
 
 #define TCP_CFG_PASSIVE_OPEN
 
-/* TCPд╬е╬еєе╓еэе├енеєе░е│б╝еы╡б╟╜дЄ┴╚╣■дрбг*/
+/* TCPуБоуГОуГ│уГЦуГнуГГуВнуГ│уВ░уВ│уГ╝уГлцйЯшГ╜уВТч╡Дш╛╝уВАуАВ*/
 
 #define TCP_CFG_NON_BLOCKING
 
-/* UDPд╬е╬еєе╓еэе├енеєе░е│б╝еы╡б╟╜дЄ┴╚╣■дрбг*/
+/* UDPуБоуГОуГ│уГЦуГнуГГуВнуГ│уВ░уВ│уГ╝уГлцйЯшГ╜уВТч╡Дш╛╝уВАуАВ*/
 
 #define UDP_CFG_NON_BLOCKING
 
 /*
- *  NICбве╖е╣е╞ербвCPUбв▒■═╤е╫еэе░ещерд╦
- *  ░═┬╕д╣ды─ъ╡┴е╒ебедеыдЄедеєепеыб╝е╔д╣дыбг
+ *  NICуАБуВ╖уВ╣уГЖуГауАБCPUуАБх┐ЬчФиуГЧуГнуВ░уГйуГауБл
+ *  ф╛ЭхнШуБЩуВЛхоЪч╛йуГХуВбуВдуГлуВТуВдуГ│уВпуГлуГ╝уГЙуБЩуВЛуАВ
  */
 
 #if defined(TARGET_KERNEL_JSP)
@@ -81,7 +81,7 @@
 #endif	/* of #if defined(TARGET_KERNEL_JSP) */
 
 /*
- *  TINET 1.1 д╚д╬╕▀┤╣└нд╬д┐дсд╬─ъ╡┴
+ *  TINET 1.1 уБиуБоф║ТцПЫцАзуБоуБЯуВБуБохоЪч╛й
  */
 
 #ifdef  TMO_ICMP4_OUTPUT
@@ -89,7 +89,7 @@
 #endif
 
 /*
- *  TINET 1.2 д╚д╬╕▀┤╣└нд╬д┐дсд╬─ъ╡┴
+ *  TINET 1.2 уБиуБоф║ТцПЫцАзуБоуБЯуВБуБохоЪч╛й
  */
 
 #ifdef  NUM_MPF_NET_BUF_4096
@@ -97,7 +97,7 @@
 #endif
 
 /*
- *  TINET 1.3 д╚д╬╕▀┤╣└нд╬д┐дсд╬─ъ╡┴
+ *  TINET 1.3 уБиуБоф║ТцПЫцАзуБоуБЯуВБуБохоЪч╛й
 
 #ifdef  NUM_MPF_NET_BUF_REASSM
 #define NUM_MPF_NET_BUF4_REASSM	NUM_MPF_NET_BUF_REASSM
@@ -105,13 +105,13 @@
  */
 
 /*
- *  TCP д╦┤╪д╣ды─ъ╡┴
+ *  TCP уБлщЦвуБЩуВЛхоЪч╛й
  */
 
 /*
- *  MAX_TCP_RCV_SEG: ╝ї┐ое╗е░есеєе╚е╡еде║д╬║╟┬ч├═
+ *  MAX_TCP_RCV_SEG: хПЧф┐буВ╗уВ░уГбуГ│уГИуВ╡уВдуВ║уБоцЬАхдзхАд
  *
- *    ├э░╒: ╩╤╣╣д╣д┘днд╟д╧д╩ддбг
+ *    ц│ицДП: хдЙцЫ┤уБЩуБ╣уБНуБзуБпуБкуБДуАВ
  */
 
 #ifndef MAX_TCP_RCV_SEG
@@ -119,7 +119,7 @@
 #endif
 
 /*
- *  DEF_TCP_SND_SEG: ┴ў┐ое╗е░есеєе╚е╡еде║д╬╡м─ъ├═
+ *  DEF_TCP_SND_SEG: щАБф┐буВ╗уВ░уГбуГ│уГИуВ╡уВдуВ║уБошжПхоЪхАд
  */
 
 #ifndef DEF_TCP_SND_SEG
@@ -127,7 +127,7 @@
 #endif
 
 /*
- *  TCP ─╠┐о├╝┼└д╬┴ў╝ї┐оежегеєе╔е╨е├е╒ебд╬╛╩е│е╘б╝╡б╟╜
+ *  TCP щАЪф┐бчлпчВ╣уБощАБхПЧф┐буВжуВгуГ│уГЙуГРуГГуГХуВбуБочЬБуВ│уГФуГ╝цйЯшГ╜
  */
 
 #ifdef  TCP_CFG_SWBUF_CSAVE_ONLY
@@ -143,10 +143,10 @@
 #endif	/* of #ifdef  TCP_CFG_RWBUF_CSAVE_ONLY */
 
 /*
- *  TCP_CFG_URG_OFFSET: ╢█╡▐е╟б╝е┐д╬║╟╕хд╬е╨еде╚д╬еке╒е╗е├е╚
+ *  TCP_CFG_URG_OFFSET: ч╖КцАеуГЗуГ╝уВ┐уБоцЬАх╛МуБоуГРуВдуГИуБоуВкуГХуВ╗уГГуГИ
  *
- *    -1: BSD д╬╝┬┴їбв╢█╡▐е▌едеєе┐д╧бв╢█╡▐е╟б╝е┐д╬║╟╕хд╬е╨еде╚д╬╝бд╬е╨еде╚дЄ║╣д╣бг
- *     0: RFC1122 д╬╡м─ъбв╢█╡▐е▌едеєе┐д╧бв╢█╡▐е╟б╝е┐д╬║╟╕хд╬е╨еде╚дЄ║╣д╣бг
+ *    -1: BSD уБохоЯшгЕуАБч╖КцАеуГЭуВдуГ│уВ┐уБпуАБч╖КцАеуГЗуГ╝уВ┐уБоцЬАх╛МуБоуГРуВдуГИуБоцмбуБоуГРуВдуГИуВТх╖оуБЩуАВ
+ *     0: RFC1122 уБошжПхоЪуАБч╖КцАеуГЭуВдуГ│уВ┐уБпуАБч╖КцАеуГЗуГ╝уВ┐уБоцЬАх╛МуБоуГРуВдуГИуВТх╖оуБЩуАВ
  */
 
 #ifndef TCP_CFG_URG_OFFSET
@@ -154,26 +154,26 @@
 #endif
 
 /*
- *  ARP д╦┤╪д╣ды─ъ╡┴
+ *  ARP уБлщЦвуБЩуВЛхоЪч╛й
  */
 
 #ifndef ARP_CACHE_KEEP
-#define ARP_CACHE_KEEP		(20*60*NET_TIMER_HZ)	/* ARP енеуе├е╖ехд╬е┐едеревеже╚	*/
+#define ARP_CACHE_KEEP		(20*60*NET_TIMER_HZ)	/* ARP уВнуГгуГГуВ╖уГеуБоуВ┐уВдуГауВвуВжуГИ	*/
 #endif
 
 /*
- *  еыб╝е╫е╨е├епедеєе┐е╒езб╝е╣д╦┤╪д╣ды─ъ╡┴
+ *  уГлуГ╝уГЧуГРуГГуВпуВдуГ│уВ┐уГХуВзуГ╝уВ╣уБлщЦвуБЩуВЛхоЪч╛й
  */
 
 #ifndef LOMTU
-#define LOMTU			1500	/* еыб╝е╫е╨е├епд╬ MTU			*/
+#define LOMTU			1500	/* уГлуГ╝уГЧуГРуГГуВпуБо MTU			*/
 #endif
 
 /*
- * TINET е╡е▌б╝е╚┤╪┐Їд╦┤╪д╣ды─ъ╡┴
+ * TINET уВ╡уГЭуГ╝уГИщЦвцХ░уБлщЦвуБЩуВЛхоЪч╛й
  */
 
-#ifndef NUM_IPV4ADDR_STR_BUFF		/* ip2str д╦дкд▒ды IP еве╔еье╣╩╕╗·╬є═╤е╨е├е╒еб┐Ї */
+#ifndef NUM_IPV4ADDR_STR_BUFF		/* ip2str уБлуБКуБСуВЛ IP уВвуГЙуГмуВ╣цЦЗхнЧхИЧчФиуГРуГГуГХуВбцХ░ */
 
 #if defined(SUPPORT_PPP)
 
@@ -188,10 +188,10 @@
 #endif	/* of #ifndef NUM_IPV4ADDR_STR_BUFF */
 
 #ifndef NUM_IPV6ADDR_STR_BUFF
-#define NUM_IPV6ADDR_STR_BUFF	2	/* ip62str д╦дкд▒ды IP еве╔еье╣╩╕╗·╬є═╤е╨е├е╒еб┐Ї */
+#define NUM_IPV6ADDR_STR_BUFF	2	/* ip62str уБлуБКуБСуВЛ IP уВвуГЙуГмуВ╣цЦЗхнЧхИЧчФиуГРуГГуГХуВбцХ░ */
 #endif
 
-#ifndef NUM_MACADDR_STR_BUFF		/* macstr д╦дкд▒ды MAC еве╔еье╣╩╕╗·╬є═╤е╨е├е╒еб┐Ї */
+#ifndef NUM_MACADDR_STR_BUFF		/* macstr уБлуБКуБСуВЛ MAC уВвуГЙуГмуВ╣цЦЗхнЧхИЧчФиуГРуГГуГХуВбцХ░ */
 
 #if defined(SUPPORT_INET4) && defined(ETHER_CFG_ACCEPT_ALL) && defined(ETHER_CFG_MCAST_WARNING)
 
@@ -206,182 +206,182 @@
 #endif	/* of #ifndef NUM_MACADDR_STR_BUFF */
 
 /*
- *  TINET ╞т╔Їд╬е┐едеревеже╚├═д╬└▀─ъ
+ *  TINET хЖЕщГиуБоуВ┐уВдуГауВвуВжуГИхАдуБошинхоЪ
  */
 
 #ifndef TMO_IP4_FRAG_GET_NET_BUF
-#define TMO_IP4_FRAG_GET_NET_BUF	ULONG_C(1000)	/* [ms]бвIPv4 е╟б╝е┐е░ещер║╞╣╜└о═╤е═е├е╚еяб╝епе╨е├е╒еб│═╞└е┐едеревеже╚	*/
+#define TMO_IP4_FRAG_GET_NET_BUF	ULONG_C(1000)	/* [ms]уАБIPv4 уГЗуГ╝уВ┐уВ░уГйуГахЖНцзЛцИРчФиуГНуГГуГИуГпуГ╝уВпуГРуГГуГХуВбчН▓х╛ЧуВ┐уВдуГауВвуВжуГИ	*/
 #endif
 
 #ifndef TMO_IP6_FRAG_GET_NET_BUF
-#define TMO_IP6_FRAG_GET_NET_BUF	ULONG_C(1000)	/* [ms]бвIPv6 е╟б╝е┐е░ещер║╞╣╜└о═╤е═е├е╚еяб╝епе╨е├е╒еб│═╞└е┐едеревеже╚	*/
+#define TMO_IP6_FRAG_GET_NET_BUF	ULONG_C(1000)	/* [ms]уАБIPv6 уГЗуГ╝уВ┐уВ░уГйуГахЖНцзЛцИРчФиуГНуГГуГИуГпуГ╝уВпуГРуГГуГХуВбчН▓х╛ЧуВ┐уВдуГауВвуВжуГИ	*/
 #endif
 
 #ifndef TMO_PPP_GET_NET_BUF
-#define TMO_PPP_GET_NET_BUF		ULONG_C(1000)	/* [ms]бвPPP ╝ї┐о═╤е═е├е╚еяб╝епе╨е├е╒еб│═╞└е┐едеревеже╚	*/
+#define TMO_PPP_GET_NET_BUF		ULONG_C(1000)	/* [ms]уАБPPP хПЧф┐бчФиуГНуГГуГИуГпуГ╝уВпуГРуГГуГХуВбчН▓х╛ЧуВ┐уВдуГауВвуВжуГИ	*/
 #endif
 
 #ifndef TMO_ARP_GET_NET_BUF
-#define TMO_ARP_GET_NET_BUF		ULONG_C(1000)	/* [ms]бвARP д╬е═е├е╚еяб╝епе╨е├е╒еб│═╞└е┐едеревеже╚	*/
+#define TMO_ARP_GET_NET_BUF		ULONG_C(1000)	/* [ms]уАБARP уБоуГНуГГуГИуГпуГ╝уВпуГРуГГуГХуВбчН▓х╛ЧуВ┐уВдуГауВвуВжуГИ	*/
 #endif
 
 #ifndef TMO_TCP_GET_NET_BUF
-#define TMO_TCP_GET_NET_BUF		ULONG_C(1000)	/* [ms]бвTCP д╬е═е├е╚еяб╝епе╨е├е╒еб│═╞└е┐едеревеже╚	*/
+#define TMO_TCP_GET_NET_BUF		ULONG_C(1000)	/* [ms]уАБTCP уБоуГНуГГуГИуГпуГ╝уВпуГРуГГуГХуВбчН▓х╛ЧуВ┐уВдуГауВвуВжуГИ	*/
 #endif
 
 #ifndef TMO_TCP_OUTPUT
-#define TMO_TCP_OUTPUT			ULONG_C(1000)	/* [ms]бвTCP ╜╨╬╧е┐едеревеже╚				*/
+#define TMO_TCP_OUTPUT			ULONG_C(1000)	/* [ms]уАБTCP хЗ║хКЫуВ┐уВдуГауВвуВжуГИ				*/
 #endif
 
 #ifndef TMO_UDP_OUTPUT
-#define TMO_UDP_OUTPUT			ULONG_C(1000)	/* [ms]бвUDP ╜╨╬╧е┐едеревеже╚				*/
+#define TMO_UDP_OUTPUT			ULONG_C(1000)	/* [ms]уАБUDP хЗ║хКЫуВ┐уВдуГауВвуВжуГИ				*/
 #endif
 
 #ifndef TMO_ICMP_OUTPUT
-#define TMO_ICMP_OUTPUT			ULONG_C(1000)	/* [ms]бвICMP ╜╨╬╧е┐едеревеже╚				*/
+#define TMO_ICMP_OUTPUT			ULONG_C(1000)	/* [ms]уАБICMP хЗ║хКЫуВ┐уВдуГауВвуВжуГИ				*/
 #endif
 
 #ifndef TMO_ND6_NS_OUTPUT
-#define TMO_ND6_NS_OUTPUT		ULONG_C(1000)	/* [ms]бв╢с╬┘═╫└┴╜╨╬╧е┐едеревеже╚			*/
+#define TMO_ND6_NS_OUTPUT		ULONG_C(1000)	/* [ms]уАБш┐СщЪгшжБшлЛхЗ║хКЫуВ┐уВдуГауВвуВжуГИ			*/
 #endif
 
 #ifndef TMO_ND6_NA_OUTPUT
-#define TMO_ND6_NA_OUTPUT		ULONG_C(1000)	/* [ms]бв╢с╬┘─╠├╬╜╨╬╧е┐едеревеже╚			*/
+#define TMO_ND6_NA_OUTPUT		ULONG_C(1000)	/* [ms]уАБш┐СщЪгщАЪчЯехЗ║хКЫуВ┐уВдуГауВвуВжуГИ			*/
 #endif
 
 #ifndef TMO_ND6_RS_OUTPUT
-#define TMO_ND6_RS_OUTPUT		ULONG_C(1000)	/* [ms]бвеыб╝е┐═╫└┴╜╨╬╧е┐едеревеже╚			*/
+#define TMO_ND6_RS_OUTPUT		ULONG_C(1000)	/* [ms]уАБуГлуГ╝уВ┐шжБшлЛхЗ║хКЫуВ┐уВдуГауВвуВжуГИ			*/
 #endif
 
 #ifndef TMO_ARP_OUTPUT
-#define TMO_ARP_OUTPUT			ULONG_C(1000)	/* [ms]бвеве╔еье╣▓Є╖ш═╫╡с╜╨╬╧е┐едеревеже╚		*/
+#define TMO_ARP_OUTPUT			ULONG_C(1000)	/* [ms]уАБуВвуГЙуГмуВ╣шзгц▒║шжБц▒ВхЗ║хКЫуВ┐уВдуГауВвуВжуГИ		*/
 #endif
 
 #ifndef TMO_ND6_RTR_SOL_DELAY
-#define TMO_ND6_RTR_SOL_DELAY		ULONG_C(1000)	/* [ms]бвеыб╝е┐═╫└┴╜╨╬╧├┘▒ф				*/
+#define TMO_ND6_RTR_SOL_DELAY		ULONG_C(1000)	/* [ms]уАБуГлуГ╝уВ┐шжБшлЛхЗ║хКЫщБЕх╗╢				*/
 #endif
 
 #ifndef TMO_ND6_RTR_SOL_INTERVAL
-#define TMO_ND6_RTR_SOL_INTERVAL	ULONG_C(4000)	/* [ms]бвеыб╝е┐═╫└┴╜╨╬╧┤╓│╓				*/
+#define TMO_ND6_RTR_SOL_INTERVAL	ULONG_C(4000)	/* [ms]уАБуГлуГ╝уВ┐шжБшлЛхЗ║хКЫщЦУщЪФ				*/
 #endif
 
 #ifndef TMO_IN_REDIRECT
-					/* [s]бв╕■д▒─╛д╖еыб╝е╞егеєе░еиеєе╚еъе┐едеревеже╚*/
+					/* [s]уАБхРСуБСчЫ┤уБЧуГлуГ╝уГЖуВгуГ│уВ░уВиуГ│уГИуГкуВ┐уВдуГауВвуВжуГИ*/
 #define TMO_IN_REDIRECT			(10*60*NET_TIMER_HZ)
 #endif
 
 /*
- *  TINET ╞т╔Їд╬е┐е╣епд╬е╣е┐е├епе╡еде║д╬└▀─ъ
+ *  TINET хЖЕщГиуБоуВ┐уВ╣уВпуБоуВ╣уВ┐уГГуВпуВ╡уВдуВ║уБошинхоЪ
  */
 
 #ifndef TCP_OUT_TASK_STACK_SIZE
-#define	TCP_OUT_TASK_STACK_SIZE	1024	/* TCP ╜╨╬╧е┐е╣епд╬е╣е┐е├епе╡еде║		*/
+#define	TCP_OUT_TASK_STACK_SIZE	1024	/* TCP хЗ║хКЫуВ┐уВ╣уВпуБоуВ╣уВ┐уГГуВпуВ╡уВдуВ║		*/
 #endif
 
 #ifndef UDP_OUT_TASK_STACK_SIZE
-#define	UDP_OUT_TASK_STACK_SIZE	1024	/* UDP ╜╨╬╧е┐е╣епд╬е╣е┐е├епе╡еде║			*/
+#define	UDP_OUT_TASK_STACK_SIZE	1024	/* UDP хЗ║хКЫуВ┐уВ╣уВпуБоуВ╣уВ┐уГГуВпуВ╡уВдуВ║			*/
 #endif
 
 #ifndef PPP_INPUT_STACK_SIZE
-#define	PPP_INPUT_STACK_SIZE	1024	/* PPP е┐е╣епд╬е╣е┐е├епе╡еде║		*/
+#define	PPP_INPUT_STACK_SIZE	1024	/* PPP уВ┐уВ╣уВпуБоуВ╣уВ┐уГГуВпуВ╡уВдуВ║		*/
 #endif
 
 #ifndef PPP_OUTPUT_STACK_SIZE
-#define	PPP_OUTPUT_STACK_SIZE	1024	/* PPP ╜╨╬╧е┐е╣епд╬е╣е┐е├епе╡еде║		*/
+#define	PPP_OUTPUT_STACK_SIZE	1024	/* PPP хЗ║хКЫуВ┐уВ╣уВпуБоуВ╣уВ┐уГГуВпуВ╡уВдуВ║		*/
 #endif
 
 #ifndef ETHER_INPUT_STACK_SIZE
-#define	ETHER_INPUT_STACK_SIZE	1024	/* Ethernet ╞■╬╧е┐е╣епд╬е╣е┐е├епе╡еде║	*/
+#define	ETHER_INPUT_STACK_SIZE	1024	/* Ethernet хЕехКЫуВ┐уВ╣уВпуБоуВ╣уВ┐уГГуВпуВ╡уВдуВ║	*/
 #endif
 
 #ifndef ETHER_OUTPUT_STACK_SIZE
-#define	ETHER_OUTPUT_STACK_SIZE	1024	/* Ethernet ╜╨╬╧е┐е╣епд╬е╣е┐е├епе╡еде║	*/
+#define	ETHER_OUTPUT_STACK_SIZE	1024	/* Ethernet хЗ║хКЫуВ┐уВ╣уВпуБоуВ╣уВ┐уГГуВпуВ╡уВдуВ║	*/
 #endif
 
 #ifndef LOOP_INPUT_STACK_SIZE
-#define	LOOP_INPUT_STACK_SIZE	1024	/* еыб╝е╫е╨е├еп╞■╬╧е┐е╣епд╬е╣е┐е├епе╡еде║	*/
+#define	LOOP_INPUT_STACK_SIZE	1024	/* уГлуГ╝уГЧуГРуГГуВпхЕехКЫуВ┐уВ╣уВпуБоуВ╣уВ┐уГГуВпуВ╡уВдуВ║	*/
 #endif
 
 #ifndef LOOP_OUTPUT_STACK_SIZE
-#define	LOOP_OUTPUT_STACK_SIZE	1024	/* еыб╝е╫е╨е├еп╜╨╬╧е┐е╣епд╬е╣е┐е├епе╡еде║	*/
+#define	LOOP_OUTPUT_STACK_SIZE	1024	/* уГлуГ╝уГЧуГРуГГуВпхЗ║хКЫуВ┐уВ╣уВпуБоуВ╣уВ┐уГГуВпуВ╡уВдуВ║	*/
 #endif
 
 #ifndef NET_TIMER_STACK_SIZE
-#define	NET_TIMER_STACK_SIZE	1024	/* е═е├е╚еяб╝епе┐еде▐е┐е╣епд╬е╣е┐е├епе╡еде║ */
+#define	NET_TIMER_STACK_SIZE	1024	/* уГНуГГуГИуГпуГ╝уВпуВ┐уВдуГЮуВ┐уВ╣уВпуБоуВ╣уВ┐уГГуВпуВ╡уВдуВ║ */
 #endif
 
 /*
- *  TINET ╞т╔Їд╬е┐е╣епд╬═е└ш┼┘д╬└▀─ъ
+ *  TINET хЖЕщГиуБоуВ┐уВ╣уВпуБохДкхЕИх║жуБошинхоЪ
  */
 
 #ifndef TCP_OUT_TASK_PRIORITY
-#define TCP_OUT_TASK_PRIORITY	5	/* TCP ╜╨╬╧е┐е╣епд╬═е└ш┼┘			*/
+#define TCP_OUT_TASK_PRIORITY	5	/* TCP хЗ║хКЫуВ┐уВ╣уВпуБохДкхЕИх║ж			*/
 #endif
 
 #ifndef UDP_OUT_TASK_PRIORITY
-#define UDP_OUT_TASK_PRIORITY	5	/* UDP ╜╨╬╧е┐е╣епд╬═е└ш┼┘				*/
+#define UDP_OUT_TASK_PRIORITY	5	/* UDP хЗ║хКЫуВ┐уВ╣уВпуБохДкхЕИх║ж				*/
 #endif
 
 #ifndef PPP_INPUT_PRIORITY
-#define PPP_INPUT_PRIORITY	5	/* PPP е┐е╣епд╬═е└ш┼┘			*/
+#define PPP_INPUT_PRIORITY	5	/* PPP уВ┐уВ╣уВпуБохДкхЕИх║ж			*/
 #endif
 
 #ifndef PPP_OUTPUT_PRIORITY
-#define PPP_OUTPUT_PRIORITY	5	/* PPP е┐е╣епд╬═е└ш┼┘			*/
+#define PPP_OUTPUT_PRIORITY	5	/* PPP уВ┐уВ╣уВпуБохДкхЕИх║ж			*/
 #endif
 
 #ifndef ETHER_INPUT_PRIORITY
-#define ETHER_INPUT_PRIORITY	5	/* Ethernet ╞■╬╧е┐е╣епд╬═е└ш┼┘		*/
+#define ETHER_INPUT_PRIORITY	5	/* Ethernet хЕехКЫуВ┐уВ╣уВпуБохДкхЕИх║ж		*/
 #endif
 
 #ifndef ETHER_OUTPUT_PRIORITY
-#define ETHER_OUTPUT_PRIORITY	5	/* Ethernet ╜╨╬╧е┐е╣епд╬═е└ш┼┘		*/
+#define ETHER_OUTPUT_PRIORITY	5	/* Ethernet хЗ║хКЫуВ┐уВ╣уВпуБохДкхЕИх║ж		*/
 #endif
 
 #ifndef LOOP_INPUT_PRIORITY
-#define LOOP_INPUT_PRIORITY	5	/* еыб╝е╫е╨е├еп╞■╬╧е┐е╣епд╬═е└ш┼┘		*/
+#define LOOP_INPUT_PRIORITY	5	/* уГлуГ╝уГЧуГРуГГуВпхЕехКЫуВ┐уВ╣уВпуБохДкхЕИх║ж		*/
 #endif
 
 #ifndef LOOP_OUTPUT_PRIORITY
-#define LOOP_OUTPUT_PRIORITY	5	/* еыб╝е╫е╨е├еп╜╨╬╧е┐е╣епд╬═е└ш┼┘		*/
+#define LOOP_OUTPUT_PRIORITY	5	/* уГлуГ╝уГЧуГРуГГуВпхЗ║хКЫуВ┐уВ╣уВпуБохДкхЕИх║ж		*/
 #endif
 
 #ifndef NET_TIMER_PRIORITY
-#define NET_TIMER_PRIORITY	5	/* е═е├е╚еяб╝епе┐еде▐е┐е╣епд╬═е└ш┼┘ */
+#define NET_TIMER_PRIORITY	5	/* уГНуГГуГИуГпуГ╝уВпуВ┐уВдуГЮуВ┐уВ╣уВпуБохДкхЕИх║ж */
 #endif
 
 /*
- *  TINET ╞т╔Їд╬е╟б╝е┐енехб╝д╬еиеєе╚еъ┐Їд╬└▀─ъ
+ *  TINET хЖЕщГиуБоуГЗуГ╝уВ┐уВнуГеуГ╝уБоуВиуГ│уГИуГкцХ░уБошинхоЪ
  */
 
-/* UDP ╝ї┐оенехб╝е╡еде║ */
+/* UDP хПЧф┐буВнуГеуГ╝уВ╡уВдуВ║ */
 
 #ifndef NUM_DTQ_UDP_RCVQ
-#define NUM_DTQ_UDP_RCVQ	1	/* ╚єе│б╝еые╨е├еп═╤	*/
+#define NUM_DTQ_UDP_RCVQ	1	/* щЭЮуВ│уГ╝уГлуГРуГГуВпчФи	*/
 #endif
 
 #ifndef NUM_DTQ_UDP_OUTPUT
-#define NUM_DTQ_UDP_OUTPUT	1	/* UDP ╜╨╬╧е╟б╝е┐енехб╝е╡еде║			*/
+#define NUM_DTQ_UDP_OUTPUT	1	/* UDP хЗ║хКЫуГЗуГ╝уВ┐уВнуГеуГ╝уВ╡уВдуВ║			*/
 #endif
 
 #ifndef NUM_DTQ_PPP_OUTPUT
-#define NUM_DTQ_PPP_OUTPUT	2	/* PPP ╜╨╬╧е╟б╝е┐енехб╝е╡еде║бв2 ░╩╛х	*/
+#define NUM_DTQ_PPP_OUTPUT	2	/* PPP хЗ║хКЫуГЗуГ╝уВ┐уВнуГеуГ╝уВ╡уВдуВ║уАБ2 ф╗еф╕К	*/
 #endif
 
 #ifndef NUM_DTQ_ETHER_OUTPUT
-#define NUM_DTQ_ETHER_OUTPUT	2	/* Ethernet ╜╨╬╧е╟б╝е┐енехб╝е╡еде║	*/
+#define NUM_DTQ_ETHER_OUTPUT	2	/* Ethernet хЗ║хКЫуГЗуГ╝уВ┐уВнуГеуГ╝уВ╡уВдуВ║	*/
 #endif
 
 #ifndef NUM_DTQ_LOOP_INPUT
-#define NUM_DTQ_LOOP_INPUT	0	/* еыб╝е╫е╨е├еп╞■╬╧е╟б╝е┐енехб╝е╡еде║	*/
+#define NUM_DTQ_LOOP_INPUT	0	/* уГлуГ╝уГЧуГРуГГуВпхЕехКЫуГЗуГ╝уВ┐уВнуГеуГ╝уВ╡уВдуВ║	*/
 #endif
 
 #ifndef NUM_DTQ_LOOP_OUTPUT
-#define NUM_DTQ_LOOP_OUTPUT	0	/* еыб╝е╫е╨е├еп╜╨╬╧е╟б╝е┐енехб╝е╡еде║	*/
+#define NUM_DTQ_LOOP_OUTPUT	0	/* уГлуГ╝уГЧуГРуГГуВпхЗ║хКЫуГЗуГ╝уВ┐уВнуГеуГ╝уВ╡уВдуВ║	*/
 #endif
 
 /*
- *  TINET е╫еэе╚е│еые╣е┐е├еп╞т╔Їд╬еъе═б╝ер
+ *  TINET уГЧуГнуГИуВ│уГлуВ╣уВ┐уГГуВпхЖЕщГиуБоуГкуГНуГ╝уГа
  */
 
 #include <net/net_rename.h>

@@ -4,40 +4,40 @@
  *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
- *  �嵭����Ԥϡ��ʲ��� (1)��(4) �ξ�狼��Free Software Foundation 
- *  �ˤ�äƸ�ɽ����Ƥ��� GNU General Public License �� Version 2 �˵�
- *  �Ҥ���Ƥ���������������˸¤ꡤ�ܥ��եȥ��������ܥ��եȥ�����
- *  ����Ѥ�����Τ�ޤࡥ�ʲ�Ʊ���ˤ���ѡ�ʣ�������ѡ������ۡʰʲ���
- *  ���ѤȸƤ֡ˤ��뤳�Ȥ�̵���ǵ������롥
- *  (1) �ܥ��եȥ������򥽡��������ɤη������Ѥ�����ˤϡ��嵭������
- *      ��ɽ�����������Ѿ�浪��Ӳ�����̵�ݾڵ��꤬�����Τޤޤη��ǥ���
- *      ����������˴ޤޤ�Ƥ��뤳�ȡ�
- *  (2) �ܥ��եȥ������򡤥饤�֥������ʤɡ�¾�Υ��եȥ�������ȯ�˻�
- *      �ѤǤ�����Ǻ����ۤ�����ˤϡ������ۤ�ȼ���ɥ�����ȡ�����
- *      �ԥޥ˥奢��ʤɡˤˡ��嵭�����ɽ�����������Ѿ�浪��Ӳ���
- *      ��̵�ݾڵ����Ǻܤ��뤳�ȡ�
- *  (3) �ܥ��եȥ������򡤵�����Ȥ߹���ʤɡ�¾�Υ��եȥ�������ȯ�˻�
- *      �ѤǤ��ʤ����Ǻ����ۤ�����ˤϡ����ξ������������ȡ�
- *    (a) �����ۤ�ȼ���ɥ�����ȡ����Ѽԥޥ˥奢��ʤɡˤˡ��嵭����
- *        �ɽ�����������Ѿ�浪��Ӳ�����̵�ݾڵ����Ǻܤ��뤳�ȡ�
- *  (4) �ܥ��եȥ����������Ѥˤ��ľ��Ū�ޤ��ϴ���Ū�������뤤���ʤ�»
- *      ������⡤�嵭����Ԥ����TOPPERS�ץ��������Ȥ����դ��뤳�ȡ�
+ *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
+ *  によって公表されている GNU General Public License の Version 2 に記
+ *  述されている条件を満たす場合に限り，本ソフトウェア（本ソフトウェア
+ *  を改変したものを含む．以下同じ）を使用・複製・改変・再配布（以下，
+ *  利用と呼ぶ）することを無償で許諾する．
+ *  (1) 本ソフトウェアをソースコードの形で利用する場合には，上記の著作
+ *      権表示，この利用条件および下記の無保証規定が，そのままの形でソー
+ *      スコード中に含まれていること．
+ *  (2) 本ソフトウェアを，ライブラリ形式など，他のソフトウェア開発に使
+ *      用できる形で再配布する場合には，再配布に伴うドキュメント（利用
+ *      者マニュアルなど）に，上記の著作権表示，この利用条件および下記
+ *      の無保証規定を掲載すること．
+ *  (3) 本ソフトウェアを，機器に組み込むなど，他のソフトウェア開発に使
+ *      用できない形で再配布する場合には，次の条件を満たすこと．
+ *    (a) 再配布に伴うドキュメント（利用者マニュアルなど）に，上記の著
+ *        作権表示，この利用条件および下記の無保証規定を掲載すること．
+ *  (4) 本ソフトウェアの利用により直接的または間接的に生じるいかなる損
+ *      害からも，上記著作権者およびTOPPERSプロジェクトを免責すること．
  *
- *  �ܥ��եȥ������ϡ�̵�ݾڤ��󶡤���Ƥ����ΤǤ��롥�嵭����Ԥ�
- *  ���TOPPERS�ץ��������Ȥϡ��ܥ��եȥ������˴ؤ��ơ�����Ŭ�Ѳ�ǽ����
- *  �ޤ�ơ������ʤ��ݾڤ�Ԥ�ʤ����ޤ����ܥ��եȥ����������Ѥˤ��ľ
- *  ��Ū�ޤ��ϴ���Ū�������������ʤ�»���˴ؤ��Ƥ⡤������Ǥ�����ʤ���
+ *  本ソフトウェアは，無保証で提供されているものである．上記著作権者お
+ *  よびTOPPERSプロジェクトは，本ソフトウェアに関して，その適用可能性も
+ *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
+ *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
  *  @(#) $Id: wwws.c,v 1.5 2009/12/24 05:44:56 abe Exp $
  */
 
 /* 
- *  WWW ������
+ *  WWW サーバ
  *
- *    ��������������Ʊ�췿
- *    ���Υ�֥��å��󥰥�����
- *    ���ʥ��ԡ� API
- *    ��IPv4/IPv6
+ *    ・送受信タスク同一型
+ *    ・ノンブロッキングコール
+ *    ・省コピー API
+ *    ・IPv4/IPv6
  */
 
 #include <stdlib.h>
@@ -90,7 +90,7 @@
 #ifdef USE_WWW_SRV
 
 /*
- *  ������ API ������
+ *  送受信 API の選択
  */
 
 #define EOF		(-1)
@@ -106,7 +106,7 @@ typedef struct status {
 	} T_STATUS;
 
 /*
- *  �ؿ�
+ *  関数
  */
 
 static ER index_html(ID cepid, T_WWW_RWBUF *srbuf);
@@ -118,10 +118,10 @@ static ER stat_html(ID cepid, T_WWW_RWBUF *srbuf);
 #endif	/* of #if NET_COUNT_ENABLE */
 
 /*
- *  �����ѿ�
+ *  全域変数
  */
 
-/* TCP ������������ɥХåե� */
+/* TCP 送受信ウィンドバッファ */
 
 #ifndef TCP_CFG_SWBUF_CSAVE
 uint8_t www_srv_swbuf[NUM_WWW_SRV_TASKS][WWW_SRV_SWBUF_SIZE];
@@ -132,7 +132,7 @@ uint8_t www_srv_rwbuf[NUM_WWW_SRV_TASKS][WWW_SRV_RWBUF_SIZE];
 #endif
 
 /*
- *  �ѿ�
+ *  変数
  */
 
 SYSTIM	srv_start;
@@ -163,7 +163,7 @@ static const char *status[] = {
 #ifdef USE_COPYSAVE_API
 
 /*
- *  get_char -- ��ʸ�����Ϥ��롣
+ *  get_char -- 一文字入力する。
  */
 
 static int_t
@@ -198,7 +198,7 @@ get_char (ID cepid, T_WWW_RWBUF *srbuf)
 	}
 
 /*
- *  flush_sbuf -- �����Хåե���ե�å��夹�롣
+ *  flush_sbuf -- 送信バッファをフラッシュする。
  */
 
 static ER
@@ -213,7 +213,7 @@ flush_sbuf (ID cepid, T_WWW_RWBUF *srbuf)
 	}
 
 /*
- *  put_str -- ʸ�������Ϥ��롣
+ *  put_str -- 文字列を出力する。
  */
 
 static uint_t
@@ -255,7 +255,7 @@ put_str (ID cepid, T_WWW_RWBUF *srbuf, const char *str)
 #else	/* of #ifdef USE_COPYSAVE_API */
 
 /*
- *  get_char -- ��ʸ�����Ϥ��롣
+ *  get_char -- 一文字入力する。
  */
 
 static int_t
@@ -287,7 +287,7 @@ get_char (ID cepid, T_WWW_RWBUF *srbuf)
 	}
 
 /*
- *  flush_sbuf -- �����Хåե���ե�å��夹�롣
+ *  flush_sbuf -- 送信バッファをフラッシュする。
  */
 
 static ER
@@ -307,7 +307,7 @@ flush_sbuf (ID cepid, T_WWW_RWBUF *srbuf)
 	}
 
 /*
- *  put_str -- ʸ�������Ϥ��롣
+ *  put_str -- 文字列を出力する。
  */
 
 static uint16_t
@@ -339,7 +339,7 @@ put_str (ID cepid, T_WWW_RWBUF *srbuf, const char *str)
 #endif	/* of #ifdef USE_COPYSAVE_API */
 
 /*
- *  get_line -- ������Ϥ��롣
+ *  get_line -- 一行入力する。
  */
 
 static uint16_t
@@ -379,7 +379,7 @@ get_line (ID cepid, T_WWW_LINE *line, T_WWW_RWBUF *srbuf)
 #endif
 
 /*
- *  convert -- �����Ѵ�
+ *  convert -- 数値変換
  */
 
 static int_t
@@ -409,7 +409,7 @@ convert (char *buf, VAL_TYPE val, int_t radix, int_t width, bool_t minus, char p
 #endif	/* of #if NET_COUNT_ENABLE */
 
 /*
- * split_fields -- �ե�����ɤ�ʬ�䤹�롣
+ * split_fields -- フィールドに分割する。
  */
 
 static void
@@ -433,7 +433,7 @@ split_fields (T_WWW_LINE *line, char *delim)
 	}
 
 /*
- *  put_status -- status line ����Ϥ��롣
+ *  put_status -- status line を出力する。
  */
 
 static uint16_t
@@ -448,7 +448,7 @@ put_status (ID cepid, T_WWW_RWBUF *srbuf, int_t index)
 	}
 
 /*
- *  put_content_length -- Content-length ����Ϥ��롣
+ *  put_content_length -- Content-length を出力する。
  */
 
 static uint16_t
@@ -467,7 +467,7 @@ put_content_length (ID cepid, T_WWW_RWBUF *srbuf, int_t content_len)
 	}
 
 /*
- *  get_method -- GET �᥽�åɤν���
+ *  get_method -- GET メソッドの処理
  */
 
 static ER
@@ -484,7 +484,7 @@ get_method (ID cepid, T_WWW_RWBUF *srbuf, T_WWW_LINE *line)
 	}
 
 /*
- *  parse_request -- �ꥯ�����Ȥ���Ϥ��롣
+ *  parse_request -- リクエストを解析する。
  */
 
 static ER
@@ -517,13 +517,13 @@ parse_request (ID cepid, T_WWW_RWBUF *srbuf)
 		return error;
 		}
 
-	while ((len = get_line(cepid, line, srbuf)) > 0) {	/* �إå��򥹥��åפ��롣*/
+	while ((len = get_line(cepid, line, srbuf)) > 0) {	/* ヘッダをスキップする。*/
 		split_fields(line, ": ");
 		if (strcmp("Content-Length", &line->buf[line->off[0]]) == 0)
 			blen = atoi(&line->buf[line->off[1]]);
 		}
 	while (blen > 0 && (len = get_line(cepid, line, srbuf)) > 0) {
-		/* ����ƥ��ƥ����ܥǥ��򥹥��åפ��롣*/
+		/* エンティティ・ボディをスキップする。*/
 		blen -= line->len;
 		}
 
@@ -545,7 +545,7 @@ parse_request (ID cepid, T_WWW_RWBUF *srbuf)
 	}
 
 /*
- *  index_html -- /index.html �ե�����
+ *  index_html -- /index.html ファイル
  */
 
 static ER
@@ -563,18 +563,18 @@ index_html (ID cepid, T_WWW_RWBUF *srbuf)
 
 		"<title>TINET TCP/IP Protocol Stack</title>\r\n"
 		"</head><body bgcolor=\"#ffffbb\">\r\n"
-		"<hr>���� WWW �����Ф�<br>"
+		"<hr>この WWW サーバは<br>"
 
 #ifdef TARGET_KERNEL_ASP
-		"ASP Kernel Release 1.3 (patchlevel = 2) for " TARGET_NAME " (" __DATE__ "," __TIME__ ") ��<br>\r\n"
+		"ASP Kernel Release 1.3 (patchlevel = 2) for " TARGET_NAME " (" __DATE__ "," __TIME__ ") と<br>\r\n"
 #endif
 
 #ifdef TARGET_KERNEL_JSP
-		"JSP Kernel Release 1.4 (patchlevel = 3) for " TARGET_NAME " (" __DATE__ "," __TIME__ ") ��<br>\r\n"
+		"JSP Kernel Release 1.4 (patchlevel = 3) for " TARGET_NAME " (" __DATE__ "," __TIME__ ") と<br>\r\n"
 #endif
 
-		"TINET TCP/IP �ץ��ȥ��륹���å��ˤ�ꥵ���ӥ����Ƥ��ޤ���<br><hr>\r\n"
-		"<ul><li type=\"square\"><a href=\"stat.html\">�ͥåȥ�����׾���</a></ul><hr>\r\n"
+		"TINET TCP/IP プロトコルスタックによりサービスしています。<br><hr>\r\n"
+		"<ul><li type=\"square\"><a href=\"stat.html\">ネットワーク統計情報</a></ul><hr>\r\n"
 		"FreeBSD: Copyright (c) 1982, 1986, 1988, 1990, 1993, 1994, 1995<br>\r\n"
 		"The Regents of the University of California.  All rights reserved.<br><br>\r\n"
 
@@ -625,7 +625,7 @@ index_html (ID cepid, T_WWW_RWBUF *srbuf)
 
 	get_tim(&start);
 	len += put_status(cepid, srbuf, ST_OK);
-	len += put_content_length(cepid, srbuf, strlen(response) - 2);	/* 2 �Ϻǽ�� \r\n */
+	len += put_content_length(cepid, srbuf, strlen(response) - 2);	/* 2 は最初の \r\n */
 	len += put_str(cepid, srbuf, response);
 	get_tim(&finish);
 	syslog(LOG_NOTICE, "[WWW:%02u]     send:               index.html, len: %4u, time: %lu [ms]",
@@ -646,7 +646,7 @@ index_html (ID cepid, T_WWW_RWBUF *srbuf)
 #define TD_DIGITS	20
 
 static const char time_prefix[] =
-	"�в����: "
+	"経過時間: "
 	;
 
 static const char time_suffix[] =
@@ -659,7 +659,7 @@ static const char table_suffix[] = "</table><br><hr>";
 
 static const char table_prefix_ip4[] =
 	"<h2>IPv4</h2><table border>\r\n"
-	"<tr><th>����</th><th>�������</th></tr>\r\n"
+	"<tr><th>項目</th><th>カウント</th></tr>\r\n"
 	;
 
 #endif	/* of #if defined(SUPPORT_INET4) */
@@ -668,50 +668,50 @@ static const char table_prefix_ip4[] =
 
 static const char table_prefix_ip6[] =
 	"<h2>IPv6</h2><table border>\r\n"
-	"<tr><th>����</th><th>�������</th></tr>\r\n"
+	"<tr><th>項目</th><th>カウント</th></tr>\r\n"
 	;
 
 static const char table_prefix_icmp6[] =
 	"<h2>ICMPv6</h2><table border>\r\n"
-	"<tr><th>����</th><th>�������</th></tr>\r\n"
+	"<tr><th>項目</th><th>カウント</th></tr>\r\n"
 	;
 
 static const char table_prefix_nd6[] =
-	"<h2>����õ��</h2><table border>\r\n"
-	"<tr><th>����</th><th>�������</th></tr>\r\n"
+	"<h2>近隣探索</h2><table border>\r\n"
+	"<tr><th>項目</th><th>カウント</th></tr>\r\n"
 	;
 
 #endif	/* of #if defined(SUPPORT_INET6) */
 
 static const char table_prefix_tcp[] =
 	"<h2>TCP</h2><table border>\r\n"
-	"<tr><th>����</th><th>�������</th></tr>\r\n"
+	"<tr><th>項目</th><th>カウント</th></tr>\r\n"
 	;
 
 static const char table_prefix_net_buf[] =
-	"<h2>�ͥåȥ���Хåե�</h2><table border>\r\n"
-	"<tr><th>������</th>"
-	"<th>�Ѱտ�</th>"
-	"<th>�����׵��</th>"
-	"<th>������</th>"
-	"<th>������<br>���顼��</th></tr>\r\n"
+	"<h2>ネットワークバッファ</h2><table border>\r\n"
+	"<tr><th>サイズ</th>"
+	"<th>用意数</th>"
+	"<th>割当要求数</th>"
+	"<th>割当数</th>"
+	"<th>割当て<br>エラー数</th></tr>\r\n"
 	;
 
 #ifdef SUPPORT_PPP
 
 static const char table_prefix_ppp[] =
-	"<h2>PPP �ͥåȥ�����󥿥ե�����</h2><table border>\r\n"
-	"<tr><th>����</th><th>�������</th></tr>\r\n"
+	"<h2>PPP ネットワークインタフェース</h2><table border>\r\n"
+	"<tr><th>項目</th><th>カウント</th></tr>\r\n"
 	;
 
 static const char *ppp_item[NC_PPP_SIZE] = {
-	"���������ƥåȿ�",
-	"���������ƥåȿ�",
-	"�����ե졼���",
-	"�����ե졼���",
-	"�������顼�ե졼���",
-	"�������顼�ե졼���",
-	"�Хåե�������Ƽ��Կ�",
+	"受信オクテット数",
+	"送信オクテット数",
+	"受信フレーム数",
+	"送信フレーム数",
+	"受信エラーフレーム数",
+	"送信エラーフレーム数",
+	"バッファ割り当て失敗数",
 	};
 
 #endif	/* of #ifdef SUPPORT_PPP */
@@ -719,23 +719,23 @@ static const char *ppp_item[NC_PPP_SIZE] = {
 #ifdef SUPPORT_ETHER
 
 static const char table_prefix_ether_nic[] =
-	"<h2>�������ͥåȡ��ͥåȥ�����󥿥ե�����</h2><table border>\r\n"
-	"<tr><th>����</th><th>�������</th></tr>\r\n"
+	"<h2>イーサネット・ネットワークインタフェース</h2><table border>\r\n"
+	"<tr><th>項目</th><th>カウント</th></tr>\r\n"
 	;
 
 static const char *ether_nic_item[NC_ETHER_NIC_SIZE] = {
-	"�ꥻ�åȿ�",
-	"�������ޥե����ֵѥ����С���",
-	"���������ॢ���ȿ�",
-	"���Ϳ�",
-	"�������顼�ե졼���",
-	"�����ե졼���",
-	"���������ƥåȿ�",
-	"�������ޥե����ֵѥ����С���",
-	"�����Хåե�������Ƽ��Կ�",
-	"�������顼�ե졼���",
-	"�����ե졼���",
-	"���������ƥåȿ�",
+	"リセット数",
+	"送信セマフォ資源返却オーバー数",
+	"送信タイムアウト数",
+	"衝突数",
+	"送信エラーフレーム数",
+	"送信フレーム数",
+	"送信オクテット数",
+	"受信セマフォ資源返却オーバー数",
+	"受信バッファ割り当て失敗数",
+	"受信エラーフレーム数",
+	"受信フレーム数",
+	"受信オクテット数",
 	};
 
 #endif	/* of #ifdef SUPPORT_ETHER */
@@ -743,26 +743,26 @@ static const char *ether_nic_item[NC_ETHER_NIC_SIZE] = {
 #if defined(SUPPORT_INET4)
 
 static const char *ip4_item[NC_IP4_SIZE] = {
-	"ʬ���������ե饰���ȿ�",
-	"ʬ��������",
-	"�������顼�ǡ���������",
-	"�����ǡ���������",
-	"���������ƥåȿ�",
-	"ʬ����������ॢ���ȿ�",
-	"ʬ������Хåե�������Ƽ��Կ�",
-	"ʬ������˴���",
-	"ʬ������ƹ���������",
-	"ʬ������ե饰���ȿ�",
-	"ʬ�������",
-	"���ץ�������Ͽ�",
-	"�ץ��ȥ��륨�顼��",
-	"���ɥ쥹���顼��",
-	"�С�����󥨥顼��",
-	"Ĺ�����顼��",
-	"�����å����२�顼��",
-	"�������顼�ǡ���������",
-	"�����ǡ���������",
-	"���������ƥåȿ�",
+	"分割送信、フラグメント数",
+	"分割送信数",
+	"送信エラーデータグラム数",
+	"送信データグラム数",
+	"送信オクテット数",
+	"分割受信タイムアウト数",
+	"分割受信バッファ割り当て失敗数",
+	"分割受信破棄数",
+	"分割受信再構成成功数",
+	"分割受信フラグメント数",
+	"分割受信数",
+	"オプション入力数",
+	"プロトコルエラー数",
+	"アドレスエラー数",
+	"バージョンエラー数",
+	"長さエラー数",
+	"チェックサムエラー数",
+	"受信エラーデータグラム数",
+	"受信データグラム数",
+	"受信オクテット数",
 	};
 
 #endif	/* of #if defined(SUPPORT_INET4) */
@@ -770,77 +770,77 @@ static const char *ip4_item[NC_IP4_SIZE] = {
 #if defined(SUPPORT_INET6)
 
 static const char *ip6_item[NC_IP6_SIZE] = {
-	"ʬ���������ե饰���ȿ�",
-	"ʬ��������",
-	"�������顼�ǡ���������",
-	"�����ǡ���������",
-	"���������ƥåȿ�	",
-	"ʬ����������ॢ���ȿ�",
-	"ʬ������Хåե�������Ƽ��Կ�",
-	"ʬ������˴���",
-	"ʬ������ƹ���������",
-	"ʬ������ե饰���ȿ�",
-	"ʬ�������",
-	"�ץ��ȥ��륨�顼��	",
-	"���ɥ쥹���顼��	",
-	"�С�����󥨥顼��	",
-	"Ĺ�����顼��",
-	"�������顼�ǡ���������",
-	"�����ǡ���������",
-	"���������ƥåȿ�	",
+	"分割送信、フラグメント数",
+	"分割送信数",
+	"送信エラーデータグラム数",
+	"送信データグラム数",
+	"送信オクテット数	",
+	"分割受信タイムアウト数",
+	"分割受信バッファ割り当て失敗数",
+	"分割受信破棄数",
+	"分割受信再構成成功数",
+	"分割受信フラグメント数",
+	"分割受信数",
+	"プロトコルエラー数	",
+	"アドレスエラー数	",
+	"バージョンエラー数	",
+	"長さエラー数",
+	"受信エラーデータグラム数",
+	"受信データグラム数",
+	"受信オクテット数	",
 	};
 
 static const char *icmp6_item[NC_ICMP6_SIZE] = {
-	"�������顼 ICMP �ǡ�����	",
-	"���� ICMP �ǡ�����",
-	"���� ICMP �����ƥåȿ�",
-	"Ĺ�����顼��",
-	"�������顼 ICMP �ǡ�����	",
-	"���� ICMP �ǡ�����",
-	"���� ICMP �����ƥåȿ�",
+	"送信エラー ICMP データ数	",
+	"送信 ICMP データ数",
+	"送信 ICMP オクテット数",
+	"長さエラー数",
+	"受信エラー ICMP データ数	",
+	"受信 ICMP データ数",
+	"受信 ICMP オクテット数",
 	};
 
 static const char *nd6_item[NC_ND6_SIZE] = {
-	"��ʣ���ɥ쥹����������",
-	"��������������",
-	"��������������",
-	"��������������",
-	"�������μ�����",
-	"�롼���������Ͽ�",
-	"�롼�����μ�����",
+	"重複アドレス検出送信数",
+	"近隣要請送信数",
+	"近隣要請受信数",
+	"近隣通知送信数",
+	"近隣通知受信数",
+	"ルータ要請出力数",
+	"ルータ通知受信数",
 	};
 
 #endif	/* of #if defined(SUPPORT_INET6) */
 
 static const char *tcp_item[NC_TCP_SIZE] = {
-	"ǽư�����ץ��",
-	"��ư�����ץ��",
-	"RTT ������",
-	"���� RST ��",
-	"���� ACK ��",
-	"�����۵ޥ������ȿ�",
-	"�����ǡ����������ȿ�",
-	"�����������ȿ�",
-	"�����������ȿ�",
-	"�������楻�����ȿ�",
-	"�����ǡ��������ƥåȿ�",
-	"�������塼������",
-	"����¿�ſ�",
-	"�����˴���",
-	"���� RST ��",
-	"����¿�� ACK ��",
-	"���� ACK ��",
-	"���������å�����������",
-	"�����إå�������",
-	"�����۵ޥ������ȿ�",
-	"�����ǡ����������ȿ�",
-	"�����������ȿ�",
-	"�����ǡ��������ƥåȿ�",
-	"���������ƥåȿ�",
+	"能動オープン数",
+	"受動オープン数",
+	"RTT 更新数",
+	"送信 RST 数",
+	"送信 ACK 数",
+	"送信緊急セグメント数",
+	"送信データセグメント数",
+	"再送セグメント数",
+	"送信セグメント数",
+	"送信制御セグメント数",
+	"送信データオクテット数",
+	"受信キュー解放数",
+	"受信多重数",
+	"受信破棄数",
+	"受信 RST 数",
+	"受信多重 ACK 数",
+	"受信 ACK 数",
+	"受信チェックサム不正数",
+	"受信ヘッダ不正数",
+	"受信緊急セグメント数",
+	"受信データセグメント数",
+	"受信セグメント数",
+	"受信データオクテット数",
+	"受信オクテット数",
 	};
 
 /*
- *  put_count_item1 -- �����󥿤����Ƥ���Ϥ��롣���롼�� 1
+ *  put_count_item1 -- カウンタの内容を出力する。グループ 1
  */
 
 static uint16_t
@@ -883,7 +883,7 @@ put_count_item1 (ID cepid, T_WWW_RWBUF *srbuf, const char *item, T_NET_COUNT *co
 #ifdef SUPPORT_PPP
 
 /*
- *  put_count_item2 -- �����󥿤����Ƥ���Ϥ��롣���롼�� 2
+ *  put_count_item2 -- カウンタの内容を出力する。グループ 2
  */
 
 static uint16_t
@@ -908,7 +908,7 @@ put_count_item2 (ID cepid, T_WWW_RWBUF *srbuf, const char *item, uint32_t octets
 	}
 
 /*
- *  td_len_ppp -- put_count_ppp �ǽ��Ϥ���ʸ������
+ *  td_len_ppp -- put_count_ppp で出力する文字数。
  */
 
 static uint16_t
@@ -923,7 +923,7 @@ td_len_ppp (void)
 	}
 
 /*
- *  put_count_ppp -- ������ (PPP) �����Ƥ���Ϥ��롣
+ *  put_count_ppp -- カウンタ (PPP) の内容を出力する。
  */
 
 static uint16_t
@@ -994,7 +994,7 @@ put_count_ppp (ID cepid, T_WWW_RWBUF *srbuf)
 #if defined(SUPPORT_INET4)
 
 /*
- *  td_len_ip4 -- put_count_ip4 �ǽ��Ϥ���ʸ������
+ *  td_len_ip4 -- put_count_ip4 で出力する文字数。
  */
 
 static uint16_t
@@ -1009,7 +1009,7 @@ td_len_ip4 (void)
 	}
 
 /*
- *  put_count_ip4 -- ������ (IP4) �����Ƥ���Ϥ��롣
+ *  put_count_ip4 -- カウンタ (IP4) の内容を出力する。
  */
 
 static uint16_t
@@ -1038,7 +1038,7 @@ put_count_ip4 (ID cepid, T_WWW_RWBUF *srbuf)
 #if defined(SUPPORT_INET6)
 
 /*
- *  td_len_nd6 -- put_count_nd6 �ǽ��Ϥ���ʸ������
+ *  td_len_nd6 -- put_count_nd6 で出力する文字数。
  */
 
 static uint16_t
@@ -1053,7 +1053,7 @@ td_len_nd6 (void)
 	}
 
 /*
- *  put_count_nd6 -- ������ (ND6) �����Ƥ���Ϥ��롣
+ *  put_count_nd6 -- カウンタ (ND6) の内容を出力する。
  */
 
 static uint16_t
@@ -1078,7 +1078,7 @@ put_count_nd6 (ID cepid, T_WWW_RWBUF *srbuf)
 	}
 
 /*
- *  td_len_icmp6 -- put_count_icmp6 �ǽ��Ϥ���ʸ������
+ *  td_len_icmp6 -- put_count_icmp6 で出力する文字数。
  */
 
 static uint16_t
@@ -1093,7 +1093,7 @@ td_len_icmp6 (void)
 	}
 
 /*
- *  put_count_icmp6 -- ������ (ICMP6) �����Ƥ���Ϥ��롣
+ *  put_count_icmp6 -- カウンタ (ICMP6) の内容を出力する。
  */
 
 static uint16_t
@@ -1118,7 +1118,7 @@ put_count_icmp6 (ID cepid, T_WWW_RWBUF *srbuf)
 	}
 
 /*
- *  td_len_ip6 -- put_count_ip6 �ǽ��Ϥ���ʸ������
+ *  td_len_ip6 -- put_count_ip6 で出力する文字数。
  */
 
 static uint16_t
@@ -1133,7 +1133,7 @@ td_len_ip6 (void)
 	}
 
 /*
- *  put_count_ip6 -- ������ (IP6) �����Ƥ���Ϥ��롣
+ *  put_count_ip6 -- カウンタ (IP6) の内容を出力する。
  */
 
 static uint16_t
@@ -1160,7 +1160,7 @@ put_count_ip6 (ID cepid, T_WWW_RWBUF *srbuf)
 #endif	/* of #if defined(SUPPORT_INET6) */
 
 /*
- *  td_len_tcp -- put_count_tcp �ǽ��Ϥ���ʸ������
+ *  td_len_tcp -- put_count_tcp で出力する文字数。
  */
 
 static uint16_t
@@ -1175,7 +1175,7 @@ td_len_tcp (void)
 	}
 
 /*
- *  put_count_tcp -- ������ (TCP) �����Ƥ���Ϥ��롣
+ *  put_count_tcp -- カウンタ (TCP) の内容を出力する。
  */
 
 static uint16_t
@@ -1200,7 +1200,7 @@ put_count_tcp (ID cepid, T_WWW_RWBUF *srbuf)
 	}
 
 /*
- *  put_elapse_time -- �в���֤���Ϥ��롣
+ *  put_elapse_time -- 経過時間を出力する。
  */
 
 static uint16_t
@@ -1232,7 +1232,7 @@ put_elapse_time (ID cepid, T_WWW_RWBUF *srbuf)
 	}
 
 /*
- *  put_count_net_buf -- ������ (TCP) �����Ƥ���Ϥ��롣
+ *  put_count_net_buf -- カウンタ (TCP) の内容を出力する。
  */
 
 static uint16_t
@@ -1272,7 +1272,7 @@ put_count_net_buf (ID cepid, T_WWW_RWBUF *srbuf)
 #ifdef SUPPORT_ETHER
 
 /*
- *  td_len_ether_nic -- put_count_ether_nic �ǽ��Ϥ���ʸ������
+ *  td_len_ether_nic -- put_count_ether_nic で出力する文字数。
  */
 
 static uint16_t
@@ -1287,7 +1287,7 @@ td_len_ether_nic (void)
 	}
 
 /*
- *  put_count_ether_nic -- ������ (ETHER_NIC) �����Ƥ���Ϥ��롣
+ *  put_count_ether_nic -- カウンタ (ETHER_NIC) の内容を出力する。
  */
 
 static uint16_t
@@ -1314,7 +1314,7 @@ put_count_ether_nic (ID cepid, T_WWW_RWBUF *srbuf)
 #endif	/* of #ifdef SUPPORT_ETHER */
 
 /*
- *  stat_html -- /stat.html �ե�����
+ *  stat_html -- /stat.html ファイル
  */
 
 static ER
@@ -1330,9 +1330,9 @@ stat_html (ID cepid, T_WWW_RWBUF *srbuf)
 		"<meta http-equiv=\"Content-Type\" content=\"text/html; charset=EUC-JP\">\r\n"
 #endif
 
-		"<title>�ͥåȥ�����׾���</title>\r\n"
+		"<title>ネットワーク統計情報</title>\r\n"
 		"</head><body bgcolor=\"#ffffbb\">\r\n"
-		"<hr><h1 align=\"center\">�ͥåȥ�����׾���</h1><hr>\r\n"
+		"<hr><h1 align=\"center\">ネットワーク統計情報</h1><hr>\r\n"
 		;
 
 	static const char res_suffix[] =
@@ -1340,23 +1340,23 @@ stat_html (ID cepid, T_WWW_RWBUF *srbuf)
 		;
 
 	static const char table_prefix1[] =
-		"<h2>���롼�� 1</h2><table border>\r\n"
-		"<tr><th>����</th>\r\n"
-		"<th>���������ƥåȿ�</th>"
-		"<th>���������ƥåȿ�</th>\r\n"
-		"<th>�����ѥ��åȿ�</th>"
-		"<th>�����ѥ��åȿ�</th>\r\n"
-		"<th>�������顼<br>�ѥ��åȿ�</th>"
-		"<th>�������顼<br>�ѥ��åȿ�</th></tr>\r\n"
+		"<h2>グループ 1</h2><table border>\r\n"
+		"<tr><th>項目</th>\r\n"
+		"<th>受信オクテット数</th>"
+		"<th>送信オクテット数</th>\r\n"
+		"<th>受信パケット数</th>"
+		"<th>送信パケット数</th>\r\n"
+		"<th>受信エラー<br>パケット数</th>"
+		"<th>送信エラー<br>パケット数</th></tr>\r\n"
 		;
 
 #ifdef SUPPORT_PPP
 
 	static const char table_prefix2[] =
-		"<h2>���롼�� 2</h2><table border>\r\n"
-		"<tr><th>����</th>"
-		"<th>���������ƥåȿ�</th>"
-		"<th>�����ե졼���</th></tr>\r\n"
+		"<h2>グループ 2</h2><table border>\r\n"
+		"<tr><th>項目</th>"
+		"<th>受信オクテット数</th>"
+		"<th>受信フレーム数</th></tr>\r\n"
 		;
 
 #endif	/* of #ifdef SUPPORT_PPP */
@@ -1449,7 +1449,7 @@ stat_html (ID cepid, T_WWW_RWBUF *srbuf)
 #endif	/* of #ifdef SUPPORT_ETHER */
 
 	                        + content_len
-	                        - 2);	/* 2 �Ϻǽ�� \r\n */
+	                        - 2);	/* 2 は最初の \r\n */
 
 	len += put_str(cepid, srbuf, res_prefix);
 	len += put_elapse_time(cepid, srbuf);
@@ -1537,7 +1537,7 @@ stat_html (ID cepid, T_WWW_RWBUF *srbuf)
 #endif	/* of #if NET_COUNT_ENABLE */
 
 /*
- *  WWW ������
+ *  WWW サーバ
  */
 
 static ER
@@ -1613,7 +1613,7 @@ www_srv (ID cepid, ID repid)
 #ifdef USE_TCP_EXTENTIONS
 
 /*
- *  get_tcp_rep -- TCP ���ո���������롣
+ *  get_tcp_rep -- TCP 受付口を獲得する。
  */
 
 static ER
@@ -1640,7 +1640,7 @@ get_tcp_rep (ID *repid)
 	}
 
 /*
- *  get_tcp_cep -- TCP �̿�ü���Ȥ�������롣
+ *  get_tcp_cep -- TCP 通信端点とを獲得する。
  */
 
 static ER
@@ -1671,7 +1671,7 @@ get_tcp_cep (ID *cepid)
 	}
 
 /*
- *  WWW �����Х�����
+ *  WWW サーバタスク
  */
 
 void
@@ -1711,7 +1711,7 @@ www_srv_task(intptr_t exinf)
 #else	/* of #ifdef USE_TCP_EXTENTIONS */
 
 /*
- *  WWW �����Х�����
+ *  WWW サーバタスク
  */
 
 void

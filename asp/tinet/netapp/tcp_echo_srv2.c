@@ -4,39 +4,39 @@
  *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
- *  �嵭����Ԥϡ��ʲ��� (1)��(4) �ξ�狼��Free Software Foundation 
- *  �ˤ�äƸ�ɽ����Ƥ��� GNU General Public License �� Version 2 �˵�
- *  �Ҥ���Ƥ���������������˸¤ꡤ�ܥ��եȥ��������ܥ��եȥ�����
- *  ����Ѥ�����Τ�ޤࡥ�ʲ�Ʊ���ˤ���ѡ�ʣ�������ѡ������ۡʰʲ���
- *  ���ѤȸƤ֡ˤ��뤳�Ȥ�̵���ǵ������롥
- *  (1) �ܥ��եȥ������򥽡��������ɤη������Ѥ�����ˤϡ��嵭������
- *      ��ɽ�����������Ѿ�浪��Ӳ�����̵�ݾڵ��꤬�����Τޤޤη��ǥ���
- *      ����������˴ޤޤ�Ƥ��뤳�ȡ�
- *  (2) �ܥ��եȥ������򡤥饤�֥������ʤɡ�¾�Υ��եȥ�������ȯ�˻�
- *      �ѤǤ�����Ǻ����ۤ�����ˤϡ������ۤ�ȼ���ɥ�����ȡ�����
- *      �ԥޥ˥奢��ʤɡˤˡ��嵭�����ɽ�����������Ѿ�浪��Ӳ���
- *      ��̵�ݾڵ����Ǻܤ��뤳�ȡ�
- *  (3) �ܥ��եȥ������򡤵�����Ȥ߹���ʤɡ�¾�Υ��եȥ�������ȯ�˻�
- *      �ѤǤ��ʤ����Ǻ����ۤ�����ˤϡ����ξ������������ȡ�
- *    (a) �����ۤ�ȼ���ɥ�����ȡ����Ѽԥޥ˥奢��ʤɡˤˡ��嵭����
- *        �ɽ�����������Ѿ�浪��Ӳ�����̵�ݾڵ����Ǻܤ��뤳�ȡ�
- *  (4) �ܥ��եȥ����������Ѥˤ��ľ��Ū�ޤ��ϴ���Ū�������뤤���ʤ�»
- *      ������⡤�嵭����Ԥ����TOPPERS�ץ��������Ȥ����դ��뤳�ȡ�
+ *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
+ *  によって公表されている GNU General Public License の Version 2 に記
+ *  述されている条件を満たす場合に限り，本ソフトウェア（本ソフトウェア
+ *  を改変したものを含む．以下同じ）を使用・複製・改変・再配布（以下，
+ *  利用と呼ぶ）することを無償で許諾する．
+ *  (1) 本ソフトウェアをソースコードの形で利用する場合には，上記の著作
+ *      権表示，この利用条件および下記の無保証規定が，そのままの形でソー
+ *      スコード中に含まれていること．
+ *  (2) 本ソフトウェアを，ライブラリ形式など，他のソフトウェア開発に使
+ *      用できる形で再配布する場合には，再配布に伴うドキュメント（利用
+ *      者マニュアルなど）に，上記の著作権表示，この利用条件および下記
+ *      の無保証規定を掲載すること．
+ *  (3) 本ソフトウェアを，機器に組み込むなど，他のソフトウェア開発に使
+ *      用できない形で再配布する場合には，次の条件を満たすこと．
+ *    (a) 再配布に伴うドキュメント（利用者マニュアルなど）に，上記の著
+ *        作権表示，この利用条件および下記の無保証規定を掲載すること．
+ *  (4) 本ソフトウェアの利用により直接的または間接的に生じるいかなる損
+ *      害からも，上記著作権者およびTOPPERSプロジェクトを免責すること．
  *
- *  �ܥ��եȥ������ϡ�̵�ݾڤ��󶡤���Ƥ����ΤǤ��롥�嵭����Ԥ�
- *  ���TOPPERS�ץ��������Ȥϡ��ܥ��եȥ������˴ؤ��ơ�����Ŭ�Ѳ�ǽ����
- *  �ޤ�ơ������ʤ��ݾڤ�Ԥ�ʤ����ޤ����ܥ��եȥ����������Ѥˤ��ľ
- *  ��Ū�ޤ��ϴ���Ū�������������ʤ�»���˴ؤ��Ƥ⡤������Ǥ�����ʤ���
+ *  本ソフトウェアは，無保証で提供されているものである．上記著作権者お
+ *  よびTOPPERSプロジェクトは，本ソフトウェアに関して，その適用可能性も
+ *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
+ *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
  *  @(#) $Id: tcp_echo_srv2.c,v 1.5 2009/12/24 05:44:56 abe Exp $
  */
 
 /* 
- *  TCP ECHO ������ #2
+ *  TCP ECHO サーバ #2
  *
- *    ��������������ʬΥ��
- *    ���Υ�֥��å��󥰥�����
- *    ��IPv4/IPv6
+ *    ・送受信タスク分離型
+ *    ・ノンブロッキングコール
+ *    ・IPv4/IPv6
  */
 
 #ifdef TARGET_KERNEL_ASP
@@ -79,22 +79,22 @@
 #ifdef USE_TCP_ECHO_SRV2
 
 /*
- *  ɽ��
+ *  表示
  */
 
 /*#define SHOW_RCV_RANGE*/
 
 /*
- *  ���ͥ������������ˡ�λ���
+ *  コネクション切断方法の指定
  */
 
 /*#define USE_TCP_SHT_CEP*/
 
 /*
- *  �����ѿ�
+ *  全域変数
  */
 
-/* TCP ������������ɥХåե� */
+/* TCP 送受信ウィンドバッファ */
 
 #ifndef TCP_CFG_SWBUF_CSAVE
 uint8_t tcp_echo_srv_swbuf[NUM_TCP_ECHO_SRV_TASKS][TCP_ECHO_SRV_SWBUF_SIZE];
@@ -105,39 +105,39 @@ uint8_t tcp_echo_srv_rwbuf[NUM_TCP_ECHO_SRV_TASKS][TCP_ECHO_SRV_RWBUF_SIZE];
 #endif
 
 /*
- *  �ѿ�
+ *  変数
  */
 
 /*
- *  ����:
+ *  注意:
  *
- *    BUF_SIZE �� TCP ��
- *    ����������ɥ��Хåե������� + ����������ɥ��Хåե��������� 
- *    3/2 �ܰʾ���礭�����ʤ���С��ǥåɥ��å������ǽ�������롣
+ *    BUF_SIZE は TCP の
+ *    送信ウインドウバッファサイズ + 受信ウインドウバッファサイズの 
+ *    3/2 倍以上の大きさがなければ、デッドロックする可能性がある。
  */
 
 #define BUF_SIZE	((TCP_ECHO_SRV_SWBUF_SIZE + \
                           TCP_ECHO_SRV_RWBUF_SIZE) * 3 / 2)
 
-static char	buffer[BUF_SIZE];	/* �Хåե�		*/
+static char	buffer[BUF_SIZE];	/* バッファ		*/
 
-static T_IPEP	dst;			/* ��³���		*/
-static bool_t	ena_rcv;		/* ������ǽ�ե饰	*/
-static char	*rptr = buffer;		/* �����ݥ���		*/
-static char	*sptr = buffer;		/* �����ݥ���		*/
-static uint32_t	rcv_total;		/* ����ʸ����		*/
-static uint32_t	snd_total;		/* ����ʸ����		*/
-static uint16_t	chars;			/* �Хåե����ʸ����	*/
-static uint16_t	rcv_count;		/* �������		*/
-static uint16_t	snd_count;		/* �������		*/
+static T_IPEP	dst;			/* 接続相手		*/
+static bool_t	ena_rcv;		/* 受信可能フラグ	*/
+static char	*rptr = buffer;		/* 受信ポインタ		*/
+static char	*sptr = buffer;		/* 送信ポインタ		*/
+static uint32_t	rcv_total;		/* 受信文字数		*/
+static uint32_t	snd_total;		/* 送信文字数		*/
+static uint16_t	chars;			/* バッファ内の文字数	*/
+static uint16_t	rcv_count;		/* 受信回数		*/
+static uint16_t	snd_count;		/* 送信回数		*/
 
 #ifdef USE_TCP_NON_BLOCKING
 
-static ER	rcv_error = E_OK;	/* �������Υ�֥��å��󥰥����륨�顼 */
-static ER	snd_error = 1;		/* �������Υ�֥��å��󥰥����륨�顼 */
+static ER	rcv_error = E_OK;	/* 受信、ノンブロッキングコールエラー */
+static ER	snd_error = 1;		/* 送信、ノンブロッキングコールエラー */
 
 /*
- *  �Υ�֥��å��󥰥�����Υ�����Хå��ؿ�
+ *  ノンブロッキングコールのコールバック関数
  */
 
 ER
@@ -183,21 +183,21 @@ callback_nblk_tcp_echo_srv (ID cepid, FN fncd, void *p_parblk)
 
 			syscall(wai_sem(SEM_TCP_ECHO_SRV_LOCK));
 
-			/* �����ݥ��󥿤�ʤ�롣*/
+			/* 送信ポインタを進める。*/
 			if (sptr - buffer + slen >= sizeof(buffer))
 				sptr -= sizeof(buffer) - slen;
 			else
 				sptr += slen;
 
-			/* �Хåե����ʸ�����򸺤餹��*/
+			/* バッファ内の文字数を減らす。*/
 			last   = chars;
 			chars -= slen;
 
- 			/* �Хåե����ʸ��������С������������򵯾����롣*/
+ 			/* バッファ内に文字があれば、送信タスクを起床する。*/
 			if (chars > 0 || (!ena_rcv && chars == 0))
 				sig_sem(SEM_TCP_ECHO_SRV_SND_READY);
 
- 			/* ������ǽ�ǡ��Хåե���˶������Ǥ���С������������򵯾����롣*/
+ 			/* 受信可能で、バッファ内に空きができれば、受信タスクを起床する。*/
 			if (ena_rcv && last == sizeof(buffer) && sizeof(buffer) - chars > 0)
 				syscall(sig_sem(SEM_TCP_ECHO_SRV_RCV_READY));
 
@@ -223,21 +223,21 @@ callback_nblk_tcp_echo_srv (ID cepid, FN fncd, void *p_parblk)
 
 			syscall(wai_sem(SEM_TCP_ECHO_SRV_LOCK));
 
-			/* �����ݥ��󥿤�ʤ�롣*/
+			/* 受信ポインタを進める。*/
 			if (rptr - buffer + rlen >= sizeof(buffer))
 				rptr -= sizeof(buffer) - rlen;
 			else
 				rptr += rlen;
 
-			/* �Хåե����ʸ���������䤹��*/
+			/* バッファ内の文字数を増やす。*/
 			last   = chars;
 			chars += rlen;
 
- 			/* �Хåե����ʸ��������С������������򵯾����롣*/
+ 			/* バッファ内に文字が入れば、送信タスクを起床する。*/
 			if (last == 0 && chars > 0)
 				sig_sem(SEM_TCP_ECHO_SRV_SND_READY);
 
- 			/* �Хåե���˶���������С������������򵯾����롣*/
+ 			/* バッファ内に空きがあれば、受信タスクを起床する。*/
 			if (sizeof(buffer) - chars > 0)
 				sig_sem(SEM_TCP_ECHO_SRV_RCV_READY);
 
@@ -272,7 +272,7 @@ callback_nblk_tcp_echo_srv (ID cepid, FN fncd, void *p_parblk)
 	}
 
 /*
- *  TCP ECHO �����м����롼���� (�Υ�֥��å��󥰥��������)
+ *  TCP ECHO サーバ受信ルーチン (ノンブロッキングコール使用)
  */
 
 ER
@@ -291,10 +291,10 @@ tcp_echo_srv_rcv (ID cepid, ID repid)
 		return error;
 		}
 
-	/* ���ͥ�������ߴ�λ�ޤ��Ԥġ�*/
+	/* コネクション開設完了まで待つ。*/
 	syscall(wai_sem(SEM_TCP_ECHO_SRV_RCV_READY));
 
-	/* �ԤäƤ���֤˥��顼�ˤʤä��顢���ͥ������γ����Ԥ�����롣*/
+	/* 待っている間にエラーになったら、コネクションの開設待ちに戻る。*/
 	if (rcv_error != E_OK)
 		return rcv_error;
 
@@ -307,7 +307,7 @@ tcp_echo_srv_rcv (ID cepid, ID repid)
 
 	while (true) {
 
-		/* ������������׻����롣*/
+		/* 受信サイズを計算する。*/
 		syscall(wai_sem(SEM_TCP_ECHO_SRV_LOCK));
 		if (sptr > rptr)
 			blen = sptr - rptr;
@@ -315,36 +315,36 @@ tcp_echo_srv_rcv (ID cepid, ID repid)
 			blen = sizeof(buffer) - (rptr - buffer);
 		syscall(sig_sem(SEM_TCP_ECHO_SRV_LOCK));
 
-		/* �������롣*/
+		/* 受信する。*/
 		if ((error = tcp_rcv_dat(cepid, rptr, blen, TMO_NBLK)) != E_WBLK) {
 			syslog(LOG_NOTICE, "[TES:%02d RCV] recv error = %s", cepid, itron_strerror(error));
 			break;
 			}
 
-		/* �����Хåե��˶����Ǥ���ޤ��Ԥġ�*/
+		/* 受信バッファに空ができるまで待つ。*/
 		syscall(wai_sem(SEM_TCP_ECHO_SRV_RCV_READY));
 
-		/* �ԤäƤ���֤ˡ�����ʸ������ 0 �ˤʤ뤫�����顼�ˤʤä��齪λ���롣*/
+		/* 待っている間に、受信文字数が 0 になるか、エラーになったら終了する。*/
 		if (rcv_error <= 0)
 			break;
 
 		}
 
-	/* ������λ */
+	/* 受信完了 */
 	ena_rcv = false;
 
-	/* �����Хåե���ʸ��������Τ��ԤäƤ��������������򵯾����롣*/
+	/* 受信バッファに文字が入るのを待っている送信タスクを起床する。*/
 	if (chars == 0)
 		sig_sem(SEM_TCP_ECHO_SRV_SND_READY);
 
-	/* ���ͥ���������Ǵ�λ�ޤ��Ԥġ�*/
+	/* コネクション切断完了まで待つ。*/
 	syscall(wai_sem(SEM_TCP_ECHO_SRV_CLS_READY));
 
 	return error == E_WBLK ? E_OK : error;
 	}
 
 /*
- *  TCP ECHO ���������������� (�Υ�֥��å��󥰥��������)
+ *  TCP ECHO サーバ送信タスク (ノンブロッキングコール使用)
  */
 
 void
@@ -365,18 +365,18 @@ tcp_echo_srv_snd_task(intptr_t exinf)
 
 		while (true) {
 
-			/* �Хåե���ʸ��������ޤ��Ԥġ�*/
+			/* バッファに文字が入るまで待つ。*/
 			syscall(wai_sem(SEM_TCP_ECHO_SRV_SND_READY));
 
-			/* �ԤäƤ���֤˥��顼�ˤʤä��齪λ���롣*/
+			/* 待っている間にエラーになったら終了する。*/
 			if (snd_error <= 0)
 				break;
 
-			/* ������λ�ǡ��Хåե���ʸ�����ʤ���н�λ���롣*/
+			/* 受信完了で、バッファに文字がなければ終了する。*/
 			if (!ena_rcv && chars == 0)
 				break;
 
-			/* ������������׻����롣*/
+			/* 送信サイズを計算する。*/
 			syscall(wai_sem(SEM_TCP_ECHO_SRV_LOCK));
 			if (rptr > sptr)
 				blen = rptr - sptr;
@@ -384,14 +384,14 @@ tcp_echo_srv_snd_task(intptr_t exinf)
 				blen = sizeof(buffer) - (sptr - buffer);
 			syscall(sig_sem(SEM_TCP_ECHO_SRV_LOCK));
 
-			/* �������롣*/
+			/* 送信する。*/
 			if ((error = tcp_snd_dat(cepid, sptr, blen, TMO_NBLK)) != E_WBLK) {
 				syslog(LOG_NOTICE, "[TES:%02d SND] send error = %s", cepid, itron_strerror(error));
 				break;
 				}
 			}
 
-		/* �����Хåե��˶����Ǥ�����ԤäƤ�������������򵯾����롣*/
+		/* 受信バッファに空ができるを待っている受信タスクを起床する。*/
 		if (chars == sizeof(buffer))
 			sig_sem(SEM_TCP_ECHO_SRV_SND_READY);
 
@@ -412,7 +412,7 @@ tcp_echo_srv_snd_task(intptr_t exinf)
 #else	/* of #ifdef USE_TCP_NON_BLOCKING */
 
 /*
- *  TCP ECHO �����м����롼����
+ *  TCP ECHO サーバ受信ルーチン
  */
 
 ER
@@ -449,7 +449,7 @@ tcp_echo_srv_rcv (ID cepid, ID repid)
 	ena_rcv   = true;
 	while (true) {
 
-		/* ������������׻����롣*/
+		/* 受信サイズを計算する。*/
 		syscall(wai_sem(SEM_TCP_ECHO_SRV_LOCK));
 		if (sptr > rptr)
 			blen = sptr - rptr;
@@ -457,7 +457,7 @@ tcp_echo_srv_rcv (ID cepid, ID repid)
 			blen = sizeof(buffer) - (rptr - buffer);
 		syscall(sig_sem(SEM_TCP_ECHO_SRV_LOCK));
 
-		/* �������롣*/
+		/* 受信する。*/
 		if ((rlen = tcp_rcv_dat(cepid, rptr, blen, TMO_FEVR)) <= 0) {
 			if (rlen < 0)
 				syslog(LOG_NOTICE, "[TES:%02d RCV] recv error = %s",
@@ -475,45 +475,45 @@ tcp_echo_srv_rcv (ID cepid, ID repid)
 
 		syscall(wai_sem(SEM_TCP_ECHO_SRV_LOCK));
 
-		/* �����ݥ��󥿤�ʤ�롣*/
+		/* 受信ポインタを進める。*/
 		if (rptr - buffer + rlen >= sizeof(buffer))
 			rptr -= sizeof(buffer) - rlen;
 		else
 			rptr += rlen;
 
-		/* �Хåե����ʸ���������䤹��*/
+		/* バッファ内の文字数を増やす。*/
 		last   =     chars;
 		chars += (uint16_t)rlen;
 
- 				/* �Хåե����ʸ��������С������������򵯾����롣*/
+ 				/* バッファ内に文字が入れば、送信タスクを起床する。*/
 		if (last == 0 && chars > 0)
 			sig_sem(SEM_TCP_ECHO_SRV_SND_READY);
 
- 				/* �Хåե���˶���������С������������򵯾����롣*/
+ 				/* バッファ内に空きがあれば、受信タスクを起床する。*/
 		if (sizeof(buffer) - chars > 0)
 			sig_sem(SEM_TCP_ECHO_SRV_RCV_READY);
 
 		syscall(sig_sem(SEM_TCP_ECHO_SRV_LOCK));
 
-		/* �Хåե��˶������Ǥ���ޤ��Ԥġ�*/
+		/* バッファに空きができるまで待つ。*/
 		syscall(wai_sem(SEM_TCP_ECHO_SRV_RCV_READY));
 		}
 
-	/* ������λ */
+	/* 受信完了 */
 	ena_rcv = false;
 
-	/* �����Хåե���ʸ��������Τ��ԤäƤ��������������򵯾����롣*/
+	/* 受信バッファに文字が入るのを待っている送信タスクを起床する。*/
 	if (chars == 0)
 		sig_sem(SEM_TCP_ECHO_SRV_SND_READY);
 
-	/* ���ͥ����������Ǥ���λ����ޤ��Ԥġ�*/
+	/* コネクションの切断が完了するまで待つ。*/
 	syscall(wai_sem(SEM_TCP_ECHO_SRV_CLS_READY));
 
 	return error;
 	}
 
 /*
- *  TCP ECHO ����������������
+ *  TCP ECHO サーバ送信タスク
  */
 
 void
@@ -537,14 +537,14 @@ tcp_echo_srv_snd_task(intptr_t exinf)
 
 		while (true) {
 
-			/* �Хåե���ʸ��������ޤ��Ԥġ�*/
+			/* バッファに文字が入るまで待つ。*/
 			syscall(wai_sem(SEM_TCP_ECHO_SRV_SND_READY));
 
-			/* ������λ�ǡ��Хåե���ʸ�����ʤ���н�λ���롣*/
+			/* 受信完了で、バッファに文字がなければ終了する。*/
 			if (!ena_rcv && chars == 0)
 				break;
 
-			/* ������������׻����롣*/
+			/* 送信サイズを計算する。*/
 			syscall(wai_sem(SEM_TCP_ECHO_SRV_LOCK));
 			if (rptr > sptr)
 				blen = rptr - sptr;
@@ -568,34 +568,34 @@ tcp_echo_srv_snd_task(intptr_t exinf)
 
 			syscall(wai_sem(SEM_TCP_ECHO_SRV_LOCK));
 
-			/* �����ݥ��󥿤�ʤ�롣*/
+			/* 送信ポインタを進める。*/
 			if (sptr - buffer + slen >= sizeof(buffer))
 				sptr -= sizeof(buffer) - slen;
 			else
 				sptr += slen;
 
-			/* �Хåե����ʸ�����򸺤餹��*/
+			/* バッファ内の文字数を減らす。*/
 			last   =     chars;
 			chars -= (uint16_t)slen;
 
-			/* ������λ�ǡ��Хåե���ʸ�����ʤ���н�λ���롣*/
+			/* 受信完了で、バッファに文字がなければ終了する。*/
 			if (!ena_rcv && chars == 0) {
 				syscall(sig_sem(SEM_TCP_ECHO_SRV_LOCK));
 				break;
 				}
 
- 			/* �Хåե����ʸ��������С������������򵯾����롣*/
+ 			/* バッファ内に文字があれば、送信タスクを起床する。*/
 			if (chars > 0)
 				sig_sem(SEM_TCP_ECHO_SRV_SND_READY);
 
- 			/* ������ǽ�ǡ��Хåե���˶������Ǥ���С������������򵯾����롣*/
+ 			/* 受信可能で、バッファ内に空きができれば、受信タスクを起床する。*/
 			if (ena_rcv && last == sizeof(buffer) && sizeof(buffer) - chars > 0)
 				sig_sem(SEM_TCP_ECHO_SRV_RCV_READY);
 
 			syscall(sig_sem(SEM_TCP_ECHO_SRV_LOCK));
 			}
 
-		/* �����Хåե��˶����Ǥ�����ԤäƤ�������������򵯾����롣*/
+		/* 受信バッファに空ができるを待っている受信タスクを起床する。*/
 		if (chars == sizeof(buffer))
 			sig_sem(SEM_TCP_ECHO_SRV_SND_READY);
 
@@ -623,7 +623,7 @@ tcp_echo_srv_snd_task(intptr_t exinf)
 #ifdef USE_TCP_EXTENTIONS
 
 /*
- *  get_tcp_rep -- TCP ���ո���������롣
+ *  get_tcp_rep -- TCP 受付口を獲得する。
  */
 
 static ER
@@ -649,7 +649,7 @@ get_tcp_rep (ID *repid)
 	}
 
 /*
- *  get_tcp_cep -- TCP �̿�ü����������롣
+ *  get_tcp_cep -- TCP 通信端点を獲得する。
  */
 
 static ER
@@ -684,7 +684,7 @@ get_tcp_cep (ID *cepid)
 	}
 
 /*
- *  TCP ECHO �����м���������
+ *  TCP ECHO サーバ受信タスク
  */
 
 void

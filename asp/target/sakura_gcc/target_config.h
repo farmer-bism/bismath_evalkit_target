@@ -9,59 +9,59 @@
  *              Graduate School of Information Science, Nagoya Univ., JAPAN
  *  Copyright (C) 2008-2010 by Witz Corporation, JAPAN
  * 
- *  ��L���쌠�҂́C�ȉ���(1)�`(4)�̏����𖞂����ꍇ�Ɍ���C�{�\�t�g�E�F
- *  �A�i�{�\�t�g�E�F�A�����ς������̂��܂ށD�ȉ������j���g�p�E�����E��
- *  �ρE�Ĕz�z�i�ȉ��C���p�ƌĂԁj���邱�Ƃ𖳏��ŋ�������D
- *  (1) �{�\�t�g�E�F�A���\�[�X�R�[�h�̌`�ŗ��p����ꍇ�ɂ́C��L�̒���
- *      ���\���C���̗��p��������щ��L�̖��ۏ؋K�肪�C���̂܂܂̌`�Ń\�[
- *      �X�R�[�h���Ɋ܂܂�Ă��邱�ƁD
- *  (2) �{�\�t�g�E�F�A���C���C�u�����`���ȂǁC���̃\�t�g�E�F�A�J���Ɏg
- *      �p�ł���`�ōĔz�z����ꍇ�ɂ́C�Ĕz�z�ɔ����h�L�������g�i���p
- *      �҃}�j���A���Ȃǁj�ɁC��L�̒��쌠�\���C���̗��p��������щ��L
- *      �̖��ۏ؋K����f�ڂ��邱�ƁD
- *  (3) �{�\�t�g�E�F�A���C�@��ɑg�ݍ��ނȂǁC���̃\�t�g�E�F�A�J���Ɏg
- *      �p�ł��Ȃ��`�ōĔz�z����ꍇ�ɂ́C���̂����ꂩ�̏����𖞂�����
- *      �ƁD
- *    (a) �Ĕz�z�ɔ����h�L�������g�i���p�҃}�j���A���Ȃǁj�ɁC��L�̒�
- *        �쌠�\���C���̗��p��������щ��L�̖��ۏ؋K����f�ڂ��邱�ƁD
- *    (b) �Ĕz�z�̌`�Ԃ��C�ʂɒ�߂���@�ɂ���āCTOPPERS�v���W�F�N�g��
- *        �񍐂��邱�ƁD
- *  (4) �{�\�t�g�E�F�A�̗��p�ɂ�蒼�ړI�܂��͊ԐړI�ɐ����邢���Ȃ鑹
- *      �Q������C��L���쌠�҂����TOPPERS�v���W�F�N�g��Ɛӂ��邱�ƁD
- *      �܂��C�{�\�t�g�E�F�A�̃��[�U�܂��̓G���h���[�U����̂����Ȃ闝
- *      �R�Ɋ�Â�����������C��L���쌠�҂����TOPPERS�v���W�F�N�g��
- *      �Ɛӂ��邱�ƁD
+ *  上記著作権者は，以下の(1)〜(4)の条件を満たす場合に限り，本ソフトウェ
+ *  ア（本ソフトウェアを改変したものを含む．以下同じ）を使用・複製・改
+ *  変・再配布（以下，利用と呼ぶ）することを無償で許諾する．
+ *  (1) 本ソフトウェアをソースコードの形で利用する場合には，上記の著作
+ *      権表示，この利用条件および下記の無保証規定が，そのままの形でソー
+ *      スコード中に含まれていること．
+ *  (2) 本ソフトウェアを，ライブラリ形式など，他のソフトウェア開発に使
+ *      用できる形で再配布する場合には，再配布に伴うドキュメント（利用
+ *      者マニュアルなど）に，上記の著作権表示，この利用条件および下記
+ *      の無保証規定を掲載すること．
+ *  (3) 本ソフトウェアを，機器に組み込むなど，他のソフトウェア開発に使
+ *      用できない形で再配布する場合には，次のいずれかの条件を満たすこ
+ *      と．
+ *    (a) 再配布に伴うドキュメント（利用者マニュアルなど）に，上記の著
+ *        作権表示，この利用条件および下記の無保証規定を掲載すること．
+ *    (b) 再配布の形態を，別に定める方法によって，TOPPERSプロジェクトに
+ *        報告すること．
+ *  (4) 本ソフトウェアの利用により直接的または間接的に生じるいかなる損
+ *      害からも，上記著作権者およびTOPPERSプロジェクトを免責すること．
+ *      また，本ソフトウェアのユーザまたはエンドユーザからのいかなる理
+ *      由に基づく請求からも，上記著作権者およびTOPPERSプロジェクトを
+ *      免責すること．
  * 
- *  �{�\�t�g�E�F�A�́C���ۏ؂Œ񋟂���Ă�����̂ł���D��L���쌠�҂�
- *  ���TOPPERS�v���W�F�N�g�́C�{�\�t�g�E�F�A�Ɋւ��āC����̎g�p�ړI
- *  �ɑ΂���K�������܂߂āC�����Ȃ�ۏ؂��s��Ȃ��D�܂��C�{�\�t�g�E�F
- *  �A�̗��p�ɂ�蒼�ړI�܂��͊ԐړI�ɐ����������Ȃ鑹�Q�Ɋւ��Ă��C��
- *  �̐ӔC�𕉂�Ȃ��D
+ *  本ソフトウェアは，無保証で提供されているものである．上記著作権者お
+ *  よびTOPPERSプロジェクトは，本ソフトウェアに関して，特定の使用目的
+ *  に対する適合性も含めて，いかなる保証も行わない．また，本ソフトウェ
+ *  アの利用により直接的または間接的に生じたいかなる損害に関しても，そ
+ *  の責任を負わない．
  * 
  */
 
 /*
- *		�^�[�Q�b�g�ˑ����W���[���iGR-SAKURA�p�j
+ *		ターゲット依存モジュール（GR-SAKURA用）
  *
- *  �J�[�l���̃^�[�Q�b�g�ˑ����̃C���N���[�h�t�@�C���Dkernel_impl.h�̃^�[
- *  �Q�b�g�ˑ����̈ʒu�t���ƂȂ�D
+ *  カーネルのターゲット依存部のインクルードファイル．kernel_impl.hのター
+ *  ゲット依存部の位置付けとなる．
  */
 
 #ifndef TOPPERS_TARGET_CONFIG_H
 #define TOPPERS_TARGET_CONFIG_H
 
 /*
- *  �^�[�Q�b�g�V�X�e���̃n�[�h�E�F�A�����̒�`
+ *  ターゲットシステムのハードウェア資源の定義
  */
 #include "target_board.h"
 
 
 /*
- *  �f�t�H���g�̔�^�X�N�R���e�L�X�g�p�̃X�^�b�N�̈�̒�`
+ *  デフォルトの非タスクコンテキスト用のスタック領域の定義
  *
- *  �X�^�b�N�T�C�Y��ύX����ꍇ��, sectrx.inc��_DEFAULT_ISTACK
- *  ���x���̈ʒu�ɂ���.blkb���߂̃T�C�Y��, �ȉ�DEFAULT_ISTKSZ��
- *  �T�C�Y�����킹�ē����l�ɕύX���邱��.
+ *  スタックサイズを変更する場合は, sectrx.incの_DEFAULT_ISTACK
+ *  ラベルの位置にある.blkb命令のサイズと, 以下DEFAULT_ISTKSZの
+ *  サイズを合わせて同じ値に変更すること.
  */
 
 #ifndef TOPPERS_MACRO_ONLY
@@ -73,7 +73,7 @@ extern uint32_t	DEFAULT_ISTACK[];
 
 
 /*
- *  �^�[�Q�b�g�ˑ��̕����o�͂Ɏg�p����|�[�g�̒�`  
+ *  ターゲット依存の文字出力に使用するポートの定義  
  */
 #define TARGET_PUTC_PORTID	( 3 )
 
@@ -81,14 +81,14 @@ extern uint32_t	DEFAULT_ISTACK[];
 #ifndef TOPPERS_MACRO_ONLY
 
 /*
- *  �^�[�Q�b�g�V�X�e���ˑ��̏�����
+ *  ターゲットシステム依存の初期化
  */
 extern void	target_initialize( void );
 
 /*
- *  �^�[�Q�b�g�V�X�e���̏I��
+ *  ターゲットシステムの終了
  *
- *  �V�X�e�����I�����鎞�Ɏg���D
+ *  システムを終了する時に使う．
  */
 extern void	target_exit( void )	NoReturn;
 
@@ -96,20 +96,20 @@ extern void	target_exit( void )	NoReturn;
 
 
 /*
- *  �v���Z�b�T�ˑ����W���[���iRX63n�p�j
+ *  プロセッサ依存モジュール（RX63n用）
  */
 #include "rx63n_gcc/rx63n_config.h"
 
 
 /*
- *  �g���[�X���O�Ɋւ���ݒ�
+ *  トレースログに関する設定
  */
 #define TCNT_TRACE_BUFFER	( 32 )
 
 /*
- *  �g���[�X���O�o�͂���ӏ��̑I��
- *    ���O�o�͂���ӏ���1�Œ�`
- *    ���O�o�͂��Ȃ��ӏ���0�Œ�`
+ *  トレースログ出力する箇所の選択
+ *    ログ出力する箇所を1で定義
+ *    ログ出力しない箇所を0で定義
  */
 #define LOG_DSP_ENTER	( 0 )
 #define LOG_DSP_LEAVE	( 0 )

@@ -4,35 +4,35 @@
  *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
- *  �嵭����Ԥϡ��ʲ��� (1)��(4) �ξ�狼��Free Software Foundation 
- *  �ˤ�äƸ�ɽ����Ƥ��� GNU General Public License �� Version 2 �˵�
- *  �Ҥ���Ƥ���������������˸¤ꡤ�ܥ��եȥ��������ܥ��եȥ�����
- *  ����Ѥ�����Τ�ޤࡥ�ʲ�Ʊ���ˤ���ѡ�ʣ�������ѡ������ۡʰʲ���
- *  ���ѤȸƤ֡ˤ��뤳�Ȥ�̵���ǵ������롥
- *  (1) �ܥ��եȥ������򥽡��������ɤη������Ѥ�����ˤϡ��嵭������
- *      ��ɽ�����������Ѿ�浪��Ӳ�����̵�ݾڵ��꤬�����Τޤޤη��ǥ���
- *      ����������˴ޤޤ�Ƥ��뤳�ȡ�
- *  (2) �ܥ��եȥ������򡤥饤�֥������ʤɡ�¾�Υ��եȥ�������ȯ�˻�
- *      �ѤǤ�����Ǻ����ۤ�����ˤϡ������ۤ�ȼ���ɥ�����ȡ�����
- *      �ԥޥ˥奢��ʤɡˤˡ��嵭�����ɽ�����������Ѿ�浪��Ӳ���
- *      ��̵�ݾڵ����Ǻܤ��뤳�ȡ�
- *  (3) �ܥ��եȥ������򡤵�����Ȥ߹���ʤɡ�¾�Υ��եȥ�������ȯ�˻�
- *      �ѤǤ��ʤ����Ǻ����ۤ�����ˤϡ����ξ������������ȡ�
- *    (a) �����ۤ�ȼ���ɥ�����ȡ����Ѽԥޥ˥奢��ʤɡˤˡ��嵭����
- *        �ɽ�����������Ѿ�浪��Ӳ�����̵�ݾڵ����Ǻܤ��뤳�ȡ�
- *  (4) �ܥ��եȥ����������Ѥˤ��ľ��Ū�ޤ��ϴ���Ū�������뤤���ʤ�»
- *      ������⡤�嵭����Ԥ����TOPPERS�ץ��������Ȥ����դ��뤳�ȡ�
+ *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
+ *  によって公表されている GNU General Public License の Version 2 に記
+ *  述されている条件を満たす場合に限り，本ソフトウェア（本ソフトウェア
+ *  を改変したものを含む．以下同じ）を使用・複製・改変・再配布（以下，
+ *  利用と呼ぶ）することを無償で許諾する．
+ *  (1) 本ソフトウェアをソースコードの形で利用する場合には，上記の著作
+ *      権表示，この利用条件および下記の無保証規定が，そのままの形でソー
+ *      スコード中に含まれていること．
+ *  (2) 本ソフトウェアを，ライブラリ形式など，他のソフトウェア開発に使
+ *      用できる形で再配布する場合には，再配布に伴うドキュメント（利用
+ *      者マニュアルなど）に，上記の著作権表示，この利用条件および下記
+ *      の無保証規定を掲載すること．
+ *  (3) 本ソフトウェアを，機器に組み込むなど，他のソフトウェア開発に使
+ *      用できない形で再配布する場合には，次の条件を満たすこと．
+ *    (a) 再配布に伴うドキュメント（利用者マニュアルなど）に，上記の著
+ *        作権表示，この利用条件および下記の無保証規定を掲載すること．
+ *  (4) 本ソフトウェアの利用により直接的または間接的に生じるいかなる損
+ *      害からも，上記著作権者およびTOPPERSプロジェクトを免責すること．
  *
- *  �ܥ��եȥ������ϡ�̵�ݾڤ��󶡤���Ƥ����ΤǤ��롥�嵭����Ԥ�
- *  ���TOPPERS�ץ��������Ȥϡ��ܥ��եȥ������˴ؤ��ơ�����Ŭ�Ѳ�ǽ����
- *  �ޤ�ơ������ʤ��ݾڤ�Ԥ�ʤ����ޤ����ܥ��եȥ����������Ѥˤ��ľ
- *  ��Ū�ޤ��ϴ���Ū�������������ʤ�»���˴ؤ��Ƥ⡤������Ǥ�����ʤ���
+ *  本ソフトウェアは，無保証で提供されているものである．上記著作権者お
+ *  よびTOPPERSプロジェクトは，本ソフトウェアに関して，その適用可能性も
+ *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
+ *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
  *  @(#) $Id: udp_echo_cli.c,v 1.5 2009/12/24 05:44:56 abe Exp $
  */
 
 /* 
- *  UDP ECHO ���饤�����
+ *  UDP ECHO クライアント
  */
 
 #include <string.h>
@@ -70,18 +70,18 @@
 
 #ifdef USE_UDP_ECHO_CLI
 
-/* echo �����ФΥݡ����ֹ� */
+/* echo サーバのポート番号 */
 
 #define ECHO_SRV_PORTNO		UINT_C(7)
 
 /*
- *  �����ѿ�
+ *  全域変数
  */
 
 bool_t udp_echo_cli_valid;
 
 /*
- * �ѿ�
+ * 変数
  */
 
 #define BUF_SIZE	2048
@@ -94,7 +94,7 @@ static T_IPEP		dst;
 static ER_UINT		nblk_len;
 
 /*
- *  �Υ�֥��å��󥰥�����Υ�����Хå��ؿ�
+ *  ノンブロッキングコールのコールバック関数
  */
 
 ER
@@ -106,7 +106,7 @@ callback_nblk_udp_echo_cli (ID cepid, FN fncd, void *p_parblk)
 	}
 
 /*
- *  send_udp_echo -- ECHO/UDP �����Ф˥�å��������������� (�Υ�֥��å��󥰥��������)��
+ *  send_udp_echo -- ECHO/UDP サーバにメッセージを送信する (ノンブロッキングコール使用)。
  */
 
 static ER
@@ -127,7 +127,7 @@ send_udp_echo (ID cepid, T_IN_ADDR *ipaddr, uint16_t portno, char *line)
 		                   cepid, IP2STR(NULL, &dst.ipaddr), dst.portno, line);
 
 	syscall(slp_tsk());
-	if (nblk_len < 0) {	/* 0 �ʲ��ξ��ϡ����顼������ */
+	if (nblk_len < 0) {	/* 0 以下の場合は、エラーコード */
 		syslog(LOG_NOTICE, "[UEC:%02d CBR] error: %s", cepid, itron_strerror(nblk_len));
 		return nblk_len;
 		}
@@ -138,7 +138,7 @@ send_udp_echo (ID cepid, T_IN_ADDR *ipaddr, uint16_t portno, char *line)
 		}
 
 	syscall(slp_tsk());
-	if (nblk_len < 0) {	/* 0 �ʲ��ξ��ϡ����顼������ */
+	if (nblk_len < 0) {	/* 0 以下の場合は、エラーコード */
 		syslog(LOG_NOTICE, "[UEC:%02d RCV] error: %s", cepid, itron_strerror(nblk_len));
 		return nblk_len;
 		}
@@ -157,7 +157,7 @@ send_udp_echo (ID cepid, T_IN_ADDR *ipaddr, uint16_t portno, char *line)
 #ifdef USE_UDP_CALL_BACK
 
 /*
- *  ������Хå��ؿ�
+ *  コールバック関数
  */
 
 ER
@@ -177,7 +177,7 @@ callback_udp_echo_cli (ID cepid, FN fncd, void *p_parblk)
 	}
 
 /*
- *  send_udp_echo -- ECHO/UDP �����Ф˥�å��������������� (������Хå��ؿ�����)��
+ *  send_udp_echo -- ECHO/UDP サーバにメッセージを送信する (コールバック関数使用)。
  */
 
 static ER
@@ -199,7 +199,7 @@ send_udp_echo (ID cepid, T_IN_ADDR *ipaddr, uint16_t portno, char *line)
 #else	/* of #ifdef USE_UDP_CALL_BACK */
 
 /*
- *  send_udp_echo -- ECHO/UDP �����Ф˥�å��������������� (������Хå��ؿ�̤����)��
+ *  send_udp_echo -- ECHO/UDP サーバにメッセージを送信する (コールバック関数未使用)。
  */
 
 static ER
@@ -236,7 +236,7 @@ send_udp_echo (ID cepid, T_IN_ADDR *ipaddr, uint16_t portno, char *line)
 #define MESSAGE_FORMAT	"MSG 1000000"
 
 /*
- *  UDP ECHO ���饤���������������
+ *  UDP ECHO クライアント送信タスク
  */
 
 void

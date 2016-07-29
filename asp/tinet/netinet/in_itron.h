@@ -4,29 +4,29 @@
  *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
- *  �嵭����Ԥϡ��ʲ��� (1)��(4) �ξ�狼��Free Software Foundation 
- *  �ˤ�äƸ�ɽ����Ƥ��� GNU General Public License �� Version 2 �˵�
- *  �Ҥ���Ƥ���������������˸¤ꡤ�ܥ��եȥ��������ܥ��եȥ�����
- *  ����Ѥ�����Τ�ޤࡥ�ʲ�Ʊ���ˤ���ѡ�ʣ�������ѡ������ۡʰʲ���
- *  ���ѤȸƤ֡ˤ��뤳�Ȥ�̵���ǵ������롥
- *  (1) �ܥ��եȥ������򥽡��������ɤη������Ѥ�����ˤϡ��嵭������
- *      ��ɽ�����������Ѿ�浪��Ӳ�����̵�ݾڵ��꤬�����Τޤޤη��ǥ���
- *      ����������˴ޤޤ�Ƥ��뤳�ȡ�
- *  (2) �ܥ��եȥ������򡤥饤�֥������ʤɡ�¾�Υ��եȥ�������ȯ�˻�
- *      �ѤǤ�����Ǻ����ۤ�����ˤϡ������ۤ�ȼ���ɥ�����ȡ�����
- *      �ԥޥ˥奢��ʤɡˤˡ��嵭�����ɽ�����������Ѿ�浪��Ӳ���
- *      ��̵�ݾڵ����Ǻܤ��뤳�ȡ�
- *  (3) �ܥ��եȥ������򡤵�����Ȥ߹���ʤɡ�¾�Υ��եȥ�������ȯ�˻�
- *      �ѤǤ��ʤ����Ǻ����ۤ�����ˤϡ����ξ������������ȡ�
- *    (a) �����ۤ�ȼ���ɥ�����ȡ����Ѽԥޥ˥奢��ʤɡˤˡ��嵭����
- *        �ɽ�����������Ѿ�浪��Ӳ�����̵�ݾڵ����Ǻܤ��뤳�ȡ�
- *  (4) �ܥ��եȥ����������Ѥˤ��ľ��Ū�ޤ��ϴ���Ū�������뤤���ʤ�»
- *      ������⡤�嵭����Ԥ����TOPPERS�ץ��������Ȥ����դ��뤳�ȡ�
+ *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
+ *  によって公表されている GNU General Public License の Version 2 に記
+ *  述されている条件を満たす場合に限り，本ソフトウェア（本ソフトウェア
+ *  を改変したものを含む．以下同じ）を使用・複製・改変・再配布（以下，
+ *  利用と呼ぶ）することを無償で許諾する．
+ *  (1) 本ソフトウェアをソースコードの形で利用する場合には，上記の著作
+ *      権表示，この利用条件および下記の無保証規定が，そのままの形でソー
+ *      スコード中に含まれていること．
+ *  (2) 本ソフトウェアを，ライブラリ形式など，他のソフトウェア開発に使
+ *      用できる形で再配布する場合には，再配布に伴うドキュメント（利用
+ *      者マニュアルなど）に，上記の著作権表示，この利用条件および下記
+ *      の無保証規定を掲載すること．
+ *  (3) 本ソフトウェアを，機器に組み込むなど，他のソフトウェア開発に使
+ *      用できない形で再配布する場合には，次の条件を満たすこと．
+ *    (a) 再配布に伴うドキュメント（利用者マニュアルなど）に，上記の著
+ *        作権表示，この利用条件および下記の無保証規定を掲載すること．
+ *  (4) 本ソフトウェアの利用により直接的または間接的に生じるいかなる損
+ *      害からも，上記著作権者およびTOPPERSプロジェクトを免責すること．
  *
- *  �ܥ��եȥ������ϡ�̵�ݾڤ��󶡤���Ƥ����ΤǤ��롥�嵭����Ԥ�
- *  ���TOPPERS�ץ��������Ȥϡ��ܥ��եȥ������˴ؤ��ơ�����Ŭ�Ѳ�ǽ����
- *  �ޤ�ơ������ʤ��ݾڤ�Ԥ�ʤ����ޤ����ܥ��եȥ����������Ѥˤ��ľ
- *  ��Ū�ޤ��ϴ���Ū�������������ʤ�»���˴ؤ��Ƥ⡤������Ǥ�����ʤ���
+ *  本ソフトウェアは，無保証で提供されているものである．上記著作権者お
+ *  よびTOPPERSプロジェクトは，本ソフトウェアに関して，その適用可能性も
+ *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
+ *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
  *  @(#) $Id: in_itron.h,v 1.5 2009/12/24 05:47:21 abe Exp $
  */
@@ -35,10 +35,10 @@
 #define _IN_ITRON_H_
 
 /*
- *  API ��ǽ�����ݥ�����
+ *  API 機能・事象コード
  */
 
-/* TCP �ط� */
+/* TCP 関係 */
 
 #define TFN_TCP_CRE_REP		(-0x201)
 #define TFN_TCP_DEL_REP		(-0x202)
@@ -63,7 +63,7 @@
 
 #define TEV_TCP_RCV_OOB		(-0x201)
 
-/* UDP �ط� */
+/* UDP 関係 */
 
 #define TFN_UDP_CRE_CEP		(-0x221)
 #define TFN_UDP_DEL_CEP		(-0x222)
@@ -76,21 +76,21 @@
 
 #define TEV_UDP_RCV_DAT		(-0x221)
 
-/* ���� */
+/* 一般 */
 
-#define NADR			((void*)(-1))	/* ̵�����ɥ쥹 */
+#define NADR			((void*)(-1))	/* 無効アドレス */
 #define IS_PTR_DEFINED(a)	((void*)(a)!=NADR&&(void*)(a)!=NULL)
 #define TCP_REP_NONE		UINT_C(0)
 #define TCP_CEP_NONE		UINT_C(0)
 #define UDP_CEP_NONE		UINT_C(0)
 
 /*
- *  �ؿ�
+ *  関数
  */
 
-/* TCP �ط� */
+/* TCP 関係 */
 
-/* ��ɸ�ൡǽ�� */
+/* 【標準機能】 */
 
 extern ER	tcp_acp_cep (ID cepid, ID repid, T_IPV4EP *p_dstaddr, TMO tmout);
 extern ER	tcp_con_cep (ID cepid, T_IPV4EP *p_myaddr, T_IPV4EP *p_dstaddr, TMO tmout);
@@ -107,7 +107,7 @@ extern ER	tcp_can_cep (ID cepid, FN fncd);
 extern ER	tcp6_acp_cep (ID cepid, ID repid, T_IPV6EP *p_dstaddr, TMO tmout);
 extern ER	tcp6_con_cep (ID cepid, T_IPV6EP *p_myaddr, T_IPV6EP *p_dstaddr, TMO tmout);
 
-/* �ڳ�ĥ��ǽ�� */
+/* 【拡張機能】 */
 
 extern ER	tcp_del_rep (ID cepid);
 extern ER	tcp_cre_cep (ID cepid, T_TCP_CCEP *pk_crep);
@@ -120,9 +120,9 @@ extern ER	tcp_cre_rep (ID repid, T_TCP_CREP *pk_crep);
 
 extern ER	tcp6_cre_rep (ID repid, T_TCP6_CREP *pk_crep);
 
-/* UDP �ط� */
+/* UDP 関係 */
 
-/* ��ɸ�ൡǽ�� */
+/* 【標準機能】 */
 
 extern ER_UINT	udp_snd_dat (ID cepid, T_IPV4EP *p_dstaddr, void *data, int_t len, TMO tmout);
 extern ER_UINT	udp_rcv_dat (ID cepid, T_IPV4EP *p_dstaddr, void *data, int_t len, TMO tmout);
@@ -131,7 +131,7 @@ extern ER	udp_can_cep (ID cepid, FN fncd);
 extern ER_UINT	udp6_snd_dat (ID cepid, T_IPV6EP *p_dstaddr, void *data, int_t len, TMO tmout);
 extern ER_UINT	udp6_rcv_dat (ID cepid, T_IPV6EP *p_dstaddr, void *data, int_t len, TMO tmout);
 
-/* �ڳ�ĥ��ǽ�� */
+/* 【拡張機能】 */
 
 extern ER	udp_del_cep (ID cepid);
 extern ER	udp_set_opt (ID cepid, int_t optname, void *optval, int_t optlen);

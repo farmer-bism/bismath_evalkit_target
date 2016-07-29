@@ -4,29 +4,29 @@
  *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
- *  ¾åµ­Ãøºî¸¢¼Ô¤Ï¡¤°Ê²¼¤Î (1)¡Á(4) ¤Î¾ò·ï¤«¡¤Free Software Foundation 
- *  ¤Ë¤è¤Ã¤Æ¸øÉ½¤µ¤ì¤Æ¤¤¤ë GNU General Public License ¤Î Version 2 ¤Ëµ­
- *  ½Ò¤µ¤ì¤Æ¤¤¤ë¾ò·ï¤òËþ¤¿¤¹¾ì¹ç¤Ë¸Â¤ê¡¤ËÜ¥½¥Õ¥È¥¦¥§¥¢¡ÊËÜ¥½¥Õ¥È¥¦¥§¥¢
- *  ¤ò²þÊÑ¤·¤¿¤â¤Î¤ò´Þ¤à¡¥°Ê²¼Æ±¤¸¡Ë¤ò»ÈÍÑ¡¦Ê£À½¡¦²þÊÑ¡¦ºÆÇÛÉÛ¡Ê°Ê²¼¡¤
- *  ÍøÍÑ¤È¸Æ¤Ö¡Ë¤¹¤ë¤³¤È¤òÌµ½þ¤ÇµöÂú¤¹¤ë¡¥
- *  (1) ËÜ¥½¥Õ¥È¥¦¥§¥¢¤ò¥½¡¼¥¹¥³¡¼¥É¤Î·Á¤ÇÍøÍÑ¤¹¤ë¾ì¹ç¤Ë¤Ï¡¤¾åµ­¤ÎÃøºî
- *      ¸¢É½¼¨¡¤¤³¤ÎÍøÍÑ¾ò·ï¤ª¤è¤Ó²¼µ­¤ÎÌµÊÝ¾Úµ¬Äê¤¬¡¤¤½¤Î¤Þ¤Þ¤Î·Á¤Ç¥½¡¼
- *      ¥¹¥³¡¼¥ÉÃæ¤Ë´Þ¤Þ¤ì¤Æ¤¤¤ë¤³¤È¡¥
- *  (2) ËÜ¥½¥Õ¥È¥¦¥§¥¢¤ò¡¤¥é¥¤¥Ö¥é¥ê·Á¼°¤Ê¤É¡¤Â¾¤Î¥½¥Õ¥È¥¦¥§¥¢³«È¯¤Ë»È
- *      ÍÑ¤Ç¤­¤ë·Á¤ÇºÆÇÛÉÛ¤¹¤ë¾ì¹ç¤Ë¤Ï¡¤ºÆÇÛÉÛ¤ËÈ¼¤¦¥É¥­¥å¥á¥ó¥È¡ÊÍøÍÑ
- *      ¼Ô¥Þ¥Ë¥å¥¢¥ë¤Ê¤É¡Ë¤Ë¡¤¾åµ­¤ÎÃøºî¸¢É½¼¨¡¤¤³¤ÎÍøÍÑ¾ò·ï¤ª¤è¤Ó²¼µ­
- *      ¤ÎÌµÊÝ¾Úµ¬Äê¤ò·ÇºÜ¤¹¤ë¤³¤È¡¥
- *  (3) ËÜ¥½¥Õ¥È¥¦¥§¥¢¤ò¡¤µ¡´ï¤ËÁÈ¤ß¹þ¤à¤Ê¤É¡¤Â¾¤Î¥½¥Õ¥È¥¦¥§¥¢³«È¯¤Ë»È
- *      ÍÑ¤Ç¤­¤Ê¤¤·Á¤ÇºÆÇÛÉÛ¤¹¤ë¾ì¹ç¤Ë¤Ï¡¤¼¡¤Î¾ò·ï¤òËþ¤¿¤¹¤³¤È¡¥
- *    (a) ºÆÇÛÉÛ¤ËÈ¼¤¦¥É¥­¥å¥á¥ó¥È¡ÊÍøÍÑ¼Ô¥Þ¥Ë¥å¥¢¥ë¤Ê¤É¡Ë¤Ë¡¤¾åµ­¤ÎÃø
- *        ºî¸¢É½¼¨¡¤¤³¤ÎÍøÍÑ¾ò·ï¤ª¤è¤Ó²¼µ­¤ÎÌµÊÝ¾Úµ¬Äê¤ò·ÇºÜ¤¹¤ë¤³¤È¡¥
- *  (4) ËÜ¥½¥Õ¥È¥¦¥§¥¢¤ÎÍøÍÑ¤Ë¤è¤êÄ¾ÀÜÅª¤Þ¤¿¤Ï´ÖÀÜÅª¤ËÀ¸¤¸¤ë¤¤¤«¤Ê¤ëÂ»
- *      ³²¤«¤é¤â¡¤¾åµ­Ãøºî¸¢¼Ô¤ª¤è¤ÓTOPPERS¥×¥í¥¸¥§¥¯¥È¤òÌÈÀÕ¤¹¤ë¤³¤È¡¥
+ *  ä¸Šè¨˜è‘—ä½œæ¨©è€…ã¯ï¼Œä»¥ä¸‹ã® (1)ã€œ(4) ã®æ¡ä»¶ã‹ï¼ŒFree Software Foundation 
+ *  ã«ã‚ˆã£ã¦å…¬è¡¨ã•ã‚Œã¦ã„ã‚‹ GNU General Public License ã® Version 2 ã«è¨˜
+ *  è¿°ã•ã‚Œã¦ã„ã‚‹æ¡ä»¶ã‚’æº€ãŸã™å ´åˆã«é™ã‚Šï¼Œæœ¬ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ï¼ˆæœ¬ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢
+ *  ã‚’æ”¹å¤‰ã—ãŸã‚‚ã®ã‚’å«ã‚€ï¼Žä»¥ä¸‹åŒã˜ï¼‰ã‚’ä½¿ç”¨ãƒ»è¤‡è£½ãƒ»æ”¹å¤‰ãƒ»å†é…å¸ƒï¼ˆä»¥ä¸‹ï¼Œ
+ *  åˆ©ç”¨ã¨å‘¼ã¶ï¼‰ã™ã‚‹ã“ã¨ã‚’ç„¡å„Ÿã§è¨±è«¾ã™ã‚‹ï¼Ž
+ *  (1) æœ¬ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚’ã‚½ãƒ¼ã‚¹ã‚³ãƒ¼ãƒ‰ã®å½¢ã§åˆ©ç”¨ã™ã‚‹å ´åˆã«ã¯ï¼Œä¸Šè¨˜ã®è‘—ä½œ
+ *      æ¨©è¡¨ç¤ºï¼Œã“ã®åˆ©ç”¨æ¡ä»¶ãŠã‚ˆã³ä¸‹è¨˜ã®ç„¡ä¿è¨¼è¦å®šãŒï¼Œãã®ã¾ã¾ã®å½¢ã§ã‚½ãƒ¼
+ *      ã‚¹ã‚³ãƒ¼ãƒ‰ä¸­ã«å«ã¾ã‚Œã¦ã„ã‚‹ã“ã¨ï¼Ž
+ *  (2) æœ¬ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚’ï¼Œãƒ©ã‚¤ãƒ–ãƒ©ãƒªå½¢å¼ãªã©ï¼Œä»–ã®ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢é–‹ç™ºã«ä½¿
+ *      ç”¨ã§ãã‚‹å½¢ã§å†é…å¸ƒã™ã‚‹å ´åˆã«ã¯ï¼Œå†é…å¸ƒã«ä¼´ã†ãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆï¼ˆåˆ©ç”¨
+ *      è€…ãƒžãƒ‹ãƒ¥ã‚¢ãƒ«ãªã©ï¼‰ã«ï¼Œä¸Šè¨˜ã®è‘—ä½œæ¨©è¡¨ç¤ºï¼Œã“ã®åˆ©ç”¨æ¡ä»¶ãŠã‚ˆã³ä¸‹è¨˜
+ *      ã®ç„¡ä¿è¨¼è¦å®šã‚’æŽ²è¼‰ã™ã‚‹ã“ã¨ï¼Ž
+ *  (3) æœ¬ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚’ï¼Œæ©Ÿå™¨ã«çµ„ã¿è¾¼ã‚€ãªã©ï¼Œä»–ã®ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢é–‹ç™ºã«ä½¿
+ *      ç”¨ã§ããªã„å½¢ã§å†é…å¸ƒã™ã‚‹å ´åˆã«ã¯ï¼Œæ¬¡ã®æ¡ä»¶ã‚’æº€ãŸã™ã“ã¨ï¼Ž
+ *    (a) å†é…å¸ƒã«ä¼´ã†ãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆï¼ˆåˆ©ç”¨è€…ãƒžãƒ‹ãƒ¥ã‚¢ãƒ«ãªã©ï¼‰ã«ï¼Œä¸Šè¨˜ã®è‘—
+ *        ä½œæ¨©è¡¨ç¤ºï¼Œã“ã®åˆ©ç”¨æ¡ä»¶ãŠã‚ˆã³ä¸‹è¨˜ã®ç„¡ä¿è¨¼è¦å®šã‚’æŽ²è¼‰ã™ã‚‹ã“ã¨ï¼Ž
+ *  (4) æœ¬ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã®åˆ©ç”¨ã«ã‚ˆã‚Šç›´æŽ¥çš„ã¾ãŸã¯é–“æŽ¥çš„ã«ç”Ÿã˜ã‚‹ã„ã‹ãªã‚‹æ
+ *      å®³ã‹ã‚‰ã‚‚ï¼Œä¸Šè¨˜è‘—ä½œæ¨©è€…ãŠã‚ˆã³TOPPERSãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã‚’å…è²¬ã™ã‚‹ã“ã¨ï¼Ž
  *
- *  ËÜ¥½¥Õ¥È¥¦¥§¥¢¤Ï¡¤ÌµÊÝ¾Ú¤ÇÄó¶¡¤µ¤ì¤Æ¤¤¤ë¤â¤Î¤Ç¤¢¤ë¡¥¾åµ­Ãøºî¸¢¼Ô¤ª
- *  ¤è¤ÓTOPPERS¥×¥í¥¸¥§¥¯¥È¤Ï¡¤ËÜ¥½¥Õ¥È¥¦¥§¥¢¤Ë´Ø¤·¤Æ¡¤¤½¤ÎÅ¬ÍÑ²ÄÇ½À­¤â
- *  ´Þ¤á¤Æ¡¤¤¤¤«¤Ê¤ëÊÝ¾Ú¤â¹Ô¤ï¤Ê¤¤¡¥¤Þ¤¿¡¤ËÜ¥½¥Õ¥È¥¦¥§¥¢¤ÎÍøÍÑ¤Ë¤è¤êÄ¾
- *  ÀÜÅª¤Þ¤¿¤Ï´ÖÀÜÅª¤ËÀ¸¤¸¤¿¤¤¤«¤Ê¤ëÂ»³²¤Ë´Ø¤·¤Æ¤â¡¤¤½¤ÎÀÕÇ¤¤òÉé¤ï¤Ê¤¤¡¥
+ *  æœ¬ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã¯ï¼Œç„¡ä¿è¨¼ã§æä¾›ã•ã‚Œã¦ã„ã‚‹ã‚‚ã®ã§ã‚ã‚‹ï¼Žä¸Šè¨˜è‘—ä½œæ¨©è€…ãŠ
+ *  ã‚ˆã³TOPPERSãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã¯ï¼Œæœ¬ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã«é–¢ã—ã¦ï¼Œãã®é©ç”¨å¯èƒ½æ€§ã‚‚
+ *  å«ã‚ã¦ï¼Œã„ã‹ãªã‚‹ä¿è¨¼ã‚‚è¡Œã‚ãªã„ï¼Žã¾ãŸï¼Œæœ¬ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã®åˆ©ç”¨ã«ã‚ˆã‚Šç›´
+ *  æŽ¥çš„ã¾ãŸã¯é–“æŽ¥çš„ã«ç”Ÿã˜ãŸã„ã‹ãªã‚‹æå®³ã«é–¢ã—ã¦ã‚‚ï¼Œãã®è²¬ä»»ã‚’è² ã‚ãªã„ï¼Ž
  * 
  *  @(#) $Id: ppp_fsm.c,v 1.5 2009/12/24 05:42:40 abe Exp $
  */
@@ -98,13 +98,13 @@
 #ifdef SUPPORT_PPP
 
 /*
- *  Á´°èÊÑ¿ô
+ *  å…¨åŸŸå¤‰æ•°
  */
 
-uint8_t	ppp_open_mode = PPP_OPEN_PASSIVE;	/* ¥ª¡¼¥×¥ó»þ¤ÎÆ°ºî¥â¡¼¥É	*/
+uint8_t	ppp_open_mode = PPP_OPEN_PASSIVE;	/* ã‚ªãƒ¼ãƒ—ãƒ³æ™‚ã®å‹•ä½œãƒ¢ãƒ¼ãƒ‰	*/
 
 /*
- *  ´Ø¿ô
+ *  é–¢æ•°
  */
 
 static void fsm_sconfreq	(T_PPP_FSM *fsm, int_t retansmit);
@@ -118,7 +118,7 @@ static void fsm_stermreq	(T_PPP_FSM *fsm, uint8_t id);
 static void fsm_timeout		(void *arg);
 
 /*
- *  fsm_sconfreq -- Configure-Request ¤òÁ÷¿®¤¹¤ë¡£
+ *  fsm_sconfreq -- Configure-Request ã‚’é€ä¿¡ã™ã‚‹ã€‚
  */
 
 static void
@@ -130,13 +130,13 @@ fsm_sconfreq (T_PPP_FSM *fsm, int_t retransmit)
 	if (!(fsm->state == PPP_FSM_REQSENT ||
 	      fsm->state == PPP_FSM_ACKRCVD ||
 	      fsm->state == PPP_FSM_ACKSENT)) {
-		/* ¤Þ¤À¥Í¥´¤ò¤·¤Æ¤¤¤Ê¤¤¡£¥ª¥×¥·¥ç¥ó¤ò¥ê¥»¥Ã¥È¤¹¤ë¡£ */
+		/* ã¾ã ãƒã‚´ã‚’ã—ã¦ã„ãªã„ã€‚ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹ã€‚ */
 		if (fsm->callbacks->resetci)
 			(*fsm->callbacks->resetci)(fsm);
 		fsm->failures = 0;
 		}
 	if (retransmit == 0) {
-		/* ¿·¤·¤¤¥ê¥¯¥¨¥¹¥È¡£ºÆÁ÷¥«¥¦¥ó¥¿¤ò¥ê¥»¥Ã¥È¤·¡¢¿·¤·¤¤ ID ¤òÀßÄê¤¹¤ë¡£ */
+		/* æ–°ã—ã„ãƒªã‚¯ã‚¨ã‚¹ãƒˆã€‚å†é€ã‚«ã‚¦ãƒ³ã‚¿ã‚’ãƒªã‚»ãƒƒãƒˆã—ã€æ–°ã—ã„ ID ã‚’è¨­å®šã™ã‚‹ã€‚ */
 		fsm->retrans = MAX_PPP_CONFIGURES;
 		fsm->reqid   = ++ fsm->id;
 		}
@@ -144,13 +144,13 @@ fsm_sconfreq (T_PPP_FSM *fsm, int_t retransmit)
 	fsm->seen_ack = 0;
 
 	if (fsm->callbacks->cilen && fsm->callbacks->addci) {
-		/* ¹½À®¾ðÊó¥Ñ¥±¥Ã¥È¤òºî¤ë¡£ */
+		/* æ§‹æˆæƒ…å ±ãƒ‘ã‚±ãƒƒãƒˆã‚’ä½œã‚‹ã€‚ */
 		len = (*fsm->callbacks->cilen)(fsm);
 
 		syscall(get_net_buf(&output, len + sizeof(T_PPP_HDR) + sizeof(T_PPP_CP_HDR)));
 		(*fsm->callbacks->addci)(fsm, output);
 
-		/* ¹½À®¾ðÊó¥Ñ¥±¥Ã¥È¤òÁ÷¿®¤¹¤ë¡£ */
+		/* æ§‹æˆæƒ…å ±ãƒ‘ã‚±ãƒƒãƒˆã‚’é€ä¿¡ã™ã‚‹ã€‚ */
 		IF_SET_PROTO(output, fsm->proto);
 		ppp_cp_output(PPP_CONFREQ, fsm->reqid, output);
 
@@ -160,7 +160,7 @@ fsm_sconfreq (T_PPP_FSM *fsm, int_t retransmit)
 	}
 
 /*
- *  fsm_rconfreq -- Configure-Request ¤ò¼õ¿®¤·¤¿¤È¤­¤Î½èÍý
+ *  fsm_rconfreq -- Configure-Request ã‚’å—ä¿¡ã—ãŸã¨ãã®å‡¦ç†
  */
 
 static void
@@ -183,15 +183,15 @@ fsm_rconfreq (T_PPP_FSM *fsm, uint8_t id, T_NET_BUF *input)
 		break;
 
 	case PPP_FSM_OPENED:
-		/* ¾å°ÌÁØ¤òÄä»ß¤·¤Æ¡¢¥Í¥´¤Ë°Ü¤ë¡£ */
+		/* ä¸Šä½å±¤ã‚’åœæ­¢ã—ã¦ã€ãƒã‚´ã«ç§»ã‚‹ã€‚ */
 		if (fsm->callbacks->down != NULL)
 			(*fsm->callbacks->down)(fsm);
-		fsm_sconfreq(fsm, 0);		/* ºÇ½é¤Î Configure-Request ¤òÁ÷¤ë¡£ */
+		fsm_sconfreq(fsm, 0);		/* æœ€åˆã® Configure-Request ã‚’é€ã‚‹ã€‚ */
 		break;
 
 	case PPP_FSM_STOPPED:
-		/* Áê¼ê¤«¤é¥Í¥´¤¬³«»Ï¤µ¤ì¤¿ */
-		fsm_sconfreq(fsm, 0);		/* ºÇ½é¤Î Configure-Request ¤òÁ÷¤ë¡£ */
+		/* ç›¸æ‰‹ã‹ã‚‰ãƒã‚´ãŒé–‹å§‹ã•ã‚ŒãŸ */
+		fsm_sconfreq(fsm, 0);		/* æœ€åˆã® Configure-Request ã‚’é€ã‚‹ã€‚ */
 		fsm->state = PPP_FSM_REQSENT;
 		break;
 
@@ -199,15 +199,15 @@ fsm_rconfreq (T_PPP_FSM *fsm, uint8_t id, T_NET_BUF *input)
 
 	syscall(get_net_buf(&output, input->len));
 
-	/* ¾å°Ì¥×¥í¥È¥³¥ë¤ËÍ×µá¤µ¤ì¤¿ Configure-Request ¤òÁ÷¤ë¡£ */
-	if (fsm->callbacks->reqci != NULL)	/* ¹½À®¾ðÊó¤ò¥Á¥§¥Ã¥¯¤¹¤ë¡£ */
+	/* ä¸Šä½ãƒ—ãƒ­ãƒˆã‚³ãƒ«ã«è¦æ±‚ã•ã‚ŒãŸ Configure-Request ã‚’é€ã‚‹ã€‚ */
+	if (fsm->callbacks->reqci != NULL)	/* æ§‹æˆæƒ…å ±ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã€‚ */
 		code = (*fsm->callbacks->reqci)(fsm, input, output);
 	else if (output->len > sizeof(T_PPP_HDR) + sizeof(T_PPP_CP_HDR))
 		code = PPP_CONFREJ;
 	else
 		code = PPP_CONFACK;
 
-	/* Áê¼ê¤Ë ACK, NAK ¤Þ¤¿¤Ï REJ ¤òÁ÷¿®¤¹¤ë¡£ */
+	/* ç›¸æ‰‹ã« ACK, NAK ã¾ãŸã¯ REJ ã‚’é€ä¿¡ã™ã‚‹ã€‚ */
 	ppp_cp_output(code, id, output);
 
 	if (code == PPP_CONFACK) {
@@ -222,7 +222,7 @@ fsm_rconfreq (T_PPP_FSM *fsm, uint8_t id, T_NET_BUF *input)
 		fsm->failures = 0;
 		}
 	else {
-		/* ACK ¤« REJ ¤òÁ÷¤ë */
+		/* ACK ã‹ REJ ã‚’é€ã‚‹ */
 		if (fsm->state != PPP_FSM_ACKRCVD)
 			fsm->state = PPP_FSM_REQSENT;
 		if (code == PPP_CONFNAK)
@@ -231,7 +231,7 @@ fsm_rconfreq (T_PPP_FSM *fsm, uint8_t id, T_NET_BUF *input)
 	}
 
 /*
- *  fsm_rconfnakrej -- Configure-NAK/REJ ¤ò¼õ¿®¤·¤¿¤È¤­¤Î½èÍý
+ *  fsm_rconfnakrej -- Configure-NAK/REJ ã‚’å—ä¿¡ã—ãŸã¨ãã®å‡¦ç†
  */
 
 static void
@@ -240,7 +240,7 @@ fsm_rconfnakrej (T_PPP_FSM *fsm, uint8_t code, uint8_t id, T_NET_BUF *input)
 	int_t		ret = 0;
 	T_NET_BUF	*output;
 
-	/* Í½´ü¤·¤¿ ID ¤Ç¤Ê¤¤¤«¡¢NAK/REJ ¤òÍ½´ü¤·¤Æ¤¤¤Ê¤¤¤È¤­¤Ï½ªÎ»¤¹¤ë¡£*/
+	/* äºˆæœŸã—ãŸ ID ã§ãªã„ã‹ã€NAK/REJ ã‚’äºˆæœŸã—ã¦ã„ãªã„ã¨ãã¯çµ‚äº†ã™ã‚‹ã€‚*/
 	if (id != fsm->reqid || fsm->seen_ack) {
 		syslog(LOG_WARNING, "[PPP/FSM] bad ID or unexp NAK/REJ.");
 		return;
@@ -273,7 +273,7 @@ fsm_rconfnakrej (T_PPP_FSM *fsm, uint8_t code, uint8_t id, T_NET_BUF *input)
 	case PPP_FSM_REQSENT:
 	case PPP_FSM_ACKSENT:
 		untimeout((FP)fsm_timeout, fsm);
-		if (ret < 0)		/* Á÷¿®¤·¤¿ Conf-Req ¤¬ÇËÂ»¤·¶õ¤Î NAK/REJ ¤¬ÆÏ¤¤¤¿¡£*/
+		if (ret < 0)		/* é€ä¿¡ã—ãŸ Conf-Req ãŒç ´æã—ç©ºã® NAK/REJ ãŒå±Šã„ãŸã€‚*/
 			fsm->state = PPP_FSM_STOPPED;
 		else
 			fsm_sconfreq(fsm, 0);
@@ -286,7 +286,7 @@ fsm_rconfnakrej (T_PPP_FSM *fsm, uint8_t code, uint8_t id, T_NET_BUF *input)
 		break;
 
 	case PPP_FSM_OPENED:
-		/* ºÆµ¯Æ°¤·¡¢¥Í¥´¤ò¤ä¤êÄ¾¤¹¡£*/
+		/* å†èµ·å‹•ã—ã€ãƒã‚´ã‚’ã‚„ã‚Šç›´ã™ã€‚*/
 		if (fsm->callbacks->down != NULL)
 			(*fsm->callbacks->down)(fsm);
 		fsm_sconfreq(fsm, 0);
@@ -296,7 +296,7 @@ fsm_rconfnakrej (T_PPP_FSM *fsm, uint8_t code, uint8_t id, T_NET_BUF *input)
 	}
 
 /*
- *  fsm_rconfack -- Configure-ACK ¤ò¼õ¿®¤·¤¿¤È¤­¤Î½èÍý
+ *  fsm_rconfack -- Configure-ACK ã‚’å—ä¿¡ã—ãŸã¨ãã®å‡¦ç†
  */
 
 static void
@@ -304,7 +304,7 @@ fsm_rconfack (T_PPP_FSM *fsm, uint8_t id, T_NET_BUF *input)
 {
 	T_NET_BUF	*output;
 
-	/* Í½´ü¤·¤¿ ID ¤Ç¤Ê¤¤¤«¡¢ACK ¤òÍ½´ü¤·¤Æ¤¤¤Ê¤¤¤È¤­¤Ï½ªÎ»¤¹¤ë¡£*/
+	/* äºˆæœŸã—ãŸ ID ã§ãªã„ã‹ã€ACK ã‚’äºˆæœŸã—ã¦ã„ãªã„ã¨ãã¯çµ‚äº†ã™ã‚‹ã€‚*/
 	if (id != fsm->reqid || fsm->seen_ack) {
 		syslog(LOG_WARNING, "[PPP/FSM] bad ID or unexp ACK.");
 		return;
@@ -351,7 +351,7 @@ fsm_rconfack (T_PPP_FSM *fsm, uint8_t id, T_NET_BUF *input)
 		break;
 
 	case PPP_FSM_OPENED:
-		/* ºÆµ¯Æ°¤·¡¢¥Í¥´¤ò¤ä¤êÄ¾¤¹¡£*/
+		/* å†èµ·å‹•ã—ã€ãƒã‚´ã‚’ã‚„ã‚Šç›´ã™ã€‚*/
 		if (fsm->callbacks->down != NULL)
 			(*fsm->callbacks->down)(fsm);
 		fsm_sconfreq(fsm, 0);
@@ -366,7 +366,7 @@ fsm_rconfack (T_PPP_FSM *fsm, uint8_t id, T_NET_BUF *input)
 	}
 
 /*
- *  fsm_rtermreq -- Terminate-Request ¤ò¼õ¿®¤·¤¿¤È¤­¤Î½èÍý
+ *  fsm_rtermreq -- Terminate-Request ã‚’å—ä¿¡ã—ãŸã¨ãã®å‡¦ç†
  */
 
 static void
@@ -394,7 +394,7 @@ fsm_rtermreq (T_PPP_FSM *fsm, uint8_t id, T_NET_BUF *input)
 	}
 
 /*
- *  fsm_rtermack -- Terminate-ACK ¤ò¼õ¿®¤·¤¿¤È¤­¤Î½èÍý
+ *  fsm_rtermack -- Terminate-ACK ã‚’å—ä¿¡ã—ãŸã¨ãã®å‡¦ç†
  */
 
 static void
@@ -403,7 +403,7 @@ fsm_rtermack (T_PPP_FSM *fsm, T_NET_BUF *input)
 	switch (fsm->state) {
 	case PPP_FSM_CLOSING:
 		untimeout((FP)fsm_timeout, fsm);
-#if 0	/* ËÜÍè¤ÎÆ°ºî¤Ï CLOSED ¤ËÁ«°Ü¤¹¤ë¡£*/
+#if 0	/* æœ¬æ¥ã®å‹•ä½œã¯ CLOSED ã«é·ç§»ã™ã‚‹ã€‚*/
 		fsm->state = PPP_FSM_CLOSED;
 #else	/* of #if 0 */
 		fsm->state = PPP_FSM_STOPPED;
@@ -432,7 +432,7 @@ fsm_rtermack (T_PPP_FSM *fsm, T_NET_BUF *input)
 	}
 
 /*
- *  fsm_rcoderej -- Code-REJ ¤ò¼õ¿®¤·¤¿¤È¤­¤Î½èÍý
+ *  fsm_rcoderej -- Code-REJ ã‚’å—ä¿¡ã—ãŸã¨ãã®å‡¦ç†
  */
 
 static void
@@ -440,7 +440,7 @@ fsm_rcoderej (T_PPP_FSM *fsm, T_NET_BUF *input)
 {
 	T_PPP_CP_HDR	*hdr;
 
- 	/* PPP ¥ê¥ó¥¯À©¸æ (CP) ¥Ø¥Ã¥À¤è¤êÃ»¤±¤ì¤Ð¥¨¥é¡¼ */
+ 	/* PPP ãƒªãƒ³ã‚¯åˆ¶å¾¡ (CP) ãƒ˜ãƒƒãƒ€ã‚ˆã‚ŠçŸ­ã‘ã‚Œã°ã‚¨ãƒ©ãƒ¼ */
  	if (input->len < sizeof(T_PPP_HDR) + sizeof(T_PPP_CP_HDR)) {
  		syslog(LOG_WARNING, "[PPP/FSM] bad len: %d in recv Code-REJ.", input->len);
  		return;
@@ -455,7 +455,7 @@ fsm_rcoderej (T_PPP_FSM *fsm, T_NET_BUF *input)
 	}
 
 /*
- *  fsm_timeout -- ¥¿¥¤¥à¥¢¥¦¥È½èÍý
+ *  fsm_timeout -- ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆå‡¦ç†
  */
 
 static void
@@ -467,8 +467,8 @@ fsm_timeout (void *arg)
 	case PPP_FSM_CLOSING:
 	case PPP_FSM_STOPPING:
 		if (fsm->retrans <= 0) {
-			/* ºÇÂçºÆÁ÷²ó¿ô¤òÄ¶¤¨¤¿¤È¤­¤Î½èÍý */
-#if 0	/* ËÜÍè¤ÎÆ°ºî¤Ï CLOSED ¤ËÁ«°Ü¤¹¤ë¡£*/
+			/* æœ€å¤§å†é€å›žæ•°ã‚’è¶…ãˆãŸã¨ãã®å‡¦ç† */
+#if 0	/* æœ¬æ¥ã®å‹•ä½œã¯ CLOSED ã«é·ç§»ã™ã‚‹ã€‚*/
 			fsm->state = (fsm->state == PPP_FSM_CLOSING) ? PPP_FSM_CLOSED : PPP_FSM_STOPPED;
 #else	/* of #if 0 */
 			fsm->state = PPP_FSM_STOPPED;
@@ -477,7 +477,7 @@ fsm_timeout (void *arg)
 				(*fsm->callbacks->finished)(fsm);
 			}
 		else {
-			/* Terminate-Request ¤òÁ÷¿®¤¹¤ë¡£*/
+			/* Terminate-Request ã‚’é€ä¿¡ã™ã‚‹ã€‚*/
 			fsm_stermreq(fsm, ++ fsm->id);
 			}
 		break;
@@ -485,14 +485,14 @@ fsm_timeout (void *arg)
 	case PPP_FSM_ACKRCVD:
 	case PPP_FSM_ACKSENT:
 		if (fsm->retrans <= 0) {
-			/* ºÇÂçºÆÁ÷²ó¿ô¤òÄ¶¤¨¤¿¤È¤­¤Î½èÍý */
+			/* æœ€å¤§å†é€å›žæ•°ã‚’è¶…ãˆãŸã¨ãã®å‡¦ç† */
 			syslog(LOG_WARNING, "[PPP/FSM] retrans Conf-Req.");
 			fsm->state = PPP_FSM_STOPPED;
 			if (ppp_open_mode != PPP_OPEN_PASSIVE && fsm->callbacks->finished)
 				(*fsm->callbacks->finished)(fsm);
 			}
 		else {
-			/* Configure-Request ¤òºÆÁ÷¤¹¤ë¡£*/
+			/* Configure-Request ã‚’å†é€ã™ã‚‹ã€‚*/
 			if (fsm->callbacks->retrans != NULL)
 				(*fsm->callbacks->retrans)(fsm);
 			fsm_sconfreq(fsm, 1);
@@ -509,7 +509,7 @@ fsm_timeout (void *arg)
 	}
 
 /*
- *  fsm_stermreq -- Terminate-Request ¤òÁ÷¿®¤¹¤ë¡£
+ *  fsm_stermreq -- Terminate-Request ã‚’é€ä¿¡ã™ã‚‹ã€‚
  */
 
 static void
@@ -526,7 +526,7 @@ fsm_stermreq (T_PPP_FSM *fsm, uint8_t id)
 	}
 
 /*
- *  fsm_init -- FSM ¥â¥¸¥å¡¼¥ë¤Î½é´ü²½
+ *  fsm_init -- FSM ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã®åˆæœŸåŒ–
  */
 
 void
@@ -537,7 +537,7 @@ fsm_init (T_PPP_FSM *fsm)
 	}
 
 /*
- *  fsm_lowerup -- FSM ²¼°ÌÁØ¤òµ¯Æ°¤¹¤ë¡£
+ *  fsm_lowerup -- FSM ä¸‹ä½å±¤ã‚’èµ·å‹•ã™ã‚‹ã€‚
  */
 
 void
@@ -564,7 +564,7 @@ fsm_lowerup (T_PPP_FSM *fsm)
 	}
 
 /*
- *  fsm_lowerdown -- FSM ²¼°ÌÁØ¤òÄä»ß¤¹¤ë¡£
+ *  fsm_lowerdown -- FSM ä¸‹ä½å±¤ã‚’åœæ­¢ã™ã‚‹ã€‚
  */
 
 void
@@ -607,7 +607,7 @@ fsm_lowerdown (T_PPP_FSM *fsm)
 	}
 
 /*
- *  fsm_open -- FSM ¤Î¥ª¡¼¥×¥ó
+ *  fsm_open -- FSM ã®ã‚ªãƒ¼ãƒ—ãƒ³
  */
 
 void
@@ -631,7 +631,7 @@ fsm_open (T_PPP_FSM *fsm)
 
 	case PPP_FSM_CLOSING:
 		fsm->state = PPP_FSM_STOPPING;
-		/* nobreak;	²¼¤ËÍî¤Á¤ë */
+		/* nobreak;	ä¸‹ã«è½ã¡ã‚‹ */
 
 	case PPP_FSM_STOPPED:
 	case PPP_FSM_OPENED:
@@ -642,7 +642,7 @@ fsm_open (T_PPP_FSM *fsm)
 	}
 
 /*
- *  fsm_close -- ¥ê¥ó¥¯¤ÎÀÚÃÇ¤ò³«»Ï¤¹¤ë¡£
+ *  fsm_close -- ãƒªãƒ³ã‚¯ã®åˆ‡æ–­ã‚’é–‹å§‹ã™ã‚‹ã€‚
  */
 
 void
@@ -653,7 +653,7 @@ fsm_close (T_PPP_FSM *fsm)
 		fsm->state = PPP_FSM_INITIAL;
 		break;
 
-#if 0	/* ËÜÍè¤ÎÆ°ºî¤Ï CLOSED ¤ËÁ«°Ü¤¹¤ë¡£*/
+#if 0	/* æœ¬æ¥ã®å‹•ä½œã¯ CLOSED ã«é·ç§»ã™ã‚‹ã€‚*/
 	case PPP_FSM_STOPPED:
 		fsm->state = PPP_FSM_CLOSED;
 		break;
@@ -672,7 +672,7 @@ fsm_close (T_PPP_FSM *fsm)
 		else if (fsm->callbacks->down != NULL)
 			(*fsm->callbacks->down)(fsm);
 
-		/* ¥¿¥¤¥à¥¢¥¦¥È¤òÀßÄê¤·¡¢Terminate-Request ¤òÁ÷¿®¤¹¤ë¡£*/
+		/* ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆã‚’è¨­å®šã—ã€Terminate-Request ã‚’é€ä¿¡ã™ã‚‹ã€‚*/
 		fsm->retrans = MAX_PPP_TERMINATES;
 		fsm_stermreq(fsm, fsm->reqid = ++ fsm->id);
 		fsm->state = PPP_FSM_CLOSING;
@@ -681,7 +681,7 @@ fsm_close (T_PPP_FSM *fsm)
 	}
 
 /*
- *  fsm_input -- ÆþÎÏ¡¢PPP ¥ê¥ó¥¯À©¸æ (CP) ¤ÎÀ©¸æ¥³¡¼¥É¤Ë¤è¤êÅ¬Åö¤Ê´Ø¿ô¤ò¸Æ½Ð¤¹
+ *  fsm_input -- å…¥åŠ›ã€PPP ãƒªãƒ³ã‚¯åˆ¶å¾¡ (CP) ã®åˆ¶å¾¡ã‚³ãƒ¼ãƒ‰ã«ã‚ˆã‚Šé©å½“ãªé–¢æ•°ã‚’å‘¼å‡ºã™
  */
 
 void
@@ -690,7 +690,7 @@ fsm_input (T_PPP_FSM *fsm, T_NET_BUF *input)
 	T_PPP_CP_HDR	*hdr;
 	T_NET_BUF	*output;
 
- 	/* PPP ¥ê¥ó¥¯À©¸æ (CP) ¥Ø¥Ã¥À¤è¤êÃ»¤±¤ì¤Ð¥¨¥é¡¼ */
+ 	/* PPP ãƒªãƒ³ã‚¯åˆ¶å¾¡ (CP) ãƒ˜ãƒƒãƒ€ã‚ˆã‚ŠçŸ­ã‘ã‚Œã°ã‚¨ãƒ©ãƒ¼ */
  	if (input->len < (sizeof(T_PPP_HDR) + sizeof(T_PPP_CP_HDR))) {
  		syslog(LOG_WARNING, "[PPP/FSM] short hdr: %d.", input->len);
  		return;
@@ -698,20 +698,20 @@ fsm_input (T_PPP_FSM *fsm, T_NET_BUF *input)
 
  	hdr = GET_PPP_CP_HDR(input);
 
- 	/* ¥Ø¥Ã¥À¤ÎÄ¹¤µ¤ÈÆþÎÏ¥Ç¡¼¥¿¥µ¥¤¥º¤¬°ìÃ×¤·¤Ê¤±¤ì¤Ð¥¨¥é¡¼ */
+ 	/* ãƒ˜ãƒƒãƒ€ã®é•·ã•ã¨å…¥åŠ›ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºãŒä¸€è‡´ã—ãªã‘ã‚Œã°ã‚¨ãƒ©ãƒ¼ */
  	if (hdr->len != input->len - sizeof(T_PPP_HDR)) {
  		syslog(LOG_WARNING, "[PPP/FSM] bad len: %d.", hdr->len);
  		return;
  		}
  
- 	/* ¾õÂÖ¤¬ INITIAL ¤« STARTING ¤Ê¤é¥¨¥é¡¼ */
+ 	/* çŠ¶æ…‹ãŒ INITIAL ã‹ STARTING ãªã‚‰ã‚¨ãƒ©ãƒ¼ */
  	if (fsm->state == PPP_FSM_INITIAL || fsm->state == PPP_FSM_STARTING) {
  		syslog(LOG_WARNING, "[PPP/FSM] unexp state: %d in input.", fsm->state);
  		return;
  		}
  
  	/*
- 	 *  À©¸æ¥³¡¼¥É¤Ë¤è¤êÅ¬Åö¤Ê´Ø¿ô¤ò¸Æ½Ð¤¹
+ 	 *  åˆ¶å¾¡ã‚³ãƒ¼ãƒ‰ã«ã‚ˆã‚Šé©å½“ãªé–¢æ•°ã‚’å‘¼å‡ºã™
  	 */
 
 	switch (hdr->code) {
@@ -752,7 +752,7 @@ fsm_input (T_PPP_FSM *fsm, T_NET_BUF *input)
 	}
 
 /*
- *  fsm_protoreject -- Proto-REJ ¤ò¼õ¿®¤·¤¿¤È¤­¤Î½èÍý
+ *  fsm_protoreject -- Proto-REJ ã‚’å—ä¿¡ã—ãŸã¨ãã®å‡¦ç†
  */
 
 void
@@ -762,8 +762,8 @@ fsm_protreject (T_PPP_FSM *fsm)
 	case PPP_FSM_CLOSING:
 		untimeout((FP)fsm_timeout, fsm);
 
-#if 0	/* ËÜÍè¤ÎÆ°ºî¤Ï CLOSED ¤ËÁ«°Ü¤¹¤ë¡£*/
-		/* ²¼¤ËÍî¤Á¤ë */
+#if 0	/* æœ¬æ¥ã®å‹•ä½œã¯ CLOSED ã«é·ç§»ã™ã‚‹ã€‚*/
+		/* ä¸‹ã«è½ã¡ã‚‹ */
 #else	/* of #if 0 */
 		fsm->state = PPP_FSM_STOPPED;
 		if (fsm->callbacks->finished != NULL)
@@ -782,7 +782,7 @@ fsm_protreject (T_PPP_FSM *fsm)
 	case PPP_FSM_ACKRCVD:
 	case PPP_FSM_ACKSENT:
 		untimeout((FP)fsm_timeout, fsm);
-		/* ²¼¤ËÍî¤Á¤ë */
+		/* ä¸‹ã«è½ã¡ã‚‹ */
 
 	case PPP_FSM_STOPPED:
 		fsm->state = PPP_FSM_STOPPED;
@@ -794,7 +794,7 @@ fsm_protreject (T_PPP_FSM *fsm)
 		if (fsm->callbacks->down != NULL)
 			(*fsm->callbacks->down)(fsm);
 
-		/* ¥¿¥¤¥à¥¢¥¦¥È¤òÀßÄê¤·¡¢Terminate-Request ¤òÁ÷¿®¤¹¤ë¡£*/
+		/* ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆã‚’è¨­å®šã—ã€Terminate-Request ã‚’é€ä¿¡ã™ã‚‹ã€‚*/
 		fsm->retrans = MAX_PPP_TERMINATES;
 		fsm_stermreq(fsm, fsm->reqid = ++ fsm->id);
 		fsm->state = PPP_FSM_STOPPING;

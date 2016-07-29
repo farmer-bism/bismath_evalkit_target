@@ -4,29 +4,29 @@
  *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
- *  �嵭����Ԥϡ��ʲ��� (1)��(4) �ξ�狼��Free Software Foundation 
- *  �ˤ�äƸ�ɽ����Ƥ��� GNU General Public License �� Version 2 �˵�
- *  �Ҥ���Ƥ���������������˸¤ꡤ�ܥ��եȥ��������ܥ��եȥ�����
- *  ����Ѥ�����Τ�ޤࡥ�ʲ�Ʊ���ˤ���ѡ�ʣ�������ѡ������ۡʰʲ���
- *  ���ѤȸƤ֡ˤ��뤳�Ȥ�̵���ǵ������롥
- *  (1) �ܥ��եȥ������򥽡��������ɤη������Ѥ�����ˤϡ��嵭������
- *      ��ɽ�����������Ѿ�浪��Ӳ�����̵�ݾڵ��꤬�����Τޤޤη��ǥ���
- *      ����������˴ޤޤ�Ƥ��뤳�ȡ�
- *  (2) �ܥ��եȥ������򡤥饤�֥������ʤɡ�¾�Υ��եȥ�������ȯ�˻�
- *      �ѤǤ�����Ǻ����ۤ�����ˤϡ������ۤ�ȼ���ɥ�����ȡ�����
- *      �ԥޥ˥奢��ʤɡˤˡ��嵭�����ɽ�����������Ѿ�浪��Ӳ���
- *      ��̵�ݾڵ����Ǻܤ��뤳�ȡ�
- *  (3) �ܥ��եȥ������򡤵�����Ȥ߹���ʤɡ�¾�Υ��եȥ�������ȯ�˻�
- *      �ѤǤ��ʤ����Ǻ����ۤ�����ˤϡ����ξ������������ȡ�
- *    (a) �����ۤ�ȼ���ɥ�����ȡ����Ѽԥޥ˥奢��ʤɡˤˡ��嵭����
- *        �ɽ�����������Ѿ�浪��Ӳ�����̵�ݾڵ����Ǻܤ��뤳�ȡ�
- *  (4) �ܥ��եȥ����������Ѥˤ��ľ��Ū�ޤ��ϴ���Ū�������뤤���ʤ�»
- *      ������⡤�嵭����Ԥ����TOPPERS�ץ��������Ȥ����դ��뤳�ȡ�
+ *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
+ *  によって公表されている GNU General Public License の Version 2 に記
+ *  述されている条件を満たす場合に限り，本ソフトウェア（本ソフトウェア
+ *  を改変したものを含む．以下同じ）を使用・複製・改変・再配布（以下，
+ *  利用と呼ぶ）することを無償で許諾する．
+ *  (1) 本ソフトウェアをソースコードの形で利用する場合には，上記の著作
+ *      権表示，この利用条件および下記の無保証規定が，そのままの形でソー
+ *      スコード中に含まれていること．
+ *  (2) 本ソフトウェアを，ライブラリ形式など，他のソフトウェア開発に使
+ *      用できる形で再配布する場合には，再配布に伴うドキュメント（利用
+ *      者マニュアルなど）に，上記の著作権表示，この利用条件および下記
+ *      の無保証規定を掲載すること．
+ *  (3) 本ソフトウェアを，機器に組み込むなど，他のソフトウェア開発に使
+ *      用できない形で再配布する場合には，次の条件を満たすこと．
+ *    (a) 再配布に伴うドキュメント（利用者マニュアルなど）に，上記の著
+ *        作権表示，この利用条件および下記の無保証規定を掲載すること．
+ *  (4) 本ソフトウェアの利用により直接的または間接的に生じるいかなる損
+ *      害からも，上記著作権者およびTOPPERSプロジェクトを免責すること．
  *
- *  �ܥ��եȥ������ϡ�̵�ݾڤ��󶡤���Ƥ����ΤǤ��롥�嵭����Ԥ�
- *  ���TOPPERS�ץ��������Ȥϡ��ܥ��եȥ������˴ؤ��ơ�����Ŭ�Ѳ�ǽ����
- *  �ޤ�ơ������ʤ��ݾڤ�Ԥ�ʤ����ޤ����ܥ��եȥ����������Ѥˤ��ľ
- *  ��Ū�ޤ��ϴ���Ū�������������ʤ�»���˴ؤ��Ƥ⡤������Ǥ�����ʤ���
+ *  本ソフトウェアは，無保証で提供されているものである．上記著作権者お
+ *  よびTOPPERSプロジェクトは，本ソフトウェアに関して，その適用可能性も
+ *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
+ *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
  *  @(#) $Id: ppp_hdlc.c,v 1.5 2009/12/24 05:42:40 abe Exp $
  */
@@ -76,25 +76,25 @@
 #ifdef SUPPORT_PPP
 
 /*
- *  RFC1171 (PPP) �� HDLC �������
+ *  RFC1171 (PPP) の HDLC 部の定義
  */
 
 /*
- *  �ѿ�
+ *  変数
  */
 
 uint32_t remote_ACCM	= DEF_REMOTE_ACCM;
 
 /*
- *  �ؿ�
+ *  関数
  */
 
 static ER HDLC_putoctet (uint8_t octet);
 static ER HDLC_getoctet (uint8_t *octet);
 
 /*
- *  genfcstab.c �ˤ��������� FCS �Υ�å����å�ɽ
- *  RFC1171 ����
+ *  genfcstab.c により作成した FCS のルックアップ表
+ *  RFC1171 参照
  */
 
 static uint16_t fcstab[256] = {
@@ -165,7 +165,7 @@ static uint16_t fcstab[256] = {
 	};
 
 /*
- *  ����饤��ؿ�
+ *  インライン関数
  */
 
 Inline uint16_t Next_FCS (uint16_t FCS, uint8_t Octet) {
@@ -173,7 +173,7 @@ Inline uint16_t Next_FCS (uint16_t FCS, uint8_t Octet) {
 	};
 
 /*
- *  HDLC_putoctet -- HDLC �����ƥåȽ���
+ *  HDLC_putoctet -- HDLC オクテット出力
  */
 
 static
@@ -197,7 +197,7 @@ ER HDLC_putoctet (uint8_t octet)
 	}
 
 /*
- *  HDLC_wirte -- HDLC ����
+ *  HDLC_wirte -- HDLC 出力
  */
 
 ER HDLC_write (T_NET_BUF *nbuf)
@@ -226,7 +226,7 @@ ER HDLC_write (T_NET_BUF *nbuf)
 
 	if (lcp_local_ack_cfg.options & LCP_CFG_ACCOMP) {
 		NET_COUNT_PPP_HDLC(net_count_hdlc.out_octets, sizeof(flag_seq));
-		/* �ե졼�೫�ϥե饰�������� ����������    */
+		/* フレーム開始フラグシーケンス を送信する    */
 		if ((error = serial_wri_dat(HDLC_PORTID, &flag_seq, sizeof(flag_seq))) < 0) {
 			goto err_ret;
 			}
@@ -235,22 +235,22 @@ ER HDLC_write (T_NET_BUF *nbuf)
 	else {
 
 		NET_COUNT_PPP_HDLC(net_count_hdlc.out_octets, sizeof(flag_seq_ac));
-		/* �ե졼�೫�ϥե饰�������󥹡�Address �� Control ����������    */
+		/* フレーム開始フラグシーケンス、Address と Control を送信する    */
 		if ((error = serial_wri_dat(HDLC_PORTID, flag_seq_ac, sizeof(flag_seq_ac))) < 0) {
 			goto err_ret;
 			}
-		/* Address �� Control �� FCS �η׻��� HDLC_INIT_FCS_AC �˴ޤ�Ƥ��� */
+		/* Address と Control の FCS の計算は HDLC_INIT_FCS_AC に含めている */
 		fcs = HDLC_INIT_FCS_AC;
 		}
 
 #else	/* of #ifdef LCP_CFG_ACCOMP */
 
 	NET_COUNT_PPP_HDLC(net_count_hdlc.out_octets, sizeof(flag_seq_ac));
-	/* �ե졼�೫�ϥե饰�������󥹡�Address �� Control ����������    */
+	/* フレーム開始フラグシーケンス、Address と Control を送信する    */
 	if ((error = serial_wri_dat(HDLC_PORTID, flag_seq_ac, sizeof(flag_seq_ac))) < 0) {
 		goto err_ret;
 		}
-	/* Address �� Control �� FCS �η׻��� HDLC_INIT_FCS_AC �˴ޤ�Ƥ��� */
+	/* Address と Control の FCS の計算は HDLC_INIT_FCS_AC に含めている */
 	fcs = HDLC_INIT_FCS_AC;
 
 #endif	/* of #ifdef LCP_CFG_ACCOMP */
@@ -267,7 +267,7 @@ ER HDLC_write (T_NET_BUF *nbuf)
 
 #endif	/* of #ifdef LCP_CFG_PCOMP */
 
-	/* �ǡ������������� */
+	/* データを送信する */
 	while (len -- > 0) {
 
 		if ((error = HDLC_putoctet(*buf)) != E_OK)
@@ -276,14 +276,14 @@ ER HDLC_write (T_NET_BUF *nbuf)
 		buf ++;
 		}
 
-	/* FCS ���������� */
+	/* FCS を送信する */
 	fcs = ~fcs;
 	if ((error = HDLC_putoctet(fcs & 0xff)) != E_OK)
 		goto err_ret;
 	if ((error = HDLC_putoctet(fcs >> 8)) != E_OK)
 		goto err_ret;
 
-	/* �ե졼�ཪλ�ե饰�������󥹤��������� */
+	/* フレーム終了フラグシーケンスを送信する */
 	if ((error = serial_wri_dat(HDLC_PORTID, &flag_seq_ac[0], sizeof(char))) < 0)
 		goto err_ret;
 
@@ -295,9 +295,9 @@ err_ret:
 	}
 
 /*
- *  HDLC_getoctet -- HDLC �����ƥå�����
+ *  HDLC_getoctet -- HDLC オクテット入力
  *
- *	����ͤ� true �ʤ�ե饰��������
+ *	戻り値が true ならフラグシーケンス
  */
 
 static
@@ -305,16 +305,16 @@ ER_BOOL HDLC_getoctet (uint8_t *octet)
 {
 	ER error;
 
-	/* 1�����ƥå����Ϥ��� */
+	/* 1オクテット入力する */
 	if ((error = serial_rea_dat(HDLC_PORTID, octet, sizeof(uint8_t))) <= 0) {
 		return error;
 		}
 
-	/* ���Ϥ��������ƥåȤ��ե饰�������󥹤ʤ� true ���֤� */
+	/* 入力したオクテットがフラグシーケンスなら true を返す */
 	if (*octet == HDLC_FLAG_SEQ)
 		return true;
 
-	/* ���Ϥ��������ƥåȤ����������פʤ顢�⤦�������ƥå����Ϥ��ޥ����������� */
+	/* 入力したオクテットがエスケープなら、もう１オクテット入力しマスクを解除する */
 	if (*octet == HDLC_CNTL_ESC) {
 		if ((error = serial_rea_dat(HDLC_PORTID, octet, sizeof(uint8_t))) <= 0)
 			return error;
@@ -326,9 +326,9 @@ ER_BOOL HDLC_getoctet (uint8_t *octet)
 	}
 
 /*
- *  HDLC_read -- HDLC ����
+ *  HDLC_read -- HDLC 入力
  *
- *	HDLC �ե졼������Ϥ��롣
+ *	HDLC フレームを入力する。
  */
 
 ER HDLC_read (T_NET_BUF *nbuf, uint16_t size)
@@ -340,7 +340,7 @@ ER HDLC_read (T_NET_BUF *nbuf, uint16_t size)
 
 	buf = nbuf->buf;
 
-	/* �ե졼�೫�ϥե饰�������󥹤ޤ����Ϥ��ɤ����Ф� */
+	/* フレーム開始フラグシーケンスまで入力を読み飛ばす */
 	while ((error = HDLC_getoctet(&octet)) != true) {
 
 		if (error != E_OK)
@@ -349,9 +349,9 @@ ER HDLC_read (T_NET_BUF *nbuf, uint16_t size)
 #ifdef PPP_CFG_MODEM
 
 		else if (octet == '\n') {
-			/* ��ǥ������ƤӽФ���*/
+			/* モデム制御を呼び出す。*/
 			modem_cntl(modem_getline(nbuf, size));
-			/* ���١����δؿ���λ���롣*/
+			/* 一度、この関数を終了する。*/
 			nbuf->len = 0;
 			return E_OK;
 			}
@@ -360,7 +360,7 @@ ER HDLC_read (T_NET_BUF *nbuf, uint16_t size)
 
 		}
 
-	/* �ե졼�೫�ϥե饰�������󥹤δ֤����Ϥ��ɤ����Ф� */
+	/* フレーム開始フラグシーケンスの間は入力を読み飛ばす */
 	while (1) {
 		if ((error = HDLC_getoctet(&octet)) == E_OK)
 			break;
@@ -370,17 +370,17 @@ ER HDLC_read (T_NET_BUF *nbuf, uint16_t size)
 
 	NET_COUNT_PPP_HDLC(net_count_hdlc.in_packets, 1);
 
-	/* ���Ϥ��������ƥåȤ� Address: All-Stations �� */
+	/* 入力したオクテットは Address: All-Stations か */
 	if (octet == HDLC_ADDR_ALL) {
 
-		/* ���� Control: UI */
+		/* 次は Control: UI */
 		if ((error = HDLC_getoctet(&octet)) != E_OK || octet != HDLC_CNTL_UI) {
 			error = E_SYS;
 			goto err_ret;
 			}
 		if ((error = HDLC_getoctet(&octet)) != E_OK)
 			goto err_ret;
-		/* Address �� Control �� FCS �η׻��� HDLC_INIT_FCS_AC �˴ޤ�Ƥ��� */
+		/* Address と Control の FCS の計算は HDLC_INIT_FCS_AC に含めている */
 		fcs = HDLC_INIT_FCS_AC;
 		}
 
@@ -414,7 +414,7 @@ ER HDLC_read (T_NET_BUF *nbuf, uint16_t size)
 	size  --;
 	nbuf->len ++;
 
-	/* SUD + FCS �����Ϥ��� */
+	/* SUD + FCS を入力する */
 	while ((error = HDLC_getoctet(&octet)) == E_OK) {
 		fcs = Next_FCS(fcs, octet);
 		if (size > 0) {
@@ -439,7 +439,7 @@ ER HDLC_read (T_NET_BUF *nbuf, uint16_t size)
 	else
 		goto err_ret;
 
-	/* FCS ������å����� */
+	/* FCS をチェックする */
 	if (fcs != HDLC_GOOD_FCS) {
 		error = E_SYS;
 		goto err_ret;
@@ -453,9 +453,9 @@ err_ret:
 	}
 
 /*
- *  HDLC_dummy_read -- HDLC ���� (���ɤ�)
+ *  HDLC_dummy_read -- HDLC 入力 (空読み)
  *
- *	HDLC �ե졼�����ɤߤ��롣
+ *	HDLC フレームを空読みする。
  */
 
 void
@@ -464,21 +464,21 @@ HDLC_dummy_read (void)
 	uint8_t	octet;
 	ER	error;
 
-	/* �ե졼�೫�ϥե饰�������󥹤ޤ����Ϥ��ɤ����Ф� */
+	/* フレーム開始フラグシーケンスまで入力を読み飛ばす */
 	while ((error = HDLC_getoctet(&octet)) != true) {
 		if (error != E_OK)
 			return;
 		}
 
-	/* �ե졼�೫�ϥե饰�������󥹤δ֤����Ϥ��ɤ����Ф� */
+	/* フレーム開始フラグシーケンスの間は入力を読み飛ばす */
 	while (octet == HDLC_FLAG_SEQ)
 		if (HDLC_getoctet(&octet) != E_OK)
 			return;
 
-	/* ���Ϥ��������ƥåȤ� Address: All-Stations �� */
+	/* 入力したオクテットは Address: All-Stations か */
 	if (octet == HDLC_ADDR_ALL) {
 
-		/* ���� Control: UI */
+		/* 次は Control: UI */
 		if (HDLC_getoctet(&octet) != E_OK || octet != HDLC_CNTL_UI)
 			return;
 		if (HDLC_getoctet(&octet) != E_OK)
@@ -502,14 +502,14 @@ HDLC_dummy_read (void)
 #ifdef PPP_CFG_MODEM
 
 /*
- *  HDLC_raw_getoctet -- HDLC �����ƥå� (Raw) ����
+ *  HDLC_raw_getoctet -- HDLC オクテット (Raw) 入力
  */
 
 int HDLC_raw_getoctet (void)
 {
 	uint8_t ch;
 
-	/* 1�����ƥå����Ϥ��� */
+	/* 1オクテット入力する */
 	if (serial_rea_dat(HDLC_PORTID, &ch, sizeof(ch)) <= 0)
 		return '\0';
 
@@ -518,13 +518,13 @@ int HDLC_raw_getoctet (void)
 	}
 
 /*
- *  HDLC_raw_putoctet -- HDLC �����ƥå� (Raw) ����
+ *  HDLC_raw_putoctet -- HDLC オクテット (Raw) 出力
  */
 
 void HDLC_raw_putoctet (uint8_t ch)
 {
 	NET_COUNT_PPP_HDLC(net_count_hdlc.out_octets, 1);
-	/* 1�����ƥåȽ��Ϥ��� */
+	/* 1オクテット出力する */
 	serial_wri_dat(HDLC_PORTID, &ch, sizeof(ch));
 	}
 

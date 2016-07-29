@@ -4,35 +4,35 @@
  *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
- *  �嵭����Ԥϡ��ʲ��� (1)��(4) �ξ�狼��Free Software Foundation 
- *  �ˤ�äƸ�ɽ����Ƥ��� GNU General Public License �� Version 2 �˵�
- *  �Ҥ���Ƥ���������������˸¤ꡤ�ܥ��եȥ��������ܥ��եȥ�����
- *  ����Ѥ�����Τ�ޤࡥ�ʲ�Ʊ���ˤ���ѡ�ʣ�������ѡ������ۡʰʲ���
- *  ���ѤȸƤ֡ˤ��뤳�Ȥ�̵���ǵ������롥
- *  (1) �ܥ��եȥ������򥽡��������ɤη������Ѥ�����ˤϡ��嵭������
- *      ��ɽ�����������Ѿ�浪��Ӳ�����̵�ݾڵ��꤬�����Τޤޤη��ǥ���
- *      ����������˴ޤޤ�Ƥ��뤳�ȡ�
- *  (2) �ܥ��եȥ������򡤥饤�֥������ʤɡ�¾�Υ��եȥ�������ȯ�˻�
- *      �ѤǤ�����Ǻ����ۤ�����ˤϡ������ۤ�ȼ���ɥ�����ȡ�����
- *      �ԥޥ˥奢��ʤɡˤˡ��嵭�����ɽ�����������Ѿ�浪��Ӳ���
- *      ��̵�ݾڵ����Ǻܤ��뤳�ȡ�
- *  (3) �ܥ��եȥ������򡤵�����Ȥ߹���ʤɡ�¾�Υ��եȥ�������ȯ�˻�
- *      �ѤǤ��ʤ����Ǻ����ۤ�����ˤϡ����ξ������������ȡ�
- *    (a) �����ۤ�ȼ���ɥ�����ȡ����Ѽԥޥ˥奢��ʤɡˤˡ��嵭����
- *        �ɽ�����������Ѿ�浪��Ӳ�����̵�ݾڵ����Ǻܤ��뤳�ȡ�
- *  (4) �ܥ��եȥ����������Ѥˤ��ľ��Ū�ޤ��ϴ���Ū�������뤤���ʤ�»
- *      ������⡤�嵭����Ԥ����TOPPERS�ץ��������Ȥ����դ��뤳�ȡ�
+ *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
+ *  によって公表されている GNU General Public License の Version 2 に記
+ *  述されている条件を満たす場合に限り，本ソフトウェア（本ソフトウェア
+ *  を改変したものを含む．以下同じ）を使用・複製・改変・再配布（以下，
+ *  利用と呼ぶ）することを無償で許諾する．
+ *  (1) 本ソフトウェアをソースコードの形で利用する場合には，上記の著作
+ *      権表示，この利用条件および下記の無保証規定が，そのままの形でソー
+ *      スコード中に含まれていること．
+ *  (2) 本ソフトウェアを，ライブラリ形式など，他のソフトウェア開発に使
+ *      用できる形で再配布する場合には，再配布に伴うドキュメント（利用
+ *      者マニュアルなど）に，上記の著作権表示，この利用条件および下記
+ *      の無保証規定を掲載すること．
+ *  (3) 本ソフトウェアを，機器に組み込むなど，他のソフトウェア開発に使
+ *      用できない形で再配布する場合には，次の条件を満たすこと．
+ *    (a) 再配布に伴うドキュメント（利用者マニュアルなど）に，上記の著
+ *        作権表示，この利用条件および下記の無保証規定を掲載すること．
+ *  (4) 本ソフトウェアの利用により直接的または間接的に生じるいかなる損
+ *      害からも，上記著作権者およびTOPPERSプロジェクトを免責すること．
  *
- *  �ܥ��եȥ������ϡ�̵�ݾڤ��󶡤���Ƥ����ΤǤ��롥�嵭����Ԥ�
- *  ���TOPPERS�ץ��������Ȥϡ��ܥ��եȥ������˴ؤ��ơ�����Ŭ�Ѳ�ǽ����
- *  �ޤ�ơ������ʤ��ݾڤ�Ԥ�ʤ����ޤ����ܥ��եȥ����������Ѥˤ��ľ
- *  ��Ū�ޤ��ϴ���Ū�������������ʤ�»���˴ؤ��Ƥ⡤������Ǥ�����ʤ���
+ *  本ソフトウェアは，無保証で提供されているものである．上記著作権者お
+ *  よびTOPPERSプロジェクトは，本ソフトウェアに関して，その適用可能性も
+ *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
+ *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
  *  @(#) $Id: dbg_cons.c,v 1.5.4.1 2015/02/05 02:12:24 abe Exp abe $
  */
 
 /* 
- *  �ǥХå����󥽡���
+ *  デバッグコンソール
  */
 
 #include <stdlib.h>
@@ -113,17 +113,17 @@
 #define DBG_LINE_SIZE	63
 
 /*
- *  task_status -- �������ξ��֤ν���
+ *  task_status -- タスクの状態の出力
  */
 
 static const char task_stat_str[][sizeof("SUSPENDED")] = {
-	"DORMANT",		/* �ٻ߾���		*/
-	"RUNNABLE",		/* �¹ԤǤ������	*/
-	"WAINTING",		/* �Ԥ�����		*/
-	"SUSPENDED",		/* �����Ԥ�����		*/
-	"SLEEP",		/* �����Ԥ�����		*/
-	"WOBJ",			/* Ʊ�����̿����֥������Ȥ��Ф����Ԥ�����	*/
-	"WOBJCB",		/* ������ʬ���Ԥ����塼�ˤĤʤ��äƤ��롣	*/
+	"DORMANT",		/* 休止状態		*/
+	"RUNNABLE",		/* 実行できる状態	*/
+	"WAINTING",		/* 待ち状態		*/
+	"SUSPENDED",		/* 強制待ち状態		*/
+	"SLEEP",		/* 起床待ち状態		*/
+	"WOBJ",			/* 同期・通信オブジェクトに対する待ち状態	*/
+	"WOBJCB",		/* 共通部分の待ちキューにつながっている。	*/
 	};
 
 static void
@@ -158,21 +158,21 @@ task_status (ID portid, char *line)
 #ifdef SUPPORT_TCP
 
 /*
- *  tcp_status -- TCP �ξ��֤ν���
+ *  tcp_status -- TCP の状態の出力
  */
 
 static const char tcp_fsm_str[][sizeof("ESTABLISHED")] = {
-	"CLOSED",		/* ��������			*/
-	"LISTEN",		/* ��ư�����ץ�			*/
-	"SYN_SENT",		/* ǽư�����ץ�SYN �����Ѥ�	*/
-	"SYN_RECVD",		/* ��ư�����ץ�SYN �����Ѥ�	*/
-	"ESTABLISHED",		/* ���ͥ�������ߴ�λ		*/
-	"CLOSE_WAIT",		/* ��꤫�� FIN ������APP �ν�λ�Ԥ�	*/
-	"FIN_WAIT_1",		/* APP ����λ��FIN �����Ѥߡ�ACK �Ԥ�	*/
-	"CLOSING",		/* Ʊ������������FIN �򴹺Ѥߡ�ACK �Ԥ�	*/
-	"LAST_ACK",		/* APP ����λ��ACK �Ԥ�			*/
-	"FIN_WAIT_2",		/* ��꤫��� FIN �Ԥ�			*/
-	"TIME_WAIT",		/* ��꤫��� FIN �����Ѥߡ������Ԥ�	*/
+	"CLOSED",		/* クローズ			*/
+	"LISTEN",		/* 受動オープン			*/
+	"SYN_SENT",		/* 能動オープン、SYN 送信済み	*/
+	"SYN_RECVD",		/* 受動オープン、SYN 受信済み	*/
+	"ESTABLISHED",		/* コネクション開設完了		*/
+	"CLOSE_WAIT",		/* 相手から FIN 受信、APP の終了待ち	*/
+	"FIN_WAIT_1",		/* APP が終了、FIN 送信済み、ACK 待ち	*/
+	"CLOSING",		/* 同時クローズ、FIN 交換済み、ACK 待ち	*/
+	"LAST_ACK",		/* APP が終了、ACK 待ち			*/
+	"FIN_WAIT_2",		/* 相手からの FIN 待ち			*/
+	"TIME_WAIT",		/* 相手からの FIN 受信済み、時間待ち	*/
 	};
 
 #if defined(SUPPORT_INET4)
@@ -465,7 +465,7 @@ tcp_status (ID portid, char *line)
 #ifdef SUPPORT_UDP
 
 /*
- *  udp_status -- UDP �ξ��֤ν���
+ *  udp_status -- UDP の状態の出力
  */
 
 static void
@@ -502,7 +502,7 @@ udp_status (ID portid, char *line)
 #if defined(SUPPORT_INET4)
 
 /*
- *  ifa_status -- ARP ����å������
+ *  ifa_status -- ARP キャッシュ出力
  */
 
 static void
@@ -516,7 +516,7 @@ ifa_status (ID portid, char *line)
 	            "ARP Cache\n"
 	            "IX Expire IP Address      MAC Address\n");
 
-	/* expire ��ñ�̤� [ms]��*/
+	/* expire の単位は [ms]。*/
 	cache = arp_get_cache();
 	for (ix = 0; ix < NUM_ARP_ENTRY; ix ++) {
 		if (cache[ix].expire != 0)
@@ -534,17 +534,17 @@ ifa_status (ID portid, char *line)
 #if defined(SUPPORT_INET6)
 
 /*
- * ifa_status -- ���٥���å�����֤ν���
+ * ifa_status -- 近隣キャッシュ状態の出力
  */
 
 static const char nd_state_str[][sizeof("INCOMPLETE")] = {
-	"FREE",			/* ̤����		*/
-	"NO STATE",		/* ����̤���		*/
-	"INCOMPLETE",		/* ̤���		*/
-	"REACHABLE",		/* ��ã��ǽ		*/
-	"STALE",		/* ��ã��ǽ����̤��ǧ	*/
-	"DELAY",		/* ��ã��ǽ���γ�ǧ�Ե�	*/
-	"PROBE",		/* ��ã��ǽ�����ǧ��	*/
+	"FREE",			/* 未使用		*/
+	"NO STATE",		/* 状態未定義		*/
+	"INCOMPLETE",		/* 未解決		*/
+	"REACHABLE",		/* 到達可能		*/
+	"STALE",		/* 到達可能性は未確認	*/
+	"DELAY",		/* 到達可能性の確認待機	*/
+	"PROBE",		/* 到達可能性を確認中	*/
 	};
 
 static void
@@ -559,7 +559,7 @@ ifa_status (ID portid, char *line)
 	            "ND Cache Status\n"
 	            "IX Expire State      MAC Address       IP Address\n");
 
-	/* expire ��ñ�̤� [ms]��*/
+	/* expire の単位は [ms]。*/
 	get_tim(&now);
 	cache = nd6_get_cache();
 	for (ix = 0; ix < NUM_ND6_CACHE_ENTRY; ix ++) {
@@ -586,23 +586,23 @@ ifa_status (ID portid, char *line)
 #if NET_COUNT_ENABLE
 
 /*
- *  net_count_struct -- �ͥåȥ�����׾���
+ *  net_count_struct -- ネットワーク統計情報
  */
 
 static void
 net_count_struct (ID portid, char *name, T_NET_COUNT *item)
 {
 	cons_printf(portid, "\n%s\n", name);
-	cons_printf(portid, "\t���������ƥåȿ�\t%lu\n",	item->in_octets);
-	cons_printf(portid, "\t���������ƥåȿ�\t%lu\n",	item->out_octets);
-	cons_printf(portid, "\t�����Х��åȿ�\t%lu\n",		item->in_packets);
-	cons_printf(portid, "\t�����Х��åȿ�\t%lu\n",		item->out_packets);
-	cons_printf(portid, "\t�������顼�Х��åȿ�\t%lu\n",	item->in_err_packets);
-	cons_printf(portid, "\t�������顼�Х��åȿ�\t%lu\n",	item->out_err_packets);
+	cons_printf(portid, "\t受信オクテット数\t%lu\n",	item->in_octets);
+	cons_printf(portid, "\t送信オクテット数\t%lu\n",	item->out_octets);
+	cons_printf(portid, "\t受信バケット数\t%lu\n",		item->in_packets);
+	cons_printf(portid, "\t送信バケット数\t%lu\n",		item->out_packets);
+	cons_printf(portid, "\t受信エラーバケット数\t%lu\n",	item->in_err_packets);
+	cons_printf(portid, "\t送信エラーバケット数\t%lu\n",	item->out_err_packets);
 	}
 
 /*
- *  net_count -- �ͥåȥ�����׾���
+ *  net_count -- ネットワーク統計情報
  */
 
 static void
@@ -614,15 +614,15 @@ net_count (ID portid, char *line)
 
 	WAI_NET_CONS_PRINTF();
 	get_tim(&now);
-	cons_printf(portid, "�ͥåȥ�����׾���\t�в����[ms]\t%lu\t", now);
+	cons_printf(portid, "ネットワーク統計情報\t経過時間[ms]\t%lu\t", now);
 	if (now > (1000 * 3600 * 24))
-		cons_printf(portid, "%3lu�� %2lu���� %2luʬ %2lu��\n",
+		cons_printf(portid, "%3lu日 %2lu時間 %2lu分 %2lu秒\n",
 		             now / (1000 * 3600 * 24),
 		            (now / (1000 * 3600)) % 24,
 		            (now / (1000 * 60  )) % 60,
 		            (now /  1000        ) % 60);
 	else
-		cons_printf(portid, "%2lu���� %2luʬ %2lu��\n",
+		cons_printf(portid, "%2lu時間 %2lu分 %2lu秒\n",
 		            (now / (1000 * 3600)) % 24,
 		            (now / (1000 * 60  )) % 60,
 		            (now /  1000        ) % 60);
@@ -631,45 +631,45 @@ net_count (ID portid, char *line)
 
 	net_count_struct(portid, "HDLC", &net_count_hdlc);
 	cons_printf(portid, "\nPPP\n");
-	cons_printf(portid, "\t���������ƥåȿ�\t%lu\n",	net_count_ppp.in_octets);
-	cons_printf(portid, "\t���������ƥåȿ�\t%lu\n",	net_count_ppp.out_octets);
-	cons_printf(portid, "\t�����Х��åȿ�\t%lu\n",		net_count_ppp.in_packets);
-	cons_printf(portid, "\t�����Х��åȿ�\t%lu\n",		net_count_ppp.out_packets);
-	cons_printf(portid, "\t�������顼�Х��åȿ�\t%lu\n",	net_count_ppp.in_err_packets);
-	cons_printf(portid, "\t�������顼�Х��åȿ�\t%lu\n",	net_count_ppp.out_err_packets);
-	cons_printf(portid, "\tnet_buf ������Ƽ��Կ�\t%lu\n",	net_count_ppp_no_bufs);
+	cons_printf(portid, "\t受信オクテット数\t%lu\n",	net_count_ppp.in_octets);
+	cons_printf(portid, "\t送信オクテット数\t%lu\n",	net_count_ppp.out_octets);
+	cons_printf(portid, "\t受信バケット数\t%lu\n",		net_count_ppp.in_packets);
+	cons_printf(portid, "\t送信バケット数\t%lu\n",		net_count_ppp.out_packets);
+	cons_printf(portid, "\t受信エラーバケット数\t%lu\n",	net_count_ppp.in_err_packets);
+	cons_printf(portid, "\t送信エラーバケット数\t%lu\n",	net_count_ppp.out_err_packets);
+	cons_printf(portid, "\tnet_buf 割り当て失敗数\t%lu\n",	net_count_ppp_no_bufs);
 
 	cons_printf(portid, "\nLCP\n");
-	cons_printf(portid, "\t���������ƥåȿ�\t%lu\n",	net_count_ppp_lcp_in_octets);
-	cons_printf(portid, "\t�����Х��åȿ�\t%lu\n",		net_count_ppp_lcp_in_packets);
+	cons_printf(portid, "\t受信オクテット数\t%lu\n",	net_count_ppp_lcp_in_octets);
+	cons_printf(portid, "\t受信バケット数\t%lu\n",		net_count_ppp_lcp_in_packets);
 
 	cons_printf(portid, "\nIPCP\n");
-	cons_printf(portid, "\t���������ƥåȿ�\t%lu\n",	net_count_ppp_ipcp_in_octets);
-	cons_printf(portid, "\t�����Х��åȿ�\t%lu\n",		net_count_ppp_ipcp_in_packets);
+	cons_printf(portid, "\t受信オクテット数\t%lu\n",	net_count_ppp_ipcp_in_octets);
+	cons_printf(portid, "\t受信バケット数\t%lu\n",		net_count_ppp_ipcp_in_packets);
 
 	cons_printf(portid, "\nPAP\n");
-	cons_printf(portid, "\t���������ƥåȿ�\t%lu\n",	net_count_ppp_upap_in_octets);
-	cons_printf(portid, "\t�����Х��åȿ�\t%lu\n",		net_count_ppp_upap_in_packets);
+	cons_printf(portid, "\t受信オクテット数\t%lu\n",	net_count_ppp_upap_in_octets);
+	cons_printf(portid, "\t受信バケット数\t%lu\n",		net_count_ppp_upap_in_packets);
 
 #endif	/* of #ifdef SUPPORT_PPP */
 
 #ifdef SUPPORT_ETHER
 
-	net_count_struct(portid, "�������ͥå�", &net_count_ether);
+	net_count_struct(portid, "イーサネット", &net_count_ether);
 
-	cons_printf(portid, "\n�������ͥåȡ��ͥåȥ�����󥿥ե�����\n");
-	cons_printf(portid, "\t���������ƥåȿ�\t%lu\n",			net_count_ether_nic[NC_ETHER_NIC_IN_OCTETS]);
-	cons_printf(portid, "\t�����Х��åȿ�\t%lu\n",				net_count_ether_nic[NC_ETHER_NIC_IN_PACKETS]);
-	cons_printf(portid, "\t�������顼�Х��åȿ�\t%lu\n",			net_count_ether_nic[NC_ETHER_NIC_IN_ERR_PACKETS]);
-	cons_printf(portid, "\tnet_buf ������Ƽ��Կ�\t%lu\n",			net_count_ether_nic[NC_ETHER_NIC_NO_BUFS]);
-	cons_printf(portid, "\t�������ޥե����ֵѾ�¥����С���\t%lu\n",	net_count_ether_nic[NC_ETHER_NIC_RXB_QOVRS]);
-	cons_printf(portid, "\t���������ƥåȿ�\t%lu\n",			net_count_ether_nic[NC_ETHER_NIC_OUT_OCTETS]);
-	cons_printf(portid, "\t�����Х��åȿ�\t%lu\n",				net_count_ether_nic[NC_ETHER_NIC_OUT_PACKETS]);
-	cons_printf(portid, "\t�������顼�Х��åȿ�\t%lu\n",			net_count_ether_nic[NC_ETHER_NIC_OUT_ERR_PACKETS]);
-	cons_printf(portid, "\t���ꥸ����\t%lu\n",				net_count_ether_nic[NC_ETHER_NIC_COLS]);
-	cons_printf(portid, "\t�������ޥե����ֵѾ�¥����С���\t%lu\n",	net_count_ether_nic[NC_ETHER_NIC_TXB_QOVRS]);
-	cons_printf(portid, "\t���������ॢ���ȿ�	\t%lu\n",		net_count_ether_nic[NC_ETHER_NIC_TIMEOUTS]);
-	cons_printf(portid, "\t�ꥻ�åȿ�\t%lu\n",				net_count_ether_nic[NC_ETHER_NIC_RESETS]);
+	cons_printf(portid, "\nイーサネット・ネットワークインタフェース\n");
+	cons_printf(portid, "\t受信オクテット数\t%lu\n",			net_count_ether_nic[NC_ETHER_NIC_IN_OCTETS]);
+	cons_printf(portid, "\t受信バケット数\t%lu\n",				net_count_ether_nic[NC_ETHER_NIC_IN_PACKETS]);
+	cons_printf(portid, "\t受信エラーバケット数\t%lu\n",			net_count_ether_nic[NC_ETHER_NIC_IN_ERR_PACKETS]);
+	cons_printf(portid, "\tnet_buf 割り当て失敗数\t%lu\n",			net_count_ether_nic[NC_ETHER_NIC_NO_BUFS]);
+	cons_printf(portid, "\t受信セマフォ資源返却上限オーバー数\t%lu\n",	net_count_ether_nic[NC_ETHER_NIC_RXB_QOVRS]);
+	cons_printf(portid, "\t送信オクテット数\t%lu\n",			net_count_ether_nic[NC_ETHER_NIC_OUT_OCTETS]);
+	cons_printf(portid, "\t送信バケット数\t%lu\n",				net_count_ether_nic[NC_ETHER_NIC_OUT_PACKETS]);
+	cons_printf(portid, "\t送信エラーバケット数\t%lu\n",			net_count_ether_nic[NC_ETHER_NIC_OUT_ERR_PACKETS]);
+	cons_printf(portid, "\tコリジョン数\t%lu\n",				net_count_ether_nic[NC_ETHER_NIC_COLS]);
+	cons_printf(portid, "\t送信セマフォ資源返却上限オーバー数\t%lu\n",	net_count_ether_nic[NC_ETHER_NIC_TXB_QOVRS]);
+	cons_printf(portid, "\t送信タイムアウト数	\t%lu\n",		net_count_ether_nic[NC_ETHER_NIC_TIMEOUTS]);
+	cons_printf(portid, "\tリセット数\t%lu\n",				net_count_ether_nic[NC_ETHER_NIC_RESETS]);
 
 #endif	/* of #ifdef SUPPORT_ETHER */
 
@@ -682,26 +682,26 @@ net_count (ID portid, char *line)
 #endif	/* of #ifdef SUPPORT_ETHER */
 
 	cons_printf(portid, "\nIPv4\n");
-	cons_printf(portid, "\t���������ƥåȿ�\t%lu\n",		net_count_ip4[NC_IP4_IN_OCTETS]);
-	cons_printf(portid, "\t�����ǡ���������\t%lu\n",		net_count_ip4[NC_IP4_IN_PACKETS]);
-	cons_printf(portid, "\t�������顼�ǡ���������\t%lu\n",	net_count_ip4[NC_IP4_IN_ERR_PACKETS]);
-	cons_printf(portid, "\t�����å����२�顼��\t%lu\n",		net_count_ip4[NC_IP4_IN_ERR_CKSUM]);
-	cons_printf(portid, "\tĹ�����顼��\t%lu\n",			net_count_ip4[NC_IP4_IN_ERR_SHORT]);
-	cons_printf(portid, "\t�С�����󥨥顼��\t%lu\n",		net_count_ip4[NC_IP4_IN_ERR_VER]);
-	cons_printf(portid, "\t���ɥ쥹���顼��\t%lu\n",		net_count_ip4[NC_IP4_IN_ERR_ADDR]);
-	cons_printf(portid, "\t�ץ��ȥ��륨�顼��\t%lu\n",		net_count_ip4[NC_IP4_IN_ERR_PROTO]);
-	cons_printf(portid, "\t���ץ�������Ͽ�\t%lu\n",		net_count_ip4[NC_IP4_OPTS]);
-	cons_printf(portid, "\tʬ�������\t%lu\n",			net_count_ip4[NC_IP4_FRAG_IN]);
-	cons_printf(portid, "\tʬ������ե饰���ȿ�\t%lu\n",		net_count_ip4[NC_IP4_FRAG_IN_FRAGS]);
-	cons_printf(portid, "\tʬ������ƹ���������\t%lu\n",		net_count_ip4[NC_IP4_FRAG_IN_OK]);
-	cons_printf(portid, "\tʬ������˴���\t%lu\n",			net_count_ip4[NC_IP4_FRAG_IN_DROP]);
-	cons_printf(portid, "\tʬ������Хåե������Ƽ��Կ�\t%lu\n",	net_count_ip4[NC_IP4_FRAG_IN_NO_BUF]);
-	cons_printf(portid, "\tʬ����������ॢ���ȿ�\t%lu\n",		net_count_ip4[NC_IP4_FRAG_IN_TMOUT]);
-	cons_printf(portid, "\t���������ƥåȿ�\t%lu\n",		net_count_ip4[NC_IP4_OUT_OCTETS]);
-	cons_printf(portid, "\t�����ǡ���������\t%lu\n",		net_count_ip4[NC_IP4_OUT_PACKETS]);
-	cons_printf(portid, "\t�������顼�ǡ���������\t%lu\n",	net_count_ip4[NC_IP4_OUT_ERR_PACKETS]);
-	cons_printf(portid, "\tʬ��������\t%lu\n",			net_count_ip4[NC_IP4_FRAG_OUT]);
-	cons_printf(portid, "\tʬ�������ե饰���ȿ�\t%lu\n",		net_count_ip4[NC_IP4_FRAG_OUT_FRAGS]);
+	cons_printf(portid, "\t受信オクテット数\t%lu\n",		net_count_ip4[NC_IP4_IN_OCTETS]);
+	cons_printf(portid, "\t受信データグラム数\t%lu\n",		net_count_ip4[NC_IP4_IN_PACKETS]);
+	cons_printf(portid, "\t受信エラーデータグラム数\t%lu\n",	net_count_ip4[NC_IP4_IN_ERR_PACKETS]);
+	cons_printf(portid, "\tチェックサムエラー数\t%lu\n",		net_count_ip4[NC_IP4_IN_ERR_CKSUM]);
+	cons_printf(portid, "\t長さエラー数\t%lu\n",			net_count_ip4[NC_IP4_IN_ERR_SHORT]);
+	cons_printf(portid, "\tバージョンエラー数\t%lu\n",		net_count_ip4[NC_IP4_IN_ERR_VER]);
+	cons_printf(portid, "\tアドレスエラー数\t%lu\n",		net_count_ip4[NC_IP4_IN_ERR_ADDR]);
+	cons_printf(portid, "\tプロトコルエラー数\t%lu\n",		net_count_ip4[NC_IP4_IN_ERR_PROTO]);
+	cons_printf(portid, "\tオプション入力数\t%lu\n",		net_count_ip4[NC_IP4_OPTS]);
+	cons_printf(portid, "\t分割受信数\t%lu\n",			net_count_ip4[NC_IP4_FRAG_IN]);
+	cons_printf(portid, "\t分割受信フラグメント数\t%lu\n",		net_count_ip4[NC_IP4_FRAG_IN_FRAGS]);
+	cons_printf(portid, "\t分割受信再構成成功数\t%lu\n",		net_count_ip4[NC_IP4_FRAG_IN_OK]);
+	cons_printf(portid, "\t分割受信破棄数\t%lu\n",			net_count_ip4[NC_IP4_FRAG_IN_DROP]);
+	cons_printf(portid, "\t分割受信バッファり当て失敗数\t%lu\n",	net_count_ip4[NC_IP4_FRAG_IN_NO_BUF]);
+	cons_printf(portid, "\t分割受信タイムアウト数\t%lu\n",		net_count_ip4[NC_IP4_FRAG_IN_TMOUT]);
+	cons_printf(portid, "\t送信オクテット数\t%lu\n",		net_count_ip4[NC_IP4_OUT_OCTETS]);
+	cons_printf(portid, "\t送信データグラム数\t%lu\n",		net_count_ip4[NC_IP4_OUT_PACKETS]);
+	cons_printf(portid, "\t送信エラーデータグラム数\t%lu\n",	net_count_ip4[NC_IP4_OUT_ERR_PACKETS]);
+	cons_printf(portid, "\t分割送信数\t%lu\n",			net_count_ip4[NC_IP4_FRAG_OUT]);
+	cons_printf(portid, "\t分割送信フラグメント数\t%lu\n",		net_count_ip4[NC_IP4_FRAG_OUT_FRAGS]);
 
 	net_count_struct(portid, "ICMP", &net_count_icmp4);
 
@@ -710,72 +710,72 @@ net_count (ID portid, char *line)
 #if defined(SUPPORT_INET6)
 
 	cons_printf(portid, "\nIPv6\n");
-	cons_printf(portid, "\t���������ƥåȿ�\t%lu\n",		net_count_ip6[NC_IP6_IN_OCTETS]);
-	cons_printf(portid, "\t�����ǡ���������\t%lu\n",		net_count_ip6[NC_IP6_IN_PACKETS]);
-	cons_printf(portid, "\t�������顼�ǡ���������\t%lu\n",	net_count_ip6[NC_IP6_IN_ERR_PACKETS]);
-	cons_printf(portid, "\tĹ�����顼��\t%lu\n",			net_count_ip6[NC_IP6_IN_ERR_SHORT]);
-	cons_printf(portid, "\t�С�����󥨥顼��\t%lu\n",		net_count_ip6[NC_IP6_IN_ERR_VER]);
-	cons_printf(portid, "\t���ɥ쥹���顼��\t%lu\n",		net_count_ip6[NC_IP6_IN_ERR_ADDR]);
-	cons_printf(portid, "\t�ץ��ȥ��륨�顼��\t%lu\n",		net_count_ip6[NC_IP6_IN_ERR_PROTO]);
-	cons_printf(portid, "\tʬ�������\t%lu\n",			net_count_ip6[NC_IP6_FRAG_IN]);
-	cons_printf(portid, "\tʬ������ե饰���ȿ�\t%lu\n",		net_count_ip6[NC_IP6_FRAG_IN_FRAGS]);
-	cons_printf(portid, "\tʬ������ƹ���������\t%lu\n",		net_count_ip6[NC_IP6_FRAG_IN_OK]);
-	cons_printf(portid, "\tʬ������˴���\t%lu\n",			net_count_ip6[NC_IP6_FRAG_IN_DROP]);
-	cons_printf(portid, "\tʬ������Хåե������Ƽ��Կ�\t%lu\n",	net_count_ip6[NC_IP6_FRAG_IN_NO_BUF]);
-	cons_printf(portid, "\tʬ����������ॢ���ȿ�\t%lu\n",		net_count_ip6[NC_IP6_FRAG_IN_TMOUT]);
-	cons_printf(portid, "\t���������ƥåȿ�\t%lu\n",		net_count_ip6[NC_IP6_OUT_OCTETS]);
-	cons_printf(portid, "\t�����ǡ���������\t%lu\n",		net_count_ip6[NC_IP6_OUT_PACKETS]);
-	cons_printf(portid, "\t�������顼�ǡ���������\t%lu\n",	net_count_ip6[NC_IP6_OUT_ERR_PACKETS]);
-	cons_printf(portid, "\tʬ��������\t%lu\n",			net_count_ip6[NC_IP6_FRAG_OUT]);
-	cons_printf(portid, "\tʬ�������ե饰���ȿ�\t%lu\n",		net_count_ip6[NC_IP6_FRAG_OUT_FRAGS]);
+	cons_printf(portid, "\t受信オクテット数\t%lu\n",		net_count_ip6[NC_IP6_IN_OCTETS]);
+	cons_printf(portid, "\t受信データグラム数\t%lu\n",		net_count_ip6[NC_IP6_IN_PACKETS]);
+	cons_printf(portid, "\t受信エラーデータグラム数\t%lu\n",	net_count_ip6[NC_IP6_IN_ERR_PACKETS]);
+	cons_printf(portid, "\t長さエラー数\t%lu\n",			net_count_ip6[NC_IP6_IN_ERR_SHORT]);
+	cons_printf(portid, "\tバージョンエラー数\t%lu\n",		net_count_ip6[NC_IP6_IN_ERR_VER]);
+	cons_printf(portid, "\tアドレスエラー数\t%lu\n",		net_count_ip6[NC_IP6_IN_ERR_ADDR]);
+	cons_printf(portid, "\tプロトコルエラー数\t%lu\n",		net_count_ip6[NC_IP6_IN_ERR_PROTO]);
+	cons_printf(portid, "\t分割受信数\t%lu\n",			net_count_ip6[NC_IP6_FRAG_IN]);
+	cons_printf(portid, "\t分割受信フラグメント数\t%lu\n",		net_count_ip6[NC_IP6_FRAG_IN_FRAGS]);
+	cons_printf(portid, "\t分割受信再構成成功数\t%lu\n",		net_count_ip6[NC_IP6_FRAG_IN_OK]);
+	cons_printf(portid, "\t分割受信破棄数\t%lu\n",			net_count_ip6[NC_IP6_FRAG_IN_DROP]);
+	cons_printf(portid, "\t分割受信バッファり当て失敗数\t%lu\n",	net_count_ip6[NC_IP6_FRAG_IN_NO_BUF]);
+	cons_printf(portid, "\t分割受信タイムアウト数\t%lu\n",		net_count_ip6[NC_IP6_FRAG_IN_TMOUT]);
+	cons_printf(portid, "\t送信オクテット数\t%lu\n",		net_count_ip6[NC_IP6_OUT_OCTETS]);
+	cons_printf(portid, "\t送信データグラム数\t%lu\n",		net_count_ip6[NC_IP6_OUT_PACKETS]);
+	cons_printf(portid, "\t送信エラーデータグラム数\t%lu\n",	net_count_ip6[NC_IP6_OUT_ERR_PACKETS]);
+	cons_printf(portid, "\t分割送信数\t%lu\n",			net_count_ip6[NC_IP6_FRAG_OUT]);
+	cons_printf(portid, "\t分割送信フラグメント数\t%lu\n",		net_count_ip6[NC_IP6_FRAG_OUT_FRAGS]);
 
 	cons_printf(portid, "\nICMPv6\n");
-	cons_printf(portid, "\t���������ƥåȿ�\t%lu\n",		net_count_icmp6[NC_ICMP6_IN_OCTETS]);
-	cons_printf(portid, "\t�����ѥ��åȿ�\t%lu\n",			net_count_icmp6[NC_ICMP6_IN_PACKETS]);
-	cons_printf(portid, "\t�������顼�ѥ��åȿ�\t%lu\n",		net_count_icmp6[NC_ICMP6_IN_ERR_PACKETS]);
-	cons_printf(portid, "\t�������å����२�顼��\t%lu\n",		net_count_icmp6[NC_ICMP6_IN_ERR_CKSUM]);
-	cons_printf(portid, "\t���������ƥåȿ�\t%lu\n",		net_count_icmp6[NC_ICMP6_OUT_OCTETS]);
-	cons_printf(portid, "\t�����ѥ��åȿ�\t%lu\n",			net_count_icmp6[NC_ICMP6_OUT_PACKETS]);
-	cons_printf(portid, "\t�������顼�ѥ��åȿ�\t%lu\n",		net_count_icmp6[NC_ICMP6_OUT_ERR_PACKETS]);
+	cons_printf(portid, "\t受信オクテット数\t%lu\n",		net_count_icmp6[NC_ICMP6_IN_OCTETS]);
+	cons_printf(portid, "\t受信パケット数\t%lu\n",			net_count_icmp6[NC_ICMP6_IN_PACKETS]);
+	cons_printf(portid, "\t受信エラーパケット数\t%lu\n",		net_count_icmp6[NC_ICMP6_IN_ERR_PACKETS]);
+	cons_printf(portid, "\t受信チックサムエラー数\t%lu\n",		net_count_icmp6[NC_ICMP6_IN_ERR_CKSUM]);
+	cons_printf(portid, "\t送信オクテット数\t%lu\n",		net_count_icmp6[NC_ICMP6_OUT_OCTETS]);
+	cons_printf(portid, "\t送信パケット数\t%lu\n",			net_count_icmp6[NC_ICMP6_OUT_PACKETS]);
+	cons_printf(portid, "\t送信エラーパケット数\t%lu\n",		net_count_icmp6[NC_ICMP6_OUT_ERR_PACKETS]);
 
-	cons_printf(portid, "\n����õ��\n");
-	cons_printf(portid, "\t�롼�����μ�����\t%lu\n",		net_count_nd6[NC_ND6_RA_IN_PACKETS]);
-	cons_printf(portid, "\t�롼������������\t%lu\n",		net_count_nd6[NC_ND6_RS_OUT_PACKETS]);
-	cons_printf(portid, "\t�������μ�����\t%lu\n",			net_count_nd6[NC_ND6_NA_IN_PACKETS]);
-	cons_printf(portid, "\t��������������\t%lu\n",			net_count_nd6[NC_ND6_NA_OUT_PACKETS]);
-	cons_printf(portid, "\t��������������\t%lu\n",			net_count_nd6[NC_ND6_NS_IN_PACKETS]);
-	cons_printf(portid, "\t��������������\t%lu\n",			net_count_nd6[NC_ND6_NS_OUT_PACKETS]);
-	cons_printf(portid, "\t��ʣ���ɥ쥹����������\t%lu\n",		net_count_nd6[NC_ND6_DAD_OUT_PACKETS]);
+	cons_printf(portid, "\n近隣探索\n");
+	cons_printf(portid, "\tルータ通知受信数\t%lu\n",		net_count_nd6[NC_ND6_RA_IN_PACKETS]);
+	cons_printf(portid, "\tルータ要請送信数\t%lu\n",		net_count_nd6[NC_ND6_RS_OUT_PACKETS]);
+	cons_printf(portid, "\t近隣通知受信数\t%lu\n",			net_count_nd6[NC_ND6_NA_IN_PACKETS]);
+	cons_printf(portid, "\t近隣通知送信数\t%lu\n",			net_count_nd6[NC_ND6_NA_OUT_PACKETS]);
+	cons_printf(portid, "\t近隣要請受信数\t%lu\n",			net_count_nd6[NC_ND6_NS_IN_PACKETS]);
+	cons_printf(portid, "\t近隣要請送信数\t%lu\n",			net_count_nd6[NC_ND6_NS_OUT_PACKETS]);
+	cons_printf(portid, "\t重複アドレス検出送信数\t%lu\n",		net_count_nd6[NC_ND6_DAD_OUT_PACKETS]);
 
 #endif	/* of #if defined(SUPPORT_INET6) */
 
 #ifdef SUPPORT_TCP
 
 	cons_printf(portid, "\nTCP\n");
-	cons_printf(portid, "\t���������ƥåȿ�\t%lu\n",		net_count_tcp[NC_TCP_RECV_OCTETS]);
-	cons_printf(portid, "\t�����ǡ��������ƥåȿ�\t%lu\n",		net_count_tcp[NC_TCP_RECV_DATA_OCTETS]);
-	cons_printf(portid, "\t�����������ȿ�\t%lu\n",		net_count_tcp[NC_TCP_RECV_SEGS]);
-	cons_printf(portid, "\t�����ǡ����������ȿ�\t%lu\n",		net_count_tcp[NC_TCP_RECV_DATA_SEGS]);
-	cons_printf(portid, "\t�������۵ޥ������ȿ�\t%lu\n",		net_count_tcp[NC_TCP_RECV_URG_SEGS]);
-	cons_printf(portid, "\t�������إå�������\t%lu\n",		net_count_tcp[NC_TCP_RECV_BAD_HEADERS]);
-	cons_printf(portid, "\t�����������å�����������\t%lu\n",	net_count_tcp[NC_TCP_RECV_BAD_CKSUMS]);
-	cons_printf(portid, "\t������ACK ��\t%lu\n",			net_count_tcp[NC_TCP_RECV_ACKS]);
-	cons_printf(portid, "\t������¿�� ACK ��\t%lu\n",		net_count_tcp[NC_TCP_RECV_DUP_ACKS]);
-	cons_printf(portid, "\t������RST ��\t%lu\n",			net_count_tcp[NC_TCP_RECV_RSTS]);
-	cons_printf(portid, "\t������¿�ſ�\t%lu\n",			net_count_tcp[NC_TCP_RECV_DUP_SEGS]);
-	cons_printf(portid, "\t�������˴���\t%lu\n",			net_count_tcp[NC_TCP_RECV_DROP_SEGS]);
-	cons_printf(portid, "\t�������塼������\t%lu\n",		net_count_tcp[NC_TCP_FREE_RCV_QUEUE]);
-	cons_printf(portid, "\t�����ǡ��������ƥåȿ�\t%lu\n",		net_count_tcp[NC_TCP_SEND_DATA_OCTETS]);
-	cons_printf(portid, "\t�������楻�����ȿ�\t%lu\n",		net_count_tcp[NC_TCP_SEND_CNTL_SEGS]);
-	cons_printf(portid, "\t�����������ȿ�\t%lu\n",		net_count_tcp[NC_TCP_SEND_SEGS]);
-	cons_printf(portid, "\t�������������ȿ�\t%lu\n",		net_count_tcp[NC_TCP_SEND_REXMIT_SEGS]);
-	cons_printf(portid, "\t�����ǡ����������ȿ�\t%lu\n",		net_count_tcp[NC_TCP_SEND_DATA_SEGS]);
-	cons_printf(portid, "\t�������۵ޥ������ȿ�\t%lu\n",		net_count_tcp[NC_TCP_SEND_URG_SEGS]);
-	cons_printf(portid, "\t������ACK ��\t%lu\n",			net_count_tcp[NC_TCP_SEND_ACKS]);
-	cons_printf(portid, "\t������RST ��\t%lu\n",			net_count_tcp[NC_TCP_SEND_RSTS]);
-	cons_printf(portid, "\tRTT ������\t%lu\n",			net_count_tcp[NC_TCP_RTT_UPDATES]);
-	cons_printf(portid, "\t��ư�����ץ��\t%lu\n",			net_count_tcp[NC_TCP_ACCEPTS]);
-	cons_printf(portid, "\tǽư�����ץ��\t%lu\n",			net_count_tcp[NC_TCP_CONNECTS]);
+	cons_printf(portid, "\t受信オクテット数\t%lu\n",		net_count_tcp[NC_TCP_RECV_OCTETS]);
+	cons_printf(portid, "\t受信データオクテット数\t%lu\n",		net_count_tcp[NC_TCP_RECV_DATA_OCTETS]);
+	cons_printf(portid, "\t受信セグメント数\t%lu\n",		net_count_tcp[NC_TCP_RECV_SEGS]);
+	cons_printf(portid, "\t受信データセグメント数\t%lu\n",		net_count_tcp[NC_TCP_RECV_DATA_SEGS]);
+	cons_printf(portid, "\t受信、緊急セグメント数\t%lu\n",		net_count_tcp[NC_TCP_RECV_URG_SEGS]);
+	cons_printf(portid, "\t受信、ヘッダ不正数\t%lu\n",		net_count_tcp[NC_TCP_RECV_BAD_HEADERS]);
+	cons_printf(portid, "\t受信、チェックサム不正数\t%lu\n",	net_count_tcp[NC_TCP_RECV_BAD_CKSUMS]);
+	cons_printf(portid, "\t受信、ACK 数\t%lu\n",			net_count_tcp[NC_TCP_RECV_ACKS]);
+	cons_printf(portid, "\t受信、多重 ACK 数\t%lu\n",		net_count_tcp[NC_TCP_RECV_DUP_ACKS]);
+	cons_printf(portid, "\t受信、RST 数\t%lu\n",			net_count_tcp[NC_TCP_RECV_RSTS]);
+	cons_printf(portid, "\t受信、多重数\t%lu\n",			net_count_tcp[NC_TCP_RECV_DUP_SEGS]);
+	cons_printf(portid, "\t受信、破棄数\t%lu\n",			net_count_tcp[NC_TCP_RECV_DROP_SEGS]);
+	cons_printf(portid, "\t受信キュー解放数\t%lu\n",		net_count_tcp[NC_TCP_FREE_RCV_QUEUE]);
+	cons_printf(portid, "\t送信データオクテット数\t%lu\n",		net_count_tcp[NC_TCP_SEND_DATA_OCTETS]);
+	cons_printf(portid, "\t送信制御セグメント数\t%lu\n",		net_count_tcp[NC_TCP_SEND_CNTL_SEGS]);
+	cons_printf(portid, "\t送信セグメント数\t%lu\n",		net_count_tcp[NC_TCP_SEND_SEGS]);
+	cons_printf(portid, "\t再送信セグメント数\t%lu\n",		net_count_tcp[NC_TCP_SEND_REXMIT_SEGS]);
+	cons_printf(portid, "\t送信データセグメント数\t%lu\n",		net_count_tcp[NC_TCP_SEND_DATA_SEGS]);
+	cons_printf(portid, "\t送信、緊急セグメント数\t%lu\n",		net_count_tcp[NC_TCP_SEND_URG_SEGS]);
+	cons_printf(portid, "\t送信、ACK 数\t%lu\n",			net_count_tcp[NC_TCP_SEND_ACKS]);
+	cons_printf(portid, "\t送信、RST 数\t%lu\n",			net_count_tcp[NC_TCP_SEND_RSTS]);
+	cons_printf(portid, "\tRTT 更新数\t%lu\n",			net_count_tcp[NC_TCP_RTT_UPDATES]);
+	cons_printf(portid, "\t受動オープン数\t%lu\n",			net_count_tcp[NC_TCP_ACCEPTS]);
+	cons_printf(portid, "\t能動オープン数\t%lu\n",			net_count_tcp[NC_TCP_CONNECTS]);
 
 #endif	/* of #ifdef SUPPORT_TCP */
 
@@ -786,7 +786,7 @@ net_count (ID portid, char *line)
 #endif	/* of #ifdef SUPPORT_UDP */
 
 	tbl = nbuf_get_tbl();
-	cons_printf(portid, "\n�ͥåȥ���Хåե�\n\t������\t�Ѱտ�\t�����׵��\t������\t�����ƥ��顼��\n");
+	cons_printf(portid, "\nネットワークバッファ\n\tサイズ\t用意数\t割当要求数\t割当数\t割当てエラー数\n");
 	for (ix = nbuf_get_tbl_size(); ix -- > 0; ) {
 		cons_printf(portid, "\t%lu\t%lu\t%lu\t%lu\t%lu\n",
 		                    tbl[ix].size,
@@ -796,15 +796,15 @@ net_count (ID portid, char *line)
 		                    tbl[ix].errors);
 		}
 
-	cons_printf(portid, "\n�ͥåȥ�����׾���\t�в����[ms]\t%lu\t", now);
+	cons_printf(portid, "\nネットワーク統計情報\t経過時間[ms]\t%lu\t", now);
 	if (now > (1000 * 3600 * 24))
-		cons_printf(portid, "%3lu�� %2lu���� %2luʬ %2lu��\n",
+		cons_printf(portid, "%3lu日 %2lu時間 %2lu分 %2lu秒\n",
 		             now / (1000 * 3600 * 24),
 		            (now / (1000 * 3600)) % 24,
 		            (now / (1000 * 60  )) % 60,
 		            (now /  1000        ) % 60);
 	else
-		cons_printf(portid, "%2lu���� %2luʬ %2lu��\n",
+		cons_printf(portid, "%2lu時間 %2lu分 %2lu秒\n",
 		            (now / (1000 * 3600)) % 24,
 		            (now / (1000 * 60  )) % 60,
 		            (now /  1000        ) % 60);
@@ -818,7 +818,7 @@ net_count (ID portid, char *line)
 #ifdef IP4_CFG_FRAGMENT
 
 /*
- *  nbuf_stat_ip4_frag_queue -- IPv4 �ƹ������塼��ͥåȥ���Хåե�����
+ *  nbuf_stat_ip4_frag_queue -- IPv4 再構成キュー内ネットワークバッファ情報
  */
 
 static void
@@ -828,7 +828,7 @@ nbuf_stat_ip4_frag_queue (ID portid)
 	const T_NET_BUF		*nbuf, **queue;
 	int_t			ix, fix, count;
 
-	cons_printf(portid, "\nIPv4�ƹ������塼��\nIndex\tTime");
+	cons_printf(portid, "\nIPv4再構成キュー内\nIndex\tTime");
 	tbl = nbuf_get_tbl();
 	for (ix = nbuf_get_tbl_size(); ix -- > 0; )
 		cons_printf(portid, "\t%d", tbl[ix].size);
@@ -859,7 +859,7 @@ nbuf_stat_ip4_frag_queue (ID portid)
 #ifdef IP6_CFG_FRAGMENT
 
 /*
- *  nbuf_stat_ip6_frag_queue -- IPv6 �ƹ������塼��ͥåȥ���Хåե�����
+ *  nbuf_stat_ip6_frag_queue -- IPv6 再構成キュー内ネットワークバッファ情報
  */
 
 static void
@@ -869,7 +869,7 @@ nbuf_stat_ip6_frag_queue (ID portid)
 	const T_NET_BUF		*nbuf, **queue;
 	int_t			ix, fix, count;
 
-	cons_printf(portid, "\nIPv6�ƹ������塼��\nIndex\tTime");
+	cons_printf(portid, "\nIPv6再構成キュー内\nIndex\tTime");
 	tbl = nbuf_get_tbl();
 	for (ix = nbuf_get_tbl_size(); ix -- > 0; )
 		cons_printf(portid, "\t%d", tbl[ix].size);
@@ -898,7 +898,7 @@ nbuf_stat_ip6_frag_queue (ID portid)
 #endif	/* of #if NET_COUNT_ENABLE */
 
 /*
- *  nbuf_status -- �ͥåȥ���Хåե�����
+ *  nbuf_status -- ネットワークバッファ情報
  */
 
 static void
@@ -924,11 +924,11 @@ nbuf_status (ID portid, char *line)
 
 	WAI_NET_CONS_PRINTF();
 	get_tim(&now);
-	cons_printf(portid, "�ͥåȥ���Хåե�����\t�в����[ms]\t%lu\n", now);
+	cons_printf(portid, "ネットワークバッファ情報\t経過時間[ms]\t%lu\n", now);
 
 #if NET_COUNT_ENABLE
 
-	cons_printf(portid, "\n�ͥåȥ���Хåե�\n\t������\t�Ѱտ�\t�����׵��\t������\t�����ƥ��顼��\n");
+	cons_printf(portid, "\nネットワークバッファ\n\tサイズ\t用意数\t割当要求数\t割当数\t割当てエラー数\n");
 	tbl = nbuf_get_tbl();
 	for (ix = nbuf_get_tbl_size(); ix -- > 0; ) {
 		cons_printf(portid, "\t%lu\t%lu\t%lu\t%lu\t%lu\n",
@@ -943,7 +943,7 @@ nbuf_status (ID portid, char *line)
 
 #ifdef SUPPORT_TCP
 
-	cons_printf(portid, "\nCEP��\nCEPID\n");
+	cons_printf(portid, "\nCEP内\nCEPID\n");
 
 	for (cep = tcp_cep; cep < &tcp_cep[tmax_tcp_cepid]; cep ++) {
 		cons_printf(portid, "%2d", GET_TCP_CEPID(cep));
@@ -1012,7 +1012,7 @@ nbuf_status (ID portid, char *line)
 #if NUM_ROUTE_ENTRY > 0
 
 /*
- *  routing_table_status -- ��ϩɽ�ν���
+ *  routing_table_status -- 経路表の出力
  */
 
 static void
@@ -1069,7 +1069,7 @@ routing_table_status (ID portid, char *line)
 #if NUM_ND6_DEF_RTR_ENTRY > 0
 
 /*
- *  defrtrlist_status -- �ǥ��ե���ȥ롼�����ꥹ�Ⱦ��֤ν���
+ *  defrtrlist_status -- ディフォルトルータ・リスト状態の出力
  */
 
 static void
@@ -1088,7 +1088,7 @@ defrtrlist_status (ID portid, char *line)
 		cons_printf(portid, " ");
 	cons_printf(portid, " IP Address\n");
 
-	/* expire ��ñ�̤� [ms]��*/
+	/* expire の単位は [ms]。*/
 	get_tim(&now);
 	dr = nd6_get_drl(&count);
 	for (rix = 0; rix < count; rix ++) {
@@ -1132,7 +1132,7 @@ defrtrlist_status (ID portid, char *line)
 	}
 
 /*
- *  prefixlist_status -- �ץ�ե��å������ꥹ�Ⱦ��֤ν���
+ *  prefixlist_status -- プレフィックス・リスト状態の出力
  */
 
 static void
@@ -1151,7 +1151,7 @@ prefixlist_status (ID portid, char *line)
 		cons_printf(portid, " ");
 	cons_printf(portid, " Len Prefix\n");
 
-	/* expire ��ñ�̤� [s]��*/
+	/* expire の単位は [s]。*/
 	get_tim(&now);
 	now /= SYSTIM_HZ;
 	pr = nd6_get_prl();
@@ -1200,7 +1200,7 @@ prefixlist_status (ID portid, char *line)
 #if NUM_ROUTE_ENTRY > 0
 
 /*
- *  routing_table_status -- ��ϩɽ�ν���
+ *  routing_table_status -- 経路表の出力
  */
 
 static void
@@ -1223,7 +1223,7 @@ routing_table_status (ID portid, char *line)
 		            
 		}
 
-	/* expire ��ñ�̤� [s]��*/
+	/* expire の単位は [s]。*/
 	get_tim(&now);
 	now /= SYSTIM_HZ;
 
@@ -1249,7 +1249,7 @@ routing_table_status (ID portid, char *line)
 #if NUM_ROUTE_ENTRY > 0
 
 /*
- *  routing_status -- �롼�ƥ��󥰾���
+ *  routing_status -- ルーティング情報
  */
 
 static void
@@ -1261,11 +1261,11 @@ routing_status (ID portid, char *line)
 
 #if NUM_ND6_DEF_RTR_ENTRY > 0
 
-	case 'l':		/* �ǥ��ե���ȥ롼�����ꥹ�Ⱦ��� */
+	case 'l':		/* ディフォルトルータ・リスト情報 */
 		defrtrlist_status(portid, line + 1);
 		break;
 
-	case 'p':		/* �ץ�ե��å������ꥹ�Ⱦ��� */
+	case 'p':		/* プレフィックス・リスト情報 */
 		prefixlist_status(portid, line + 1);
 		break;
 
@@ -1273,7 +1273,7 @@ routing_status (ID portid, char *line)
 
 #endif	/* of #if defined(SUPPORT_INET6) */
 
-	default:		/* �롼�ƥ���ɽ���� */
+	default:		/* ルーティング表情報 */
 		routing_table_status(portid, line);
 		break;
 
@@ -1284,7 +1284,7 @@ routing_status (ID portid, char *line)
 #endif	/* of #if NUM_ROUTE_ENTRY > 0 */
 
 /*
- *  network_status -- �ͥåȥ���ξ��֤ν���
+ *  network_status -- ネットワークの状態の出力
  */
 
 static void
@@ -1294,19 +1294,19 @@ network_status (ID portid, char *line)
 
 #ifdef SUPPORT_ETHER
 
-	case 'a':		/* IF ���ɥ쥹���� */
+	case 'a':		/* IF アドレス情報 */
 		ifa_status(portid, line + 1);
 		break;
 
 #endif	/* of #ifdef SUPPORT_ETHER */
 
-	case 'b':		/* �ͥåȥ���Хåե����� */
+	case 'b':		/* ネットワークバッファ情報 */
 		nbuf_status(portid, line + 1);
 		break;
 
 #if NET_COUNT_ENABLE
 
-	case 'c':		/* �ͥåȥ�����׾��� */
+	case 'c':		/* ネットワーク統計情報 */
 		net_count(portid, line + 1);
 		break;
 
@@ -1314,7 +1314,7 @@ network_status (ID portid, char *line)
 
 #if NUM_ROUTE_ENTRY > 0
 
-	case 'r':		/* �롼�ƥ��󥰾��� */
+	case 'r':		/* ルーティング情報 */
 		routing_status(portid, line + 1);
 		break;
 
@@ -1347,7 +1347,7 @@ network_status (ID portid, char *line)
 #if defined(SUPPORT_INET4)
 
 /*
- *  ifconfig -- �ͥåȥ�����󥿥ե������ι�������
+ *  ifconfig -- ネットワークインタフェースの構成情報
  */
 
 static void
@@ -1395,7 +1395,7 @@ ifconfig (ID portid, char *line)
 #if defined(SUPPORT_INET6)
 
 /*
- *  ifconfig -- �ͥåȥ�����󥿥ե������ι�������
+ *  ifconfig -- ネットワークインタフェースの構成情報
  */
 
 static void
@@ -1413,7 +1413,7 @@ ifconfig (ID portid, char *line)
 	cons_printf(portid, "ether: %M\ninet6:\nIX   Expire Preffered RTR PFX Flags IP Address\n",
 	                    ic->ifaddr.lladdr);
 
-	/* expire �� vltime ��ñ�̤� [s]��*/
+	/* expire と vltime の単位は [s]。*/
 	get_tim(&now);
 	now /= SYSTIM_HZ;
 
@@ -1451,7 +1451,7 @@ ifconfig (ID portid, char *line)
 #endif	/* of #if defined(SUPPORT_INET6) */
 
 /*
- *  show_config -- ����ե�����졼����������ɽ��
+ *  show_config -- コンフィギュレーション設定の表示
  */
 
 static void
@@ -1854,7 +1854,7 @@ show_config (ID portid, char *line)
 	}
 
 /*
- *  �ǥХå����ޥ�ɲ���
+ *  デバッグコマンド解析
  */
 
 static void
@@ -2259,7 +2259,7 @@ dbg_parse (ID portid, char *line)
 	}
 
 /*
- *  �ǥХå����󥽡��륿����
+ *  デバッグコンソールタスク
  */
 
 void

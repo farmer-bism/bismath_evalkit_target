@@ -5,59 +5,59 @@
  * 
  *  Copyright (C) 2010 by Witz Corporation, JAPAN
  * 
- *  ��L���쌠�҂́C�ȉ���(1)�`(4)�̏����𖞂����ꍇ�Ɍ���C�{�\�t�g�E�F
- *  �A�i�{�\�t�g�E�F�A�����ς������̂��܂ށD�ȉ������j���g�p�E�����E��
- *  �ρE�Ĕz�z�i�ȉ��C���p�ƌĂԁj���邱�Ƃ𖳏��ŋ�������D
- *  (1) �{�\�t�g�E�F�A���\�[�X�R�[�h�̌`�ŗ��p����ꍇ�ɂ́C��L�̒���
- *      ���\���C���̗��p��������щ��L�̖��ۏ؋K�肪�C���̂܂܂̌`�Ń\�[
- *      �X�R�[�h���Ɋ܂܂�Ă��邱�ƁD
- *  (2) �{�\�t�g�E�F�A���C���C�u�����`���ȂǁC���̃\�t�g�E�F�A�J���Ɏg
- *      �p�ł���`�ōĔz�z����ꍇ�ɂ́C�Ĕz�z�ɔ����h�L�������g�i���p
- *      �҃}�j���A���Ȃǁj�ɁC��L�̒��쌠�\���C���̗��p��������щ��L
- *      �̖��ۏ؋K����f�ڂ��邱�ƁD
- *  (3) �{�\�t�g�E�F�A���C�@��ɑg�ݍ��ނȂǁC���̃\�t�g�E�F�A�J���Ɏg
- *      �p�ł��Ȃ��`�ōĔz�z����ꍇ�ɂ́C���̂����ꂩ�̏����𖞂�����
- *      �ƁD
- *    (a) �Ĕz�z�ɔ����h�L�������g�i���p�҃}�j���A���Ȃǁj�ɁC��L�̒�
- *        �쌠�\���C���̗��p��������щ��L�̖��ۏ؋K����f�ڂ��邱�ƁD
- *    (b) �Ĕz�z�̌`�Ԃ��C�ʂɒ�߂���@�ɂ���āCTOPPERS�v���W�F�N�g��
- *        �񍐂��邱�ƁD
- *  (4) �{�\�t�g�E�F�A�̗��p�ɂ�蒼�ړI�܂��͊ԐړI�ɐ����邢���Ȃ鑹
- *      �Q������C��L���쌠�҂����TOPPERS�v���W�F�N�g��Ɛӂ��邱�ƁD
- *      �܂��C�{�\�t�g�E�F�A�̃��[�U�܂��̓G���h���[�U����̂����Ȃ闝
- *      �R�Ɋ�Â�����������C��L���쌠�҂����TOPPERS�v���W�F�N�g��
- *      �Ɛӂ��邱�ƁD
+ *  上記著作権者は，以下の(1)〜(4)の条件を満たす場合に限り，本ソフトウェ
+ *  ア（本ソフトウェアを改変したものを含む．以下同じ）を使用・複製・改
+ *  変・再配布（以下，利用と呼ぶ）することを無償で許諾する．
+ *  (1) 本ソフトウェアをソースコードの形で利用する場合には，上記の著作
+ *      権表示，この利用条件および下記の無保証規定が，そのままの形でソー
+ *      スコード中に含まれていること．
+ *  (2) 本ソフトウェアを，ライブラリ形式など，他のソフトウェア開発に使
+ *      用できる形で再配布する場合には，再配布に伴うドキュメント（利用
+ *      者マニュアルなど）に，上記の著作権表示，この利用条件および下記
+ *      の無保証規定を掲載すること．
+ *  (3) 本ソフトウェアを，機器に組み込むなど，他のソフトウェア開発に使
+ *      用できない形で再配布する場合には，次のいずれかの条件を満たすこ
+ *      と．
+ *    (a) 再配布に伴うドキュメント（利用者マニュアルなど）に，上記の著
+ *        作権表示，この利用条件および下記の無保証規定を掲載すること．
+ *    (b) 再配布の形態を，別に定める方法によって，TOPPERSプロジェクトに
+ *        報告すること．
+ *  (4) 本ソフトウェアの利用により直接的または間接的に生じるいかなる損
+ *      害からも，上記著作権者およびTOPPERSプロジェクトを免責すること．
+ *      また，本ソフトウェアのユーザまたはエンドユーザからのいかなる理
+ *      由に基づく請求からも，上記著作権者およびTOPPERSプロジェクトを
+ *      免責すること．
  * 
- *  �{�\�t�g�E�F�A�́C���ۏ؂Œ񋟂���Ă�����̂ł���D��L���쌠�҂�
- *  ���TOPPERS�v���W�F�N�g�́C�{�\�t�g�E�F�A�Ɋւ��āC����̎g�p�ړI
- *  �ɑ΂���K�������܂߂āC�����Ȃ�ۏ؂��s��Ȃ��D�܂��C�{�\�t�g�E�F
- *  �A�̗��p�ɂ�蒼�ړI�܂��͊ԐړI�ɐ����������Ȃ鑹�Q�Ɋւ��Ă��C��
- *  �̐ӔC�𕉂�Ȃ��D
+ *  本ソフトウェアは，無保証で提供されているものである．上記著作権者お
+ *  よびTOPPERSプロジェクトは，本ソフトウェアに関して，特定の使用目的
+ *  に対する適合性も含めて，いかなる保証も行わない．また，本ソフトウェ
+ *  アの利用により直接的または間接的に生じたいかなる損害に関しても，そ
+ *  の責任を負わない．
  * 
  */
 
 #include <kernel_impl.h>
 
 /*
- *		�v���Z�b�T�ˑ����W���[���iRX63n�p�j
+ *		プロセッサ依存モジュール（RX63n用）
  */
 
 volatile uint8_t * const ipr_reg_addr[ INHNO_MAX ] = {
-	NULL, NULL, NULL, NULL, NULL,	/* No.0 - 4   �\�� */
-	NULL, NULL, NULL, NULL, NULL,	/* No.5 - 9   �\�� */
-	NULL, NULL, NULL, NULL, NULL,	/* No.10 - 14 �\�� */
-	NULL,							/* No.15  �\�� */
-	ICU_IPR00_ADDR,					/* No.16   �o�X�G���[ BUSERR  */
-	NULL, NULL, NULL, NULL,			/* No.17 - 20 �\�� */
+	NULL, NULL, NULL, NULL, NULL,	/* No.0 - 4   予約 */
+	NULL, NULL, NULL, NULL, NULL,	/* No.5 - 9   予約 */
+	NULL, NULL, NULL, NULL, NULL,	/* No.10 - 14 予約 */
+	NULL,							/* No.15  予約 */
+	ICU_IPR00_ADDR,					/* No.16   バスエラー BUSERR  */
+	NULL, NULL, NULL, NULL,			/* No.17 - 20 予約 */
 	ICU_IPR01_ADDR,					/* No.21   FCU FIFERR  */
-	NULL,							/* No.22  �\�� */
+	NULL,							/* No.22  予約 */
 	ICU_IPR02_ADDR,					/* No.23   FCU FRDYI  */
-	NULL, NULL, NULL,		        /* No.24 -26  �\�� */
+	NULL, NULL, NULL,		        /* No.24 -26  予約 */
 	ICU_IPR03_ADDR,                 /* No.27  ICU SWINT  */
-	ICU_IPR04_ADDR,					/* No.28   CMT���j�b�g0 CMT0  */
-	ICU_IPR05_ADDR,					/* No.29   CMT���j�b�g0 CMT1  */
-	ICU_IPR06_ADDR,					/* No.30   CMT���j�b�g1 CMT2  */
-	ICU_IPR07_ADDR,					/* No.31   CMT���j�b�g1 CMT3  */
+	ICU_IPR04_ADDR,					/* No.28   CMTユニット0 CMT0  */
+	ICU_IPR05_ADDR,					/* No.29   CMTユニット0 CMT1  */
+	ICU_IPR06_ADDR,					/* No.30   CMTユニット1 CMT2  */
+	ICU_IPR07_ADDR,					/* No.31   CMTユニット1 CMT3  */
 	ICU_IPR20_ADDR,                 /* No.32   Ether EINT  */
 	ICU_IPR21_ADDR,                 /* No.33   USB D0FIFO0  */
 	ICU_IPR22_ADDR,                 /* No.34   USB D1FIFO0  */
@@ -86,36 +86,36 @@ volatile uint8_t * const ipr_reg_addr[ INHNO_MAX ] = {
 	ICU_IPR38_ADDR,                 /* NO.57  CAN2 TXF2*/
 	ICU_IPR38_ADDR,                 /* NO.58  CAN2 RXM2*/
 	ICU_IPR38_ADDR,                 /* NO.59  CAN2 TXM2*/
-	NULL, NULL,                     /* No.60 - 61 �\�� */
+	NULL, NULL,                     /* No.60 - 61 予約 */
 	ICU_IPR3E_ADDR,                 /* NO 62 RTC CUP */
-	NULL,						    /* No.63 �\�� */
-	ICU_IPR40_ADDR,					/* No.64   �O���[�q IRQ0  */
-	ICU_IPR41_ADDR,					/* No.65   �O���[�q IRQ1  */
-	ICU_IPR42_ADDR,					/* No.66   �O���[�q IRQ2  */
-	ICU_IPR43_ADDR,					/* No.67   �O���[�q IRQ3  */
-	ICU_IPR44_ADDR,					/* No.68   �O���[�q IRQ4  */
-	ICU_IPR45_ADDR,					/* No.69   �O���[�q IRQ5  */
-	ICU_IPR46_ADDR,					/* No.70   �O���[�q IRQ6  */
-	ICU_IPR47_ADDR,					/* No.71   �O���[�q IRQ7  */
-	ICU_IPR48_ADDR,					/* No.72   �O���[�q IRQ8  */
-	ICU_IPR49_ADDR,					/* No.73   �O���[�q IRQ9  */
-	ICU_IPR4A_ADDR,					/* No.74   �O���[�q IRQ10  */
-	ICU_IPR4B_ADDR,					/* No.75   �O���[�q IRQ11  */
-	ICU_IPR4C_ADDR,					/* No.76   �O���[�q IRQ12  */
-	ICU_IPR4D_ADDR,					/* No.77   �O���[�q IRQ13  */
-	ICU_IPR4E_ADDR,					/* No.78   �O���[�q IRQ14  */
-	ICU_IPR4F_ADDR,					/* No.79   �O���[�q IRQ15  */
-	NULL, NULL, NULL, NULL, NULL,	/* No.80 - 84 �\�� */
-	NULL, NULL, NULL, NULL, NULL,	/* No.85 - 89 �\�� */
+	NULL,						    /* No.63 予約 */
+	ICU_IPR40_ADDR,					/* No.64   外部端子 IRQ0  */
+	ICU_IPR41_ADDR,					/* No.65   外部端子 IRQ1  */
+	ICU_IPR42_ADDR,					/* No.66   外部端子 IRQ2  */
+	ICU_IPR43_ADDR,					/* No.67   外部端子 IRQ3  */
+	ICU_IPR44_ADDR,					/* No.68   外部端子 IRQ4  */
+	ICU_IPR45_ADDR,					/* No.69   外部端子 IRQ5  */
+	ICU_IPR46_ADDR,					/* No.70   外部端子 IRQ6  */
+	ICU_IPR47_ADDR,					/* No.71   外部端子 IRQ7  */
+	ICU_IPR48_ADDR,					/* No.72   外部端子 IRQ8  */
+	ICU_IPR49_ADDR,					/* No.73   外部端子 IRQ9  */
+	ICU_IPR4A_ADDR,					/* No.74   外部端子 IRQ10  */
+	ICU_IPR4B_ADDR,					/* No.75   外部端子 IRQ11  */
+	ICU_IPR4C_ADDR,					/* No.76   外部端子 IRQ12  */
+	ICU_IPR4D_ADDR,					/* No.77   外部端子 IRQ13  */
+	ICU_IPR4E_ADDR,					/* No.78   外部端子 IRQ14  */
+	ICU_IPR4F_ADDR,					/* No.79   外部端子 IRQ15  */
+	NULL, NULL, NULL, NULL, NULL,	/* No.80 - 84 予約 */
+	NULL, NULL, NULL, NULL, NULL,	/* No.85 - 89 予約 */
     ICU_IPR5A_ADDR,                 /* No.90  USB USBR0  */
 	ICU_IPR5B_ADDR,                 /* No.91  USB USBR1  */
 	ICU_IPR5C_ADDR,                 /* No.92  RTC ALM  */
 	ICU_IPR5D_ADDR,                 /* No.93  RTC PRD  */
-	NULL, NULL, NULL, NULL,         /* No.94 - 97  �\�� */
+	NULL, NULL, NULL, NULL,         /* No.94 - 97  予約 */
 	ICU_IPR62_ADDR,					/* No.98   AD0 ADI0  */
-    NULL, NULL, NULL,               /* No.99 - 101 �\�� */
+    NULL, NULL, NULL,               /* No.99 - 101 予約 */
 	ICU_IPR66_ADDR,					/* No.102  S12AD S12ADI0  */
-	NULL, NULL, NULL,               /* No.103 - 105 �\�� */
+	NULL, NULL, NULL,               /* No.103 - 105 予約 */
 	ICU_IPR6A_ADDR,					/* No.106  ICU GROUP0  */
 	ICU_IPR6B_ADDR,					/* No.107  ICU GROUP1  */
 	ICU_IPR6C_ADDR,					/* No.108  ICU GROUP2  */
@@ -123,10 +123,10 @@ volatile uint8_t * const ipr_reg_addr[ INHNO_MAX ] = {
 	ICU_IPR6E_ADDR,					/* No.110  ICU GROUP4  */
 	ICU_IPR6F_ADDR,					/* No.111  ICU GROUP5  */
 	ICU_IPR70_ADDR,					/* No.112  ICU GROUP6  */
-	NULL,                           /* No.113 �\�� */
+	NULL,                           /* No.113 予約 */
 	ICU_IPR72_ADDR,                 /* No.114  ICU Group12  */
-	NULL, NULL, NULL, NULL, NULL,   /* No.115 - 119 �\�� */
-	NULL, NULL,                     /* No.120 - 121 �\�� */
+	NULL, NULL, NULL, NULL, NULL,   /* No.115 - 119 予約 */
+	NULL, NULL,                     /* No.120 - 121 予約 */
 	ICU_IPR7A_ADDR,                 /* No.122  SCI12 SCIX0  */
 	ICU_IPR7A_ADDR,                 /* No.123  SCI12 SCIX1  */
 	ICU_IPR7A_ADDR,                 /* No.124  SCI12 SCIX2  */
@@ -173,7 +173,7 @@ volatile uint8_t * const ipr_reg_addr[ INHNO_MAX ] = {
     ICU_IPRA4_ADDR,                 /* No.165  TPU11 TGI11B  */
     ICU_IPRA6_ADDR,                 /* No.166  POE OEI1  */
     ICU_IPRA6_ADDR,                 /* No.167  POE OEI2  */
-	NULL, NULL,                     /* No.168 - 169 �\�� */
+	NULL, NULL,                     /* No.168 - 169 予約 */
     ICU_IPRAA_ADDR,                 /* No.170  TMR0 CMIA0  */
     ICU_IPRAA_ADDR,                 /* No.171  TMR0 CMIB0  */
     ICU_IPRAA_ADDR,                 /* No.172  TMR0 OVI0  */
@@ -208,13 +208,13 @@ volatile uint8_t * const ipr_reg_addr[ INHNO_MAX ] = {
     ICU_IPRC9_ADDR,                 /* No.201  DMAC DMAC3I  */
     ICU_IPRCA_ADDR,                 /* No.202  EXDMAC EXDMAC0I  */
     ICU_IPRCB_ADDR,                 /* No.203  EXDMAC EXDMAC1I  */
-	NULL, NULL,                     /* No.204 - 205 �\�� */
+	NULL, NULL,                     /* No.204 - 205 予約 */
     ICU_IPRCE_ADDR,                 /* No.206  DEU DEU0  */
     ICU_IPRCF_ADDR,                 /* No.207  DEU DEU0  */
     ICU_IPRD0_ADDR,                 /* No.208  PDC PCDFI  */
     ICU_IPRD1_ADDR,                 /* No.209  PDC PCFEI  */
     ICU_IPRD2_ADDR,                 /* No.210  PDC PCERI  */
-	NULL, NULL, NULL,               /* No.211 - 213 �\�� */
+	NULL, NULL, NULL,               /* No.211 - 213 予約 */
     ICU_IPRD6_ADDR,                 /* No.214  SCI0 RXI0  */
     ICU_IPRD6_ADDR,                 /* No.215  SCI0 TXI0  */
     ICU_IPRD6_ADDR,                 /* No.216  SCI0 TEI0  */
@@ -255,5 +255,5 @@ volatile uint8_t * const ipr_reg_addr[ INHNO_MAX ] = {
     ICU_IPRFA_ADDR,                 /* No.251  SCI12 TXI12  */
     ICU_IPRFA_ADDR,                 /* No.252  SCI12 TEI12  */
     ICU_IPRFD_ADDR,                 /* No.253  IEB IEBINT  */
-	NULL, NULL,						/* No.254 - 255 �\�� */
+	NULL, NULL,						/* No.254 - 255 予約 */
 };

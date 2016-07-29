@@ -4,35 +4,35 @@
  *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
- *  �嵭����Ԥϡ��ʲ��� (1)��(4) �ξ�狼��Free Software Foundation 
- *  �ˤ�äƸ�ɽ����Ƥ��� GNU General Public License �� Version 2 �˵�
- *  �Ҥ���Ƥ���������������˸¤ꡤ�ܥ��եȥ��������ܥ��եȥ�����
- *  ����Ѥ�����Τ�ޤࡥ�ʲ�Ʊ���ˤ���ѡ�ʣ�������ѡ������ۡʰʲ���
- *  ���ѤȸƤ֡ˤ��뤳�Ȥ�̵���ǵ������롥
- *  (1) �ܥ��եȥ������򥽡��������ɤη������Ѥ�����ˤϡ��嵭������
- *      ��ɽ�����������Ѿ�浪��Ӳ�����̵�ݾڵ��꤬�����Τޤޤη��ǥ���
- *      ����������˴ޤޤ�Ƥ��뤳�ȡ�
- *  (2) �ܥ��եȥ������򡤥饤�֥������ʤɡ�¾�Υ��եȥ�������ȯ�˻�
- *      �ѤǤ�����Ǻ����ۤ�����ˤϡ������ۤ�ȼ���ɥ�����ȡ�����
- *      �ԥޥ˥奢��ʤɡˤˡ��嵭�����ɽ�����������Ѿ�浪��Ӳ���
- *      ��̵�ݾڵ����Ǻܤ��뤳�ȡ�
- *  (3) �ܥ��եȥ������򡤵�����Ȥ߹���ʤɡ�¾�Υ��եȥ�������ȯ�˻�
- *      �ѤǤ��ʤ����Ǻ����ۤ�����ˤϡ����ξ������������ȡ�
- *    (a) �����ۤ�ȼ���ɥ�����ȡ����Ѽԥޥ˥奢��ʤɡˤˡ��嵭����
- *        �ɽ�����������Ѿ�浪��Ӳ�����̵�ݾڵ����Ǻܤ��뤳�ȡ�
- *  (4) �ܥ��եȥ����������Ѥˤ��ľ��Ū�ޤ��ϴ���Ū�������뤤���ʤ�»
- *      ������⡤�嵭����Ԥ����TOPPERS�ץ��������Ȥ����դ��뤳�ȡ�
+ *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
+ *  によって公表されている GNU General Public License の Version 2 に記
+ *  述されている条件を満たす場合に限り，本ソフトウェア（本ソフトウェア
+ *  を改変したものを含む．以下同じ）を使用・複製・改変・再配布（以下，
+ *  利用と呼ぶ）することを無償で許諾する．
+ *  (1) 本ソフトウェアをソースコードの形で利用する場合には，上記の著作
+ *      権表示，この利用条件および下記の無保証規定が，そのままの形でソー
+ *      スコード中に含まれていること．
+ *  (2) 本ソフトウェアを，ライブラリ形式など，他のソフトウェア開発に使
+ *      用できる形で再配布する場合には，再配布に伴うドキュメント（利用
+ *      者マニュアルなど）に，上記の著作権表示，この利用条件および下記
+ *      の無保証規定を掲載すること．
+ *  (3) 本ソフトウェアを，機器に組み込むなど，他のソフトウェア開発に使
+ *      用できない形で再配布する場合には，次の条件を満たすこと．
+ *    (a) 再配布に伴うドキュメント（利用者マニュアルなど）に，上記の著
+ *        作権表示，この利用条件および下記の無保証規定を掲載すること．
+ *  (4) 本ソフトウェアの利用により直接的または間接的に生じるいかなる損
+ *      害からも，上記著作権者およびTOPPERSプロジェクトを免責すること．
  *
- *  �ܥ��եȥ������ϡ�̵�ݾڤ��󶡤���Ƥ����ΤǤ��롥�嵭����Ԥ�
- *  ���TOPPERS�ץ��������Ȥϡ��ܥ��եȥ������˴ؤ��ơ�����Ŭ�Ѳ�ǽ����
- *  �ޤ�ơ������ʤ��ݾڤ�Ԥ�ʤ����ޤ����ܥ��եȥ����������Ѥˤ��ľ
- *  ��Ū�ޤ��ϴ���Ū�������������ʤ�»���˴ؤ��Ƥ⡤������Ǥ�����ʤ���
+ *  本ソフトウェアは，無保証で提供されているものである．上記著作権者お
+ *  よびTOPPERSプロジェクトは，本ソフトウェアに関して，その適用可能性も
+ *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
+ *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
  *  @(#) $Id: sample1n.c,v 1.5.4.1 2015/02/05 02:08:29 abe Exp abe $
  */
 
 /* 
- *  �ͥåȥ��������ץ�ץ������(1)������
+ *  ネットワーク化サンプルプログラム(1)の本体
  */
 
 #include <stdarg.h>
@@ -49,10 +49,10 @@
 #include "sample1n.h"
 
 /*
- *  �ޥ������
+ *  マクロ定義
  */
 
-/*  ��͡���β��  */
+/*  リネームの解除  */
 
 #undef syslog
 #undef serial_rea_dat
@@ -60,7 +60,7 @@
 
 #define EOF		(-1)
 
-/*  TELNET ���ץ���� */
+/*  TELNET オプション */
 
 #define TELNET_OPT_SE		(240)
 #define TELNET_OPT_NOP		(241)
@@ -80,16 +80,16 @@
 #define TELNET_OPT_IAC		(255)
 
 /*
- *  �ѿ�
+ *  変数
  */
 
-/*  TCP ������������ɥХåե�  */
+/*  TCP 送受信ウィンドバッファ  */
 
 uint8_t tcp_swbuf[TCP_SWBUF_SIZE];
 uint8_t tcp_rwbuf[TCP_RWBUF_SIZE];
 
-bool_t		connected	= false;	/* ���ͥ������ξ���	*/
-bool_t		wait_accept	= false;	/* ��³�׵��Ԥ���	*/
+bool_t		connected	= false;	/* コネクションの状態	*/
+bool_t		wait_accept	= false;	/* 接続要求待ち中	*/
 
 #ifdef SUPPORT_INET4
 
@@ -113,7 +113,7 @@ uint_t		net_ioctl	= IOCTL_NULL;
 uint8_t		addr[sizeof("0123:4567:89ab:cdef:0123:4567:89ab:cdef")];
 
 /*
- *  �ͥåȥ���ؤ�����
+ *  ネットワーク層の選択
  */
 
 #ifdef SUPPORT_INET4
@@ -131,7 +131,7 @@ uint8_t		addr[sizeof("0123:4567:89ab:cdef:0123:4567:89ab:cdef")];
 #endif	/* of #ifdef SUPPORT_INET6 */
 
 /*
- *  �Υ�֥��å��󥰥�����Υ�����Хå��ؿ�
+ *  ノンブロッキングコールのコールバック関数
  */
 
 ER
@@ -165,7 +165,7 @@ callback_nblk_tcp (ID cepid, FN fncd, void *p_parblk)
 	}
 
 /*
- *  ���ͥ�����������
+ *  コネクションを切断
  */
 
 ER
@@ -188,7 +188,7 @@ disconnecting (void)
 	}
 
 /*
- *  �����Хåե��Υե�å���
+ *  送信バッファのフラッシュ
  */
 
 void
@@ -206,7 +206,7 @@ flush_snd_buff (ID cepid)
 	}
 
 /*
- *  ʸ������
+ *  文字送信
  */
 
 void
@@ -233,7 +233,7 @@ put_char (ID cepid, char ch)
 	}
 
 /*
- *  ʸ���������Ѵ��ʤ���
+ *  文字受信（変換なし）
  */
 
 int_t
@@ -262,7 +262,7 @@ get_char_raw (ID cepid)
 	}
 
 /*
- *  ʸ��������TELNET ���ץ����򥹥��åס�
+ *  文字受信（TELNET オプションをスキップ）
  */
 
 int_t
@@ -294,7 +294,7 @@ get_char (ID cepid)
 	}
 
 /*
- *  ���ꥢ��ݡ��Ȥ�����ɽФ�
+ *  シリアルポートからの読出し
  */
 
 ER_UINT
@@ -331,7 +331,7 @@ net_serial_rea_dat (ID portid, char_t *buf, uint_t len)
 	}
 
 /*
- *  ���ꥢ��ݡ��Ȥ�����
+ *  シリアルポートの制御
  */
 
 ER
@@ -342,7 +342,7 @@ net_serial_ctl_por (ID portid, uint_t ioctl)
 	}
 
 /*
- *  ��äȤ�Ĺ�������� (LONGEST) �����ʤ������� (ULONGEST)
+ *  もっとも長い整数型 (LONGEST) と符号なし整数型 (ULONGEST)
  */
 
 #ifdef LONGLONG_TYPE
@@ -367,16 +367,16 @@ typedef uint_t			ULONGEST;
 #endif	/* of #ifdef LONGLONG_TYPE */
 
 /*
- *  �����Υ��ߥ�졼�����
+ *  ログのシミュレーション
  */
 
-/*  �����Ѵ��Τ�����Ѵ�ɽ  */
+/*  数値変換のための変換表  */
 
 static const char radhex[] = "0123456789abcdef";
 static const char radHEX[] = "0123456789ABCDEF";
 
 /*
- *  put_num -- printf �ο����Ѵ�
+ *  put_num -- printf の数値変換
  */
 
 int_t
@@ -408,14 +408,14 @@ put_num(ID cepid, ULONGEST val, int_t radix, const char *radchar, int_t width, b
 		pchars = ix;
 
 	pad = ix;
-	if (!left)	/* ���ͤ� */
+	if (!left)	/* 右詰め */
 		for ( ; pad < width; pad ++)
 			put_char(cepid, padchar);
 
 	while (ix -- > 0)
 		put_char(cepid, digits[ix]);
 
-	if (left)	/* ���ͤ� */
+	if (left)	/* 左詰め */
 		for ( ; pad < width; pad ++)
 			put_char(cepid, padchar);
 
@@ -425,13 +425,13 @@ put_num(ID cepid, ULONGEST val, int_t radix, const char *radchar, int_t width, b
 #ifdef SUPPORT_INET4
 
 /*
- *  put_ipv4addr -- IPv4 ���ɥ쥹����
+ *  put_ipv4addr -- IPv4 アドレス出力
  */
 
 static int_t
 put_ipv4addr (ID cepid, ULONGEST *addr, int_t width)
 {
-	int_t len = 3;	/* 3 �� '.' ��ʸ���� */
+	int_t len = 3;	/* 3 は '.' の文字数 */
 
 #if _NET_CFG_BYTE_ORDER == _NET_CFG_BIG_ENDIAN
 
@@ -468,7 +468,7 @@ put_ipv4addr (ID cepid, ULONGEST *addr, int_t width)
 #ifdef SUPPORT_INET6
 
 /*
- *  ipv6addr -- IPv6 ���ɥ쥹����
+ *  ipv6addr -- IPv6 アドレス出力
  */
 
 static int_t
@@ -520,7 +520,7 @@ put_ipv6addr (ID cepid, const T_IN6_ADDR *addr, int_t width)
 #endif	/* of #ifdef SUPPORT_INET6 */
 
 /*
- *  put_macaddr -- MAC ���ɥ쥹����
+ *  put_macaddr -- MAC アドレス出力
  */
 
 static int_t
@@ -541,7 +541,7 @@ put_macaddr (ID cepid, char *mac, int_t width)
 	}
 
 /*
- *  ��������Ф�����Υޥ���
+ *  引数を取り出すためのマクロ
  */
 
 #ifdef LONGLONG_TYPE
@@ -575,7 +575,7 @@ put_macaddr (ID cepid, char *mac, int_t width)
 #endif	/* of #ifdef LONGLONG_TYPE */
 
 /*
- *  ��������
+ *  ログ出力
  */
 
 ER
@@ -591,7 +591,7 @@ net_syslog (uint_t prio, const char *format, ...)
 		syscall(wai_sem(SEM_TCP_SYSLOG));
 		va_start(ap, format);
 		while ((ch = *format ++) != '\0') {
-			if (ch != '%') {		/* �񼰻���ʳ� */
+			if (ch != '%') {		/* 書式指定以外 */
 				put_char(TCP_CEPID, (char)ch);
 				continue;
 				}
@@ -599,24 +599,24 @@ net_syslog (uint_t prio, const char *format, ...)
 			width = longflag = 0;
 			padchar = ' ';
 
-			if (ch == '-') {		/* ���ͤ� */
+			if (ch == '-') {		/* 左詰め */
 				format ++;
 				left = -1;
 				}
 			else
 				left = 1;
 
-			if ((ch = *format ++) == '0') {	/* ��̷�� 0 */
+			if ((ch = *format ++) == '0') {	/* 上位桁の 0 */
 				padchar = '0';
 				ch = *format ++;
 				}
 
-			while ('0' <= ch && ch <= '9') {	/* ������ */
+			while ('0' <= ch && ch <= '9') {	/* 出力幅 */
 				width = width * 10 + ch - '0';
 				ch = *format ++;
 				}
 
-			while (ch == 'l') {		/* long (long) �λ��� */
+			while (ch == 'l') {		/* long (long) の指定 */
 				longflag ++;
 				ch = *format ++;
 				}

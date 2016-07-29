@@ -4,35 +4,35 @@
  *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
- *  �嵭����Ԥϡ��ʲ��� (1)��(4) �ξ�狼��Free Software Foundation 
- *  �ˤ�äƸ�ɽ����Ƥ��� GNU General Public License �� Version 2 �˵�
- *  �Ҥ���Ƥ���������������˸¤ꡤ�ܥ��եȥ��������ܥ��եȥ�����
- *  ����Ѥ�����Τ�ޤࡥ�ʲ�Ʊ���ˤ���ѡ�ʣ�������ѡ������ۡʰʲ���
- *  ���ѤȸƤ֡ˤ��뤳�Ȥ�̵���ǵ������롥
- *  (1) �ܥ��եȥ������򥽡��������ɤη������Ѥ�����ˤϡ��嵭������
- *      ��ɽ�����������Ѿ�浪��Ӳ�����̵�ݾڵ��꤬�����Τޤޤη��ǥ���
- *      ����������˴ޤޤ�Ƥ��뤳�ȡ�
- *  (2) �ܥ��եȥ������򡤥饤�֥������ʤɡ�¾�Υ��եȥ�������ȯ�˻�
- *      �ѤǤ�����Ǻ����ۤ�����ˤϡ������ۤ�ȼ���ɥ�����ȡ�����
- *      �ԥޥ˥奢��ʤɡˤˡ��嵭�����ɽ�����������Ѿ�浪��Ӳ���
- *      ��̵�ݾڵ����Ǻܤ��뤳�ȡ�
- *  (3) �ܥ��եȥ������򡤵�����Ȥ߹���ʤɡ�¾�Υ��եȥ�������ȯ�˻�
- *      �ѤǤ��ʤ����Ǻ����ۤ�����ˤϡ����ξ������������ȡ�
- *    (a) �����ۤ�ȼ���ɥ�����ȡ����Ѽԥޥ˥奢��ʤɡˤˡ��嵭����
- *        �ɽ�����������Ѿ�浪��Ӳ�����̵�ݾڵ����Ǻܤ��뤳�ȡ�
- *  (4) �ܥ��եȥ����������Ѥˤ��ľ��Ū�ޤ��ϴ���Ū�������뤤���ʤ�»
- *      ������⡤�嵭����Ԥ����TOPPERS�ץ��������Ȥ����դ��뤳�ȡ�
+ *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
+ *  によって公表されている GNU General Public License の Version 2 に記
+ *  述されている条件を満たす場合に限り，本ソフトウェア（本ソフトウェア
+ *  を改変したものを含む．以下同じ）を使用・複製・改変・再配布（以下，
+ *  利用と呼ぶ）することを無償で許諾する．
+ *  (1) 本ソフトウェアをソースコードの形で利用する場合には，上記の著作
+ *      権表示，この利用条件および下記の無保証規定が，そのままの形でソー
+ *      スコード中に含まれていること．
+ *  (2) 本ソフトウェアを，ライブラリ形式など，他のソフトウェア開発に使
+ *      用できる形で再配布する場合には，再配布に伴うドキュメント（利用
+ *      者マニュアルなど）に，上記の著作権表示，この利用条件および下記
+ *      の無保証規定を掲載すること．
+ *  (3) 本ソフトウェアを，機器に組み込むなど，他のソフトウェア開発に使
+ *      用できない形で再配布する場合には，次の条件を満たすこと．
+ *    (a) 再配布に伴うドキュメント（利用者マニュアルなど）に，上記の著
+ *        作権表示，この利用条件および下記の無保証規定を掲載すること．
+ *  (4) 本ソフトウェアの利用により直接的または間接的に生じるいかなる損
+ *      害からも，上記著作権者およびTOPPERSプロジェクトを免責すること．
  *
- *  �ܥ��եȥ������ϡ�̵�ݾڤ��󶡤���Ƥ����ΤǤ��롥�嵭����Ԥ�
- *  ���TOPPERS�ץ��������Ȥϡ��ܥ��եȥ������˴ؤ��ơ�����Ŭ�Ѳ�ǽ����
- *  �ޤ�ơ������ʤ��ݾڤ�Ԥ�ʤ����ޤ����ܥ��եȥ����������Ѥˤ��ľ
- *  ��Ū�ޤ��ϴ���Ū�������������ʤ�»���˴ؤ��Ƥ⡤������Ǥ�����ʤ���
+ *  本ソフトウェアは，無保証で提供されているものである．上記著作権者お
+ *  よびTOPPERSプロジェクトは，本ソフトウェアに関して，その適用可能性も
+ *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
+ *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
  *  @(#) $Id: echos4.c,v 1.5 2009/12/24 06:20:39 abe Exp $
  */
 
 /* 
- *  IPv4��TCP ECHO �����С�������������Ʊ�췿
+ *  IPv4、TCP ECHO サーバ、送受信タスク同一型
  */
 
 #include <string.h>
@@ -49,17 +49,17 @@
 #include "echos4.h"
 
 /*
- *  �����ؿ������
+ *  外部関数の定義
  */
 
 extern const char *itron_strerror (ER ercd);
 
 /*
- *  ����:
+ *  注意:
  *
- *    BUF_SIZE �� TCP ��
- *    ����������ɥ��Хåե������� + ����������ɥ��Хåե��������� 
- *    3/2 �ܰʾ���礭�����ʤ���С��ǥåɥ��å������ǽ�������롣
+ *    BUF_SIZE は TCP の
+ *    送信ウインドウバッファサイズ + 受信ウインドウバッファサイズの 
+ *    3/2 倍以上の大きさがなければ、デッドロックする可能性がある。
  */
 
 #define BUF_SIZE	((TCP_ECHO_SRV_SWBUF_SIZE + \
@@ -82,7 +82,7 @@ static uint8_t 		buffer[BUF_SIZE];
 #endif	/* of #ifndef USE_COPYSAVE_API */
 
 /*
- *  TCP �������Хåե�
+ *  TCP 送受信バッファ
  */
 
 uint8_t tcp_echo_srv_swbuf[TCP_ECHO_SRV_SWBUF_SIZE];
@@ -91,7 +91,7 @@ uint8_t tcp_echo_srv_rwbuf[TCP_ECHO_SRV_RWBUF_SIZE];
 #ifdef USE_TCP_NON_BLOCKING
 
 /*
- *  �Υ�֥��å��󥰥�����Υ�����Хå��ؿ�
+ *  ノンブロッキングコールのコールバック関数
  */
 
 ER
@@ -164,7 +164,7 @@ tcp_echo_srv_task(intptr_t exinf)
 			continue;
 			}
 
-		/* ��꤫����³�����ޤ��Ԥġ�*/
+		/* 相手から接続されるまで待つ。*/
 		syscall(wai_sem(SEM_TCP_ECHO_SRV_NBLK_READY));
 
 		if (nblk_error == E_OK)
@@ -181,19 +181,19 @@ tcp_echo_srv_task(intptr_t exinf)
 				break;
 				}
 
-			/* ��������ޤ��Ԥġ�*/
+			/* 受信するまで待つ。*/
 			syscall(wai_sem(SEM_TCP_ECHO_SRV_NBLK_READY));
 
-			if (nblk_rlen < 0) {		/* ���顼 */
+			if (nblk_rlen < 0) {		/* エラー */
 				syslog(LOG_NOTICE, "[TCP ECHO SRV (NBLK) RCV] error: %s", itron_strerror(nblk_rlen));
 				break;
 				}
-			else if (nblk_rlen == 0)	/* ������λ */
+			else if (nblk_rlen == 0)	/* 受信終了 */
 				break;
 
 			rblen = (uint16_t)nblk_rlen;
 
-			/* �Хåե��λĤ�ˤ�ꡢ����Ĺ��Ĵ�����롣*/
+			/* バッファの残りにより、受信長を調整する。*/
 			if (rblen > BUF_SIZE - rlen)
 				rblen = BUF_SIZE - rlen;
 			total += rblen;
@@ -222,7 +222,7 @@ tcp_echo_srv_task(intptr_t exinf)
 					goto err_fin;
 					}
 
-				/* �����Хåե��γ�������λ����ޤ��Ԥġ�*/
+				/* 送信バッファの獲得が完了するまで待つ。*/
 				syscall(wai_sem(SEM_TCP_ECHO_SRV_NBLK_READY));
 
 				if (nblk_slen < 0) {
@@ -256,7 +256,7 @@ tcp_echo_srv_task(intptr_t exinf)
 		if ((error = tcp_cls_cep((int_t)exinf, TMO_NBLK)) != E_WBLK)
 			syslog(LOG_NOTICE, "[TCP ECHO SRV (NBLK) CLS] error: %s", itron_strerror(error));
 
-		/* ��������λ����ޤ��Ԥġ�*/
+		/* 開放が完了するまで待つ。*/
 		syscall(wai_sem(SEM_TCP_ECHO_SRV_NBLK_READY));
 
 		syslog(LOG_NOTICE, "[TCP ECHO SRV (NBLK) FIN] finished, total count: %d, len: %d", count, total);
@@ -282,7 +282,7 @@ tcp_echo_srv_task(intptr_t exinf)
 			continue;
 			}
 
-		/* ��꤫����³�����ޤ��Ԥġ�*/
+		/* 相手から接続されるまで待つ。*/
 		syscall(wai_sem(SEM_TCP_ECHO_SRV_NBLK_READY));
 
 		if (nblk_error == E_OK) {
@@ -302,7 +302,7 @@ tcp_echo_srv_task(intptr_t exinf)
 				break;
 				}
 
-			/* ������λ�ޤ��Ԥġ�*/
+			/* 受信完了まで待つ。*/
 			syscall(wai_sem(SEM_TCP_ECHO_SRV_NBLK_READY));
 
 			if (nblk_rlen < 0) {
@@ -328,7 +328,7 @@ tcp_echo_srv_task(intptr_t exinf)
 					goto err_fin;
 					}
 
-				/* ������λ�ޤ��Ԥġ�*/
+				/* 送信完了まで待つ。*/
 				syscall(wai_sem(SEM_TCP_ECHO_SRV_NBLK_READY));
 
 				if (nblk_slen < 0) {
@@ -352,7 +352,7 @@ tcp_echo_srv_task(intptr_t exinf)
 		if ((error = tcp_cls_cep((int_t)exinf, TMO_NBLK)) != E_WBLK)
 			syslog(LOG_NOTICE, "[TCP ECHO SRV (NBLK) CLS] error: %s", itron_strerror(error));
 
-		/* ��������λ����ޤ��Ԥġ�*/
+		/* 開放が完了するまで待つ。*/
 		syscall(wai_sem(SEM_TCP_ECHO_SRV_NBLK_READY));
 
 		syslog(LOG_NOTICE, "[TCP ECHO SRV (NBLK) FIN] finished, total cnt: %d, len: %d", count, total);

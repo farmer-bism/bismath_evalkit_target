@@ -4,29 +4,29 @@
  *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
- *  �嵭����Ԥϡ��ʲ��� (1)��(4) �ξ�狼��Free Software Foundation 
- *  �ˤ�äƸ�ɽ����Ƥ��� GNU General Public License �� Version 2 �˵�
- *  �Ҥ���Ƥ���������������˸¤ꡤ�ܥ��եȥ��������ܥ��եȥ�����
- *  ����Ѥ�����Τ�ޤࡥ�ʲ�Ʊ���ˤ���ѡ�ʣ�������ѡ������ۡʰʲ���
- *  ���ѤȸƤ֡ˤ��뤳�Ȥ�̵���ǵ������롥
- *  (1) �ܥ��եȥ������򥽡��������ɤη������Ѥ�����ˤϡ��嵭������
- *      ��ɽ�����������Ѿ�浪��Ӳ�����̵�ݾڵ��꤬�����Τޤޤη��ǥ���
- *      ����������˴ޤޤ�Ƥ��뤳�ȡ�
- *  (2) �ܥ��եȥ������򡤥饤�֥������ʤɡ�¾�Υ��եȥ�������ȯ�˻�
- *      �ѤǤ�����Ǻ����ۤ�����ˤϡ������ۤ�ȼ���ɥ�����ȡ�����
- *      �ԥޥ˥奢��ʤɡˤˡ��嵭�����ɽ�����������Ѿ�浪��Ӳ���
- *      ��̵�ݾڵ����Ǻܤ��뤳�ȡ�
- *  (3) �ܥ��եȥ������򡤵�����Ȥ߹���ʤɡ�¾�Υ��եȥ�������ȯ�˻�
- *      �ѤǤ��ʤ����Ǻ����ۤ�����ˤϡ����ξ������������ȡ�
- *    (a) �����ۤ�ȼ���ɥ�����ȡ����Ѽԥޥ˥奢��ʤɡˤˡ��嵭����
- *        �ɽ�����������Ѿ�浪��Ӳ�����̵�ݾڵ����Ǻܤ��뤳�ȡ�
- *  (4) �ܥ��եȥ����������Ѥˤ��ľ��Ū�ޤ��ϴ���Ū�������뤤���ʤ�»
- *      ������⡤�嵭����Ԥ����TOPPERS�ץ��������Ȥ����դ��뤳�ȡ�
+ *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
+ *  によって公表されている GNU General Public License の Version 2 に記
+ *  述されている条件を満たす場合に限り，本ソフトウェア（本ソフトウェア
+ *  を改変したものを含む．以下同じ）を使用・複製・改変・再配布（以下，
+ *  利用と呼ぶ）することを無償で許諾する．
+ *  (1) 本ソフトウェアをソースコードの形で利用する場合には，上記の著作
+ *      権表示，この利用条件および下記の無保証規定が，そのままの形でソー
+ *      スコード中に含まれていること．
+ *  (2) 本ソフトウェアを，ライブラリ形式など，他のソフトウェア開発に使
+ *      用できる形で再配布する場合には，再配布に伴うドキュメント（利用
+ *      者マニュアルなど）に，上記の著作権表示，この利用条件および下記
+ *      の無保証規定を掲載すること．
+ *  (3) 本ソフトウェアを，機器に組み込むなど，他のソフトウェア開発に使
+ *      用できない形で再配布する場合には，次の条件を満たすこと．
+ *    (a) 再配布に伴うドキュメント（利用者マニュアルなど）に，上記の著
+ *        作権表示，この利用条件および下記の無保証規定を掲載すること．
+ *  (4) 本ソフトウェアの利用により直接的または間接的に生じるいかなる損
+ *      害からも，上記著作権者およびTOPPERSプロジェクトを免責すること．
  *
- *  �ܥ��եȥ������ϡ�̵�ݾڤ��󶡤���Ƥ����ΤǤ��롥�嵭����Ԥ�
- *  ���TOPPERS�ץ��������Ȥϡ��ܥ��եȥ������˴ؤ��ơ�����Ŭ�Ѳ�ǽ����
- *  �ޤ�ơ������ʤ��ݾڤ�Ԥ�ʤ����ޤ����ܥ��եȥ����������Ѥˤ��ľ
- *  ��Ū�ޤ��ϴ���Ū�������������ʤ�»���˴ؤ��Ƥ⡤������Ǥ�����ʤ���
+ *  本ソフトウェアは，無保証で提供されているものである．上記著作権者お
+ *  よびTOPPERSプロジェクトは，本ソフトウェアに関して，その適用可能性も
+ *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
+ *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
  *  @(#) $Id: route6.c,v 1.5.4.1 2015/02/05 02:11:26 abe Exp abe $
  */
@@ -102,31 +102,31 @@
 
 #if 0
 	/*
-	 *  �̿��Ӱ�򿩤��Ĥ֤�����ؤ��б��Τ��ᡢ
-	 *  ������ 0 ��ϩ����إå��ν�����Ԥ�ʤ���
+	 *  通信帯域を食いつぶす攻撃への対応のため、
+	 *  タイプ 0 経路制御ヘッダの処理を行わない。
 	 */
 
 /*
- *  ip6_rthdr0 -- ������ 0 ��ϩ����إå������ϴؿ�
+ *  ip6_rthdr0 -- タイプ 0 経路制御ヘッダの入力関数
  */
 
 static ER
 ip6_rthdr0 (T_NET_BUF *input, T_IP6_RT0_HDR *rt0h)
 {
 	if (rt0h->segleft == 0) {
-		/* ��ѥΡ��ɿ��� 0 �ʤΤǡ������Ρ��� */
+		/* 中継ノード数は 0 なので、終点ノード */
 		return E_OK;
 		}
 
-	/* len �� segleft �������������å� */
+	/* len と segleft の正当性チェック */
 #ifdef IP6_CFG_COMPAT_RFC1883
 	if ((rt0h->len % 2) || (rt0h->len > 46)) {
 #else
 	if (rt0h->len % 2) {
 #endif
 		/*
-		 *  len �϶����ǡ�(23 * 2) �ޤǡ�
-		 *  ��������(23 * 2) �����¤� RFC 2462 �Ǻ������Ƥ��롣
+		 *  len は偶数で、(23 * 2) まで。
+		 *  ただし、(23 * 2) の制限は RFC 2462 で削除されている。
 		 */
 		icmp6_error(input, ICMP6_PARAM_PROB,
 		                   ICMP6_PARAMPROB_HEADER,
@@ -134,12 +134,12 @@ ip6_rthdr0 (T_NET_BUF *input, T_IP6_RT0_HDR *rt0h)
 		return E_PAR;
 		}
 
-	/* len ����ѥΡ��ɿ���̷�⤷�Ƥ��ʤ��������å����롣*/
+	/* len が中継ノード数と矛盾していないかチェックする。*/
 	if ((rt0h->len / 2) < rt0h->segleft) {
 		/*
-		 *  len �� 8�����ƥå�ñ�̡�segleft �� 16�����ƥå�ñ�̤ʤΤǡ�
-		 *  len / 2 == segleft �Ȥʤ�Ϥ���
-		 *  len / 2 <  segleft �ϥ��顼��
+		 *  len は 8オクテット単位、segleft は 16オクテット単位なので、
+		 *  len / 2 == segleft となるはず。
+		 *  len / 2 <  segleft はエラー。
 		 */
 		icmp6_error(input, ICMP6_PARAM_PROB,
 		                   ICMP6_PARAMPROB_HEADER,
@@ -148,9 +148,9 @@ ip6_rthdr0 (T_NET_BUF *input, T_IP6_RT0_HDR *rt0h)
 		}
 
 	/*
-	 *  �Ĥ����ѥΡ��ɿ��� 1 �ʾ�Ǥ���С����ΥΡ��ɤϺǽ�Ū��
-	 *  �����Ρ��ɤǤϤʤ����ܼ����Ǥϡ���Ѥ򤷤ʤ��Τǡ�
-	 *  ���ϥǡ��������ν�����λ���롣
+	 *  残りの中継ノード数が 1 以上であれば、このノードは最終的な
+	 *  終点ノードではない。本実装では、中継をしないので、
+	 *  入力データグラムの処理を終了する。
 	 */
 	syscall(rel_net_buf(input));
 	return E_PAR;
@@ -159,7 +159,7 @@ ip6_rthdr0 (T_NET_BUF *input, T_IP6_RT0_HDR *rt0h)
 #endif
 
 /*
- *  route6_input -- ��ϩ����إå������ϴؿ�
+ *  route6_input -- 経路制御ヘッダの入力関数
  */
 
 uint_t
@@ -169,35 +169,35 @@ route6_input (T_NET_BUF **inputp, uint_t *offp, uint_t *nextp)
 	T_IP6_RT_HDR	*rth;
 	uint_t		len, off = *offp;
 
-	/* �ͥåȥ���Хåե��λĤ��Ĺ��������å����롣*/
+	/* ネットワークバッファの残りの長さをチェックする。*/
 	if (input->len - off < sizeof(T_IP6_RT_HDR))
 		goto buf_rel;
 
 	rth = (T_IP6_RT_HDR *)(input->buf + off);
 	len = (rth->len + 1) << 3;
 
-	/* ��ϩ����إå���Ĺ��������å����롣*/
+	/* 経路制御ヘッダの長さをチェックする。*/
 	if (input->len < off + len)
 		goto buf_rel;
 
 #if 0
 	/*
-	 *  �̿��Ӱ�򿩤��Ĥ֤�����ؤ��б��Τ��ᡢ
-	 *  ������ 0 ��ϩ����إå��ν�����Ԥ�ʤ���
+	 *  通信帯域を食いつぶす攻撃への対応のため、
+	 *  タイプ 0 経路制御ヘッダの処理を行わない。
 	 */
 	if (rth->type == IPV6_RTHDR_TYPE_0) {
 		if (ip6_rthdr0(input, (T_IP6_RT0_HDR*)rth) != E_OK) {
 
-			/* ���顼�ξ��ϡ�ip6_rthdr0 �ǥХåե��������Ƥ��롣*/
+			/* エラーの場合は、ip6_rthdr0 でバッファを開放している。*/
 			return IPPROTO_DONE;
 			}
 		}
 	else if (rth->segleft != 0) {
 
 		/*
-		 *  �Ĥ����ѥΡ��ɿ��� 1 �ʾ�Ǥ���С����ΥΡ��ɤϺǽ�Ū��
-		 *  �����Ρ��ɤǤϤʤ����ܼ����Ǥϡ���Ѥ򤷤ʤ��Τǡ�
-		 *  ICMP6 ���顼���������ƽ�����λ���롣
+		 *  残りの中継ノード数が 1 以上であれば、このノードは最終的な
+		 *  終点ノードではない。本実装では、中継をしないので、
+		 *  ICMP6 エラーを返送して処理を終了する。
 		 */
 		icmp6_error(input, ICMP6_PARAM_PROB,
 		                   ICMP6_PARAMPROB_HEADER,
@@ -208,9 +208,9 @@ route6_input (T_NET_BUF **inputp, uint_t *offp, uint_t *nextp)
 	if (rth->segleft != 0) {
 
 		/*
-		 *  �Ĥ����ѥΡ��ɿ��� 1 �ʾ�Ǥ���С����ΥΡ��ɤϺǽ�Ū��
-		 *  �����Ρ��ɤǤϤʤ����ܼ����Ǥϡ���Ѥ򤷤ʤ��Τǡ�
-		 *  ICMP6 ���顼���������ƽ�����λ���롣
+		 *  残りの中継ノード数が 1 以上であれば、このノードは最終的な
+		 *  終点ノードではない。本実装では、中継をしないので、
+		 *  ICMP6 エラーを返送して処理を終了する。
 		 */
 		icmp6_error(input, ICMP6_PARAM_PROB,
 		                   ICMP6_PARAMPROB_HEADER,

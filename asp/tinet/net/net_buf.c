@@ -4,29 +4,29 @@
  *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
- *  �嵭����Ԥϡ��ʲ��� (1)��(4) �ξ�狼��Free Software Foundation 
- *  �ˤ�äƸ�ɽ����Ƥ��� GNU General Public License �� Version 2 �˵�
- *  �Ҥ���Ƥ���������������˸¤ꡤ�ܥ��եȥ��������ܥ��եȥ�����
- *  ����Ѥ�����Τ�ޤࡥ�ʲ�Ʊ���ˤ���ѡ�ʣ�������ѡ������ۡʰʲ���
- *  ���ѤȸƤ֡ˤ��뤳�Ȥ�̵���ǵ������롥
- *  (1) �ܥ��եȥ������򥽡��������ɤη������Ѥ�����ˤϡ��嵭������
- *      ��ɽ�����������Ѿ�浪��Ӳ�����̵�ݾڵ��꤬�����Τޤޤη��ǥ���
- *      ����������˴ޤޤ�Ƥ��뤳�ȡ�
- *  (2) �ܥ��եȥ������򡤥饤�֥������ʤɡ�¾�Υ��եȥ�������ȯ�˻�
- *      �ѤǤ�����Ǻ����ۤ�����ˤϡ������ۤ�ȼ���ɥ�����ȡ�����
- *      �ԥޥ˥奢��ʤɡˤˡ��嵭�����ɽ�����������Ѿ�浪��Ӳ���
- *      ��̵�ݾڵ����Ǻܤ��뤳�ȡ�
- *  (3) �ܥ��եȥ������򡤵�����Ȥ߹���ʤɡ�¾�Υ��եȥ�������ȯ�˻�
- *      �ѤǤ��ʤ����Ǻ����ۤ�����ˤϡ����ξ������������ȡ�
- *    (a) �����ۤ�ȼ���ɥ�����ȡ����Ѽԥޥ˥奢��ʤɡˤˡ��嵭����
- *        �ɽ�����������Ѿ�浪��Ӳ�����̵�ݾڵ����Ǻܤ��뤳�ȡ�
- *  (4) �ܥ��եȥ����������Ѥˤ��ľ��Ū�ޤ��ϴ���Ū�������뤤���ʤ�»
- *      ������⡤�嵭����Ԥ����TOPPERS�ץ��������Ȥ����դ��뤳�ȡ�
+ *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
+ *  によって公表されている GNU General Public License の Version 2 に記
+ *  述されている条件を満たす場合に限り，本ソフトウェア（本ソフトウェア
+ *  を改変したものを含む．以下同じ）を使用・複製・改変・再配布（以下，
+ *  利用と呼ぶ）することを無償で許諾する．
+ *  (1) 本ソフトウェアをソースコードの形で利用する場合には，上記の著作
+ *      権表示，この利用条件および下記の無保証規定が，そのままの形でソー
+ *      スコード中に含まれていること．
+ *  (2) 本ソフトウェアを，ライブラリ形式など，他のソフトウェア開発に使
+ *      用できる形で再配布する場合には，再配布に伴うドキュメント（利用
+ *      者マニュアルなど）に，上記の著作権表示，この利用条件および下記
+ *      の無保証規定を掲載すること．
+ *  (3) 本ソフトウェアを，機器に組み込むなど，他のソフトウェア開発に使
+ *      用できない形で再配布する場合には，次の条件を満たすこと．
+ *    (a) 再配布に伴うドキュメント（利用者マニュアルなど）に，上記の著
+ *        作権表示，この利用条件および下記の無保証規定を掲載すること．
+ *  (4) 本ソフトウェアの利用により直接的または間接的に生じるいかなる損
+ *      害からも，上記著作権者およびTOPPERSプロジェクトを免責すること．
  *
- *  �ܥ��եȥ������ϡ�̵�ݾڤ��󶡤���Ƥ����ΤǤ��롥�嵭����Ԥ�
- *  ���TOPPERS�ץ��������Ȥϡ��ܥ��եȥ������˴ؤ��ơ�����Ŭ�Ѳ�ǽ����
- *  �ޤ�ơ������ʤ��ݾڤ�Ԥ�ʤ����ޤ����ܥ��եȥ����������Ѥˤ��ľ
- *  ��Ū�ޤ��ϴ���Ū�������������ʤ�»���˴ؤ��Ƥ⡤������Ǥ�����ʤ���
+ *  本ソフトウェアは，無保証で提供されているものである．上記著作権者お
+ *  よびTOPPERSプロジェクトは，本ソフトウェアに関して，その適用可能性も
+ *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
+ *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
  *  @(#) $Id: net_buf.c,v 1.5.4.1 2015/02/05 02:09:13 abe Exp abe $
  */
@@ -71,13 +71,13 @@
 #include <netinet/tcp_var.h>
 
 /*
- *  �ؿ�
+ *  関数
  */
 
 extern const char *itron_strerror (ER ercd);
 
 /*
- *  �ѿ�
+ *  変数
  */
 
 static T_NET_BUF_ENTRY net_buf_table[] = {
@@ -259,9 +259,9 @@ static T_NET_BUF_ENTRY net_buf_table[] = {
 #if NET_COUNT_ENABLE & PROTO_FLG_NET_BUF
 
 /*
- *  nbuf_get_tbl -- �ͥåȥ���Хåե�����ɽ��������롣
+ *  nbuf_get_tbl -- ネットワークバッファ管理表を獲得する。
  *
- *    ����: �ͥåȥ�����׾���η�¬��
+ *    注意: ネットワーク統計情報の計測用
  */
 
 const T_NET_BUF_ENTRY *
@@ -271,9 +271,9 @@ nbuf_get_tbl (void)
 	}
 
 /*
- *  nbuf_get_tbl_size -- �ͥåȥ���Хåե���������ȥ����������롣
+ *  nbuf_get_tbl_size -- ネットワークバッファ管理エントリ数を獲得する。
  *
- *    ����: �ͥåȥ�����׾���η�¬��
+ *    注意: ネットワーク統計情報の計測用
  */
 
 uint_t
@@ -285,7 +285,7 @@ nbuf_get_tbl_size (void)
 #endif	/* of #if NET_COUNT_ENABLE & PROTO_FLG_NET_BUF */
 
 /*
- *  tget_net_buf_up -- �礭�ʥ�������������õ�����ơ��ͥåȥ���Хåե���������롣
+ *  tget_net_buf_up -- 大きなサイズの方向に探索して、ネットワークバッファを獲得する。
  */
 
 static ER
@@ -294,7 +294,7 @@ tget_net_buf_up (T_NET_BUF **buf, uint_t minlen, uint_t maxlen, TMO tmout)
 	int_t	ix, req_ix;
 	ER	error = E_OK;
 
-	/* ��Ŭ�ʥ������θ���Ĺ����ס����õ����*/
+	/* 最適なサイズの固定長メモリプールを探す。*/
 	ix = sizeof(net_buf_table) / sizeof(T_NET_BUF_ENTRY);
 	while (ix -- > 0 && minlen > net_buf_table[ix].size)
 		;
@@ -322,7 +322,7 @@ tget_net_buf_up (T_NET_BUF **buf, uint_t minlen, uint_t maxlen, TMO tmout)
 	}
 
 /*
- *  tget_net_buf_down -- �����ʥ�������������õ�����ơ��ͥåȥ���Хåե���������롣
+ *  tget_net_buf_down -- 小さなサイズの方向に探索して、ネットワークバッファを獲得する。
  */
 
 static ER
@@ -331,7 +331,7 @@ tget_net_buf_down (T_NET_BUF **buf, uint_t minlen, uint_t maxlen, TMO tmout)
 	int_t	ix, req_ix;
 	ER	error = E_OK;
 
-	/* ��Ŭ�ʥ������θ���Ĺ����ס����õ����*/
+	/* 最適なサイズの固定長メモリプールを探す。*/
 	ix = sizeof(net_buf_table) / sizeof(T_NET_BUF_ENTRY);
 	while (ix -- > 0 && maxlen > net_buf_table[ix].size)
 		;
@@ -360,26 +360,26 @@ tget_net_buf_down (T_NET_BUF **buf, uint_t minlen, uint_t maxlen, TMO tmout)
 	}
 
 /*
- *  tget_net_buf_ex -- �ͥåȥ���Хåե����������ʳ�ĥ��ǽ�ˡ�
+ *  tget_net_buf_ex -- ネットワークバッファを獲得する（拡張機能）。
  */
 
 ER
 tget_net_buf_ex (T_NET_BUF **buf, uint_t minlen, uint_t maxlen, ATR nbatr, TMO tmout)
 {
-	/* �Ǿ������������祵������Ķ���Ƥ����饨�顼 */
+	/* 最小サイズが最大サイズを超えていたらエラー */
 	if ((nbatr & NBA_SEARCH_DESCENT) != 0 && minlen > maxlen) {
 		syslog(LOG_WARNING, "[NET BUF] E_PAR, minlen=%4d > maxlen=%4d.", minlen, maxlen);
 		return E_PAR;
 		}
 
-	/* �����Ʋ�ǽ�ʺ���Υ�������Ķ���Ƥ����饨�顼 */
+	/* 割当て可能な最大のサイズを超えていたらエラー */
 	if (minlen > net_buf_table[0].size || maxlen > net_buf_table[0].size) {
 		syslog(LOG_WARNING, "[NET BUF] E_PAR, minlen=%4d or maxlen=%4d > %4d",
 		                    minlen, maxlen, net_buf_table[0].size);
 		return E_PAR;
 		}
 
-	/* TCP ��ͽ�󤷤��ͥåȥ���Хåե�����Ф���*/
+	/* TCP で予約したネットワークバッファを取り出す。*/
 	if ((nbatr & NBA_RESERVE_TCP) != 0) {
 		if ((*buf = TCP_PULL_RES_NBUF(nbatr)) != NULL) {
 			return E_OK;
@@ -397,7 +397,7 @@ tget_net_buf_ex (T_NET_BUF **buf, uint_t minlen, uint_t maxlen, ATR nbatr, TMO t
 	}
 
 /*
- *  tget_net_buf -- �ͥåȥ���Хåե����������ʸߴ��ˡ�
+ *  tget_net_buf -- ネットワークバッファを獲得する（互換）。
  */
 
 ER
@@ -407,7 +407,7 @@ tget_net_buf (T_NET_BUF **buf, uint_t len, TMO tmout)
 	}
 
 /*
- * rel_net_buf -- �ͥåȥ���Хåե����ֵѤ��롣
+ * rel_net_buf -- ネットワークバッファを返却する。
  */
 
 ER
@@ -415,18 +415,18 @@ rel_net_buf (T_NET_BUF *buf)
 {
 	ER	error = E_OK;
 
-	/* �ͥåȥ���Хåե��� ID ���������򸡾ڤ��롣*/
+	/* ネットワークバッファの ID の正当性を検証する。*/
 	if ((int_t)buf->idix >= (int_t)(sizeof(net_buf_table) / sizeof(T_NET_BUF_ENTRY))) {
 		syslog(LOG_WARNING, "[NET BUF] E_ID, ID=%d.", buf->idix);
 		error = E_ID;
 		}
 	else {
 
-		/* TCP �ǡ��ͥåȥ���Хåե���ͽ�󤹤롣*/
+		/* TCP で、ネットワークバッファを予約する。*/
 		if (TCP_PUSH_RES_NBUF(buf) == NULL)
 			return E_OK;
 
-		/* �������ס�����֤���*/
+		/* 固定メモリプールに返す。*/
 		if ((error = rel_mpf((ID)net_buf_table[buf->idix].index, buf)) != E_OK)
 			syslog(LOG_WARNING, "[NET BUF] %s, ID=%d.", itron_strerror(error), buf->idix);
 		}
@@ -434,7 +434,7 @@ rel_net_buf (T_NET_BUF *buf)
 	}
 
 /*
- * rus_net_buf -- �ͥåȥ���Хåե�������Ѥ��롣
+ * rus_net_buf -- ネットワークバッファを再利用する。
  */
 
 ER
@@ -455,7 +455,7 @@ rus_net_buf (T_NET_BUF *buf)
 	}
 
 /*
- * net_buf_siz -- �ͥåȥ���Хåե��Υ��������֤���
+ * net_buf_siz -- ネットワークバッファのサイズを返す。
  */
 
 ER_UINT
@@ -470,7 +470,7 @@ net_buf_siz (T_NET_BUF *buf)
 	}
 
 /*
- * net_buf_max_siz -- �ͥåȥ���Хåե��κ��祵�������֤���
+ * net_buf_max_siz -- ネットワークバッファの最大サイズを返す。
  */
 
 uint_t

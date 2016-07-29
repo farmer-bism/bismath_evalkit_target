@@ -4,29 +4,29 @@
  *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
- *  �嵭����Ԥϡ��ʲ��� (1)��(4) �ξ�狼��Free Software Foundation 
- *  �ˤ�äƸ�ɽ����Ƥ��� GNU General Public License �� Version 2 �˵�
- *  �Ҥ���Ƥ���������������˸¤ꡤ�ܥ��եȥ��������ܥ��եȥ�����
- *  ����Ѥ�����Τ�ޤࡥ�ʲ�Ʊ���ˤ���ѡ�ʣ�������ѡ������ۡʰʲ���
- *  ���ѤȸƤ֡ˤ��뤳�Ȥ�̵���ǵ������롥
- *  (1) �ܥ��եȥ������򥽡��������ɤη������Ѥ�����ˤϡ��嵭������
- *      ��ɽ�����������Ѿ�浪��Ӳ�����̵�ݾڵ��꤬�����Τޤޤη��ǥ���
- *      ����������˴ޤޤ�Ƥ��뤳�ȡ�
- *  (2) �ܥ��եȥ������򡤥饤�֥������ʤɡ�¾�Υ��եȥ�������ȯ�˻�
- *      �ѤǤ�����Ǻ����ۤ�����ˤϡ������ۤ�ȼ���ɥ�����ȡ�����
- *      �ԥޥ˥奢��ʤɡˤˡ��嵭�����ɽ�����������Ѿ�浪��Ӳ���
- *      ��̵�ݾڵ����Ǻܤ��뤳�ȡ�
- *  (3) �ܥ��եȥ������򡤵�����Ȥ߹���ʤɡ�¾�Υ��եȥ�������ȯ�˻�
- *      �ѤǤ��ʤ����Ǻ����ۤ�����ˤϡ����ξ������������ȡ�
- *    (a) �����ۤ�ȼ���ɥ�����ȡ����Ѽԥޥ˥奢��ʤɡˤˡ��嵭����
- *        �ɽ�����������Ѿ�浪��Ӳ�����̵�ݾڵ����Ǻܤ��뤳�ȡ�
- *  (4) �ܥ��եȥ����������Ѥˤ��ľ��Ū�ޤ��ϴ���Ū�������뤤���ʤ�»
- *      ������⡤�嵭����Ԥ����TOPPERS�ץ��������Ȥ����դ��뤳�ȡ�
+ *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
+ *  によって公表されている GNU General Public License の Version 2 に記
+ *  述されている条件を満たす場合に限り，本ソフトウェア（本ソフトウェア
+ *  を改変したものを含む．以下同じ）を使用・複製・改変・再配布（以下，
+ *  利用と呼ぶ）することを無償で許諾する．
+ *  (1) 本ソフトウェアをソースコードの形で利用する場合には，上記の著作
+ *      権表示，この利用条件および下記の無保証規定が，そのままの形でソー
+ *      スコード中に含まれていること．
+ *  (2) 本ソフトウェアを，ライブラリ形式など，他のソフトウェア開発に使
+ *      用できる形で再配布する場合には，再配布に伴うドキュメント（利用
+ *      者マニュアルなど）に，上記の著作権表示，この利用条件および下記
+ *      の無保証規定を掲載すること．
+ *  (3) 本ソフトウェアを，機器に組み込むなど，他のソフトウェア開発に使
+ *      用できない形で再配布する場合には，次の条件を満たすこと．
+ *    (a) 再配布に伴うドキュメント（利用者マニュアルなど）に，上記の著
+ *        作権表示，この利用条件および下記の無保証規定を掲載すること．
+ *  (4) 本ソフトウェアの利用により直接的または間接的に生じるいかなる損
+ *      害からも，上記著作権者およびTOPPERSプロジェクトを免責すること．
  *
- *  �ܥ��եȥ������ϡ�̵�ݾڤ��󶡤���Ƥ����ΤǤ��롥�嵭����Ԥ�
- *  ���TOPPERS�ץ��������Ȥϡ��ܥ��եȥ������˴ؤ��ơ�����Ŭ�Ѳ�ǽ����
- *  �ޤ�ơ������ʤ��ݾڤ�Ԥ�ʤ����ޤ����ܥ��եȥ����������Ѥˤ��ľ
- *  ��Ū�ޤ��ϴ���Ū�������������ʤ�»���˴ؤ��Ƥ⡤������Ǥ�����ʤ���
+ *  本ソフトウェアは，無保証で提供されているものである．上記著作権者お
+ *  よびTOPPERSプロジェクトは，本ソフトウェアに関して，その適用可能性も
+ *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
+ *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
  *  @(#) $Id: ppp_fsm.h,v 1.5 2009/12/24 05:42:40 abe Exp $
  */
@@ -80,88 +80,88 @@
 #ifdef SUPPORT_PPP
 
 /*
- *  ���ִ�����¤��
+ *  状態管理構造体
  */
 
 struct t_ppp_fsm_callbacks;
 
 typedef struct t_fsm {
-	struct t_ppp_fsm_callbacks	*callbacks;	/* ������Хå��ؿ�*/
-	uint16_t	proto;		/* �ץ��ȥ���				*/
-	uint8_t		state;		/* FSM �ξ���				*/
-	uint8_t		id;		/* ���ߤ� ID				*/
-	uint8_t		reqid;		/* �׵� ID				*/
-	uint8_t		seen_ack;	/* �׵���Ф������ ACK/NAK/REJ �����	*/
-	int8_t		failures;	/* ��ǧ���� NAK ��			*/
-	int8_t		retrans;	/* Configure-Request �ޤ��ϡ�		*/
-					/* Terminate-Request �κ������		*/
+	struct t_ppp_fsm_callbacks	*callbacks;	/* コールバック関数*/
+	uint16_t	proto;		/* プロトコル				*/
+	uint8_t		state;		/* FSM の状態				*/
+	uint8_t		id;		/* 現在の ID				*/
+	uint8_t		reqid;		/* 要求 ID				*/
+	uint8_t		seen_ack;	/* 要求に対し正常な ACK/NAK/REJ を受信	*/
+	int8_t		failures;	/* 黙認した NAK 数			*/
+	int8_t		retrans;	/* Configure-Request または、		*/
+					/* Terminate-Request の再送回数		*/
 	} T_PPP_FSM;
 
 #define T_PPP_FSM_DEFINED
 
 /*
- *  ������Хå��ؿ���¤��
+ *  コールバック関数構造体
  */
 
 typedef struct t_ppp_fsm_callbacks {
-	void (*resetci)	(T_PPP_FSM *);	/* �����������ꥻ�åȤ��롣	*/
-	int_t  (*cilen)	(T_PPP_FSM *);	/* ���������Ĺ�����֤���		*/
+	void (*resetci)	(T_PPP_FSM *);	/* 自構成情報をリセットする。	*/
+	int_t  (*cilen)	(T_PPP_FSM *);	/* 構成情報の長さを返す。		*/
 	void (*addci)	(T_PPP_FSM *, T_NET_BUF *);
-					/* ������������ɲä��롣		*/
+					/* 自構成情報を追加する。		*/
 	bool_t (*ackci)	(T_PPP_FSM *, T_NET_BUF *);
-					/* ACK ����������Ȥ��ν���	*/
+					/* ACK を受信したときの処理	*/
 	int_t  (*nakci)	(T_PPP_FSM *, T_NET_BUF *);
-					/* NAK ����������Ȥ��ν���	*/
+					/* NAK を受信したときの処理	*/
 	int_t  (*rejci)	(T_PPP_FSM *, T_NET_BUF *);
-					/* REJ ����������Ȥ��ν���	*/
+					/* REJ を受信したときの処理	*/
 	int_t  (*reqci)	(T_PPP_FSM *, T_NET_BUF *, T_NET_BUF *);
-					/* ���ι���������ǧ���롣	*/
-	void (*up)	(T_PPP_FSM *);	/* ��󥯤���³���Ω���롣	*/
-	void (*down)	(T_PPP_FSM *);	/* ��󥯤���³��������롣	*/
-	void (*starting)(T_PPP_FSM *);	/* �����ؤ򳫻Ϥ��롣		*/
-	void (*finished)(T_PPP_FSM *);	/* �����ؤ�λ���롣		*/
-	void (*retrans)	(T_PPP_FSM *);	/* �������롣			*/
-					/* ������ CP ����������Ȥ��ν���	*/
+					/* 相手の構成情報を確認する。	*/
+	void (*up)	(T_PPP_FSM *);	/* リンクの接続を確立する。	*/
+	void (*down)	(T_PPP_FSM *);	/* リンクの接続を解放する。	*/
+	void (*starting)(T_PPP_FSM *);	/* 下位層を開始する。		*/
+	void (*finished)(T_PPP_FSM *);	/* 下位層を終了する。		*/
+	void (*retrans)	(T_PPP_FSM *);	/* 再送する。			*/
+					/* 不明な CP を受信したときの処理	*/
 	bool_t  (*extcode)(T_PPP_FSM *, uint8_t, uint8_t, T_NET_BUF *);
 	} T_PPP_FSM_CALLBACKS;
 
 /*
- *  FSM �ξ���
+ *  FSM の状態
  */
 
-#define PPP_FSM_INITIAL		0	/* ̤��³��̤�����ץ�	*/
-#define PPP_FSM_STARTING	1	/* ̤��³�������ץ�	*/
-#define PPP_FSM_CLOSED		2	/* ��³��  ̤�����ץ�	*/
-#define PPP_FSM_STOPPED		3	/* �����ץ������Ԥ�	*/
-#define PPP_FSM_CLOSING		4	/* �����桢̤�����ץ�	*/
-#define PPP_FSM_STOPPING	5	/* �����桢�����ץ�	*/
-#define PPP_FSM_REQSENT		6	/* Config REQ �����Ѥ�	*/
-#define PPP_FSM_ACKRCVD		7	/* Config ACK �����Ѥ�	*/
-#define PPP_FSM_ACKSENT		8	/* Config ACK �����Ѥ�	*/
-#define PPP_FSM_OPENED		9	/* ��³���̿���ǽ	*/
+#define PPP_FSM_INITIAL		0	/* 未接続、未オープン	*/
+#define PPP_FSM_STARTING	1	/* 未接続、オープン	*/
+#define PPP_FSM_CLOSED		2	/* 接続、  未オープン	*/
+#define PPP_FSM_STOPPED		3	/* オープン、切断待ち	*/
+#define PPP_FSM_CLOSING		4	/* 切断中、未オープン	*/
+#define PPP_FSM_STOPPING	5	/* 切断中、オープン	*/
+#define PPP_FSM_REQSENT		6	/* Config REQ 送信済み	*/
+#define PPP_FSM_ACKRCVD		7	/* Config ACK 受信済み	*/
+#define PPP_FSM_ACKSENT		8	/* Config ACK 送信済み	*/
+#define PPP_FSM_OPENED		9	/* 接続、通信可能	*/
 
 /*
- *  �����ץ����ư��⡼��
+ *  オープン時の動作モード
  */
 
-#define PPP_OPEN_PASSIVE	false	/* ��ư�����ץ�		*/
-#define PPP_OPEN_ACTIVE		true	/* ǽư�����ץ�		*/
+#define PPP_OPEN_PASSIVE	false	/* 受動オープン		*/
+#define PPP_OPEN_ACTIVE		true	/* 能動オープン		*/
 
 /*
- *  �����������ॢ���Ȥδ�����
+ *  再送、タイムアウトの既定値
  */
 
 #define DEF_PPP_TIMEOUT		(3*NET_TIMER_HZ)
-					/* RFC1661 �Ǥ�  3 ��			*/
-#define MAX_PPP_TERMINATES	2	/* Terminate-Requests �κ���������	*/
-					/* RFC1661 �Ǥ�  2 ��			*/
-#define MAX_PPP_CONFIGURES	10	/* Configure-Requests �κ���������	*/
-					/* RFC1661 �Ǥ� 10 ��			*/
-#define MAX_PPP_FAILURES	5	/* Configure-NAK �κ�����ǧ���		*/
-					/* RFC1661 �Ǥ�  5 ��			*/
+					/* RFC1661 では  3 秒			*/
+#define MAX_PPP_TERMINATES	2	/* Terminate-Requests の最大再送回数	*/
+					/* RFC1661 では  2 回			*/
+#define MAX_PPP_CONFIGURES	10	/* Configure-Requests の最大再送回数	*/
+					/* RFC1661 では 10 回			*/
+#define MAX_PPP_FAILURES	5	/* Configure-NAK の最大黙認回数		*/
+					/* RFC1661 では  5 回			*/
 
 /*
- *  �ؿ�
+ *  関数
  */
 
 extern void fsm_init    (T_PPP_FSM *fsm);
@@ -173,7 +173,7 @@ extern void fsm_input	(T_PPP_FSM *fsm, T_NET_BUF *data);
 extern void fsm_protreject(T_PPP_FSM *fsm);
 
 /*
- *  �ѿ�
+ *  変数
  */
 
 extern uint8_t ppp_open_mode;

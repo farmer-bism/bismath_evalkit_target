@@ -5,34 +5,34 @@
  *                   Tomakomai National College of Technology, JAPAN
  *  Copyright (C) 2014-2015 Cores Co., Ltd. Japan
  * 
- *  ��L���쌠�҂́C�ȉ���(1)�`(4)�̏����𖞂����ꍇ�Ɍ���C�{�\�t�g�E�F
- *  �A�i�{�\�t�g�E�F�A�����ς������̂��܂ށD�ȉ������j���g�p�E�����E��
- *  �ρE�Ĕz�z�i�ȉ��C���p�ƌĂԁj���邱�Ƃ𖳏��ŋ�������D
- *  (1) �{�\�t�g�E�F�A���\�[�X�R�[�h�̌`�ŗ��p����ꍇ�ɂ́C��L�̒���
- *      ���\���C���̗��p��������щ��L�̖��ۏ؋K�肪�C���̂܂܂̌`�Ń\�[
- *      �X�R�[�h���Ɋ܂܂�Ă��邱�ƁD
- *  (2) �{�\�t�g�E�F�A���C���C�u�����`���ȂǁC���̃\�t�g�E�F�A�J���Ɏg
- *      �p�ł���`�ōĔz�z����ꍇ�ɂ́C�Ĕz�z�ɔ����h�L�������g�i���p
- *      �҃}�j���A���Ȃǁj�ɁC��L�̒��쌠�\���C���̗��p��������щ��L
- *      �̖��ۏ؋K����f�ڂ��邱�ƁD
- *  (3) �{�\�t�g�E�F�A���C�@��ɑg�ݍ��ނȂǁC���̃\�t�g�E�F�A�J���Ɏg
- *      �p�ł��Ȃ��`�ōĔz�z����ꍇ�ɂ́C���̂����ꂩ�̏����𖞂�����
- *      �ƁD
- *    (a) �Ĕz�z�ɔ����h�L�������g�i���p�҃}�j���A���Ȃǁj�ɁC��L�̒�
- *        �쌠�\���C���̗��p��������щ��L�̖��ۏ؋K����f�ڂ��邱�ƁD
- *    (b) �Ĕz�z�̌`�Ԃ��C�ʂɒ�߂���@�ɂ���āCTOPPERS�v���W�F�N�g��
- *        �񍐂��邱�ƁD
- *  (4) �{�\�t�g�E�F�A�̗��p�ɂ�蒼�ړI�܂��͊ԐړI�ɐ����邢���Ȃ鑹
- *      �Q������C��L���쌠�҂����TOPPERS�v���W�F�N�g��Ɛӂ��邱�ƁD
- *      �܂��C�{�\�t�g�E�F�A�̃��[�U�܂��̓G���h���[�U����̂����Ȃ闝
- *      �R�Ɋ�Â�����������C��L���쌠�҂����TOPPERS�v���W�F�N�g��
- *      �Ɛӂ��邱�ƁD
+ *  上記著作権者は，以下の(1)〜(4)の条件を満たす場合に限り，本ソフトウェ
+ *  ア（本ソフトウェアを改変したものを含む．以下同じ）を使用・複製・改
+ *  変・再配布（以下，利用と呼ぶ）することを無償で許諾する．
+ *  (1) 本ソフトウェアをソースコードの形で利用する場合には，上記の著作
+ *      権表示，この利用条件および下記の無保証規定が，そのままの形でソー
+ *      スコード中に含まれていること．
+ *  (2) 本ソフトウェアを，ライブラリ形式など，他のソフトウェア開発に使
+ *      用できる形で再配布する場合には，再配布に伴うドキュメント（利用
+ *      者マニュアルなど）に，上記の著作権表示，この利用条件および下記
+ *      の無保証規定を掲載すること．
+ *  (3) 本ソフトウェアを，機器に組み込むなど，他のソフトウェア開発に使
+ *      用できない形で再配布する場合には，次のいずれかの条件を満たすこ
+ *      と．
+ *    (a) 再配布に伴うドキュメント（利用者マニュアルなど）に，上記の著
+ *        作権表示，この利用条件および下記の無保証規定を掲載すること．
+ *    (b) 再配布の形態を，別に定める方法によって，TOPPERSプロジェクトに
+ *        報告すること．
+ *  (4) 本ソフトウェアの利用により直接的または間接的に生じるいかなる損
+ *      害からも，上記著作権者およびTOPPERSプロジェクトを免責すること．
+ *      また，本ソフトウェアのユーザまたはエンドユーザからのいかなる理
+ *      由に基づく請求からも，上記著作権者およびTOPPERSプロジェクトを
+ *      免責すること．
  * 
- *  �{�\�t�g�E�F�A�́C���ۏ؂Œ񋟂���Ă�����̂ł���D��L���쌠�҂�
- *  ���TOPPERS�v���W�F�N�g�́C�{�\�t�g�E�F�A�Ɋւ��āC����̎g�p�ړI
- *  �ɑ΂���K�������܂߂āC�����Ȃ�ۏ؂��s��Ȃ��D�܂��C�{�\�t�g�E�F
- *  �A�̗��p�ɂ�蒼�ړI�܂��͊ԐړI�ɐ����������Ȃ鑹�Q�Ɋւ��Ă��C��
- *  �̐ӔC�𕉂�Ȃ��D
+ *  本ソフトウェアは，無保証で提供されているものである．上記著作権者お
+ *  よびTOPPERSプロジェクトは，本ソフトウェアに関して，特定の使用目的
+ *  に対する適合性も含めて，いかなる保証も行わない．また，本ソフトウェ
+ *  アの利用により直接的または間接的に生じたいかなる損害に関しても，そ
+ *  の責任を負わない．
  * 
  *  @(#) $Id$
  */
@@ -108,7 +108,7 @@
 extern uint8_t mac_addr[ETHER_ADDR_LEN];
 
 /*
- *  �l�b�g���[�N�C���^�t�F�[�X�Ɉˑ�����\�t�g�E�F�A��� 
+ *  ネットワークインタフェースに依存するソフトウェア情報 
  */
 
 typedef struct t_rx62n_softc {
@@ -120,10 +120,10 @@ typedef struct t_rx62n_softc {
 } T_RX62N_SOFTC;
 
 /*
- *  �l�b�g���[�N�C���^�t�F�[�X�̃\�t�g�E�F�A���
+ *  ネットワークインタフェースのソフトウェア情報
  */
 
-/* �l�b�g���[�N�C���^�t�F�[�X�Ɉˑ�����\�t�g�E�F�A��� */
+/* ネットワークインタフェースに依存するソフトウェア情報 */
 
 static T_RX62N_SOFTC rx62n_softc;
 
@@ -147,24 +147,24 @@ uint8_t tx_desc_mem[sizeof(T_RX62N_TX_DESC)*NUM_IF_RX62N_TXBUF+ALIGN_OF_DESC];
 #pragma	section
 #endif
 
-/* �l�b�g���[�N�C���^�t�F�[�X�Ɉˑ����Ȃ��\�t�g�E�F�A��� */
+/* ネットワークインタフェースに依存しないソフトウェア情報 */
 
 T_IF_SOFTC if_softc = {
-	{0,},						/* �l�b�g���[�N�C���^�t�F�[�X�̃A�h���X	*/
-	0,							/* ���M�^�C���A�E�g			*/
-	&rx62n_softc,				/* �f�B�o�C�X�ˑ��̃\�t�g�E�F�A���	*/
-	SEM_IF_RX62N_SBUF_READY,	/* ���M�Z�}�t�H			*/
-	SEM_IF_RX62N_RBUF_READY,	/* ��M�Z�}�t�H			*/
+	{0,},						/* ネットワークインタフェースのアドレス	*/
+	0,							/* 送信タイムアウト			*/
+	&rx62n_softc,				/* ディバイス依存のソフトウェア情報	*/
+	SEM_IF_RX62N_SBUF_READY,	/* 送信セマフォ			*/
+	SEM_IF_RX62N_RBUF_READY,	/* 受信セマフォ			*/
 
 #ifdef SUPPORT_INET6
 
-	IF_MADDR_INIT,				/* �}���`�L���X�g�A�h���X���X�g	*/
+	IF_MADDR_INIT,				/* マルチキャストアドレスリスト	*/
 
 #endif	/* of #ifdef SUPPORT_INET6 */
 };
 
 /*
- *  �Ǐ��ϐ�
+ *  局所変数
  */
 
 static void rx62n_stop (T_RX62N_SOFTC *sc);
@@ -177,7 +177,7 @@ static uint32_t ds_crc (uint8_t *addr);
 static void ds_getmcaf (T_IF_SOFTC *ic, uint32_t *mcaf);
 
 /*
- *  ds_crc -- �C�[�T�l�b�g�A�h���X�� CRC ���v�Z����B
+ *  ds_crc -- イーサネットアドレスの CRC を計算する。
  */
 
 #define POLYNOMIAL	0x04c11db6
@@ -205,8 +205,8 @@ ds_crc (uint8_t *addr)
 #undef POLYNOMIAL
 
 /*
- *  ds_getmcaf -- �}���`�L���X�g�A�h���X�̃��X�g����}���`�L���X�g�A�h���X
- *                �t�B���^���v�Z����B
+ *  ds_getmcaf -- マルチキャストアドレスのリストからマルチキャストアドレス
+ *                フィルタを計算する。
  */
 
 static void
@@ -224,7 +224,7 @@ ds_getmcaf (T_IF_SOFTC *ic, uint32_t *mcaf)
 }
 
 /*
- * rx62n_setrcr -- ��M�\�����W�X�^ (RCR) ��ݒ肷��B
+ * rx62n_setrcr -- 受信構成レジスタ (RCR) を設定する。
  */
 
 static void
@@ -234,7 +234,7 @@ rx62n_setrcr (T_IF_SOFTC *ic)
 }
 
 /*
- * rx62n_addmulti -- �}���`�L���X�g�A�h���X��ǉ�����B
+ * rx62n_addmulti -- マルチキャストアドレスを追加する。
  */
 
 ER
@@ -247,22 +247,22 @@ rx62n_addmulti (T_IF_SOFTC *ic)
 #endif	/* of #ifdef SUPPORT_INET6 */
 
 /*
- *  rx62n_stop -- �l�b�g���[�N�C���^�t�F�[�X���~����B
+ *  rx62n_stop -- ネットワークインタフェースを停止する。
  * 
- *    ����: NIC ���荞�݋֎~��ԂŌĂяo�����ƁB
+ *    注意: NIC 割り込み禁止状態で呼び出すこと。
  */
 
 static void
 rx62n_stop (T_RX62N_SOFTC *sc)
 {
-	/* ���샂�[�h�N���A */
+	/* 動作モードクリア */
 	sil_wrw_mem(ETHERC_ECMR, 0x00000000);
 }
 
 /*
- *  rx62n_init_sub -- �l�b�g���[�N�C���^�t�F�[�X�̏�����
+ *  rx62n_init_sub -- ネットワークインタフェースの初期化
  * 
- *    ����: NIC ���荞�݋֎~��ԂŌĂяo�����ƁB
+ *    注意: NIC 割り込み禁止状態で呼び出すこと。
  */
 
 static void
@@ -270,7 +270,7 @@ rx62n_init_sub (T_IF_SOFTC *ic)
 {
 	enum phy_mode_t mode;
 
-	/* MAC���\�t�g�E�G�A�E���Z�b�g */
+	/* MAC部ソフトウエア・リセット */
 	sil_wrw_mem(EDMAC_EDMR, sil_rew_mem(EDMAC_EDMR) | EDMAC_EDMR_SWR_BIT);
 
 	dly_tsk(1);
@@ -281,25 +281,25 @@ rx62n_init_sub (T_IF_SOFTC *ic)
 	sil_wrw_mem(ETHERC_MALR, ((uint32_t)mac_addr[4] << 8 )
 		| (uint32_t)mac_addr[5]);
 
-	/* PHY���Z�b�g */
+	/* PHYリセット */
 	phy_reset(0);
 
 	/* Clear all ETHERC status BFR, PSRTO, LCHNG, MPD, ICD */
 	sil_wrw_mem(ETHERC_ECSR, 0x00000037);
 
-	/* �����N�ω����荞�ݗL�� */
+	/* リンク変化割り込み有効 */
 	sil_wrw_mem(ETHERC_ECSIPR, sil_rew_mem(ETHERC_ECSIPR) | ETHERC_ECSIPR_LCHNGIP);
 
 	/* Clear all ETHERC and EDMAC status bits */
 	sil_wrw_mem(EDMAC_EESR, 0x47FF0F9F);
 
-	/* ����M���荞�ݗL�� */
+	/* 送受信割り込み有効 */
 	sil_wrw_mem(EDMAC_EESIPR, (EDMAC_EESIPR_TCIP | EDMAC_EESIPR_FRIP | EDMAC_EESIPR_RDEIP | EDMAC_EESIPR_FROFIP));
 
-	/* ��M�t���[��������i�o�b�t�@�T�C�Y�j */
+	/* 受信フレーム長上限（バッファサイズ） */
 	sil_wrw_mem(ETHERC_RFLR, IF_RX62N_BUF_PAGE_SIZE);
 
-	/* 96�r�b�g���ԁi�����l�j */
+	/* 96ビット時間（初期値） */
 	sil_wrw_mem(ETHERC_IPGR, 0x00000014);
 
 	/* Set little endian mode */
@@ -318,22 +318,22 @@ rx62n_init_sub (T_IF_SOFTC *ic)
 	/* RR in EDRRR is under driver control */
 	sil_wrw_mem(EDMAC_RMCR, 0x00000001);
 
-	/* PHY�̏����� */
+	/* PHYの初期化 */
 	mode = phy_initialize(0);
 
-	/* ECMR���W�X�^�̐ݒ� */
+	/* ECMRレジスタの設定 */
 	rx62n_set_ecmr(ic, mode);
 
 #if defined(TARGET_KERNEL_ASP)
 
-	/* �^�[�Q�b�g�ˑ����̊����ݏ����� */
+	/* ターゲット依存部の割込み初期化 */
 	rx62n_inter_init();
 
 #endif	/* of #if defined(TARGET_KERNEL_ASP) */
 
-#if defined(TARGET_KERNEL_JSP) && TKERNEL_PRVER >= 0x1042u	/* JSP-1.4.2 �ȍ~ */
+#if defined(TARGET_KERNEL_JSP) && TKERNEL_PRVER >= 0x1042u	/* JSP-1.4.2 以降 */
 
-	/* �^�[�Q�b�g�ˑ����̊����ݏ����� */
+	/* ターゲット依存部の割込み初期化 */
 	rx62n_inter_init();
 
 #endif	/* of #if defined(TARGET_KERNEL_JSP) && TKERNEL_PRVER >= 0x1042u */
@@ -341,7 +341,7 @@ rx62n_init_sub (T_IF_SOFTC *ic)
 
 
 /*
- *  rx62n_set_ecmr -- ECMR���W�X�^�̐ݒ�
+ *  rx62n_set_ecmr -- ECMRレジスタの設定
  */
 
 static void
@@ -356,12 +356,12 @@ rx62n_set_ecmr (T_IF_SOFTC *ic, enum phy_mode_t mode)
 	if ((mode & 0x02) != 0)
 		ecmr |= ETHERC_ECMR_RTM;
 
-	/* ���샂�[�h�ݒ� */
+	/* 動作モード設定 */
 	sil_wrw_mem(ETHERC_ECMR, ecmr);
 }
 
 /*
- * rx62n_reset -- �l�b�g���[�N�C���^�t�F�[�X�����Z�b�g����B
+ * rx62n_reset -- ネットワークインタフェースをリセットする。
  */
 
 void
@@ -371,7 +371,7 @@ rx62n_reset (T_IF_SOFTC *ic)
 	IPM	ipm;
 #endif
 
-	/* NIC ����̊��荞�݂��֎~����B*/
+	/* NIC からの割り込みを禁止する。*/
 #ifdef TARGET_KERNEL_JSP
 	ipm = rx62n_dis_inter();
 #endif
@@ -383,7 +383,7 @@ rx62n_reset (T_IF_SOFTC *ic)
 	rx62n_stop(ic->sc);
 	rx62n_init_sub(ic);
 
-	/* NIC ����̊��荞�݂�������B*/
+	/* NIC からの割り込みを許可する。*/
 #ifdef TARGET_KERNEL_JSP
 	rx62n_ena_inter(ipm);
 #endif
@@ -393,7 +393,7 @@ rx62n_reset (T_IF_SOFTC *ic)
 }
 
 /*
- *  get_rx62n_softc -- �l�b�g���[�N�C���^�t�F�[�X�̃\�t�g�E�F�A����Ԃ��B
+ *  get_rx62n_softc -- ネットワークインタフェースのソフトウェア情報を返す。
  */
 
 T_IF_SOFTC *
@@ -403,7 +403,7 @@ rx62n_get_softc (void)
 }
 
 /*
- * rx62n_watchdog -- �l�b�g���[�N�C���^�t�F�[�X�̃��b�`�h�b�O�^�C���A�E�g
+ * rx62n_watchdog -- ネットワークインタフェースのワッチドッグタイムアウト
  */
 
 void
@@ -413,7 +413,7 @@ rx62n_watchdog (T_IF_SOFTC *ic)
 }
 
 /*
- * rx62n_probe -- �l�b�g���[�N�C���^�t�F�[�X�̌��o
+ * rx62n_probe -- ネットワークインタフェースの検出
  */
 
 void
@@ -422,13 +422,13 @@ rx62n_probe (T_IF_SOFTC *ic)
 	int i;
 #if defined(TARGET_KERNEL_ASP)
 
-	/* �^�[�Q�b�g�ˑ����̃o�X�̏����� */
+	/* ターゲット依存部のバスの初期化 */
 	rx62n_bus_init();
 
 #endif	/* of #if defined(TARGET_KERNEL_ASP) */
-#if defined(TARGET_KERNEL_JSP) && TKERNEL_PRVER >= 0x1042u	/* JSP-1.4.2 �ȍ~ */
+#if defined(TARGET_KERNEL_JSP) && TKERNEL_PRVER >= 0x1042u	/* JSP-1.4.2 以降 */
 
-	/* �^�[�Q�b�g�ˑ����̃o�X�̏����� */
+	/* ターゲット依存部のバスの初期化 */
 	rx62n_bus_init();
 
 #endif	/* of #if defined(TARGET_KERNEL_JSP) && TKERNEL_PRVER >= 0x1042u */
@@ -439,7 +439,7 @@ rx62n_probe (T_IF_SOFTC *ic)
 }
 
 /*
- * rx62n_init -- �l�b�g���[�N�C���^�t�F�[�X�̏�����
+ * rx62n_init -- ネットワークインタフェースの初期化
  */
 
 void
@@ -454,7 +454,7 @@ rx62n_init (T_IF_SOFTC *ic)
 	int i;
     uint32_t buff_offset;
 
-	/* NIC ����̊��荞�݂��֎~����B*/
+	/* NIC からの割り込みを禁止する。*/
 #ifdef TARGET_KERNEL_JSP
 	ipm = rx62n_dis_inter();
 #endif
@@ -500,14 +500,14 @@ rx62n_init (T_IF_SOFTC *ic)
 	rdsc--;
 	rdsc->rdle = 1;
 
-	/* rx62n_init �{�̂��Ăяo���B*/
+	/* rx62n_init 本体を呼び出す。*/
 	rx62n_init_sub(ic);
 
 	if (sil_rew_mem(EDMAC_EDRRR) == 0) {
 		sil_wrw_mem(EDMAC_EDRRR, EDMAC_EDRRR_RR);
 	}
 
-	/* NIC ����̊��荞�݂�������B*/
+	/* NIC からの割り込みを許可する。*/
 #ifdef TARGET_KERNEL_JSP
 	rx62n_ena_inter(ipm);
 #endif
@@ -517,7 +517,7 @@ rx62n_init (T_IF_SOFTC *ic)
 }
 
 /*
- * rx62n_read -- �t���[���̓ǂݍ���
+ * rx62n_read -- フレームの読み込み
  */
 T_NET_BUF *
 rx62n_read (T_IF_SOFTC *ic)
@@ -531,15 +531,15 @@ rx62n_read (T_IF_SOFTC *ic)
 	ER error;
 	enum phy_mode_t mode;
 
-	/* �����N��Ԃɕω����� */
+	/* リンク状態に変化あり */
 	if (sc->link_pre != sc->link_now) {
 		sc->link_pre = sc->link_now;
 
 		if (!phy_is_link(0)) {
-			/* PHY�̏����� */
+			/* PHYの初期化 */
 			mode = phy_initialize(0);
 
-			/* ECMR���W�X�^�̐ݒ� */
+			/* ECMRレジスタの設定 */
 			rx62n_set_ecmr(ic, mode);
 		}
 	}
@@ -562,11 +562,11 @@ rx62n_read (T_IF_SOFTC *ic)
 	 *        14        20        20        n
 	 *   <----------------- len ---------------->
 	 *              ^
-	 *              t_net_buf �� 4 �I�N�e�b�g���E�ɃA���C������Ă���B
+	 *              t_net_buf で 4 オクテット境界にアラインされている。
 	 *
-	 *  tcp_input �� udp_input �ł́A�[���w�b�_�� SDU �Ń`�F�b�N�T����
-	 *  �v�Z���邪�An �� 4 �I�N�e�b�g���E�ɂȂ�悤�� SDU �̌��� 0 ��
-	 *  �p�b�f�B���O����B���̕����l������ net_buf ���l�����Ȃ���΂Ȃ�Ȃ��B
+	 *  tcp_input と udp_input では、擬似ヘッダと SDU でチェックサムを
+	 *  計算するが、n が 4 オクテット境界になるように SDU の後ろに 0 を
+	 *  パッディングする。その分を考慮して net_buf を獲得しなければならない。
 	 */
 	align = ((((len - sizeof(T_IF_HDR)) + 3) >> 2) << 2) + sizeof(T_IF_HDR);
 
@@ -596,7 +596,7 @@ rx62n_read (T_IF_SOFTC *ic)
 }
 
 /*
- * rx62n_start -- ���M�t���[�����o�b�t�@�����O����B
+ * rx62n_start -- 送信フレームをバッファリングする。
  */
 
 void
@@ -647,7 +647,7 @@ rx62n_start (T_IF_SOFTC *ic, T_NET_BUF *output)
 }
 
 /*
- *  RX62N Ethernet Controler ����M���荞�݃n���h��
+ *  RX62N Ethernet Controler 送受信割り込みハンドラ
  */
 
 void
@@ -665,15 +665,15 @@ if_rx62n_trx_handler (void)
 	ecsr = sil_rew_mem(ETHERC_ECSR);
 
 	if (ecsr & ETHERC_ECSR_LCHNG) {
-		/* ETHERC�����荞�ݗv���N���A */
+		/* ETHERC部割り込み要因クリア */
 		sil_wrw_mem(ETHERC_ECSR, ETHERC_ECSR_LCHNG);
 
 		psr = sil_rew_mem(ETHERC_PSR);
 		sc->link_now = (psr & ETHERC_PSR_LMON) != 0;
 
-		/* �����N��Ԃɕω����� */
+		/* リンク状態に変化あり */
 		if (sc->link_pre != sc->link_now) {
-			/* ��M���荞�ݏ��� */
+			/* 受信割り込み処理 */
 			isig_sem(ic->semid_rxb_ready);
 		}
 	}
@@ -681,26 +681,26 @@ if_rx62n_trx_handler (void)
 	eesr = sil_rew_mem(EDMAC_EESR);
 
 	if (eesr & EDMAC_EESR_FR) {
-		/* DMA�����荞�ݗv���N���A */
+		/* DMA部割り込み要因クリア */
 		sil_wrw_mem(EDMAC_EESR, EDMAC_EESR_FR);
 
-		/* ��M���荞�ݏ��� */
+		/* 受信割り込み処理 */
 		isig_sem(ic->semid_rxb_ready);
 	}
 	if (eesr & EDMAC_EESR_TC) {
-		/* DMA�����荞�ݗv���N���A */
+		/* DMA部割り込み要因クリア */
 		sil_wrw_mem(EDMAC_EESR, EDMAC_EESR_TC);
 
-		/* ���M���荞�ݏ��� */
+		/* 送信割り込み処理 */
 		isig_sem(ic->semid_txb_ready);
 	}
 	if (eesr & (EDMAC_EESR_FROF | EDMAC_EESR_RDE)) {
-		/* DMA�����荞�ݗv���N���A */
+		/* DMA部割り込み要因クリア */
 		sil_wrw_mem(EDMAC_EESR, EDMAC_EESR_FROF | EDMAC_EESR_RDE);
 
 		sc->over_flow = true;
 
-		/* ��M���荞�ݏ��� */
+		/* 受信割り込み処理 */
 		isig_sem(ic->semid_rxb_ready);
 	}
 

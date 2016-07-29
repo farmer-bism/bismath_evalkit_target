@@ -4,29 +4,29 @@
  *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
- *  �嵭����Ԥϡ��ʲ��� (1)��(4) �ξ�狼��Free Software Foundation 
- *  �ˤ�äƸ�ɽ����Ƥ��� GNU General Public License �� Version 2 �˵�
- *  �Ҥ���Ƥ���������������˸¤ꡤ�ܥ��եȥ��������ܥ��եȥ�����
- *  ����Ѥ�����Τ�ޤࡥ�ʲ�Ʊ���ˤ���ѡ�ʣ�������ѡ������ۡʰʲ���
- *  ���ѤȸƤ֡ˤ��뤳�Ȥ�̵���ǵ������롥
- *  (1) �ܥ��եȥ������򥽡��������ɤη������Ѥ�����ˤϡ��嵭������
- *      ��ɽ�����������Ѿ�浪��Ӳ�����̵�ݾڵ��꤬�����Τޤޤη��ǥ���
- *      ����������˴ޤޤ�Ƥ��뤳�ȡ�
- *  (2) �ܥ��եȥ������򡤥饤�֥������ʤɡ�¾�Υ��եȥ�������ȯ�˻�
- *      �ѤǤ�����Ǻ����ۤ�����ˤϡ������ۤ�ȼ���ɥ�����ȡ�����
- *      �ԥޥ˥奢��ʤɡˤˡ��嵭�����ɽ�����������Ѿ�浪��Ӳ���
- *      ��̵�ݾڵ����Ǻܤ��뤳�ȡ�
- *  (3) �ܥ��եȥ������򡤵�����Ȥ߹���ʤɡ�¾�Υ��եȥ�������ȯ�˻�
- *      �ѤǤ��ʤ����Ǻ����ۤ�����ˤϡ����ξ������������ȡ�
- *    (a) �����ۤ�ȼ���ɥ�����ȡ����Ѽԥޥ˥奢��ʤɡˤˡ��嵭����
- *        �ɽ�����������Ѿ�浪��Ӳ�����̵�ݾڵ����Ǻܤ��뤳�ȡ�
- *  (4) �ܥ��եȥ����������Ѥˤ��ľ��Ū�ޤ��ϴ���Ū�������뤤���ʤ�»
- *      ������⡤�嵭����Ԥ����TOPPERS�ץ��������Ȥ����դ��뤳�ȡ�
+ *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
+ *  によって公表されている GNU General Public License の Version 2 に記
+ *  述されている条件を満たす場合に限り，本ソフトウェア（本ソフトウェア
+ *  を改変したものを含む．以下同じ）を使用・複製・改変・再配布（以下，
+ *  利用と呼ぶ）することを無償で許諾する．
+ *  (1) 本ソフトウェアをソースコードの形で利用する場合には，上記の著作
+ *      権表示，この利用条件および下記の無保証規定が，そのままの形でソー
+ *      スコード中に含まれていること．
+ *  (2) 本ソフトウェアを，ライブラリ形式など，他のソフトウェア開発に使
+ *      用できる形で再配布する場合には，再配布に伴うドキュメント（利用
+ *      者マニュアルなど）に，上記の著作権表示，この利用条件および下記
+ *      の無保証規定を掲載すること．
+ *  (3) 本ソフトウェアを，機器に組み込むなど，他のソフトウェア開発に使
+ *      用できない形で再配布する場合には，次の条件を満たすこと．
+ *    (a) 再配布に伴うドキュメント（利用者マニュアルなど）に，上記の著
+ *        作権表示，この利用条件および下記の無保証規定を掲載すること．
+ *  (4) 本ソフトウェアの利用により直接的または間接的に生じるいかなる損
+ *      害からも，上記著作権者およびTOPPERSプロジェクトを免責すること．
  *
- *  �ܥ��եȥ������ϡ�̵�ݾڤ��󶡤���Ƥ����ΤǤ��롥�嵭����Ԥ�
- *  ���TOPPERS�ץ��������Ȥϡ��ܥ��եȥ������˴ؤ��ơ�����Ŭ�Ѳ�ǽ����
- *  �ޤ�ơ������ʤ��ݾڤ�Ԥ�ʤ����ޤ����ܥ��եȥ����������Ѥˤ��ľ
- *  ��Ū�ޤ��ϴ���Ū�������������ʤ�»���˴ؤ��Ƥ⡤������Ǥ�����ʤ���
+ *  本ソフトウェアは，無保証で提供されているものである．上記著作権者お
+ *  よびTOPPERSプロジェクトは，本ソフトウェアに関して，その適用可能性も
+ *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
+ *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
  *  @(#) $Id: ip_icmp.h,v 1.5 2009/12/24 05:47:21 abe Exp $
  */
@@ -71,13 +71,13 @@
 #define _IP_ICMP_H_
 
 /*
- *  ICMP �إå��������RFC 792
+ *  ICMP ヘッダの定義、RFC 792
  */
 
 typedef struct t_icmp_hdr {
-	uint8_t		type;		/* ��å������η�	*/
-	uint8_t		code;		/* ���ַ�		*/
-	uint16_t	sum;		/* �����å�����		*/
+	uint8_t		type;		/* メッセージの型	*/
+	uint8_t		code;		/* サブ型		*/
+	uint16_t	sum;		/* チェックサム		*/
 	union {
 		struct id_seq {
 			uint16_t	id;
@@ -101,57 +101,57 @@ typedef struct t_icmp_hdr {
 #define GET_IF_IP4_ICMP4_HDR_SIZE(nbuf)	(IF_HDR_SIZE + GET_IP4_ICMP4_HDR_SIZE(nbuf))
 
 /*
- *  ��å������η�
+ *  メッセージの型
  */
 
-#define ICMP4_ECHO_REPLY	UINT_C(0)	/* ����������		*/
-#define ICMP4_UNREACH		UINT_C(3)	/* ���顼		*/
-#define ICMP4_SOURCE_QUENCH	UINT_C(4)	/* ȯ������		*/
-#define ICMP4_REDIRECT		UINT_C(5)	/* �����ѹ�		*/
-#define ICMP4_ECHO_REQUEST	UINT_C(8)	/* �������׵�		*/
-#define ICMP4_TIME_EXCEEDED	UINT_C(11)	/* ȯ������		*/
-#define ICMP4_PARAMETER		UINT_C(12)	/* �ѥ�᡼���۾�	*/
-#define ICMP4_TIME_REQUEST	UINT_C(13)	/* �����ॹ������׵�	*/
-#define ICMP4_TIME_REPLY	UINT_C(14)	/* �����ॹ����ױ���	*/
-#define ICMP4_MASK_REQUEST	UINT_C(17)	/* ���ɥ쥹�ޥ����׵�	*/
-#define ICMP4_MASK_REPLY	UINT_C(18)	/* ���ɥ쥹�ޥ�������	*/
+#define ICMP4_ECHO_REPLY	UINT_C(0)	/* エコー応答		*/
+#define ICMP4_UNREACH		UINT_C(3)	/* エラー		*/
+#define ICMP4_SOURCE_QUENCH	UINT_C(4)	/* 発信制限		*/
+#define ICMP4_REDIRECT		UINT_C(5)	/* 方向変更		*/
+#define ICMP4_ECHO_REQUEST	UINT_C(8)	/* エコー要求		*/
+#define ICMP4_TIME_EXCEEDED	UINT_C(11)	/* 発信制限		*/
+#define ICMP4_PARAMETER		UINT_C(12)	/* パラメータ異常	*/
+#define ICMP4_TIME_REQUEST	UINT_C(13)	/* タイムスタンプ要求	*/
+#define ICMP4_TIME_REPLY	UINT_C(14)	/* タイムスタンプ応答	*/
+#define ICMP4_MASK_REQUEST	UINT_C(17)	/* アドレスマスク要求	*/
+#define ICMP4_MASK_REPLY	UINT_C(18)	/* アドレスマスク応答	*/
 
 /*
- *  ���ַ�
+ *  サブ型
  */
 
 /* ICMP4_UNREACH (3)	*/
 
-#define ICMP4_UNREACH_NET		UINT_C(0)	/* �ͥåȥ��		*/
-#define ICMP4_UNREACH_HOST		UINT_C(1)	/* �ۥ���		*/
-#define ICMP4_UNREACH_PROTOCOL		UINT_C(2)	/* �ץ��ȥ���		*/
-#define ICMP4_UNREACH_PORT		UINT_C(3)	/* �ݡ���		*/
-#define ICMP4_UNREACH_FLAG		UINT_C(4)	/* ʬ��			*/
-#define ICMP4_UNREACH_SRC_FAIL		UINT_C(5)	/* ��������ϩ		*/
-#define ICMP4_UNREACH_NET_UNKNOWN	UINT_C(6)	/* �ͥåȥ������	*/
-#define ICMP4_UNREACH_HOST_UNKNOWN	UINT_C(7)	/* �ۥ�������		*/
-#define ICMP4_UNREACH_ISOLATED		UINT_C(8)	/* ʬΥ			*/
+#define ICMP4_UNREACH_NET		UINT_C(0)	/* ネットワーク		*/
+#define ICMP4_UNREACH_HOST		UINT_C(1)	/* ホスト		*/
+#define ICMP4_UNREACH_PROTOCOL		UINT_C(2)	/* プロトコル		*/
+#define ICMP4_UNREACH_PORT		UINT_C(3)	/* ポート		*/
+#define ICMP4_UNREACH_FLAG		UINT_C(4)	/* 分割			*/
+#define ICMP4_UNREACH_SRC_FAIL		UINT_C(5)	/* ソース経路		*/
+#define ICMP4_UNREACH_NET_UNKNOWN	UINT_C(6)	/* ネットワーク不明	*/
+#define ICMP4_UNREACH_HOST_UNKNOWN	UINT_C(7)	/* ホスト不明		*/
+#define ICMP4_UNREACH_ISOLATED		UINT_C(8)	/* 分離			*/
 #define ICMP4_UNREACH_NET_PROHIB	UINT_C(9)	/* 			*/
 #define ICMP4_UNREACH_HOST_PROHIB	UINT_C(10)	/* 			*/
-#define ICMP4_UNREACH_TOS_NET		UINT_C(11)	/* �ͥåȥ���ؤ�����TOS*/
-#define ICMP4_UNREACH_TOS_HOST		UINT_C(12)	/* �ۥ��Ȥؤ�����TOS	*/
+#define ICMP4_UNREACH_TOS_NET		UINT_C(11)	/* ネットワークへの不正TOS*/
+#define ICMP4_UNREACH_TOS_HOST		UINT_C(12)	/* ホストへの不正TOS	*/
 #define ICMP4_UNREACH_FILTER_PROHIB	UINT_C(13)	/* 			*/
 #define ICMP4_UNREACH_HOST_PRECEDENCE	UINT_C(14)	/* 			*/
 #define ICMP4_UNREACH_PRECEDENCE_CUTOFF	UINT_C(15)	/* 			*/
 
 /* ICMP4_REDIRECT (5)	*/
 
-#define ICMP4_REDIRECT_NET		UINT_C(0)	/* �ͥåȥ��		*/
-#define ICMP4_REDIRECT_HOST		UINT_C(1)	/* �ۥ���		*/
-#define ICMP4_REDIRECT_PORT_AND_NET	UINT_C(2)	/* �ݡ����ֹ�ȥͥå�	*/
-#define ICMP4_REDIRECT_PORT_AND_HOST	UINT_C(3)	/* �ݡ����ֹ�ȥۥ���	*/
+#define ICMP4_REDIRECT_NET		UINT_C(0)	/* ネットワーク		*/
+#define ICMP4_REDIRECT_HOST		UINT_C(1)	/* ホスト		*/
+#define ICMP4_REDIRECT_PORT_AND_NET	UINT_C(2)	/* ポート番号とネット	*/
+#define ICMP4_REDIRECT_PORT_AND_HOST	UINT_C(3)	/* ポート番号とホスト	*/
 
 /*
- *  �����ѿ�
+ *  全域変数
  */
 
 /*
- *  �ؿ����ߥ�졼�����ޥ���
+ *  関数シミュレーションマクロ
  */
 
 #ifndef ICMP_REPLY_ERROR
@@ -161,7 +161,7 @@ typedef struct t_icmp_hdr {
 #endif	/* of #ifdef ICMP_REPLY_ERROR */
 
 /*
- *  �ؿ�
+ *  関数
  */
 
 extern uint_t icmp_input (T_NET_BUF **inputp, uint_t *offp, uint_t *nextp);
@@ -173,7 +173,7 @@ extern void icmp_error (uint8_t code, T_NET_BUF *data);
 #endif	/* of #ifdef ICMP_REPLY_ERROR */
 
 /*
- *  TINET �ȼ� API
+ *  TINET 独自 API
  */
 
 #ifdef ICMP_CFG_CALLBACK_ECHO_REPLY

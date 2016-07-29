@@ -4,29 +4,29 @@
  *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
- *  �嵭����Ԥϡ��ʲ��� (1)��(4) �ξ�狼��Free Software Foundation 
- *  �ˤ�äƸ�ɽ����Ƥ��� GNU General Public License �� Version 2 �˵�
- *  �Ҥ���Ƥ���������������˸¤ꡤ�ܥ��եȥ��������ܥ��եȥ�����
- *  ����Ѥ�����Τ�ޤࡥ�ʲ�Ʊ���ˤ���ѡ�ʣ�������ѡ������ۡʰʲ���
- *  ���ѤȸƤ֡ˤ��뤳�Ȥ�̵���ǵ������롥
- *  (1) �ܥ��եȥ������򥽡��������ɤη������Ѥ�����ˤϡ��嵭������
- *      ��ɽ�����������Ѿ�浪��Ӳ�����̵�ݾڵ��꤬�����Τޤޤη��ǥ���
- *      ����������˴ޤޤ�Ƥ��뤳�ȡ�
- *  (2) �ܥ��եȥ������򡤥饤�֥������ʤɡ�¾�Υ��եȥ�������ȯ�˻�
- *      �ѤǤ�����Ǻ����ۤ�����ˤϡ������ۤ�ȼ���ɥ�����ȡ�����
- *      �ԥޥ˥奢��ʤɡˤˡ��嵭�����ɽ�����������Ѿ�浪��Ӳ���
- *      ��̵�ݾڵ����Ǻܤ��뤳�ȡ�
- *  (3) �ܥ��եȥ������򡤵�����Ȥ߹���ʤɡ�¾�Υ��եȥ�������ȯ�˻�
- *      �ѤǤ��ʤ����Ǻ����ۤ�����ˤϡ����ξ������������ȡ�
- *    (a) �����ۤ�ȼ���ɥ�����ȡ����Ѽԥޥ˥奢��ʤɡˤˡ��嵭����
- *        �ɽ�����������Ѿ�浪��Ӳ�����̵�ݾڵ����Ǻܤ��뤳�ȡ�
- *  (4) �ܥ��եȥ����������Ѥˤ��ľ��Ū�ޤ��ϴ���Ū�������뤤���ʤ�»
- *      ������⡤�嵭����Ԥ����TOPPERS�ץ��������Ȥ����դ��뤳�ȡ�
+ *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
+ *  によって公表されている GNU General Public License の Version 2 に記
+ *  述されている条件を満たす場合に限り，本ソフトウェア（本ソフトウェア
+ *  を改変したものを含む．以下同じ）を使用・複製・改変・再配布（以下，
+ *  利用と呼ぶ）することを無償で許諾する．
+ *  (1) 本ソフトウェアをソースコードの形で利用する場合には，上記の著作
+ *      権表示，この利用条件および下記の無保証規定が，そのままの形でソー
+ *      スコード中に含まれていること．
+ *  (2) 本ソフトウェアを，ライブラリ形式など，他のソフトウェア開発に使
+ *      用できる形で再配布する場合には，再配布に伴うドキュメント（利用
+ *      者マニュアルなど）に，上記の著作権表示，この利用条件および下記
+ *      の無保証規定を掲載すること．
+ *  (3) 本ソフトウェアを，機器に組み込むなど，他のソフトウェア開発に使
+ *      用できない形で再配布する場合には，次の条件を満たすこと．
+ *    (a) 再配布に伴うドキュメント（利用者マニュアルなど）に，上記の著
+ *        作権表示，この利用条件および下記の無保証規定を掲載すること．
+ *  (4) 本ソフトウェアの利用により直接的または間接的に生じるいかなる損
+ *      害からも，上記著作権者およびTOPPERSプロジェクトを免責すること．
  *
- *  �ܥ��եȥ������ϡ�̵�ݾڤ��󶡤���Ƥ����ΤǤ��롥�嵭����Ԥ�
- *  ���TOPPERS�ץ��������Ȥϡ��ܥ��եȥ������˴ؤ��ơ�����Ŭ�Ѳ�ǽ����
- *  �ޤ�ơ������ʤ��ݾڤ�Ԥ�ʤ����ޤ����ܥ��եȥ����������Ѥˤ��ľ
- *  ��Ū�ޤ��ϴ���Ū�������������ʤ�»���˴ؤ��Ƥ⡤������Ǥ�����ʤ���
+ *  本ソフトウェアは，無保証で提供されているものである．上記著作権者お
+ *  よびTOPPERSプロジェクトは，本ソフトウェアに関して，その適用可能性も
+ *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
+ *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
  *  @(#) $Id: ppp_lcp.c,v 1.5 2009/12/24 05:42:40 abe Exp $
  */
@@ -99,7 +99,7 @@
 #ifdef SUPPORT_PPP
 
 /*
- *  �ؿ�
+ *  関数
  */
 
 static void lcp_init    (void);
@@ -117,60 +117,60 @@ static void echo_lowerdown (void);
 #endif	/* of #if DEF_LCP_LOCAL_CFGS & LCP_CFG_MAGIC */
 
 /*
- * FSM ����ƽФ���륳����Хå��ؿ�
+ * FSM から呼出されるコールバック関数
  */
 
-static void  lcp_resetci(T_PPP_FSM *fsm);	/* �����������ꥻ�åȤ��롣	*/
-static int_t lcp_cilen	(T_PPP_FSM *fsm);	/* ���������Ĺ�����֤���		*/
+static void  lcp_resetci(T_PPP_FSM *fsm);	/* 自構成情報をリセットする。	*/
+static int_t lcp_cilen	(T_PPP_FSM *fsm);	/* 構成情報の長さを返す。		*/
 static void  lcp_addci	(T_PPP_FSM *fsm, T_NET_BUF *output);
-						/* ������������ɲä��롣		*/
+						/* 自構成情報を追加する。		*/
 static bool_t lcp_ackci	(T_PPP_FSM *fsm, T_NET_BUF *input);
-						/* ACK ����������Ȥ��ν���	*/
+						/* ACK を受信したときの処理	*/
 static bool_t lcp_nakci	(T_PPP_FSM *fsm, T_NET_BUF *input);
-						/* NAK ����������Ȥ��ν���	*/
+						/* NAK を受信したときの処理	*/
 static bool_t lcp_rejci	(T_PPP_FSM *fsm, T_NET_BUF *input);
-						/* REJ ����������Ȥ��ν���	*/
+						/* REJ を受信したときの処理	*/
 static int_t lcp_reqci	(T_PPP_FSM *fsm, T_NET_BUF *input, T_NET_BUF *output);
-						/* ���ι���������ǧ���롣	*/
-static void lcp_up	(T_PPP_FSM *fsm);	/* �����³���Ω���롣		*/
-static void lcp_starting(T_PPP_FSM *fsm);	/* �����ؤ򳫻Ϥ��롣		*/
+						/* 相手の構成情報を確認する。	*/
+static void lcp_up	(T_PPP_FSM *fsm);	/* リンク接続を確立する。		*/
+static void lcp_starting(T_PPP_FSM *fsm);	/* 下位層を開始する。		*/
 static bool_t lcp_extcode	(T_PPP_FSM *fsm, uint8_t code, uint8_t id, T_NET_BUF *input);
-						/* ������ CP ����������Ȥ��ν���	*/
+						/* 不明な CP を受信したときの処理	*/
 static void lcp_rprotrej(T_PPP_FSM *fsm, T_NET_BUF *input);
-						/* Proto-REJ ����������Ȥ��ν���	*/
+						/* Proto-REJ を受信したときの処理	*/
 /*
- *  �ѿ�
+ *  変数
  */
 
-static T_LCP_CONFIGS lcp_def_cfg = {		/* ��������ν��������		*/
+static T_LCP_CONFIGS lcp_def_cfg = {		/* 構成情報の初期設定値		*/
 	DEF_REMOTE_ACCM,			/* ACCM				*/
 
 #ifdef LCP_CFG_MAGIC
 
-	ULONG_C(0),				/* �ޥ��å��ֹ�			*/
+	ULONG_C(0),				/* マジック番号			*/
 
 #endif	/* of #ifdef LCP_CFG_MAGIC */
 
 	DEF_PPP_MTU,				/* MRU				*/
-	UINT_C(0),				/* ���ץ����ե饰		*/
+	UINT_C(0),				/* オプションフラグ		*/
 	};
 
-static T_LCP_CONFIGS lcp_local_def_cfg = {	/* ����������ε�����		*/
+static T_LCP_CONFIGS lcp_local_def_cfg = {	/* 自構成情報の規定値		*/
 	DEF_LOCAL_ACCM,				/* ACCM				*/
 
 #ifdef LCP_CFG_MAGIC
 
-	ULONG_C(0),				/* �ޥ��å��ֹ�			*/
+	ULONG_C(0),				/* マジック番号			*/
 
 #endif	/* of #ifdef LCP_CFG_MAGIC */
 
 	DEF_PPP_MTU,				/* MRU				*/
-	DEF_LCP_LOCAL_CFGS,			/* ���ץ����ե饰		*/
+	DEF_LCP_LOCAL_CFGS,			/* オプションフラグ		*/
 	};
 
-static T_LCP_CONFIGS lcp_local_neg_cfg;		/* �ͥ���μ���������		*/
+static T_LCP_CONFIGS lcp_local_neg_cfg;		/* ネゴ中の自構成情報		*/
 
-static T_LCP_CONFIGS lcp_remote_neg_cfg;	/* �ͥ�������ι�������		*/
+static T_LCP_CONFIGS lcp_remote_neg_cfg;	/* ネゴ中の相手の構成情報		*/
 
 #if DEF_LCP_LOCAL_CFGS & LCP_CFG_MAGIC
 
@@ -181,47 +181,47 @@ static uint8_t timer_running = false;
 #endif	/* of #if DEF_LCP_LOCAL_CFGS & LCP_CFG_MAGIC */
 
 /*
- *  �����ѿ�
+ *  全域変数
  */
 
 T_PPP_FSM_CALLBACKS lcp_callbacks = {
-	lcp_resetci,			/* �����������ꥻ�åȤ��롣	*/
-	lcp_cilen,			/* ���������Ĺ�����֤���		*/
-	lcp_addci,			/* ������������ɲä��롣		*/
-	lcp_ackci,			/* ACK ����������Ȥ��ν���	*/
-	lcp_nakci,			/* NAK ����������Ȥ��ν���	*/
-	lcp_rejci,			/* REJ ����������Ȥ��ν���	*/
-	lcp_reqci,			/* ���ι���������ǧ���롣	*/
-	lcp_up,				/* �����³���Ω���롣		*/
-	lcp_down,			/* �����³��������롣		*/
-	lcp_starting,			/* �����ؤ򳫻Ϥ��롣		*/
-	lcp_finished,			/* �����ؤ�λ���롣		*/
-	NULL,				/* �������롣			*/
-	lcp_extcode,			/* ������ CP ����������Ȥ��ν���	*/
+	lcp_resetci,			/* 自構成情報をリセットする。	*/
+	lcp_cilen,			/* 構成情報の長さを返す。		*/
+	lcp_addci,			/* 自構成情報を追加する。		*/
+	lcp_ackci,			/* ACK を受信したときの処理	*/
+	lcp_nakci,			/* NAK を受信したときの処理	*/
+	lcp_rejci,			/* REJ を受信したときの処理	*/
+	lcp_reqci,			/* 相手の構成情報を確認する。	*/
+	lcp_up,				/* リンク接続を確立する。		*/
+	lcp_down,			/* リンク接続を解放する。		*/
+	lcp_starting,			/* 下位層を開始する。		*/
+	lcp_finished,			/* 下位層を終了する。		*/
+	NULL,				/* 再送する。			*/
+	lcp_extcode,			/* 不明な CP を受信したときの処理	*/
 	};
 
 T_PPP_FSM lcp_fsm = {
-	&lcp_callbacks,			/* ������Хå��ؿ�		*/
-	PPP_LCP,			/* �ץ��ȥ���			*/
+	&lcp_callbacks,			/* コールバック関数		*/
+	PPP_LCP,			/* プロトコル			*/
 	};
 
 T_PPP_PROTENT lcp_protent = {
 	PPP_LCP,
-	lcp_init,			/* �����			*/
-	lcp_input,			/* ����				*/
-	lcp_protrej,			/* Proto-REJ ��������		*/
-	NULL,				/* �����ؤ�ư����		*/
-	lcp_lowerdown,			/* �����ؤ���ߤ���		*/
-	NULL,				/* �����ץ󤹤�			*/
-	lcp_close,			/* ������������			*/
-	NULL,				/* �ǡ�������			*/
+	lcp_init,			/* 初期化			*/
+	lcp_input,			/* 入力				*/
+	lcp_protrej,			/* Proto-REJ 受信処理		*/
+	NULL,				/* 下位層を起動する		*/
+	lcp_lowerdown,			/* 下位層を停止する		*/
+	NULL,				/* オープンする			*/
+	lcp_close,			/* クローズする			*/
+	NULL,				/* データ入力			*/
 	};
 
-T_LCP_CONFIGS lcp_local_ack_cfg;	/* ���˵��Ĥ��줿�μ���������	*/
-T_LCP_CONFIGS lcp_remote_ack_cfg;	/* ���˵��Ĥ�����������		*/
+T_LCP_CONFIGS lcp_local_ack_cfg;	/* 相手に許可されたの自構成情報	*/
+T_LCP_CONFIGS lcp_remote_ack_cfg;	/* 相手に許可した構成情報		*/
 
 /*
- *  lcp_init -- LCP �⥸�塼��ν����
+ *  lcp_init -- LCP モジュールの初期化
  */
 
 static void
@@ -231,7 +231,7 @@ lcp_init (void)
 	}
 
 /*
- *  lcp_input -- LCP ����
+ *  lcp_input -- LCP 入力
  */
 
 static void
@@ -243,7 +243,7 @@ lcp_input (T_NET_BUF *input)
 	}
 
 /*
- *  lcp_resetci -- LCP�ι��������ꥻ�åȤ��롣
+ *  lcp_resetci -- LCPの構成情報をリセットする。
  */
 
 static void
@@ -255,11 +255,11 @@ lcp_resetci (T_PPP_FSM *fsm)
 
 #endif	/* of #ifdef LCP_CFG_MAGIC */
 
-	/* ����������ν������ */
+	/* 自構成情報の初期設定 */
 	lcp_local_neg_cfg	= lcp_local_def_cfg;
 	lcp_local_ack_cfg	= lcp_def_cfg;
 
-	/* ���ι�������ν������ */
+	/* 相手の構成情報の初期設定 */
 	lcp_remote_neg_cfg	= lcp_def_cfg;
 	lcp_remote_ack_cfg	= lcp_def_cfg;
 
@@ -275,7 +275,7 @@ lcp_resetci (T_PPP_FSM *fsm)
 	}
 
 /*
- *  lcp_cilen -- ���������Ĺ�����֤���
+ *  lcp_cilen -- 構成情報の長さを返す。
  */
 
 static int_t
@@ -306,14 +306,14 @@ lcp_cilen (T_PPP_FSM *fsm)
 #ifdef LCP_CFG_PCOMP
 
 	if (lcp_local_neg_cfg.options & LCP_CFG_PCOMP)
-		cilen += sizeof(T_PPP_CI_HDR);			/* �ץ��ȥ��밵�� */
+		cilen += sizeof(T_PPP_CI_HDR);			/* プロトコル圧縮 */
 
 #endif	/* of #ifdef LCP_CFG_PCOMP */
 
 #ifdef LCP_CFG_ACCOMP
 
 	if (lcp_local_neg_cfg.options & LCP_CFG_ACCOMP)
-		cilen += sizeof(T_PPP_CI_HDR);			/* ���ɥ쥹�����氵�� */
+		cilen += sizeof(T_PPP_CI_HDR);			/* アドレス・制御圧縮 */
 
 #endif	/* of #ifdef LCP_CFG_ACCOMP */
 
@@ -321,7 +321,7 @@ lcp_cilen (T_PPP_FSM *fsm)
 	}
 
 /*
- *  lcp_addci -- LCP�ι���������ɲä��롣
+ *  lcp_addci -- LCPの構成情報を追加する。
  */
 
 static void
@@ -331,7 +331,7 @@ lcp_addci (T_PPP_FSM *fsm, T_NET_BUF *output)
 
 	buf = output->buf + sizeof(T_PPP_HDR) + sizeof(T_PPP_CP_HDR);
 
-	/* MRU ���ץ������ɲä��롣 */
+	/* MRU オプションを追加する。 */
 	if (lcp_local_neg_cfg.options & LCP_CFG_MRU) {
 		*buf ++ = LCP_CIT_MRU;
 		*buf ++ = sizeof(T_PPP_CI_HDR) + sizeof(uint16_t);
@@ -339,7 +339,7 @@ lcp_addci (T_PPP_FSM *fsm, T_NET_BUF *output)
 		buf += sizeof(uint16_t);
 		}
 
-	/* ACCM ���ץ������ɲä��롣 */
+	/* ACCM オプションを追加する。 */
 	if (lcp_local_neg_cfg.options & LCP_CFG_ACCM) {
 		*buf ++ = LCP_CIT_ACCM;
 		*buf ++ = sizeof(T_PPP_CI_HDR) + sizeof(uint32_t);
@@ -349,7 +349,7 @@ lcp_addci (T_PPP_FSM *fsm, T_NET_BUF *output)
 
 #ifdef LCP_CFG_MAGIC
 
-	/* Magic Number ���ץ������ɲä��롣 */
+	/* Magic Number オプションを追加する。 */
 	if (lcp_local_neg_cfg.options & LCP_CFG_MAGIC) {
 		*buf ++ = LCP_CIT_MAGIC;
 		*buf ++ = sizeof(T_PPP_CI_HDR) + sizeof(uint32_t);
@@ -361,7 +361,7 @@ lcp_addci (T_PPP_FSM *fsm, T_NET_BUF *output)
 
 #ifdef LCP_CFG_PAP
 
-	/* ǧ�ڥץ��ȥ��륪�ץ������ɲä��롣 */
+	/* 認証プロトコルオプションを追加する。 */
 	if (lcp_local_neg_cfg.options & LCP_CFG_PAP) {
 		*buf ++ = LCP_CIT_AUTH;
 		*buf ++ = sizeof(T_PPP_CI_HDR) + sizeof(uint16_t);
@@ -373,7 +373,7 @@ lcp_addci (T_PPP_FSM *fsm, T_NET_BUF *output)
 
 #ifdef LCP_CFG_PCOMP
 
-	/* �ץ��ȥ��밵�̥��ץ������ɲä��롣 */
+	/* プロトコル圧縮オプションを追加する。 */
 	if (lcp_local_neg_cfg.options & LCP_CFG_PCOMP) {
 		*buf ++ = LCP_CIT_PCOMP;
 		*buf ++ = sizeof(T_PPP_CI_HDR);
@@ -383,7 +383,7 @@ lcp_addci (T_PPP_FSM *fsm, T_NET_BUF *output)
 
 #ifdef LCP_CFG_ACCOMP
 
-	/* ���ɥ쥹�����氵�̥��ץ������ɲä��롣 */
+	/* アドレス・制御圧縮オプションを追加する。 */
 	if (lcp_local_neg_cfg.options & LCP_CFG_ACCOMP) {
 		*buf ++ = LCP_CIT_ACCOMP;
 		*buf ++ = sizeof(T_PPP_CI_HDR);
@@ -393,10 +393,10 @@ lcp_addci (T_PPP_FSM *fsm, T_NET_BUF *output)
 	}
 
 /*
- *  lcp_ackci -- ACK ����������Ȥ��ν���
+ *  lcp_ackci -- ACK を受信したときの処理
  *
- *	�����:	TURE  ACK ������
- *		false ACK �ϰ۾�
+ *	戻り値:	TURE  ACK は正常
+ *		false ACK は異常
  */
 
 static bool_t
@@ -409,11 +409,11 @@ lcp_ackci (T_PPP_FSM *fsm, T_NET_BUF *input)
 	len = input->len - (sizeof(T_PPP_HDR) + sizeof(T_PPP_CP_HDR));
 
 	/*
-	 *  �������������������˴����˰��פ��ʤ���Фʤ�ʤ���
-	 *  ���äơ�lcp_addci �Ǻ���������˲��Ϥ��롣
+	 *  構成情報は送信した順に完全に一致しなければならない。
+	 *  従って、lcp_addci で作成した順に解析する。
 	 */
 
-	/* MRU ���ץ�������Ϥ��롣 */
+	/* MRU オプションを解析する。 */
 	if (lcp_local_neg_cfg.options & LCP_CFG_MRU) {
 		if (len < sizeof(T_PPP_CI_HDR) + sizeof(uint16_t)	||
 		    *buf ++ != LCP_CIT_MRU			||
@@ -424,7 +424,7 @@ lcp_ackci (T_PPP_FSM *fsm, T_NET_BUF *input)
 		len -= sizeof(T_PPP_CI_HDR) + sizeof(uint16_t);
 		}
 
-	/* ACCM ���ץ�������Ϥ��롣 */
+	/* ACCM オプションを解析する。 */
 	if (lcp_local_neg_cfg.options & LCP_CFG_ACCM) {
 		if (len < sizeof(T_PPP_CI_HDR) + sizeof(uint32_t)	||
 		    *buf ++ != LCP_CIT_ACCM			||
@@ -437,7 +437,7 @@ lcp_ackci (T_PPP_FSM *fsm, T_NET_BUF *input)
 
 #ifdef LCP_CFG_MAGIC
 
-	/* Magic Number ���ץ�������Ϥ��롣 */
+	/* Magic Number オプションを解析する。 */
 	if (lcp_local_neg_cfg.options & LCP_CFG_MAGIC) {
 		if (len < sizeof(T_PPP_CI_HDR) + sizeof(uint32_t)	||
 		    *buf ++ != LCP_CIT_MAGIC			||
@@ -452,7 +452,7 @@ lcp_ackci (T_PPP_FSM *fsm, T_NET_BUF *input)
 
 #ifdef LCP_CFG_PAP
 
-	/* ǧ�ڥץ��ȥ��륪�ץ�������Ϥ��롣 */
+	/* 認証プロトコルオプションを解析する。 */
 	if (lcp_local_neg_cfg.options & LCP_CFG_PAP) {
 		if (len < sizeof(T_PPP_CI_HDR) + sizeof(uint16_t)	||
 		    *buf ++ != LCP_CIT_AUTH			||
@@ -467,7 +467,7 @@ lcp_ackci (T_PPP_FSM *fsm, T_NET_BUF *input)
 
 #ifdef LCP_CFG_PCOMP
 
-	/* �ץ��ȥ��밵�̥��ץ�������Ϥ��롣 */
+	/* プロトコル圧縮オプションを解析する。 */
 	if (lcp_local_neg_cfg.options & LCP_CFG_PCOMP) {
 		if (len < sizeof(T_PPP_CI_HDR)			||
 		    *buf ++ != LCP_CIT_PCOMP			||
@@ -480,7 +480,7 @@ lcp_ackci (T_PPP_FSM *fsm, T_NET_BUF *input)
 
 #ifdef LCP_CFG_ACCOMP
 
-	/* ���ɥ쥹�����氵�̥��ץ�������Ϥ��롣 */
+	/* アドレス・制御圧縮オプションを解析する。 */
 	if (lcp_local_neg_cfg.options & LCP_CFG_ACCOMP) {
 		if (len < sizeof(T_PPP_CI_HDR)			||
 		    *buf ++ != LCP_CIT_ACCOMP			||
@@ -494,17 +494,17 @@ lcp_ackci (T_PPP_FSM *fsm, T_NET_BUF *input)
 	}
 
 /*
- *  lcp_nakci -- NAK ����������Ȥ��ν���
+ *  lcp_nakci -- NAK を受信したときの処理
  *
- *	�����:	1  NAK ������
- *		0  NAK �ϰ۾�
+ *	戻り値:	1  NAK は正常
+ *		0  NAK は異常
  */
 
 static int_t
 lcp_nakci (T_PPP_FSM *fsm, T_NET_BUF *input)
 {
 	T_LCP_CONFIGS	new_cfg;
-	bool_t		loop = false;	/* �롼�ץХå�������å� */
+	bool_t		loop = false;	/* ループバックをチェック */
 	uint32_t	cilong;
 	uint16_t	cishort, len;
 	uint8_t		*buf, cilen;
@@ -514,7 +514,7 @@ lcp_nakci (T_PPP_FSM *fsm, T_NET_BUF *input)
 
 	new_cfg = lcp_local_neg_cfg;
 
-	/* MRU ���ץ�������Ϥ��롣 */
+	/* MRU オプションを解析する。 */
 	if (len >= sizeof(T_PPP_CI_HDR) + sizeof(uint16_t)		&&
 	    * buf      == LCP_CIT_MRU				&&
 	    *(buf + 1) == sizeof(T_PPP_CI_HDR) + sizeof(uint16_t)	&&
@@ -526,7 +526,7 @@ lcp_nakci (T_PPP_FSM *fsm, T_NET_BUF *input)
 			new_cfg.MRU = cishort;
 		}
 
-	/* ACCM ���ץ�������Ϥ��롣 */
+	/* ACCM オプションを解析する。 */
 	if (len >= sizeof(T_PPP_CI_HDR) + sizeof(uint32_t)		&&
 	    * buf      == LCP_CIT_ACCM				&&
 	    *(buf + 1) == sizeof(T_PPP_CI_HDR) + sizeof(uint32_t)	&&
@@ -539,7 +539,7 @@ lcp_nakci (T_PPP_FSM *fsm, T_NET_BUF *input)
 
 #ifdef LCP_CFG_MAGIC
 
-	/* Magic Number ���ץ�������Ϥ��롣 */
+	/* Magic Number オプションを解析する。 */
 	if (len >= sizeof(T_PPP_CI_HDR) + sizeof(uint32_t)		&&
 	    * buf      == LCP_CIT_MAGIC				&&
 	    *(buf + 1) == sizeof(T_PPP_CI_HDR) + sizeof(uint32_t)	&&
@@ -555,7 +555,7 @@ lcp_nakci (T_PPP_FSM *fsm, T_NET_BUF *input)
 
 #ifdef LCP_CFG_PAP
 
-	/* ǧ�ڥץ��ȥ��륪�ץ�������Ϥ��롣 */
+	/* 認証プロトコルオプションを解析する。 */
 	if (len >= sizeof(T_PPP_CI_HDR) + sizeof(uint16_t)		&&
 	    * buf      == LCP_CIT_AUTH				&&
 	    *(buf + 1) == sizeof(T_PPP_CI_HDR) + sizeof(uint16_t)	&&
@@ -573,7 +573,7 @@ lcp_nakci (T_PPP_FSM *fsm, T_NET_BUF *input)
 
 #ifdef LCP_CFG_PCOMP
 
-	/* �ץ��ȥ��밵�̥��ץ�������Ϥ��롣 */
+	/* プロトコル圧縮オプションを解析する。 */
 	if (len >= sizeof(T_PPP_CI_HDR)				&&
 	    * buf      == LCP_CIT_PCOMP				&&
 	    *(buf + 1) == sizeof(T_PPP_CI_HDR)			&&
@@ -587,7 +587,7 @@ lcp_nakci (T_PPP_FSM *fsm, T_NET_BUF *input)
 
 #ifdef LCP_CFG_ACCOMP
 
-	/* ���ɥ쥹�����氵�̥��ץ�������Ϥ��롣 */
+	/* アドレス・制御圧縮オプションを解析する。 */
 	if (len >= sizeof(T_PPP_CI_HDR)				&&
 	    * buf      == LCP_CIT_ACCOMP			&&
 	    *(buf + 1) == sizeof(T_PPP_CI_HDR)			&&
@@ -599,7 +599,7 @@ lcp_nakci (T_PPP_FSM *fsm, T_NET_BUF *input)
 
 #endif	/* of #ifdef LCP_CFG_ACCOMP */
 
-	/* ���̵�뤹�롣*/
+	/* 後は無視する。*/
 	while (len > sizeof(T_PPP_CI_HDR)) {
 		cilen = *(buf + 1);
 		if (len < cilen)
@@ -608,11 +608,11 @@ lcp_nakci (T_PPP_FSM *fsm, T_NET_BUF *input)
 		len -= cilen;
 		}
 
-	/* Ĺ���� 0 �Ǥʤ���Х��顼 */
+	/* 長さが 0 でなければエラー */
 	if (len != 0)
 		return 0;
 
-	/* ���������ץ��������ꤹ�롣*/
+	/* 新しいオプションを設定する。*/
 	if (fsm->state != PPP_FSM_OPENED) {
 		if (loop) {
 			syslog(LOG_WARNING, "[PPP/LCP] line looped.");
@@ -624,10 +624,10 @@ lcp_nakci (T_PPP_FSM *fsm, T_NET_BUF *input)
 	}
 
 /*
- *  lcp_rejci -- REJ ����������Ȥ��ν���
+ *  lcp_rejci -- REJ を受信したときの処理
  *
- *	�����:	1  REJ ������
- *		0  REJ �ϰ۾�
+ *	戻り値:	1  REJ は正常
+ *		0  REJ は異常
  */
 
 static int_t
@@ -643,7 +643,7 @@ lcp_rejci (T_PPP_FSM *fsm, T_NET_BUF *input)
 
 	new_cfg = lcp_local_neg_cfg;
 
-	/* MRU ���ץ�������Ϥ��롣 */
+	/* MRU オプションを解析する。 */
 	if (len >= sizeof(T_PPP_CI_HDR) + sizeof(uint16_t)		&&
 	    * buf      == LCP_CIT_MRU					&&
 	    *(buf + 1) == sizeof(T_PPP_CI_HDR) + sizeof(uint16_t)	&&
@@ -657,7 +657,7 @@ lcp_rejci (T_PPP_FSM *fsm, T_NET_BUF *input)
 			new_cfg.options &= ~LCP_CFG_MRU;
 		}
 		
-	/* ACCM ���ץ�������Ϥ��롣 */
+	/* ACCM オプションを解析する。 */
 	if (len >= sizeof(T_PPP_CI_HDR) + sizeof(uint32_t)		&&
 	    * buf      == LCP_CIT_ACCM					&&
 	    *(buf + 1) == sizeof(T_PPP_CI_HDR) + sizeof(uint32_t)	&&
@@ -673,7 +673,7 @@ lcp_rejci (T_PPP_FSM *fsm, T_NET_BUF *input)
 
 #ifdef LCP_CFG_MAGIC
 
-	/* Magic Number ���ץ�������Ϥ��롣 */
+	/* Magic Number オプションを解析する。 */
 	if (len >= sizeof(T_PPP_CI_HDR) + sizeof(uint32_t)		&&
 	    * buf      == LCP_CIT_MAGIC					&&
 	    *(buf + 1) == sizeof(T_PPP_CI_HDR) + sizeof(uint32_t)	&&
@@ -691,7 +691,7 @@ lcp_rejci (T_PPP_FSM *fsm, T_NET_BUF *input)
 
 #ifdef LCP_CFG_PAP
 
-	/* ǧ�ڥץ��ȥ��륪�ץ�������Ϥ��롣 */
+	/* 認証プロトコルオプションを解析する。 */
 	if (len >= sizeof(T_PPP_CI_HDR) + sizeof(uint16_t)		&&
 	    * buf      == LCP_CIT_AUTH					&&
 	    *(buf + 1) == sizeof(T_PPP_CI_HDR) + sizeof(uint16_t)	&&
@@ -709,7 +709,7 @@ lcp_rejci (T_PPP_FSM *fsm, T_NET_BUF *input)
 
 #ifdef LCP_CFG_PCOMP
 
-	/* �ץ��ȥ��밵�̥��ץ�������Ϥ��롣 */
+	/* プロトコル圧縮オプションを解析する。 */
 	if (len >= sizeof(T_PPP_CI_HDR)				&&
 	    * buf      == LCP_CIT_PCOMP				&&
 	    *(buf + 1) == sizeof(T_PPP_CI_HDR)			&&
@@ -723,7 +723,7 @@ lcp_rejci (T_PPP_FSM *fsm, T_NET_BUF *input)
 
 #ifdef LCP_CFG_ACCOMP
 
-	/* ���ɥ쥹�����氵�̥��ץ�������Ϥ��롣 */
+	/* アドレス・制御圧縮オプションを解析する。 */
 	if (len >= sizeof(T_PPP_CI_HDR)				&&
 	    * buf      == LCP_CIT_ACCOMP			&&
 	    *(buf + 1) == sizeof(T_PPP_CI_HDR)			&&
@@ -735,11 +735,11 @@ lcp_rejci (T_PPP_FSM *fsm, T_NET_BUF *input)
 
 #endif	/* of #ifdef LCP_CFG_ACCOMP */
 
-	/* Ĺ���� 0 �Ǥʤ���Х��顼 */
+	/* 長さが 0 でなければエラー */
 	if (len != 0)
 		return 0;
 
-	/* ���������ץ��������ꤹ�롣*/
+	/* 新しいオプションを設定する。*/
 	if (fsm->state != PPP_FSM_OPENED)
 		lcp_local_neg_cfg = new_cfg;
 
@@ -747,7 +747,7 @@ lcp_rejci (T_PPP_FSM *fsm, T_NET_BUF *input)
 	}
 
 /*
- *  lcp_reqci -- ���ι����������Ϥ��롣
+ *  lcp_reqci -- 相手の構成情報を解析する。
  */
 
 static int_t
@@ -763,42 +763,42 @@ lcp_reqci (T_PPP_FSM *fsm, T_NET_BUF *input, T_NET_BUF *output)
 	uint8_t		*np, *rp, *ap, *cp, type = 0;
 
 	rp = ap = input->buf + sizeof(T_PPP_HDR) + sizeof(T_PPP_CP_HDR);
-				/* rp: REJ��ap: ACK ���� CI �Υݥ���		*/
-				/* ���ݤ�����ϡ����� input �˾�񤭤��롣	*/
+				/* rp: REJ、ap: ACK する CI のポインタ		*/
+				/* 拒否する場合は、引数 input に上書きする。	*/
 	len   = input->len - (sizeof(T_PPP_HDR) + sizeof(T_PPP_CP_HDR));
 	np    = output->buf + sizeof(T_PPP_HDR) + sizeof(T_PPP_CP_HDR);
-	final = PPP_CONFACK;	/* �ǽ�Ū���������륳���� */
+	final = PPP_CONFACK;	/* 最終的に送信するコード */
 	while (len > 0) {
 		code = PPP_CONFACK;
-		cp   = ap;	/* cp: ���߽������ CI	*/
+		cp   = ap;	/* cp: 現在処理中の CI	*/
 
 		if (len < sizeof(T_PPP_CI_HDR)) {
 
-			/* �Ĥ꤬ CI �إå����û�� */
+			/* 残りが CI ヘッダより短い */
 			syslog(LOG_WARNING, "[PPP/LCP] bad CI len: %d.", len);
-			cilen = len;	/* �ǡ���Ĺ���۾�ξ��ν���	*/
-			len   = 0;	/* �롼�פ���ȴ���롣		*/
+			cilen = len;	/* データ長が異常の場合の処置	*/
+			len   = 0;	/* ループから抜ける。		*/
 			code  = PPP_CONFREJ;
 			goto endswitch;
 			}
 
-		type  = *ap ++;	/* CI �η�		*/
-		cilen = *ap ++;	/* CI ��Ĺ��		*/
+		type  = *ap ++;	/* CI の型		*/
+		cilen = *ap ++;	/* CI の長さ		*/
 		if (len < cilen) {
 
-			/* �Ĥ꤬ CI Ĺ���û�� */
+			/* 残りが CI 長より短い */
 			syslog(LOG_WARNING, "[PPP/LCP] bad CI len: %d.", cilen);
-			cilen = len;	/* �ǡ���Ĺ���۾�ξ��ν���	*/
-			len   = 0;	/* �롼�פ���ȴ���롣		*/
+			cilen = len;	/* データ長が異常の場合の処置	*/
+			len   = 0;	/* ループから抜ける。		*/
 			code  = PPP_CONFREJ;
 			goto endswitch;
 			}
 		len -= sizeof(T_PPP_CI_HDR);
 
-		/* CI �η��ˤ��ʬ�����롣*/
+		/* CI の型により分岐する。*/
 		switch (type) {
 
-		case LCP_CIT_MRU:	/* ��������� (Maximum Receive Unit) */
+		case LCP_CIT_MRU:	/* 最大受信量 (Maximum Receive Unit) */
 
 #if (DEF_LCP_REMOTE_CFGS & LCP_CFG_MRU) == 0
 
@@ -806,13 +806,13 @@ lcp_reqci (T_PPP_FSM *fsm, T_NET_BUF *input, T_NET_BUF *output)
 
 #else	/* of #if (DEF_LCP_REMOTE_CFGS & LCP_CFG_MRU) == 0 */
 
-		 	/* CI Ĺ�����إå� + 2 �����ƥåȤǤʤ���� REJ */
+		 	/* CI 長が、ヘッダ + 2 オクテットでなければ REJ */
 		 	if (cilen != sizeof(T_PPP_CI_HDR) + sizeof(uint16_t))
 				code = PPP_CONFREJ;
 			{
 				cishort = ntohs(*(uint16_t*)ap);
 
-				/* �Ǿ������̤�꾮������� NAK */
+				/* 最小受信量より小さければ NAK */
 				if (cishort < MIN_PPP_MTU) {
 					*np ++ = LCP_CIT_MRU;
 					*np ++ = sizeof(T_PPP_CI_HDR) + sizeof(uint16_t);
@@ -838,7 +838,7 @@ lcp_reqci (T_PPP_FSM *fsm, T_NET_BUF *input, T_NET_BUF *output)
 
 #else	/* of #if (DEF_LCP_REMOTE_CFGS & LCP_CFG_ACCM) == 0 */
 
-		 	/* CI Ĺ�����إå� + 4 �����ƥåȤǤʤ���� REJ */
+		 	/* CI 長が、ヘッダ + 4 オクテットでなければ REJ */
 		 	if (cilen != sizeof(T_PPP_CI_HDR) + sizeof(uint32_t))
 				code = PPP_CONFREJ;
 			else {
@@ -850,7 +850,7 @@ lcp_reqci (T_PPP_FSM *fsm, T_NET_BUF *input, T_NET_BUF *output)
 
 			break;
 
-		case LCP_CIT_MAGIC:	/* �ޥ��å��ֹ� */
+		case LCP_CIT_MAGIC:	/* マジック番号 */
 
 #if (DEF_LCP_REMOTE_CFGS & LCP_CFG_MAGIC) == 0
 
@@ -858,13 +858,13 @@ lcp_reqci (T_PPP_FSM *fsm, T_NET_BUF *input, T_NET_BUF *output)
 
 #else	/* of #if (DEF_LCP_REMOTE_CFGS & LCP_CFG_MAGIC) == 0 */
 
-		 	/* CI Ĺ�����إå� + 4 �����ƥåȤǤʤ���� REJ */
+		 	/* CI 長が、ヘッダ + 4 オクテットでなければ REJ */
 		 	if (cilen != sizeof(T_PPP_CI_HDR) + sizeof(uint32_t))
 				code = PPP_CONFREJ;
 			else {
 				ntoahl(cilong, ap);
 
-				/* �ֹ椬��ʬ��Ʊ���ʤ� NAK */
+				/* 番号が自分と同じなら NAK */
 				if (cilong == lcp_local_neg_cfg.magic) {
 					cilong = net_rand();
 					*np ++ = LCP_CIT_MAGIC;
@@ -884,17 +884,17 @@ lcp_reqci (T_PPP_FSM *fsm, T_NET_BUF *input, T_NET_BUF *output)
 			break;
 
 #ifdef LCP_CFG_PAP
-		/* CHAP �ϼ���ͽ��	*/
+		/* CHAP は実装予定	*/
 
-		case LCP_CIT_AUTH:	/* ǧ�ڥץ��ȥ��� */
+		case LCP_CIT_AUTH:	/* 認証プロトコル */
 
-		 	/* CI Ĺ�����إå� + 2 �����ƥåȤ��û���Ȥ��ϥ��顼 */
+		 	/* CI 長が、ヘッダ + 2 オクテットより短いときはエラー */
 		 	if (cilen < sizeof(T_PPP_CI_HDR) + sizeof(uint16_t))
 				code = PPP_CONFREJ;
 			else {
 				cishort = ntohs(*(uint16_t*)ap);
 
-				/* ǧ�ڥץ��ȥ���ˤ��ʬ������	*/
+				/* 認証プロトコルにより分岐する	*/
 				if (cishort == PPP_PAP &&
 				    cilen   == sizeof(T_PPP_CI_HDR) + sizeof(uint16_t) &&
 			 	    (DEF_LCP_REMOTE_CFGS & LCP_CFG_PAP) != 0)
@@ -908,7 +908,7 @@ lcp_reqci (T_PPP_FSM *fsm, T_NET_BUF *input, T_NET_BUF *output)
 
 #ifdef LCP_CFG_PCOMP
 
-		case LCP_CIT_PCOMP:	/* �ץ��ȥ��������̤ϼ���ͽ�� */
+		case LCP_CIT_PCOMP:	/* プロトコル部圧縮は実装予定 */
 
 #if (DEF_LCP_REMOTE_CFGS & LCP_CFG_PCOMP) == 0
 
@@ -916,7 +916,7 @@ lcp_reqci (T_PPP_FSM *fsm, T_NET_BUF *input, T_NET_BUF *output)
 
 #else	/* of #if (DEF_LCP_REMOTE_CFGS & LCP_CFG_PCOMP) == 0 */
 
-		 	/* CI Ĺ�����إå�Ĺ�����Ǥʤ���� REJ */
+		 	/* CI 長が、ヘッダ長だけでなければ REJ */
 		 	if (cilen != sizeof(T_PPP_CI_HDR))
 				code = PPP_CONFREJ;
 			else
@@ -930,7 +930,7 @@ lcp_reqci (T_PPP_FSM *fsm, T_NET_BUF *input, T_NET_BUF *output)
 
 #ifdef LCP_CFG_ACCOMP
 
-		case LCP_CIT_ACCOMP:	/* ���ɥ쥹������������ */
+		case LCP_CIT_ACCOMP:	/* アドレス・制御部圧縮 */
 
 #if (DEF_LCP_REMOTE_CFGS & LCP_CFG_ACCOMP) == 0
 
@@ -938,7 +938,7 @@ lcp_reqci (T_PPP_FSM *fsm, T_NET_BUF *input, T_NET_BUF *output)
 
 #else	/* of #if (DEF_LCP_REMOTE_CFGS & LCP_CFG_ACCOMP) == 0 */
 
-		 	/* CI Ĺ�����إå�Ĺ�����Ǥʤ���� REJ */
+		 	/* CI 長が、ヘッダ長だけでなければ REJ */
 		 	if (cilen != sizeof(T_PPP_CI_HDR))
 				code = PPP_CONFREJ;
 			else
@@ -957,17 +957,17 @@ lcp_reqci (T_PPP_FSM *fsm, T_NET_BUF *input, T_NET_BUF *output)
 			}
 endswitch:
 		if (code == PPP_CONFNAK) {
-			/* CI �η��� Magic Number �ξ�������ơ�NAK �β����	*/
-			/* ������ MAX_PPP_FAILURES  ��Ķ��������ݤ��롣	*/
+			/* CI の型が Magic Number の場合を除いて、NAK の回数が	*/
+			/* 最大値 MAX_PPP_FAILURES  を超えたら拒否する。	*/
 			if (fsm->failures >= MAX_PPP_FAILURES && type != LCP_CIT_MAGIC)
 				code = PPP_CONFREJ;
 			else if (final != PPP_CONFREJ)
 				final = PPP_CONFNAK;
 			}
 
-		/* ���� CI ����ݤ��� */
+		/* この CI を拒否する */
 		if (code == PPP_CONFREJ) {
-			if (rp < cp)		/* ���˵ͤ�롣*/
+			if (rp < cp)		/* 前に詰める。*/
 				memcpy(rp, cp, cilen);
 			rp += cilen;
 			final = PPP_CONFREJ;
@@ -977,7 +977,7 @@ endswitch:
 		len  -= cilen - sizeof(T_PPP_CI_HDR);
 		}
 
-	/* �ǽ�Ū��Ĺ����Ĵ�����롣*/
+	/* 最終的な長さを調整する。*/
 	switch (final) {
 	case PPP_CONFNAK:
 		output->len = np - output->buf;
@@ -994,16 +994,16 @@ endswitch:
 	}
 
 /*
- *  lcp_up -- �����³���Ω���� (Phase: Establish �˰ܹԤ���)��
+ *  lcp_up -- リンク接続を確立する (Phase: Establish に移行する)。
  */
 
 static void
 lcp_up (T_PPP_FSM *fsm)
 {
-	/* ��������������� */
+	/* 自構成情報の設定 */
 	lcp_local_ack_cfg = lcp_local_neg_cfg;
 
-	/* ���ι������������ */
+	/* 相手の構成情報の設定 */
 	lcp_remote_ack_cfg = lcp_remote_neg_cfg;
 
 #if DEF_LCP_LOCAL_CFGS & LCP_CFG_MAGIC
@@ -1016,7 +1016,7 @@ lcp_up (T_PPP_FSM *fsm)
 	}
 
 /*
- *  lcp_starting -- �����ؤ򳫻Ϥ��롣
+ *  lcp_starting -- 下位層を開始する。
  */
 
 static void
@@ -1026,7 +1026,7 @@ lcp_starting (T_PPP_FSM *fsm)
 	}
 
 /*
- *  lcp_extcode -- LCP ��ͭ�� CP ����������Ȥ��ν���
+ *  lcp_extcode -- LCP 特有の CP を受信したときの処理
  */
 
 static bool_t
@@ -1083,7 +1083,7 @@ lcp_extcode (T_PPP_FSM *fsm, uint8_t code, uint8_t id, T_NET_BUF *input)
 	}
 
 /*
- *  lcp_rprotrej -- Proto-REJ ����������Ȥ��ν���
+ *  lcp_rprotrej -- Proto-REJ を受信したときの処理
  */
 
 static void
@@ -1104,7 +1104,7 @@ lcp_rprotrej (T_PPP_FSM *fsm, T_NET_BUF *input)
 		return;
 		}
 
-	/* ��̥ץ��ȥ������������ */
+	/* 上位プロトコルを初期化する */
 	for (ix = 0; (entry = protocols[ix]) != NULL; ix ++)
 		if (entry->proto == proto) {
 			(*entry->protrej)();
@@ -1115,7 +1115,7 @@ lcp_rprotrej (T_PPP_FSM *fsm, T_NET_BUF *input)
 	}
 
 /*
- *  lcp_protrej -- Proto-REJ ����������Ȥ��ν���
+ *  lcp_protrej -- Proto-REJ を受信したときの処理
  */
 
 static void
@@ -1125,7 +1125,7 @@ lcp_protrej (void)
 	}
 
 /*
- *  lcp_lowerup -- LCP �����ؤ�ư���롣
+ *  lcp_lowerup -- LCP 下位層を起動する。
  */
 
 void
@@ -1135,7 +1135,7 @@ lcp_lowerup (void)
 	}
 
 /*
- *  lcp_lowerdown -- LCP �����ؤ���ߤ��롣
+ *  lcp_lowerdown -- LCP 下位層を停止する。
  */
 
 void
@@ -1145,18 +1145,18 @@ lcp_lowerdown (void)
 	}
 
 /*
- *  lcp_open -- LCP �Υ�����
+ *  lcp_open -- LCP のオープ
  */
 
 void
 lcp_open (uint8_t open_mode)
 {
-	ppp_open_mode = open_mode;	/* �����ץ����ư��⡼��	*/
+	ppp_open_mode = open_mode;	/* オープン時の動作モード	*/
 	fsm_open(&lcp_fsm);
 	}
 
 /*
- *  lcp_close -- LCP �Υ�������
+ *  lcp_close -- LCP のクローズ
  */
 
 void
@@ -1174,7 +1174,7 @@ lcp_close (void)
 	}
 
 /*
- *  lcp_sprotrej -- ǧ���Ǥ��ʤ��ץ��ȥ��뤬�����Ƥ����Ȥ��ν���
+ *  lcp_sprotrej -- 認識できないプロトコルが送られてきたときの処理
  */
 
 void
@@ -1182,7 +1182,7 @@ lcp_sprotrej (T_NET_BUF *input)
 {
 	T_NET_BUF	*output;
 	/*
-	 *  Protocol-Reject �������֤���
+	 *  Protocol-Reject を送り返す。
 	 */
 
 	syscall(get_net_buf(&output, input->len + sizeof(T_PPP_HDR) + sizeof(T_PPP_CP_HDR)));
@@ -1195,7 +1195,7 @@ lcp_sprotrej (T_NET_BUF *input)
 	}
 
 /*
- *  lcp_down -- �����³��������� (Phase: Dead �˰ܹԤ���)��
+ *  lcp_down -- リンク接続を解放する (Phase: Dead に移行する)。
  */
 
 void
@@ -1212,7 +1212,7 @@ lcp_down (T_PPP_FSM *fsm)
 	}
 
 /*
- *  lcp_finished -- �����ؤ�λ���롣
+ *  lcp_finished -- 下位層を終了する。
  */
 
 void
@@ -1224,7 +1224,7 @@ lcp_finished (T_PPP_FSM *fsm)
 #if DEF_LCP_LOCAL_CFGS & LCP_CFG_MAGIC
 
 /*
- *  recv_echo_rep -- ECHOREP ����������Ȥ��ν���
+ *  recv_echo_rep -- ECHOREP を受信したときの処理
  */
 
 static void
@@ -1235,7 +1235,7 @@ recv_echo_rep(T_PPP_FSM *fsm, uint8_t id, T_NET_BUF *input)
 
  	hdr = GET_PPP_CP_HDR(input);
 
- 	/* Magic Number ��Ĺ���ʲ��ʤ饨�顼 */
+ 	/* Magic Number の長さ以下ならエラー */
  	if (hdr->len < sizeof(T_PPP_CP_HDR) + sizeof(uint32_t)) {
 		syslog(LOG_WARNING, "[PPP/LCP] bad ECHOREP len: %d.", hdr->len);
 		return;
@@ -1243,7 +1243,7 @@ recv_echo_rep(T_PPP_FSM *fsm, uint8_t id, T_NET_BUF *input)
 
 	ntoahl(magic, input->buf + sizeof(T_PPP_HDR) + sizeof(T_PPP_CP_HDR));
 
- 	/* �������� Magic Number ����ʬ��Ʊ���ʤ�롼�פ��Ƥ��롣*/
+ 	/* 受信した Magic Number が自分と同じならループしている。*/
 	if ((lcp_local_ack_cfg.options & LCP_CFG_MAGIC) && magic == lcp_local_ack_cfg.magic) {
 		syslog(LOG_WARNING, "[PPP/LCP] ECHOREP looped.");
 		return;
@@ -1253,7 +1253,7 @@ recv_echo_rep(T_PPP_FSM *fsm, uint8_t id, T_NET_BUF *input)
 	}
 
 /*
- *  echo_timeout -- ECHO REQ/REP �Υ����ॢ���Ƚ���
+ *  echo_timeout -- ECHO REQ/REP のタイムアウト処理
  */
 
 static void
@@ -1266,7 +1266,7 @@ echo_timeout (void *arg)
 	}
 
 /*
- *  send_echo_req -- ECHO REQ ���������롣
+ *  send_echo_req -- ECHO REQ を送信する。
  */
 
 static void
@@ -1286,21 +1286,21 @@ send_echo_req (T_PPP_FSM *fsm)
 
 	if (fsm->state == PPP_FSM_OPENED) {
 
-		/* ECHOREQ ���������롣*/
+		/* ECHOREQ を送信する。*/
 		syscall(get_net_buf(&input, sizeof(T_PPP_HDR) + sizeof(T_PPP_CP_HDR) + sizeof(uint32_t)));
 		*(uint32_t*)(input->buf +  sizeof(T_PPP_HDR) + sizeof(T_PPP_CP_HDR)) = lcp_local_ack_cfg.magic;
 		IF_SET_PROTO(input, PPP_LCP);
 		ppp_cp_output(PPP_ECHOREQ, echo_number ++, input);
 		echo_pending ++;
 
-		/* �����ޡ��򥹥����Ȥ��롣*/
+		/* タイマーをスタートする。*/
 		timeout((FP)echo_timeout, fsm, LCP_ECHO_INTERVAL);
 		timer_running = true;
 		}
 	}
 
 /*
- *  echo_lowerup -- ECHO REQ/REP �ε�ư
+ *  echo_lowerup -- ECHO REQ/REP の起動
  */
 
 static void
@@ -1314,7 +1314,7 @@ echo_lowerup (void)
 	}
 
 /*
- *  echo_lowerdown -- ECHO REQ/REP �����
+ *  echo_lowerdown -- ECHO REQ/REP の停止
  */
 
 static void

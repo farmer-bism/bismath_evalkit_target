@@ -1,5 +1,5 @@
 /*
- *		cfg1_out.cのリンクに必要なスタブの定義
+ *		cfg1_out.c縺ｮ繝ｪ繝ｳ繧ｯ縺ｫ蠢�隕√↑繧ｹ繧ｿ繝悶�ｮ螳夂ｾｩ
  */
 
 #include "rx63n_gcc/prc_cfg1_out.h"

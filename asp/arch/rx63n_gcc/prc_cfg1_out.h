@@ -1,5 +1,5 @@
 /*
- *		cfg1_out.c�̃����N�ɕK�v�ȃX�^�u�̒�`
+ *		cfg1_out.cのリンクに必要なスタブの定義
  */
 
 void sta_ker( void )
@@ -23,7 +23,7 @@ STK_T *const	_kernel_istk = NULL;
 uint32_t *const _vvector_table = 0x00;
 
 /* 
- *  �I�t�Z�b�g�t�@�C���𐶐����邽�߂̒�` 
+ *  オフセットファイルを生成するための定義 
  */ 
 const uint8_t   MAGIC_1 = 0x12; 
 const uint16_t  MAGIC_2 = 0x1234; 

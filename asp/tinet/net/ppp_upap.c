@@ -4,29 +4,29 @@
  *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
- *  �嵭����Ԥϡ��ʲ��� (1)��(4) �ξ�狼��Free Software Foundation 
- *  �ˤ�äƸ�ɽ����Ƥ��� GNU General Public License �� Version 2 �˵�
- *  �Ҥ���Ƥ���������������˸¤ꡤ�ܥ��եȥ��������ܥ��եȥ�����
- *  ����Ѥ�����Τ�ޤࡥ�ʲ�Ʊ���ˤ���ѡ�ʣ�������ѡ������ۡʰʲ���
- *  ���ѤȸƤ֡ˤ��뤳�Ȥ�̵���ǵ������롥
- *  (1) �ܥ��եȥ������򥽡��������ɤη������Ѥ�����ˤϡ��嵭������
- *      ��ɽ�����������Ѿ�浪��Ӳ�����̵�ݾڵ��꤬�����Τޤޤη��ǥ���
- *      ����������˴ޤޤ�Ƥ��뤳�ȡ�
- *  (2) �ܥ��եȥ������򡤥饤�֥������ʤɡ�¾�Υ��եȥ�������ȯ�˻�
- *      �ѤǤ�����Ǻ����ۤ�����ˤϡ������ۤ�ȼ���ɥ�����ȡ�����
- *      �ԥޥ˥奢��ʤɡˤˡ��嵭�����ɽ�����������Ѿ�浪��Ӳ���
- *      ��̵�ݾڵ����Ǻܤ��뤳�ȡ�
- *  (3) �ܥ��եȥ������򡤵�����Ȥ߹���ʤɡ�¾�Υ��եȥ�������ȯ�˻�
- *      �ѤǤ��ʤ����Ǻ����ۤ�����ˤϡ����ξ������������ȡ�
- *    (a) �����ۤ�ȼ���ɥ�����ȡ����Ѽԥޥ˥奢��ʤɡˤˡ��嵭����
- *        �ɽ�����������Ѿ�浪��Ӳ�����̵�ݾڵ����Ǻܤ��뤳�ȡ�
- *  (4) �ܥ��եȥ����������Ѥˤ��ľ��Ū�ޤ��ϴ���Ū�������뤤���ʤ�»
- *      ������⡤�嵭����Ԥ����TOPPERS�ץ��������Ȥ����դ��뤳�ȡ�
+ *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
+ *  によって公表されている GNU General Public License の Version 2 に記
+ *  述されている条件を満たす場合に限り，本ソフトウェア（本ソフトウェア
+ *  を改変したものを含む．以下同じ）を使用・複製・改変・再配布（以下，
+ *  利用と呼ぶ）することを無償で許諾する．
+ *  (1) 本ソフトウェアをソースコードの形で利用する場合には，上記の著作
+ *      権表示，この利用条件および下記の無保証規定が，そのままの形でソー
+ *      スコード中に含まれていること．
+ *  (2) 本ソフトウェアを，ライブラリ形式など，他のソフトウェア開発に使
+ *      用できる形で再配布する場合には，再配布に伴うドキュメント（利用
+ *      者マニュアルなど）に，上記の著作権表示，この利用条件および下記
+ *      の無保証規定を掲載すること．
+ *  (3) 本ソフトウェアを，機器に組み込むなど，他のソフトウェア開発に使
+ *      用できない形で再配布する場合には，次の条件を満たすこと．
+ *    (a) 再配布に伴うドキュメント（利用者マニュアルなど）に，上記の著
+ *        作権表示，この利用条件および下記の無保証規定を掲載すること．
+ *  (4) 本ソフトウェアの利用により直接的または間接的に生じるいかなる損
+ *      害からも，上記著作権者およびTOPPERSプロジェクトを免責すること．
  *
- *  �ܥ��եȥ������ϡ�̵�ݾڤ��󶡤���Ƥ����ΤǤ��롥�嵭����Ԥ�
- *  ���TOPPERS�ץ��������Ȥϡ��ܥ��եȥ������˴ؤ��ơ�����Ŭ�Ѳ�ǽ����
- *  �ޤ�ơ������ʤ��ݾڤ�Ԥ�ʤ����ޤ����ܥ��եȥ����������Ѥˤ��ľ
- *  ��Ū�ޤ��ϴ���Ū�������������ʤ�»���˴ؤ��Ƥ⡤������Ǥ�����ʤ���
+ *  本ソフトウェアは，無保証で提供されているものである．上記著作権者お
+ *  よびTOPPERSプロジェクトは，本ソフトウェアに関して，その適用可能性も
+ *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
+ *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
  *  @(#) $Id: ppp_upap.c,v 1.5 2009/12/24 05:42:40 abe Exp $
  */
@@ -100,7 +100,7 @@
 #ifdef SUPPORT_PPP
 
 /*
- *  �ؿ�
+ *  関数
  */
 
 static void upap_init (void);
@@ -138,23 +138,23 @@ static void upap_reqtimeout(void *arg);
 #endif	/* of #ifdef AUTH_CFG_SERVER */
 
 /*
- *  �����ѿ�
+ *  全域変数
  */
 
 T_PPP_PROTENT pap_protent = {
 	PPP_PAP,
-	upap_init,			/* �����			*/
-	upap_input,			/* ����				*/
-	upap_protrej,			/* Proto-REJ ��������		*/
-	upap_lowerup,			/* �����ؤ�ư����		*/
-	upap_lowerdown,			/* �����ؤ���ߤ���		*/
-	NULL,				/* �����ץ󤹤�			*/
-	NULL,				/* ������������			*/
-	NULL,				/* �ǡ�������			*/
+	upap_init,			/* 初期化			*/
+	upap_input,			/* 入力				*/
+	upap_protrej,			/* Proto-REJ 受信処理		*/
+	upap_lowerup,			/* 下位層を起動する		*/
+	upap_lowerdown,			/* 下位層を停止する		*/
+	NULL,				/* オープンする			*/
+	NULL,				/* クローズする			*/
+	NULL,				/* データ入力			*/
 	};
 
 /*
- *  �ѿ�
+ *  変数
  */
 
 #ifdef AUTH_CFG_CLIENT
@@ -177,7 +177,7 @@ static uint8_t server_state;
 #endif	/* of #ifdef AUTH_CFG_SERVER */
 
 /*
- *  upap_init -- UPAP �⥸�塼��ν����
+ *  upap_init -- UPAP モジュールの初期化
  */
 
 static void
@@ -198,7 +198,7 @@ upap_init (void)
 	}
 
 /*
- *  upap_input -- UPAP ����
+ *  upap_input -- UPAP 入力
  */
 
 static void
@@ -209,7 +209,7 @@ upap_input (T_NET_BUF *input)
 	NET_COUNT_PPP_PAP(net_count_ppp_upap_in_octets,  input->len);
 	NET_COUNT_PPP_PAP(net_count_ppp_upap_in_packets, 1);
 
- 	/* PPP ������� (CP) �إå����û����Х��顼 */
+ 	/* PPP リンク制御 (CP) ヘッダより短ければエラー */
  	if (input->len < (sizeof(T_PPP_HDR) + sizeof(T_PPP_CP_HDR))) {
  		syslog(LOG_WARNING, "[PPP/PAP] short hdr: %d.", input->len);
  		return;
@@ -217,14 +217,14 @@ upap_input (T_NET_BUF *input)
 
  	hdr = GET_PPP_CP_HDR(input);
 
- 	/* �إå���Ĺ�������ϥǡ��������������פ��ʤ���Х��顼 */
+ 	/* ヘッダの長さと入力データサイズが一致しなければエラー */
  	if (hdr->len != input->len - sizeof(T_PPP_HDR)) {
  		syslog(LOG_WARNING, "[PPP/PAP] bad len: %d.", hdr->len);
  		return;
  		}
  
  	/*
- 	 *  ���楳���ɤˤ��Ŭ���ʴؿ���ƽФ�
+ 	 *  制御コードにより適当な関数を呼出す
  	 */
 
 	switch (hdr->code) {
@@ -253,7 +253,7 @@ upap_input (T_NET_BUF *input)
 	}
 
 /*
- *  upap_protrej -- Proto-REJ ����������Ȥ��ν���
+ *  upap_protrej -- Proto-REJ を受信したときの処理
  */
 
 static void
@@ -279,7 +279,7 @@ upap_protrej (void)
 	}
 
 /*
- *  upap_lowerup -- UPAP �����ؤ�ư���롣
+ *  upap_lowerup -- UPAP 下位層を起動する。
  */
 
 static void
@@ -313,7 +313,7 @@ upap_lowerup (void)
 	}
 
 /*
- *  upap_lowerdown -- UPAP �����ؤ���ߤ��롣
+ *  upap_lowerdown -- UPAP 下位層を停止する。
  */
 
 static void
@@ -348,7 +348,7 @@ upap_lowerdown (void)
 #ifdef AUTH_CFG_CLIENT
 
 /*
- *  ���饤����ȥ⡼�ɤ� PAP ǧ�ڤ򳫻Ϥ��롣
+ *  クライアントモードで PAP 認証を開始する。
  */
 
 void
@@ -369,7 +369,7 @@ upap_auth_client (void)
 	}
 
 /*
- *  upap_rauthack -- ǧ�� ACK ����
+ *  upap_rauthack -- 認証 ACK 処理
  */
 
 static void
@@ -382,7 +382,7 @@ upap_rauthack (void)
 	}
 
 /*
- *  upap_rauthnak -- ǧ�� NAK ����
+ *  upap_rauthnak -- 認証 NAK 処理
  */
 
 static void
@@ -393,7 +393,7 @@ upap_rauthnak (void)
 	}
 
 /*
- *  upap_sauthreq -- ǧ���׵����
+ *  upap_sauthreq -- 認証要求処理
  */
 
 static void
@@ -407,15 +407,15 @@ upap_sauthreq (void)
 
 	data = output->buf + sizeof(T_PPP_HDR) + sizeof(T_PPP_CP_HDR);
 
-	/* �桼��̾�����ꤹ�롣*/
+	/* ユーザ名を設定する。*/
 	*data = sizeof(AUTH_REMOTE_USER) - 1;
 	strcpy(data + 1, AUTH_REMOTE_USER);
 
-	/* �ѥ���ɤ����ꤹ�롣*/
+	/* パスワードを設定する。*/
 	*(data + sizeof(AUTH_REMOTE_USER)) = sizeof(AUTH_REMOTE_PASSWD) - 1;
 	strcpy(data + sizeof(AUTH_REMOTE_USER) + 1, AUTH_REMOTE_PASSWD);
 
-	/* �������� */
+	/* 送信する */
 	IF_SET_PROTO(output, PPP_PAP);
 	ppp_cp_output(PAP_AUTHREQ, ++ client_cp_id, output);
 
@@ -432,7 +432,7 @@ upap_sauthreq (void)
 #if defined(DEF_PAP_TIMEOUT)
 
 /*
- *  upap_timeout -- �����ॢ���Ƚ���
+ *  upap_timeout -- タイムアウト処理
  */
 
 static void
@@ -457,7 +457,7 @@ upap_timeout (void *arg)
 #ifdef AUTH_CFG_SERVER
 
 /*
- *  �����Х⡼�ɤ� PAP ǧ�ڤ򳫻Ϥ��롣
+ *  サーバモードで PAP 認証を開始する。
  */
 
 void
@@ -478,7 +478,7 @@ upap_auth_server (void)
 	}
 
 /*
- *  upap_rauthreq -- ǧ���׵��������
+ *  upap_rauthreq -- 認証要求応答処理
  */
 
 static void
@@ -491,7 +491,7 @@ upap_rauthreq (T_NET_BUF *input)
 		return;
 
 	/*
-	 *  ���׵᤬���ä��Ȥ��ν���
+	 *  再要求があったときの処理
 	 */
 	id = GET_PPP_CP_HDR(input)->id;
 	if (server_state == PAP_SS_OPEN) {
@@ -508,7 +508,7 @@ upap_rauthreq (T_NET_BUF *input)
 	data  = input->buf + sizeof(T_PPP_HDR) + sizeof(T_PPP_CP_HDR);
 
 	/*
-	 *  �桼��̾�����ꤹ�롣
+	 *  ユーザ名を特定する。
 	 */
 	ulen  = *data;
 	if (cplen < sizeof(T_PPP_CP_HDR) + ulen + sizeof(uint8_t)) {
@@ -519,7 +519,7 @@ upap_rauthreq (T_NET_BUF *input)
 	data += ulen;
 
 	/*
-	 *  �ѥ���ɤ����ꤹ�롣
+	 *  パスワードを特定する。
 	 */
 	plen  = *data;
 	if (cplen < sizeof(T_PPP_CP_HDR) + ulen + plen + sizeof(uint8_t) * 2) {
@@ -528,7 +528,7 @@ upap_rauthreq (T_NET_BUF *input)
 		}
 
 	/*
-	 *  �桼��̾�ȥѥ���ɤ�����å����롣
+	 *  ユーザ名とパスワードをチェックする。
 	 */
 	if (compare(user,     AUTH_LOCAL_USER,   ulen) &&
 	    compare(data + 1, AUTH_LOCAL_PASSWD, plen))
@@ -555,7 +555,7 @@ upap_rauthreq (T_NET_BUF *input)
 	}
 
 /*
- *  upap_sresp -- �������֤���
+ *  upap_sresp -- 応答を返す。
  */
 
 static void
@@ -563,14 +563,14 @@ upap_sresp (uint8_t code, uint8_t id)
 {
 	T_NET_BUF *output;
 
-	/* �������� */
+	/* 送信する */
 	syscall(get_net_buf(&output, sizeof(T_PPP_HDR) + sizeof(T_PPP_CP_HDR)));
 	IF_SET_PROTO(output, PPP_PAP);
 	ppp_cp_output(code, id, output);
 	}
 
 /*
- *  compare -- �桼��̾�ȥѥ���ɤ����
+ *  compare -- ユーザ名とパスワードの比較
  */
 
 static bool_t
@@ -588,7 +588,7 @@ compare (uint8_t *rstr, uint8_t *lstr, uint8_t rlen)
 #if defined(DEF_PAP_REQTIME)
 
 /*
- *  upap_reqtimeout -- �׵᥿���ॢ���Ƚ���
+ *  upap_reqtimeout -- 要求タイムアウト処理
  */
 
 static void

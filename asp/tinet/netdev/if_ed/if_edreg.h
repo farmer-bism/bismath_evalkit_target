@@ -4,29 +4,29 @@
  *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
- *  �嵭����Ԥϡ��ʲ��� (1)��(4) �ξ�狼��Free Software Foundation 
- *  �ˤ�äƸ�ɽ����Ƥ��� GNU General Public License �� Version 2 �˵�
- *  �Ҥ���Ƥ���������������˸¤ꡤ�ܥ��եȥ��������ܥ��եȥ�����
- *  ����Ѥ�����Τ�ޤࡥ�ʲ�Ʊ���ˤ���ѡ�ʣ�������ѡ������ۡʰʲ���
- *  ���ѤȸƤ֡ˤ��뤳�Ȥ�̵���ǵ������롥
- *  (1) �ܥ��եȥ������򥽡��������ɤη������Ѥ�����ˤϡ��嵭������
- *      ��ɽ�����������Ѿ�浪��Ӳ�����̵�ݾڵ��꤬�����Τޤޤη��ǥ���
- *      ����������˴ޤޤ�Ƥ��뤳�ȡ�
- *  (2) �ܥ��եȥ������򡤥饤�֥������ʤɡ�¾�Υ��եȥ�������ȯ�˻�
- *      �ѤǤ�����Ǻ����ۤ�����ˤϡ������ۤ�ȼ���ɥ�����ȡ�����
- *      �ԥޥ˥奢��ʤɡˤˡ��嵭�����ɽ�����������Ѿ�浪��Ӳ���
- *      ��̵�ݾڵ����Ǻܤ��뤳�ȡ�
- *  (3) �ܥ��եȥ������򡤵�����Ȥ߹���ʤɡ�¾�Υ��եȥ�������ȯ�˻�
- *      �ѤǤ��ʤ����Ǻ����ۤ�����ˤϡ����ξ������������ȡ�
- *    (a) �����ۤ�ȼ���ɥ�����ȡ����Ѽԥޥ˥奢��ʤɡˤˡ��嵭����
- *        �ɽ�����������Ѿ�浪��Ӳ�����̵�ݾڵ����Ǻܤ��뤳�ȡ�
- *  (4) �ܥ��եȥ����������Ѥˤ��ľ��Ū�ޤ��ϴ���Ū�������뤤���ʤ�»
- *      ������⡤�嵭����Ԥ����TOPPERS�ץ��������Ȥ����դ��뤳�ȡ�
+ *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
+ *  によって公表されている GNU General Public License の Version 2 に記
+ *  述されている条件を満たす場合に限り，本ソフトウェア（本ソフトウェア
+ *  を改変したものを含む．以下同じ）を使用・複製・改変・再配布（以下，
+ *  利用と呼ぶ）することを無償で許諾する．
+ *  (1) 本ソフトウェアをソースコードの形で利用する場合には，上記の著作
+ *      権表示，この利用条件および下記の無保証規定が，そのままの形でソー
+ *      スコード中に含まれていること．
+ *  (2) 本ソフトウェアを，ライブラリ形式など，他のソフトウェア開発に使
+ *      用できる形で再配布する場合には，再配布に伴うドキュメント（利用
+ *      者マニュアルなど）に，上記の著作権表示，この利用条件および下記
+ *      の無保証規定を掲載すること．
+ *  (3) 本ソフトウェアを，機器に組み込むなど，他のソフトウェア開発に使
+ *      用できない形で再配布する場合には，次の条件を満たすこと．
+ *    (a) 再配布に伴うドキュメント（利用者マニュアルなど）に，上記の著
+ *        作権表示，この利用条件および下記の無保証規定を掲載すること．
+ *  (4) 本ソフトウェアの利用により直接的または間接的に生じるいかなる損
+ *      害からも，上記著作権者およびTOPPERSプロジェクトを免責すること．
  *
- *  �ܥ��եȥ������ϡ�̵�ݾڤ��󶡤���Ƥ����ΤǤ��롥�嵭����Ԥ�
- *  ���TOPPERS�ץ��������Ȥϡ��ܥ��եȥ������˴ؤ��ơ�����Ŭ�Ѳ�ǽ����
- *  �ޤ�ơ������ʤ��ݾڤ�Ԥ�ʤ����ޤ����ܥ��եȥ����������Ѥˤ��ľ
- *  ��Ū�ޤ��ϴ���Ū�������������ʤ�»���˴ؤ��Ƥ⡤������Ǥ�����ʤ���
+ *  本ソフトウェアは，無保証で提供されているものである．上記著作権者お
+ *  よびTOPPERSプロジェクトは，本ソフトウェアに関して，その適用可能性も
+ *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
+ *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
  *  @(#) $Id: if_edreg.h,v 1.5 2009/12/24 05:46:31 abe Exp $
  */
@@ -67,21 +67,21 @@
  */
 
 /*
- * 2002/8/8	REALTEK RTL8019AS ��
+ * 2002/8/8	REALTEK RTL8019AS 用
  */
 
 #ifndef _If_EDREG_H_
 #define _If_EDREG_H_
 
 /*
- *  NE2000 �ߴ��쥸����
+ *  NE2000 互換レジスタ
  */
 
 /*
- *  �����쥸�������ե��å�
+ *  内部レジスタオフセット
  */
 
-/* �ڡ��� 0���ɤ߽Ф� */
+/* ページ 0、読み出し */
 
 #define ED_P0_CR		UINT_C(0x00)
 #define ED_P0_CLDA0		UINT_C(0x01)
@@ -98,7 +98,7 @@
 #define ED_P0_CNTR1		UINT_C(0x0e)
 #define ED_P0_CNTR2		UINT_C(0x0f)
 
-/* �ڡ��� 0���񤭹��� */
+/* ページ 0、書き込み */
 
 #define ED_P0_PSTART		UINT_C(0x01)
 #define ED_P0_PSTOP		UINT_C(0x02)
@@ -114,7 +114,7 @@
 #define ED_P0_DCR		UINT_C(0x0e)
 #define ED_P0_IMR		UINT_C(0x0f)
 
-/* �ڡ��� 1���ɤ߽� */
+/* ページ 1、読み書き */
 
 #define ED_P1_CR		UINT_C(0x00)
 #define ED_P1_PAR(x)		((x)+UINT_C(0x01))
@@ -122,7 +122,7 @@
 #define ED_P1_MAR(x)		((x)+UINT_C(0x08))
 
 /*
- *  �ڡ��� 0�����ե��å� 0x00��R/W��Command Register (CR)
+ *  ページ 0、オフセット 0x00、R/W、Command Register (CR)
  */
 
 #define ED_CR_STP_BIT		0
@@ -149,7 +149,7 @@
 #define ED_CR_PAGE3		(ED_CR_PS1|ED_CR_PS0)
 
 /*
- *  �ڡ��� 0�����ե��å� 0x04��R��Transmit Status Register (TSR)
+ *  ページ 0、オフセット 0x04、R、Transmit Status Register (TSR)
  */
 
 #define ED_TSR_PTX_BIT		0
@@ -167,7 +167,7 @@
 #define ED_TSR_OWC		(1<<ED_TSR_OWC_BIT)
 
 /*
- *  �ڡ��� 0�����ե��å� 0x07��R/W��Interrupt Status Register (ISR)
+ *  ページ 0、オフセット 0x07、R/W、Interrupt Status Register (ISR)
  */
 
 #define ED_ISR_PRX_BIT		0
@@ -189,8 +189,8 @@
 #define ED_ISR_RST		(1<<ED_ISR_RST_BIT)
 
 /*
- *  �ڡ��� 0�����ե��å� 0x0c��W
- *  �ڡ��� 2�����ե��å� 0x0c��R
+ *  ページ 0、オフセット 0x0c、W
+ *  ページ 2、オフセット 0x0c、R
  *  Recive Configuration Register (RCR)
  */
 
@@ -209,8 +209,8 @@
 #define ED_RCR_MON		(1<<ED_RCR_MON_BIT)
 
 /*
- *  �ڡ��� 0�����ե��å� 0x0d��W
- *  �ڡ��� 2�����ե��å� 0x0d��R
+ *  ページ 0、オフセット 0x0d、W
+ *  ページ 2、オフセット 0x0d、R
  *  Transmit Configuration Register (TCR)
  */
 
@@ -227,8 +227,8 @@
 #define ED_TCR_OFST		(1<<ED_TCR_OFST_BIT)
 
 /*
- *  �ڡ��� 0�����ե��å� 0x0e��W
- *  �ڡ��� 2�����ե��å� 0x0e��R
+ *  ページ 0、オフセット 0x0e、W
+ *  ページ 2、オフセット 0x0e、R
  *  Data Configuration Register (DCR)
  */
 
@@ -249,8 +249,8 @@
 #define ED_DCR_FT1		(1<<ED_DCR_FT1_BIT)
 
 /*
- *  �ڡ��� 0�����ե��å� 0x0f��W
- *  �ڡ��� 2�����ե��å� 0x0f��R
+ *  ページ 0、オフセット 0x0f、W
+ *  ページ 2、オフセット 0x0f、R
  *  Interrupt Mask Register (IMR)
  */
 
@@ -273,20 +273,20 @@
 #define ED_IMR_RST		(1<<ED_IMR_RST_BIT)
 
 /*
- *  �����ե졼��إå���¤��
+ *  受信フレームヘッダ構造体
  */
 
 typedef struct t_ed_frame_hdr {
-	uint8_t		rsr;		/* �������ơ�����	*/
-	uint8_t		next;		/* ���Υե졼��Υڡ���	*/
-	uint16_t	count;		/* �ե졼��Ĺ (Ĺ��+4)	*/
+	uint8_t		rsr;		/* 受信ステータス	*/
+	uint8_t		next;		/* 次のフレームのページ	*/
+	uint16_t	count;		/* フレーム長 (長さ+4)	*/
 	} T_ED_FRAME_HDR;
 
 /*
- *  ��¢ RAM
+ *  内蔵 RAM
  */
 
-/* ����: 16 �ӥåȥ⡼�ɤ�̤���� */
+/* 注意: 16 ビットモードは未実装 */
 #ifdef IF_ED_CFG_16BIT
 
 #define ED_INT_RAM_SIZE		UINT_C(0x4000)
@@ -305,7 +305,7 @@ typedef struct t_ed_frame_hdr {
 #define IF_ED_RXBUF_PAGE_SIZE	(ED_INT_RAM_SIZE / ED_PAGE_SIZE - IF_ED_TXBUF_PAGE_SIZE)
 
 /*
- *  ���ɥ쥹�Υ��ե��å�
+ *  アドレスのオフセット
  */
 
 #define ED_NIC_OFFSET		UINT_C(0x00)
@@ -314,14 +314,14 @@ typedef struct t_ed_frame_hdr {
 #define ED_RESET_OFFSET		UINT_C(0x0f)
 
 /*
- *  RTL8019AS ���ѥ쥸����
+ *  RTL8019AS 専用レジスタ
  */
 
 /*
- *  �����쥸�������ե��å�
+ *  内部レジスタオフセット
  */
 
-/* �ڡ��� 3���ɤ߽Ф� */
+/* ページ 3、読み出し */
 
 #define ED_RTL_P3_CR		UINT_C(0x00)
 #define ED_RTL_P3_9346CR	UINT_C(0x01)
@@ -335,12 +335,12 @@ typedef struct t_ed_frame_hdr {
 #define ED_RTL_P3_INTR		UINT_C(0x0b)
 #define ED_RTL_P3_CONFIG4	UINT_C(0x0d)
 
-/* �ڡ��� 3������� */
+/* ページ 3、書込み */
 
 #define ED_RTL_P3_HTLCLK	UINT_C(0x09)
 #define ED_RTL_P3_FMWP		UINT_C(0x0c)
 
-/* �ڡ��� 3�����ե��å� 0x04��R/W��Configuration 0 */
+/* ページ 3、オフセット 0x04、R/W、Configuration 0 */
 
 #define ED_RTL_CFG0_IOS0_BIT	0
 #define ED_RTL_CFG0_IOS1_BIT	1

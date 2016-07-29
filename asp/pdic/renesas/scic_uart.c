@@ -5,40 +5,40 @@
  * 
  *  Copyright (C) 2008-2010 by Witz Corporation, JAPAN
  * 
- *  ��L���쌠�҂́C�ȉ���(1)�`(4)�̏����𖞂����ꍇ�Ɍ���C�{�\�t�g�E�F
- *  �A�i�{�\�t�g�E�F�A�����ς������̂��܂ށD�ȉ������j���g�p�E�����E��
- *  �ρE�Ĕz�z�i�ȉ��C���p�ƌĂԁj���邱�Ƃ𖳏��ŋ�������D
- *  (1) �{�\�t�g�E�F�A���\�[�X�R�[�h�̌`�ŗ��p����ꍇ�ɂ́C��L�̒���
- *      ���\���C���̗��p��������щ��L�̖��ۏ؋K�肪�C���̂܂܂̌`�Ń\�[
- *      �X�R�[�h���Ɋ܂܂�Ă��邱�ƁD
- *  (2) �{�\�t�g�E�F�A���C���C�u�����`���ȂǁC���̃\�t�g�E�F�A�J���Ɏg
- *      �p�ł���`�ōĔz�z����ꍇ�ɂ́C�Ĕz�z�ɔ����h�L�������g�i���p
- *      �҃}�j���A���Ȃǁj�ɁC��L�̒��쌠�\���C���̗��p��������щ��L
- *      �̖��ۏ؋K����f�ڂ��邱�ƁD
- *  (3) �{�\�t�g�E�F�A���C�@��ɑg�ݍ��ނȂǁC���̃\�t�g�E�F�A�J���Ɏg
- *      �p�ł��Ȃ��`�ōĔz�z����ꍇ�ɂ́C���̂����ꂩ�̏����𖞂�����
- *      �ƁD
- *    (a) �Ĕz�z�ɔ����h�L�������g�i���p�҃}�j���A���Ȃǁj�ɁC��L�̒�
- *        �쌠�\���C���̗��p��������щ��L�̖��ۏ؋K����f�ڂ��邱�ƁD
- *    (b) �Ĕz�z�̌`�Ԃ��C�ʂɒ�߂���@�ɂ���āCTOPPERS�v���W�F�N�g��
- *        �񍐂��邱�ƁD
- *  (4) �{�\�t�g�E�F�A�̗��p�ɂ�蒼�ړI�܂��͊ԐړI�ɐ����邢���Ȃ鑹
- *      �Q������C��L���쌠�҂����TOPPERS�v���W�F�N�g��Ɛӂ��邱�ƁD
- *      �܂��C�{�\�t�g�E�F�A�̃��[�U�܂��̓G���h���[�U����̂����Ȃ闝
- *      �R�Ɋ�Â�����������C��L���쌠�҂����TOPPERS�v���W�F�N�g��
- *      �Ɛӂ��邱�ƁD
+ *  上記著作権者は，以下の(1)〜(4)の条件を満たす場合に限り，本ソフトウェ
+ *  ア（本ソフトウェアを改変したものを含む．以下同じ）を使用・複製・改
+ *  変・再配布（以下，利用と呼ぶ）することを無償で許諾する．
+ *  (1) 本ソフトウェアをソースコードの形で利用する場合には，上記の著作
+ *      権表示，この利用条件および下記の無保証規定が，そのままの形でソー
+ *      スコード中に含まれていること．
+ *  (2) 本ソフトウェアを，ライブラリ形式など，他のソフトウェア開発に使
+ *      用できる形で再配布する場合には，再配布に伴うドキュメント（利用
+ *      者マニュアルなど）に，上記の著作権表示，この利用条件および下記
+ *      の無保証規定を掲載すること．
+ *  (3) 本ソフトウェアを，機器に組み込むなど，他のソフトウェア開発に使
+ *      用できない形で再配布する場合には，次のいずれかの条件を満たすこ
+ *      と．
+ *    (a) 再配布に伴うドキュメント（利用者マニュアルなど）に，上記の著
+ *        作権表示，この利用条件および下記の無保証規定を掲載すること．
+ *    (b) 再配布の形態を，別に定める方法によって，TOPPERSプロジェクトに
+ *        報告すること．
+ *  (4) 本ソフトウェアの利用により直接的または間接的に生じるいかなる損
+ *      害からも，上記著作権者およびTOPPERSプロジェクトを免責すること．
+ *      また，本ソフトウェアのユーザまたはエンドユーザからのいかなる理
+ *      由に基づく請求からも，上記著作権者およびTOPPERSプロジェクトを
+ *      免責すること．
  * 
- *  �{�\�t�g�E�F�A�́C���ۏ؂Œ񋟂���Ă�����̂ł���D��L���쌠�҂�
- *  ���TOPPERS�v���W�F�N�g�́C�{�\�t�g�E�F�A�Ɋւ��āC����̎g�p�ړI
- *  �ɑ΂���K�������܂߂āC�����Ȃ�ۏ؂��s��Ȃ��D�܂��C�{�\�t�g�E�F
- *  �A�̗��p�ɂ�蒼�ړI�܂��͊ԐړI�ɐ����������Ȃ鑹�Q�Ɋւ��Ă��C��
- *  �̐ӔC�𕉂�Ȃ��D
+ *  本ソフトウェアは，無保証で提供されているものである．上記著作権者お
+ *  よびTOPPERSプロジェクトは，本ソフトウェアに関して，特定の使用目的
+ *  に対する適合性も含めて，いかなる保証も行わない．また，本ソフトウェ
+ *  アの利用により直接的または間接的に生じたいかなる損害に関しても，そ
+ *  の責任を負わない．
  * 
  */
 
 
 /*
- *   Renesas SCIc(UART)�p �Ȉ�SIO�h���C�o
+ *   Renesas SCIc(UART)用 簡易SIOドライバ
  */
 
 #include <sil.h>
@@ -47,7 +47,7 @@
 #include "target_syssvc.h"
 #include "scic_uart.h"
 
-/* �V���A�����[�h���W�X�^�iSMR) */
+/* シリアルモードレジスタ（SMR) */
 #define CKS			UINT_C(0x03)
 #define STOP		UINT_C(0x08)
 #define PM			UINT_C(0x10)
@@ -57,7 +57,7 @@
 #define ASYNC_7BIT	UINT_C(0x00)
 #define ASYNC_8BIT	UINT_C(0x40)
 
-/* �V���A���R���g���[�����W�X�^�iSCR) */
+/* シリアルコントロールレジスタ（SCR) */
 #define CKE			UINT_C(0x03)
 #define TEIE		UINT_C(0x04)
 #define RE			UINT_C(0x10)
@@ -65,13 +65,13 @@
 #define RIE			UINT_C(0x40)
 #define TIE			UINT_C(0x80)
 
-/* �V���A���X�e�[�^�X���W�X�^�iSSR�j */
+/* シリアルステータスレジスタ（SSR） */
 #define TEND		UINT_C(0x04)
 #define PER			UINT_C(0x08)
 #define FER			UINT_C(0x10)
 #define ORER		UINT_C(0x20)
 
-/* �V���A���g�����[�h���W�X�^�iSEMR) */
+/* シリアル拡張モードレジスタ（SEMR) */
 #define ACS0		UINT_C(0x01)
 #define ABCS		UINT_C(0x10)
 
@@ -79,44 +79,44 @@
 #define SCI_SMR_FLG_ENABLE	(STOP | PM | PE | CHR | CM)
 
 /*
- *  �V���A��I/O�|�[�g�������u���b�N�̒�`
+ *  シリアルI/Oポート初期化ブロックの定義
  */
 typedef struct sio_port_initialization_block {
-	volatile uint8_t	*ctlreg;		/* �V���A���R���g���[�����W�X�^�iSCR) */
-	volatile uint8_t	*modereg;		/* �V���A�����[�h���W�X�^�iSMR) */
-	volatile uint8_t	*extmodereg;	/* �V���A���g�����[�h���W�X�^�iSEMR) */	
-	volatile uint8_t	*statusreg;		/* �V���A���X�e�[�^�X���W�X�^�iSSR�j */
-	volatile uint8_t	*tdreg;			/* �g�����X�~�b�g�f�[�^���W�X�^�iTDR)*/
-	volatile uint8_t	*rdreg;			/* ���V�[�u�f�[�^���W�X�^�iRDR) */
-	volatile uint8_t	*bitratereg;	/* �r�b�g���[�g���W�X�^�iBRR) */
-	volatile uint32_t	*mstpcrreg;		/* ���W���[���X�g�b�v�R���g���[�����W�X�^�iMSTPCR�j */
-	volatile uint8_t	*ssrreg;		/* �X�e�[�^�X���W�X�^ */
-	uint8_t				tx_intno;		/* ���M�i�f�[�^�G���v�e�B�j���荞�ݔԍ� */
-	uint8_t				rx_intno;		/* ��M�i�f�[�^�t���j���荞�ݔԍ� */
-	uint8_t				te_intno;		/* ���M�i�I���j���荞�ݔԍ� */
-	uint8_t				sci_no;			/* SCI�̔ԍ�(SCI0�`SCI6) */
-	uint32_t			mstpcr_offset;	/* MSTPCR�̑Ή�����r�b�g�I�t�Z�b�g */
+	volatile uint8_t	*ctlreg;		/* シリアルコントロールレジスタ（SCR) */
+	volatile uint8_t	*modereg;		/* シリアルモードレジスタ（SMR) */
+	volatile uint8_t	*extmodereg;	/* シリアル拡張モードレジスタ（SEMR) */	
+	volatile uint8_t	*statusreg;		/* シリアルステータスレジスタ（SSR） */
+	volatile uint8_t	*tdreg;			/* トランスミットデータレジスタ（TDR)*/
+	volatile uint8_t	*rdreg;			/* レシーブデータレジスタ（RDR) */
+	volatile uint8_t	*bitratereg;	/* ビットレートレジスタ（BRR) */
+	volatile uint32_t	*mstpcrreg;		/* モジュールストップコントロールレジスタ（MSTPCR） */
+	volatile uint8_t	*ssrreg;		/* ステータスレジスタ */
+	uint8_t				tx_intno;		/* 送信（データエンプティ）割り込み番号 */
+	uint8_t				rx_intno;		/* 受信（データフル）割り込み番号 */
+	uint8_t				te_intno;		/* 送信（終了）割り込み番号 */
+	uint8_t				sci_no;			/* SCIの番号(SCI0〜SCI6) */
+	uint32_t			mstpcr_offset;	/* MSTPCRの対応するビットオフセット */
 } SIOPINIB;
 
 /*
- *  �V���A��I/O�|�[�g�Ǘ��u���b�N�̒�`
+ *  シリアルI/Oポート管理ブロックの定義
  */
 struct sio_port_control_block {
-	const SIOPINIB	*p_siopinib; 				/* �V���A��I/O�|�[�g�������u���b�N */
-	intptr_t 	exinf;			 				/* �g����� */
-	bool_t		openflag;						/* �I�[�v���ς݃t���O */
-	bool_t		sendflag;						/* ���M�����݃C�l�[�u���t���O */
-	bool_t		getready;						/* ��������M������� */
-	bool_t		putready;						/* �����𑗐M�ł����� */
-	bool_t		is_initialized; 				/* �f�o�C�X�������ς݃t���O */
+	const SIOPINIB	*p_siopinib; 				/* シリアルI/Oポート初期化ブロック */
+	intptr_t 	exinf;			 				/* 拡張情報 */
+	bool_t		openflag;						/* オープン済みフラグ */
+	bool_t		sendflag;						/* 送信割込みイネーブルフラグ */
+	bool_t		getready;						/* 文字を受信した状態 */
+	bool_t		putready;						/* 文字を送信できる状態 */
+	bool_t		is_initialized; 				/* デバイス初期化済みフラグ */
 };
 
 /*
- *  �V���A��I/O�|�[�g�Ǘ��u���b�N�̃G���A
+ *  シリアルI/Oポート管理ブロックのエリア
  */
 static SIOPCB	siopcb_table[TNUM_SIOP];
 
-/* ���W�X�^�e�[�u�� */
+/* レジスタテーブル */
 static const SIOPINIB siopinib_table[TNUM_SIOP] =
 {
 	{
@@ -246,7 +246,7 @@ static const SIOPINIB siopinib_table[TNUM_SIOP] =
 };
 
 /*
- *  �V���A��I/O�|�[�gID����Ǘ��u���b�N�����o�����߂̃}�N��
+ *  シリアルI/OポートIDから管理ブロックを取り出すためのマクロ
  */
 #define INDEX_SIOP(siopid)	 ((uint_t)((siopid) - 1))
 #define get_siopcb(siopid)	 (&(siopcb_table[INDEX_SIOP(siopid)]))
@@ -254,7 +254,7 @@ static const SIOPINIB siopinib_table[TNUM_SIOP] =
 
 
 /*
- *  SIO�h���C�o�̃V���A�����[�h���W�X�^(SMR)
+ *  SIOドライバのシリアルモードレジスタ(SMR)
  */
 static void
 scic_uart_setmode(const SIOPINIB *p_siopinib, uint8_t bitrate, uint8_t clksrc)
@@ -262,48 +262,48 @@ scic_uart_setmode(const SIOPINIB *p_siopinib, uint8_t bitrate, uint8_t clksrc)
 	uint8_t i;
 
 	/*
-	 *  SCI�h���C�o�̏��������[�`��
+	 *  SCIドライバの初期化ルーチン
 	 */
 
 	/*
-	 *  ���荞�ݗv���惌�W�X�^�̐ݒ�(ISELRi)
+	 *  割り込み要求先レジスタの設定(ISELRi)
 	 *
-	 *  ���Z�b�g�l�Ɠ����l��ݒ肷�邱�ƂɂȂ邽��,
-	 *  �����͏ȗ�����.
+	 *  リセット値と同じ値を設定することになるため,
+	 *  処理は省略する.
 	 */
 
 	/*
-	 *  ���W���[���X�g�b�v�@�\�̐ݒ�(SCI1)
+	 *  モジュールストップ機能の設定(SCI1)
 	 */
 	sil_wrw_mem((void *)p_siopinib->mstpcrreg, (~p_siopinib->mstpcr_offset));
 
-	/* ����M�֎~, SCKn�[�q�͓��o�̓|�[�g�Ƃ��Ďg�p */
+	/* 送受信禁止, SCKn端子は入出力ポートとして使用 */
 	sil_wrb_mem((void *)p_siopinib->ctlreg, 0x00U);
 
-	/* �N���b�N�I���r�b�g(SMR.CKS[1:0]�r�b�g��ݒ�) */
+	/* クロック選択ビット(SMR.CKS[1:0]ビットを設定) */
 	sil_wrb_mem((void *)p_siopinib->modereg, 
 					sil_reb_mem((void *)p_siopinib->modereg) | clksrc);
 
-	/* SMR�ɑ��M�^ ��M�t�H�[�}�b�g��ݒ�) */
+	/* SMRに送信／ 受信フォーマットを設定) */
 	sil_wrb_mem((void *)p_siopinib->modereg, 
 			sil_reb_mem((void *)p_siopinib->modereg) & (~SCI_SMR_FLG_ENABLE));
 
-	/* �r�b�g���[�g��ݒ� */
+	/* ビットレートを設定 */
 	sil_wrb_mem((void *)p_siopinib->bitratereg, bitrate);
 
-	/* �r�b�g����(��{�N���b�N16�T�C�N���̊��Ԃ�1�r�b�g���ԂƂȂ�) */
+	/* ビット期間(基本クロック16サイクルの期間が1ビット期間となる) */
 	while(i < 16){
 		i++;
 	}
 
-	/* ����M���� */
+	/* 送受信許可 */
 	sil_wrb_mem((void *)p_siopinib->ctlreg, 
 			(sil_reb_mem((void *)p_siopinib->ctlreg) | SCI_SCR_FLG_ENABLE));
 }
 
 
 /*
- *  SIO�h���C�o�̏��������[�`��
+ *  SIOドライバの初期化ルーチン
  */
 void
 scic_uart_initialize(void)
@@ -312,7 +312,7 @@ scic_uart_initialize(void)
 	uint_t	i;
 
 	/*
-	 *  �V���A��I/O�|�[�g�Ǘ��u���b�N�̏�����
+	 *  シリアルI/Oポート管理ブロックの初期化
 	 */
 	for (p_siopcb = siopcb_table, i = 0; i < TNUM_SIOP; p_siopcb++, i++){
 		p_siopcb->p_siopinib = &(siopinib_table[i]);
@@ -322,19 +322,19 @@ scic_uart_initialize(void)
 }
 
 /*
- *  �J�[�l���N�����̃o�i�[�o�͗p�̏�����
+ *  カーネル起動時のバナー出力用の初期化
  */
 void
 scic_uart_init(ID siopid, uint8_t bitrate, uint8_t clksrc)
 {
 	SIOPCB          *p_siopcb   = get_siopcb(siopid);
 	const SIOPINIB  *p_siopinib = get_siopinib(siopid);
-	/*  ���̎��_�ł́Ap_siopcb->p_siopinib�͏���������Ă��Ȃ�  */
+	/*  この時点では、p_siopcb->p_siopinibは初期化されていない  */
 
-	/*  ��d�������̖h�~  */
+	/*  二重初期化の防止  */
 	p_siopcb->is_initialized = true;
 
-	/*  �n�[�h�E�F�A�̏����������Ƒ��M����  */
+	/*  ハードウェアの初期化処理と送信許可  */
 	scic_uart_setmode(p_siopinib , bitrate, clksrc);
 	sil_wrb_mem((void *)p_siopinib->ctlreg, 
 					(uint8_t)(sil_reb_mem((void *)p_siopinib->ctlreg) | TE));
@@ -342,7 +342,7 @@ scic_uart_init(ID siopid, uint8_t bitrate, uint8_t clksrc)
 
 
 /*
- *  �V���A��I/O�|�[�g�ւ̃|�[�����O�ł̏o��
+ *  シリアルI/Oポートへのポーリングでの出力
  */
 void
 scic_uart_pol_putc(char c, ID siopid)
@@ -352,7 +352,7 @@ scic_uart_pol_putc(char c, ID siopid)
 	p_siopinib = get_siopinib(siopid);
 
 	/*
-	 *  ���M���W�X�^����ɂȂ�܂ő҂�
+	 *  送信レジスタが空になるまで待つ
 	 */
 	while((sil_reb_mem(
 			(void *)p_siopinib->ssrreg) & SCI_SSR_TEND_BIT) == 0U);
@@ -361,7 +361,7 @@ scic_uart_pol_putc(char c, ID siopid)
 }
 
 /*
- *  �V���A��I/O�|�[�g�̃I�[�v��
+ *  シリアルI/Oポートのオープン
  */
 SIOPCB *
 scic_uart_opn_por
@@ -374,9 +374,9 @@ scic_uart_opn_por
 	p_siopinib = p_siopcb->p_siopinib;
 
 	/*
-	 *  �n�[�h�E�F�A�̏�����
+	 *  ハードウェアの初期化
 	 *
-	 *  ���ɏ��������Ă���ꍇ��, ��d�ɏ��������Ȃ�.
+	 *  既に初期化している場合は, 二重に初期化しない.
 	 */
 	if(!(p_siopcb->is_initialized)){
 		scic_uart_setmode(p_siopinib, bitrate, clksrc);
@@ -391,13 +391,13 @@ scic_uart_opn_por
 }
 
 /*
- *  �V���A��I/O�|�[�g�̃N���[�Y
+ *  シリアルI/Oポートのクローズ
  */
 void
 scic_uart_cls_por(SIOPCB *p_siopcb)
 {
 	/*
-	 *  UART��~
+	 *  UART停止
 	 */
 	sil_wrh_mem((void *)p_siopcb->p_siopinib->ctlreg, 0x00U);
 	p_siopcb->openflag = false;
@@ -405,7 +405,7 @@ scic_uart_cls_por(SIOPCB *p_siopcb)
 }
 
 /*
- *  �V���A��I/O�|�[�g�ւ̕������M
+ *  シリアルI/Oポートへの文字送信
  */
 bool_t
 scic_uart_snd_chr(SIOPCB *p_siopcb, char c)
@@ -422,7 +422,7 @@ scic_uart_snd_chr(SIOPCB *p_siopcb, char c)
 }
 
 /*
- *  �V���A��I/O�|�[�g����̕�����M
+ *  シリアルI/Oポートからの文字受信
  */
 int_t
 scic_uart_rcv_chr(SIOPCB *p_siopcb)
@@ -430,11 +430,11 @@ scic_uart_rcv_chr(SIOPCB *p_siopcb)
 	int_t c = -1;
 
 	/*
-	 *  ��M�t���O��ON�̂Ƃ��̂ݎ�M�o�b�t�@���當�����擾����.
-	 *  �����, �|�[�����O��M�ɑΉ����邽�߂ł���.
-	 *  ������, SCIC�ł͎�M�t���O���Ȃ�����, �V�X�e���T�[�r�X
-	 *  �ł͎�M�����݂̒����炵���f�[�^����M���ɗ��Ȃ����Ƃ���, ���
-	 *  ��M�o�b�t�@���當�����擾����.
+	 *  受信フラグがONのときのみ受信バッファから文字を取得する.
+	 *  これは, ポーリング受信に対応するためである.
+	 *  しかし, SCICでは受信フラグがないこと, システムサービス
+	 *  では受信割込みの中からしかデータを受信しに来ないことから, 常に
+	 *  受信バッファから文字を取得する.
 	 */
 	c = (int)(sil_reb_mem((void *)p_siopcb->p_siopinib->rdreg));
 
@@ -442,7 +442,7 @@ scic_uart_rcv_chr(SIOPCB *p_siopcb)
 }
 
 /*
- *  �V���A��I/O�|�[�g����̃R�[���o�b�N�̋���
+ *  シリアルI/Oポートからのコールバックの許可
  */
 void
 scic_uart_ena_cbr(SIOPCB *p_siopcb, uint_t cbrtn)
@@ -463,7 +463,7 @@ scic_uart_ena_cbr(SIOPCB *p_siopcb, uint_t cbrtn)
 }
 
 /*
- *  �V���A��I/O�|�[�g����̃R�[���o�b�N�̋֎~
+ *  シリアルI/Oポートからのコールバックの禁止
  */
 void
 scic_uart_dis_cbr(SIOPCB *p_siopcb, uint_t cbrtn)
@@ -484,7 +484,7 @@ scic_uart_dis_cbr(SIOPCB *p_siopcb, uint_t cbrtn)
 }
 
 /*
- *  SIO�̊����݃T�[�r�X���[�`��
+ *  SIOの割込みサービスルーチン
  */
 void
 scic_uart_tx_isr(ID siopid)
@@ -494,7 +494,7 @@ scic_uart_tx_isr(ID siopid)
 	if((sil_reb_mem(
 		(void *)p_siopcb->p_siopinib->ssrreg) & SCI_SSR_TEND_BIT) != 0U){
 		/*
-		 *  ���M�\�R�[���o�b�N���[�`�����Ăяo���D
+		 *  送信可能コールバックルーチンを呼び出す．
 		 */
 		scic_uart_irdy_snd(p_siopcb->exinf);
 	}
@@ -506,13 +506,13 @@ scic_uart_rx_isr(ID siopid)
 	SIOPCB	*p_siopcb = get_siopcb(siopid);
 
 	/*
-	 *  ��M�t���O��ON�̂Ƃ��̂ݎ�M�ʒm�R�[���o�b�N���[�`�����Ăяo��.
-	 *  ������, SCIC�ł͎�M�t���O���Ȃ�����, ��Ɏ�M�ʒm
-	 *  �R�[���o�b�N���[�`�����Ăяo��.
-	 *  �����ł͎�M�����݂̔�����M����.
+	 *  受信フラグがONのときのみ受信通知コールバックルーチンを呼び出す.
+	 *  しかし, SCICでは受信フラグがないため, 常に受信通知
+	 *  コールバックルーチンを呼び出す.
+	 *  ここでは受信割込みの発生を信じる.
 	 */
 	/*
-	 *  ��M�ʒm�R�[���o�b�N���[�`�����Ăяo���D
+	 *  受信通知コールバックルーチンを呼び出す．
 	 */
 	scic_uart_irdy_rcv(p_siopcb->exinf);
 }

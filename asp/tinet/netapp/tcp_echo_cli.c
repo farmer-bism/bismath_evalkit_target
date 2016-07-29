@@ -4,41 +4,41 @@
  *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
- *  �嵭����Ԥϡ��ʲ��� (1)��(4) �ξ�狼��Free Software Foundation 
- *  �ˤ�äƸ�ɽ����Ƥ��� GNU General Public License �� Version 2 �˵�
- *  �Ҥ���Ƥ���������������˸¤ꡤ�ܥ��եȥ��������ܥ��եȥ�����
- *  ����Ѥ�����Τ�ޤࡥ�ʲ�Ʊ���ˤ���ѡ�ʣ�������ѡ������ۡʰʲ���
- *  ���ѤȸƤ֡ˤ��뤳�Ȥ�̵���ǵ������롥
- *  (1) �ܥ��եȥ������򥽡��������ɤη������Ѥ�����ˤϡ��嵭������
- *      ��ɽ�����������Ѿ�浪��Ӳ�����̵�ݾڵ��꤬�����Τޤޤη��ǥ���
- *      ����������˴ޤޤ�Ƥ��뤳�ȡ�
- *  (2) �ܥ��եȥ������򡤥饤�֥������ʤɡ�¾�Υ��եȥ�������ȯ�˻�
- *      �ѤǤ�����Ǻ����ۤ�����ˤϡ������ۤ�ȼ���ɥ�����ȡ�����
- *      �ԥޥ˥奢��ʤɡˤˡ��嵭�����ɽ�����������Ѿ�浪��Ӳ���
- *      ��̵�ݾڵ����Ǻܤ��뤳�ȡ�
- *  (3) �ܥ��եȥ������򡤵�����Ȥ߹���ʤɡ�¾�Υ��եȥ�������ȯ�˻�
- *      �ѤǤ��ʤ����Ǻ����ۤ�����ˤϡ����ξ������������ȡ�
- *    (a) �����ۤ�ȼ���ɥ�����ȡ����Ѽԥޥ˥奢��ʤɡˤˡ��嵭����
- *        �ɽ�����������Ѿ�浪��Ӳ�����̵�ݾڵ����Ǻܤ��뤳�ȡ�
- *  (4) �ܥ��եȥ����������Ѥˤ��ľ��Ū�ޤ��ϴ���Ū�������뤤���ʤ�»
- *      ������⡤�嵭����Ԥ����TOPPERS�ץ��������Ȥ����դ��뤳�ȡ�
+ *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
+ *  によって公表されている GNU General Public License の Version 2 に記
+ *  述されている条件を満たす場合に限り，本ソフトウェア（本ソフトウェア
+ *  を改変したものを含む．以下同じ）を使用・複製・改変・再配布（以下，
+ *  利用と呼ぶ）することを無償で許諾する．
+ *  (1) 本ソフトウェアをソースコードの形で利用する場合には，上記の著作
+ *      権表示，この利用条件および下記の無保証規定が，そのままの形でソー
+ *      スコード中に含まれていること．
+ *  (2) 本ソフトウェアを，ライブラリ形式など，他のソフトウェア開発に使
+ *      用できる形で再配布する場合には，再配布に伴うドキュメント（利用
+ *      者マニュアルなど）に，上記の著作権表示，この利用条件および下記
+ *      の無保証規定を掲載すること．
+ *  (3) 本ソフトウェアを，機器に組み込むなど，他のソフトウェア開発に使
+ *      用できない形で再配布する場合には，次の条件を満たすこと．
+ *    (a) 再配布に伴うドキュメント（利用者マニュアルなど）に，上記の著
+ *        作権表示，この利用条件および下記の無保証規定を掲載すること．
+ *  (4) 本ソフトウェアの利用により直接的または間接的に生じるいかなる損
+ *      害からも，上記著作権者およびTOPPERSプロジェクトを免責すること．
  *
- *  �ܥ��եȥ������ϡ�̵�ݾڤ��󶡤���Ƥ����ΤǤ��롥�嵭����Ԥ�
- *  ���TOPPERS�ץ��������Ȥϡ��ܥ��եȥ������˴ؤ��ơ�����Ŭ�Ѳ�ǽ����
- *  �ޤ�ơ������ʤ��ݾڤ�Ԥ�ʤ����ޤ����ܥ��եȥ����������Ѥˤ��ľ
- *  ��Ū�ޤ��ϴ���Ū�������������ʤ�»���˴ؤ��Ƥ⡤������Ǥ�����ʤ���
+ *  本ソフトウェアは，無保証で提供されているものである．上記著作権者お
+ *  よびTOPPERSプロジェクトは，本ソフトウェアに関して，その適用可能性も
+ *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
+ *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
  *  @(#) $Id: tcp_echo_cli.c,v 1.5.4.1 2015/02/05 02:12:24 abe Exp abe $
  */
 
 /* 
- *  TCP ECHO ���饤�����
+ *  TCP ECHO クライアント
  *
- *    ��������������ʬΥ��
- *    ���Υ�֥��å��󥰥�����
- *    ���ʥ��ԡ� API
- *    ��IPv4
- *    ��IPv6
+ *    ・送受信タスク分離型
+ *    ・ノンブロッキングコール
+ *    ・省コピー API
+ *    ・IPv4
+ *    ・IPv6
  */
 
 #include <stdlib.h>
@@ -82,11 +82,11 @@
 
 #ifdef USE_TCP_ECHO_CLI
 
-/* echo �����ФΥݡ����ֹ� */
+/* echo サーバのポート番号 */
 
 #define ECHO_SRV_PORTNO		UINT_C(7)
 
-/* �۵ޥǡ��������� */
+/* 緊急データの送信 */
 
 #ifdef USE_TCP_EXTENTIONS
 
@@ -95,28 +95,28 @@
 
 #endif	/* of #ifdef USE_TCP_EXTENTIONS */
 
-/* ɽ�� */
+/* 表示 */
 
 //#define SHOW_RCV_RANGE
 
-/* �����ॢ���� */
+/* タイムアウト */
 
 #define CON_TMO		TMO_FEVR
 //#define CON_TMO		(60*SYSTIM_HZ)
-//#define CLS_TMO		TMO_FEVR				/* Close Wait ��ɸ��� 60�� */
+//#define CLS_TMO		TMO_FEVR				/* Close Wait は標準で 60秒 */
 #define CLS_TMO		(70*SYSTIM_HZ+(net_rand()%SYSTIM_HZ)*10)
 //#define RCV_TMO		TMO_FEVR
 #define RCV_TMO		(40*SYSTIM_HZ+(net_rand()%SYSTIM_HZ)*20)
 //#define SND_TMO		TMO_FEVR
 #define SND_TMO		(30*SYSTIM_HZ+(net_rand()%SYSTIM_HZ)*30)
 
-/* �����ֳ� */
+/* 送信間隔 */
 
 //#define SND_DLY			ULONG_C(500)
 #define SND_ITV		(5*SYSTM_HZ)
 #define SLP_ITV		(60*SYSTIM_HZ)
 
-/* ��ư�¹� */
+/* 自動実行 */
 
 #if 0
 #if defined(SUPPORT_INET6)
@@ -127,7 +127,7 @@
 #endif
 
 /*
- *  �Хåե������������
+ *  バッファサイズの定義
  */
 
 #define NUM_ECHO		20
@@ -138,12 +138,12 @@
 #define RCV_BUF_SIZE		(SND_BUF_SIZE*15/10)
 
 /*
- *  �����ѿ�
+ *  全域変数
  */
 
 bool_t tcp_echo_cli_valid;
 
-/* TCP ������������ɥХåե� */
+/* TCP 送受信ウィンドバッファ */
 
 #ifndef TCP_CFG_SWBUF_CSAVE
 uint8_t tcp_echo_cli_swbuf[TCP_ECHO_CLI_SWBUF_SIZE];
@@ -154,7 +154,7 @@ uint8_t tcp_echo_cli_rwbuf[TCP_ECHO_CLI_RWBUF_SIZE];
 #endif
 
 /*
- *  �ѿ�
+ *  変数
  */
 
 static uint_t	scount;
@@ -170,7 +170,7 @@ static T_IPEP	nblk_dst;
 static ER_UINT	nblk_error;
 
 /*
- *  �Υ�֥��å��󥰥�����Υ�����Хå��ؿ�
+ *  ノンブロッキングコールのコールバック関数
  */
 
 ER
@@ -222,7 +222,7 @@ callback_nblk_tcp_echo_cli (ID cepid, FN fncd, void *p_parblk)
 	}
 
 /*
- *  send_tcp_echo -- ECHO/TCP �����Ф˥�å��������������롣
+ *  send_tcp_echo -- ECHO/TCP サーバにメッセージを送信する。
  */
 
 static ER
@@ -254,7 +254,7 @@ send_tcp_echo (ID cepid, T_IN_ADDR *ipaddr, uint16_t portno)
 		return error;
 		}
 
-	/* ��³����λ����ޤ��Ԥġ�*/
+	/* 接続が完了するまで待つ。*/
 	syscall(wai_sem(SEM_TCP_ECHO_CLI_NBLK_READY));
 
 	if (nblk_error != E_OK)
@@ -307,7 +307,7 @@ send_tcp_echo (ID cepid, T_IN_ADDR *ipaddr, uint16_t portno)
 		if ((error = tcp_sht_cep(cepid)) < 0)
 			syslog(LOG_NOTICE, "[TEC:%02d SND] shutdown error: %s", cepid, itron_strerror(error));
 
-		/* ��������λ����ޤ��Ԥġ�*/
+		/* 受信が完了するまで待つ。*/
 		syscall(slp_tsk());
 		}
 
@@ -315,7 +315,7 @@ send_tcp_echo (ID cepid, T_IN_ADDR *ipaddr, uint16_t portno)
 	}
 
 /*
- *  TCP ECHO ���饤����ȼ���������
+ *  TCP ECHO クライアント受信タスク
  */
 
 #ifdef USE_COPYSAVE_API
@@ -345,7 +345,7 @@ tcp_echo_cli_rcv_task (intptr_t exinf)
 					break;
 					}
 
-				/* �����Хåե��γ�������λ����ޤ��Ԥġ�*/
+				/* 受信バッファの獲得が完了するまで待つ。*/
 				syscall(wai_sem(SEM_TCP_ECHO_CLI_NBLK_READY));
 				if (nblk_error < 0)
 					break;
@@ -374,7 +374,7 @@ tcp_echo_cli_rcv_task (intptr_t exinf)
 			if ((error = tcp_cls_cep(cepid, TMO_NBLK)) != E_WBLK && error != E_OK)
 				syslog(LOG_NOTICE, "[TEC:%02d SND] close error: %s", cepid, itron_strerror(error));
 
-			/* ���Ǥ���λ����ޤ��Ԥġ�*/
+			/* 切断が完了するまで待つ。*/
 			syscall(wai_sem(SEM_TCP_ECHO_CLI_NBLK_READY));
 
 			get_tim(&time);
@@ -415,7 +415,7 @@ tcp_echo_cli_rcv_task (intptr_t exinf)
 					break;
 					}
 
-				/* ��������λ����ޤ��Ԥġ�*/
+				/* 受信が完了するまで待つ。*/
 				syscall(wai_sem(SEM_TCP_ECHO_CLI_NBLK_READY));
 				if (nblk_error < 0)
 					break;
@@ -440,7 +440,7 @@ tcp_echo_cli_rcv_task (intptr_t exinf)
 			if ((error = tcp_cls_cep(cepid, TMO_NBLK)) != E_WBLK && error != E_OK)
 				syslog(LOG_NOTICE, "[TEC:%02d SND] close error: %s", cepid, itron_strerror(error));
 
-			/* ���Ǥ���λ����ޤ��Ԥġ�*/
+			/* 切断が完了するまで待つ。*/
 			syscall(wai_sem(SEM_TCP_ECHO_CLI_NBLK_READY));
 
 			get_tim(&time);
@@ -457,7 +457,7 @@ tcp_echo_cli_rcv_task (intptr_t exinf)
 #else	/* of #ifdef USE_TCP_NON_BLOCKING */
 
 /*
- *  send_tcp_echo -- ECHO/TCP �����Ф˥�å��������������롣
+ *  send_tcp_echo -- ECHO/TCP サーバにメッセージを送信する。
  */
 
 static ER
@@ -543,14 +543,14 @@ cls_ret:
 	if ((error = tcp_sht_cep(cepid)) < 0)
 		syslog(LOG_NOTICE, "[TEC:%02d SND] shutdown error: %s", cepid, itron_strerror(error));
 
-	/* ��������λ����ޤ��Ԥġ�*/
+	/* 受信が完了するまで待つ。*/
 	syscall(slp_tsk());
 
 	return error;
 	}
 
 /*
- *  TCP ECHO ���饤����ȼ���������
+ *  TCP ECHO クライアント受信タスク
  */
 
 #ifdef USE_COPYSAVE_API
@@ -667,7 +667,7 @@ tcp_echo_cli_rcv_task (intptr_t exinf)
 #endif	/* of #ifdef USE_TCP_NON_BLOCKING */
 
 /*
- *  getcomd -- ���ޥ�ɤ����롣
+ *  getcomd -- コマンドを得る。
  */
 
 #ifdef AUTO_RUN_STR
@@ -713,7 +713,7 @@ getcomd (ID cepid)
 #endif	/* of #ifdef AUTO_RUN_STR */
 
 /*
- *  TCP ECHO ���饤���������������
+ *  TCP ECHO クライアント送信タスク
  */
 
 void

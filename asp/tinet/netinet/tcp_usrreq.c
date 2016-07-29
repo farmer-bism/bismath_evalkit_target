@@ -4,29 +4,29 @@
  *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
- *  �嵭����Ԥϡ��ʲ��� (1)��(4) �ξ�狼��Free Software Foundation 
- *  �ˤ�äƸ�ɽ����Ƥ��� GNU General Public License �� Version 2 �˵�
- *  �Ҥ���Ƥ���������������˸¤ꡤ�ܥ��եȥ��������ܥ��եȥ�����
- *  ����Ѥ�����Τ�ޤࡥ�ʲ�Ʊ���ˤ���ѡ�ʣ�������ѡ������ۡʰʲ���
- *  ���ѤȸƤ֡ˤ��뤳�Ȥ�̵���ǵ������롥
- *  (1) �ܥ��եȥ������򥽡��������ɤη������Ѥ�����ˤϡ��嵭������
- *      ��ɽ�����������Ѿ�浪��Ӳ�����̵�ݾڵ��꤬�����Τޤޤη��ǥ���
- *      ����������˴ޤޤ�Ƥ��뤳�ȡ�
- *  (2) �ܥ��եȥ������򡤥饤�֥������ʤɡ�¾�Υ��եȥ�������ȯ�˻�
- *      �ѤǤ�����Ǻ����ۤ�����ˤϡ������ۤ�ȼ���ɥ�����ȡ�����
- *      �ԥޥ˥奢��ʤɡˤˡ��嵭�����ɽ�����������Ѿ�浪��Ӳ���
- *      ��̵�ݾڵ����Ǻܤ��뤳�ȡ�
- *  (3) �ܥ��եȥ������򡤵�����Ȥ߹���ʤɡ�¾�Υ��եȥ�������ȯ�˻�
- *      �ѤǤ��ʤ����Ǻ����ۤ�����ˤϡ����ξ������������ȡ�
- *    (a) �����ۤ�ȼ���ɥ�����ȡ����Ѽԥޥ˥奢��ʤɡˤˡ��嵭����
- *        �ɽ�����������Ѿ�浪��Ӳ�����̵�ݾڵ����Ǻܤ��뤳�ȡ�
- *  (4) �ܥ��եȥ����������Ѥˤ��ľ��Ū�ޤ��ϴ���Ū�������뤤���ʤ�»
- *      ������⡤�嵭����Ԥ����TOPPERS�ץ��������Ȥ����դ��뤳�ȡ�
+ *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
+ *  によって公表されている GNU General Public License の Version 2 に記
+ *  述されている条件を満たす場合に限り，本ソフトウェア（本ソフトウェア
+ *  を改変したものを含む．以下同じ）を使用・複製・改変・再配布（以下，
+ *  利用と呼ぶ）することを無償で許諾する．
+ *  (1) 本ソフトウェアをソースコードの形で利用する場合には，上記の著作
+ *      権表示，この利用条件および下記の無保証規定が，そのままの形でソー
+ *      スコード中に含まれていること．
+ *  (2) 本ソフトウェアを，ライブラリ形式など，他のソフトウェア開発に使
+ *      用できる形で再配布する場合には，再配布に伴うドキュメント（利用
+ *      者マニュアルなど）に，上記の著作権表示，この利用条件および下記
+ *      の無保証規定を掲載すること．
+ *  (3) 本ソフトウェアを，機器に組み込むなど，他のソフトウェア開発に使
+ *      用できない形で再配布する場合には，次の条件を満たすこと．
+ *    (a) 再配布に伴うドキュメント（利用者マニュアルなど）に，上記の著
+ *        作権表示，この利用条件および下記の無保証規定を掲載すること．
+ *  (4) 本ソフトウェアの利用により直接的または間接的に生じるいかなる損
+ *      害からも，上記著作権者およびTOPPERSプロジェクトを免責すること．
  *
- *  �ܥ��եȥ������ϡ�̵�ݾڤ��󶡤���Ƥ����ΤǤ��롥�嵭����Ԥ�
- *  ���TOPPERS�ץ��������Ȥϡ��ܥ��եȥ������˴ؤ��ơ�����Ŭ�Ѳ�ǽ����
- *  �ޤ�ơ������ʤ��ݾڤ�Ԥ�ʤ����ޤ����ܥ��եȥ����������Ѥˤ��ľ
- *  ��Ū�ޤ��ϴ���Ū�������������ʤ�»���˴ؤ��Ƥ⡤������Ǥ�����ʤ���
+ *  本ソフトウェアは，無保証で提供されているものである．上記著作権者お
+ *  よびTOPPERSプロジェクトは，本ソフトウェアに関して，その適用可能性も
+ *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
+ *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
  *  @(#) $Id: tcp_usrreq.c,v 1.5.4.1 2015/02/05 02:10:53 abe Exp abe $
  */
@@ -119,7 +119,7 @@
 #ifdef SUPPORT_TCP
 
 /*
- *  IPv4 �� IPv6 ���ڤ��ؤ��ޥ���
+ *  IPv4 と IPv6 の切り替えマクロ
  */
 
 #if defined(SUPPORT_INET4)
@@ -139,8 +139,8 @@
 #endif	/* of #if defined(SUPPORT_INET6) */
 
 /*
- *  TINET ��饤�֥�경���ʤ����ϡ����Ƥε�ǽ��
- *  ���֥������ȥե�����˽��Ϥ��뤿�ᡢ�ޥ�����ͭ���ˤ��롣
+ *  TINET をライブラリ化しない場合は、全ての機能を
+ *  オブジェクトファイルに出力するため、マクロを有効にする。
  */
 
 #ifndef TCP_CFG_LIBRARY
@@ -168,7 +168,7 @@
 #endif	/* of #ifndef TCP_CFG_LIBRARY */
 
 /*
- *  tcp_cre_rep -- TCP ���ո��������ڳ�ĥ��ǽ��
+ *  tcp_cre_rep -- TCP 受付口の生成【拡張機能】
  */
 
 #ifdef __tcp_cre_rep
@@ -181,41 +181,41 @@ TCP_CRE_REP (ID repid, T_TCP_CREP *pk_crep)
 	T_TCP_REP	*rep;
 	ER		error;
 
-	/* TCP ���ո� ID ������å����롣*/
+	/* TCP 受付口 ID をチェックする。*/
 	if (!VAID_TCP_REPID(repid))
 		return E_ID;
 
-	/* pk_crep �� NULL �ʤ饨�顼 */
+	/* pk_crep が NULL ならエラー */
 	if (pk_crep == NULL)
 		return E_PAR;
 
-	/* TCP ���ո������롣*/
+	/* TCP 受付口を得る。*/
 	rep = GET_TCP_REP(repid);
 
-	/* TCP ���ո�����ưŪ�����ѤǤʤ���Х��顼 */
+	/* TCP 受付口が、動的生成用でなければエラー */
 	if (!DYNAMIC_TCP_REP(rep))
 		return E_ID;
 
-	/* ���ո�����å����롣*/
+	/* 受付口をロックする。*/
 	syscall(wai_sem(rep->semid_lock));
 
 	/*
-	 * TCP ���ո�������å����롣�����ѤߤǤ���Х��顼
+	 * TCP 受付口をチェックする。生成済みであればエラー
 	 */
 	if (VALID_TCP_REP(rep))
 		error = E_OBJ;
 	else {
 
-		/* TCP ���ո���������򥳥ԡ����롣*/
-		rep->repatr = pk_crep->repatr;		/* ���ո�°��		*/
-		rep->myaddr = pk_crep->myaddr;		/* ��ʬ�Υ��ɥ쥹	*/
+		/* TCP 受付口生成情報をコピーする。*/
+		rep->repatr = pk_crep->repatr;		/* 受付口属性		*/
+		rep->myaddr = pk_crep->myaddr;		/* 自分のアドレス	*/
 
-		/* TCP ���ո��������Ѥߤˤ��롣*/
+		/* TCP 受付口を生成済みにする。*/
 		rep->flags |= TCP_REP_FLG_VALID;
 		error = E_OK;
 		}
 
-	/* ���ո��Υ��å��������롣*/
+	/* 受付口のロックを解除する。*/
 	syscall(sig_sem(rep->semid_lock));
 
 	return error;
@@ -230,7 +230,7 @@ TCP_CRE_REP (ID repid, T_TCP_CREP *pk_crep)
 #ifdef TCP_CFG_EXTENTIONS
 
 /*
- *  tcp_find_cep_rep -- TCP ���ո����󥯤��Ƥ��� TCP �̿�ü�������롣
+ *  tcp_find_cep_rep -- TCP 受付口をリンクしている TCP 通信端点を得る。
  */
 
 static T_TCP_CEP*
@@ -247,7 +247,7 @@ tcp_find_cep_rep (T_TCP_REP* rep)
 	}
 
 /*
- *  tcp_del_rep -- TCP ���ո��κ���ڳ�ĥ��ǽ��
+ *  tcp_del_rep -- TCP 受付口の削除【拡張機能】
  */
 
 
@@ -258,37 +258,37 @@ tcp_del_rep (ID repid)
 	T_TCP_REP	*rep;
 	ER		error = E_OK;
 
-	/* TCP ���ո� ID ������å����롣*/
+	/* TCP 受付口 ID をチェックする。*/
 	if (!VAID_TCP_REPID(repid))
 		return E_ID;
 
-	/* TCP ���ո������롣*/
+	/* TCP 受付口を得る。*/
 	rep = GET_TCP_REP(repid);
 
-	/* TCP ���ո�����ưŪ�����ѤǤʤ���Х��顼 */
+	/* TCP 受付口が、動的生成用でなければエラー */
 	if (!DYNAMIC_TCP_REP(rep))
 		return E_ID;
 
-	/* ���ո�����å����롣*/
+	/* 受付口をロックする。*/
 	syscall(wai_sem(rep->semid_lock));
 
-	/* TCP ���ո�������å����롣̤�����ξ��ϥ��顼 */
+	/* TCP 受付口をチェックする。未生成の場合はエラー */
 	if (!VALID_TCP_REP(rep))
 		error = E_NOEXS;
 	else {
 		if ((cep = tcp_find_cep_rep(rep)) != NULL) {
 			/*
-			 * ���Ǥ˼�ư�����ץ󤷤Ƥ���Ȥ�
-			 *��tcp_acp_cep ���ƤФ�Ƥ���Ȥ��ˤϡ�
-			 * tcp_acp_cep ��λ�����롣
+			 * すでに受動オープンしているとき
+			 *（tcp_acp_cep が呼ばれているとき）は、
+			 * tcp_acp_cep を終了させる。
 			 */
 
-			/* �̿�ü������å����롣*/
+			/* 通信端点をロックする。*/
 			syscall(wai_sem(cep->semid_lock));
 
 			/*
-			 *  �̿�ü��������ո����������
-			 *  ���٥�ȥե饰�򥯥����������ꤹ�롣
+			 *  通信端点から受付口を解放し、
+			 *  イベントフラグをクローズに設定する。
 			 */
 			cep->rep = NULL;
 			cep->fsm_state = TCP_FSM_CLOSED;
@@ -323,18 +323,18 @@ tcp_del_rep (ID repid)
 			cep->rcv_tskid = TA_NULL;
 			cep->rcv_tfn   = TFN_TCP_UNDEF;
 
-			/* �̿�ü���Υ��å��������롣*/
+			/* 通信端点のロックを解除する。*/
 			syscall(sig_sem(cep->semid_lock));
 
 			}
 		else
 			error = E_OK;
 
-		/* TCP ���ո���̤�����ˤ��롣*/
+		/* TCP 受付口を未生成にする。*/
 		rep->flags &= ~TCP_REP_FLG_VALID;
 		}
 
-	/* ���ո��Υ��å��������롣*/
+	/* 受付口のロックを解除する。*/
 	syscall(sig_sem(rep->semid_lock));
 
 	return error;
@@ -345,7 +345,7 @@ tcp_del_rep (ID repid)
 #endif	/* of #ifdef __tcp_del_rep */
 
 /*
- *  tcp_cre_cep -- TCP �̿�ü���������ڳ�ĥ��ǽ��
+ *  tcp_cre_cep -- TCP 通信端点の生成【拡張機能】
  */
 
 #ifdef __tcp_cre_cep
@@ -358,45 +358,45 @@ tcp_cre_cep (ID cepid, T_TCP_CCEP *pk_ccep)
 	T_TCP_CEP	*cep;
 	ER		error;
 
-	/* TCP �̿�ü�� ID ������å����롣*/
+	/* TCP 通信端点 ID をチェックする。*/
 	if (!VAID_TCP_CEPID(cepid))
 		return E_ID;
 
-	/* pk_ccep �� NULL �ʤ饨�顼 */
+	/* pk_ccep が NULL ならエラー */
 	if (pk_ccep == NULL)
 		return E_PAR;
 
-	/* TCP �̿�ü�������롣*/
+	/* TCP 通信端点を得る。*/
 	cep = GET_TCP_CEP(cepid);
 
-	/* TCP �̿�ü������ưŪ�����ѤǤʤ���Х��顼 */
+	/* TCP 通信端点が、動的生成用でなければエラー */
 	if (!DYNAMIC_TCP_CEP(cep))
 		return E_ID;
 
-	/* �̿�ü������å����롣*/
+	/* 通信端点をロックする。*/
 	syscall(wai_sem(cep->semid_lock));
 
 	/*
-	 * TCP �̿�ü��������å����롣�����ѤߤǤ���Х��顼
+	 * TCP 通信端点をチェックする。生成済みであればエラー
 	 */
 	if (VALID_TCP_CEP(cep))
 		error = E_OBJ;
 	else {
 
-		/* TCP �̿�ü����������򥳥ԡ����롣*/
-		cep->cepatr   = pk_ccep->cepatr;		/* �̿�ü��°��			*/
-		cep->sbuf     = pk_ccep->sbuf;			/* �����ѥ�����ɥХåե�	*/
-		cep->sbufsz   = pk_ccep->sbufsz;		/* �����ѥ�����ɥХåե�������	*/
-		cep->rbuf     = pk_ccep->rbuf;			/* �����ѥ�����ɥХåե�	*/
-		cep->rbufsz   = pk_ccep->rbufsz;		/* �����ѥ�����ɥХåե�������	*/
-		cep->callback = (void*)pk_ccep->callback;	/* ������Хå�			*/
+		/* TCP 通信端点生成情報をコピーする。*/
+		cep->cepatr   = pk_ccep->cepatr;		/* 通信端点属性			*/
+		cep->sbuf     = pk_ccep->sbuf;			/* 送信用ウィンドバッファ	*/
+		cep->sbufsz   = pk_ccep->sbufsz;		/* 送信用ウィンドバッファサイズ	*/
+		cep->rbuf     = pk_ccep->rbuf;			/* 受信用ウィンドバッファ	*/
+		cep->rbufsz   = pk_ccep->rbufsz;		/* 受信用ウィンドバッファサイズ	*/
+		cep->callback = (void*)pk_ccep->callback;	/* コールバック			*/
 
-		/* TCP �̿�ü���������Ѥߤˤ��롣*/
+		/* TCP 通信端点を生成済みにする。*/
 		cep->flags |= TCP_CEP_FLG_VALID;
 		error = E_OK;
 		}
 
-	/* �̿�ü���Υ��å��������롣*/
+	/* 通信端点のロックを解除する。*/
 	syscall(sig_sem(cep->semid_lock));
 
 	return error;
@@ -407,7 +407,7 @@ tcp_cre_cep (ID cepid, T_TCP_CCEP *pk_ccep)
 #endif	/* of #ifdef __tcp_cre_cep */
 
 /*
- *  tcp_del_cep -- TCP �̿�ü���κ���ڳ�ĥ��ǽ��
+ *  tcp_del_cep -- TCP 通信端点の削除【拡張機能】
  */
 
 #ifdef __tcp_del_cep
@@ -420,24 +420,24 @@ tcp_del_cep (ID cepid)
 	T_TCP_CEP	*cep;
 	ER		error;
 
-	/* TCP �̿�ü�� ID ������å����롣*/
+	/* TCP 通信端点 ID をチェックする。*/
 	if (!VAID_TCP_CEPID(cepid))
 		return E_ID;
 
-	/* TCP �̿�ü�������롣*/
+	/* TCP 通信端点を得る。*/
 	cep = GET_TCP_CEP(cepid);
 
-	/* TCP �̿�ü������ưŪ�����ѤǤʤ���Х��顼 */
+	/* TCP 通信端点が、動的生成用でなければエラー */
 	if (!DYNAMIC_TCP_CEP(cep))
 		return E_ID;
 
-	/* �̿�ü������å����롣*/
+	/* 通信端点をロックする。*/
 	syscall(wai_sem(cep->semid_lock));
 
 	/*
-	 * TCP �̿�ü��������å����롣�ʲ��ξ��ϥ��顼
-	 * ��̤������
-	 * �������档
+	 * TCP 通信端点をチェックする。以下の場合はエラー
+	 * ・未生成。
+	 * ・使用中。
 	 */
 	if (!VALID_TCP_CEP(cep))
 		error = E_NOEXS;
@@ -445,12 +445,12 @@ tcp_del_cep (ID cepid)
 		error = E_OBJ;
 	else {
 
-		/* TCP �̿�ü����̤�����ˤ��롣*/
+		/* TCP 通信端点を未生成にする。*/
 		cep->flags &= ~TCP_CEP_FLG_VALID;
 		error = E_OK;
 		}
 
-	/* �̿�ü���Υ��å��������롣*/
+	/* 通信端点のロックを解除する。*/
 	syscall(sig_sem(cep->semid_lock));
 
 	return error;
@@ -463,7 +463,7 @@ tcp_del_cep (ID cepid)
 #ifdef TCP_CFG_PASSIVE_OPEN
 
 /*
- *  tcp_acp_cep -- ��³�׵��Ԥ� (��ư�����ץ�)��ɸ�ൡǽ��
+ *  tcp_acp_cep -- 接続要求待ち (受動オープン)【標準機能】
  */
 
 #ifdef __tcp_acp_cep
@@ -476,50 +476,50 @@ TCP_ACP_CEP (ID cepid, ID repid, T_IPEP *p_dstaddr, TMO tmout)
 	ER		error;
 	FLGPTN		flag;
 
-	/* TCP ���ո�������å����롣*/
+	/* TCP 受付口をチェックする。*/
 	if (!VAID_TCP_REPID(repid))
 		return E_ID;
 
 #ifdef TCP_CFG_NON_BLOCKING
 
-	/* p_dstaddr �� NULL �ʤ饨�顼 */
+	/* p_dstaddr が NULL ならエラー */
 	if (p_dstaddr == NULL)
 		return E_PAR;
 
 #else	/* of #ifdef TCP_CFG_NON_BLOCKING */
 
-	/* p_dstaddr �� NULL ����tmout �� TMO_NBLK �ʤ饨�顼 */
+	/* p_dstaddr が NULL か、tmout が TMO_NBLK ならエラー */
 	if (p_dstaddr == NULL || tmout == TMO_NBLK)
 		return E_PAR;
 
 #endif	/* of #ifdef TCP_CFG_NON_BLOCKING */
 
 	/*
-	 *  CEP ����å�����API ��ǽ�����ɤȥ��������̻Ҥ�Ͽ���롣
-	 *  ���Ǥ˵�Ͽ����Ƥ���С��ڥ�ǥ�����ʤΤǥ��顼
+	 *  CEP をロックし、API 機能コードとタスク識別子を記録する。
+	 *  すでに記録されていれば、ペンディング中なのでエラー
 	 */
 	if ((error = tcp_lock_cep(cepid, &cep, TFN_TCP_ACP_CEP)) != E_OK)
 		return error;
 
-	/* CEP �� FSM �������������֤Ǥʤ���Х��顼��*/
+	/* CEP の FSM がクローズ状態でなければエラー。*/
 	if (cep->fsm_state != TCP_FSM_CLOSED) {
 		error = E_OBJ;
 		goto err_ret;
 		}
 	syscall(clr_flg(cep->est_flgid, (FLGPTN)(~TCP_CEP_EVT_CLOSED)));
 
-	/* TCP �̿�ü�����������롣*/
+	/* TCP 通信端点を初期化する。*/
 	tcp_init_cep(cep);
 
-	/* TCP ���ո������롣*/
+	/* TCP 受付口を得る。*/
 	rep = GET_TCP_REP(repid);
 
 #ifdef TCP_CFG_EXTENTIONS
 
-	/* TCP ���ո�����å����롣*/
+	/* TCP 受付口をロックする。*/
 	syscall(wai_sem(rep->semid_lock));
 
-	/* TCP ���ո�������å����롣*/
+	/* TCP 受付口をチェックする。*/
 	if (!VALID_TCP_REP(rep)) {
 		syscall(sig_sem(rep->semid_lock));
 		error = E_NOEXS;
@@ -528,27 +528,27 @@ TCP_ACP_CEP (ID cepid, ID repid, T_IPEP *p_dstaddr, TMO tmout)
 
 #endif	/* of #ifdef TCP_CFG_EXTENTIONS */
 
-	/* TCP �̿�ü����TCP���ո���Ͽ���롣*/
+	/* TCP 通信端点にTCP受付口を記録する。*/
 	cep->rep = rep;
 
 #ifdef TCP_CFG_EXTENTIONS
 
-	/* TCP ���ո��Υ��å��������롣*/
+	/* TCP 受付口のロックを解除する。*/
 	syscall(sig_sem(rep->semid_lock));
 
 #endif	/* of #ifdef TCP_CFG_EXTENTIONS */
 
-	/* TCP ���ո��Υ��ɥ쥹�򥳥ԡ����롣*/
+	/* TCP 受付口のアドレスをコピーする。*/
 	cep->myaddr = rep->myaddr;
 
-	/* �̿�ü�������ꤹ�롣*/
+	/* 通信端点を設定する。*/
 	cep->fsm_state = TCP_FSM_LISTEN;
 
 #ifdef TCP_CFG_NON_BLOCKING
 
-	/* �����ॢ���Ȥ�����å����롣*/
+	/* タイムアウトをチェックする。*/
 	if (tmout == TMO_NBLK) {
-		/* �Υ�֥��å��󥰥����� */
+		/* ノンブロッキングコール */
 		cep->p_dstaddr    = p_dstaddr;
 		cep->rcv_nblk_tfn = TFN_TCP_ACP_CEP;
 		return E_WBLK;
@@ -558,8 +558,8 @@ TCP_ACP_CEP (ID cepid, ID repid, T_IPEP *p_dstaddr, TMO tmout)
 #endif	/* of #ifdef TCP_CFG_NON_BLOCKING */
 
 		/*
-		 *  FSM �� ESTABLISHED �ˤʤ�ޤ��Ԥġ�
-		 *  FSM �� CLOSED �ˤʤä����ϡ����顼��ȯ���������Ȥ��̣���Ƥ��롣
+		 *  FSM が ESTABLISHED になるまで待つ。
+		 *  FSM が CLOSED になった場合は、エラーが発生したことを意味している。
 		 */
 		error = twai_flg(cep->est_flgid, (TCP_CEP_EVT_CLOSED |
 		                                  TCP_CEP_EVT_ESTABLISHED), TWF_ORW, &flag, tmout);
@@ -573,13 +573,13 @@ TCP_ACP_CEP (ID cepid, ID repid, T_IPEP *p_dstaddr, TMO tmout)
 		syscall(clr_flg(cep->est_flgid, (FLGPTN)(~TCP_CEP_EVT_ESTABLISHED)));
 
 		if (error == E_OK) {
-			/* ���Υ��ɥ쥹�򥳥ԡ����롣*/
+			/* 相手のアドレスをコピーする。*/
 			*p_dstaddr = cep->dstaddr;
 			}
 		else {
 			/*
-			 *  �̿�ü��������ո����������
-			 *  ���٥�ȥե饰�򥯥����������ꤹ�롣
+			 *  通信端点から受付口を解放し、
+			 *  イベントフラグをクローズに設定する。
 			 */
 			cep->rep = NULL;
 			cep->fsm_state = TCP_FSM_CLOSED;
@@ -603,7 +603,7 @@ err_ret:
 #endif	/* of #ifdef TCP_CFG_PASSIVE_OPEN */
 
 /*
- *  tcp_con_cep -- ��³�׵� (ǽư�����ץ�)��ɸ�ൡǽ��
+ *  tcp_con_cep -- 接続要求 (能動オープン)【標準機能】
  */
 
 #ifdef __tcp_con_cep
@@ -618,8 +618,8 @@ TCP_CON_CEP (ID cepid, T_IPEP *p_myaddr, T_IPEP *p_dstaddr, TMO tmout)
 #ifdef TCP_CFG_NON_BLOCKING
 
 	/*
-	 *  p_dstaddr �ޤ��� p_myaddr �� NULL ����
-	 *  �����褬�ޥ�����㥹�ȥ��ɥ쥹�ʤ饨�顼
+	 *  p_dstaddr または p_myaddr が NULL か、
+	 *  あて先がマルチキャストアドレスならエラー
 	 */
 	if (p_myaddr == NULL || p_dstaddr == NULL || IN_IS_ADDR_MULTICAST(&p_dstaddr->ipaddr))
 		return E_PAR;
@@ -627,9 +627,9 @@ TCP_CON_CEP (ID cepid, T_IPEP *p_myaddr, T_IPEP *p_dstaddr, TMO tmout)
 #else	/* of #ifdef TCP_CFG_NON_BLOCKING */
 
 	/*
-	 *  p_dstaddr �ޤ��� p_myaddr �� NULL ��
-	 *  �����褬�ޥ�����㥹�ȥ��ɥ쥹����
-	 *  tmout �� TMO_NBLK �ʤ饨�顼
+	 *  p_dstaddr または p_myaddr が NULL 、
+	 *  あて先がマルチキャストアドレスか、
+	 *  tmout が TMO_NBLK ならエラー
 	 */
 	if (p_myaddr == NULL || p_dstaddr == NULL ||
 	    IN_IS_ADDR_MULTICAST(&p_dstaddr->ipaddr) || tmout == TMO_NBLK)
@@ -638,29 +638,29 @@ TCP_CON_CEP (ID cepid, T_IPEP *p_myaddr, T_IPEP *p_dstaddr, TMO tmout)
 #endif	/* of #ifdef TCP_CFG_NON_BLOCKING */
 
 	/*
-	 *  CEP ����å�����API ��ǽ�����ɤȥ��������̻Ҥ�Ͽ���롣
-	 *  ���Ǥ˵�Ͽ����Ƥ���С��ڥ�ǥ�����ʤΤǥ��顼
+	 *  CEP をロックし、API 機能コードとタスク識別子を記録する。
+	 *  すでに記録されていれば、ペンディング中なのでエラー
 	 */
 	if ((error = tcp_lock_cep(cepid, &cep, TFN_TCP_CON_CEP)) != E_OK)
 		return error;
 
-	/* CEP �� FSM �������������֤Ǥʤ���Х��顼��*/
+	/* CEP の FSM がクローズ状態でなければエラー。*/
 	if (cep->fsm_state != TCP_FSM_CLOSED) {
 		error = E_OBJ;
 		goto err_ret;
 		}
 	syscall(clr_flg(cep->est_flgid, (FLGPTN)(~TCP_CEP_EVT_CLOSED)));
 
-	/* ���������ֹ���������롣*/
+	/* シーケンス番号を初期化する。*/
 	if (tcp_iss == 0)
 		tcp_init_iss();
 
-	/* �̿�ü�����������롣*/
+	/* 通信端点を初期化する。*/
 	tcp_init_cep(cep);
 
 	/*
-	 *  p_myaddr �� NADR (-1) �ǤϤʤ����� IP ���ɥ쥹�� ANY �Ǥʤ���С�
-	 *  ���ꤵ�줿 IP ���ɥ쥹�������Ƥ롣
+	 *  p_myaddr が NADR (-1) ではなく、自 IP アドレスが ANY でなければ、
+	 *  指定された IP アドレスを割り当てる。
 	 */
 	if (p_myaddr != NADR && !IN_IS_ADDR_ANY(&p_myaddr->ipaddr))
 		cep->myaddr.ipaddr = p_myaddr->ipaddr;
@@ -674,7 +674,7 @@ TCP_CON_CEP (ID cepid, T_IPEP *p_myaddr, T_IPEP *p_dstaddr, TMO tmout)
 		cep->myaddr.ipaddr = ia->addr;
 		}
 
-	/* �̿�ü�������ꤹ�롣*/
+	/* 通信端点を設定する。*/
 	cep->fsm_state = TCP_FSM_SYN_SENT;
 	cep->dstaddr   = *p_dstaddr;
 	cep->iss       = tcp_iss;
@@ -684,14 +684,14 @@ TCP_CON_CEP (ID cepid, T_IPEP *p_myaddr, T_IPEP *p_dstaddr, TMO tmout)
 
 #ifdef TCP_CFG_NON_BLOCKING
 
-	/* �����ॢ���Ȥ�����å����롣*/
+	/* タイムアウトをチェックする。*/
 	if (tmout == TMO_NBLK) {
-		/* �Υ�֥��å��󥰥����� */
+		/* ノンブロッキングコール */
 		cep->p_dstaddr    = p_dstaddr;
 		cep->p_myaddr     = p_myaddr;
 		cep->snd_nblk_tfn = TFN_TCP_CON_CEP;
 
-		/* ���ͥ������γ��ߤ�ݥ��Ȥ��롣*/
+		/* コネクションの開設をポストする。*/
 		cep->flags |= TCP_CEP_FLG_POST_OUTPUT;
 		sig_sem(SEM_TCP_POST_OUTPUT);
 		return E_WBLK;
@@ -701,22 +701,22 @@ TCP_CON_CEP (ID cepid, T_IPEP *p_myaddr, T_IPEP *p_dstaddr, TMO tmout)
 #endif	/* of #ifdef TCP_CFG_NON_BLOCKING */
 
 		/*
-		 *  p_myaddr �� NADR (-1) ����
-		 *  ���ݡ����ֹ椬 TCP_PORTANY �ʤ顢��ư�ǳ�����Ƥ롣
+		 *  p_myaddr が NADR (-1) か、
+		 *  自ポート番号が TCP_PORTANY なら、自動で割り当てる。
 		 */
 		if (p_myaddr == NADR || p_myaddr->portno == TCP_PORTANY)
 			tcp_alloc_auto_port(cep);
 		else if ((error = tcp_alloc_port(cep, p_myaddr->portno)) != E_OK)
 			goto err_ret;
 
-		/* ���ͥ������γ��ߤ�ݥ��Ȥ��롣*/
+		/* コネクションの開設をポストする。*/
 		cep->flags |= TCP_CEP_FLG_POST_OUTPUT;
 		sig_sem(SEM_TCP_POST_OUTPUT);
 
 		/*
-		 *  ���٥�Ȥ� ESTABLISHED �ˤʤ�ޤ��Ԥġ�
-		 *  ���٥�Ȥ� CLOSED �ˤʤä����ϡ����餫�Υ��顼��ȯ����������
-		 *  ��³�׵᤬���ݤ��줿���Ȥ��̣���Ƥ��롣
+		 *  イベントが ESTABLISHED になるまで待つ。
+		 *  イベントが CLOSED になった場合は、何らかのエラーが発生したか、
+		 *  接続要求が拒否されたことを意味している。
 		 */
 		error = twai_flg(cep->est_flgid, (TCP_CEP_EVT_CLOSED |
 		                                  TCP_CEP_EVT_ESTABLISHED), TWF_ORW, &flag, tmout);
@@ -731,8 +731,8 @@ TCP_CON_CEP (ID cepid, T_IPEP *p_myaddr, T_IPEP *p_dstaddr, TMO tmout)
 
 		if (error != E_OK) {
 			/*
-			 *  �̿�ü��������ո����������
-			 *  ���٥�ȥե饰�򥯥����������ꤹ�롣
+			 *  通信端点から受付口を解放し、
+			 *  イベントフラグをクローズに設定する。
 			 */
 			cep->rep = NULL;
 			cep->fsm_state = TCP_FSM_CLOSED;
@@ -756,7 +756,7 @@ err_ret:
 #ifdef __tcp_cls_cep
 
 /*
- *  tcp_user_closed -- �桼������Υ��ͥ������γ���
+ *  tcp_user_closed -- ユーザからのコネクションの開放
  */
 
 T_TCP_CEP *
@@ -764,22 +764,22 @@ tcp_user_closed (T_TCP_CEP *cep)
 {
 	switch (cep->fsm_state) {
 
-	case TCP_FSM_CLOSED:		/* ��������	*/
-	case TCP_FSM_LISTEN:		/* ��ư�����ץ�	*/
+	case TCP_FSM_CLOSED:		/* クローズ	*/
+	case TCP_FSM_LISTEN:		/* 受動オープン	*/
 		cep->fsm_state = TCP_FSM_CLOSED;
 		cep = tcp_close(cep);
 		break;
 
-	case TCP_FSM_SYN_SENT:		/* ǽư�����ץ�SYN �����Ѥ�	*/
-	case TCP_FSM_SYN_RECVD:		/* SYN ���������SYN �����Ѥ�	*/
+	case TCP_FSM_SYN_SENT:		/* 能動オープン、SYN 送信済み	*/
+	case TCP_FSM_SYN_RECVD:		/* SYN を受信し、SYN 送信済み	*/
 		cep->flags |= TCP_CEP_FLG_NEED_FIN;
 		break;
 
-	case TCP_FSM_ESTABLISHED:	/* ���ͥ�������ߴ�λ	*/
+	case TCP_FSM_ESTABLISHED:	/* コネクション開設完了	*/
 		cep->fsm_state = TCP_FSM_FIN_WAIT_1;
 		break;
 
-	case TCP_FSM_CLOSE_WAIT:	/* ��꤫�� FIN ������APP �ν�λ�Ԥ� */
+	case TCP_FSM_CLOSE_WAIT:	/* 相手から FIN 受信、APP の終了待ち */
 		cep->fsm_state = TCP_FSM_LAST_ACK;
 		break;
 		}
@@ -790,7 +790,7 @@ tcp_user_closed (T_TCP_CEP *cep)
 	}
 
 /*
- *  tcp_cls_cep -- �̿�ü���Υ���������ɸ�ൡǽ��
+ *  tcp_cls_cep -- 通信端点のクローズ【標準機能】
  */
 
 ER
@@ -802,27 +802,27 @@ tcp_cls_cep (ID cepid, TMO tmout)
 
 #ifndef TCP_CFG_NON_BLOCKING
 
-	/* tmout �� TMO_NBLK �ʤ饨�顼 */
+	/* tmout が TMO_NBLK ならエラー */
 	if (tmout == TMO_NBLK)
 		return E_PAR;
 
 #endif	/* of #ifndef TCP_CFG_NON_BLOCKING */
 
 	/*
-	 *  CEP ����å�����API ��ǽ�����ɤȥ��������̻Ҥ�Ͽ���롣
-	 *  ���Ǥ˵�Ͽ����Ƥ���С��ڥ�ǥ�����ʤΤǥ��顼
+	 *  CEP をロックし、API 機能コードとタスク識別子を記録する。
+	 *  すでに記録されていれば、ペンディング中なのでエラー
 	 */
 	if ((error = tcp_lock_cep(cepid, &cep, TFN_TCP_CLS_CEP)) != E_OK)
 		return error;
 
 #ifdef TCP_CFG_NON_BLOCKING
 
-	/* �����ॢ���Ȥ�����å����롣*/
-	if (tmout == TMO_NBLK) {				/* �Υ�֥��å��󥰥����� */
+	/* タイムアウトをチェックする。*/
+	if (tmout == TMO_NBLK) {				/* ノンブロッキングコール */
 
 		if (!IS_PTR_DEFINED(cep->callback))
 			error = E_OBJ;
-		else if (cep->fsm_state == TCP_FSM_CLOSED) {	/* ���Ǥ˥�����������Ƥ���Ȥ� */
+		else if (cep->fsm_state == TCP_FSM_CLOSED) {	/* すでにクローズされているとき */
 
 #ifdef TCP_CFG_NON_BLOCKING_COMPAT14
 
@@ -840,75 +840,75 @@ tcp_cls_cep (ID cepid, TMO tmout)
 
 			}
 		else {
-			/* NBLK ��API ��ǽ�����ɤ����ꤹ�롣*/
+			/* NBLK のAPI 機能コードを設定する。*/
 			cep->rcv_nblk_tfn = TFN_TCP_CLS_CEP;
 
-			if ((cep = tcp_user_closed(cep)) != NULL) {	/* ���ͥ����������Ǥ��롣*/
-				/* ���ǥ������Ƚ��Ϥ�ݥ��Ȥ��롣*/
+			if ((cep = tcp_user_closed(cep)) != NULL) {	/* コネクションを切断する。*/
+				/* 切断セグメント出力をポストする。*/
 				cep->flags |= TCP_CEP_FLG_POST_OUTPUT;
 				sig_sem(SEM_TCP_POST_OUTPUT);
 				}
 
-			/*  cep �� NULL ����äƤ������ϡ�
-			 *  ���˥��ͥ���������Ǥ���Ƥ��뤳�Ȥ��̣���Ƥ��롣
-			 *  �ޤ������ξ�祳����Хå��ؿ����ƤӽФ���Ƥ��롣
+			/*  cep が NULL で戻ってきた場合は、
+			 *  既にコネクションが切断されていることを意味している。
+			 *  また、この場合コールバック関数が呼び出されている。
 			 */
 			return E_WBLK;
 			}
 		}
-	else {							/* ��Υ�֥��å��󥰥����� */
+	else {							/* 非ノンブロッキングコール */
 
 #endif	/* of #ifdef TCP_CFG_NON_BLOCKING */
 
-		if ((cep = tcp_user_closed(cep)) == NULL) {	/* ���ͥ����������Ǥ��롣*/
+		if ((cep = tcp_user_closed(cep)) == NULL) {	/* コネクションを切断する。*/
 
-			/*  cep �� NULL ����äƤ������ϡ�
-			 *  ���˥��ͥ���������Ǥ���Ƥ��뤳�Ȥ��̣���Ƥ��롣
+			/*  cep が NULL で戻ってきた場合は、
+			 *  既にコネクションが切断されていることを意味している。
 			 */
 			return error;
 			}
 		else {
-			/* ���ǥ������Ƚ��Ϥ�ݥ��Ȥ��롣*/
+			/* 切断セグメント出力をポストする。*/
 			cep->flags |= TCP_CEP_FLG_POST_OUTPUT;
 			sig_sem(SEM_TCP_POST_OUTPUT);
 
-			/* ���٥�ȥե饰�� CLOSED �ˤʤ�ޤ��Ԥġ�*/
+			/* イベントフラグが CLOSED になるまで待つ。*/
 			error = twai_flg(cep->est_flgid, TCP_CEP_EVT_CLOSED, TWF_ORW, &flag, tmout);
 			if (error == E_OK && cep->error != E_OK)
 				error = cep->error;
 
 			if (error != E_OK) {
 				if (error == E_RLWAI) {
-					/* tcp_cls_cep ������󥻥뤵�줿�Ȥ��ϡ�RST ���������롣*/
+					/* tcp_cls_cep がキャンセルされたときは、RST を送信する。*/
 					tcp_respond(NULL, cep, cep->rcv_nxt, cep->snd_una - 1, 
 					            cep->rbufsz - cep->rwbuf_count, TCP_FLG_RST);
 					}
 
-				/* �����ޡ�����ߤ��롣*/
+				/* タイマーを停止する。*/
 				tcp_cancel_timers(cep);
 
 				/* 
-				 *  �̿�ü������å�����
-				 *  �����ƹ������塼�Υͥåȥ���Хåե���������롣
+				 *  通信端点をロックし、
+				 *  受信再構成キューのネットワークバッファを解放する。
 				 */
 				syscall(wai_sem(cep->semid_lock));
 				tcp_free_reassq(cep);
 				syscall(sig_sem(cep->semid_lock));
 
-				/* ���֤�̤���Ѥˤ��롣*/
+				/* 状態を未使用にする。*/
 				cep->fsm_state = TCP_FSM_CLOSED;
 
 				/*
-				 * �ʲ��˴ط����ʤ��ե饰�򥯥ꥢ�����롣
-				 * ��������������ɥХåե��ξʥ��ԡ���ǽ
-				 * ��ưŪ���̿�ü���������������ǽ
+				 * 以下に関係しないフラグをクリアーする。
+				 * ・送受信ウィンドバッファの省コピー機能
+				 * ・動的な通信端点の生成・削除機能
 				 */
 				cep->flags &= (TCP_CEP_FLG_WBCS_NBUF_REQ | TCP_CEP_FLG_WBCS_MASK | 
 				               TCP_CEP_FLG_DYNAMIC       | TCP_CEP_FLG_VALID);
 
 				/* 
-				 *  �̿�ü������å�����
-				 *  ������������ɥХåե����塼�Υͥåȥ���Хåե���������롣
+				 *  通信端点をロックし、
+				 *  送受信ウィンドバッファキューのネットワークバッファを解放する。
 				 */
 				cep->rwbuf_count = 0;
 				syscall(wai_sem(cep->semid_lock));
@@ -936,7 +936,7 @@ tcp_cls_cep (ID cepid, TMO tmout)
 #ifdef __tcp_sht_cep
 
 /*
- *  tcp_sht_cep  -- �ǡ��������ν�λ��ɸ�ൡǽ��
+ *  tcp_sht_cep  -- データ送信の終了【標準機能】
  */
 
 ER
@@ -946,21 +946,21 @@ tcp_sht_cep (ID cepid)
 	ER		error = E_OK;
 
 	/*
-	 *  CEP ����å�����API ��ǽ�����ɤȥ��������̻Ҥ�Ͽ���롣
-	 *  ���Ǥ˵�Ͽ����Ƥ���С��ڥ�ǥ�����ʤΤǥ��顼
+	 *  CEP をロックし、API 機能コードとタスク識別子を記録する。
+	 *  すでに記録されていれば、ペンディング中なのでエラー
 	 */
 	if ((error = tcp_lock_cep(cepid, &cep, TFN_TCP_SHT_CEP)) != E_OK)
 		return error;
 
-	/* TCP �̿�ü���Υ��ͥ�����󤬳�Ω���֤Ǥʤ���Х��顼 */
+	/* TCP 通信端点のコネクションが確立状態でなければエラー */
 	if (!TCP_FSM_HAVE_ESTABLISHED(cep->fsm_state)) {
 		if ((error = cep->error) == E_OK)
 			error = E_OBJ;
 		}
 
-	else if ((cep = tcp_user_closed(cep)) != NULL) {		/* ���ͥ����������Ǥ��롣*/
+	else if ((cep = tcp_user_closed(cep)) != NULL) {		/* コネクションを切断する。*/
 
-		/* ���ǥ������Ƚ��Ϥ�ݥ��Ȥ��롣*/
+		/* 切断セグメント出力をポストする。*/
 		cep->flags |= TCP_CEP_FLG_POST_OUTPUT;
 		sig_sem(SEM_TCP_POST_OUTPUT);
 		}
@@ -975,7 +975,7 @@ tcp_sht_cep (ID cepid)
 #ifdef __tcp_snd_dat
 
 /*
- *  tcp_snd_dat -- �ѥ��åȤ�������ɸ�ൡǽ��
+ *  tcp_snd_dat -- パケットの送信【標準機能】
  */
 
 ER_UINT
@@ -986,52 +986,52 @@ tcp_snd_dat (ID cepid, void *data, int_t len, TMO tmout)
 
 #ifdef TCP_CFG_NON_BLOCKING
 
-	/* data �� NULL ����len < 0 �ʤ饨�顼 */
+	/* data が NULL か、len < 0 ならエラー */
 	if (data == NULL || len < 0)
 		return E_PAR;
 
 #else	/* of #ifdef TCP_CFG_NON_BLOCKING */
 
-	/* data �� NULL��len < 0 ����tmout �� TMO_NBLK �ʤ饨�顼 */
+	/* data が NULL、len < 0 か、tmout が TMO_NBLK ならエラー */
 	if (data == NULL || len < 0 || tmout == TMO_NBLK)
 		return E_PAR;
 
 #endif	/* of #ifdef TCP_CFG_NON_BLOCKING */
 
 	/*
-	 *  CEP ����å�����API ��ǽ�����ɤȥ��������̻Ҥ�Ͽ���롣
-	 *  ���Ǥ˵�Ͽ����Ƥ���С��ڥ�ǥ�����ʤΤǥ��顼
+	 *  CEP をロックし、API 機能コードとタスク識別子を記録する。
+	 *  すでに記録されていれば、ペンディング中なのでエラー
 	 */
 	if ((error = tcp_lock_cep(cepid, &cep, TFN_TCP_SND_DAT)) != E_OK)
 		return error;
 
-	/* �����Ǥ��뤫���̿�ü���ξ��֤򸫤롣*/
+	/* 送信できるか、通信端点の状態を見る。*/
 	if ((error = tcp_can_send_more(cep, TFN_TCP_SND_DAT, tmout)) != E_OK)
 		goto err_ret;
 
 #ifdef TCP_CFG_NON_BLOCKING
 
-	/* �����ॢ���Ȥ�����å����롣*/
-	if (tmout == TMO_NBLK) {		/* �Υ�֥��å��󥰥����� */
+	/* タイムアウトをチェックする。*/
+	if (tmout == TMO_NBLK) {		/* ノンブロッキングコール */
 
-		/* ����������ɥХåե��˶���������Х�����Хå��ؿ���ƤӽФ���*/
+		/* 送信ウィンドバッファに空きがあればコールバック関数を呼び出す。*/
 		if (!TCP_IS_SWBUF_FULL(cep)) {
 
-		 	/* ����������ɥХåե��˥ǡ�����񤭹��ࡣ*/
+		 	/* 送信ウィンドバッファにデータを書き込む。*/
 			error = TCP_WRITE_SWBUF(cep, data, (uint_t)len);
 
-			/* ���Ϥ�ݥ��Ȥ��롣*/
+			/* 出力をポストする。*/
 			cep->flags |= TCP_CEP_FLG_POST_OUTPUT;
 			sig_sem(SEM_TCP_POST_OUTPUT);
 
 #ifdef TCP_CFG_NON_BLOCKING_COMPAT14
 
-			/* ������Хå��ؿ���ƤӽФ���*/
+			/* コールバック関数を呼び出す。*/
 			(*cep->callback)(GET_TCP_CEPID(cep), TFN_TCP_SND_DAT, (void*)error);
 
 #else	/* of #ifdef TCP_CFG_NON_BLOCKING_COMPAT14 */
 
-			/* ������Хå��ؿ���ƤӽФ���*/
+			/* コールバック関数を呼び出す。*/
 			(*cep->callback)(GET_TCP_CEPID(cep), TFN_TCP_SND_DAT, (void*)&error);
 
 #endif	/* of #ifdef TCP_CFG_NON_BLOCKING_COMPAT14 */
@@ -1048,22 +1048,22 @@ tcp_snd_dat (ID cepid, void *data, int_t len, TMO tmout)
 			return E_WBLK;
 			}
 		}
-	else {		/* ��Υ�֥��å��󥰥����� */
+	else {		/* 非ノンブロッキングコール */
 
 #endif	/* of #ifdef TCP_CFG_NON_BLOCKING */
 
-	 	/* ����������ɥХåե��������Τ��Ԥġ�*/
+	 	/* 送信ウィンドバッファが空くのを待つ。*/
 		if ((error = TCP_WAIT_SWBUF(cep, tmout)) != E_OK)
 			goto err_ret;
 
-	 	/* ����������ɥХåե��˥ǡ�����񤭹��ࡣ*/
+	 	/* 送信ウィンドバッファにデータを書き込む。*/
 		if ((error = TCP_WRITE_SWBUF(cep, data, (uint_t)len)) > 0) {
 
-			/* �ǡ������������롣����������ɥХåե����ե�ΤȤ��϶���Ū���������롣*/
+			/* データを送信する。送信ウィンドバッファがフルのときは強制的に送信する。*/
 			if (TCP_IS_SWBUF_FULL(cep))
 				cep->flags |= TCP_CEP_FLG_FORCE | TCP_CEP_FLG_FORCE_CLEAR;
 
-			/* ���Ϥ�ݥ��Ȥ��롣*/
+			/* 出力をポストする。*/
 			cep->flags |= TCP_CEP_FLG_POST_OUTPUT;
 			sig_sem(SEM_TCP_POST_OUTPUT);
 			}
@@ -1087,7 +1087,7 @@ err_ret:
 #ifdef TCP_CFG_EXTENTIONS
 
 /*
- *  tcp_snd_oob -- �۵ޥǡ����������ڳ�ĥ��ǽ��
+ *  tcp_snd_oob -- 緊急データの送信【拡張機能】
  */
 
 ER_UINT
@@ -1098,55 +1098,55 @@ tcp_snd_oob (ID cepid, void *data, int_t len, TMO tmout)
 
 #ifdef TCP_CFG_NON_BLOCKING
 
-	/* data �� NULL ����len < 0 �ʤ饨�顼 */
+	/* data が NULL か、len < 0 ならエラー */
 	if (data == NULL || len < 0)
 		return E_PAR;
 
 #else	/* of #ifdef TCP_CFG_NON_BLOCKING */
 
-	/* data �� NULL��len < 0 ����tmout �� TMO_NBLK �ʤ饨�顼 */
+	/* data が NULL、len < 0 か、tmout が TMO_NBLK ならエラー */
 	if (data == NULL || len < 0 || tmout == TMO_NBLK)
 		return E_PAR;
 
 #endif	/* of #ifdef TCP_CFG_NON_BLOCKING */
 
 	/*
-	 *  CEP ����å�����API ��ǽ�����ɤȥ��������̻Ҥ�Ͽ���롣
-	 *  ���Ǥ˵�Ͽ����Ƥ���С��ڥ�ǥ�����ʤΤǥ��顼
+	 *  CEP をロックし、API 機能コードとタスク識別子を記録する。
+	 *  すでに記録されていれば、ペンディング中なのでエラー
 	 */
 	if ((error = tcp_lock_cep(cepid, &cep, TFN_TCP_SND_OOB)) != E_OK)
 		return error;
 
-	/* �����Ǥ��뤫���̿�ü���ξ��֤򸫤롣*/
+	/* 送信できるか、通信端点の状態を見る。*/
 	if ((error = tcp_can_send_more(cep, TFN_TCP_SND_OOB, tmout)) != E_OK)
 		goto err_ret;
 
 #ifdef TCP_CFG_NON_BLOCKING
 
-	/* �����ॢ���Ȥ�����å����롣*/
-	if (tmout == TMO_NBLK) {		/* �Υ�֥��å��󥰥����� */
+	/* タイムアウトをチェックする。*/
+	if (tmout == TMO_NBLK) {		/* ノンブロッキングコール */
 
-		/* ����������ɥХåե��˶���������Х�����Хå��ؿ���ƤӽФ���*/
+		/* 送信ウィンドバッファに空きがあればコールバック関数を呼び出す。*/
 		if (!TCP_IS_SWBUF_FULL(cep)) {
 
-		 	/* ����������ɥХåե��˥ǡ�����񤭹��ࡣ*/
+		 	/* 送信ウィンドバッファにデータを書き込む。*/
 			error = TCP_WRITE_SWBUF(cep, data, (uint_t)len);
 
-			/* �����۵ޥݥ��󥿤����ꤹ�롣*/
+			/* 送信緊急ポインタを設定する。*/
 			cep->snd_up = cep->snd_una + cep->swbuf_count;
 
-			/* ���Ϥ�ݥ��Ȥ��롣*/
+			/* 出力をポストする。*/
 			cep->flags |= TCP_CEP_FLG_POST_OUTPUT;
 			sig_sem(SEM_TCP_POST_OUTPUT);
 
 #ifdef TCP_CFG_NON_BLOCKING_COMPAT14
 
-			/* ������Хå��ؿ���ƤӽФ���*/
+			/* コールバック関数を呼び出す。*/
 			(*cep->callback)(GET_TCP_CEPID(cep), TFN_TCP_SND_OOB, (void*)error);
 
 #else	/* of #ifdef TCP_CFG_NON_BLOCKING_COMPAT14 */
 
-			/* ������Хå��ؿ���ƤӽФ���*/
+			/* コールバック関数を呼び出す。*/
 			(*cep->callback)(GET_TCP_CEPID(cep), TFN_TCP_SND_OOB, (void*)&error);
 
 #endif	/* of #ifdef TCP_CFG_NON_BLOCKING_COMPAT14 */
@@ -1163,25 +1163,25 @@ tcp_snd_oob (ID cepid, void *data, int_t len, TMO tmout)
 			return E_WBLK;
 			}
 		}
-	else {		/* ��Υ�֥��å��󥰥����� */
+	else {		/* 非ノンブロッキングコール */
 
 #endif	/* of #ifdef TCP_CFG_NON_BLOCKING */
 
-	 	/* ����������ɥХåե��������Τ��Ԥġ�*/
+	 	/* 送信ウィンドバッファが空くのを待つ。*/
 		if ((error = TCP_WAIT_SWBUF(cep, tmout)) != E_OK)
 			goto err_ret;
 
-	 	/* ����������ɥХåե��˥ǡ�����񤭹��ࡣ*/
+	 	/* 送信ウィンドバッファにデータを書き込む。*/
 		if ((error = TCP_WRITE_SWBUF(cep, data, (uint_t)len)) > 0) {
 
-			/* �����۵ޥݥ��󥿤����ꤹ�롣*/
+			/* 送信緊急ポインタを設定する。*/
 			cep->snd_up = cep->snd_una + cep->swbuf_count;
 
-			/* �ǡ������������롣����������ɥХåե����ե�ΤȤ��϶���Ū���������롣*/
+			/* データを送信する。送信ウィンドバッファがフルのときは強制的に送信する。*/
 			if (TCP_IS_SWBUF_FULL(cep))
 				cep->flags |= TCP_CEP_FLG_FORCE | TCP_CEP_FLG_FORCE_CLEAR;
 
-			/* ���Ϥ�ݥ��Ȥ��롣*/
+			/* 出力をポストする。*/
 			cep->flags |= TCP_CEP_FLG_POST_OUTPUT;
 			sig_sem(SEM_TCP_POST_OUTPUT);
 			}
@@ -1205,7 +1205,7 @@ err_ret:
 #ifdef __tcp_get_buf
 
 /*
- *  tcp_get_buf -- �����ѥХåե��γ�����ɸ�ൡǽ��
+ *  tcp_get_buf -- 送信用バッファの獲得【標準機能】
  */
 
 ER_UINT
@@ -1216,47 +1216,47 @@ tcp_get_buf (ID cepid, void **p_buf, TMO tmout)
 
 #ifdef TCP_CFG_NON_BLOCKING
 
-	/* p_buf �� NULL �ʤ饨�顼 */
+	/* p_buf が NULL ならエラー */
 	if (p_buf == NULL)
 		return E_PAR;
 
 #else	/* of #ifdef TCP_CFG_NON_BLOCKING */
 
-	/* p_buf �� NULL ����tmout �� TMO_NBLK �ʤ饨�顼 */
+	/* p_buf が NULL か、tmout が TMO_NBLK ならエラー */
 	if (p_buf == NULL || tmout == TMO_NBLK)
 		return E_PAR;
 
 #endif	/* of #ifdef TCP_CFG_NON_BLOCKING */
 
 	/*
-	 *  CEP ����å�����API ��ǽ�����ɤȥ��������̻Ҥ�Ͽ���롣
-	 *  ���Ǥ˵�Ͽ����Ƥ���С��ڥ�ǥ�����ʤΤǥ��顼
+	 *  CEP をロックし、API 機能コードとタスク識別子を記録する。
+	 *  すでに記録されていれば、ペンディング中なのでエラー
 	 */
 	if ((error = tcp_lock_cep(cepid, &cep, TFN_TCP_GET_BUF)) != E_OK)
 		return error;
 
-	/* �����Ǥ��뤫���̿�ü���ξ��֤򸫤롣*/
+	/* 送信できるか、通信端点の状態を見る。*/
 	if ((error = tcp_can_send_more(cep, TFN_TCP_GET_BUF, tmout)) != E_OK)
 		goto err_ret;
 
 #ifdef TCP_CFG_NON_BLOCKING
 
-	/* �����ॢ���Ȥ�����å����롣*/
-	if (tmout == TMO_NBLK) {		/* �Υ�֥��å��󥰥����� */
+	/* タイムアウトをチェックする。*/
+	if (tmout == TMO_NBLK) {		/* ノンブロッキングコール */
 
 		if (!TCP_IS_SWBUF_FULL(cep)) {
 
-			/* ����������ɥХåե��˶���������Х�����Хå��ؿ���ƤӽФ���*/
+			/* 送信ウィンドバッファに空きがあればコールバック関数を呼び出す。*/
 			error = TCP_GET_SWBUF_ADDR(cep, p_buf);
 
 #ifdef TCP_CFG_NON_BLOCKING_COMPAT14
 
-			/* ������Хå��ؿ���ƤӽФ���*/
+			/* コールバック関数を呼び出す。*/
 			(*cep->callback)(GET_TCP_CEPID(cep), TFN_TCP_GET_BUF, (void*)error);
 
 #else	/* of #ifdef TCP_CFG_NON_BLOCKING_COMPAT14 */
 
-			/* ������Хå��ؿ���ƤӽФ���*/
+			/* コールバック関数を呼び出す。*/
 			(*cep->callback)(GET_TCP_CEPID(cep), TFN_TCP_GET_BUF, (void*)&error);
 
 #endif	/* of #ifdef TCP_CFG_NON_BLOCKING_COMPAT14 */
@@ -1272,15 +1272,15 @@ tcp_get_buf (ID cepid, void **p_buf, TMO tmout)
 			}
 		}
 
-	else {		/* ��Υ�֥��å��󥰥����� */
+	else {		/* 非ノンブロッキングコール */
 
 #endif	/* of #ifdef TCP_CFG_NON_BLOCKING */
 
-	 	/* ����������ɥХåե��������Τ��Ԥġ�*/
+	 	/* 送信ウィンドバッファが空くのを待つ。*/
 		if ((error = TCP_WAIT_SWBUF(cep, tmout)) != E_OK)
 			goto err_ret;
 
-	 	/* ����������ɥХåե��ζ����ɥ쥹��������롣*/
+	 	/* 送信ウィンドバッファの空アドレスを獲得する。*/
 		error = TCP_GET_SWBUF_ADDR(cep, p_buf);
 
 #ifdef TCP_CFG_NON_BLOCKING
@@ -1300,7 +1300,7 @@ err_ret:
 #ifdef __tcp_snd_buf
 
 /*
- *  tcp_snd_buf -- �Хåե���Υǡ�����������ɸ�ൡǽ��
+ *  tcp_snd_buf -- バッファ内のデータの送信【標準機能】
  */
 
 ER
@@ -1309,38 +1309,38 @@ tcp_snd_buf (ID cepid, int_t len)
 	T_TCP_CEP	*cep;
 	ER		error;
 
-	/* ��������Ĺ�� len ������å����롣*/
+	/* 送信する長さ len をチェックする。*/
 	if (len < 0)
 		return E_PAR;
 
-	/* ��������Ĺ��len �� 0 �Ǥ���С����⤷�ʤ�����롣*/
+	/* 送信する長さlen が 0 であれば、何もしないで戻る。*/
 	if (len == 0)
 		return E_OK;
 
 	/*
-	 *  CEP ����å�����API ��ǽ�����ɤȥ��������̻Ҥ�Ͽ���롣
-	 *  ���Ǥ˵�Ͽ����Ƥ���С��ڥ�ǥ�����ʤΤǥ��顼
+	 *  CEP をロックし、API 機能コードとタスク識別子を記録する。
+	 *  すでに記録されていれば、ペンディング中なのでエラー
 	 */
 	if ((error = tcp_lock_cep(cepid, &cep, TFN_TCP_SND_BUF)) != E_OK)
 		return error;
 
-	/* ��������Ĺ�� len ������å����롣*/
+	/* 送信する長さ len をチェックする。*/
 	if (len > cep->get_buf_len) {
 		error = E_OBJ;
 		goto err_ret;
 		}
 
-	/* �����Ǥ��뤫��CEP �� FSM ���֤򸫤롣*/
+	/* 送信できるか、CEP の FSM 状態を見る。*/
 	if (!TCP_FSM_CAN_SEND_MORE(cep->fsm_state)) {
 		if ((error = cep->error) == E_OK)
 			error = E_OBJ;
 		goto err_ret;
 		}
 
-	/* ����������ɥХåե��Υǡ�����������ǽ�ˤ��롣*/
+	/* 送信ウィンドバッファのデータを送信可能にする。*/
 	TCP_SEND_SWBUF(cep, (uint_t)len);
 
-	/* ���Ϥ�ݥ��Ȥ��롣*/
+	/* 出力をポストする。*/
 	cep->flags |= TCP_CEP_FLG_POST_OUTPUT;
 	sig_sem(SEM_TCP_POST_OUTPUT);
 
@@ -1355,7 +1355,7 @@ err_ret:
 #ifdef __tcp_rcv_dat
 
 /*
- *  tcp_rcv_dat -- �ѥ��åȤμ�����ɸ�ൡǽ��
+ *  tcp_rcv_dat -- パケットの受信【標準機能】
  */
 
 ER_UINT
@@ -1366,38 +1366,38 @@ tcp_rcv_dat (ID cepid, void *data, int_t len, TMO tmout)
 
 #ifdef TCP_CFG_NON_BLOCKING
 
-	/* data �� NULL ����len < 0 �ʤ饨�顼 */
+	/* data が NULL か、len < 0 ならエラー */
 	if (data == NULL || len < 0)
 		return E_PAR;
 
 #else	/* of #ifdef TCP_CFG_NON_BLOCKING */
 
-	/* data �� NULL��len < 0 ����tmout �� TMO_NBLK �ʤ饨�顼 */
+	/* data が NULL、len < 0 か、tmout が TMO_NBLK ならエラー */
 	if (data == NULL || len < 0 || tmout == TMO_NBLK)
 		return E_PAR;
 
 #endif	/* of #ifdef TCP_CFG_NON_BLOCKING */
 
 	/*
-	 *  CEP ����å�����API ��ǽ�����ɤȥ��������̻Ҥ�Ͽ���롣
-	 *  ���Ǥ˵�Ͽ����Ƥ���С��ڥ�ǥ�����ʤΤǥ��顼
+	 *  CEP をロックし、API 機能コードとタスク識別子を記録する。
+	 *  すでに記録されていれば、ペンディング中なのでエラー
 	 */
 	if ((error = tcp_lock_cep(cepid, &cep, TFN_TCP_RCV_DAT)) != E_OK)
 		return error;
 
-	/* �����Ǥ��뤫���̿�ü���ξ��֤򸫤롣*/
+	/* 受信できるか、通信端点の状態を見る。*/
 	if (tcp_can_recv_more(&error, cep, TFN_TCP_RCV_DAT, tmout) != E_OK)
 		goto err_ret;
 
 #ifdef TCP_CFG_NON_BLOCKING
 
-	/* �����ॢ���Ȥ�����å����롣*/
-	if (tmout == TMO_NBLK) {		/* �Υ�֥��å��󥰥����� */
+	/* タイムアウトをチェックする。*/
+	if (tmout == TMO_NBLK) {		/* ノンブロッキングコール */
 
-		/* ����������ɥХåե��˥ǡ���������Х�����Хå��ؿ���ƤӽФ���*/
+		/* 受信ウィンドバッファにデータがあればコールバック関数を呼び出す。*/
 		if (cep->rwbuf_count > 0) {
 
-			/* ����������ɥХåե�����ǡ�������Ф���*/
+			/* 受信ウィンドバッファからデータを取り出す。*/
 			len = TCP_READ_RWBUF(cep, data, (uint_t)len);
 
 #ifdef TCP_CFG_NON_BLOCKING_COMPAT14
@@ -1420,18 +1420,18 @@ tcp_rcv_dat (ID cepid, void *data, int_t len, TMO tmout)
 			return E_WBLK;
 			}
 		}
-	else {		/* ��Υ�֥��å��󥰥����� */
+	else {		/* 非ノンブロッキングコール */
 
 #endif	/* of #ifdef TCP_CFG_NON_BLOCKING */
 
-		/* ����������ɥХåե��˥ǡ������ʤ���С����Ϥ�����ޤ��Ԥġ�*/
+		/* 受信ウィンドバッファにデータがなければ、入力があるまで待つ。*/
 		if ((error = tcp_wait_rwbuf(cep, tmout)) != E_OK)
 			goto err_ret;
 
-		/* ����������ɥХåե�����ǡ�������Ф���*/
+		/* 受信ウィンドバッファからデータを取り出す。*/
 		error = TCP_READ_RWBUF(cep, data, (uint_t)len);
 
-		/* ���˥�����ɥ����������Ѥ�ä����Ȥ��Τ餻�뤿����Ϥ�ݥ��Ȥ��롣*/
+		/* 相手にウィンドウサイズが変わったことを知らせるため出力をポストする。*/
 		cep->flags |= TCP_CEP_FLG_POST_OUTPUT;
 		sig_sem(SEM_TCP_POST_OUTPUT);
 
@@ -1454,10 +1454,10 @@ err_ret:
 #ifdef TCP_CFG_EXTENTIONS
 
 /*
- *  tcp_rcv_oob -- �۵ޥǡ����μ����ڳ�ĥ��ǽ��
+ *  tcp_rcv_oob -- 緊急データの受信【拡張機能】
  *
- *    ����: ����¦��ʣ�������ƥåȤΥǡ������������Ƥ⡢
- *          �۵ޥݥ��󥿤��ؤ� 1 �����ƥåȤΥǡ����Τ߼������롣
+ *    注意: 送信側が複数オクテットのデータを送信しても、
+ *          緊急ポインタが指す 1 オクテットのデータのみ受信する。
  */
 
 ER_UINT
@@ -1466,41 +1466,41 @@ tcp_rcv_oob (ID cepid, void *data, int_t len)
 	T_TCP_CEP	*cep;
 	uint8_t		*urg;
 
-	/* TCP �̿�ü�� ID ������å����롣*/
+	/* TCP 通信端点 ID をチェックする。*/
 	if (!VAID_TCP_CEPID(cepid))
 		return E_ID;
 
-	/* data �� NULL ����len < 0 �ʤ饨�顼 */
+	/* data が NULL か、len < 0 ならエラー */
 	if (data == NULL || len < 0)
 		return E_PAR;
 
-	/* TCP �̿�ü�������롣*/
+	/* TCP 通信端点を得る。*/
 	cep = GET_TCP_CEP(cepid);
 
-	/* �����Ǥ��뤫���̿�ü���ξ��֤򸫤롣*/
-	/* �����Ǥ��뤫��fsm_state �򸫤롣*/
+	/* 受信できるか、通信端点の状態を見る。*/
+	/* 受信できるか、fsm_state を見る。*/
 	if (!TCP_FSM_CAN_RECV_MORE(cep->fsm_state))
 		return E_OBJ;
 
 	/*
-	 *  �۵ޥǡ�������Υ������Ȥ� TCP �إå���
-	 *  ���ꤵ��Ƥ��ʤ���С��۵ޥǡ�����������Ƥ��ʤ���
+	 *  緊急データ入りのセグメントの TCP ヘッダが
+	 *  設定されていなければ、緊急データを受信していない。
 	 */
 	if (cep->urg_tcph == NULL)
 		return E_OBJ;
 
-	/* len == 0 �ʤ�Хåե������С��ե��� */
+	/* len == 0 ならバッファオーバーフロー */
 	if (len == 0)
 		return E_BOVR;
 
-	/* �۵ޥݥ��󥿤��ؤ� 1 �����ƥåȤΥǡ������ɤ߼�롣*/
+	/* 緊急ポインタが指す 1 オクテットのデータを読み取る。*/
 	urg = (uint8_t*)cep->urg_tcph + TCP_DATA_OFF(cep->urg_tcph->doff) + cep->urg_tcph->urp + TCP_CFG_URG_OFFSET;
 	*(uint8_t*)data = *urg;
 
-	/* �ɤ߼�ä��ǡ����������� SDU �����˵ͤ�롣*/
+	/* 読み取ったデータから後ろの SDU を前に詰める。*/
 	memcpy(urg, urg + 1, cep->urg_tcph->sum - (cep->urg_tcph->urp + TCP_CFG_URG_OFFSET) - 1);
 
-	/* tcp_rcv_oob() ���ƽФ��줿�����Τ餻�뤿��ˡ�NULL �����ꤹ�롣*/
+	/* tcp_rcv_oob() が呼出されたこと知らせるために、NULL を設定する。*/
 	cep->urg_tcph = NULL;
 
 	return 1;
@@ -1513,7 +1513,7 @@ tcp_rcv_oob (ID cepid, void *data, int_t len)
 #ifdef __tcp_rcv_buf
 
 /*
- *  tcp_rcv_buf -- ���������ǡ��������ä��Хåե��γ�����ɸ�ൡǽ��
+ *  tcp_rcv_buf -- 受信したデータの入ったバッファの獲得【標準機能】
  */
 
 ER_UINT
@@ -1524,48 +1524,48 @@ tcp_rcv_buf (ID cepid, void **p_buf, TMO tmout)
 
 #ifdef TCP_CFG_NON_BLOCKING
 
-	/* p_buf �� NULL �ʤ饨�顼 */
+	/* p_buf が NULL ならエラー */
 	if (p_buf == NULL)
 		return E_PAR;
 
 #else	/* of #ifdef TCP_CFG_NON_BLOCKING */
 
-	/* p_buf �� NULL ����tmout �� TMO_NBLK �ʤ饨�顼 */
+	/* p_buf が NULL か、tmout が TMO_NBLK ならエラー */
 	if (p_buf == NULL || tmout == TMO_NBLK)
 		return E_PAR;
 
 #endif	/* of #ifdef TCP_CFG_NON_BLOCKING */
 
 	/*
-	 *  CEP ����å�����API ��ǽ�����ɤȥ��������̻Ҥ�Ͽ���롣
-	 *  ���Ǥ˵�Ͽ����Ƥ���С��ڥ�ǥ�����ʤΤǥ��顼
+	 *  CEP をロックし、API 機能コードとタスク識別子を記録する。
+	 *  すでに記録されていれば、ペンディング中なのでエラー
 	 */
 	if ((error = tcp_lock_cep(cepid, &cep, TFN_TCP_RCV_BUF)) != E_OK)
 		return error;
 
-	/* �����Ǥ��뤫���̿�ü���ξ��֤򸫤롣*/
+	/* 受信できるか、通信端点の状態を見る。*/
 	if (tcp_can_recv_more(&error, cep, TFN_TCP_RCV_DAT, tmout) != E_OK)
 		goto err_ret;
 
 #ifdef TCP_CFG_NON_BLOCKING
 
-	/* �����ॢ���Ȥ�����å����롣*/
-	if (tmout == TMO_NBLK) {		/* �Υ�֥��å��󥰥����� */
+	/* タイムアウトをチェックする。*/
+	if (tmout == TMO_NBLK) {		/* ノンブロッキングコール */
 
-		/* ����������ɥХåե��˥ǡ���������Х�����Хå��ؿ���ƤӽФ���*/
+		/* 受信ウィンドバッファにデータがあればコールバック関数を呼び出す。*/
 		if (cep->rwbuf_count > 0) {
 
-		 	/* ����������ɥХåե��ζ����ɥ쥹��������롣*/
+		 	/* 受信ウィンドバッファの空アドレスを獲得する。*/
 			error = TCP_GET_RWBUF_ADDR(cep, p_buf);
 
 #ifdef TCP_CFG_NON_BLOCKING_COMPAT14
 
-			/* ������Хå��ؿ���ƤӽФ���*/
+			/* コールバック関数を呼び出す。*/
 			(*cep->callback)(GET_TCP_CEPID(cep), TFN_TCP_RCV_BUF, (void*)error);
 
 #else	/* of #ifdef TCP_CFG_NON_BLOCKING_COMPAT14 */
 
-			/* ������Хå��ؿ���ƤӽФ���*/
+			/* コールバック関数を呼び出す。*/
 			(*cep->callback)(GET_TCP_CEPID(cep), TFN_TCP_RCV_BUF, (void*)&error);
 
 #endif	/* of #ifdef TCP_CFG_NON_BLOCKING_COMPAT14 */
@@ -1579,17 +1579,17 @@ tcp_rcv_buf (ID cepid, void **p_buf, TMO tmout)
 			return E_WBLK;
 			}
 		}
-	else {		/* ��Υ�֥��å��󥰥����� */
+	else {		/* 非ノンブロッキングコール */
 
 #endif	/* of #ifdef TCP_CFG_NON_BLOCKING */
 
-		/* ����������ɥХåե��˥ǡ������ʤ���С����Ϥ�����ޤ��Ԥġ�*/
+		/* 受信ウィンドバッファにデータがなければ、入力があるまで待つ。*/
 		if ((error = tcp_wait_rwbuf(cep, tmout)) != E_OK) {
 			cep->rwbuf_count = 0;
 			goto err_ret;
 			}
 
-	 	/* ����������ɥХåե��Υ��ɥ쥹��������롣*/
+	 	/* 受信ウィンドバッファのアドレスを獲得する。*/
 		error = TCP_GET_RWBUF_ADDR(cep, p_buf);
 
 #ifdef TCP_CFG_NON_BLOCKING
@@ -1609,7 +1609,7 @@ err_ret:
 #ifdef __tcp_rel_buf
 
 /*
- *  tcp_rel_buf -- �����ѥХåե��β�����ɸ�ൡǽ��
+ *  tcp_rel_buf -- 受信用バッファの解放【標準機能】
  */
 
 ER
@@ -1618,36 +1618,36 @@ tcp_rel_buf (ID cepid, int_t len)
 	T_TCP_CEP	*cep;
 	ER		error;
 
-	/* ��������Ĺ�� len ������å����롣*/
+	/* 解放する長さ len をチェックする。*/
 	if (len < 0)
 		return E_PAR;
 
 	/*
-	 *  CEP ����å�����API ��ǽ�����ɤȥ��������̻Ҥ�Ͽ���롣
-	 *  ���Ǥ˵�Ͽ����Ƥ���С��ڥ�ǥ�����ʤΤǥ��顼
+	 *  CEP をロックし、API 機能コードとタスク識別子を記録する。
+	 *  すでに記録されていれば、ペンディング中なのでエラー
 	 */
 	if ((error = tcp_lock_cep(cepid, &cep, TFN_TCP_REL_BUF)) != E_OK)
 		return error;
 
-	/* ��������Ĺ�� len ������å����롣*/
+	/* 解放する長さ len をチェックする。*/
 	if (len > cep->rcv_buf_len) {
 		error = E_OBJ;
 		goto err_ret;
 		}
 
-	/* �̿�ü������å����롣*/
+	/* 通信端点をロックする。*/
 	syscall(wai_sem(cep->semid_lock));
 
-	/* ����������ɥХåե�����������������ƥåȤ������롣*/
+	/* 受信ウィンドバッファから受信したオクテットを削除する。*/
 	TCP_DROP_RWBUF(cep, (uint_t)len);
 
-	/* tcp_rcv_buf �γ�����Ĺ��ꥻ�åȤ��롣*/
+	/* tcp_rcv_buf の割当て長をリセットする。*/
 	cep->rcv_buf_len = 0;
 
-	/* �̿�ü���Υ��å��������롣*/
+	/* 通信端点のロックを解除する。*/
 	syscall(sig_sem(cep->semid_lock));
 
-	/* ���˥�����ɥ����������Ѥ�ä����Ȥ��Τ餻�뤿����Ϥ�ݥ��Ȥ��롣*/
+	/* 相手にウィンドウサイズが変わったことを知らせるため出力をポストする。*/
 	cep->flags |= TCP_CEP_FLG_POST_OUTPUT;
 	sig_sem(SEM_TCP_POST_OUTPUT);
 
@@ -1662,7 +1662,7 @@ err_ret:
 #ifdef __tcp_can_cep
 
 /*
- *  tcp_can_snd -- �ڥ�ǥ��󥰤��Ƥ��������Υ���󥻥�
+ *  tcp_can_snd -- ペンディングしている送信のキャンセル
  */
 
 static ER
@@ -1670,41 +1670,41 @@ tcp_can_snd (T_TCP_CEP *cep, FN fncd)
 {
 	ER	error = E_OK;
 
-	/* �̿�ü������å����롣*/
+	/* 通信端点をロックする。*/
 	syscall(wai_sem(cep->semid_lock));
 
 	/*
-	 *  snd_tskid �� TA_NULL �ʤ顢
-	 *  �ڥ�ǥ��󥰤��Ƥ��ʤ��Τǥ��顼
+	 *  snd_tskid が TA_NULL なら、
+	 *  ペンディングしていないのでエラー
 	 */
 	if (cep->snd_tskid == TA_NULL)
 		error = EV_NOPND;
 
-	/* �ڥ�ǥ������ API ��ǽ�����ɤȰ��פ��ʤ���Х��顼 */
+	/* ペンディング中の API 機能コードと一致しなければエラー */
 	else if (fncd != TFN_TCP_ALL && fncd != cep->snd_tfn)
 		error = E_OBJ;
 
-	/* �����򥭥�󥻥뤹�롣*/
+	/* 処理をキャンセルする。*/
 	else {
 
-		/* �����ƹ������塼�Υͥåȥ���Хåե���������롣*/
+		/* 受信再構成キューのネットワークバッファを解放する。*/
 		tcp_free_reassq(cep);
 
-		/* ����������ɥХåե����塼�Υͥåȥ���Хåե���������롣*/
+		/* 受信ウィンドバッファキューのネットワークバッファを解放する。*/
 		cep->rwbuf_count = 0;
 		TCP_FREE_RWBUFQ(cep);
 
-		/* ����������ɥХåե����塼�Υͥåȥ���Хåե���������롣*/
+		/* 送信ウィンドバッファキューのネットワークバッファを解放する。*/
 		TCP_FREE_SWBUFQ(cep);
 
 #ifdef TCP_CFG_NON_BLOCKING
 
-		if (cep->snd_nblk_tfn != TFN_TCP_UNDEF) {	/* �Υ�֥��å��󥰥����� */
+		if (cep->snd_nblk_tfn != TFN_TCP_UNDEF) {	/* ノンブロッキングコール */
 
 			switch (cep->snd_nblk_tfn) {
 
 			case TFN_TCP_CON_CEP:
-				/*  �̿�ü��������ո���������롣*/
+				/*  通信端点から受付口を解放する。*/
 				cep->rep = NULL;
 				cep->fsm_state = TCP_FSM_CLOSED;
 				syscall(set_flg(cep->est_flgid, TCP_CEP_EVT_CLOSED));
@@ -1745,14 +1745,14 @@ tcp_can_snd (T_TCP_CEP *cep, FN fncd)
 		cep->snd_tfn   = TFN_TCP_UNDEF;
 		}
 
-	/* �̿�ü���Υ��å��������롣*/
+	/* 通信端点のロックを解除する。*/
 	syscall(sig_sem(cep->semid_lock));
 
 	return error;
 	}
 
 /*
- *  tcp_can_rcv -- �ڥ�ǥ��󥰤��Ƥ�������Υ���󥻥�
+ *  tcp_can_rcv -- ペンディングしている受信のキャンセル
  */
 
 static ER
@@ -1760,43 +1760,43 @@ tcp_can_rcv (T_TCP_CEP *cep, FN fncd)
 {
 	ER	error = E_OK;
 
-	/* �̿�ü������å����롣*/
+	/* 通信端点をロックする。*/
 	syscall(wai_sem(cep->semid_lock));
 
 	/*
-	 *  rcv_tskid �� TA_NULL �ʤ顢
-	 *  �ڥ�ǥ��󥰤��Ƥ��ʤ��Τǥ��顼
+	 *  rcv_tskid が TA_NULL なら、
+	 *  ペンディングしていないのでエラー
 	 */
 	if (cep->rcv_tskid == TA_NULL)
 		error = EV_NOPND;
 
-	/* �ڥ�ǥ������ API ��ǽ�����ɤȰ��פ��ʤ���Х��顼 */
+	/* ペンディング中の API 機能コードと一致しなければエラー */
 	else if (fncd != TFN_TCP_ALL && fncd != cep->rcv_tfn)
 		error = E_OBJ;
 
-	/* �����򥭥�󥻥뤹�롣*/
+	/* 処理をキャンセルする。*/
 	else {
 
-		/* �����ƹ������塼�Υͥåȥ���Хåե���������롣*/
+		/* 受信再構成キューのネットワークバッファを解放する。*/
 		tcp_free_reassq(cep);
 
-		/* ����������ɥХåե����塼�Υͥåȥ���Хåե���������롣*/
+		/* 受信ウィンドバッファキューのネットワークバッファを解放する。*/
 		cep->rwbuf_count = 0;
 		TCP_FREE_RWBUFQ(cep);
 
-		/* ����������ɥХåե����塼�Υͥåȥ���Хåե���������롣*/
+		/* 送信ウィンドバッファキューのネットワークバッファを解放する。*/
 		TCP_FREE_SWBUFQ(cep);
 
 #ifdef TCP_CFG_NON_BLOCKING
 
-		if (cep->rcv_nblk_tfn != TFN_TCP_UNDEF) {	/* �Υ�֥��å��󥰥����� */
+		if (cep->rcv_nblk_tfn != TFN_TCP_UNDEF) {	/* ノンブロッキングコール */
 
 			switch (cep->rcv_nblk_tfn) {
 
 			case TFN_TCP_ACP_CEP:
 				/*
-				 *  �̿�ü��������ո����������
-				 *  ���٥�ȥե饰�򥯥����������ꤹ�롣
+				 *  通信端点から受付口を解放し、
+				 *  イベントフラグをクローズに設定する。
 				 */
 				cep->rep = NULL;
 				cep->fsm_state = TCP_FSM_CLOSED;
@@ -1844,14 +1844,14 @@ tcp_can_rcv (T_TCP_CEP *cep, FN fncd)
 		cep->rcv_tfn   = TFN_TCP_UNDEF;
 		}
 
-	/* �̿�ü���Υ��å��������롣*/
+	/* 通信端点のロックを解除する。*/
 	syscall(sig_sem(cep->semid_lock));
 
 	return error;
 	}
 
 /*
- *  tcp_can_cep -- �ڥ�ǥ��󥰤��Ƥ�������Υ���󥻥��ɸ�ൡǽ��
+ *  tcp_can_cep -- ペンディングしている処理のキャンセル【標準機能】
  */
 
 ER
@@ -1860,28 +1860,28 @@ tcp_can_cep (ID cepid, FN fncd)
 	T_TCP_CEP	*cep;
 	ER		error = E_OK, snd_err, rcv_err;
 
-	/* API ��ǽ�����ɤ�����å����롣*/
+	/* API 機能コードをチェックする。*/
 	if (!VALID_TFN_TCP_CAN(fncd))
 		return E_PAR;
 
-	/* TCP �̿�ü�� ID ������å����롣*/
+	/* TCP 通信端点 ID をチェックする。*/
 	if (!VAID_TCP_CEPID(cepid))
 		return E_ID;
 
-	/* TCP �̿�ü�������롣*/
+	/* TCP 通信端点を得る。*/
 	cep = GET_TCP_CEP(cepid);
 
-	/* TCP �̿�ü��������å����롣*/
+	/* TCP 通信端点をチェックする。*/
 	if (!VALID_TCP_CEP(cep))
 		return E_NOEXS;
 
-	if (fncd == TFN_TCP_ALL) {		/* TFN_TCP_ALL �ν��� */
+	if (fncd == TFN_TCP_ALL) {		/* TFN_TCP_ALL の処理 */
 		snd_err = tcp_can_snd(cep, fncd);
 		rcv_err = tcp_can_rcv(cep, fncd);
 
 		/*
-		 *  snd_err �� rcv_err �Τɤ���� EV_NOPND
-		 *  �ʤ顢�ڥ�ǥ��󥰤��Ƥ��ʤ��Τǥ��顼
+		 *  snd_err と rcv_err のどちらも EV_NOPND
+		 *  なら、ペンディングしていないのでエラー
 		 */
 		if (snd_err == EV_NOPND && rcv_err == EV_NOPND)
 			error = E_OBJ;
@@ -1898,12 +1898,12 @@ tcp_can_cep (ID cepid, FN fncd)
 			}
 		}
 
-	else if (IS_TFN_TCP_RCV(fncd)) {	/* ���������Υ���󥻥� */
+	else if (IS_TFN_TCP_RCV(fncd)) {	/* 受信処理のキャンセル */
 		if ((error = tcp_can_rcv(cep, fncd)) == EV_NOPND)
 			error = E_OBJ;
 		}
 
-	else {					/* ���������Υ���󥻥� */
+	else {					/* 送信処理のキャンセル */
 		if ((error = tcp_can_snd(cep, fncd)) == EV_NOPND)
 			error = E_OBJ;
 		}
@@ -1914,9 +1914,9 @@ tcp_can_cep (ID cepid, FN fncd)
 #endif	/* of #ifdef __tcp_can_cep */
 
 /*
- *  tcp_set_opt -- TCP �̿�ü�����ץ���������ڳ�ĥ��ǽ��
+ *  tcp_set_opt -- TCP 通信端点オプションの設定【拡張機能】
  *
- *  ����: �����ǽ�� TCP �̿�ü�����ץ�����̵�����ᡢE_PAR ���֤���롣
+ *  注意: 設定可能な TCP 通信端点オプションは無いため、E_PAR が返される。
  */
 
 #ifdef __tcp_set_opt
@@ -1928,14 +1928,14 @@ tcp_set_opt (ID cepid, int_t optname, void *optval, int_t optlen)
 {
 	T_TCP_CEP	*cep;
 
-	/* TCP �̿�ü�� ID ������å����롣*/
+	/* TCP 通信端点 ID をチェックする。*/
 	if (!VAID_TCP_CEPID(cepid))
 		return E_ID;
 
-	/* TCP �̿�ü�������롣*/
+	/* TCP 通信端点を得る。*/
 	cep = GET_TCP_CEP(cepid);
 
-	/* TCP �̿�ü��������å����롣*/
+	/* TCP 通信端点をチェックする。*/
 	if (!VALID_TCP_CEP(cep))
 		return E_NOEXS;
 
@@ -1947,9 +1947,9 @@ tcp_set_opt (ID cepid, int_t optname, void *optval, int_t optlen)
 #endif	/* of #ifdef __tcp_set_opt */
 
 /*
- *  tcp_get_opt -- TCP �̿�ü�����ץ���������ڳ�ĥ��ǽ��
+ *  tcp_get_opt -- TCP 通信端点オプションの設定【拡張機能】
  *
- *  ����: �����ǽ�� TCP �̿�ü�����ץ�����̵�����ᡢE_PAR ���֤���롣
+ *  注意: 設定可能な TCP 通信端点オプションは無いため、E_PAR が返される。
  */
 
 #ifdef __tcp_get_opt
@@ -1961,14 +1961,14 @@ tcp_get_opt (ID cepid, int_t optname, void *optval, int_t optlen)
 {
 	T_TCP_CEP	*cep;
 
-	/* TCP �̿�ü�� ID ������å����롣*/
+	/* TCP 通信端点 ID をチェックする。*/
 	if (!VAID_TCP_CEPID(cepid))
 		return E_ID;
 
-	/* TCP �̿�ü�������롣*/
+	/* TCP 通信端点を得る。*/
 	cep = GET_TCP_CEP(cepid);
 
-	/* TCP �̿�ü��������å����롣*/
+	/* TCP 通信端点をチェックする。*/
 	if (!VALID_TCP_CEP(cep))
 		return E_NOEXS;
 

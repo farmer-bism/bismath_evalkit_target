@@ -4,29 +4,29 @@
  *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
- *  �嵭����Ԥϡ��ʲ��� (1)��(4) �ξ�狼��Free Software Foundation 
- *  �ˤ�äƸ�ɽ����Ƥ��� GNU General Public License �� Version 2 �˵�
- *  �Ҥ���Ƥ���������������˸¤ꡤ�ܥ��եȥ��������ܥ��եȥ�����
- *  ����Ѥ�����Τ�ޤࡥ�ʲ�Ʊ���ˤ���ѡ�ʣ�������ѡ������ۡʰʲ���
- *  ���ѤȸƤ֡ˤ��뤳�Ȥ�̵���ǵ������롥
- *  (1) �ܥ��եȥ������򥽡��������ɤη������Ѥ�����ˤϡ��嵭������
- *      ��ɽ�����������Ѿ�浪��Ӳ�����̵�ݾڵ��꤬�����Τޤޤη��ǥ���
- *      ����������˴ޤޤ�Ƥ��뤳�ȡ�
- *  (2) �ܥ��եȥ������򡤥饤�֥������ʤɡ�¾�Υ��եȥ�������ȯ�˻�
- *      �ѤǤ�����Ǻ����ۤ�����ˤϡ������ۤ�ȼ���ɥ�����ȡ�����
- *      �ԥޥ˥奢��ʤɡˤˡ��嵭�����ɽ�����������Ѿ�浪��Ӳ���
- *      ��̵�ݾڵ����Ǻܤ��뤳�ȡ�
- *  (3) �ܥ��եȥ������򡤵�����Ȥ߹���ʤɡ�¾�Υ��եȥ�������ȯ�˻�
- *      �ѤǤ��ʤ����Ǻ����ۤ�����ˤϡ����ξ������������ȡ�
- *    (a) �����ۤ�ȼ���ɥ�����ȡ����Ѽԥޥ˥奢��ʤɡˤˡ��嵭����
- *        �ɽ�����������Ѿ�浪��Ӳ�����̵�ݾڵ����Ǻܤ��뤳�ȡ�
- *  (4) �ܥ��եȥ����������Ѥˤ��ľ��Ū�ޤ��ϴ���Ū�������뤤���ʤ�»
- *      ������⡤�嵭����Ԥ����TOPPERS�ץ��������Ȥ����դ��뤳�ȡ�
+ *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
+ *  によって公表されている GNU General Public License の Version 2 に記
+ *  述されている条件を満たす場合に限り，本ソフトウェア（本ソフトウェア
+ *  を改変したものを含む．以下同じ）を使用・複製・改変・再配布（以下，
+ *  利用と呼ぶ）することを無償で許諾する．
+ *  (1) 本ソフトウェアをソースコードの形で利用する場合には，上記の著作
+ *      権表示，この利用条件および下記の無保証規定が，そのままの形でソー
+ *      スコード中に含まれていること．
+ *  (2) 本ソフトウェアを，ライブラリ形式など，他のソフトウェア開発に使
+ *      用できる形で再配布する場合には，再配布に伴うドキュメント（利用
+ *      者マニュアルなど）に，上記の著作権表示，この利用条件および下記
+ *      の無保証規定を掲載すること．
+ *  (3) 本ソフトウェアを，機器に組み込むなど，他のソフトウェア開発に使
+ *      用できない形で再配布する場合には，次の条件を満たすこと．
+ *    (a) 再配布に伴うドキュメント（利用者マニュアルなど）に，上記の著
+ *        作権表示，この利用条件および下記の無保証規定を掲載すること．
+ *  (4) 本ソフトウェアの利用により直接的または間接的に生じるいかなる損
+ *      害からも，上記著作権者およびTOPPERSプロジェクトを免責すること．
  *
- *  �ܥ��եȥ������ϡ�̵�ݾڤ��󶡤���Ƥ����ΤǤ��롥�嵭����Ԥ�
- *  ���TOPPERS�ץ��������Ȥϡ��ܥ��եȥ������˴ؤ��ơ�����Ŭ�Ѳ�ǽ����
- *  �ޤ�ơ������ʤ��ݾڤ�Ԥ�ʤ����ޤ����ܥ��եȥ����������Ѥˤ��ľ
- *  ��Ū�ޤ��ϴ���Ū�������������ʤ�»���˴ؤ��Ƥ⡤������Ǥ�����ʤ���
+ *  本ソフトウェアは，無保証で提供されているものである．上記著作権者お
+ *  よびTOPPERSプロジェクトは，本ソフトウェアに関して，その適用可能性も
+ *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
+ *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
  *  @(#) $Id: udp_usrreq.c,v 1.5.4.1 2015/02/05 02:10:53 abe Exp abe $
  */
@@ -68,7 +68,7 @@
  */
 
 /*
- *  �Υ�֥��å��󥰥�������ȹ��ޤʤ����˥�󥯤����ؿ������
+ *  ノンブロッキングコールを組込まない場合にリンクされる関数の定義
  */
 
 #include <string.h>
@@ -118,7 +118,7 @@
 #ifdef SUPPORT_UDP
 
 /*
- *  IPv4 �� IPv6 ���ڤ��ؤ��ޥ���
+ *  IPv4 と IPv6 の切り替えマクロ
  */
 
 #if defined(SUPPORT_INET4)
@@ -138,8 +138,8 @@
 #endif	/* of #if defined(SUPPORT_INET6) */
 
 /*
- *  TINET ��饤�֥�경���ʤ����ϡ����Ƥε�ǽ��
- *  ���֥������ȥե�����˽��Ϥ��뤿�ᡢ�ޥ�����ͭ���ˤ��롣
+ *  TINET をライブラリ化しない場合は、全ての機能を
+ *  オブジェクトファイルに出力するため、マクロを有効にする。
  */
 
 #ifndef UDP_CFG_LIBRARY
@@ -160,7 +160,7 @@
 #ifdef __udp_send_data
 
 /*
- *  udp_send_data -- �ѥ��å������μ�����
+ *  udp_send_data -- パケット送信の主要部
  */
 
 ER_UINT
@@ -178,11 +178,11 @@ udp_send_data (T_UDP_CEP *cep, T_IPEP *p_dstaddr, void *data, int_t len, TMO tmo
 	NET_COUNT_UDP(net_count_udp.out_octets,  len);
 	NET_COUNT_UDP(net_count_udp.out_packets, 1);
 
-	/* IP �ǡ�������������Ƥλ��֤� tmout ���鸺���롣*/
+	/* IP データグラム割り当ての時間を tmout から減ずる。*/
 	if (!(tmout == TMO_POL || tmout == TMO_FEVR))
 		syscall(get_tim(&before));
 
-	/* IP �ǡ��������������Ƥ롣*/
+	/* IP データグラムを割り当てる。*/
 	if ((error = IN_GET_DATAGRAM(&output, (uint_t)(UDP_HDR_SIZE + len), 0,
 	                             &p_dstaddr->ipaddr,
 	                             &cep->myaddr.ipaddr,
@@ -190,7 +190,7 @@ udp_send_data (T_UDP_CEP *cep, T_IPEP *p_dstaddr, void *data, int_t len, TMO tmo
 	                             NBA_SEARCH_ASCENT, tmout)) != E_OK)
 		goto err_ret;
 
-	/* IP �ǡ�������������Ƥλ��֤� tmout ���鸺���롣*/
+	/* IP データグラム割り当ての時間を tmout から減ずる。*/
 	if (!(tmout == TMO_POL || tmout == TMO_FEVR)) {
 		syscall(get_tim(&after));
 		if (after - before > tmout) {
@@ -201,31 +201,31 @@ udp_send_data (T_UDP_CEP *cep, T_IPEP *p_dstaddr, void *data, int_t len, TMO tmo
 		tmout -= (TMO)(after - before);
 		}
 
-	/* UDP �إå��˾�������ꤹ�롣*/
+	/* UDP ヘッダに情報を設定する。*/
 	udph		= GET_UDP_HDR(output, IF_IP_UDP_HDR_OFFSET);
 	udph->sport	= htons(cep->myaddr.portno);
 	udph->dport	= htons(p_dstaddr->portno);
 	udph->ulen	= htons(UDP_HDR_SIZE + len);
 	udph->sum	= 0;
 
-	/* �ǡ����򥳥ԡ����롣*/
+	/* データをコピーする。*/
 	memcpy((void*)GET_UDP_SDU(output, IF_IP_UDP_HDR_OFFSET), data, (size_t)len);
 
 #ifdef UDP_CFG_OUT_CHECKSUM
 
 	sum = IN_CKSUM(output, IPPROTO_UDP, IF_IP_UDP_HDR_OFFSET, (uint_t)(UDP_HDR_SIZE + len));
 
-	/* �׻����������å�������ͤ� 0 �ʤ� 0xffff ������롣*/
+	/* 計算したチェックサムの値が 0 なら 0xffff を入れる。*/
 	if (sum == 0)
 		sum = 0xffff;
 	udph->sum = sum;
 
 #endif	/* of #ifdef UDP_CFG_OUT_CHECKSUM */
 
-	/* �ͥåȥ���Хåե�Ĺ��Ĵ�����롣*/
+	/* ネットワークバッファ長を調整する。*/
 	output->len = (uint16_t)(IF_IP_UDP_HDR_SIZE + len);
 
-	/* �ͥåȥ���� (IP) �ν��ϴؿ���ƤӽФ���*/
+	/* ネットワーク層 (IP) の出力関数を呼び出す。*/
 	if ((error = IP_OUTPUT(output, tmout)) == E_OK) {
 		NET_COUNT_MIB(udp_stats.udpOutDatagrams, 1);
 		cep->snd_tskid = TA_NULL;
@@ -241,7 +241,7 @@ err_ret:
 #endif	/* of #ifdef __udp_send_data */
 
 /*
- *  udp_cre_cep -- UDP �̿�ü���������ڳ�ĥ��ǽ��
+ *  udp_cre_cep -- UDP 通信端点の生成【拡張機能】
  */
 
 #ifdef __udp_cre_cep
@@ -254,37 +254,37 @@ UDP_CRE_CEP (ID cepid, T_UDP_CCEP *pk_ccep)
 	T_UDP_CEP	*cep;
 	ER		error;
 
-	/* UDP �̿�ü�� ID ������å����롣*/
+	/* UDP 通信端点 ID をチェックする。*/
 	if (!VALID_UDP_CEPID(cepid))
 		return E_ID;
 
-	/* pk_ccep �� NULL �ʤ饨�顼 */
+	/* pk_ccep が NULL ならエラー */
 	if (pk_ccep == NULL)
 		return E_PAR;
 
-	/* UDP �̿�ü�������롣*/
+	/* UDP 通信端点を得る。*/
 	cep = GET_UDP_CEP(cepid);
 
-	/* UDP �̿�ü��������å����롣*/
+	/* UDP 通信端点をチェックする。*/
 	if (VALID_UDP_CEP(cep))
 		return E_OBJ;
 
-	/* UDP �̿�ü������ưŪ�����ѤǤʤ���Х��顼 */
+	/* UDP 通信端点が、動的生成用でなければエラー */
 	if (!DYNAMIC_UDP_CEP(cep))
 		return E_ID;
 
-	/* �̿�ü������å����롣*/
+	/* 通信端点をロックする。*/
 	syscall(wai_sem(cep->semid_lock));
 
 	/*
-	 * UDP �̿�ü��������å����롣�����ѤߤǤ���Х��顼
+	 * UDP 通信端点をチェックする。生成済みであればエラー
 	 */
 	if (VALID_UDP_CEP(cep))
 		error = E_OBJ;
 	else {
 
 		/*
-		 *  ���ݡ����ֹ椬 UDP_PORTANY �ʤ顢��ư�ǳ�����Ƥ롣
+		 *  自ポート番号が UDP_PORTANY なら、自動で割り当てる。
 		 */
 		if (pk_ccep->myaddr.portno == UDP_PORTANY)
 			error = udp_alloc_auto_port(cep);
@@ -293,17 +293,17 @@ UDP_CRE_CEP (ID cepid, T_UDP_CCEP *pk_ccep)
 		
                 if (error == E_OK) {
 
-			/* UDP �̿�ü����������򥳥ԡ����롣*/
-			cep->cepatr        = pk_ccep->cepatr;			/* �̿�ü��°��		*/
-			cep->myaddr.ipaddr = pk_ccep->myaddr.ipaddr;		/* ��ʬ�Υ��ɥ쥹	*/
-			cep->callback      = (void*)pk_ccep->callback;		/* ������Хå�		*/
+			/* UDP 通信端点生成情報をコピーする。*/
+			cep->cepatr        = pk_ccep->cepatr;			/* 通信端点属性		*/
+			cep->myaddr.ipaddr = pk_ccep->myaddr.ipaddr;		/* 自分のアドレス	*/
+			cep->callback      = (void*)pk_ccep->callback;		/* コールバック		*/
 
-			/* UDP �̿�ü���������Ѥߤˤ��롣*/
+			/* UDP 通信端点を生成済みにする。*/
 			cep->flags |= UDP_CEP_FLG_VALID;
 			}
 		}
 
-	/* �̿�ü���Υ��å��������롣*/
+	/* 通信端点のロックを解除する。*/
 	syscall(sig_sem(cep->semid_lock));
 
 	return error;
@@ -314,7 +314,7 @@ UDP_CRE_CEP (ID cepid, T_UDP_CCEP *pk_ccep)
 #endif	/* of #ifdef __udp_cre_cep */
 
 /*
- *  udp_del_cep -- UDP �̿�ü���κ���ڳ�ĥ��ǽ��
+ *  udp_del_cep -- UDP 通信端点の削除【拡張機能】
  */
 
 #ifdef __udp_del_cep
@@ -327,27 +327,27 @@ udp_del_cep (ID cepid)
 	T_UDP_CEP	*cep;
 	ER		error;
 
-	/* UDP �̿�ü�� ID ������å����롣*/
+	/* UDP 通信端点 ID をチェックする。*/
 	if (!VALID_UDP_CEPID(cepid))
 		return E_ID;
 
-	/* UDP �̿�ü�������롣*/
+	/* UDP 通信端点を得る。*/
 	cep = GET_UDP_CEP(cepid);
 
-	/* UDP �̿�ü��������å����롣*/
+	/* UDP 通信端点をチェックする。*/
 	if (!VALID_UDP_CEP(cep))
 		return E_NOEXS;
 
-	/* UDP �̿�ü������ưŪ�����ѤǤʤ���Х��顼 */
+	/* UDP 通信端点が、動的生成用でなければエラー */
 	if (!DYNAMIC_UDP_CEP(cep))
 		return E_ID;
 
-	/* �̿�ü������å����롣*/
+	/* 通信端点をロックする。*/
 	syscall(wai_sem(cep->semid_lock));
 
 	/*
-	 * UDP �̿�ü��������å����롣̤�����ξ��ϥ��顼
-	 * ��̤������
+	 * UDP 通信端点をチェックする。未生成の場合はエラー
+	 * ・未生成。
 	 */
 	if (!VALID_UDP_CEP(cep))
 		error = E_NOEXS;
@@ -355,12 +355,12 @@ udp_del_cep (ID cepid)
 		udp_can_snd(cep, E_DLT);
 		udp_can_rcv(cep, E_DLT);
 
-		/* UDP �̿�ü����̤�����ˤ��롣*/
+		/* UDP 通信端点を未生成にする。*/
 		cep->flags &= ~UDP_CEP_FLG_VALID;
 		error = E_OK;
 		}
 
-	/* �̿�ü���Υ��å��������롣*/
+	/* 通信端点のロックを解除する。*/
 	syscall(sig_sem(cep->semid_lock));
 
 	return error;
@@ -373,7 +373,7 @@ udp_del_cep (ID cepid)
 #ifdef __udp_can_cep
 
 /*
- *  udp_can_cep -- �ڥ�ǥ��󥰤��Ƥ�������Υ���󥻥��ɸ�ൡǽ��
+ *  udp_can_cep -- ペンディングしている処理のキャンセル【標準機能】
  */
 
 ER
@@ -382,32 +382,32 @@ udp_can_cep (ID cepid, FN fncd)
 	T_UDP_CEP	*cep;
 	ER		error = E_OK, snd_err, rcv_err;
 
-	/* API ��ǽ�����ɤ�����å����롣*/
+	/* API 機能コードをチェックする。*/
 	if (!VALID_TFN_UDP_CAN(fncd))
 		return E_PAR;
 
-	/* UDP �̿�ü�� ID ������å����롣*/
+	/* UDP 通信端点 ID をチェックする。*/
 	if (!VALID_UDP_CEPID(cepid))
 		return E_ID;
 
-	/* UDP �̿�ü�������롣*/
+	/* UDP 通信端点を得る。*/
 	cep = GET_UDP_CEP(cepid);
 
-	/* UDP �̿�ü��������å����롣*/
+	/* UDP 通信端点をチェックする。*/
 	if (!VALID_UDP_CEP(cep))
 		return E_NOEXS;
 
-	/* �̿�ü������å����롣*/
+	/* 通信端点をロックする。*/
 	syscall(wai_sem(cep->semid_lock));
 
-	if (fncd == TFN_UDP_ALL) {	/* TFN_UDP_ALL �ν��� */
+	if (fncd == TFN_UDP_ALL) {	/* TFN_UDP_ALL の処理 */
 
 		snd_err = udp_can_snd(cep, E_RLWAI);
 		rcv_err = udp_can_rcv(cep, E_RLWAI);
 
 		/*
-		 *  snd_err �� rcv_err �Τɤ���� EV_NOPND
-		 *  �ʤ顢�ڥ�ǥ��󥰤��Ƥ��ʤ��Τǥ��顼
+		 *  snd_err と rcv_err のどちらも EV_NOPND
+		 *  なら、ペンディングしていないのでエラー
 		 */
 		if (snd_err == EV_NOPND && rcv_err == EV_NOPND)
 			error = E_OBJ;
@@ -423,18 +423,18 @@ udp_can_cep (ID cepid, FN fncd)
 				error = rcv_err;
 			}
 		}
-	else if (fncd == TFN_UDP_SND_DAT) {	/* ���������Υ���󥻥� */
+	else if (fncd == TFN_UDP_SND_DAT) {	/* 送信処理のキャンセル */
 		if ((error = udp_can_snd(cep, E_RLWAI)) == EV_NOPND)
 			error = E_OBJ;
 		}
-	else if (fncd == TFN_UDP_RCV_DAT) {	/* ���������Υ���󥻥� */
+	else if (fncd == TFN_UDP_RCV_DAT) {	/* 受信処理のキャンセル */
 		if ((error = udp_can_rcv(cep, E_RLWAI)) == EV_NOPND)
 			error = E_OBJ;
 		}
 	else
 		error = E_PAR;
 
-	/* �̿�ü������å��������롣*/
+	/* 通信端点をロックを解除する。*/
 	syscall(sig_sem(cep->semid_lock));
 
 	return error;
@@ -443,9 +443,9 @@ udp_can_cep (ID cepid, FN fncd)
 #endif	/* of #ifdef __udp_can_cep */
 
 /*
- *  udp_set_opt -- UDP �̿�ü�����ץ���������ڳ�ĥ��ǽ��
+ *  udp_set_opt -- UDP 通信端点オプションの設定【拡張機能】
  *
- *  ����: �����ǽ�� UDP �̿�ü�����ץ�����̵�����ᡢE_PAR ���֤���롣
+ *  注意: 設定可能な UDP 通信端点オプションは無いため、E_PAR が返される。
  */
 
 #ifdef __udp_set_opt
@@ -457,14 +457,14 @@ udp_set_opt (ID cepid, int_t optname, void *optval, int_t optlen)
 {
 	T_UDP_CEP	*cep;
 
-	/* UDP �̿�ü�� ID ������å����롣*/
+	/* UDP 通信端点 ID をチェックする。*/
 	if (!VALID_UDP_CEPID(cepid))
 		return E_ID;
 
-	/* UDP �̿�ü�������롣*/
+	/* UDP 通信端点を得る。*/
 	cep = GET_UDP_CEP(cepid);
 
-	/* UDP �̿�ü��������å����롣*/
+	/* UDP 通信端点をチェックする。*/
 	if (!VALID_UDP_CEP(cep))
 		return E_NOEXS;
 
@@ -476,9 +476,9 @@ udp_set_opt (ID cepid, int_t optname, void *optval, int_t optlen)
 #endif	/* of #ifdef __udp_set_opt */
 
 /*
- *  udp_get_opt -- UDP �̿�ü�����ץ���������ڳ�ĥ��ǽ��
+ *  udp_get_opt -- UDP 通信端点オプションの設定【拡張機能】
  *
- *  ����: �����ǽ�� UDP �̿�ü�����ץ�����̵�����ᡢE_PAR ���֤���롣
+ *  注意: 設定可能な UDP 通信端点オプションは無いため、E_PAR が返される。
  */
 
 #ifdef __udp_get_opt
@@ -490,14 +490,14 @@ udp_get_opt (ID cepid, int_t optname, void *optval, int_t optlen)
 {
 	T_UDP_CEP	*cep;
 
-	/* UDP �̿�ü�� ID ������å����롣*/
+	/* UDP 通信端点 ID をチェックする。*/
 	if (!VALID_UDP_CEPID(cepid))
 		return E_ID;
 
-	/* UDP �̿�ü�������롣*/
+	/* UDP 通信端点を得る。*/
 	cep = GET_UDP_CEP(cepid);
 
-	/* UDP �̿�ü��������å����롣*/
+	/* UDP 通信端点をチェックする。*/
 	if (!VALID_UDP_CEP(cep))
 		return E_NOEXS;
 
@@ -517,17 +517,17 @@ udp_get_opt (ID cepid, int_t optname, void *optval, int_t optlen)
 #ifdef __udp_can_snd
 
 /*
- *  udp_can_snd -- �ڥ�ǥ��󥰤��Ƥ��������Υ���󥻥�
+ *  udp_can_snd -- ペンディングしている送信のキャンセル
  */
 
 ER
 udp_can_snd (T_UDP_CEP *cep, ER error)
 {
-	if (cep->snd_tskid != TA_NULL) {	/* ��Υ�֥��å��󥰥�����ǥڥ�ǥ����� */
+	if (cep->snd_tskid != TA_NULL) {	/* 非ノンブロッキングコールでペンディング中 */
 
 #ifdef UDP_CFG_EXTENTIONS
 
-		/* �Ԥ����ȯ���������顼��������ꤹ�롣*/
+		/* 待ち中に発生したエラー情報を設定する。*/
 		cep->error = error;
 
 #endif	/* of #ifdef UDP_CFG_EXTENTIONS */
@@ -535,7 +535,7 @@ udp_can_snd (T_UDP_CEP *cep, ER error)
 		error = rel_wai(cep->snd_tskid);
 		cep->snd_tskid = TA_NULL;
 		}
-	else					/* �ɤ���Ǥ�ʤ��ʤ�ڥ�ǥ��󥰤��Ƥ��ʤ� */
+	else					/* どちらでもないならペンディングしていない */
 		error = EV_NOPND;
 
 	return error;
@@ -546,17 +546,17 @@ udp_can_snd (T_UDP_CEP *cep, ER error)
 #ifdef __udp_can_rcv
 
 /*
- *  udp_can_rcv -- �ڥ�ǥ��󥰤��Ƥ�������Υ���󥻥�
+ *  udp_can_rcv -- ペンディングしている受信のキャンセル
  */
 
 ER
 udp_can_rcv (T_UDP_CEP *cep, ER error)
 {
-	if (cep->rcv_tskid != TA_NULL) {	/* ��Υ�֥��å��󥰥�����ǥڥ�ǥ����� */
+	if (cep->rcv_tskid != TA_NULL) {	/* 非ノンブロッキングコールでペンディング中 */
 
 #ifdef UDP_CFG_EXTENTIONS
 
-		/* �Ԥ����ȯ���������顼��������ꤹ�롣*/
+		/* 待ち中に発生したエラー情報を設定する。*/
 		cep->error = error;
 
 #endif	/* of #ifdef UDP_CFG_EXTENTIONS */
@@ -564,7 +564,7 @@ udp_can_rcv (T_UDP_CEP *cep, ER error)
 		error = rel_wai(cep->rcv_tskid);
 		cep->rcv_tskid = TA_NULL;
 		}
-	else					/* �ɤ���Ǥ�ʤ��ʤ�ڥ�ǥ��󥰤��Ƥ��ʤ� */
+	else					/* どちらでもないならペンディングしていない */
 		error = EV_NOPND;
 
 	return error;
@@ -575,7 +575,7 @@ udp_can_rcv (T_UDP_CEP *cep, ER error)
 #ifdef __udp_snd_dat
 
 /*
- *  udp_snd_dat -- �ѥ��åȤ�������ɸ�ൡǽ��
+ *  udp_snd_dat -- パケットの送信【標準機能】
  */
 
 ER_UINT
@@ -584,64 +584,64 @@ UDP_SND_DAT (ID cepid, T_IPEP *p_dstaddr, void *data, int_t len, TMO tmout)
 	T_UDP_CEP	*cep;
 	ER		error;
 
-	/* p_dstaddr �ޤ��� data �� NULL ����tmout �� TMO_NBLK �ʤ饨�顼 */
+	/* p_dstaddr または data が NULL か、tmout が TMO_NBLK ならエラー */
 	if (p_dstaddr == NULL || data == NULL || tmout == TMO_NBLK)
 		return E_PAR;
 
-	/* �ǡ���Ĺ������å����롣*/
+	/* データ長をチェックする。*/
 	if (len < 0 || len + IP_HDR_SIZE + UDP_HDR_SIZE > IF_MTU)
 		return E_PAR;
 
-	/* UDP �̿�ü�� ID ������å����롣*/
+	/* UDP 通信端点 ID をチェックする。*/
 	if (!VALID_UDP_CEPID(cepid))
 		return E_ID;
 
-	/* UDP �̿�ü�������롣*/
+	/* UDP 通信端点を得る。*/
 	cep = GET_UDP_CEP(cepid);
 
-	/* UDP �̿�ü��������å����롣*/
+	/* UDP 通信端点をチェックする。*/
 	if (!VALID_UDP_CEP(cep))
 		return E_NOEXS;
 
 	/*
-	 *  ���ݡ����ֹ椬 UDP_PORTANY �ʤ顢��ư�ǳ�����Ƥ롣
+	 *  自ポート番号が UDP_PORTANY なら、自動で割り当てる。
 	 */
 	if (cep->myaddr.portno == UDP_PORTANY) {
 		if ((error = udp_alloc_auto_port(cep)) != E_OK)
 			return error;
 		}
 	
-	/* �̿�ü������å����롣*/
+	/* 通信端点をロックする。*/
 	syscall(wai_sem(cep->semid_lock));
 
 	if (cep->snd_tskid != TA_NULL) {
 
-		/* ��Υ�֥��å��󥰥�����ǥڥ�ǥ����� */
+		/* 非ノンブロッキングコールでペンディング中 */
 		error = E_QOVR;
 
-		/* �̿�ü������å��������롣*/
+		/* 通信端点をロックを解除する。*/
 		syscall(sig_sem(cep->semid_lock));
 		}
 	else {
-		/* ���ߤΥ��������̻Ҥ�Ͽ���롣*/
+		/* 現在のタスク識別子を記録する。*/
 		get_tid(&(cep->snd_tskid));
 
 #ifdef UDP_CFG_EXTENTIONS
 
-		/* �Ԥ����ȯ���������顼�����ꥻ�åȤ��롣*/
+		/* 待ち中に発生したエラー情報をリセットする。*/
 		cep->error = E_OK;
 
 #endif	/* of #ifdef UDP_CFG_EXTENTIONS */
 
-		/* �̿�ü������å��������롣*/
+		/* 通信端点をロックを解除する。*/
 		syscall(sig_sem(cep->semid_lock));
 
-		/* �ѥ��åȤ��������롣*/
+		/* パケットを送信する。*/
 		error = udp_send_data(cep, p_dstaddr, data, len, tmout);
 
 #ifdef UDP_CFG_EXTENTIONS
 
-		/* �Ԥ����ȯ���������顼������֤���*/
+		/* 待ち中に発生したエラー情報を返す。*/
 		if (error == E_RLWAI)
 			error = cep->error;
 
@@ -656,7 +656,7 @@ UDP_SND_DAT (ID cepid, T_IPEP *p_dstaddr, void *data, int_t len, TMO tmout)
 #ifdef __udp_rcv_dat
 
 /*
- *  udp_rcv_dat -- �ѥ��åȤμ�����ɸ�ൡǽ��
+ *  udp_rcv_dat -- パケットの受信【標準機能】
  */
 
 ER_UINT
@@ -668,54 +668,54 @@ UDP_RCV_DAT (ID cepid, T_IPEP *p_dstaddr, void *data, int_t len, TMO tmout)
 	ER_UINT		error;
 	uint_t		ulen, uhoff;
 
-	/* p_dstaddr �ޤ��� data �� NULL ��len < 0 ����tmout �� TMO_NBLK �ʤ饨�顼 */
+	/* p_dstaddr または data が NULL 、len < 0 か、tmout が TMO_NBLK ならエラー */
 	if (p_dstaddr == NULL || data == NULL || len < 0 || tmout == TMO_NBLK)
 		return E_PAR;
 
-	/* UDP �̿�ü�� ID ������å����롣*/
+	/* UDP 通信端点 ID をチェックする。*/
 	if (!VALID_UDP_CEPID(cepid))
 		return E_ID;
 
-	/* UDP �̿�ü�������롣*/
+	/* UDP 通信端点を得る。*/
 	cep = GET_UDP_CEP(cepid);
 
-	/* UDP �̿�ü��������å����롣*/
+	/* UDP 通信端点をチェックする。*/
 	if (!VALID_UDP_CEP(cep))
 		return E_NOEXS;
 
-	/* �̿�ü������å����롣*/
+	/* 通信端点をロックする。*/
 	syscall(wai_sem(cep->semid_lock));
 
 	if (cep->rcv_tskid != TA_NULL) {
 
-		/* ��Υ�֥��å��󥰥�����ǥڥ�ǥ����� */
+		/* 非ノンブロッキングコールでペンディング中 */
 		error = E_QOVR;
 
-		/* �̿�ü������å��������롣*/
+		/* 通信端点をロックを解除する。*/
 		syscall(sig_sem(cep->semid_lock));
 		}
 	else {
 
-		/* ���ߤΥ��������̻Ҥ�Ͽ���롣*/
+		/* 現在のタスク識別子を記録する。*/
 		get_tid(&(cep->rcv_tskid));
 
 #ifdef UDP_CFG_EXTENTIONS
 
-		/* �Ԥ����ȯ���������顼�����ꥻ�åȤ��롣*/
+		/* 待ち中に発生したエラー情報をリセットする。*/
 		cep->error = E_OK;
 
 #endif	/* of #ifdef UDP_CFG_EXTENTIONS */
 
-		/* �̿�ü������å��������롣*/
+		/* 通信端点をロックを解除する。*/
 		syscall(sig_sem(cep->semid_lock));
 
-		/* ���Ϥ�����ޤ��Ԥġ�*/
+		/* 入力があるまで待つ。*/
 		if (cep->cb_netbuf != NULL) {
 
 			/*
-			 *  �����ˤ�����ϡ�������Хå��ؿ����椫��
-			 *  udp_rcv_dat ��ƤӽФ��Ƥ��뤳�Ȥˤʤꡢ
-			 *  ���Ǥ����ϺѤߤǤ��롣
+			 *  ここにくる場合は、コールバック関数の中から
+			 *  udp_rcv_dat を呼び出していることになり、
+			 *  すでに入力済みである。
 			 */
 			input = cep->cb_netbuf;
 			cep->cb_netbuf = NULL;
@@ -724,7 +724,7 @@ UDP_RCV_DAT (ID cepid, T_IPEP *p_dstaddr, void *data, int_t len, TMO tmout)
 
 #ifdef UDP_CFG_EXTENTIONS
 
-			/* �Ԥ����ȯ���������顼������֤���*/
+			/* 待ち中に発生したエラー情報を返す。*/
 			if (error == E_RLWAI)
 				error = cep->error;
 
@@ -734,13 +734,13 @@ UDP_RCV_DAT (ID cepid, T_IPEP *p_dstaddr, void *data, int_t len, TMO tmout)
 			return error;
 			}
 
-		/* p_dstaddr �����ꤹ�롣*/
+		/* p_dstaddr を設定する。*/
 		uhoff = (uint_t)GET_UDP_HDR_OFFSET(input);
 		udph = GET_UDP_HDR(input, uhoff);
 		p_dstaddr->portno = ntohs(udph->sport);
 		IN_COPY_TO_HOST(&p_dstaddr->ipaddr, &GET_IP_HDR(input)->src);
 
-		/* �ǡ�����Хåե��˰ܤ���*/
+		/* データをバッファに移す。*/
 		ulen = ntohs(udph->ulen);
 		if (ulen - UDP_HDR_SIZE > len)
 			error = E_BOVR;

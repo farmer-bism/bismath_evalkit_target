@@ -4,29 +4,29 @@
  *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
- *  �嵭����Ԥϡ��ʲ��� (1)��(4) �ξ�狼��Free Software Foundation 
- *  �ˤ�äƸ�ɽ����Ƥ��� GNU General Public License �� Version 2 �˵�
- *  �Ҥ���Ƥ���������������˸¤ꡤ�ܥ��եȥ��������ܥ��եȥ�����
- *  ����Ѥ�����Τ�ޤࡥ�ʲ�Ʊ���ˤ���ѡ�ʣ�������ѡ������ۡʰʲ���
- *  ���ѤȸƤ֡ˤ��뤳�Ȥ�̵���ǵ������롥
- *  (1) �ܥ��եȥ������򥽡��������ɤη������Ѥ�����ˤϡ��嵭������
- *      ��ɽ�����������Ѿ�浪��Ӳ�����̵�ݾڵ��꤬�����Τޤޤη��ǥ���
- *      ����������˴ޤޤ�Ƥ��뤳�ȡ�
- *  (2) �ܥ��եȥ������򡤥饤�֥������ʤɡ�¾�Υ��եȥ�������ȯ�˻�
- *      �ѤǤ�����Ǻ����ۤ�����ˤϡ������ۤ�ȼ���ɥ�����ȡ�����
- *      �ԥޥ˥奢��ʤɡˤˡ��嵭�����ɽ�����������Ѿ�浪��Ӳ���
- *      ��̵�ݾڵ����Ǻܤ��뤳�ȡ�
- *  (3) �ܥ��եȥ������򡤵�����Ȥ߹���ʤɡ�¾�Υ��եȥ�������ȯ�˻�
- *      �ѤǤ��ʤ����Ǻ����ۤ�����ˤϡ����ξ������������ȡ�
- *    (a) �����ۤ�ȼ���ɥ�����ȡ����Ѽԥޥ˥奢��ʤɡˤˡ��嵭����
- *        �ɽ�����������Ѿ�浪��Ӳ�����̵�ݾڵ����Ǻܤ��뤳�ȡ�
- *  (4) �ܥ��եȥ����������Ѥˤ��ľ��Ū�ޤ��ϴ���Ū�������뤤���ʤ�»
- *      ������⡤�嵭����Ԥ����TOPPERS�ץ��������Ȥ����դ��뤳�ȡ�
+ *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
+ *  によって公表されている GNU General Public License の Version 2 に記
+ *  述されている条件を満たす場合に限り，本ソフトウェア（本ソフトウェア
+ *  を改変したものを含む．以下同じ）を使用・複製・改変・再配布（以下，
+ *  利用と呼ぶ）することを無償で許諾する．
+ *  (1) 本ソフトウェアをソースコードの形で利用する場合には，上記の著作
+ *      権表示，この利用条件および下記の無保証規定が，そのままの形でソー
+ *      スコード中に含まれていること．
+ *  (2) 本ソフトウェアを，ライブラリ形式など，他のソフトウェア開発に使
+ *      用できる形で再配布する場合には，再配布に伴うドキュメント（利用
+ *      者マニュアルなど）に，上記の著作権表示，この利用条件および下記
+ *      の無保証規定を掲載すること．
+ *  (3) 本ソフトウェアを，機器に組み込むなど，他のソフトウェア開発に使
+ *      用できない形で再配布する場合には，次の条件を満たすこと．
+ *    (a) 再配布に伴うドキュメント（利用者マニュアルなど）に，上記の著
+ *        作権表示，この利用条件および下記の無保証規定を掲載すること．
+ *  (4) 本ソフトウェアの利用により直接的または間接的に生じるいかなる損
+ *      害からも，上記著作権者およびTOPPERSプロジェクトを免責すること．
  *
- *  �ܥ��եȥ������ϡ�̵�ݾڤ��󶡤���Ƥ����ΤǤ��롥�嵭����Ԥ�
- *  ���TOPPERS�ץ��������Ȥϡ��ܥ��եȥ������˴ؤ��ơ�����Ŭ�Ѳ�ǽ����
- *  �ޤ�ơ������ʤ��ݾڤ�Ԥ�ʤ����ޤ����ܥ��եȥ����������Ѥˤ��ľ
- *  ��Ū�ޤ��ϴ���Ū�������������ʤ�»���˴ؤ��Ƥ⡤������Ǥ�����ʤ���
+ *  本ソフトウェアは，無保証で提供されているものである．上記著作権者お
+ *  よびTOPPERSプロジェクトは，本ソフトウェアに関して，その適用可能性も
+ *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
+ *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
  *  @(#) $Id: ppp_ipcp.c,v 1.5 2009/12/24 05:42:40 abe Exp $
  */
@@ -110,7 +110,7 @@
 #ifdef SUPPORT_PPP
 
 /*
- *  �ؿ�
+ *  関数
  */
 
 static void ipcp_init (void);
@@ -122,91 +122,91 @@ static void ipcp_open (void);
 static void ipcp_close (void);
 
 /*
- * FSM ����ƽФ���륳����Хå���
+ * FSM から呼出されるコールバック関
  */
 
-static void  ipcp_resetci(T_PPP_FSM *fsm);	/* �����������ꥻ�åȤ��롣	*/
-static int_t ipcp_cilen	(T_PPP_FSM *fsm);	/* ���������Ĺ�����֤���		*/
+static void  ipcp_resetci(T_PPP_FSM *fsm);	/* 自構成情報をリセットする。	*/
+static int_t ipcp_cilen	(T_PPP_FSM *fsm);	/* 構成情報の長さを返す。		*/
 static void  ipcp_addci	(T_PPP_FSM *fsm, T_NET_BUF *output);
-						/* ������������ɲä��롣		*/
+						/* 自構成情報を追加する。		*/
 static bool_t  ipcp_ackci	(T_PPP_FSM *fsm, T_NET_BUF *input);
-						/* ACK ����������Ȥ��ν���	*/
+						/* ACK を受信したときの処理	*/
 static bool_t  ipcp_nakci	(T_PPP_FSM *fsm, T_NET_BUF *input);
-						/* NAK ����������Ȥ��ν���	*/
+						/* NAK を受信したときの処理	*/
 static bool_t  ipcp_rejci	(T_PPP_FSM *fsm, T_NET_BUF *input);
-						/* REJ ����������Ȥ��ν���	*/
+						/* REJ を受信したときの処理	*/
 static int_t ipcp_reqci	(T_PPP_FSM *fsm, T_NET_BUF *input, T_NET_BUF *output);
-						/* ���ι���������ǧ���롣	*/
-static void ipcp_up	(T_PPP_FSM *fsm);	/* �����³���Ω���롣		*/
-static void ipcp_down	(T_PPP_FSM *fsm);	/* �����³��������롣		*/
-static void ipcp_finished(T_PPP_FSM *fsm);	/* �����ؤ�λ���롣		*/
+						/* 相手の構成情報を確認する。	*/
+static void ipcp_up	(T_PPP_FSM *fsm);	/* リンク接続を確立する。		*/
+static void ipcp_down	(T_PPP_FSM *fsm);	/* リンク接続を解放する。		*/
+static void ipcp_finished(T_PPP_FSM *fsm);	/* 下位層を終了する。		*/
 
 /*
- *  �ѿ�
+ *  変数
  */
 
-static T_IFNET ipcp_local_def_cfg = {		/* ����������ε�����		*/
+static T_IFNET ipcp_local_def_cfg = {		/* 自構成情報の規定値		*/
 	NULL,
 	{
-		IPV4_ADDR_LOCAL,		/* IP ���ɥ쥹			*/
-		UINT_C(0),			/* ���֥ͥåȥޥ���		*/
+		IPV4_ADDR_LOCAL,		/* IP アドレス			*/
+		UINT_C(0),			/* サブネットマスク		*/
 		},
 	};
 
-static T_IFNET ipcp_remote_def_cfg = {		/* ���ι�������ε�����	*/
+static T_IFNET ipcp_remote_def_cfg = {		/* 相手の構成情報の規定値	*/
 	NULL,
 	{
-		IPV4_ADDR_REMOTE,		/* IP ���ɥ쥹			*/
-		UINT_C(0),			/* ���֥ͥåȥޥ���		*/
+		IPV4_ADDR_REMOTE,		/* IP アドレス			*/
+		UINT_C(0),			/* サブネットマスク		*/
 		}
 	};
 
-static T_IFNET ipcp_local_neg_cfg;		/* �ͥ���μ���������		*/
+static T_IFNET ipcp_local_neg_cfg;		/* ネゴ中の自構成情報		*/
 
-static T_IFNET ipcp_remote_neg_cfg;		/* �ͥ�������ι�������		*/
+static T_IFNET ipcp_remote_neg_cfg;		/* ネゴ中の相手の構成情報		*/
 
 /*
- *  �����ѿ�
+ *  全域変数
  */
 
 T_PPP_FSM_CALLBACKS ipcp_callbacks = {
-	ipcp_resetci,			/* �����������ꥻ�åȤ��롣	*/
-	ipcp_cilen,			/* ���������Ĺ�����֤���		*/
-	ipcp_addci,			/* ������������ɲä��롣		*/
-	ipcp_ackci,			/* ACK ����������Ȥ��ν���	*/
-	ipcp_nakci,			/* NAK ����������Ȥ��ν���	*/
-	ipcp_rejci,			/* REJ ����������Ȥ��ν���	*/
-	ipcp_reqci,			/* ���ι���������ǧ���롣	*/
-	ipcp_up,			/* �����³���Ω���롣		*/
-	ipcp_down,			/* �����³��������롣		*/
-	NULL,				/* �����ؤ򳫻Ϥ��롣		*/
-	ipcp_finished,			/* �����ؤ�λ���롣		*/
-	NULL,				/* �������롣			*/
-	NULL,				/* ������ CP ����������Ȥ��ν���	*/
+	ipcp_resetci,			/* 自構成情報をリセットする。	*/
+	ipcp_cilen,			/* 構成情報の長さを返す。		*/
+	ipcp_addci,			/* 自構成情報を追加する。		*/
+	ipcp_ackci,			/* ACK を受信したときの処理	*/
+	ipcp_nakci,			/* NAK を受信したときの処理	*/
+	ipcp_rejci,			/* REJ を受信したときの処理	*/
+	ipcp_reqci,			/* 相手の構成情報を確認する。	*/
+	ipcp_up,			/* リンク接続を確立する。		*/
+	ipcp_down,			/* リンク接続を解放する。		*/
+	NULL,				/* 下位層を開始する。		*/
+	ipcp_finished,			/* 下位層を終了する。		*/
+	NULL,				/* 再送する。			*/
+	NULL,				/* 不明な CP を受信したときの処理	*/
 	};
 
 T_PPP_FSM ipcp_fsm = {
-	&ipcp_callbacks,		/* ������Хå��ؿ�		*/
-	PPP_IPCP,			/* �ץ��ȥ���			*/
+	&ipcp_callbacks,		/* コールバック関数		*/
+	PPP_IPCP,			/* プロトコル			*/
 	};
 
 T_PPP_PROTENT ipcp_protent = {
 	PPP_IPCP,
-	ipcp_init,			/* �����			*/
-	ipcp_input,			/* ����				*/
-	ipcp_protrej,			/* Proto-REJ ��������		*/
-	ipcp_lowerup,			/* �����ؤ�ư����		*/
-	ipcp_lowerdown,			/* �����ؤ���ߤ���		*/
-	ipcp_open,			/* �����ץ󤹤�			*/
-	ipcp_close,			/* ������������			*/
-	ip_input,			/* �ǡ������ϡ�IP ����		*/
+	ipcp_init,			/* 初期化			*/
+	ipcp_input,			/* 入力				*/
+	ipcp_protrej,			/* Proto-REJ 受信処理		*/
+	ipcp_lowerup,			/* 下位層を起動する		*/
+	ipcp_lowerdown,			/* 下位層を停止する		*/
+	ipcp_open,			/* オープンする			*/
+	ipcp_close,			/* クローズする			*/
+	ip_input,			/* データ入力、IP 入力		*/
 	};
 
-T_IFNET ipcp_local_ack_cfg;		/* ���˵��Ĥ��줿�μ���������	*/
-T_IFNET ipcp_remote_ack_cfg;		/* ���˵��Ĥ�����������	*/
+T_IFNET ipcp_local_ack_cfg;		/* 相手に許可されたの自構成情報	*/
+T_IFNET ipcp_remote_ack_cfg;		/* 相手に許可した構成情報	*/
 
 /*
- *  ppp_get_ifnet -- �ͥåȥ�����󥿥ե�������¤�Τ��֤���
+ *  ppp_get_ifnet -- ネットワークインタフェース構造体を返す。
  */
 
 T_IFNET *
@@ -216,9 +216,9 @@ ppp_get_ifnet (void)
 	}
 
 /*
- *  wait_ipcp -- IP ��³��λ�ޤ��Ԥġ�
+ *  wait_ipcp -- IP 接続完了まで待つ。
  *
- *	�����: ��³�˼��Ԥ����� E_OBJ ���֤���
+ *	戻り値: 接続に失敗したら E_OBJ を返す。
  */
 
 ER
@@ -232,15 +232,15 @@ wait_ipcp (void)
 
 #ifdef PPP_CFG_MODEM
 
-		/* ��ǥ����³��λ�ޤ��Ԥġ�*/
+		/* モデムの接続完了まで待つ。*/
 		if ((error = wait_modem()) != E_OK)
 			return error;
 
 #else	/* of #ifdef PPP_CFG_MODEM */
 
 		/*
-		 * ��ư�����ץ󤷡���꤫�����³�Ԥ��ʤ� LCP ����٥�����������
-		 * ǽư�����ץ���֤ǡ��ƥ����ץ󤹤롣
+		 * 受動オープンし、相手からの接続待ちなら LCP を一度クローズし、
+		 * 能動オープン状態で、再オープンする。
 		 */
 		lcp_close();
 		lcp_open(PPP_OPEN_ACTIVE);
@@ -250,7 +250,7 @@ wait_ipcp (void)
 		}
 
 	if (ipcp_fsm.state != PPP_FSM_OPENED) {
-		/* IP ��³��λ�ޤ��Ԥġ�*/
+		/* IP 接続完了まで待つ。*/
 		wai_sem(SEM_IPCP_READY);
 		if (ipcp_fsm.state != PPP_FSM_OPENED)
 			return E_OBJ;
@@ -260,7 +260,7 @@ wait_ipcp (void)
 	}
 
 /*
- *  ipcp_init -- IPCP �⥸�塼��ν����
+ *  ipcp_init -- IPCP モジュールの初期化
  */
 
 static void
@@ -270,7 +270,7 @@ ipcp_init (void)
 	}
 
 /*
- *  ipcp_input -- IPCP ����
+ *  ipcp_input -- IPCP 入力
  */
 
 static void
@@ -282,23 +282,23 @@ ipcp_input (T_NET_BUF *input)
 	}
 
 /*
- *  ipcp_resetci -- IPCP�ι��������ꥻ�åȤ��롣
+ *  ipcp_resetci -- IPCPの構成情報をリセットする。
  */
 
 static void
 ipcp_resetci (T_PPP_FSM *fsm)
 {
-	/* ����������ν������ */
+	/* 自構成情報の初期設定 */
 	ipcp_local_neg_cfg = ipcp_local_def_cfg;
 	memset((void*)&ipcp_local_ack_cfg, 0, sizeof(T_IFNET));
 
-	/* ���ι�������ν������ */
+	/* 相手の構成情報の初期設定 */
 	ipcp_remote_neg_cfg = ipcp_remote_def_cfg;
 	memset((void*)&ipcp_remote_ack_cfg, 0, sizeof(T_IFNET));
 	}
 
 /*
- *  ipcp_cilen -- ���������Ĺ�����֤���
+ *  ipcp_cilen -- 構成情報の長さを返す。
  */
 
 static int_t
@@ -306,13 +306,13 @@ ipcp_cilen (T_PPP_FSM *fsm)
 {
 	int_t cilen = 0;
 
-	cilen += sizeof(T_PPP_CI_HDR) + sizeof(uint32_t);	/* IP ���ɥ쥹 */
+	cilen += sizeof(T_PPP_CI_HDR) + sizeof(uint32_t);	/* IP アドレス */
 
 	return cilen;
 	}
 
 /*
- *  ipcp_addci -- IPCP�ι���������ɲä��롣
+ *  ipcp_addci -- IPCPの構成情報を追加する。
  */
 
 static void
@@ -322,7 +322,7 @@ ipcp_addci (T_PPP_FSM *fsm, T_NET_BUF *output)
 
 	buf = output->buf + sizeof(T_PPP_HDR) + sizeof(T_PPP_CP_HDR);
 
-	/* IP ���ɥ쥹���ץ������ɲä��롣 */
+	/* IP アドレスオプションを追加する。 */
 	*buf ++ = IPCP_CIT_ADDR;
 	*buf ++ = sizeof(T_PPP_CI_HDR) + sizeof(uint32_t);
 	ahtonl(buf, ipcp_local_neg_cfg.in_ifaddr.addr);
@@ -330,10 +330,10 @@ ipcp_addci (T_PPP_FSM *fsm, T_NET_BUF *output)
 	}
 
 /*
- *  ipcp_ackci -- ACK ����������Ȥ��ν���
+ *  ipcp_ackci -- ACK を受信したときの処理
  *
- *	�����:	true  ACK ������
- *		false ACK �ϰ۾�
+ *	戻り値:	true  ACK は正常
+ *		false ACK は異常
  */
 
 static bool_t
@@ -346,11 +346,11 @@ ipcp_ackci (T_PPP_FSM *fsm, T_NET_BUF *input)
 	len = input->len - (sizeof(T_PPP_HDR) + sizeof(T_PPP_CP_HDR));
 
 	/*
-	 *  �������������������˴����˰��פ��ʤ���Фʤ�ʤ���
-	 *  ���äơ�ipcp_addci �Ǻ���������˲��Ϥ��롣
+	 *  構成情報は送信した順に完全に一致しなければならない。
+	 *  従って、ipcp_addci で作成した順に解析する。
 	 */
 
-	/* ADDR ���ץ�������Ϥ��롣 */
+	/* ADDR オプションを解析する。 */
 	if (len < sizeof(T_PPP_CI_HDR) + sizeof(uint32_t)	||
 	    *buf ++ != IPCP_CIT_ADDR			||
 	    *buf ++ != sizeof(T_PPP_CI_HDR) + sizeof(uint32_t)||
@@ -363,10 +363,10 @@ ipcp_ackci (T_PPP_FSM *fsm, T_NET_BUF *input)
 	}
 
 /*
- *  ipcp_nakci -- NAK ����������Ȥ��ν���
+ *  ipcp_nakci -- NAK を受信したときの処理
  *
- *	�����:	1  NAK ������
- *		0  NAK �ϰ۾�
+ *	戻り値:	1  NAK は正常
+ *		0  NAK は異常
  */
 
 static int_t
@@ -382,7 +382,7 @@ ipcp_nakci (T_PPP_FSM *fsm, T_NET_BUF *input)
 
 	new_cfg = ipcp_local_neg_cfg;
 
-	/* ADDR ���ץ�������Ϥ��롣 */
+	/* ADDR オプションを解析する。 */
 	if (len >= sizeof(T_PPP_CI_HDR) + sizeof(uint32_t)		&&
 	    * buf      == IPCP_CIT_ADDR				&&
 	    *(buf + 1) == sizeof(T_PPP_CI_HDR) + sizeof(uint32_t)) {
@@ -392,7 +392,7 @@ ipcp_nakci (T_PPP_FSM *fsm, T_NET_BUF *input)
 		new_cfg.in_ifaddr.addr = cilong;
 		}
 
-	/* ���̵�뤹�롣*/
+	/* 後は無視する。*/
 	while (len > sizeof(T_PPP_CI_HDR)) {
 		cilen = *(buf + 1);
 		if (len < cilen)
@@ -401,11 +401,11 @@ ipcp_nakci (T_PPP_FSM *fsm, T_NET_BUF *input)
 		len -= cilen;
 		}
 
-	/* Ĺ���� 0 �Ǥʤ���Х��顼 */
+	/* 長さが 0 でなければエラー */
 	if (len != 0)
 		return 0;
 
-	/* ���������ץ��������ꤹ�롣*/
+	/* 新しいオプションを設定する。*/
 	if (fsm->state != PPP_FSM_OPENED)
 		ipcp_local_neg_cfg = new_cfg;
                		
@@ -413,10 +413,10 @@ ipcp_nakci (T_PPP_FSM *fsm, T_NET_BUF *input)
 	}
 
 /*
- *  ipcp_rejci -- REJ ����������Ȥ��ν���
+ *  ipcp_rejci -- REJ を受信したときの処理
  *
- *	�����:	1  REJ ������
- *		0  REJ �ϰ۾�
+ *	戻り値:	1  REJ は正常
+ *		0  REJ は異常
  */
 
 static int_t
@@ -431,7 +431,7 @@ ipcp_rejci (T_PPP_FSM *fsm, T_NET_BUF *input)
 
 	new_cfg = ipcp_local_neg_cfg;
 
-	/* ADDR ���ץ�������Ϥ��롣 */
+	/* ADDR オプションを解析する。 */
 	if (len >= sizeof(T_PPP_CI_HDR) + sizeof(uint32_t)		&&
 	    * buf      == IPCP_CIT_ADDR				&&
 	    *(buf + 1) == sizeof(T_PPP_CI_HDR) + sizeof(uint32_t)) {
@@ -440,11 +440,11 @@ ipcp_rejci (T_PPP_FSM *fsm, T_NET_BUF *input)
 		new_cfg.in_ifaddr.addr = 0;
 		}
 
-	/* Ĺ���� 0 �Ǥʤ���Х��顼 */
+	/* 長さが 0 でなければエラー */
 	if (len != 0)
 		return 0;
 
-	/* ���������ץ��������ꤹ�롣*/
+	/* 新しいオプションを設定する。*/
 	if (fsm->state != PPP_FSM_OPENED)
 		ipcp_local_neg_cfg = new_cfg;
 
@@ -452,7 +452,7 @@ ipcp_rejci (T_PPP_FSM *fsm, T_NET_BUF *input)
 	}
 
 /*
- *  ipcp_reqci -- ���ι����������Ϥ��롣
+ *  ipcp_reqci -- 相手の構成情報を解析する。
  */
 
 static int_t
@@ -463,44 +463,44 @@ ipcp_reqci (T_PPP_FSM *fsm, T_NET_BUF *input, T_NET_BUF *output)
 	uint8_t		*np, *rp, *ap, *cp, type = 0;
 
 	rp = ap = input->buf +  sizeof(T_PPP_HDR) + sizeof(T_PPP_CP_HDR);
-				/* rp: REJ��ap: ACK ���� CI �Υݥ���	*/
-				/* ���ݤ�����ϡ����� buf �˾�񤭤��롣	*/
+				/* rp: REJ、ap: ACK する CI のポインタ	*/
+				/* 拒否する場合は、引数 buf に上書きする。	*/
 	len   = input->len - (sizeof(T_PPP_HDR) + sizeof(T_PPP_CP_HDR));
 	np    = output->buf + sizeof(T_PPP_HDR) + sizeof(T_PPP_CP_HDR);
-	final = PPP_CONFACK;	/* �ǽ�Ū���������륳���� */
+	final = PPP_CONFACK;	/* 最終的に送信するコード */
 	while (len > 0) {
 		code = PPP_CONFACK;
-		cp   = ap;	/* cp: ���߽������ CI	*/
+		cp   = ap;	/* cp: 現在処理中の CI	*/
 
 		if (len < sizeof(T_PPP_CI_HDR)) {
 
-			/* �Ĥ꤬ CI �إå����û�� */
+			/* 残りが CI ヘッダより短い */
 			syslog(LOG_NOTICE, "[PPP/IPCP] bad CI len: %d.", len);
-			cilen = len;	/* �ǡ���Ĺ���۾�ξ��ν���	*/
-			len  = 0;	/* �롼�פ���ȴ���롣		*/
+			cilen = len;	/* データ長が異常の場合の処置	*/
+			len  = 0;	/* ループから抜ける。		*/
 			code  = PPP_CONFREJ;
 			goto endswitch;
 			}
 
-		type  = *ap ++;	/* CI �η�		*/
-		cilen = *ap ++;	/* CI ��Ĺ��		*/
+		type  = *ap ++;	/* CI の型		*/
+		cilen = *ap ++;	/* CI の長さ		*/
 		if (len < cilen) {
 
-			/* �Ĥ꤬ CI Ĺ���û�� */
+			/* 残りが CI 長より短い */
 			syslog(LOG_NOTICE, "[PPP/IPCP] bad CI len: %d.", cilen);
-			cilen = len;	/* �ǡ���Ĺ���۾�ξ��ν���	*/
-			len  = 0;	/* �롼�פ���ȴ���롣		*/
+			cilen = len;	/* データ長が異常の場合の処置	*/
+			len  = 0;	/* ループから抜ける。		*/
 			code  = PPP_CONFREJ;
 			goto endswitch;
 			}
 		len -= sizeof(T_PPP_CI_HDR);
 
-		/* CI �η��ˤ��ʬ�����롣*/
+		/* CI の型により分岐する。*/
 		switch (type) {
 
-		case IPCP_CIT_ADDR:	/* IP ���ɥ쥹 */
+		case IPCP_CIT_ADDR:	/* IP アドレス */
 
-		 	/* CI Ĺ�����إå� + 4 �����ƥåȤǤʤ���Х��顼 */
+		 	/* CI 長が、ヘッダ + 4 オクテットでなければエラー */
 		 	if (cilen != sizeof(T_PPP_CI_HDR) + sizeof(uint32_t))
 				code = PPP_CONFREJ;
 			else {
@@ -513,7 +513,7 @@ ipcp_reqci (T_PPP_FSM *fsm, T_NET_BUF *input, T_NET_BUF *output)
 					np  += sizeof(uint32_t);
 					code = PPP_CONFNAK;
 					}
-#if 1	/* �׳�ǧ */
+#if 1	/* 要確認 */
 				else if (addr == 0 && ipcp_remote_neg_cfg.in_ifaddr.addr == 0)
 #else
 				else if (addr == 0 || ipcp_remote_neg_cfg.in_ifaddr.addr == 0)
@@ -532,17 +532,17 @@ ipcp_reqci (T_PPP_FSM *fsm, T_NET_BUF *input, T_NET_BUF *output)
 endswitch:
 
 		if (code == PPP_CONFNAK) {
-			/* CI �η��� Magic Number �ξ�������ơ�NAK �β����	*/
-			/* ������ MAX_PPP_FAILURES  ��Ķ��������ݤ��롣	*/
+			/* CI の型が Magic Number の場合を除いて、NAK の回数が	*/
+			/* 最大値 MAX_PPP_FAILURES  を超えたら拒否する。	*/
 			if (fsm->failures >= MAX_PPP_FAILURES)
 				code = PPP_CONFREJ;
 			else if (final != PPP_CONFREJ)
 				final = PPP_CONFNAK;
 			}
 
-		/* ���� CI ����ݤ��� */
+		/* この CI を拒否する */
 		if (code == PPP_CONFREJ) {
-			if (rp < cp)		/* ���˵ͤ�롣*/
+			if (rp < cp)		/* 前に詰める。*/
 				memcpy(rp, cp, cilen);
 			rp += cilen;
 			final = PPP_CONFREJ;
@@ -552,7 +552,7 @@ endswitch:
 		len  -= cilen - sizeof(T_PPP_CI_HDR);
 		}
 
-	/* �ǽ�Ū��Ĺ����Ĵ�����롣*/
+	/* 最終的な長さを調整する。*/
 	switch (final) {
 	case PPP_CONFNAK:
 		output->len = np - output->buf;
@@ -570,27 +570,27 @@ endswitch:
 	}
 
 /*
- *  ipcp_up -- �����³���Ω���롣
+ *  ipcp_up -- リンク接続を確立する。
  */
 
 static void
 ipcp_up (T_PPP_FSM *fsm)
 {
-	/* ����������ν������ */
+	/* 自構成情報の初期設定 */
 	ipcp_local_ack_cfg = ipcp_local_neg_cfg;
 
 	/*
-	 *  ���֥ͥåȥޥ�����
-	 *  �������롦�֥����ɥ��㥹�� IP ���ɥ쥹�����ꤹ�롣
+	 *  サブネットマスクと
+	 *  ローカル・ブロードキャスト IP アドレスを設定する。
 	 */
 	ipcp_local_ack_cfg.in_ifaddr.mask = MAKE_IPV4_LOCAL_MASK(ipcp_local_neg_cfg.in_ifaddr.addr);
 
-	/* ���ι�������ν������ */
+	/* 相手の構成情報の初期設定 */
 	ipcp_remote_ack_cfg = ipcp_remote_neg_cfg;
 
 	/*
-	 *  ���֥ͥåȥޥ�����
-	 *  �������롦�֥����ɥ��㥹�� IP ���ɥ쥹�����ꤹ�롣
+	 *  サブネットマスクと
+	 *  ローカル・ブロードキャスト IP アドレスを設定する。
 	 */
 	ipcp_remote_ack_cfg.in_ifaddr.mask = MAKE_IPV4_LOCAL_MASK(ipcp_remote_neg_cfg.in_ifaddr.addr);
 
@@ -602,7 +602,7 @@ ipcp_up (T_PPP_FSM *fsm)
 	}
 
 /*
- *  ipcp_down -- �����³��������롣
+ *  ipcp_down -- リンク接続を解放する。
  */
 
 static void
@@ -613,7 +613,7 @@ ipcp_down (T_PPP_FSM *fsm)
 	}
 
 /*
- *  ipcp_finished -- �����ؤ�λ���롣
+ *  ipcp_finished -- 下位層を終了する。
  */
 
 static void
@@ -622,7 +622,7 @@ ipcp_finished (T_PPP_FSM *fsm)
 	}
 
 /*
- *  ipcp_protrej -- Proto-REJ ����������Ȥ��ν���
+ *  ipcp_protrej -- Proto-REJ を受信したときの処理
  */
 
 static void
@@ -632,7 +632,7 @@ ipcp_protrej (void)
 	}
 
 /*
- *  ipcp_lowerup -- IPCP �����ؤ�ư���롣
+ *  ipcp_lowerup -- IPCP 下位層を起動する。
  */
 
 static void
@@ -642,7 +642,7 @@ ipcp_lowerup (void)
 	}
 
 /*
- *  ipcp_lowerdown -- IPCP �����ؤ���ߤ��롣
+ *  ipcp_lowerdown -- IPCP 下位層を停止する。
  */
 
 static void
@@ -652,7 +652,7 @@ ipcp_lowerdown (void)
 	}
 
 /*
- *  ipcp_open -- IPCP �Υ����ץ�
+ *  ipcp_open -- IPCP のオープン
  */
 
 static void
@@ -662,7 +662,7 @@ ipcp_open (void)
 	}
 
 /*
- *  ipcp_close -- IPCP �Υ�������
+ *  ipcp_close -- IPCP のクローズ
  */
 
 static void

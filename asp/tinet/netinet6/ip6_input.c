@@ -4,29 +4,29 @@
  *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
- *  �嵭����Ԥϡ��ʲ��� (1)��(4) �ξ�狼��Free Software Foundation 
- *  �ˤ�äƸ�ɽ����Ƥ��� GNU General Public License �� Version 2 �˵�
- *  �Ҥ���Ƥ���������������˸¤ꡤ�ܥ��եȥ��������ܥ��եȥ�����
- *  ����Ѥ�����Τ�ޤࡥ�ʲ�Ʊ���ˤ���ѡ�ʣ�������ѡ������ۡʰʲ���
- *  ���ѤȸƤ֡ˤ��뤳�Ȥ�̵���ǵ������롥
- *  (1) �ܥ��եȥ������򥽡��������ɤη������Ѥ�����ˤϡ��嵭������
- *      ��ɽ�����������Ѿ�浪��Ӳ�����̵�ݾڵ��꤬�����Τޤޤη��ǥ���
- *      ����������˴ޤޤ�Ƥ��뤳�ȡ�
- *  (2) �ܥ��եȥ������򡤥饤�֥������ʤɡ�¾�Υ��եȥ�������ȯ�˻�
- *      �ѤǤ�����Ǻ����ۤ�����ˤϡ������ۤ�ȼ���ɥ�����ȡ�����
- *      �ԥޥ˥奢��ʤɡˤˡ��嵭�����ɽ�����������Ѿ�浪��Ӳ���
- *      ��̵�ݾڵ����Ǻܤ��뤳�ȡ�
- *  (3) �ܥ��եȥ������򡤵�����Ȥ߹���ʤɡ�¾�Υ��եȥ�������ȯ�˻�
- *      �ѤǤ��ʤ����Ǻ����ۤ�����ˤϡ����ξ������������ȡ�
- *    (a) �����ۤ�ȼ���ɥ�����ȡ����Ѽԥޥ˥奢��ʤɡˤˡ��嵭����
- *        �ɽ�����������Ѿ�浪��Ӳ�����̵�ݾڵ����Ǻܤ��뤳�ȡ�
- *  (4) �ܥ��եȥ����������Ѥˤ��ľ��Ū�ޤ��ϴ���Ū�������뤤���ʤ�»
- *      ������⡤�嵭����Ԥ����TOPPERS�ץ��������Ȥ����դ��뤳�ȡ�
+ *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
+ *  によって公表されている GNU General Public License の Version 2 に記
+ *  述されている条件を満たす場合に限り，本ソフトウェア（本ソフトウェア
+ *  を改変したものを含む．以下同じ）を使用・複製・改変・再配布（以下，
+ *  利用と呼ぶ）することを無償で許諾する．
+ *  (1) 本ソフトウェアをソースコードの形で利用する場合には，上記の著作
+ *      権表示，この利用条件および下記の無保証規定が，そのままの形でソー
+ *      スコード中に含まれていること．
+ *  (2) 本ソフトウェアを，ライブラリ形式など，他のソフトウェア開発に使
+ *      用できる形で再配布する場合には，再配布に伴うドキュメント（利用
+ *      者マニュアルなど）に，上記の著作権表示，この利用条件および下記
+ *      の無保証規定を掲載すること．
+ *  (3) 本ソフトウェアを，機器に組み込むなど，他のソフトウェア開発に使
+ *      用できない形で再配布する場合には，次の条件を満たすこと．
+ *    (a) 再配布に伴うドキュメント（利用者マニュアルなど）に，上記の著
+ *        作権表示，この利用条件および下記の無保証規定を掲載すること．
+ *  (4) 本ソフトウェアの利用により直接的または間接的に生じるいかなる損
+ *      害からも，上記著作権者およびTOPPERSプロジェクトを免責すること．
  *
- *  �ܥ��եȥ������ϡ�̵�ݾڤ��󶡤���Ƥ����ΤǤ��롥�嵭����Ԥ�
- *  ���TOPPERS�ץ��������Ȥϡ��ܥ��եȥ������˴ؤ��ơ�����Ŭ�Ѳ�ǽ����
- *  �ޤ�ơ������ʤ��ݾڤ�Ԥ�ʤ����ޤ����ܥ��եȥ����������Ѥˤ��ľ
- *  ��Ū�ޤ��ϴ���Ū�������������ʤ�»���˴ؤ��Ƥ⡤������Ǥ�����ʤ���
+ *  本ソフトウェアは，無保証で提供されているものである．上記著作権者お
+ *  よびTOPPERSプロジェクトは，本ソフトウェアに関して，その適用可能性も
+ *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
+ *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
  *  @(#) $Id: ip6_input.c,v 1.5.4.1 2015/02/05 02:11:26 abe Exp abe $
  */
@@ -145,28 +145,28 @@
 #ifdef SUPPORT_INET6
 
 /*
- *  �ؿ�
+ *  関数
  */
 
 static uint_t ip6_no_header_input (T_NET_BUF **inputp, uint_t *offp, uint_t *nextp);
 
 /*
- *  ��̥ץ��ȥ�������¤��
+ *  上位プロトコル選択構造体
  */
 
 typedef struct t_proto_switch {
-	uint_t (*func)(T_NET_BUF **, uint_t *, uint_t *);	/* ���ϴؿ�		*/
-	uint_t proto;						/* �ץ��ȥ����ֹ�	*/
+	uint_t (*func)(T_NET_BUF **, uint_t *, uint_t *);	/* 入力関数		*/
+	uint_t proto;						/* プロトコル番号	*/
 	} T_PROTO_SWITCH;
 
 static const T_PROTO_SWITCH proto_switch[] = {
-	{ esp6_input,	IPPROTO_ESP		},	/* IPv6 �Ź沽�إå�	*/
-	{ ah6_input,	IPPROTO_AH		},	/* IPv6 ǧ�ڥإå�	*/
-	{ frag6_input,	IPPROTO_FRAGMENT	},	/* ���ҥإå�		*/
-	{ route6_input,	IPPROTO_ROUTING		},	/* ��ϩ����إå�	*/
-	{ dest6_input,	IPPROTO_DSTOPTS		},	/* IPv6 �������ץ����	*/
+	{ esp6_input,	IPPROTO_ESP		},	/* IPv6 暗号化ヘッダ	*/
+	{ ah6_input,	IPPROTO_AH		},	/* IPv6 認証ヘッダ	*/
+	{ frag6_input,	IPPROTO_FRAGMENT	},	/* 断片ヘッダ		*/
+	{ route6_input,	IPPROTO_ROUTING		},	/* 経路制御ヘッダ	*/
+	{ dest6_input,	IPPROTO_DSTOPTS		},	/* IPv6 終点オプション	*/
 	{ ip6_no_header_input,
-			IPPROTO_NONE		},	/* ���إå�̵��		*/
+			IPPROTO_NONE		},	/* 次ヘッダ無し		*/
 	{ icmp6_input,	IPPROTO_ICMPV6		},
 
 #ifdef SUPPORT_UDP
@@ -190,7 +190,7 @@ T_IN6_IFSTAT in6_ifstat;
 #endif	/* of #ifdef SUPPORT_MIB */
 
 /*
- *  get_upper_proto -- ��̥ץ��ȥ�������ؿ����֤���
+ *  get_upper_proto -- 上位プロトコル処理関数を返す。
  */
 
 static uint_t (*
@@ -205,7 +205,7 @@ get_upper_proto(uint_t proto))(T_NET_BUF **, uint_t *, uint_t *)
 	}
 
 /*
- *  ip6_no_header_input -- ���إå���̵���ξ������Ͻ���
+ *  ip6_no_header_input -- 次ヘッダが無しの場合の入力処理
  */
 
 static uint_t
@@ -216,15 +216,15 @@ ip6_no_header_input (T_NET_BUF **input, uint_t *offp, uint_t *nextp)
 	}
 
 /*
- *  ip6_hopopts_input -- ��������ץ�������Ͻ���
+ *  ip6_hopopts_input -- 中継点オプション入力処理
  *
- *    �ܼ����Ǥϡ��ѥǥ��󥰰ʳ��Υ��ץ���������̤�Υ��ץ����Ȥ��ƽ������롣
+ *    本実装では、パディング以外のオプションを全て未知オプションとして処理する。
  *
- *    �����:
+ *    戻り値:
  *
- *      0 �ʾ� 		����
- *      IP6_OPT_RET_ERR (-1)	���顼���ƽ�¦�ǥͥåȥ���Хåե��������롣
- *      IP6_OPT_RET_REL (-2)	���顼���ͥåȥ���Хåե��ϳ�������Ƥ��롣
+ *      0 以上 		正常
+ *      IP6_OPT_RET_ERR (-1)	エラー、呼出側でネットワークバッファを開放する。
+ *      IP6_OPT_RET_REL (-2)	エラー、ネットワークバッファは開放されている。
  */
 
 static ER_UINT
@@ -272,9 +272,9 @@ ip6_hopopts_input (T_NET_BUF *input, uint_t *offp, uint_t *nextp)
 	}
 
 /*
- *  ip6_get_prev_hdr -- ľ���γ�ĥ�إå��� next �ե�����ɤΥ��ɥ쥹���֤���
+ *  ip6_get_prev_hdr -- 直前の拡張ヘッダの next フィールドのアドレスを返す。
  *
- *    ����: off �ˤ� IF_HDR_SIZE ��ޤޤ�Ƥ��롣
+ *    注意: off には IF_HDR_SIZE も含まれている。
  */
 
 uint8_t *
@@ -318,7 +318,7 @@ ip6_get_prev_hdr (T_NET_BUF *nbuf, uint_t off)
 	}
 
 /*
- *  ip6_init -- IPv6 �ν�����ؿ�
+ *  ip6_init -- IPv6 の初期化関数
  */
 
 void
@@ -329,7 +329,7 @@ ip6_init (void)
 	}
 
 /*
- *  ip6_input -- IPv6 �����ϴؿ�
+ *  ip6_input -- IPv6 の入力関数
  */
 
 void
@@ -346,7 +346,7 @@ ip6_input (T_NET_BUF *input)
 	NET_COUNT_IP6(net_count_ip6[NC_IP6_IN_PACKETS], 1);
 	NET_COUNT_MIB(in6_ifstat.ipv6IfStatsInReceives, 1);
 
-	/* IP �إå���Ĺ��������å����롣*/
+	/* IP ヘッダの長さをチェックする。*/
 	if (input->len < IF_IP6_HDR_SIZE) {
 		NET_COUNT_IP6(net_count_ip6[NC_IP6_IN_ERR_SHORT], 1);
 		NET_COUNT_MIB(in6_ifstat.ipv6IfStatsInHdrErrors, 1);
@@ -355,7 +355,7 @@ ip6_input (T_NET_BUF *input)
 
 	ip6h = GET_IP6_HDR(input);
 
-	/* �С�����������å����롣*/
+	/* バージョンをチェックする。*/
 	if (IP6_VCF_V(ntohl(ip6h->vcf)) != IPV6_VERSION) {
 		NET_COUNT_IP6(net_count_ip6[NC_IP6_IN_ERR_VER], 1);
 		NET_COUNT_MIB(in6_ifstat.ipv6IfStatsInHdrErrors, 1);
@@ -363,24 +363,24 @@ ip6_input (T_NET_BUF *input)
 		}
 
 	/*
-	 *  ���Υǡ����������˴����롣
+	 *  次のデータグラムは破棄する。
 	 *
-	 *    ���������ɥ쥹���ޥ�����㥹��
-	 *    ���������ɥ쥹��̤���
+	 *    ・始点アドレスがマルチキャスト
+	 *    ・終点アドレスが未定義
 	 *
-	 *  �ͥåȥ�����󥿥ե��������롼�ץХå��Ǥʤ��Ȥ���
-	 *  ���Υǡ����������˴����롣
+	 *  ネットワークインタフェースがループバックでないとき、
+	 *  次のデータグラムも破棄する。
 	 *
-	 *    ���������ɥ쥹���롼�ץХå�
-	 *    ���������ɥ쥹���롼�ץХå�
+	 *    ・始点アドレスがループバック
+	 *    ・終点アドレスがループバック
 	 *
-	 *  ���դΤ���桼���� TCP/UDP �����å��κ����
-	 *  �������ƥ������å���Х��ѥ����뤿�ᡢIPv4
-	 *  �ޥåץ��ɥ쥹���Ѥ��뤳�Ȥ��ɤ�����
-	 *  �ʲ��Υǡ����������˴����롣  
+	 *  悪意のあるユーザが TCP/UDP スタックの混乱や
+	 *  セキュリティチェックをバイパスするため、IPv4
+	 *  マップアドレスを悪用することを防ぐため
+	 *  以下のデータグラムは破棄する。  
 	 *
-	 *    ���������ɥ쥹�� ::ffff:127.0.0.1
-	 *    ���������ɥ쥹�� ::ffff:127.0.0.1
+	 *    ・始点アドレスが ::ffff:127.0.0.1
+	 *    ・終点アドレスが ::ffff:127.0.0.1
 	 */
 
 	if (IN6_IS_ADDR_MULTICAST(&ip6h->src) ||
@@ -413,7 +413,7 @@ ip6_input (T_NET_BUF *input)
 	ifp = IF_GET_IFNET();
 
 	if (IN6_IS_ADDR_MULTICAST(&ip6h->dst)) {
-		/* ���褬�ޥ�����㥹�Ȥξ��ν��� */
+		/* 宛先がマルチキャストの場合の処理 */
 		NET_COUNT_MIB(in6_ifstat.ipv6IfStatsInMcastPkts, 1);
 		if (!in6_lookup_multi(ifp, &ip6h->dst)) {
 			NET_COUNT_IP6(net_count_ip6[NC_IP6_IN_ERR_ADDR], 1);
@@ -428,7 +428,7 @@ ip6_input (T_NET_BUF *input)
 			goto buf_rel;
 			}
 
-		/*  ���ɥ쥹��̤���ξ��ϥǡ����������˴����롣*/
+		/*  アドレスが未解決の場合はデータグラムを破棄する。*/
 		if (IFA6_IS_NOTREADY(ia6)) {
 			NET_COUNT_IP6(net_count_ip6[NC_IP6_IN_ERR_ADDR], 1);
 			NET_COUNT_MIB(in6_ifstat.ipv6IfStatsInAddrErrors, 1);
@@ -436,22 +436,22 @@ ip6_input (T_NET_BUF *input)
 			}
 		}
 
-	/* ���ե��åȤ����ꤹ�롣*/
+	/* オフセットを設定する。*/
 	offp  = GET_IP6_NEXT_HDR(input) - input->buf;
 
-	/* �ڥ�������Ĺ����Ф���*/
+	/* ペイロード長を取り出す。*/
 	plen = ntohs(ip6h->plen);
 
 
-	/* ���إå��ΰ��֤��������롣*/
+	/* 次ヘッダの位置を初期化する。*/
 	nextp = offsetof(T_IP6_HDR, next);
 
 	/*
-	 *  ����� (Hop-by-Hop) ���ץ����إå��Υ����å�
+	 *  中継点 (Hop-by-Hop) オプションヘッダのチェック
 	 */
 	if (ip6h->next == IPPROTO_HOPOPTS) {
 
-		/* ������إå���Ĺ��������å����롣*/
+		/* 中継点ヘッダの長さをチェックする。*/
 		if (plen < sizeof(T_IP6_HBH_HDR)) {
 			NET_COUNT_IP6(net_count_ip6[NC_IP6_IN_ERR_SHORT], 1);
 			NET_COUNT_MIB(in6_ifstat.ipv6IfStatsInHdrErrors, 1);
@@ -472,19 +472,19 @@ ip6_input (T_NET_BUF *input)
 			}
 
 		/*
-		 *  �ڥ�������Ĺ�� 0 �ǡ���������ץ���󤬤���Ȥ��ϡ�
-		 *  ����ڥ������ɡ����ץ���󤬴ޤޤ�ʤ���Фʤ�ʤ���
-		 *  ���ΤȤ�������ڥ������ɡ����ץ����ˤ���
-		 *  �ڥ�������Ĺ������å�����ɬ�פ����뤬���ܼ����Ǥϡ�
-		 *  ����ڥ������ɡ����ץ�����̤�ΤΥ��ץ����Ȥ���
-		 *  �����Τǡ����⤷�ʤ���
+		 *  ペイロード長が 0 で、中継点オプションがあるときは、
+		 *  巨大ペイロード・オプションが含まれなければならない。
+		 *  このとき、巨大ペイロード・オプションにある
+		 *  ペイロード長をチェックする必要があるが、本実装では、
+		 *  巨大ペイロード・オプションを未知のオプションとして
+		 *  扱うので、何もしない。
 		 */
 		next = ((T_IP6_HBH_HDR *)(ip6h + 1))->next;
 		}
 	else
 		next = ip6h->next;
 
-	/* IPv6 �ǡ��������Ĺ������å����롣*/
+	/* IPv6 データグラム長をチェックする。*/
 	if (input->len - IF_IP6_HDR_SIZE < plen) {
 		NET_COUNT_IP6(net_count_ip6[NC_IP6_IN_ERR_SHORT], 1);
 		NET_COUNT_MIB(in6_ifstat.ipv6IfStatsInTruncatedPkts, 1);
@@ -493,7 +493,7 @@ ip6_input (T_NET_BUF *input)
 	else if (input->len > IF_IP6_HDR_SIZE + plen)
 		input->len = IF_IP6_HDR_SIZE + plen;
 
-	/* ��̥ץ��ȥ�������ؿ���ƤӽФ���*/
+	/* 上位プロトコル処理関数を呼び出す。*/
 	nest = 0;
 	while (next != IPPROTO_DONE) {
 		if (++ nest > IP6_HDR_NEST_LIMIT) {
@@ -506,7 +506,7 @@ ip6_input (T_NET_BUF *input)
 			NET_COUNT_IP6(net_count_ip6[NC_IP6_IN_ERR_PACKETS], 1);
 			NET_COUNT_MIB(in6_ifstat.ipv6IfStatsInUnknownProtos, 1);
 
-			/* icmp6_error �ǥͥåȥ���Хåե��������롣*/
+			/* icmp6_error でネットワークバッファを開放する。*/
 			icmp6_error(input, ICMP6_PARAM_PROB,
 			                   ICMP6_PARAMPROB_NEXT_HEADER, nextp);
 			return;
@@ -523,10 +523,10 @@ buf_rel:
 	}
 
 /*
- *  ip6_nexthdr -- ���Υإå��Υ��ե��åȤ��֤���
+ *  ip6_nexthdr -- 次のヘッダのオフセットを返す。
  *
- *    ����� == -1 : �Ǹ�Υإå����ޤ��ϥ��顼��
- *    ����� >   0 : ����˥إå���³����
+ *    戻り値 == -1 : 最後のヘッダ、またはエラー。
+ *    戻り値 >   0 : さらにヘッダが続く。
  */
 
 ER_UINT
@@ -544,11 +544,11 @@ ip6_nexthdr (T_NET_BUF *nbuf, uint_t off, uint_t proto, uint_t *nextp)
 		return off + IP6_HDR_SIZE;
 		break;
 
-	case IPPROTO_FRAGMENT:			/* ���ҥإå� */
+	case IPPROTO_FRAGMENT:			/* 断片ヘッダ */
 		if (nbuf->len < off + sizeof(T_IP6_FRAG_HDR))
 			return (ER_UINT)-1;
 
-		/* ��֤Υե饰���Ȥξ��Ͻ�������롣*/
+		/* 中間のフラグメントの場合は処理をやめる。*/
 		ip6fh = (T_IP6_FRAG_HDR *)(nbuf->buf + off);
 		if (ntohs(ip6fh->off_flag) & IP6F_MORE_FRAG)
 			return (ER_UINT)-1;
@@ -557,10 +557,10 @@ ip6_nexthdr (T_NET_BUF *nbuf, uint_t off, uint_t proto, uint_t *nextp)
 		return off + sizeof(T_IP6_FRAG_HDR);
 		break;
 
-	case IPPROTO_AH:		/* IPv6 ǧ�ڥإå�			*/
-	case IPPROTO_HOPOPTS:		/* IPv6 ����� (Hop-by-Hop) ���ץ����	*/
-	case IPPROTO_ROUTING:		/* ��ϩ����إå�			*/
-	case IPPROTO_DSTOPTS:		/* IPv6 �������ץ����			*/
+	case IPPROTO_AH:		/* IPv6 認証ヘッダ			*/
+	case IPPROTO_HOPOPTS:		/* IPv6 中継点 (Hop-by-Hop) オプション	*/
+	case IPPROTO_ROUTING:		/* 経路制御ヘッダ			*/
+	case IPPROTO_DSTOPTS:		/* IPv6 終点オプション			*/
 		if (nbuf->len < off + sizeof(T_IP6_EXT_HDR))
 			return (ER_UINT)-1;
 
@@ -577,7 +577,7 @@ ip6_nexthdr (T_NET_BUF *nbuf, uint_t off, uint_t proto, uint_t *nextp)
 	}
 
 /*
- *  ip6_lasthdr -- �Ǹ�Υإå��Υ��ե��åȤ��֤���
+ *  ip6_lasthdr -- 最後のヘッダのオフセットを返す。
  */
 
 ER_UINT
@@ -596,40 +596,40 @@ ip6_lasthdr (T_NET_BUF *nbuf, uint_t off, uint_t proto, uint_t *nextp)
 	}
 
 /*
- *  ip6_unknown_opt -- ̤�ΤΥ��ץ����ν���
+ *  ip6_unknown_opt -- 未知のオプションの処理
  *
- *    �����:
+ *    戻り値:
  *
- *      0 �ʾ� 			������ץ����Ĺ��
- *      IP6_OPT_RET_ERR (-1)	���顼���ƽ�¦�ǥͥåȥ���Хåե��������롣
- *      IP6_OPT_RET_REL (-2)	���顼���ͥåȥ���Хåե��ϳ�������Ƥ��롣
+ *      0 以上 			正常、オプション長。
+ *      IP6_OPT_RET_ERR (-1)	エラー、呼出側でネットワークバッファを開放する。
+ *      IP6_OPT_RET_REL (-2)	エラー、ネットワークバッファは開放されている。
  */
 
 ER_UINT
 ip6_unknown_opt (T_NET_BUF *input, uint8_t *opt)
 {
 	switch (IP6OPT_TYPE(*opt)) {
-	case IP6OPT_TYPE_SKIP:		/* ̵�뤹�롣			*/
+	case IP6OPT_TYPE_SKIP:		/* 無視する。			*/
 		return *(opt + 1);
 		break;
-	case IP6OPT_TYPE_ICMP:		/* �˴����ơ��ޥ�����㥹�ȤǤʤ���� ICMP ���������롣	*/
+	case IP6OPT_TYPE_ICMP:		/* 破棄して、マルチキャストでなければ ICMP を返送する。	*/
 		if (IN6_IS_ADDR_MULTICAST(&GET_IP6_HDR(input)->dst))
 			return IP6_OPT_RET_ERR;
 		/* no break; */
-	case IP6OPT_TYPE_FORCEICMP:	/* �˴����ơ�ICMP ���������롣	*/
+	case IP6OPT_TYPE_FORCEICMP:	/* 破棄して、ICMP を返送する。	*/
 		icmp6_error(input, ICMP6_PARAM_PROB,
 		                   ICMP6_PARAMPROB_OPTION,
 		                   (opt - input->buf) - IF_HDR_SIZE);
 		return IP6_OPT_RET_REL;
 		break;
-	/*case IP6OPT_TYPE_DISCARD:	�ǡ����������˴����롣	*/
+	/*case IP6OPT_TYPE_DISCARD:	データグラムを破棄する。	*/
 		}
 
 	return IP6_OPT_RET_ERR;
 	}
 
 /*
- *  ip6_remove_exthdrs -- IPv6 ��ĥ�إå����������ʹߤ����˵ͤ�롣
+ *  ip6_remove_exthdrs -- IPv6 拡張ヘッダを削除し、以降を前に詰める。
  */
 
 ER
@@ -638,10 +638,10 @@ ip6_remove_exthdrs (T_NET_BUF *nbuf)
 	ER_UINT	off;
 	uint_t	next;
 
-	/* ���ϥ��ե��åȤ� IP �إå������ꤹ�롣*/
+	/* 開始オフセットを IP ヘッダに設定する。*/
 	off = ((uint8_t *)GET_IP_HDR(nbuf)) - nbuf->buf;
 
-	/* �ǽ��إå���õ�����롣*/
+	/* 最終ヘッダを探索する。*/
 	off = ip6_lasthdr(nbuf, off, IPPROTO_IPV6, &next);
 
 	if (off <= 0)

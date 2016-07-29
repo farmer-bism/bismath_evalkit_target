@@ -5,34 +5,34 @@
  *                   Tomakomai National College of Technology, JAPAN
  *  Copyright (C) 2014 Cores Co., Ltd. Japan
  * 
- *  ��L���쌠�҂́C�ȉ���(1)�`(4)�̏����𖞂����ꍇ�Ɍ���C�{�\�t�g�E�F
- *  �A�i�{�\�t�g�E�F�A�����ς������̂��܂ށD�ȉ������j���g�p�E�����E��
- *  �ρE�Ĕz�z�i�ȉ��C���p�ƌĂԁj���邱�Ƃ𖳏��ŋ�������D
- *  (1) �{�\�t�g�E�F�A���\�[�X�R�[�h�̌`�ŗ��p����ꍇ�ɂ́C��L�̒���
- *      ���\���C���̗��p��������щ��L�̖��ۏ؋K�肪�C���̂܂܂̌`�Ń\�[
- *      �X�R�[�h���Ɋ܂܂�Ă��邱�ƁD
- *  (2) �{�\�t�g�E�F�A���C���C�u�����`���ȂǁC���̃\�t�g�E�F�A�J���Ɏg
- *      �p�ł���`�ōĔz�z����ꍇ�ɂ́C�Ĕz�z�ɔ����h�L�������g�i���p
- *      �҃}�j���A���Ȃǁj�ɁC��L�̒��쌠�\���C���̗��p��������щ��L
- *      �̖��ۏ؋K����f�ڂ��邱�ƁD
- *  (3) �{�\�t�g�E�F�A���C�@��ɑg�ݍ��ނȂǁC���̃\�t�g�E�F�A�J���Ɏg
- *      �p�ł��Ȃ��`�ōĔz�z����ꍇ�ɂ́C���̂����ꂩ�̏����𖞂�����
- *      �ƁD
- *    (a) �Ĕz�z�ɔ����h�L�������g�i���p�҃}�j���A���Ȃǁj�ɁC��L�̒�
- *        �쌠�\���C���̗��p��������щ��L�̖��ۏ؋K����f�ڂ��邱�ƁD
- *    (b) �Ĕz�z�̌`�Ԃ��C�ʂɒ�߂���@�ɂ���āCTOPPERS�v���W�F�N�g��
- *        �񍐂��邱�ƁD
- *  (4) �{�\�t�g�E�F�A�̗��p�ɂ�蒼�ړI�܂��͊ԐړI�ɐ����邢���Ȃ鑹
- *      �Q������C��L���쌠�҂����TOPPERS�v���W�F�N�g��Ɛӂ��邱�ƁD
- *      �܂��C�{�\�t�g�E�F�A�̃��[�U�܂��̓G���h���[�U����̂����Ȃ闝
- *      �R�Ɋ�Â�����������C��L���쌠�҂����TOPPERS�v���W�F�N�g��
- *      �Ɛӂ��邱�ƁD
+ *  上記著作権者は，以下の(1)〜(4)の条件を満たす場合に限り，本ソフトウェ
+ *  ア（本ソフトウェアを改変したものを含む．以下同じ）を使用・複製・改
+ *  変・再配布（以下，利用と呼ぶ）することを無償で許諾する．
+ *  (1) 本ソフトウェアをソースコードの形で利用する場合には，上記の著作
+ *      権表示，この利用条件および下記の無保証規定が，そのままの形でソー
+ *      スコード中に含まれていること．
+ *  (2) 本ソフトウェアを，ライブラリ形式など，他のソフトウェア開発に使
+ *      用できる形で再配布する場合には，再配布に伴うドキュメント（利用
+ *      者マニュアルなど）に，上記の著作権表示，この利用条件および下記
+ *      の無保証規定を掲載すること．
+ *  (3) 本ソフトウェアを，機器に組み込むなど，他のソフトウェア開発に使
+ *      用できない形で再配布する場合には，次のいずれかの条件を満たすこ
+ *      と．
+ *    (a) 再配布に伴うドキュメント（利用者マニュアルなど）に，上記の著
+ *        作権表示，この利用条件および下記の無保証規定を掲載すること．
+ *    (b) 再配布の形態を，別に定める方法によって，TOPPERSプロジェクトに
+ *        報告すること．
+ *  (4) 本ソフトウェアの利用により直接的または間接的に生じるいかなる損
+ *      害からも，上記著作権者およびTOPPERSプロジェクトを免責すること．
+ *      また，本ソフトウェアのユーザまたはエンドユーザからのいかなる理
+ *      由に基づく請求からも，上記著作権者およびTOPPERSプロジェクトを
+ *      免責すること．
  * 
- *  �{�\�t�g�E�F�A�́C���ۏ؂Œ񋟂���Ă�����̂ł���D��L���쌠�҂�
- *  ���TOPPERS�v���W�F�N�g�́C�{�\�t�g�E�F�A�Ɋւ��āC����̎g�p�ړI
- *  �ɑ΂���K�������܂߂āC�����Ȃ�ۏ؂��s��Ȃ��D�܂��C�{�\�t�g�E�F
- *  �A�̗��p�ɂ�蒼�ړI�܂��͊ԐړI�ɐ����������Ȃ鑹�Q�Ɋւ��Ă��C��
- *  �̐ӔC�𕉂�Ȃ��D
+ *  本ソフトウェアは，無保証で提供されているものである．上記著作権者お
+ *  よびTOPPERSプロジェクトは，本ソフトウェアに関して，特定の使用目的
+ *  に対する適合性も含めて，いかなる保証も行わない．また，本ソフトウェ
+ *  アの利用により直接的または間接的に生じたいかなる損害に関しても，そ
+ *  の責任を負わない．
  * 
  *  @(#) $Id$
  */
@@ -93,13 +93,13 @@ static void phy_single_rel_bus();
 void phy_reset(uint8_t phy_addr)
 {
   //#ifdef __RX
-	/* PHY�̃��Z�b�g */
+	/* PHYのリセット */
 	phy_write_reg(phy_addr, PHY_CONTROL_REGISTER, PHY_CONTROL_RESET);
 
-	/* 500ms�҂� */
-	/* tslp_tsk(500); �s�v�H */
+	/* 500ms待つ */
+	/* tslp_tsk(500); 不要？ */
 
-	/* ���Z�b�g�����̊m�F */
+	/* リセット完了の確認 */
 	while((phy_read_reg(phy_addr, PHY_CONTROL_REGISTER) & PHY_CONTROL_RESET) != 0)
 		tslp_tsk(1);
     //#endif
@@ -110,19 +110,19 @@ enum phy_mode_t phy_initialize(uint8_t phy_addr)
 	uint_t result = 0;
 	uint16_t status;
     //#ifdef __RX
-	/* �����N�����̊m�F */
+	/* リンク完了の確認 */
 	while((phy_read_reg(phy_addr, PHY_STATUS_REGISTER) & PHY_STATUS_LINK_STATUS) == 0)
 		tslp_tsk(1);
 
-	/* �I�[�g�l�S�V�G�[�V�����̂��m�点��L���ɐݒ� */
+	/* オートネゴシエーションのお知らせを有効に設定 */
 	phy_write_reg(phy_addr, PHY_AN_ADVERTISEMENT_REGISTER, 
 		PHY_AN_AD_100BASE_T4 | PHY_AN_AD_100BASE_TX_FULL_DUPLEX | PHY_AN_AD_100BASE_TX_HALF_DUPLEX
 		| PHY_AN_AD_10BASE_T_FULL_DUPLEX | PHY_AN_AD_10BASE_T_HALF_DUPLEX | PHY_AN_AD_SELECTOR_FIELD);
 
-	/* �I�[�g�l�S�V�G�[�V������L���ɐݒ� */
+	/* オートネゴシエーションを有効に設定 */
 	phy_write_reg(phy_addr, PHY_CONTROL_REGISTER, PHY_CONTROL_SPEED_SELECT | PHY_CONTROL_A_N_ENABLE);
 
-	/* �I�[�g�l�S�V�G�[�V���������̊m�F */
+	/* オートネゴシエーション完了の確認 */
 	while((phy_read_reg(phy_addr, PHY_STATUS_REGISTER) & PHY_STATUS_A_N_COMPLETE) == 0)
 		tslp_tsk(1);
 
@@ -140,7 +140,7 @@ enum phy_mode_t phy_initialize(uint8_t phy_addr)
 bool_t phy_is_link(uint8_t phy_addr)
 {
   //#ifdef __RX
-	/* �����N�̊m�F */
+	/* リンクの確認 */
 	return (phy_read_reg(phy_addr, PHY_STATUS_REGISTER) & PHY_STATUS_LINK_STATUS) == 0;
     //#else
     //	return true;
@@ -152,44 +152,44 @@ uint16_t phy_read_reg(uint8_t phy_addr, uint8_t reg_addr)
 	uint16_t result = 0, bit;
 	int i;
 
-	/* PRE �F32�̘A������1b */
+	/* PRE ：32個の連続した1b */
 	for (i = 0; i < 32; i++)
 		phy_write_bit(true);
 
-	/* ST �F�t���[���̐擪������01b�̃��C�g */
+	/* ST ：フレームの先頭を示す01bのライト */
 	phy_write_bit(false);
 	phy_write_bit(true);
 
-	/* OP �F�A�N�Z�X��ʂ������R�[�h�̃��C�g */
+	/* OP ：アクセス種別を示すコードのライト */
 	phy_write_bit(true);
 	phy_write_bit(false);
 
-	/* PHYAD �FPHY-LSI�̃A�h���X��1�Ԃ̏ꍇ�A00001b�����C�g�iMSB ���珇�����C�g�j�B */
+	/* PHYAD ：PHY-LSIのアドレスが1番の場合、00001bをライト（MSB から順次ライト）。 */
 	phy_write_bit((phy_addr & 0x10) != 0);
 	phy_write_bit((phy_addr & 0x08) != 0);
 	phy_write_bit((phy_addr & 0x04) != 0);
 	phy_write_bit((phy_addr & 0x02) != 0);
 	phy_write_bit((phy_addr & 0x01) != 0);
 
-	/* REGAD �F���W�X�^�A�h���X��1�Ԃ̏ꍇ�A00001b�����C�g�iMSB���珇�����C�g�j�B */
+	/* REGAD ：レジスタアドレスが1番の場合、00001bをライト（MSBから順次ライト）。 */
 	phy_write_bit((reg_addr & 0x10) != 0);
 	phy_write_bit((reg_addr & 0x08) != 0);
 	phy_write_bit((reg_addr & 0x04) != 0);
 	phy_write_bit((reg_addr & 0x02) != 0);
 	phy_write_bit((reg_addr & 0x01) != 0);
 
-	/* TA �FMII/RMII�C���^�t�F�[�X��Ńf�[�^�̑��M����؂�ւ��鎞�� */
-	/* �u�o�X����v�iZ0�ƕ\�L�j���s�� */
+	/* TA ：MII/RMIIインタフェース上でデータの送信元を切り替える時間 */
+	/* 「バス解放」（Z0と表記）を行う */
 	phy_release_bus();
 
-	/* DATA �F16�r�b�g�̃f�[�^�BMSB���珇�����[�h */
+	/* DATA ：16ビットのデータ。MSBから順次リード */
 	for (bit = 0x8000; bit != 0; bit >>= 1) {
 		if(phy_read_bit())
 			result |= bit;
 	}
 
-	/* IDLE �F����MII�Ǘ��t�H�[�}�b�g���͂܂ł̑ҋ@���� */
-	/* ���ł�TA���Ƀo�X����ς݂ł��萧��s�v */
+	/* IDLE ：次のMII管理フォーマット入力までの待機時間 */
+	/* すでにTA時にバス解放済みであり制御不要 */
 	phy_release_bus();
 
 	return result;
@@ -200,98 +200,98 @@ void phy_write_reg(uint8_t phy_addr, uint8_t reg_addr, uint16_t reg_data)
 	int i;
 	uint16_t bit;
 
-	/* PRE �F32�̘A������1b */
+	/* PRE ：32個の連続した1b */
 	for (i = 0; i < 32; i++)
 		phy_write_bit(true);
 
-	/* ST �F�t���[���̐擪������01b�̃��C�g */
+	/* ST ：フレームの先頭を示す01bのライト */
 	phy_write_bit(false);
 	phy_write_bit(true);
 
-	/* OP �F�A�N�Z�X��ʂ������R�[�h�̃��C�g */
+	/* OP ：アクセス種別を示すコードのライト */
 	phy_write_bit(false);
 	phy_write_bit(true);
 
-	/* PHYAD �FPHY-LSI�̃A�h���X��1�Ԃ̏ꍇ�A00001b�����C�g�iMSB ���珇�����C�g�j�B */
+	/* PHYAD ：PHY-LSIのアドレスが1番の場合、00001bをライト（MSB から順次ライト）。 */
 	phy_write_bit((phy_addr & 0x10) != 0);
 	phy_write_bit((phy_addr & 0x08) != 0);
 	phy_write_bit((phy_addr & 0x04) != 0);
 	phy_write_bit((phy_addr & 0x02) != 0);
 	phy_write_bit((phy_addr & 0x01) != 0);
 
-	/* REGAD �F���W�X�^�A�h���X��1�Ԃ̏ꍇ�A00001b�����C�g�iMSB���珇�����C�g�j�B */
+	/* REGAD ：レジスタアドレスが1番の場合、00001bをライト（MSBから順次ライト）。 */
 	phy_write_bit((reg_addr & 0x10) != 0);
 	phy_write_bit((reg_addr & 0x08) != 0);
 	phy_write_bit((reg_addr & 0x04) != 0);
 	phy_write_bit((reg_addr & 0x02) != 0);
 	phy_write_bit((reg_addr & 0x01) != 0);
 
-	/* TA �FMII/RMII�C���^�t�F�[�X��Ńf�[�^�̑��M����؂�ւ��鎞�� */
-	/* 10b�����C�g */
+	/* TA ：MII/RMIIインタフェース上でデータの送信元を切り替える時間 */
+	/* 10bをライト */
 	phy_write_bit(true);
 	phy_write_bit(false);
 
-	/* DATA �F16�r�b�g�̃f�[�^�BMSB���珇�����C�g */
+	/* DATA ：16ビットのデータ。MSBから順次ライト */
 	for (bit = 0x8000; bit != 0; bit >>= 1) {
 		phy_write_bit((reg_data & bit) != 0);
 	}
 
-	/* IDLE �F����MII�Ǘ��t�H�[�}�b�g���͂܂ł̑ҋ@���� */
-	/* �u�P�ƃo�X����v�iX�ƕ\�L�j���s�� */
+	/* IDLE ：次のMII管理フォーマット入力までの待機時間 */
+	/* 「単独バス解放」（Xと表記）を行う */
 	phy_single_rel_bus();
 }
 
 #define ETHERC_PIR_WAIT 4
 
 /*
- * 1 �r�b�g�f�[�^�̃��C�g
+ * 1 ビットデータのライト
  */
 static void phy_write_bit(bool_t bit)
 {
 	int i;
 	uint32_t data = bit ? ETHERC_PIR_MDO : 0;
 
-	/* PHY���C���^�t�F�[�X���W�X�^�ւ̃��C�g */
+	/* PHY部インタフェースレジスタへのライト */
 	sil_wrw_mem(ETHERC_PIR, data | ETHERC_PIR_MMD | 0/*ETHERC_PIR_MDC*/);
 
 	for(i = ETHERC_PIR_WAIT; i > 0; i--);
 
-	/* PHY���C���^�t�F�[�X���W�X�^�ւ̃��C�g */
+	/* PHY部インタフェースレジスタへのライト */
 	sil_wrw_mem(ETHERC_PIR, data | ETHERC_PIR_MMD | ETHERC_PIR_MDC);
 
 	for(i = 2 * ETHERC_PIR_WAIT; i > 0; i--);
 
-	/* PHY���C���^�t�F�[�X���W�X�^�ւ̃��C�g */
+	/* PHY部インタフェースレジスタへのライト */
 	sil_wrw_mem(ETHERC_PIR, data | ETHERC_PIR_MMD | 0/*ETHERC_PIR_MDC*/);
 
 	for(i = ETHERC_PIR_WAIT; i > 0; i--);
 }
 
 /*
- * �o�X���
+ * バス解放
  */
 static void phy_release_bus()
 {
 	int i;
 
-	/* PHY���C���^�t�F�[�X���W�X�^�ւ̃��C�g */
+	/* PHY部インタフェースレジスタへのライト */
 	sil_wrw_mem(ETHERC_PIR, 0/*ETHERC_PIR_MMD*/ | 0/*ETHERC_PIR_MDC*/);
 
 	for(i = ETHERC_PIR_WAIT; i > 0; i--);
 
-	/* PHY���C���^�t�F�[�X���W�X�^�ւ̃��C�g */
+	/* PHY部インタフェースレジスタへのライト */
 	sil_wrw_mem(ETHERC_PIR, 0/*ETHERC_PIR_MMD*/ | ETHERC_PIR_MDC);
 
 	for(i = 2 * ETHERC_PIR_WAIT; i > 0; i--);
 
-	/* PHY���C���^�t�F�[�X���W�X�^�ւ̃��C�g */
+	/* PHY部インタフェースレジスタへのライト */
 	sil_wrw_mem(ETHERC_PIR, 0/*ETHERC_PIR_MMD*/ | 0/*ETHERC_PIR_MDC*/);
 
 	for(i = ETHERC_PIR_WAIT; i > 0; i--);
 }
 
 /*
- * 1 �r�b�g�f�[�^�̃��[�h
+ * 1 ビットデータのリード
  */
 static bool_t phy_read_bit()
 {
@@ -300,17 +300,17 @@ static bool_t phy_read_bit()
 
 	for(i = ETHERC_PIR_WAIT; i > 0; i--);
 
-	/* PHY���C���^�t�F�[�X���W�X�^�ւ̃��C�g */
+	/* PHY部インタフェースレジスタへのライト */
 	sil_wrw_mem(ETHERC_PIR, 0/*ETHERC_PIR_MMD*/ | ETHERC_PIR_MDC);
 
 	for(i = ETHERC_PIR_WAIT; i > 0; i--);
 
-	/* PHY���C���^�t�F�[�X���W�X�^�ւ̃��C�g */
+	/* PHY部インタフェースレジスタへのライト */
 	bit = (sil_rew_mem(ETHERC_PIR) & ETHERC_PIR_MDI) != 0;
 
 	for(i = ETHERC_PIR_WAIT; i > 0; i--);
 
-	/* PHY���C���^�t�F�[�X���W�X�^�ւ̃��C�g */
+	/* PHY部インタフェースレジスタへのライト */
 	sil_wrw_mem(ETHERC_PIR, 0/*ETHERC_PIR_MMD*/ | 0/*ETHERC_PIR_MDC*/);
 
 	for(i = ETHERC_PIR_WAIT; i > 0; i--);
@@ -319,7 +319,7 @@ static bool_t phy_read_bit()
 }
 
 /*
- * �P�ƃo�X���
+ * 単独バス解放
  */
 static void phy_single_rel_bus()
 {
@@ -327,12 +327,12 @@ static void phy_single_rel_bus()
 
 	for(i = ETHERC_PIR_WAIT; i > 0; i--);
 
-	/* PHY���C���^�t�F�[�X���W�X�^�ւ̃��C�g */
+	/* PHY部インタフェースレジスタへのライト */
 	sil_wrw_mem(ETHERC_PIR, ETHERC_PIR_MMD | ETHERC_PIR_MDC);
 
 	for(i = 2 * ETHERC_PIR_WAIT; i > 0; i--);
 
-	/* PHY���C���^�t�F�[�X���W�X�^�ւ̃��C�g */
+	/* PHY部インタフェースレジスタへのライト */
 	sil_wrw_mem(ETHERC_PIR, 0/*ETHERC_PIR_MMD*/ | 0/*ETHERC_PIR_MDC*/);
 
 	for(i = ETHERC_PIR_WAIT; i > 0; i--);

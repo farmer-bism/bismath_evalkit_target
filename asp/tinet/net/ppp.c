@@ -4,29 +4,29 @@
  *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
- *  �嵭����Ԥϡ��ʲ��� (1)��(4) �ξ�狼��Free Software Foundation 
- *  �ˤ�äƸ�ɽ����Ƥ��� GNU General Public License �� Version 2 �˵�
- *  �Ҥ���Ƥ���������������˸¤ꡤ�ܥ��եȥ��������ܥ��եȥ�����
- *  ����Ѥ�����Τ�ޤࡥ�ʲ�Ʊ���ˤ���ѡ�ʣ�������ѡ������ۡʰʲ���
- *  ���ѤȸƤ֡ˤ��뤳�Ȥ�̵���ǵ������롥
- *  (1) �ܥ��եȥ������򥽡��������ɤη������Ѥ�����ˤϡ��嵭������
- *      ��ɽ�����������Ѿ�浪��Ӳ�����̵�ݾڵ��꤬�����Τޤޤη��ǥ���
- *      ����������˴ޤޤ�Ƥ��뤳�ȡ�
- *  (2) �ܥ��եȥ������򡤥饤�֥������ʤɡ�¾�Υ��եȥ�������ȯ�˻�
- *      �ѤǤ�����Ǻ����ۤ�����ˤϡ������ۤ�ȼ���ɥ�����ȡ�����
- *      �ԥޥ˥奢��ʤɡˤˡ��嵭�����ɽ�����������Ѿ�浪��Ӳ���
- *      ��̵�ݾڵ����Ǻܤ��뤳�ȡ�
- *  (3) �ܥ��եȥ������򡤵�����Ȥ߹���ʤɡ�¾�Υ��եȥ�������ȯ�˻�
- *      �ѤǤ��ʤ����Ǻ����ۤ�����ˤϡ����ξ������������ȡ�
- *    (a) �����ۤ�ȼ���ɥ�����ȡ����Ѽԥޥ˥奢��ʤɡˤˡ��嵭����
- *        �ɽ�����������Ѿ�浪��Ӳ�����̵�ݾڵ����Ǻܤ��뤳�ȡ�
- *  (4) �ܥ��եȥ����������Ѥˤ��ľ��Ū�ޤ��ϴ���Ū�������뤤���ʤ�»
- *      ������⡤�嵭����Ԥ����TOPPERS�ץ��������Ȥ����դ��뤳�ȡ�
+ *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
+ *  によって公表されている GNU General Public License の Version 2 に記
+ *  述されている条件を満たす場合に限り，本ソフトウェア（本ソフトウェア
+ *  を改変したものを含む．以下同じ）を使用・複製・改変・再配布（以下，
+ *  利用と呼ぶ）することを無償で許諾する．
+ *  (1) 本ソフトウェアをソースコードの形で利用する場合には，上記の著作
+ *      権表示，この利用条件および下記の無保証規定が，そのままの形でソー
+ *      スコード中に含まれていること．
+ *  (2) 本ソフトウェアを，ライブラリ形式など，他のソフトウェア開発に使
+ *      用できる形で再配布する場合には，再配布に伴うドキュメント（利用
+ *      者マニュアルなど）に，上記の著作権表示，この利用条件および下記
+ *      の無保証規定を掲載すること．
+ *  (3) 本ソフトウェアを，機器に組み込むなど，他のソフトウェア開発に使
+ *      用できない形で再配布する場合には，次の条件を満たすこと．
+ *    (a) 再配布に伴うドキュメント（利用者マニュアルなど）に，上記の著
+ *        作権表示，この利用条件および下記の無保証規定を掲載すること．
+ *  (4) 本ソフトウェアの利用により直接的または間接的に生じるいかなる損
+ *      害からも，上記著作権者およびTOPPERSプロジェクトを免責すること．
  *
- *  �ܥ��եȥ������ϡ�̵�ݾڤ��󶡤���Ƥ����ΤǤ��롥�嵭����Ԥ�
- *  ���TOPPERS�ץ��������Ȥϡ��ܥ��եȥ������˴ؤ��ơ�����Ŭ�Ѳ�ǽ����
- *  �ޤ�ơ������ʤ��ݾڤ�Ԥ�ʤ����ޤ����ܥ��եȥ����������Ѥˤ��ľ
- *  ��Ū�ޤ��ϴ���Ū�������������ʤ�»���˴ؤ��Ƥ⡤������Ǥ�����ʤ���
+ *  本ソフトウェアは，無保証で提供されているものである．上記著作権者お
+ *  よびTOPPERSプロジェクトは，本ソフトウェアに関して，その適用可能性も
+ *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
+ *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
  *  @(#) $Id: ppp.c,v 1.5 2009/12/24 05:42:40 abe Exp $
  */
@@ -67,7 +67,7 @@
  */
 
 /* 
- *  PPP ����������������
+ *  PPP 処理タスクの本体
  */
 
 #include <s_services.h>
@@ -96,13 +96,13 @@
 #ifdef SUPPORT_PPP
 
 /*
- *  �����ѿ�
+ *  全域変数
  */
 
-uint8_t	ppp_phase = PPP_PHASE_INITIALIZE;	/* ��󥯤ξ���		*/
+uint8_t	ppp_phase = PPP_PHASE_INITIALIZE;	/* リンクの状態		*/
 
 /*
- *  �ץ��ȥ���ɽ
+ *  プロトコル表
  */
 
 T_PPP_PROTENT *protocols[] = {
@@ -125,7 +125,7 @@ T_PPP_PROTENT *protocols[] = {
 	};
 
 /*
- *  �ѿ�
+ *  変数
  */
 
 #ifdef PPP_IDLE_TIMEOUT
@@ -135,7 +135,7 @@ static bool_t idle = false;
 #endif	/* of #ifdef PPP_IDLE_TIMEOUT */
 
 /*
- *  �ؿ�
+ *  関数
  */
 
 static void parse_input (T_NET_BUF *input);
@@ -147,7 +147,7 @@ static void idle_timeout (void *arg);
 #endif	/* of #ifdef PPP_IDLE_TIMEOUT */
 
 /*
- *  PPP ���Ϥβ���
+ *  PPP 入力の解析
  */
 
 static void
@@ -160,21 +160,21 @@ parse_input(T_NET_BUF *input)
 	NET_COUNT_PPP(net_count_ppp.in_octets,  input->len);
 	NET_COUNT_PPP(net_count_ppp.in_packets, 1);
 
-	/* �ե졼��Ĺ������å����� */
-	if (input->len < sizeof(T_PPP_HDR)) {	/* FreeBSD �Ǥ� PPP_HDRLEN �� 4 */
+	/* フレーム長をチェックする */
+	if (input->len < sizeof(T_PPP_HDR)) {	/* FreeBSD では PPP_HDRLEN は 4 */
 		syslog(LOG_NOTICE, "[PPP] recv short frame.");
 		goto buf_rel;
 		}
 
 	proto = ntohs(*GET_PPP_HDR(input));
 
-	/* �ץ��ȥ��뤬 LCP �ʳ��ǡ�LCP �������ץ󤵤�Ƥ��ʤ���Х��顼 */
+	/* プロトコルが LCP 以外で、LCP がオープンされていなければエラー */
 	if (proto != PPP_LCP && lcp_fsm.state != PPP_FSM_OPENED) {
 		syslog(LOG_NOTICE, "[PPP] LCP not open.");
 		goto buf_rel;
 		}
 
-	/* ��󥯤�ǧ�ھ��ְ����ϡ�LCP��LQR��PAP��CHAP �Τ߼����դ��� */
+	/* リンクが認証状態以前は、LCP、LQR、PAP、CHAP のみ受け付ける */
 	if (ppp_phase <= PPP_PHASE_AUTHENTICATE &&
 	    !(proto == PPP_LCP || proto == PPP_LQR ||
 	      proto == PPP_PAP || proto == PPP_CHAP)) {
@@ -182,7 +182,7 @@ parse_input(T_NET_BUF *input)
 		goto buf_rel;
 		}
 
-	/* ��̥ץ��ȥ�������ϴؿ���ƽФ� */
+	/* 上位プロトコルの入力関数を呼出す */
 	for (ix = 0; (entry = protocols[ix]) != NULL; ix ++) {
 		if (entry->proto == proto && entry->input != NULL) {
 			(*entry->input)(input);
@@ -204,7 +204,7 @@ buf_rel:
 	}
 
 /*
- *  ppp_output -- PPP ���󥿥ե������ν��ϴؿ�
+ *  ppp_output -- PPP インタフェースの出力関数
  */
 
 ER
@@ -214,15 +214,15 @@ ppp_output (T_NET_BUF *output, TMO tmout)
 
 #ifdef PPP_CFG_MODEM
 
-#if 0	/* ��α */
-	/* ��ǥ����³��λ�ޤ��Ԥġ�*/
+#if 0	/* 保留 */
+	/* モデムの接続完了まで待つ。*/
 	if ((error = wait_modem()) != E_OK)
 		goto buf_ret;
 #endif
 
 #endif	/* of #ifdef PPP_CFG_MODEM */
 
-	/* IPCP ����³��λ�ޤ��Ԥġ�*/
+	/* IPCP の接続完了まで待つ。*/
 	if ((error = wait_ipcp()) != E_OK)
 		goto buf_ret;
 
@@ -235,7 +235,7 @@ ppp_output (T_NET_BUF *output, TMO tmout)
 	sig_sem(SEM_IDLE_TIMEOUT);
 #endif	/* of #ifdef PPP_IDLE_TIMEOUT */
 
-	/* PPP ���ϥ��塼���������롣*/
+	/* PPP 出力キューに投入する。*/
 	if ((error = tsnd_dtq(DTQ_PPP_OUTPUT, output, tmout)) != E_OK)
 		goto buf_ret;
 
@@ -257,7 +257,7 @@ buf_ret:
 	}
 
 /*
- *  ppp_cp_output -- CP �ե졼�������
+ *  ppp_cp_output -- CP フレームの送信
  */
 
 void
@@ -265,13 +265,13 @@ ppp_cp_output (uint8_t code, uint8_t id, T_NET_BUF *output)
 {
 	T_PPP_CP_HDR	*cph;
 
-	/* CP �إå������ꤹ�� */
+	/* CP ヘッダを設定する */
 	cph = GET_PPP_CP_HDR(output);
 	cph->code = code;
 	cph->id   = id;
 	cph->len  = htons(output->len - sizeof(T_PPP_HDR));
 
-	/* PPP ���ϥ��塼���������롣*/
+	/* PPP 出力キューに投入する。*/
 	if (snd_dtq(DTQ_PPP_OUTPUT, output) != E_OK) {
 		syscall(rel_net_buf(output));
 		NET_COUNT_PPP(net_count_ppp.out_err_packets, 1);
@@ -279,7 +279,7 @@ ppp_cp_output (uint8_t code, uint8_t id, T_NET_BUF *output)
 	}
 
 /*
- *  PPP ���ϥ�����
+ *  PPP 入力タスク
  */
 
 void
@@ -290,7 +290,7 @@ ppp_input_task(intptr_t exinf)
 	ID		tskid;
 	int_t		ix;
 
-	/* �ݡ��Ȥ������ꤹ�� */
+	/* ポートを初期設定する */
 	syscall(serial_opn_por(HDLC_PORTID));
 	syscall(serial_ctl_por(HDLC_PORTID, IOCTL_FCSND | IOCTL_FCRCV));
 
@@ -307,10 +307,10 @@ ppp_input_task(intptr_t exinf)
 
 #endif	/* of #ifdef PPP_CFG_MODEM */
 
-	/* �ͥåȥ�������ޥ�������ư���� */
+	/* ネットワークタイマタスクを起動する */
 	syscall(act_tsk(NET_TIMER_TASK));
 
-	/* ��̥ץ��ȥ������������ */
+	/* 上位プロトコルを初期化する */
 	for (ix = 0; (proto = protocols[ix]) != NULL; ix ++)
 		if (proto->init != NULL)
 			(*proto->init)();
@@ -318,7 +318,7 @@ ppp_input_task(intptr_t exinf)
 	lcp_lowerup();
 	lcp_open(PPP_OPEN_PASSIVE);
 
-	/* PPP ���ϥ�������ư���� */
+	/* PPP 出力タスクを起動する */
 	syscall(act_tsk(PPP_OUTPUT_TASK));
 
 	while (true) {
@@ -364,7 +364,7 @@ ppp_input_task(intptr_t exinf)
 	}
 
 /*
- *  PPP ���ϥ�����
+ *  PPP 出力タスク
  */
 
 void
@@ -389,7 +389,7 @@ ppp_output_task(intptr_t exinf)
 #ifdef PPP_IDLE_TIMEOUT
 
 /*
- *  �����ɥ륿���ॢ���Ƚ���
+ *  アイドルタイムアウト処理
  */
 
 static void

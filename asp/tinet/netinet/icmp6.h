@@ -4,29 +4,29 @@
  *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
- *  �嵭����Ԥϡ��ʲ��� (1)��(4) �ξ�狼��Free Software Foundation 
- *  �ˤ�äƸ�ɽ����Ƥ��� GNU General Public License �� Version 2 �˵�
- *  �Ҥ���Ƥ���������������˸¤ꡤ�ܥ��եȥ��������ܥ��եȥ�����
- *  ����Ѥ�����Τ�ޤࡥ�ʲ�Ʊ���ˤ���ѡ�ʣ�������ѡ������ۡʰʲ���
- *  ���ѤȸƤ֡ˤ��뤳�Ȥ�̵���ǵ������롥
- *  (1) �ܥ��եȥ������򥽡��������ɤη������Ѥ�����ˤϡ��嵭������
- *      ��ɽ�����������Ѿ�浪��Ӳ�����̵�ݾڵ��꤬�����Τޤޤη��ǥ���
- *      ����������˴ޤޤ�Ƥ��뤳�ȡ�
- *  (2) �ܥ��եȥ������򡤥饤�֥������ʤɡ�¾�Υ��եȥ�������ȯ�˻�
- *      �ѤǤ�����Ǻ����ۤ�����ˤϡ������ۤ�ȼ���ɥ�����ȡ�����
- *      �ԥޥ˥奢��ʤɡˤˡ��嵭�����ɽ�����������Ѿ�浪��Ӳ���
- *      ��̵�ݾڵ����Ǻܤ��뤳�ȡ�
- *  (3) �ܥ��եȥ������򡤵�����Ȥ߹���ʤɡ�¾�Υ��եȥ�������ȯ�˻�
- *      �ѤǤ��ʤ����Ǻ����ۤ�����ˤϡ����ξ������������ȡ�
- *    (a) �����ۤ�ȼ���ɥ�����ȡ����Ѽԥޥ˥奢��ʤɡˤˡ��嵭����
- *        �ɽ�����������Ѿ�浪��Ӳ�����̵�ݾڵ����Ǻܤ��뤳�ȡ�
- *  (4) �ܥ��եȥ����������Ѥˤ��ľ��Ū�ޤ��ϴ���Ū�������뤤���ʤ�»
- *      ������⡤�嵭����Ԥ����TOPPERS�ץ��������Ȥ����դ��뤳�ȡ�
+ *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
+ *  によって公表されている GNU General Public License の Version 2 に記
+ *  述されている条件を満たす場合に限り，本ソフトウェア（本ソフトウェア
+ *  を改変したものを含む．以下同じ）を使用・複製・改変・再配布（以下，
+ *  利用と呼ぶ）することを無償で許諾する．
+ *  (1) 本ソフトウェアをソースコードの形で利用する場合には，上記の著作
+ *      権表示，この利用条件および下記の無保証規定が，そのままの形でソー
+ *      スコード中に含まれていること．
+ *  (2) 本ソフトウェアを，ライブラリ形式など，他のソフトウェア開発に使
+ *      用できる形で再配布する場合には，再配布に伴うドキュメント（利用
+ *      者マニュアルなど）に，上記の著作権表示，この利用条件および下記
+ *      の無保証規定を掲載すること．
+ *  (3) 本ソフトウェアを，機器に組み込むなど，他のソフトウェア開発に使
+ *      用できない形で再配布する場合には，次の条件を満たすこと．
+ *    (a) 再配布に伴うドキュメント（利用者マニュアルなど）に，上記の著
+ *        作権表示，この利用条件および下記の無保証規定を掲載すること．
+ *  (4) 本ソフトウェアの利用により直接的または間接的に生じるいかなる損
+ *      害からも，上記著作権者およびTOPPERSプロジェクトを免責すること．
  *
- *  �ܥ��եȥ������ϡ�̵�ݾڤ��󶡤���Ƥ����ΤǤ��롥�嵭����Ԥ�
- *  ���TOPPERS�ץ��������Ȥϡ��ܥ��եȥ������˴ؤ��ơ�����Ŭ�Ѳ�ǽ����
- *  �ޤ�ơ������ʤ��ݾڤ�Ԥ�ʤ����ޤ����ܥ��եȥ����������Ѥˤ��ľ
- *  ��Ū�ޤ��ϴ���Ū�������������ʤ�»���˴ؤ��Ƥ⡤������Ǥ�����ʤ���
+ *  本ソフトウェアは，無保証で提供されているものである．上記著作権者お
+ *  よびTOPPERSプロジェクトは，本ソフトウェアに関して，その適用可能性も
+ *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
+ *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
  *  @(#) $Id: icmp6.h,v 1.5.4.1 2015/02/05 02:10:53 abe Exp abe $
  */
@@ -104,13 +104,13 @@
 #ifdef SUPPORT_INET6
 
 /*
- *  ICMPv6 �إå�
+ *  ICMPv6 ヘッダ
  */
 
 typedef struct t_icmp6_hdr {
-	uint8_t		type;		/* ��å������η�	*/
-	uint8_t		code;		/* ���ַ�		*/
-	uint16_t	sum;		/* �����å�����		*/
+	uint8_t		type;		/* メッセージの型	*/
+	uint8_t		code;		/* サブ型		*/
+	uint16_t	sum;		/* チェックサム		*/
 	union {
 		uint32_t	data32;
 		uint16_t	data16[2];
@@ -121,10 +121,10 @@ typedef struct t_icmp6_hdr {
 #define icmp6_data32			data.data32
 #define icmp6_data16			data.data16
 #define icmp6_data8			data.data8
-#define icmp6_pptr			data.data32		/* �ѥ�᡼���۾�	*/
-#define icmp6_mtu			data.data32		/* �ѥ�᡼���۾�	*/
-#define icmp6_id			data.data16[0]		/* �������׵�ȱ���	*/
-#define icmp6_seq			data.data16[1]		/* �������׵�ȱ���	*/
+#define icmp6_pptr			data.data32		/* パラメータ異常	*/
+#define icmp6_mtu			data.data32		/* パラメータ異常	*/
+#define icmp6_id			data.data16[0]		/* エコー要求と応答	*/
+#define icmp6_seq			data.data16[1]		/* エコー要求と応答	*/
 
 #define ICMP6_HDR_SIZE			(sizeof(T_ICMP6_HDR))
 #define IF_IP6_ICMP6_HDR_OFFSET		(IF_IP6_HDR_SIZE)
@@ -136,87 +136,87 @@ typedef struct t_icmp6_hdr {
 #define GET_IF_IP6_ICMP6_HDR_SIZE(nbuf)	(IF_HDR_SIZE + GET_IP6_ICMP6_HDR_SIZE(nbuf))
 
 /*
- *  ICMP6 ������
+ *  ICMP6 タイプ
  */
 
-#define ICMP6_DST_UNREACH		UINT_C(1)	/* ������ã�Բ�ǽ		*/
-#define ICMP6_PACKET_TOO_BIG		UINT_C(2)	/* �ѥ��åȤ��礭�����롣	*/
-#define ICMP6_TIME_EXCEEDED		UINT_C(3)	/* TTL ��Ķ�ᤷ����		*/
-#define ICMP6_PARAM_PROB		UINT_C(4)	/* IPv6 �إå���������		*/
+#define ICMP6_DST_UNREACH		UINT_C(1)	/* 宛先到達不可能		*/
+#define ICMP6_PACKET_TOO_BIG		UINT_C(2)	/* パケットが大きすぎる。	*/
+#define ICMP6_TIME_EXCEEDED		UINT_C(3)	/* TTL を超過した。		*/
+#define ICMP6_PARAM_PROB		UINT_C(4)	/* IPv6 ヘッダが不正。		*/
 
-#define ICMP6_ECHO_REQUEST		UINT_C(128)	/* �������׵�			*/
-#define ICMP6_ECHO_REPLY		UINT_C(129)	/* ����������			*/
+#define ICMP6_ECHO_REQUEST		UINT_C(128)	/* エコー要求			*/
+#define ICMP6_ECHO_REPLY		UINT_C(129)	/* エコー応答			*/
 
-#define ICMP6_MEMBERSHIP_QUERY		UINT_C(130)	/* ���롼�ץ��оȲ�		*/
-#define ICMP6_MEMBERSHIP_REPORT		UINT_C(131)	/* ���롼�ץ������		*/
-#define ICMP6_MEMBERSHIP_REDUCTION	UINT_C(132)	/* ���롼�ץ��н�λ		*/
+#define ICMP6_MEMBERSHIP_QUERY		UINT_C(130)	/* グループメンバ照会		*/
+#define ICMP6_MEMBERSHIP_REPORT		UINT_C(131)	/* グループメンバ報告		*/
+#define ICMP6_MEMBERSHIP_REDUCTION	UINT_C(132)	/* グループメンバ終了		*/
 
-#define MLD_LISTENER_QUERY		UINT_C(130)	/* �ޥ�����㥹�ȼ����ԾȲ�	*/
-#define MLD_LISTENER_REPORT		UINT_C(131)	/* �ޥ�����㥹�ȼ��������	*/
-#define MLD_LISTENER_DONE		UINT_C(132)	/* �ޥ�����㥹�ȼ����Խ�λ	*/
+#define MLD_LISTENER_QUERY		UINT_C(130)	/* マルチキャスト受信者照会	*/
+#define MLD_LISTENER_REPORT		UINT_C(131)	/* マルチキャスト受信者報告	*/
+#define MLD_LISTENER_DONE		UINT_C(132)	/* マルチキャスト受信者終了	*/
 
-#define ND_ROUTER_SOLICIT		UINT_C(133)	/* �롼������			*/
-#define ND_ROUTER_ADVERT		UINT_C(134)	/* �롼������			*/
-#define ND_NEIGHBOR_SOLICIT		UINT_C(135)	/* ��������			*/
-#define ND_NEIGHBOR_ADVERT		UINT_C(136)	/* ��������			*/
-#define ND_REDIRECT			UINT_C(137)	/* ����ľ��			*/
+#define ND_ROUTER_SOLICIT		UINT_C(133)	/* ルータ要請			*/
+#define ND_ROUTER_ADVERT		UINT_C(134)	/* ルータ通知			*/
+#define ND_NEIGHBOR_SOLICIT		UINT_C(135)	/* 近隣要請			*/
+#define ND_NEIGHBOR_ADVERT		UINT_C(136)	/* 近隣通知			*/
+#define ND_REDIRECT			UINT_C(137)	/* 向け直し			*/
 
-#define ICMP6_ROUTER_RENUMBERING	UINT_C(138)	/* �롼���ֹ������		*/
+#define ICMP6_ROUTER_RENUMBERING	UINT_C(138)	/* ルータ番号再設定		*/
 
-#define ICMP6_WRU_REQUEST		UINT_C(139)	/* �׵�Ρ���õ��		*/
-#define ICMP6_WRU_REPLY			UINT_C(140)	/* �����Ρ���õ��		*/
+#define ICMP6_WRU_REQUEST		UINT_C(139)	/* 要求ノード探索		*/
+#define ICMP6_WRU_REPLY			UINT_C(140)	/* 応答ノード探索		*/
 
-#define ICMP6_FQDN_QUERY		UINT_C(139)	/* FQDN �Ȳ�			*/
-#define ICMP6_FQDN_REPLY		UINT_C(140)	/* FQDN ����			*/
+#define ICMP6_FQDN_QUERY		UINT_C(139)	/* FQDN 照会			*/
+#define ICMP6_FQDN_REPLY		UINT_C(140)	/* FQDN 応答			*/
 
-#define ICMP6_NI_QUERY			UINT_C(139)	/* �Ρ��ɾ���Ȳ�		*/
-#define ICMP6_NI_REPLY			UINT_C(140)	/* �Ρ��ɾ������		*/
+#define ICMP6_NI_QUERY			UINT_C(139)	/* ノード情報照会		*/
+#define ICMP6_NI_REPLY			UINT_C(140)	/* ノード情報応答		*/
 
-#define ICMP6_MAX_TYPE			UINT_C(203)	/* ICMP6 �����פκ�����		*/
+#define ICMP6_MAX_TYPE			UINT_C(203)	/* ICMP6 タイプの最大値		*/
 
 /*
- *  ICMP6 ������
+ *  ICMP6 コード
  */
 
-/* ������ã�Բ�ǽ */
+/* 宛先到達不可能 */
 
-#define ICMP6_DST_UNREACH_NOROUTE	UINT_C(0)	/* ��ã�롼�Ȥʤ���		*/
-#define ICMP6_DST_UNREACH_ADMIN		UINT_C(1)	/* �����Ԥˤ��̵�����档	*/
-#define ICMP6_DST_UNREACH_NOTEIGHBOR	UINT_C(2)	/* ���ټԤǤϤʤ��ʤä���	*/
-#define ICMP6_DST_UNREACH_BEYOND_SCOPE	UINT_C(2)	/* �������פ�Ķ���Ƥ��롣	*/
-#define ICMP6_DST_UNREACH_ADDR		UINT_C(3)	/* ���襢�ɥ쥹����ã�Բ�ǽ��	*/
-#define ICMP6_DST_UNREACH_NOPORT	UINT_C(4)	/* ����ݡ��Ȥ���ã�Բ�ǽ��	*/
+#define ICMP6_DST_UNREACH_NOROUTE	UINT_C(0)	/* 到達ルートなし。		*/
+#define ICMP6_DST_UNREACH_ADMIN		UINT_C(1)	/* 管理者により無効化中。	*/
+#define ICMP6_DST_UNREACH_NOTEIGHBOR	UINT_C(2)	/* 近隣者ではなくなった。	*/
+#define ICMP6_DST_UNREACH_BEYOND_SCOPE	UINT_C(2)	/* スコープを超えている。	*/
+#define ICMP6_DST_UNREACH_ADDR		UINT_C(3)	/* 宛先アドレスに到達不可能。	*/
+#define ICMP6_DST_UNREACH_NOPORT	UINT_C(4)	/* 宛先ポートに到達不可能。	*/
 
-/* TTL Ķ�� */
+/* TTL 超過 */
 
-#define ICMP6_TIME_EXCEED_TRANSIT	UINT_C(0)	/* ž������ TTL==0 �ˤʤä���	*/
-#define ICMP6_TIME_EXCEED_REASSEMBLY	UINT_C(1)	/* IP �ƹ����ǥ����ॢ���Ȥ�����*/
+#define ICMP6_TIME_EXCEED_TRANSIT	UINT_C(0)	/* 転送時に TTL==0 になった。	*/
+#define ICMP6_TIME_EXCEED_REASSEMBLY	UINT_C(1)	/* IP 再構成でタイムアウトした。*/
 
-/* �إå����� */
+/* ヘッダ不正 */
 
-#define ICMP6_PARAMPROB_HEADER		UINT_C(0)	/* �إå������������ä���	*/
-#define ICMP6_PARAMPROB_NEXT_HEADER	UINT_C(1)	/* ���إå���ǧ���Ǥ��ʤ���	*/
-#define ICMP6_PARAMPROB_OPTION		UINT_C(2)	/* ���ץ����ǧ���Ǥ��ʤ���	*/
+#define ICMP6_PARAMPROB_HEADER		UINT_C(0)	/* ヘッダに不正があった。	*/
+#define ICMP6_PARAMPROB_NEXT_HEADER	UINT_C(1)	/* 次ヘッダが認識できない。	*/
+#define ICMP6_PARAMPROB_OPTION		UINT_C(2)	/* オプションが認識できない。	*/
 
-/* �������� */
-#define ND_REDIRECT_ONLINK		UINT_C(0)	/* �����󥯤ؤθ���ľ��	*/
-#define ND_REDIRECT_ROUTER		UINT_C(1)	/* �롼���ؤθ���ľ��		*/
+/* 内部使用 */
+#define ND_REDIRECT_ONLINK		UINT_C(0)	/* オンリンクへの向け直し	*/
+#define ND_REDIRECT_ROUTER		UINT_C(1)	/* ルータへの向け直し		*/
 
 /*
- *  ������
+ *  制限値
  */
 
-							/* ICMPv6 �κ���ڥ�������Ĺ	*/
+							/* ICMPv6 の最大ペイロード長	*/
 #define ICMPV6_PAYLOAD_MAXLEN		(IPV6_MMTU - (IP6_HDR_SIZE + ICMP6_HDR_SIZE))
 
 /*
- *  ��������
+ *  近隣要請
  */
 
 typedef struct t_neighbor_solicit_hdr {
 	T_ICMP6_HDR	hdr;
 	T_IN6_ADDR	target;
-	/* ���θ�˥��ץ����³�� */
+	/* この後にオプションが続く */
 	} T_NEIGHBOR_SOLICIT_HDR;
 
 #define NEIGHBOR_SOLICIT_HDR_SIZE	(sizeof(T_NEIGHBOR_SOLICIT_HDR))
@@ -234,16 +234,16 @@ typedef struct t_neighbor_solicit_hdr {
 					(GET_IP6_NEIGHBOR_SOLICIT_HDR_SIZE(nbuf) + IF_HDR_SIZE)
 
 /*
- *  ��������
+ *  近隣通知
  */
 
 typedef struct t_neighbor_advert_hdr {
 	T_ICMP6_HDR	hdr;
 	T_IN6_ADDR	target;
-	/* ���θ�˥��ץ����³�� */
+	/* この後にオプションが続く */
 	} T_NEIGHBOR_ADVERT_HDR;
 
-/* ICMP6 �إå��Υǡ���������� */
+/* ICMP6 ヘッダのデータ部の定義 */
 
 #define nd_na_flags_reserved		hdr.data.data32
 
@@ -265,39 +265,39 @@ typedef struct t_neighbor_advert_hdr {
 					(GET_IP6_NEIGHBOR_ADVERT_HDR_SIZE(nbuf) + IF_HDR_SIZE)
 
 /*
- *  �������Υե饰��nd_na_flags_reserved (hdr.data32) �����ꤹ�롣
+ *  近隣通知フラグ、nd_na_flags_reserved (hdr.data32) に設定する。
  */
 
 #if _NET_CFG_BYTE_ORDER == _NET_CFG_BIG_ENDIAN
 
-#define ND_NA_FLG_OVERRIDE		ULONG_C(0x20000000)	/* ���٥���å�����	*/
-#define ND_NA_FLG_SOLICITED		ULONG_C(0x40000000)	/* ���������ؤα���	*/
-#define ND_NA_FLG_ROUTER		ULONG_C(0x80000000)	/* �롼������		*/
+#define ND_NA_FLG_OVERRIDE		ULONG_C(0x20000000)	/* 近隣キャッシュ上書き	*/
+#define ND_NA_FLG_SOLICITED		ULONG_C(0x40000000)	/* 近隣要請への応答	*/
+#define ND_NA_FLG_ROUTER		ULONG_C(0x80000000)	/* ルータ通知		*/
 
 #elif _NET_CFG_BYTE_ORDER == _NET_CFG_LITTLE_ENDIAN
 
-#define ND_NA_FLG_OVERRIDE		ULONG_C(0x00000020)	/* ���٥���å�����	*/
-#define ND_NA_FLG_SOLICITED		ULONG_C(0x00000040)	/* ���������ؤα���	*/
-#define ND_NA_FLG_ROUTER		ULONG_C(0x00000080)	/* �롼������		*/
+#define ND_NA_FLG_OVERRIDE		ULONG_C(0x00000020)	/* 近隣キャッシュ上書き	*/
+#define ND_NA_FLG_SOLICITED		ULONG_C(0x00000040)	/* 近隣要請への応答	*/
+#define ND_NA_FLG_ROUTER		ULONG_C(0x00000080)	/* ルータ通知		*/
 
 #endif	/* #if _NET_CFG_BYTE_ORDER == _NET_CFG_BIG_ENDIAN */
 
 /*
- *  �롼������
+ *  ルータ通知
  */
 
 typedef struct t_router_advert_hdr {
 	T_ICMP6_HDR	hdr;
-	uint32_t	reachable;		/* [ms] ��ã��ǽ����	*/
-	uint32_t	retransmit;		/* [ms] �������������ֳ�	*/
-	/* ���θ�˥��ץ����³�� */
+	uint32_t	reachable;		/* [ms] 到達可能時間	*/
+	uint32_t	retransmit;		/* [ms] 近隣要請送信間隔	*/
+	/* この後にオプションが続く */
 	} T_ROUTER_ADVERT_HDR;
 
-/* ICMP6 �إå��Υǡ���������� */
+/* ICMP6 ヘッダのデータ部の定義 */
 
 #define nd_ra_current_hoplimit		hdr.data.data8[0]
 #define nd_ra_flags			hdr.data.data8[1]
-#define nd_ra_router_lifetime		hdr.data.data16[1]	/* [s] �롼��ͭ������	*/
+#define nd_ra_router_lifetime		hdr.data.data16[1]	/* [s] ルータ有効時間	*/
 
 #define ROUTER_ADVERT_HDR_SIZE		(sizeof(T_ROUTER_ADVERT_HDR))
 #define IP6_ROUTER_ADVERT_HDR_SIZE	(IP6_HDR_SIZE + ROUTER_ADVERT_HDR_SIZE)
@@ -315,7 +315,7 @@ typedef struct t_router_advert_hdr {
 					(GET_IP6_ROUTER_ADVERT_HDR_SIZE(nbuf) + IF_HDR_SIZE)
 
 /*
- *  �롼�����Υإå��Υե饰
+ *  ルータ通知ヘッダのフラグ
  */
 
 #define ND_RA_FLAG_MANAGED		UINT_C(0x80)
@@ -323,14 +323,14 @@ typedef struct t_router_advert_hdr {
 #define ND_RA_FLAG_HA			UINT_C(0x20)
 
 /*
- *  �롼������
+ *  ルータ要請
  */
 
 typedef struct t_router_solicit_hdr {
 	T_ICMP6_HDR	hdr;
 	} T_ROUTER_SOLICIT_HDR;
 
-/* ICMP6 �إå��Υǡ���������� */
+/* ICMP6 ヘッダのデータ部の定義 */
 
 #define nd_rs_reserved			hdr.data.data32
 
@@ -351,70 +351,70 @@ typedef struct t_router_solicit_hdr {
 					(GET_IP6_ROUTER_SOLICIT_HDR_SIZE(nbuf) + IF_HDR_SIZE)
 
 /*
- *  ����õ�����ץ����
+ *  近隣探索オプション
  */
 
-/* ����õ���إå� */
+/* 近隣探索ヘッダ */
 
 typedef struct t_neighbor_hdr {
 	T_ICMP6_HDR	hdr;
 	T_IN6_ADDR	target;
 	} T_NEIGHBOR_HDR;
 
-/* ����õ�����ץ����إå� */
+/* 近隣探索オプションヘッダ */
 
 typedef struct t_nd_opt_hdr {
-	uint8_t		type;			/* ���ץ���󥿥���			*/
-	uint8_t		len;			/* ���ץ����Ĺ��ñ�̤� 8 �Х���	*/
+	uint8_t		type;			/* オプションタイプ			*/
+	uint8_t		len;			/* オプション長、単位は 8 バイト	*/
 	} T_ND_OPT_HDR;
 
 #define ND_OPT_HDR_SIZE			(sizeof(T_ND_OPT_HDR))
 
-#define ND_OPT_SOURCE_LINKADDR		UINT_C(1)	/* ������ͥåȥ�����󥿥ե������Υ��ɥ쥹	*/
-#define ND_OPT_TARGET_LINKADDR		UINT_C(2)	/* �оݥͥåȥ�����󥿥ե������Υ��ɥ쥹	*/
-#define ND_OPT_PREFIX_INFORMATION	UINT_C(3)	/* �ץ�ե��å�������				*/
-#define ND_OPT_REDIRECTED_HEADER	UINT_C(4)	/* ������쥯�ȡ��إå�				*/
+#define ND_OPT_SOURCE_LINKADDR		UINT_C(1)	/* 送信先ネットワークインタフェースのアドレス	*/
+#define ND_OPT_TARGET_LINKADDR		UINT_C(2)	/* 対象ネットワークインタフェースのアドレス	*/
+#define ND_OPT_PREFIX_INFORMATION	UINT_C(3)	/* プレフィックス情報				*/
+#define ND_OPT_REDIRECTED_HEADER	UINT_C(4)	/* リダイレクト・ヘッダ				*/
 #define ND_OPT_MTU			UINT_C(5)	/* MTU						*/
 
-#define ND_OPT_PREFIX_INFO_COUNT	UINT_C(6)	/* �ץ�ե��å�������θĿ�			*/
-#define ND_OPT_OFF_ARRAY_SIZE		UINT_C(7)	/* ND ���ץ����Υ��ե��åȤ�Ͽ�������󥵥���*/
+#define ND_OPT_PREFIX_INFO_COUNT	UINT_C(6)	/* プレフィックス情報の個数			*/
+#define ND_OPT_OFF_ARRAY_SIZE		UINT_C(7)	/* ND オプションのオフセットを記録する配列サイズ*/
 
-#define ND_OPT_OFF_ARRAY_IX(t)		((t)-1)		/* ���ե��å�����Υ���ǥå���			*/
+#define ND_OPT_OFF_ARRAY_IX(t)		((t)-1)		/* オフセット配列のインデックス			*/
 
-/* �ץ�ե��å������ץ���� */
+/* プレフィックスオプション */
 
 typedef struct t_nd_opt_prefix_info {
-	uint8_t		type;		/* ����õ�����ץ���󥿥��� = 3	*/
-	uint8_t		len;		/* ���ץ����Ĺ = 8��4=32	*/
-	uint8_t		prefix_len;	/* �ץ�ե��å���Ĺ		*/
-	uint8_t		flags;		/* �ե饰			*/
-	uint32_t	valid;		/* [s] ͭ������			*/
-	uint32_t	preferred;	/* [s] �侩ͭ������		*/
+	uint8_t		type;		/* 近隣探索オプションタイプ = 3	*/
+	uint8_t		len;		/* オプション長 = 8×4=32	*/
+	uint8_t		prefix_len;	/* プレフィックス長		*/
+	uint8_t		flags;		/* フラグ			*/
+	uint32_t	valid;		/* [s] 有効時間			*/
+	uint32_t	preferred;	/* [s] 推奨有効時間		*/
 	uint32_t	reserved;
-	T_IN6_ADDR	prefix;		/* �ץ�ե��å���		*/
+	T_IN6_ADDR	prefix;		/* プレフィックス		*/
 	} T_ND_OPT_PREFIX_INFO;
 
-#define ND_OPT_PI_FLAG_ONLINK	UINT_C(0x80)		/* �����󥯥ץ�ե��å���	*/
-#define ND_OPT_PI_FLAG_AUTO	UINT_C(0x40)		/* ���ơ��ȥ쥹�����ɥ쥹��ư����*/
+#define ND_OPT_PI_FLAG_ONLINK	UINT_C(0x80)		/* オンリンクプレフィックス	*/
+#define ND_OPT_PI_FLAG_AUTO	UINT_C(0x40)		/* ステートレス・アドレス自動設定*/
 
-/* MTU ���ץ����إå� */
+/* MTU オプションヘッダ */
 
 typedef struct t_nd_opt_mtu_hdr {
-	uint8_t		type;		/* ���ץ���󥿥���		*/
-	uint8_t		len;		/* ���ץ����Ĺ��ñ�̤� 8 �Х���*/
+	uint8_t		type;		/* オプションタイプ		*/
+	uint8_t		len;		/* オプション長、単位は 8 バイト*/
 	uint16_t	reserved;
 	uint32_t	mtu;		/* MTU				*/
 	} T_ND_OPT_MTU_HDR;
 
 /*
- *  ����ľ��
+ *  向け直し
  */
 
 typedef struct t_nd_redirect_hdr {
 	T_ICMP6_HDR	hdr;
-	T_IN6_ADDR	target;		/* �롼���Υ��ɥ쥹		*/
-	T_IN6_ADDR	dst;		/* ����ľ���ν������ɥ쥹		*/
-	/* ���θ�˥��ץ����³�� */
+	T_IN6_ADDR	target;		/* ルータのアドレス		*/
+	T_IN6_ADDR	dst;		/* 向け直しの終点アドレス		*/
+	/* この後にオプションが続く */
 	} T_ND_REDIRECT_HDR;
 
 #define ND_REDIRECT_HDR_SIZE		(sizeof(T_ND_REDIRECT_HDR))
@@ -422,7 +422,7 @@ typedef struct t_nd_redirect_hdr {
 #ifdef SUPPORT_MIB
 
 /*
- *  SNMP �� ��������١��� (MIB)
+ *  SNMP の 管理情報ベース (MIB)
  */
 
 typedef struct t_icmp6_ifstat {
@@ -467,7 +467,7 @@ extern T_ICMP6_IFSTAT icmp6_ifstat;
 #endif	/* of #ifdef SUPPORT_MIB */
 
 /*
- *  �ؿ�
+ *  関数
  */
 
 extern uint_t icmp6_input (T_NET_BUF **inputp, uint_t *offp, uint_t *nextp);

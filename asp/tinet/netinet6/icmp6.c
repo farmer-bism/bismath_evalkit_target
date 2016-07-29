@@ -4,29 +4,29 @@
  *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
- *  ¾åµ­Ãøºî¸¢¼Ô¤Ï¡¤°Ê²¼¤Î (1)¡Á(4) ¤Î¾ò·ï¤«¡¤Free Software Foundation 
- *  ¤Ë¤è¤Ã¤Æ¸øÉ½¤µ¤ì¤Æ¤¤¤ë GNU General Public License ¤Î Version 2 ¤Ëµ­
- *  ½Ò¤µ¤ì¤Æ¤¤¤ë¾ò·ï¤òËş¤¿¤¹¾ì¹ç¤Ë¸Â¤ê¡¤ËÜ¥½¥Õ¥È¥¦¥§¥¢¡ÊËÜ¥½¥Õ¥È¥¦¥§¥¢
- *  ¤ò²şÊÑ¤·¤¿¤â¤Î¤ò´Ş¤à¡¥°Ê²¼Æ±¤¸¡Ë¤ò»ÈÍÑ¡¦Ê£À½¡¦²şÊÑ¡¦ºÆÇÛÉÛ¡Ê°Ê²¼¡¤
- *  ÍøÍÑ¤È¸Æ¤Ö¡Ë¤¹¤ë¤³¤È¤òÌµ½ş¤ÇµöÂú¤¹¤ë¡¥
- *  (1) ËÜ¥½¥Õ¥È¥¦¥§¥¢¤ò¥½¡¼¥¹¥³¡¼¥É¤Î·Á¤ÇÍøÍÑ¤¹¤ë¾ì¹ç¤Ë¤Ï¡¤¾åµ­¤ÎÃøºî
- *      ¸¢É½¼¨¡¤¤³¤ÎÍøÍÑ¾ò·ï¤ª¤è¤Ó²¼µ­¤ÎÌµÊİ¾Úµ¬Äê¤¬¡¤¤½¤Î¤Ş¤Ş¤Î·Á¤Ç¥½¡¼
- *      ¥¹¥³¡¼¥ÉÃæ¤Ë´Ş¤Ş¤ì¤Æ¤¤¤ë¤³¤È¡¥
- *  (2) ËÜ¥½¥Õ¥È¥¦¥§¥¢¤ò¡¤¥é¥¤¥Ö¥é¥ê·Á¼°¤Ê¤É¡¤Â¾¤Î¥½¥Õ¥È¥¦¥§¥¢³«È¯¤Ë»È
- *      ÍÑ¤Ç¤­¤ë·Á¤ÇºÆÇÛÉÛ¤¹¤ë¾ì¹ç¤Ë¤Ï¡¤ºÆÇÛÉÛ¤ËÈ¼¤¦¥É¥­¥å¥á¥ó¥È¡ÊÍøÍÑ
- *      ¼Ô¥Ş¥Ë¥å¥¢¥ë¤Ê¤É¡Ë¤Ë¡¤¾åµ­¤ÎÃøºî¸¢É½¼¨¡¤¤³¤ÎÍøÍÑ¾ò·ï¤ª¤è¤Ó²¼µ­
- *      ¤ÎÌµÊİ¾Úµ¬Äê¤ò·ÇºÜ¤¹¤ë¤³¤È¡¥
- *  (3) ËÜ¥½¥Õ¥È¥¦¥§¥¢¤ò¡¤µ¡´ï¤ËÁÈ¤ß¹ş¤à¤Ê¤É¡¤Â¾¤Î¥½¥Õ¥È¥¦¥§¥¢³«È¯¤Ë»È
- *      ÍÑ¤Ç¤­¤Ê¤¤·Á¤ÇºÆÇÛÉÛ¤¹¤ë¾ì¹ç¤Ë¤Ï¡¤¼¡¤Î¾ò·ï¤òËş¤¿¤¹¤³¤È¡¥
- *    (a) ºÆÇÛÉÛ¤ËÈ¼¤¦¥É¥­¥å¥á¥ó¥È¡ÊÍøÍÑ¼Ô¥Ş¥Ë¥å¥¢¥ë¤Ê¤É¡Ë¤Ë¡¤¾åµ­¤ÎÃø
- *        ºî¸¢É½¼¨¡¤¤³¤ÎÍøÍÑ¾ò·ï¤ª¤è¤Ó²¼µ­¤ÎÌµÊİ¾Úµ¬Äê¤ò·ÇºÜ¤¹¤ë¤³¤È¡¥
- *  (4) ËÜ¥½¥Õ¥È¥¦¥§¥¢¤ÎÍøÍÑ¤Ë¤è¤êÄ¾ÀÜÅª¤Ş¤¿¤Ï´ÖÀÜÅª¤ËÀ¸¤¸¤ë¤¤¤«¤Ê¤ëÂ»
- *      ³²¤«¤é¤â¡¤¾åµ­Ãøºî¸¢¼Ô¤ª¤è¤ÓTOPPERS¥×¥í¥¸¥§¥¯¥È¤òÌÈÀÕ¤¹¤ë¤³¤È¡¥
+ *  ä¸Šè¨˜è‘—ä½œæ¨©è€…ã¯ï¼Œä»¥ä¸‹ã® (1)ã€œ(4) ã®æ¡ä»¶ã‹ï¼ŒFree Software Foundation 
+ *  ã«ã‚ˆã£ã¦å…¬è¡¨ã•ã‚Œã¦ã„ã‚‹ GNU General Public License ã® Version 2 ã«è¨˜
+ *  è¿°ã•ã‚Œã¦ã„ã‚‹æ¡ä»¶ã‚’æº€ãŸã™å ´åˆã«é™ã‚Šï¼Œæœ¬ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ï¼ˆæœ¬ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢
+ *  ã‚’æ”¹å¤‰ã—ãŸã‚‚ã®ã‚’å«ã‚€ï¼ä»¥ä¸‹åŒã˜ï¼‰ã‚’ä½¿ç”¨ãƒ»è¤‡è£½ãƒ»æ”¹å¤‰ãƒ»å†é…å¸ƒï¼ˆä»¥ä¸‹ï¼Œ
+ *  åˆ©ç”¨ã¨å‘¼ã¶ï¼‰ã™ã‚‹ã“ã¨ã‚’ç„¡å„Ÿã§è¨±è«¾ã™ã‚‹ï¼
+ *  (1) æœ¬ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚’ã‚½ãƒ¼ã‚¹ã‚³ãƒ¼ãƒ‰ã®å½¢ã§åˆ©ç”¨ã™ã‚‹å ´åˆã«ã¯ï¼Œä¸Šè¨˜ã®è‘—ä½œ
+ *      æ¨©è¡¨ç¤ºï¼Œã“ã®åˆ©ç”¨æ¡ä»¶ãŠã‚ˆã³ä¸‹è¨˜ã®ç„¡ä¿è¨¼è¦å®šãŒï¼Œãã®ã¾ã¾ã®å½¢ã§ã‚½ãƒ¼
+ *      ã‚¹ã‚³ãƒ¼ãƒ‰ä¸­ã«å«ã¾ã‚Œã¦ã„ã‚‹ã“ã¨ï¼
+ *  (2) æœ¬ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚’ï¼Œãƒ©ã‚¤ãƒ–ãƒ©ãƒªå½¢å¼ãªã©ï¼Œä»–ã®ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢é–‹ç™ºã«ä½¿
+ *      ç”¨ã§ãã‚‹å½¢ã§å†é…å¸ƒã™ã‚‹å ´åˆã«ã¯ï¼Œå†é…å¸ƒã«ä¼´ã†ãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆï¼ˆåˆ©ç”¨
+ *      è€…ãƒãƒ‹ãƒ¥ã‚¢ãƒ«ãªã©ï¼‰ã«ï¼Œä¸Šè¨˜ã®è‘—ä½œæ¨©è¡¨ç¤ºï¼Œã“ã®åˆ©ç”¨æ¡ä»¶ãŠã‚ˆã³ä¸‹è¨˜
+ *      ã®ç„¡ä¿è¨¼è¦å®šã‚’æ²è¼‰ã™ã‚‹ã“ã¨ï¼
+ *  (3) æœ¬ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚’ï¼Œæ©Ÿå™¨ã«çµ„ã¿è¾¼ã‚€ãªã©ï¼Œä»–ã®ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢é–‹ç™ºã«ä½¿
+ *      ç”¨ã§ããªã„å½¢ã§å†é…å¸ƒã™ã‚‹å ´åˆã«ã¯ï¼Œæ¬¡ã®æ¡ä»¶ã‚’æº€ãŸã™ã“ã¨ï¼
+ *    (a) å†é…å¸ƒã«ä¼´ã†ãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆï¼ˆåˆ©ç”¨è€…ãƒãƒ‹ãƒ¥ã‚¢ãƒ«ãªã©ï¼‰ã«ï¼Œä¸Šè¨˜ã®è‘—
+ *        ä½œæ¨©è¡¨ç¤ºï¼Œã“ã®åˆ©ç”¨æ¡ä»¶ãŠã‚ˆã³ä¸‹è¨˜ã®ç„¡ä¿è¨¼è¦å®šã‚’æ²è¼‰ã™ã‚‹ã“ã¨ï¼
+ *  (4) æœ¬ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã®åˆ©ç”¨ã«ã‚ˆã‚Šç›´æ¥çš„ã¾ãŸã¯é–“æ¥çš„ã«ç”Ÿã˜ã‚‹ã„ã‹ãªã‚‹æ
+ *      å®³ã‹ã‚‰ã‚‚ï¼Œä¸Šè¨˜è‘—ä½œæ¨©è€…ãŠã‚ˆã³TOPPERSãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã‚’å…è²¬ã™ã‚‹ã“ã¨ï¼
  *
- *  ËÜ¥½¥Õ¥È¥¦¥§¥¢¤Ï¡¤ÌµÊİ¾Ú¤ÇÄó¶¡¤µ¤ì¤Æ¤¤¤ë¤â¤Î¤Ç¤¢¤ë¡¥¾åµ­Ãøºî¸¢¼Ô¤ª
- *  ¤è¤ÓTOPPERS¥×¥í¥¸¥§¥¯¥È¤Ï¡¤ËÜ¥½¥Õ¥È¥¦¥§¥¢¤Ë´Ø¤·¤Æ¡¤¤½¤ÎÅ¬ÍÑ²ÄÇ½À­¤â
- *  ´Ş¤á¤Æ¡¤¤¤¤«¤Ê¤ëÊİ¾Ú¤â¹Ô¤ï¤Ê¤¤¡¥¤Ş¤¿¡¤ËÜ¥½¥Õ¥È¥¦¥§¥¢¤ÎÍøÍÑ¤Ë¤è¤êÄ¾
- *  ÀÜÅª¤Ş¤¿¤Ï´ÖÀÜÅª¤ËÀ¸¤¸¤¿¤¤¤«¤Ê¤ëÂ»³²¤Ë´Ø¤·¤Æ¤â¡¤¤½¤ÎÀÕÇ¤¤òÉé¤ï¤Ê¤¤¡¥
+ *  æœ¬ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã¯ï¼Œç„¡ä¿è¨¼ã§æä¾›ã•ã‚Œã¦ã„ã‚‹ã‚‚ã®ã§ã‚ã‚‹ï¼ä¸Šè¨˜è‘—ä½œæ¨©è€…ãŠ
+ *  ã‚ˆã³TOPPERSãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã¯ï¼Œæœ¬ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã«é–¢ã—ã¦ï¼Œãã®é©ç”¨å¯èƒ½æ€§ã‚‚
+ *  å«ã‚ã¦ï¼Œã„ã‹ãªã‚‹ä¿è¨¼ã‚‚è¡Œã‚ãªã„ï¼ã¾ãŸï¼Œæœ¬ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã®åˆ©ç”¨ã«ã‚ˆã‚Šç›´
+ *  æ¥çš„ã¾ãŸã¯é–“æ¥çš„ã«ç”Ÿã˜ãŸã„ã‹ãªã‚‹æå®³ã«é–¢ã—ã¦ã‚‚ï¼Œãã®è²¬ä»»ã‚’è² ã‚ãªã„ï¼
  * 
  *  @(#) $Id: icmp6.c,v 1.5.4.1 2015/02/05 02:11:26 abe Exp abe $
  */
@@ -142,13 +142,13 @@
 #ifdef SUPPORT_INET6
 
 /*
- *  ÊÑ¿ô
+ *  å¤‰æ•°
  */
 
 #ifdef SUPPORT_MIB
 
 /*
- *  SNMP ¤Î ´ÉÍı¾ğÊó¥Ù¡¼¥¹ (MIB)
+ *  SNMP ã® ç®¡ç†æƒ…å ±ãƒ™ãƒ¼ã‚¹ (MIB)
  */
 
 T_ICMP6_IFSTAT icmp6_ifstat;
@@ -156,7 +156,7 @@ T_ICMP6_IFSTAT icmp6_ifstat;
 #endif	/* of #ifdef SUPPORT_MIB */
 
 /*
- *  icmp6_output -- ICMP6 ¥Ñ¥±¥Ã¥È¤òÁ÷¿®¤¹¤ë¡£
+ *  icmp6_output -- ICMP6 ãƒ‘ã‚±ãƒƒãƒˆã‚’é€ä¿¡ã™ã‚‹ã€‚
  */
 
 static void
@@ -168,8 +168,8 @@ icmp6_output (T_NET_BUF *output, uint_t off)
 	T_ICMP6_HDR	*icmp6h;
 
 	/*
-	 *  °¸Àè¥¢¥É¥ì¥¹¤Ë¤Õ¤µ¤ï¤·¤¤Á÷¿®¸µ¥¢¥É¥ì¥¹¤ò¡¢
-	 *  ¥Í¥Ã¥È¥ï¡¼¥¯¥¤¥ó¥¿¥Õ¥§¡¼¥¹¤«¤éÃµº÷¤·¤ÆÍøÍÑ¤¹¤ë¡£
+	 *  å®›å…ˆã‚¢ãƒ‰ãƒ¬ã‚¹ã«ãµã•ã‚ã—ã„é€ä¿¡å…ƒã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ã€
+	 *  ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ã‚¤ãƒ³ã‚¿ãƒ•ã‚§ãƒ¼ã‚¹ã‹ã‚‰æ¢ç´¢ã—ã¦åˆ©ç”¨ã™ã‚‹ã€‚
 	 */
 	ip6h = GET_IP6_HDR(output);
 	if ((ia = in6_ifawithifp(ifp, &ip6h->dst)) == NULL) {
@@ -181,12 +181,12 @@ icmp6_output (T_NET_BUF *output, uint_t off)
 
 	icmp6h = GET_ICMP6_HDR(output, off);
 
-	/* ¥Á¥§¥Ã¥¯¥µ¥à¤ò·×»»¤¹¤ë¡£*/
+	/* ãƒã‚§ãƒƒã‚¯ã‚µãƒ ã‚’è¨ˆç®—ã™ã‚‹ã€‚*/
 	icmp6h->sum = 0;
 	icmp6h->sum = in6_cksum(output, IPPROTO_ICMPV6, (uint8_t*)icmp6h - output->buf, 
 	                        ntohs(ip6h->plen) - (off - IF_IP6_HDR_SIZE));
 
-	/* Á÷¿®¤¹¤ë¡£*/
+	/* é€ä¿¡ã™ã‚‹ã€‚*/
 	NET_COUNT_ICMP6(net_count_icmp6[NC_ICMP6_OUT_OCTETS],
 	               output->len - GET_IF_IP6_HDR_SIZE(output));
 	NET_COUNT_ICMP6(net_count_icmp6[NC_ICMP6_OUT_PACKETS], 1);
@@ -195,7 +195,7 @@ icmp6_output (T_NET_BUF *output, uint_t off)
 	}
 
 /*
- *  icmp6_echo_request -- ¥¨¥³¡¼Í×µá¤ò¼õ¿®¤·¤¿¤È¤­¤Î½èÍı
+ *  icmp6_echo_request -- ã‚¨ã‚³ãƒ¼è¦æ±‚ã‚’å—ä¿¡ã—ãŸã¨ãã®å‡¦ç†
  */
 
 static void
@@ -213,15 +213,15 @@ icmp6_echo_request (T_NET_BUF *input, uint_t off)
 	ip6h       = GET_IP6_HDR(input);
 
 	/*
-	 *  IPv6 ¥Ø¥Ã¥À¤È ICMPv6 ¥Ø¥Ã¥À´Ö¤Î³ÈÄ¥¥Ø¥Ã¥À¤ò½üµî¤¹¤ë¡£
+	 *  IPv6 ãƒ˜ãƒƒãƒ€ã¨ ICMPv6 ãƒ˜ãƒƒãƒ€é–“ã®æ‹¡å¼µãƒ˜ãƒƒãƒ€ã‚’é™¤å»ã™ã‚‹ã€‚
 	 */
 	diff = off - IF_IP6_HDR_SIZE;
 	if (diff > 0) {
-		/* ICMPv6 ¥Ø¥Ã¥À¤òÁ°¤ËµÍ¤á¤ë¡£*/
+		/* ICMPv6 ãƒ˜ãƒƒãƒ€ã‚’å‰ã«è©°ã‚ã‚‹ã€‚*/
 		memmove(input->buf + IF_IP6_HDR_SIZE, input->buf + off, input->len - off);
 		off = IF_IP6_HDR_SIZE;
 
-		/* ¥Ú¥¤¥í¡¼¥ÉÄ¹¤òÄ´À°¤¹¤ë¡£*/
+		/* ãƒšã‚¤ãƒ­ãƒ¼ãƒ‰é•·ã‚’èª¿æ•´ã™ã‚‹ã€‚*/
 		ip6h->plen  = htons(ntohs(ip6h->plen) - diff);
 		input->len -= diff;
 		}
@@ -234,20 +234,20 @@ icmp6_echo_request (T_NET_BUF *input, uint_t off)
 		}
 
 	/*
-	 *  ¥á¥Ã¥»¡¼¥¸¤Î·¿¤ò¥¨¥³¡¼Í×µá (128) ¤«¤é
-	 *  ¥¨¥³¡¼±şÅú (129) ¤ËÊÑ¹¹¤·¤ÆÁ÷¤êÊÖ¤¹¡£
+	 *  ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®å‹ã‚’ã‚¨ã‚³ãƒ¼è¦æ±‚ (128) ã‹ã‚‰
+	 *  ã‚¨ã‚³ãƒ¼å¿œç­” (129) ã«å¤‰æ›´ã—ã¦é€ã‚Šè¿”ã™ã€‚
 	 */
 	icmp6h->type = ICMP6_ECHO_REPLY;
 
-	/* IPv6 ¥Ø¥Ã¥À¤ÎÈ¯¿®¸µ¥¢¥É¥ì¥¹¤È°¸Àè¥¢¥É¥ì¥¹¤òÆşÂØ¤¨¤ë¡£*/
+	/* IPv6 ãƒ˜ãƒƒãƒ€ã®ç™ºä¿¡å…ƒã‚¢ãƒ‰ãƒ¬ã‚¹ã¨å®›å…ˆã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å…¥æ›¿ãˆã‚‹ã€‚*/
 	dst 	  = ip6h->dst;
 	ip6h->dst = ip6h->src;
 	ip6h->src = dst;
 
 	/*
-	 *  ¸µ¤Î°¸Àè¥¢¥É¥ì¥¹¤¬¥Ş¥ë¥Á¥­¥ã¥¹¥È¤Î¾ì¹ç¤Ï¡¢
-	 *  °¸Àè¥¢¥É¥ì¥¹¤Ë¤Õ¤µ¤ï¤·¤¤Á÷¿®¸µ¥¢¥É¥ì¥¹¤ò¡¢
-	 *  ¥Í¥Ã¥È¥ï¡¼¥¯¥¤¥ó¥¿¥Õ¥§¡¼¥¹¤«¤éÃµº÷¤·¤ÆÍøÍÑ¤¹¤ë¡£
+	 *  å…ƒã®å®›å…ˆã‚¢ãƒ‰ãƒ¬ã‚¹ãŒãƒãƒ«ãƒã‚­ãƒ£ã‚¹ãƒˆã®å ´åˆã¯ã€
+	 *  å®›å…ˆã‚¢ãƒ‰ãƒ¬ã‚¹ã«ãµã•ã‚ã—ã„é€ä¿¡å…ƒã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ã€
+	 *  ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ã‚¤ãƒ³ã‚¿ãƒ•ã‚§ãƒ¼ã‚¹ã‹ã‚‰æ¢ç´¢ã—ã¦åˆ©ç”¨ã™ã‚‹ã€‚
 	 */
 	if (IN6_IS_ADDR_MULTICAST(&dst)) {
 		if ((ia = in6_ifawithifp(ifp, &ip6h->dst)) == NULL) {
@@ -258,16 +258,16 @@ icmp6_echo_request (T_NET_BUF *input, uint_t off)
 			ip6h->src = ia->addr;
 		}
 
-	/* ¼¡¥Ø¥Ã¥À¤È¥Û¥Ã¥×¥ê¥ß¥Ã¥È¤òÀßÄê¤¹¤ë¡£*/
+	/* æ¬¡ãƒ˜ãƒƒãƒ€ã¨ãƒ›ãƒƒãƒ—ãƒªãƒŸãƒƒãƒˆã‚’è¨­å®šã™ã‚‹ã€‚*/
 	ip6h->next = IPPROTO_ICMPV6;
 	ip6h->hlim = IP_DEFTTL;
 
-	/* ¥Á¥§¥Ã¥¯¥µ¥à¤ò·×»»¤¹¤ë¡£*/
+	/* ãƒã‚§ãƒƒã‚¯ã‚µãƒ ã‚’è¨ˆç®—ã™ã‚‹ã€‚*/
 	icmp6h->sum = 0;
 	icmp6h->sum = in6_cksum(input, IPPROTO_ICMPV6, (uint8_t*)icmp6h - input->buf, 
 	                        ntohs(ip6h->plen) - (off - IF_IP6_HDR_SIZE));
 
-	/* Á÷¿®¤¹¤ë¡£*/
+	/* é€ä¿¡ã™ã‚‹ã€‚*/
 	NET_COUNT_ICMP6(net_count_icmp6[NC_ICMP6_OUT_OCTETS],
 	               input->len - GET_IF_IP6_HDR_SIZE(input));
 	NET_COUNT_ICMP6(net_count_icmp6[NC_ICMP6_OUT_PACKETS], 1);
@@ -277,7 +277,7 @@ icmp6_echo_request (T_NET_BUF *input, uint_t off)
 	}
 
 /*
- *  icmp6_notify_error -- ¥¨¥é¡¼¤òÄÌÃÎ¤¹¤ë¡£
+ *  icmp6_notify_error -- ã‚¨ãƒ©ãƒ¼ã‚’é€šçŸ¥ã™ã‚‹ã€‚
  */
 
 static void
@@ -289,16 +289,16 @@ icmp6_notify_error(T_NET_BUF *input, uint_t poff)
 
 	len  = input->len - poff;
 
-	/* ¥Ç¡¼¥¿¥°¥é¥àÄ¹¤¬ ICMP6 ¥Ø¥Ã¥ÀÄ¹ + IP6 ¥Ø¥Ã¥ÀÄ¹°Ê²¼¤Ê¤é²¿¤â¤·¤Ê¤¤¡£*/
+	/* ãƒ‡ãƒ¼ã‚¿ã‚°ãƒ©ãƒ é•·ãŒ ICMP6 ãƒ˜ãƒƒãƒ€é•· + IP6 ãƒ˜ãƒƒãƒ€é•·ä»¥ä¸‹ãªã‚‰ä½•ã‚‚ã—ãªã„ã€‚*/
 	if (len < ICMP6_HDR_SIZE + IP6_HDR_SIZE)
 		return;
 
 	icmp6h = GET_ICMP6_HDR(input, poff);
 
-	/* ºÇ½ª¥Ø¥Ã¥À¤òÃµº÷¤¹¤ë¡£*/
+	/* æœ€çµ‚ãƒ˜ãƒƒãƒ€ã‚’æ¢ç´¢ã™ã‚‹ã€‚*/
 	loff = ip6_lasthdr(input, poff + ICMP6_HDR_SIZE, IPPROTO_IPV6, &next);
 
-	/* ºÇ½ª¥Ø¥Ã¥À¤¬ TCP ¤Î¤ßÂĞ±ş¤¹¤ë¡£*/
+	/* æœ€çµ‚ãƒ˜ãƒƒãƒ€ãŒ TCP ã®ã¿å¯¾å¿œã™ã‚‹ã€‚*/
 	if (loff >= 0 && next == IPPROTO_TCP) {
 
 #ifdef SUPPORT_TCP
@@ -318,7 +318,7 @@ icmp6_notify_error(T_NET_BUF *input, uint_t poff)
 #if NUM_IN6_HOSTCACHE_ENTRY > 0
 
 /*
- *  icmp6_mtudisc_update -- Path MTU ¤ò¹¹¿·¤¹¤ë¡£
+ *  icmp6_mtudisc_update -- Path MTU ã‚’æ›´æ–°ã™ã‚‹ã€‚
  */
 
 static void
@@ -342,7 +342,7 @@ icmp6_mtudisc_update(T_NET_BUF *input, uint_t off, uint32_t mtu)
 #if NUM_REDIRECT_ROUTE_ENTRY > 0
 
 /*
- *  icmp6_redirect_input -- ¸ş¤±Ä¾¤·¥á¥Ã¥»¡¼¥¸¤Î½èÍı
+ *  icmp6_redirect_input -- å‘ã‘ç›´ã—ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®å‡¦ç†
  */
 
 static void
@@ -361,74 +361,74 @@ icmp6_redirect_input (T_NET_BUF *input, uint_t off)
 	ip6h = GET_IP6_HDR(input);
 
 	/*
-	 *  IP ¥Ø¥Ã¥À¤Î¥Á¥§¥Ã¥¯¡¢°Ê²¼¤Î¾ì¹ç¤ÏÇË´ş¤¹¤ë¡£
-	 *    ¡¦¥ê¥ó¥¯¥í¡¼¥«¥ë°Ê³°¤«¤éÁ÷¤é¤ì¤Æ¤­¤¿¥á¥Ã¥»¡¼¥¸
-	 *    ¡¦¥Û¥Ã¥×¥ê¥ß¥Ã¥È¤¬ IPV6_MAXHLIM (255) °Ê³°
+	 *  IP ãƒ˜ãƒƒãƒ€ã®ãƒã‚§ãƒƒã‚¯ã€ä»¥ä¸‹ã®å ´åˆã¯ç ´æ£„ã™ã‚‹ã€‚
+	 *    ãƒ»ãƒªãƒ³ã‚¯ãƒ­ãƒ¼ã‚«ãƒ«ä»¥å¤–ã‹ã‚‰é€ã‚‰ã‚Œã¦ããŸãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+	 *    ãƒ»ãƒ›ãƒƒãƒ—ãƒªãƒŸãƒƒãƒˆãŒ IPV6_MAXHLIM (255) ä»¥å¤–
 	 */
 	if (!IN6_IS_ADDR_LINKLOCAL(&ip6h->src) || ip6h->hlim != IPV6_MAXHLIM)
 		goto err_ret;
 
 	rdh  = (T_ND_REDIRECT_HDR *)(input->buf + off);
 
-	/* ¸ş¤±Ä¾¤·¤Î½ªÅÀ¥¢¥É¥ì¥¹¤¬¥Ş¥ë¥Á¥­¥ã¥¹¥È¥¢¥É¥ì¥¹¤Î¾ì¹ç¤ÏÇË´ş¤¹¤ë¡£*/
+	/* å‘ã‘ç›´ã—ã®çµ‚ç‚¹ã‚¢ãƒ‰ãƒ¬ã‚¹ãŒãƒãƒ«ãƒã‚­ãƒ£ã‚¹ãƒˆã‚¢ãƒ‰ãƒ¬ã‚¹ã®å ´åˆã¯ç ´æ£„ã™ã‚‹ã€‚*/
 	if (IN6_IS_ADDR_MULTICAST(&rdh->dst))
 		goto err_ret;
 
-	/* ¥¿¡¼¥²¥Ã¥È¥¢¥É¥ì¥¹¤¬·ĞÏ©É½¤ËÅĞÏ¿¤µ¤ì¤Æ¤¤¤ë¤«¥Á¥§¥Ã¥¯¤¹¤ë¡£*/
+	/* ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã‚¢ãƒ‰ãƒ¬ã‚¹ãŒçµŒè·¯è¡¨ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã€‚*/
 	if ((gw = in6_rtalloc(ifp, &rdh->dst)) != NULL) {
-		/* GW ¥¢¥É¥ì¥¹¤ÈÁ÷¿®¸µ¥¢¥É¥ì¥¹¤¬°Û¤Ê¤Ã¤Æ¤¤¤ì¤ĞÇË´ş¤¹¤ë¡£*/
+		/* GW ã‚¢ãƒ‰ãƒ¬ã‚¹ã¨é€ä¿¡å…ƒã‚¢ãƒ‰ãƒ¬ã‚¹ãŒç•°ãªã£ã¦ã„ã‚Œã°ç ´æ£„ã™ã‚‹ã€‚*/
 		if (!IN6_ARE_ADDR_EQUAL(gw, &ip6h->src))
 			goto err_ret;
 		}
-	else	/* ·ĞÏ©É½¤Ë¤Ê¤±¤ì¤ĞÇË´ş¤¹¤ë¡£*/
+	else	/* çµŒè·¯è¡¨ã«ãªã‘ã‚Œã°ç ´æ£„ã™ã‚‹ã€‚*/
 		goto err_ret;
 
 	router = onlink = false;
 
 	/*
-	 *  ¥¿¡¼¥²¥Ã¥È¥¢¥É¥ì¥¹¤¬¥ê¥ó¥¯¥í¡¼¥«¥ë¥¢¥É¥ì¥¹¤Ç¤¢¤ì¤Ğ¡¢
-	 *  ¥¿¡¼¥²¥Ã¥È¤Ï¥ë¡¼¥¿
+	 *  ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã‚¢ãƒ‰ãƒ¬ã‚¹ãŒãƒªãƒ³ã‚¯ãƒ­ãƒ¼ã‚«ãƒ«ã‚¢ãƒ‰ãƒ¬ã‚¹ã§ã‚ã‚Œã°ã€
+	 *  ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã¯ãƒ«ãƒ¼ã‚¿
 	 */
 	if (IN6_IS_ADDR_LINKLOCAL(&rdh->target))
 		router = true;
 
 	/*
-	 *  ¥¿¡¼¥²¥Ã¥È¥¢¥É¥ì¥¹¤È½ªÅÀ¥¢¥É¥ì¥¹¤¬Æ±°ì¤Ç¤¢¤ì¤Ğ¡¢¥ª¥ó¥ê¥ó¥¯
+	 *  ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã‚¢ãƒ‰ãƒ¬ã‚¹ã¨çµ‚ç‚¹ã‚¢ãƒ‰ãƒ¬ã‚¹ãŒåŒä¸€ã§ã‚ã‚Œã°ã€ã‚ªãƒ³ãƒªãƒ³ã‚¯
 	 */
 	if (IN6_ARE_ADDR_EQUAL(&rdh->target, &rdh->dst))
 		onlink = true;
 		
 	/*
-	 *  ¥ë¡¼¥¿¤Ç¤â¡¢¥ª¥ó¥ê¥ó¥¯¤Ç¤â¤Ê¤±¤ì¤Ğ¥¨¥é¡¼
+	 *  ãƒ«ãƒ¼ã‚¿ã§ã‚‚ã€ã‚ªãƒ³ãƒªãƒ³ã‚¯ã§ã‚‚ãªã‘ã‚Œã°ã‚¨ãƒ©ãƒ¼
 	 */
 	if (!router && !onlink)
 		goto err_ret;
 
-	/* ¶áÎÙÃµº÷¥ª¥×¥·¥ç¥ó¤Î¥ª¥Õ¥»¥Ã¥È¤òµ­Ï¿¤¹¤ë¡£*/
+	/* è¿‘éš£æ¢ç´¢ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’è¨˜éŒ²ã™ã‚‹ã€‚*/
 	if (nd6_options(nd_opt_off, input->buf +  off + ND_REDIRECT_HDR_SIZE,
 	                            input->len - (off + ND_REDIRECT_HDR_SIZE)) != E_OK)
 		goto err_ret;
 
-	/* ¶áÎÙÃµº÷¥ª¥×¥·¥ç¥ó (¸ş¤±Ä¾¤·¤Î¥ë¡¼¥¿¤Î¥ê¥ó¥¯¥¢¥É¥ì¥¹) */
+	/* è¿‘éš£æ¢ç´¢ã‚ªãƒ—ã‚·ãƒ§ãƒ³ (å‘ã‘ç›´ã—ã®ãƒ«ãƒ¼ã‚¿ã®ãƒªãƒ³ã‚¯ã‚¢ãƒ‰ãƒ¬ã‚¹) */
 	if (nd_opt_off[ND_OPT_OFF_ARRAY_IX(ND_OPT_TARGET_LINKADDR)]) {
 		opth = (T_ND_OPT_HDR *)((uint8_t *)(input->buf + off + ND_REDIRECT_HDR_SIZE) +
 		                        nd_opt_off[ND_OPT_OFF_ARRAY_IX(ND_OPT_TARGET_LINKADDR)] - 8);
-	 	/* Ãí°Õ: ¥ª¥×¥·¥ç¥ó¥ª¥Õ¥»¥Ã¥ÈÇÛÎó¤Ë¤Ï¡¢¥ª¥Õ¥»¥Ã¥È + 8 ¤¬ÀßÄê¤µ¤ì¤Æ¤¤¤ë¡£*/
+	 	/* æ³¨æ„: ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚ªãƒ•ã‚»ãƒƒãƒˆé…åˆ—ã«ã¯ã€ã‚ªãƒ•ã‚»ãƒƒãƒˆ + 8 ãŒè¨­å®šã•ã‚Œã¦ã„ã‚‹ã€‚*/
 		lladdr     = (uint8_t *)(opth + 1);
 		lladdr_len = (opth->len << 3);
 		}
 
 	/*
-	 *  ¥Í¥Ã¥È¥ï¡¼¥¯¥¤¥ó¥¿¥Õ¥§¡¼¥¹¤Î¥¢¥É¥ì¥¹Ä¹¤¬°ìÃ×¤·¤Ê¤±¤ì¤Ğ¥¨¥é¡¼
+	 *  ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ã‚¤ãƒ³ã‚¿ãƒ•ã‚§ãƒ¼ã‚¹ã®ã‚¢ãƒ‰ãƒ¬ã‚¹é•·ãŒä¸€è‡´ã—ãªã‘ã‚Œã°ã‚¨ãƒ©ãƒ¼
 	 */
 	if (lladdr && lladdr_len != ((sizeof(T_IF_ADDR) + sizeof(T_ND_OPT_HDR) + 7) & ~7))
 		goto err_ret;
 
-	/* ¸ş¤±Ä¾¤·¤Î¥ë¡¼¥¿¤Î¥ê¥ó¥¯¥¢¥É¥ì¥¹¤ò¶áÎÙ¥­¥ã¥Ã¥·¥å¤ËÅĞÏ¿¤¹¤ë¡£*/
+	/* å‘ã‘ç›´ã—ã®ãƒ«ãƒ¼ã‚¿ã®ãƒªãƒ³ã‚¯ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¿‘éš£ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã«ç™»éŒ²ã™ã‚‹ã€‚*/
 	nd6_cache_lladdr(ifp, &rdh->target, (T_IF_ADDR *)lladdr, ND_REDIRECT, 
 	                 onlink ? ND_REDIRECT_ONLINK : ND_REDIRECT_ROUTER);
 
-	/* ¥ë¡¼¥Æ¥£¥ó¥°É½¤ËÅĞÏ¿¤¹¤ë¡£*/
+	/* ãƒ«ãƒ¼ãƒ†ã‚£ãƒ³ã‚°è¡¨ã«ç™»éŒ²ã™ã‚‹ã€‚*/
 	in6_rtredirect(&rdh->target, &rdh->dst, 128, IN_RTF_REDIRECT, TMO_IN_REDIRECT);
 
 	syscall(rel_net_buf(input));
@@ -442,7 +442,7 @@ err_ret:
 #endif	/* of #if NUM_REDIRECT_ROUTE_ENTRY > 0 */
 
 /*
- *  icmp6_input -- ICMP6 ¤ÎÆşÎÏ´Ø¿ô
+ *  icmp6_input -- ICMP6 ã®å…¥åŠ›é–¢æ•°
  */
 
 uint_t
@@ -459,7 +459,7 @@ icmp6_input (T_NET_BUF **inputp, uint_t *offp, uint_t *nextp)
 	NET_COUNT_ICMP6(net_count_icmp6[NC_ICMP6_IN_PACKETS], 1);
 	NET_COUNT_MIB(icmp6_ifstat.ipv6IfIcmpInMsgs, 1);
 
-	/* ICMP6 ¥Ø¥Ã¥À¤ÎÄ¹¤µ¤ò¥Á¥§¥Ã¥¯¤¹¤ë¡£*/
+	/* ICMP6 ãƒ˜ãƒƒãƒ€ã®é•·ã•ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã€‚*/
 	len  = input->len - off;
 	if (len < ICMP6_HDR_SIZE) {
 		NET_COUNT_ICMP6(net_count_icmp6[NC_ICMP6_IN_ERR_PACKETS], 1);
@@ -470,7 +470,7 @@ icmp6_input (T_NET_BUF **inputp, uint_t *offp, uint_t *nextp)
 	ip6h   = GET_IP6_HDR(input);
 	icmp6h = GET_ICMP6_HDR(input, off);
 
-	/* ¥Á¥§¥Ã¥¯¥µ¥à¤ò·×»»¤¹¤ë¡£*/
+	/* ãƒã‚§ãƒƒã‚¯ã‚µãƒ ã‚’è¨ˆç®—ã™ã‚‹ã€‚*/
 	if ((in6_cksum(input, IPPROTO_ICMPV6, off, ntohs(ip6h->plen) - (off - IF_IP_HDR_SIZE)) & 0xffff) != 0) {
 		NET_COUNT_ICMP6(net_count_icmp6[NC_ICMP6_IN_ERR_PACKETS], 1);
 		NET_COUNT_MIB(icmp6_ifstat.ipv6IfIcmpInErrors, 1);
@@ -479,20 +479,20 @@ icmp6_input (T_NET_BUF **inputp, uint_t *offp, uint_t *nextp)
 
 	code = icmp6h->code;
 
-	/* ¥á¥Ã¥»¡¼¥¸¤Î·¿¤Ë¤è¤êÊ¬´ô¤¹¤ë¡£*/
+	/* ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®å‹ã«ã‚ˆã‚Šåˆ†å²ã™ã‚‹ã€‚*/
 	switch (icmp6h->type) {
 
-	case ICMP6_DST_UNREACH:			/* °¸ÀèÅşÃ£ÉÔ²ÄÇ½		*/
+	case ICMP6_DST_UNREACH:			/* å®›å…ˆåˆ°é”ä¸å¯èƒ½		*/
 		NET_COUNT_MIB(icmp6_ifstat.ipv6IfIcmpInDestUnreachs, 1);
 		icmp6_notify_error(input, off);
 		break;
 
-	case ICMP6_ECHO_REQUEST:		/* ¥¨¥³¡¼Í×µá			*/
+	case ICMP6_ECHO_REQUEST:		/* ã‚¨ã‚³ãƒ¼è¦æ±‚			*/
 		icmp6_echo_request(input, off);
 		return IPPROTO_DONE;
 		break;
 
-	case ICMP6_ECHO_REPLY:			/* ¥¨¥³¡¼±şÅú			*/
+	case ICMP6_ECHO_REPLY:			/* ã‚¨ã‚³ãƒ¼å¿œç­”			*/
 
 #ifdef ICMP_CFG_CALLBACK_ECHO_REPLY
 
@@ -502,7 +502,7 @@ icmp6_input (T_NET_BUF **inputp, uint_t *offp, uint_t *nextp)
 
 		break;
 
-	case ND_ROUTER_ADVERT:			/* ¥ë¡¼¥¿ÄÌÃÎ			*/
+	case ND_ROUTER_ADVERT:			/* ãƒ«ãƒ¼ã‚¿é€šçŸ¥			*/
 		NET_COUNT_MIB(icmp6_ifstat.ipv6IfIcmpInRouterAdvertisements, 1);
 		if (code != 0 || len < ROUTER_ADVERT_HDR_SIZE)
 			goto buf_rel;
@@ -510,7 +510,7 @@ icmp6_input (T_NET_BUF **inputp, uint_t *offp, uint_t *nextp)
 		return IPPROTO_DONE;
 		break;
 
-	case ND_NEIGHBOR_SOLICIT:		/* ¶áÎÙÍ×ÀÁ			*/
+	case ND_NEIGHBOR_SOLICIT:		/* è¿‘éš£è¦è«‹			*/
 		NET_COUNT_MIB(icmp6_ifstat.ipv6IfIcmpInNeighborSolicits, 1);
 		if (code != 0 || len < NEIGHBOR_SOLICIT_HDR_SIZE)
 			goto buf_rel;
@@ -518,7 +518,7 @@ icmp6_input (T_NET_BUF **inputp, uint_t *offp, uint_t *nextp)
 		return IPPROTO_DONE;
 		break;
 
-	case ND_NEIGHBOR_ADVERT:		/* ¶áÎÙÄÌÃÎ			*/
+	case ND_NEIGHBOR_ADVERT:		/* è¿‘éš£é€šçŸ¥			*/
 		NET_COUNT_MIB(icmp6_ifstat.ipv6IfIcmpInNeighborAdvertisements, 1);
 		if (code != 0 || len < NEIGHBOR_ADVERT_HDR_SIZE)
 			goto buf_rel;
@@ -526,7 +526,7 @@ icmp6_input (T_NET_BUF **inputp, uint_t *offp, uint_t *nextp)
 		return IPPROTO_DONE;
 		break;
 
-	case ND_REDIRECT:			/* ¸ş¤±Ä¾¤·			*/
+	case ND_REDIRECT:			/* å‘ã‘ç›´ã—			*/
 		NET_COUNT_MIB(icmp6_ifstat.ipv6IfIcmpInRedirects, 1);
 
 #if NUM_REDIRECT_ROUTE_ENTRY > 0
@@ -544,7 +544,7 @@ icmp6_input (T_NET_BUF **inputp, uint_t *offp, uint_t *nextp)
 
 		break;
 
-	case ICMP6_PACKET_TOO_BIG:		/* ¥Ñ¥±¥Ã¥È¤¬Âç¤­¤¹¤®¤ë¡£	*/
+	case ICMP6_PACKET_TOO_BIG:		/* ãƒ‘ã‚±ãƒƒãƒˆãŒå¤§ãã™ãã‚‹ã€‚	*/
 
 #if NUM_IN6_HOSTCACHE_ENTRY > 0
 
@@ -555,21 +555,21 @@ icmp6_input (T_NET_BUF **inputp, uint_t *offp, uint_t *nextp)
 		NET_COUNT_MIB(icmp6_ifstat.ipv6IfIcmpInPktTooBigs, 1);
 		break;
 
-	case ICMP6_TIME_EXCEEDED:		/* TTL ¤òÄ¶²á¤·¤¿¡£		*/
+	case ICMP6_TIME_EXCEEDED:		/* TTL ã‚’è¶…éã—ãŸã€‚		*/
 		NET_COUNT_MIB(icmp6_ifstat.ipv6IfIcmpInTimeExcds, 1);
 		break;
 
-	case ICMP6_PARAM_PROB:			/* IPv6 ¥Ø¥Ã¥À¤¬ÉÔÀµ¡£		*/
+	case ICMP6_PARAM_PROB:			/* IPv6 ãƒ˜ãƒƒãƒ€ãŒä¸æ­£ã€‚		*/
 		NET_COUNT_MIB(icmp6_ifstat.ipv6IfIcmpInParmProblems, 1);
 		break;
 
-	case MLD_LISTENER_QUERY:		/* ¥Ş¥ë¥Á¥­¥ã¥¹¥È¼õ¿®¼Ô¾È²ñ	*/
-	case MLD_LISTENER_REPORT:		/* ¥Ş¥ë¥Á¥­¥ã¥¹¥È¼õ¿®¼ÔÊó¹ğ	*/
-	case MLD_LISTENER_DONE:			/* ¥Ş¥ë¥Á¥­¥ã¥¹¥È¼õ¿®¼Ô½ªÎ»	*/
-	case ND_ROUTER_SOLICIT:			/* ¥ë¡¼¥¿Í×ÀÁ			*/
-	case ICMP6_ROUTER_RENUMBERING:		/* ¥ë¡¼¥¿ÈÖ¹æºÆÀßÄê		*/
-	case ICMP6_FQDN_QUERY:			/* FQDN ¾È²ñ			*/
-	case ICMP6_FQDN_REPLY:			/* FQDN ±şÅú			*/
+	case MLD_LISTENER_QUERY:		/* ãƒãƒ«ãƒã‚­ãƒ£ã‚¹ãƒˆå—ä¿¡è€…ç…§ä¼š	*/
+	case MLD_LISTENER_REPORT:		/* ãƒãƒ«ãƒã‚­ãƒ£ã‚¹ãƒˆå—ä¿¡è€…å ±å‘Š	*/
+	case MLD_LISTENER_DONE:			/* ãƒãƒ«ãƒã‚­ãƒ£ã‚¹ãƒˆå—ä¿¡è€…çµ‚äº†	*/
+	case ND_ROUTER_SOLICIT:			/* ãƒ«ãƒ¼ã‚¿è¦è«‹			*/
+	case ICMP6_ROUTER_RENUMBERING:		/* ãƒ«ãƒ¼ã‚¿ç•ªå·å†è¨­å®š		*/
+	case ICMP6_FQDN_QUERY:			/* FQDN ç…§ä¼š			*/
+	case ICMP6_FQDN_REPLY:			/* FQDN å¿œç­”			*/
 		syslog(LOG_WARNING, "[ICMP6] unsupported type: %d.", icmp6h->type);
 		break;
 
@@ -586,7 +586,7 @@ buf_rel:
 	}
 
 /*
- *  icmp6_error -- ICMP6 ¥¨¥é¡¼Á÷¿®´Ø¿ô
+ *  icmp6_error -- ICMP6 ã‚¨ãƒ©ãƒ¼é€ä¿¡é–¢æ•°
  */
 
 void
@@ -601,11 +601,11 @@ icmp6_error (T_NET_BUF *input, uint8_t type, uint8_t code, uint32_t param)
 	ip6h = GET_IP6_HDR(input);
 
 	/*
-	 *  °¸Àè¥¢¥É¥ì¥¹¤¬¡¢¥Ş¥ë¥Á¥­¥ã¥¹¥È¤Î¾ì¹ç¤Ï¡¢
-	 *  °Ê²¼¤Î¾ò·ï°Ê³°¤Î¤È¤­¤Ï½èÍı¤ò¹Ô¤ï¤Ê¤¤¡£
+	 *  å®›å…ˆã‚¢ãƒ‰ãƒ¬ã‚¹ãŒã€ãƒãƒ«ãƒã‚­ãƒ£ã‚¹ãƒˆã®å ´åˆã¯ã€
+	 *  ä»¥ä¸‹ã®æ¡ä»¶ä»¥å¤–ã®ã¨ãã¯å‡¦ç†ã‚’è¡Œã‚ãªã„ã€‚
 	 *
-	 *    ¡¦¥Ç¡¼¥¿¥°¥é¥à¤¬Âç¤­¤¹¤®¤ë¡£
-	 *    ¡¦IPv6 ¥Ø¥Ã¥À¤ÎÉÔÀµ¤Ç¡¢¥ª¥×¥·¥ç¥ó¤¬Ç§¼±¤Ç¤­¤Ê¤¤¡£
+	 *    ãƒ»ãƒ‡ãƒ¼ã‚¿ã‚°ãƒ©ãƒ ãŒå¤§ãã™ãã‚‹ã€‚
+	 *    ãƒ»IPv6 ãƒ˜ãƒƒãƒ€ã®ä¸æ­£ã§ã€ã‚ªãƒ—ã‚·ãƒ§ãƒ³ãŒèªè­˜ã§ããªã„ã€‚
 	 */
 	if (IN6_IS_ADDR_MULTICAST(&ip6h->dst) &&
 	    !((type == ICMP6_PACKET_TOO_BIG) ||
@@ -613,20 +613,20 @@ icmp6_error (T_NET_BUF *input, uint8_t type, uint8_t code, uint32_t param)
 		goto buf_rel;
 
 	/*
-	 *  »ÏÅÀ¥¢¥É¥ì¥¹¤¬¡¢°Ê²¼¤Î¾ì¹ç¤Ï½èÍı¤ò¹Ô¤ï¤Ê¤¤¡£
+	 *  å§‹ç‚¹ã‚¢ãƒ‰ãƒ¬ã‚¹ãŒã€ä»¥ä¸‹ã®å ´åˆã¯å‡¦ç†ã‚’è¡Œã‚ãªã„ã€‚
 	 *
-	 *    ¡¦Ìµ»ØÄê
-	 *    ¡¦¥Ş¥ë¥Á¥­¥ã¥¹¥È
+	 *    ãƒ»ç„¡æŒ‡å®š
+	 *    ãƒ»ãƒãƒ«ãƒã‚­ãƒ£ã‚¹ãƒˆ
 	 */
 	if (IN6_IS_ADDR_UNSPECIFIED(&ip6h->src) ||
 	    IN6_IS_ADDR_MULTICAST  (&ip6h->src))
 		goto buf_rel;
 
-	/* ºÇ¸å¤Î¥Ø¥Ã¥À¤òÃµº÷¤¹¤ë¡£*/
+	/* æœ€å¾Œã®ãƒ˜ãƒƒãƒ€ã‚’æ¢ç´¢ã™ã‚‹ã€‚*/
 	off = ip6_lasthdr(input, 0, IPPROTO_IPV6, &next);
 
 	/*
-	 *  ¥¿¥¤¥×¤¬¡¢¥¨¥é¡¼¤«¸ş¤±Ä¾¤·¤Î ICMP6 ¥Ñ¥±¥Ã¥È¤Î¥¨¥é¡¼¤Ë¤ÏÊÖÅú¤·¤Ê¤¤¡£
+	 *  ã‚¿ã‚¤ãƒ—ãŒã€ã‚¨ãƒ©ãƒ¼ã‹å‘ã‘ç›´ã—ã® ICMP6 ãƒ‘ã‚±ãƒƒãƒˆã®ã‚¨ãƒ©ãƒ¼ã«ã¯è¿”ç­”ã—ãªã„ã€‚
 	 */
 	if (off >= 0 && next == IPPROTO_ICMPV6) {
 		T_ICMP6_HDR	*icmp6h;
@@ -640,10 +640,10 @@ icmp6_error (T_NET_BUF *input, uint8_t type, uint8_t code, uint32_t param)
 			goto buf_rel;
 		}
 
-	/* DoS ¹¶·â¤ËÂĞ¤¹¤ëËÉ¸æ¤ÏÌ¤¼ÂÁõ */
+	/* DoS æ”»æ’ƒã«å¯¾ã™ã‚‹é˜²å¾¡ã¯æœªå®Ÿè£… */
 
 	/*
-	 *  Á÷¤êÊÖ¤¹¥á¥Ã¥»¡¼¥¸Ä¹¤ò¡¢ICMPv6 ¤ÎºÇÂç¥Ú¥¤¥í¡¼¥ÉÄ¹¤ËÄ´À°¤¹¤ë¡£
+	 *  é€ã‚Šè¿”ã™ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é•·ã‚’ã€ICMPv6 ã®æœ€å¤§ãƒšã‚¤ãƒ­ãƒ¼ãƒ‰é•·ã«èª¿æ•´ã™ã‚‹ã€‚
 	 *  IPV6_MMTU - (IP6_HDR_SIZE + ICMP6_HDR_SIZE)
 	 */
 	if (input->len - IF_HDR_SIZE > IPV6_MMTU - (IP6_HDR_SIZE + ICMP6_HDR_SIZE))
@@ -651,20 +651,20 @@ icmp6_error (T_NET_BUF *input, uint8_t type, uint8_t code, uint32_t param)
 	else
 		len = input->len - IF_HDR_SIZE;
 
-	/* Á÷¿®ÍÑ¤Î¥Í¥Ã¥È¥ï¡¼¥¯¥Ğ¥Ã¥Õ¥¡¤ò³ÍÆÀ¤¹¤ë¡£*/
+	/* é€ä¿¡ç”¨ã®ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒãƒƒãƒ•ã‚¡ã‚’ç²å¾—ã™ã‚‹ã€‚*/
 	if (in6_get_datagram(&output, len + ICMP6_HDR_SIZE, 0,
 	                     &ip6h->src, &in6_addr_unspecified,
 	                     IPPROTO_ICMPV6, IPV6_MAXHLIM,
 	                     NBA_SEARCH_ASCENT, TMO_ICMP_OUTPUT) != E_OK)
 		goto buf_rel;
 
-	/* ICMP6 ¥Ø¥Ã¥À¤òÀßÄê¤¹¤ë¡£*/
+	/* ICMP6 ãƒ˜ãƒƒãƒ€ã‚’è¨­å®šã™ã‚‹ã€‚*/
  	icmp6h = GET_ICMP6_HDR(output, IF_IP6_ICMP6_HDR_OFFSET);
  	icmp6h->type       = type;
  	icmp6h->code       = code;
  	icmp6h->icmp6_pptr = htonl(param);
  
- 	/* ¥¨¥é¡¼¥Ç¡¼¥¿¤òÀßÄê¤¹¤ë¡£*/
+ 	/* ã‚¨ãƒ©ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®šã™ã‚‹ã€‚*/
  	memcpy(GET_ICMP6_SDU(output, IF_IP6_ICMP6_HDR_OFFSET), (uint8_t *)ip6h, len);
 
 #ifdef SUPPORT_MIB
@@ -685,7 +685,7 @@ icmp6_error (T_NET_BUF *input, uint8_t type, uint8_t code, uint32_t param)
 
 #endif	/* of #ifdef SUPPORT_MIB */
 
-	/* Á÷¿®¤¹¤ë¡£*/
+	/* é€ä¿¡ã™ã‚‹ã€‚*/
 	icmp6_output(output, IF_IP6_HDR_SIZE);
 
 buf_rel:

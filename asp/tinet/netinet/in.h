@@ -4,29 +4,29 @@
  *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
- *  �嵭����Ԥϡ��ʲ��� (1)��(4) �ξ�狼��Free Software Foundation 
- *  �ˤ�äƸ�ɽ����Ƥ��� GNU General Public License �� Version 2 �˵�
- *  �Ҥ���Ƥ���������������˸¤ꡤ�ܥ��եȥ��������ܥ��եȥ�����
- *  ����Ѥ�����Τ�ޤࡥ�ʲ�Ʊ���ˤ���ѡ�ʣ�������ѡ������ۡʰʲ���
- *  ���ѤȸƤ֡ˤ��뤳�Ȥ�̵���ǵ������롥
- *  (1) �ܥ��եȥ������򥽡��������ɤη������Ѥ�����ˤϡ��嵭������
- *      ��ɽ�����������Ѿ�浪��Ӳ�����̵�ݾڵ��꤬�����Τޤޤη��ǥ���
- *      ����������˴ޤޤ�Ƥ��뤳�ȡ�
- *  (2) �ܥ��եȥ������򡤥饤�֥������ʤɡ�¾�Υ��եȥ�������ȯ�˻�
- *      �ѤǤ�����Ǻ����ۤ�����ˤϡ������ۤ�ȼ���ɥ�����ȡ�����
- *      �ԥޥ˥奢��ʤɡˤˡ��嵭�����ɽ�����������Ѿ�浪��Ӳ���
- *      ��̵�ݾڵ����Ǻܤ��뤳�ȡ�
- *  (3) �ܥ��եȥ������򡤵�����Ȥ߹���ʤɡ�¾�Υ��եȥ�������ȯ�˻�
- *      �ѤǤ��ʤ����Ǻ����ۤ�����ˤϡ����ξ������������ȡ�
- *    (a) �����ۤ�ȼ���ɥ�����ȡ����Ѽԥޥ˥奢��ʤɡˤˡ��嵭����
- *        �ɽ�����������Ѿ�浪��Ӳ�����̵�ݾڵ����Ǻܤ��뤳�ȡ�
- *  (4) �ܥ��եȥ����������Ѥˤ��ľ��Ū�ޤ��ϴ���Ū�������뤤���ʤ�»
- *      ������⡤�嵭����Ԥ����TOPPERS�ץ��������Ȥ����դ��뤳�ȡ�
+ *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
+ *  によって公表されている GNU General Public License の Version 2 に記
+ *  述されている条件を満たす場合に限り，本ソフトウェア（本ソフトウェア
+ *  を改変したものを含む．以下同じ）を使用・複製・改変・再配布（以下，
+ *  利用と呼ぶ）することを無償で許諾する．
+ *  (1) 本ソフトウェアをソースコードの形で利用する場合には，上記の著作
+ *      権表示，この利用条件および下記の無保証規定が，そのままの形でソー
+ *      スコード中に含まれていること．
+ *  (2) 本ソフトウェアを，ライブラリ形式など，他のソフトウェア開発に使
+ *      用できる形で再配布する場合には，再配布に伴うドキュメント（利用
+ *      者マニュアルなど）に，上記の著作権表示，この利用条件および下記
+ *      の無保証規定を掲載すること．
+ *  (3) 本ソフトウェアを，機器に組み込むなど，他のソフトウェア開発に使
+ *      用できない形で再配布する場合には，次の条件を満たすこと．
+ *    (a) 再配布に伴うドキュメント（利用者マニュアルなど）に，上記の著
+ *        作権表示，この利用条件および下記の無保証規定を掲載すること．
+ *  (4) 本ソフトウェアの利用により直接的または間接的に生じるいかなる損
+ *      害からも，上記著作権者およびTOPPERSプロジェクトを免責すること．
  *
- *  �ܥ��եȥ������ϡ�̵�ݾڤ��󶡤���Ƥ����ΤǤ��롥�嵭����Ԥ�
- *  ���TOPPERS�ץ��������Ȥϡ��ܥ��եȥ������˴ؤ��ơ�����Ŭ�Ѳ�ǽ����
- *  �ޤ�ơ������ʤ��ݾڤ�Ԥ�ʤ����ޤ����ܥ��եȥ����������Ѥˤ��ľ
- *  ��Ū�ޤ��ϴ���Ū�������������ʤ�»���˴ؤ��Ƥ⡤������Ǥ�����ʤ���
+ *  本ソフトウェアは，無保証で提供されているものである．上記著作権者お
+ *  よびTOPPERSプロジェクトは，本ソフトウェアに関して，その適用可能性も
+ *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
+ *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
  *  @(#) $Id: in.h,v 1.5.4.1 2015/02/05 02:10:53 abe Exp abe $
  */
@@ -75,41 +75,41 @@
 #include <netinet6/in6.h>
 
 /*
- *  TINET �ΥС���������
+ *  TINET のバージョン情報
  */
 
-#define TINET_PRVER		UINT_C(0x1053)	/* TINET �ΥС�������ֹ� */
+#define TINET_PRVER		UINT_C(0x1053)	/* TINET のバージョン番号 */
 
 /*
- *  ���󥿡��ͥåȥ����ƥ�������RFC790 ����
+ *  インターネットシステムの定義、RFC790 参照
  */
 
 /*
- *  �ץ��ȥ��� (RFC1700)
+ *  プロトコル (RFC1700)
  */
 
-#define IPPROTO_IP		UINT_C(0)	/* IP �Υ��ߡ�				*/
-#define IPPROTO_HOPOPTS		UINT_C(0)	/* IPv6 ����� (Hop-by-Hop) ���ץ����	*/
+#define IPPROTO_IP		UINT_C(0)	/* IP のダミー				*/
+#define IPPROTO_HOPOPTS		UINT_C(0)	/* IPv6 中継点 (Hop-by-Hop) オプション	*/
 #define IPPROTO_ICMP		UINT_C(1)	/* ICMP					*/
 #define IPPROTO_TCP		UINT_C(6)	/* TCP					*/
 #define IPPROTO_UDP		UINT_C(17)	/* UDP					*/
 #define IPPROTO_IPV6		UINT_C(41)	/* IPv6					*/
-#define IPPROTO_ROUTING		UINT_C(43)	/* ��ϩ���楪�ץ����			*/
-#define IPPROTO_FRAGMENT	UINT_C(44)	/* ���Ҳ����ץ����			*/
+#define IPPROTO_ROUTING		UINT_C(43)	/* 経路制御オプション			*/
+#define IPPROTO_FRAGMENT	UINT_C(44)	/* 断片化オプション			*/
 #define IPPROTO_RSVP		UINT_C(46)	/* RSVP					*/
-#define IPPROTO_ESP		UINT_C(50)	/* IPv6 �Ź沽���ץ����		*/
-#define IPPROTO_AH		UINT_C(51)	/* IPv6 ǧ�ڥ��ץ����			*/
+#define IPPROTO_ESP		UINT_C(50)	/* IPv6 暗号化オプション		*/
+#define IPPROTO_AH		UINT_C(51)	/* IPv6 認証オプション			*/
 #define IPPROTO_ICMPV6		UINT_C(58)	/* ICMPv6				*/
-#define IPPROTO_NONE		UINT_C(59)	/* IPv6 ���إå�̵��			*/
-#define IPPROTO_DSTOPTS		UINT_C(60)	/* IPv6 �������ץ����			*/
-#define IPPROTO_IPCOMP		UINT_C(108)	/* �ڥ������ɰ���			*/
-#define IPPROTO_DONE		UINT_C(257)	/* IPv6 �Ǿ�̥ץ��ȥ������Ͻ�λ	*/
+#define IPPROTO_NONE		UINT_C(59)	/* IPv6 次ヘッダ無し			*/
+#define IPPROTO_DSTOPTS		UINT_C(60)	/* IPv6 終点オプション			*/
+#define IPPROTO_IPCOMP		UINT_C(108)	/* ペイロード圧縮			*/
+#define IPPROTO_DONE		UINT_C(257)	/* IPv6 で上位プロトコル入力終了	*/
 
 /*
- *  IPv4 ���ɥ쥹
+ *  IPv4 アドレス
  */
 
-/* �������� */
+/* 前方参照 */
 
 #ifndef T_IN4_ADDR_DEFINED
 
@@ -120,41 +120,41 @@ typedef uint32_t T_IN4_ADDR;
 #endif	/* of #ifndef T_IN4_ADDR_DEFINED */
 
 /*
- *  ITRON TCP/IPv4 ���ɥ쥹/�ݡ����ֹ�����
+ *  ITRON TCP/IPv4 アドレス/ポート番号の定義
  */
 
 typedef struct t_ipv4ep {
-	uint32_t	ipaddr;		/* IPv4 ���ɥ쥹	*/
-	uint16_t	portno;		/* �ݡ����ֹ�		*/
+	uint32_t	ipaddr;		/* IPv4 アドレス	*/
+	uint16_t	portno;		/* ポート番号		*/
 	} T_IPV4EP;
 
 /*
- *  ���ɥ쥹/�ݡ��Ȥ�Ĺ��
+ *  アドレス/ポートの長さ
  */
 
 #define IPV4_ADDR_LEN		4
 #define PORT_NUM_LEN		2
 
 /*
- *  �ݡ����ֹ�����
+ *  ポート番号の定義
  */
 
-#define TCP_PORTANY			UINT_C(0x0000)	/* ITRON TCP/IP ɸ��	*/
-#define UDP_PORTANY			UINT_C(0x0000)	/* ITRON TCP/IP ɸ��	*/
+#define TCP_PORTANY			UINT_C(0x0000)	/* ITRON TCP/IP 標準	*/
+#define UDP_PORTANY			UINT_C(0x0000)	/* ITRON TCP/IP 標準	*/
 
-#define TCP_PORT_LAST_WELL_KNOWN	UINT_C(1023)	/* Well Known ��λ�ֹ�	*/
-#define TCP_PORT_FIRST_AUTO		UINT_C(1024)	/* ��ư������Ƴ����ֹ�	*/
-#define TCP_PORT_LAST_AUTO		UINT_C(4999)	/* ��ư������ƽ�λ�ֹ�	*/
+#define TCP_PORT_LAST_WELL_KNOWN	UINT_C(1023)	/* Well Known 終了番号	*/
+#define TCP_PORT_FIRST_AUTO		UINT_C(1024)	/* 自動割り当て開始番号	*/
+#define TCP_PORT_LAST_AUTO		UINT_C(4999)	/* 自動割り当て終了番号	*/
 
-#define UDP_PORT_LAST_WELL_KNOWN	UINT_C(1023)	/* Well Known ��λ�ֹ�	*/
-#define UDP_PORT_FIRST_AUTO		UINT_C(1024)	/* ��ư������Ƴ����ֹ�	*/
-#define UDP_PORT_LAST_AUTO		UINT_C(4999)	/* ��ư������ƽ�λ�ֹ�	*/
+#define UDP_PORT_LAST_WELL_KNOWN	UINT_C(1023)	/* Well Known 終了番号	*/
+#define UDP_PORT_FIRST_AUTO		UINT_C(1024)	/* 自動割り当て開始番号	*/
+#define UDP_PORT_LAST_AUTO		UINT_C(4999)	/* 自動割り当て終了番号	*/
 
 /*
- *  IP ���ɥ쥹�����
+ *  IP アドレスの定義
  */
 
-#define IPV4_ADDRANY		ULONG_C(0x00000000)	/* ITRON TCP/IP ɸ��	*/
+#define IPV4_ADDRANY		ULONG_C(0x00000000)	/* ITRON TCP/IP 標準	*/
 
 #define IPV4_ADDR_LOOPBACK	ULONG_C(0x7f000001)
 #define IPV4_ADDR_LOOPBACK_MASK	IPV4_CLASS_A_MASK
@@ -192,53 +192,53 @@ typedef struct t_ipv4ep {
 #define MAKE_IPV4_ADDR(a,b,c,d)		((T_IN4_ADDR)(((uint32_t)(a)<<24)|((uint32_t)(b)<<16)|((uint32_t)(c)<<8)|(d)))
 
 /*
- *  ưŪ������ TCP �̿�ü��
+ *  動的生成用 TCP 通信端点
  */
 
 typedef struct t_tcp_ccep {
-	/* ɸ�� */
-	ATR		cepatr;		/* �̿�ü��°��			*/
-	void		*sbuf;		/* �����ѥ�����ɥХåե�	*/
-	int_t		sbufsz;		/* �����ѥ�����ɥХåե�������	*/
-	void		*rbuf;		/* �����ѥ�����ɥХåե�	*/
-	int_t		rbufsz;		/* �����ѥ�����ɥХåե�������	*/
-	FP		callback;	/* ������Хå�			*/
-	/* ������¸ */
+	/* 標準 */
+	ATR		cepatr;		/* 通信端点属性			*/
+	void		*sbuf;		/* 送信用ウィンドバッファ	*/
+	int_t		sbufsz;		/* 送信用ウィンドバッファサイズ	*/
+	void		*rbuf;		/* 受信用ウィンドバッファ	*/
+	int_t		rbufsz;		/* 受信用ウィンドバッファサイズ	*/
+	FP		callback;	/* コールバック			*/
+	/* 実装依存 */
 	} T_TCP_CCEP;
 
 /*
- *  ưŪ������ TCP ���ո�
+ *  動的生成用 TCP 受付口
  */
 
 #if defined(SUPPORT_INET4)
 
 typedef struct t_tcp_crep {
-	/* ɸ�� */
-	ATR		repatr;		/* ���ո�°��		*/
-	T_IPV4EP	myaddr;		/* ��ʬ�Υ��ɥ쥹	*/
-	/* ������¸ */
+	/* 標準 */
+	ATR		repatr;		/* 受付口属性		*/
+	T_IPV4EP	myaddr;		/* 自分のアドレス	*/
+	/* 実装依存 */
 	} T_TCP_CREP;
 
 #endif	/* of #if defined(SUPPORT_INET4) */
 
 /*
- *  ưŪ������ UDP �̿�ü��
+ *  動的生成用 UDP 通信端点
  */
 
 #if defined(SUPPORT_INET4)
 
 typedef struct t_udp_ccep {
-	/* ɸ�� */
-	ATR		cepatr;		/* UDP �̿�ü��°��		*/
-	T_IPV4EP	myaddr;		/* ��ʬ�Υ��ɥ쥹		*/
-	FP		callback;	/* ������Хå��ؿ�		*/
-	/* ������¸ */
+	/* 標準 */
+	ATR		cepatr;		/* UDP 通信端点属性		*/
+	T_IPV4EP	myaddr;		/* 自分のアドレス		*/
+	FP		callback;	/* コールバック関数		*/
+	/* 実装依存 */
 	} T_UDP_CCEP;
 
 #endif	/* of #if defined(SUPPORT_INET4) */
 
 /*
- *  IPv4 �� IPv6 �򥳥�ѥ���������򤹤뤿��Υޥ���
+ *  IPv4 と IPv6 をコンパイル時に選択するためのマクロ
  */
 
 #if defined(SUPPORT_INET4)
@@ -258,7 +258,7 @@ typedef struct t_udp_ccep {
 #endif	/* of #if defined(SUPPORT_INET4) */
 
 /*
- *  TINET �ȼ� API
+ *  TINET 独自 API
  */
 
 extern const char *in_strtfn (FN fncd);

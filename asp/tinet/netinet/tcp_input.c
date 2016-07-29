@@ -4,29 +4,29 @@
  *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
- *  �嵭����Ԥϡ��ʲ��� (1)��(4) �ξ�狼��Free Software Foundation 
- *  �ˤ�äƸ�ɽ����Ƥ��� GNU General Public License �� Version 2 �˵�
- *  �Ҥ���Ƥ���������������˸¤ꡤ�ܥ��եȥ��������ܥ��եȥ�����
- *  ����Ѥ�����Τ�ޤࡥ�ʲ�Ʊ���ˤ���ѡ�ʣ�������ѡ������ۡʰʲ���
- *  ���ѤȸƤ֡ˤ��뤳�Ȥ�̵���ǵ������롥
- *  (1) �ܥ��եȥ������򥽡��������ɤη������Ѥ�����ˤϡ��嵭������
- *      ��ɽ�����������Ѿ�浪��Ӳ�����̵�ݾڵ��꤬�����Τޤޤη��ǥ���
- *      ����������˴ޤޤ�Ƥ��뤳�ȡ�
- *  (2) �ܥ��եȥ������򡤥饤�֥������ʤɡ�¾�Υ��եȥ�������ȯ�˻�
- *      �ѤǤ�����Ǻ����ۤ�����ˤϡ������ۤ�ȼ���ɥ�����ȡ�����
- *      �ԥޥ˥奢��ʤɡˤˡ��嵭�����ɽ�����������Ѿ�浪��Ӳ���
- *      ��̵�ݾڵ����Ǻܤ��뤳�ȡ�
- *  (3) �ܥ��եȥ������򡤵�����Ȥ߹���ʤɡ�¾�Υ��եȥ�������ȯ�˻�
- *      �ѤǤ��ʤ����Ǻ����ۤ�����ˤϡ����ξ������������ȡ�
- *    (a) �����ۤ�ȼ���ɥ�����ȡ����Ѽԥޥ˥奢��ʤɡˤˡ��嵭����
- *        �ɽ�����������Ѿ�浪��Ӳ�����̵�ݾڵ����Ǻܤ��뤳�ȡ�
- *  (4) �ܥ��եȥ����������Ѥˤ��ľ��Ū�ޤ��ϴ���Ū�������뤤���ʤ�»
- *      ������⡤�嵭����Ԥ����TOPPERS�ץ��������Ȥ����դ��뤳�ȡ�
+ *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
+ *  によって公表されている GNU General Public License の Version 2 に記
+ *  述されている条件を満たす場合に限り，本ソフトウェア（本ソフトウェア
+ *  を改変したものを含む．以下同じ）を使用・複製・改変・再配布（以下，
+ *  利用と呼ぶ）することを無償で許諾する．
+ *  (1) 本ソフトウェアをソースコードの形で利用する場合には，上記の著作
+ *      権表示，この利用条件および下記の無保証規定が，そのままの形でソー
+ *      スコード中に含まれていること．
+ *  (2) 本ソフトウェアを，ライブラリ形式など，他のソフトウェア開発に使
+ *      用できる形で再配布する場合には，再配布に伴うドキュメント（利用
+ *      者マニュアルなど）に，上記の著作権表示，この利用条件および下記
+ *      の無保証規定を掲載すること．
+ *  (3) 本ソフトウェアを，機器に組み込むなど，他のソフトウェア開発に使
+ *      用できない形で再配布する場合には，次の条件を満たすこと．
+ *    (a) 再配布に伴うドキュメント（利用者マニュアルなど）に，上記の著
+ *        作権表示，この利用条件および下記の無保証規定を掲載すること．
+ *  (4) 本ソフトウェアの利用により直接的または間接的に生じるいかなる損
+ *      害からも，上記著作権者およびTOPPERSプロジェクトを免責すること．
  *
- *  �ܥ��եȥ������ϡ�̵�ݾڤ��󶡤���Ƥ����ΤǤ��롥�嵭����Ԥ�
- *  ���TOPPERS�ץ��������Ȥϡ��ܥ��եȥ������˴ؤ��ơ�����Ŭ�Ѳ�ǽ����
- *  �ޤ�ơ������ʤ��ݾڤ�Ԥ�ʤ����ޤ����ܥ��եȥ����������Ѥˤ��ľ
- *  ��Ū�ޤ��ϴ���Ū�������������ʤ�»���˴ؤ��Ƥ⡤������Ǥ�����ʤ���
+ *  本ソフトウェアは，無保証で提供されているものである．上記著作権者お
+ *  よびTOPPERSプロジェクトは，本ソフトウェアに関して，その適用可能性も
+ *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
+ *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
  *  @(#) $Id: tcp_input.c,v 1.5.4.1 2015/02/05 02:10:53 abe Exp abe $
  */
@@ -119,11 +119,11 @@
 #ifdef SUPPORT_TCP
 
 /*
- *  �����
+ *  戻り値
  *
- *      RET_OK		����
- *	RET_DROP	���顼���������Ȥ��˴����롣
- *	RET_RST_DROP	���顼��RST �����������������Ȥ��˴����롣
+ *      RET_OK		正常
+ *	RET_DROP	エラー、セグメントを破棄する。
+ *	RET_RST_DROP	エラー、RST を送信し、セグメントを破棄する。
  */
 
 #define RET_OK		(0)
@@ -133,7 +133,7 @@
 #define RET_RST_DROP	(-2)
 
 /*
- *  �ؿ�
+ *  関数
  */
 
 static void close_connection	(T_TCP_CEP *cep, bool_t *needoutput);
@@ -152,26 +152,26 @@ static void proc_urg		(T_TCP_HDR *tcph,  T_TCP_CEP *cep);
 #if defined(NUM_TCP_TW_CEP_ENTRY) && NUM_TCP_TW_CEP_ENTRY > 0
 
 /*
- *  ����������� Time Wait ���� CEP ʬΥ��ǽ
+ *  タスクからの Time Wait 状態 CEP 分離機能
  */
 
 /*
- *  �ؿ�
+ *  関数
  */
 
 static T_TCP_TWCEP*tcp_find_twcep (T_IN_ADDR *dstaddr,  uint16_t dstport,
                                    T_IN_ADDR *peeraddr, uint16_t peerport);
 
 /*
- *  �ѿ�
+ *  変数
  */
 
 T_TCP_TWCEP tcp_twcep[NUM_TCP_TW_CEP_ENTRY];
 
 /*
- *  tcp_find_twcep -- �ݡ����ֹ椫�� Time Wait �� TCP �̿�ü�������롣
+ *  tcp_find_twcep -- ポート番号から Time Wait 用 TCP 通信端点を得る。
  *
- *    ����: dstaddr �ϡ��ͥåȥ���Х��ȥ�����
+ *    注意: dstaddr は、ネットワークバイトオーダ
  */
 
 static T_TCP_TWCEP*
@@ -180,8 +180,8 @@ tcp_find_twcep (T_IN_ADDR *dstaddr, uint16_t dstport, T_IN_ADDR *peeraddr, uint1
 	T_TCP_TWCEP*	twcep;
 	
 	/*
-	 *  ���֤� TIME WAIT �ǡ�
-	 *  IP ���ɥ쥹�ȥݡ����ֹ椬���פ����̿�ü����õ�����롣
+	 *  状態が TIME WAIT で、
+	 *  IP アドレスとポート番号が一致する通信端点を探索する。
 	 */
 	for (twcep = &tcp_twcep[NUM_TCP_TW_CEP_ENTRY]; twcep -- != tcp_twcep; ) {
 		if (twcep->fsm_state == TCP_FSM_TIME_WAIT                   &&
@@ -196,8 +196,8 @@ tcp_find_twcep (T_IN_ADDR *dstaddr, uint16_t dstport, T_IN_ADDR *peeraddr, uint1
 	}
 
 /*
- *  ɬ�פʾ���� Time Wait �� TCP �̿�ü���˰ܤ��ơ�
- *  ɸ��� TCP �̿�ü���������롣
+ *  必要な情報を Time Wait 用 TCP 通信端点に移して、
+ *  標準の TCP 通信端点を開放する。
  */
 
 void
@@ -205,13 +205,13 @@ tcp_move_twcep (T_TCP_CEP *cep)
 {
 	T_TCP_TWCEP*	twcep;
 
-	/* ������ Time Wait �� TCP �̿�ü����õ�����롣*/
+	/* 空きの Time Wait 用 TCP 通信端点を探索する。*/
 	for (twcep = &tcp_twcep[NUM_TCP_TW_CEP_ENTRY]; twcep -- != tcp_twcep; ) {
 		if (twcep->fsm_state != TCP_FSM_TIME_WAIT) {
 
 			/*
-			 *  �̿�ü������å�����
-			 *  ɬ�פʾ���� Time Wait �� TCP �̿�ü���˰ܤ���
+			 *  通信端点をロックし、
+			 *  必要な情報を Time Wait 用 TCP 通信端点に移す。
 			 */
 			syscall(wai_sem(cep->semid_lock));
 			twcep->rbufsz		= cep->rbufsz;
@@ -223,10 +223,10 @@ tcp_move_twcep (T_TCP_CEP *cep)
 			twcep->fsm_state	= cep->fsm_state;
 			twcep->timer_2msl	= cep->timer[TCP_TIM_2MSL];
 
-			/* �̿�ü������å��������롣*/
+			/* 通信端点をロックを解除する。*/
 			syscall(sig_sem(cep->semid_lock));
 
-			/* ɸ�� TCP �̿�ü���������롣*/
+			/* 標準 TCP 通信端点を開放する。*/
 			tcp_close(cep);
 
 			break;
@@ -237,7 +237,7 @@ tcp_move_twcep (T_TCP_CEP *cep)
 #endif	/* of #if defined(NUM_TCP_TW_CEP_ENTRY) && NUM_TCP_TW_CEP_ENTRY > 0 */
 
 /*
- *  parse_option -- TCP �إå��Υ��ץ�������Ϥ��롣
+ *  parse_option -- TCP ヘッダのオプションを解析する。
  */
 
 static void
@@ -292,7 +292,7 @@ parse_option (T_TCP_HDR *tcph, T_TCP_CEP *cep)
 	}
 
 /*
- *  set_rexmt_timer -- �������������֤�����������������ޤ򹹿����롣
+ *  set_rexmt_timer -- 新しい往復時間を収集し、再送タイマを更新する。
  */
 
 static void
@@ -303,22 +303,22 @@ set_rexmt_timer (T_TCP_CEP *cep, T_TCP_TIME rtt)
 	NET_COUNT_TCP(net_count_tcp[NC_TCP_RTT_UPDATES], 1);
 	if (cep->srtt != 0) {
 		/*
-		 *  srtt: ʿ�경���줿 RTT
+		 *  srtt: 平滑化された RTT
 		 *
-		 *  ��¬���줿 RTT (rtt) �ȸ��ߤ�ʿ�경���줿 RTT (srtt) �κ� (delta) ����롣
+		 *  計測された RTT (rtt) と現在の平滑化された RTT (srtt) の差 (delta) を求める。
 		 *
-		 *  delta �� 2 �ӥåȺ����ե� ( 4 ��) �����ͤ��ݻ����롣
-		 *  srtt  �� 5 �ӥåȺ����ե� (32 ��) �����ͤ��ݻ�����Ƥ��롣
+		 *  delta は 2 ビット左シフト ( 4 倍) した値で保持する。
+		 *  srtt  は 5 ビット左シフト (32 倍) した値で保持されている。
 		 *
 		 *    delta = rtt / 8 - srtt / 8
 		 *
-		 *  ������ srtt ��
+		 *  新しい srtt は
 		 *
 		 *    srtt = rtt / 8 + srtt * 7 / 8
 		 *         = srtt + (rtt / 8 - srtt / 8)
 		 *
-		 *  �Ƿ׻����롣
-		 *  ���Τ��ᡢrtt �� 2 �ӥåȺ����եȤ���srtt �� (5 - 2) �ӥåȱ����եȤ��� delta ����롣
+		 *  で計算する。
+		 *  このため、rtt を 2 ビット左シフトし、srtt を (5 - 2) ビット右シフトして delta を求める。
 		 */
 		delta = ((rtt - 1) << TCP_DELTA_SHIFT) - (cep->srtt >> (TCP_SRTT_SHIFT - TCP_DELTA_SHIFT));
 		cep->srtt += delta;
@@ -326,24 +326,24 @@ set_rexmt_timer (T_TCP_CEP *cep, T_TCP_TIME rtt)
 			cep->srtt = 1;
 
 		/*
-		 *  delta �������� | delta | ����롣
+		 *  delta の絶対値 | delta | を求める。
 		 */
 		if (delta < 0)
 			delta = - delta;
 
 		/*
-		 *  rttvar: ʿ�경���줿ʬ��
+		 *  rttvar: 平滑化された分散
 		 *
-		 *  rttvar �� 4 �ӥåȺ����ե� (16 ��) �����ͤ��ݻ�����Ƥ��롣
+		 *  rttvar は 4 ビット左シフト (16 倍) した値で保持されている。
 		 *
 		 *    delta = |delta| / 4 - rttvar / 4
 		 *
-		 *  ������ rttvar ��
+		 *  新しい rttvar は
 		 *
 		 *    rttvar = |delta|/ 4 + rttvar * 3 /4
 		 *           = rttvar + (|delta| / 4 - rttvar / 4)
 		 *
-		 *  �Ƿ׻����롣
+		 *  で計算する。
 		 */
 		delta -= cep->rttvar >> (TCP_RTTVAR_SHIFT - TCP_DELTA_SHIFT);
 		cep->rttvar += delta;
@@ -352,21 +352,21 @@ set_rexmt_timer (T_TCP_CEP *cep, T_TCP_TIME rtt)
 		}
 	else {
 		/*
-		 *  �ޤ� srtt �����꤬�Ԥ��Ƥ��ʤ��Ȥ��ϡ������¬���줿 RTT ����Ѥ��롣
-		 *  ʿ�경���줿 RTT (srtt) �ˤϡ�RTT �� 5 �ӥåȺ����ե� (32��) �����͡�
-		 *  ʿ�경���줿ʬ�� (rttvar) �ˤϡ�RTT �� 1/2 �� 4 �ӥåȺ����ե� (16��) �����͡�
+		 *  まだ srtt の設定が行われていないときは、今回計測された RTT を使用する。
+		 *  平滑化された RTT (srtt) には、RTT を 5 ビット左シフト (32倍) した値。
+		 *  平滑化された分散 (rttvar) には、RTT の 1/2 を 4 ビット左シフト (16倍) した値。
 		 */
 		cep->srtt   = rtt <<  TCP_SRTT_SHIFT;
 		cep->rttvar = rtt << (TCP_RTTVAR_SHIFT - 1);
 		}
 
 	/*
-	 *  rtt ��¬���λ�������������ꥻ�åȤ��롣
+	 *  rtt の測定を終了し、再送回数をリセットする。
 	 */
 	cep->rtt = cep->rxtshift = 0;
 
 	/*
-	 *  RTT �˵������Ǿ��� �� rtt + 2 ���礭���ͤ�������������ॢ���ȤκǾ��ͤˤ��롣
+	 *  RTT に許される最小値 と rtt + 2 の大きな値の方を再送タイムアウトの最小値にする。
 	 */
 	if (rtt + 2 < TCP_TVAL_MIN)
 		cep->rxtcur = tcp_range_set(tcp_rexmt_val(cep),
@@ -379,7 +379,7 @@ set_rexmt_timer (T_TCP_CEP *cep, T_TCP_TIME rtt)
 	}
 
 /*
- *  reassemble -- �����������Ȥ�ƹ������롣�����̤�˼��������Ȥ��ν���
+ *  reassemble -- 受信セグメントを再構成する。順番通りに受信したときの処理
  */
 
 static uint8_t
@@ -391,7 +391,7 @@ reassemble (T_NET_BUF *input, T_TCP_CEP *cep, uint_t thoff, uint8_t flags)
 	tcph = GET_TCP_HDR(input, thoff);
 	if (tcph->sum > cep->rbufsz - cep->rwbuf_count) {
 		/*
-		 *  ����������ɥХåե��˶������ʤ��Ȥ����˴����롣
+		 *  受信ウィンドバッファに空きがないときは破棄する。
 		 */
 		NET_COUNT_TCP(net_count_tcp[NC_TCP_RECV_DROP_SEGS], 1);
 		syscall(rel_net_buf(input));
@@ -402,9 +402,9 @@ reassemble (T_NET_BUF *input, T_TCP_CEP *cep, uint_t thoff, uint8_t flags)
 	         cep->reassq == NULL &&
 	         cep->fsm_state == TCP_FSM_ESTABLISHED) {
 		/*
-		 *  �����̤�˥������Ȥ�����������ν���
-		 *  �����������Ȥ��¤��ؤ������פʤΤ�
-		 *  ���Τޤ޼���������ɥХåե��˽񤭹��ࡣ
+		 *  順番通りにセグメントを受信した時の処理
+		 *  受信セグメントの並べ替えは不要なので
+		 *  そのまま受信ウィンドバッファに書き込む。
 		 */
 
 #ifdef TCP_CFG_DELAY_ACK
@@ -419,13 +419,13 @@ reassemble (T_NET_BUF *input, T_TCP_CEP *cep, uint_t thoff, uint8_t flags)
 
 		qhdr = GET_TCP_Q_HDR(input, thoff);
 
-		/*  TCP �إå��ΰ��֤���¸���롣*/
+		/*  TCP ヘッダの位置を保存する。*/
 		GET_TCP_IP_Q_HDR(input)->thoff = thoff;
 
-		/* SDU �Υ��ե��åȡʸ��ϥ�����ɥ������ˤ�ꥻ�åȤ��롣*/
+		/* SDU のオフセット（元はウィンドサイズ）をリセットする。*/
 		qhdr->soff = 0;
 
-		/* �ǡ��������������ɥХåե��˽񤭹��ࡣ*/
+		/* データを受信ウィンドバッファに書き込む。*/
 		TCP_WRITE_RWBUF(cep, input, thoff);
 		}
 	else {
@@ -436,12 +436,12 @@ reassemble (T_NET_BUF *input, T_TCP_CEP *cep, uint_t thoff, uint8_t flags)
 	}
 
 /*
- *  listening -- ��ư�����ץ󤷤ơ����֤� LISTEN �ν���
+ *  listening -- 受動オープンして，状態が LISTEN の処理
  *
- *    �����:
- *      RET_OK		����
- *	RET_DROP	���顼���������Ȥ��˴����롣
- *	RET_RST_DROP	���顼��RST �����������������Ȥ��˴����롣
+ *    戻り値:
+ *      RET_OK		正常
+ *	RET_DROP	エラー、セグメントを破棄する。
+ *	RET_RST_DROP	エラー、RST を送信し、セグメントを破棄する。
  */
 
 static ER
@@ -454,20 +454,20 @@ listening (T_NET_BUF *input, T_TCP_CEP *cep, uint_t thoff, T_TCP_SEQ iss)
 	tcph = GET_TCP_HDR(input, thoff);
 
 	/* 
-	 *  �ե饰�� RST �����åȤ���Ƥ�����˴����롣
+	 *  フラグに RST がセットされていれば破棄する。
 	 */
 	if (tcph->flags & TCP_FLG_RST)
 		return RET_DROP;
 
 	/*  
-	 *  �ե饰�� ACK �����åȤ��Ƥ줤��С�
-	 *  �ꥻ�åȤ����ä��˴����롣
+	 *  フラグに ACK がセットさてれいれば、
+	 *  リセットを送って破棄する。
 	 */
 	if (tcph->flags & TCP_FLG_ACK)
 		return RET_RST_DROP;
 
 	/* 
-	 *  �ե饰�� SYN �����åȤ���Ƥ��ʤ���Ф���˴����롣
+	 *  フラグに SYN がセットされていなければれば破棄する。
 	 */
 	if ((tcph->flags & TCP_FLG_SYN) == 0)
 		return RET_DROP;
@@ -477,10 +477,10 @@ listening (T_NET_BUF *input, T_TCP_CEP *cep, uint_t thoff, T_TCP_SEQ iss)
 #ifdef SUPPORT_LOOP
 
 	/*
-	 *  ���ΤȤ����˴����롣
-	 *    ���ݡ����ֹ椬Ʊ��ǡ������� IP ���ɥ쥹 ��Ʊ�졣
-	 *      ����������������롼�ץХå� (127.0.0.1) �ʤ��ɤ���
-	 *    ���ޥ�����㥹�ȥ��ɥ쥹
+	 *  次のときは破棄する。
+	 *    ・ポート番号が同一で、送受信 IP アドレス が同一。
+	 *      ただし、ローカルループバック (127.0.0.1) なら良い。
+	 *    ・マルチキャストアドレス
 	 */
 
 	if (tcph->dport == tcph->sport &&
@@ -490,9 +490,9 @@ listening (T_NET_BUF *input, T_TCP_CEP *cep, uint_t thoff, T_TCP_SEQ iss)
 #else	/* of #ifdef SUPPORT_LOOP */
 
 	/*
-	 *  ���ΤȤ����˴����롣
-	 *    ���ݡ����ֹ椬Ʊ��ǡ������� IP ���ɥ쥹 ��Ʊ�졣
-	 *    ���ޥ�����㥹�ȥ��ɥ쥹
+	 *  次のときは破棄する。
+	 *    ・ポート番号が同一で、送受信 IP アドレス が同一。
+	 *    ・マルチキャストアドレス
 	 */
 
 	if (tcph->dport == tcph->sport && iph->dst == iph->src)
@@ -505,9 +505,9 @@ listening (T_NET_BUF *input, T_TCP_CEP *cep, uint_t thoff, T_TCP_SEQ iss)
 #if defined(SUPPORT_INET6)
 
 	/*
-	 *  ���ΤȤ����˴����롣
-	 *    ���ݡ����ֹ椬Ʊ��ǡ������� IP ���ɥ쥹 ��Ʊ�졣
-	 *    ���ޥ�����㥹�ȥ��ɥ쥹
+	 *  次のときは破棄する。
+	 *    ・ポート番号が同一で、送受信 IP アドレス が同一。
+	 *    ・マルチキャストアドレス
 	 */
 
 	if (tcph->dport == tcph->sport && IN_ARE_ADDR_EQUAL(&iph->dst, &iph->src))
@@ -518,18 +518,18 @@ listening (T_NET_BUF *input, T_TCP_CEP *cep, uint_t thoff, T_TCP_SEQ iss)
 	if (IN_IS_NET_ADDR_MULTICAST(&iph->dst))
 		return RET_DROP;
 
-	/* ���Υ��ɥ쥹��Ͽ���롣*/
+	/* 相手のアドレスを記録する。*/
 	IN_COPY_TO_HOST(&cep->dstaddr.ipaddr, &iph->src);
 	cep->dstaddr.portno = tcph->sport;
 
-	/* ���ץ�����������롣*/
+	/* オプションを処理する。*/
 	parse_option(tcph, cep);
 
-	/* ���������ֹ���������롣*/
+	/* シーケンス番号を初期化する。*/
 	if (tcp_iss == 0)
 		tcp_init_iss();
 
-	/* ��ʬ�Υ��������ֹ�ν���ͤ�Ͽ���롣*/
+	/* 自分のシーケンス番号の初期値を記録する。*/
 	if (iss != 0)
 		cep->iss = iss;
 	else
@@ -537,17 +537,17 @@ listening (T_NET_BUF *input, T_TCP_CEP *cep, uint_t thoff, T_TCP_SEQ iss)
 
 	tcp_iss += TCP_ISS_INCR() / 4;
 
-	/* ���Υ��������ֹ�ν���ͤ�Ͽ���롣*/
+	/* 相手のシーケンス番号の初期値を記録する。*/
 	cep->irs = tcph->seq;
 
-	/* ���������������ֹ���������롣*/
+	/* 送受信シーケンス番号を初期化する。*/
 	init_send_seq(cep);
 	init_receive_seq(cep);
 
-	/* ����������ɥ����������ꤹ�롣*/
+	/* 送信ウインドサイズを設定する。*/
 	cep->snd_wnd = tcph->win;
 
-	/* �ǽ����� */
+	/* 最終設定 */
 	cep->flags    |= TCP_CEP_FLG_ACK_NOW;
 	cep->fsm_state = TCP_FSM_SYN_RECVD;
 	cep->timer[TCP_TIM_KEEP] = TCP_TVAL_KEEP_INIT;
@@ -556,12 +556,12 @@ listening (T_NET_BUF *input, T_TCP_CEP *cep, uint_t thoff, T_TCP_SEQ iss)
 	}
 
 /*
- *  syn_sent -- ǽư�����ץ󤷤ơ����֤� SYN �����Ѥν���
+ *  syn_sent -- 能動オープンして、状態が SYN 送信済の処理
  *
- *    �����:
- *      RET_OK		����
- *	RET_DROP	���顼���������Ȥ��˴����롣
- *	RET_RST_DROP	���顼��RST �����������������Ȥ��˴����롣
+ *    戻り値:
+ *      RET_OK		正常
+ *	RET_DROP	エラー、セグメントを破棄する。
+ *	RET_RST_DROP	エラー、RST を送信し、セグメントを破棄する。
  */
 
 static ER
@@ -570,19 +570,19 @@ syn_sent (T_TCP_HDR *tcph, T_TCP_CEP *cep)
 	ER error = RET_OK;
 
 	/*
-	 *  ��꤫�������ǧ����������Ƥ⡢
+	 *  相手から受信確認が送られて来ても、
 	 *
-	 *    ACK <= iss && ������������ SEQ (snd_max) < ACK
+	 *    ACK <= iss && 送信した最大 SEQ (snd_max) < ACK
 	 *
-	 *  �ʤ顢�ꥻ�åȤ����äƥ������Ȥ��˴����롣
+	 *  なら、リセットを送ってセグメントを破棄する。
 	 */
 	if ((tcph->flags & TCP_FLG_ACK) &&
 	    (SEQ_LE(tcph->ack, cep->iss) || SEQ_GT(tcph->ack, cep->snd_max)))
 		return RET_RST_DROP;
 
 	/*
-	 *  RST/ACK �ե饰�α���������С��ݡ��Ȥ������Ƥ��ʤ�
-	 *  ���Ȥ��̣���Ƥ��롣
+	 *  RST/ACK フラグの応答があれば、ポートが開いていない
+	 *  ことを意味している。
 	 */
 	if (tcph->flags & TCP_FLG_RST) {
 		if (tcph->flags & TCP_FLG_ACK) {
@@ -593,31 +593,31 @@ syn_sent (T_TCP_HDR *tcph, T_TCP_CEP *cep)
 		}
 
 	/*
-	 *  SYN �ե饰���ʤ���Х������Ȥ��˴����롣
+	 *  SYN フラグがなければセグメントを破棄する。
 	 */
 	if ((tcph->flags & TCP_FLG_SYN) == 0)
 		return RET_DROP;
 
-	cep->snd_wnd = tcph->win;	/* snd_wnd: ���μ�����ǽ������ɥ�����	*/
-	cep->irs     = tcph->seq;	/* irs:     ���Υ��������ֹ�ν����	*/
-	init_receive_seq(cep);		/* ���������������ֹ���������롣		*/
+	cep->snd_wnd = tcph->win;	/* snd_wnd: 相手の受信可能ウィンドサイズ	*/
+	cep->irs     = tcph->seq;	/* irs:     相手のシーケンス番号の初期値	*/
+	init_receive_seq(cep);		/* 送受信シーケンス番号を初期化する。		*/
 
 	if (tcph->flags & TCP_FLG_ACK) {
 		/*
-		 *  ACK �ե饰������Ȥ��ν���
+		 *  ACK フラグがあるときの処理
 		 *
-		 *  ��������Ԥ��Ƥ������� SEQ (rcv_adv) ��
-		 *  ������ǽ�ʥ�����ɥ����� (rcv_wnd) ʬ�ʤ�롣
+		 *  受信を期待している最大の SEQ (rcv_adv) を
+		 *  受信可能なウィンドサイズ (rcv_wnd) 分進める。
 		 */
-		cep->rcv_adv += cep->rcv_wnd;	/* rcv_adv: ��������Ԥ��Ƥ������� SEQ	*/
-						/* rcv_wnd: ������ǽ�ʥ�����ɥ�����		*/
+		cep->rcv_adv += cep->rcv_wnd;	/* rcv_adv: 受信を期待している最大の SEQ	*/
+						/* rcv_wnd: 受信可能なウィンドサイズ		*/
 
-		/* ̤��ǧ�κǾ����� SEQ (snd_una) �� SYN ʬ (1 �����ƥå�) �ʤ�롣*/
+		/* 未確認の最小送信 SEQ (snd_una) を SYN 分 (1 オクテット) 進める。*/
 		cep->snd_una ++;
 
 #ifdef TCP_CFG_DELAY_ACK
 
-		if (tcph->sum != 0)		/* tcph->sum �� SDU Ĺ */
+		if (tcph->sum != 0)		/* tcph->sum は SDU 長 */
 			cep->flags |= TCP_CEP_FLG_DEL_ACK;
 		else
 			cep->flags |= TCP_CEP_FLG_ACK_NOW;
@@ -630,9 +630,9 @@ syn_sent (T_TCP_HDR *tcph, T_TCP_CEP *cep)
 
 		if (cep->flags & TCP_CEP_FLG_NEED_FIN) {
 			/*
-			 *  CEP �� FIN �������׵ᤵ��Ƥ���С�
-			 *  ���ǽ����򳫻Ϥ���
-			 *  CEP �ξ��֤� FIN Wait 1 �ˤ��롣
+			 *  CEP で FIN 送信が要求されていれば、
+			 *  切断処理を開始し、
+			 *  CEP の状態を FIN Wait 1 にする。
 			 */
 			cep->fsm_state = TCP_FSM_FIN_WAIT_1;
 			cep->flags  &= ~TCP_CEP_FLG_NEED_FIN;
@@ -640,8 +640,8 @@ syn_sent (T_TCP_HDR *tcph, T_TCP_CEP *cep)
 			}
 		else {
 			/*
-			 *  ��꤫�� ACK ���������줿�Τǡ�
-			 *  CEP �ξ��֤� ���ͥ�������ߴ�λ���֤ˤ��롣
+			 *  相手から ACK が応答されたので、
+			 *  CEP の状態を コネクション開設完了状態にする。
 			 */
 			cep->timer[TCP_TIM_KEEP] = TCP_TVAL_KEEP_IDLE;
 			cep->fsm_state  = TCP_FSM_ESTABLISHED;
@@ -652,7 +652,7 @@ syn_sent (T_TCP_HDR *tcph, T_TCP_CEP *cep)
 
 			if (cep->snd_nblk_tfn == TFN_TCP_CON_CEP) {
 
-				/* ���Υ��ɥ쥹�򥳥ԡ����롣*/
+				/* 相手のアドレスをコピーする。*/
 				*cep->p_dstaddr = cep->dstaddr;
 
 				if (IS_PTR_DEFINED(cep->callback)) {
@@ -688,7 +688,7 @@ syn_sent (T_TCP_HDR *tcph, T_TCP_CEP *cep)
 			}
 		}
 	else {
-		/* ACK �ե饰���ʤ��Ȥ��ϡ�ACK �����äơ�CEP �ξ��֤� SYN �����Ѥߤˤ��롣*/
+		/* ACK フラグがないときは、ACK を送って、CEP の状態を SYN 受信済みにする。*/
 		cep->flags |= TCP_CEP_FLG_ACK_NOW;
 		cep->timer[TCP_TIM_REXMT] = 0;
 		cep->fsm_state  = TCP_FSM_SYN_RECVD;
@@ -698,37 +698,37 @@ syn_sent (T_TCP_HDR *tcph, T_TCP_CEP *cep)
 	}
 
 /*
- *  trim_length -- �������� SDU Ĺ��Ĵ�����롣
+ *  trim_length -- 受信した SDU 長を調整する。
  */
 
 static void
 trim_length (T_TCP_HDR *tcph, T_TCP_CEP *cep)
 {
 	tcph->seq ++;
-	if (tcph->sum > cep->rcv_wnd) {		/* ����: tcph->sum �� SDU Ĺ */
+	if (tcph->sum > cep->rcv_wnd) {		/* 注意: tcph->sum は SDU 長 */
 		/*
-		 *  SDU Ĺ������������ɥ���������礭���Ȥ��ϡ�����������ɥ������ʹߤ�
-		 *  �˴�����FIN �˱������ʤ����Ȥǡ��˴������ǡ�������������롣
+		 *  SDU 長が受信ウィンドサイズより大きいときは、受信ウィンドサイズ以降は
+		 *  破棄し、FIN に応答しないことで、破棄したデータを再送させる。
 		 */
 		tcph->sum    = (uint16_t)cep->rcv_wnd;
 		tcph->flags &= ~TCP_FLG_FIN;
 		}
-	cep->snd_wl1 = tcph->seq - 1;		/* cep->snd_wl1: ������ɹ��� SEQ �ֹ�	*/
+	cep->snd_wl1 = tcph->seq - 1;		/* cep->snd_wl1: ウィンド更新 SEQ 番号	*/
 
 #ifdef TCP_CFG_EXTENTIONS
-	cep->rcv_up  = tcph->seq;		/* cep->rcv_up : ���������۵ޥݥ���	*/
+	cep->rcv_up  = tcph->seq;		/* cep->rcv_up : 受信した緊急ポインタ	*/
 #endif
 	}
 
 /*
- *  proc_ack2 -- ACK �ν��� (2)
+ *  proc_ack2 -- ACK の処理 (2)
  *
- *    �����
+ *    戻り値
  *
- *      RET_OK		����
- *      RET_RETURN	����꥿���󤹤롣
- *	RET_DROP	���顼���������Ȥ��˴����롣
- *	RET_RST_DROP	���顼��RST �����������������Ȥ��˴����롣
+ *      RET_OK		正常
+ *      RET_RETURN	正常、リターンする。
+ *	RET_DROP	エラー、セグメントを破棄する。
+ *	RET_RST_DROP	エラー、RST を送信し、セグメントを破棄する。
  */
 
 static ER
@@ -742,35 +742,35 @@ proc_ack2 (T_NET_BUF *input, T_TCP_CEP *cep, uint_t thoff, bool_t *needoutput)
 	tcph = GET_TCP_HDR(input, thoff);
 
 	/*
-	 *  ���˼�����ǧ���줿 ACK ���顢�ޤ���ǧ����Ƥ��ʤ�
-	 *  �Ǿ����� SEQ (snd_una) ������ȡ�����������ɥХåե�����
-	 *  ������Ƥ褤�����ƥåȿ� (acked) �ˤʤ롣
+	 *  相手に受信確認された ACK から、まだ確認されていない
+	 *  最小送信 SEQ (snd_una) を引くと、送信ウィンドバッファから
+	 *  削除してよいオクテット数 (acked) になる。
 	 */
 	acked = tcph->ack - cep->snd_una;
 	NET_COUNT_TCP(net_count_tcp[NC_TCP_RECV_ACKS], 1);
 
 	/*
-	 *  �������ַ�¬ (rtt) �����ꤵ��Ƥ��ơ���¬���� SEQ ���
-	 *  ��� ACK ����������顢�����ޥХå����դ򥭥�󥻥뤷��
-	 *  ���������ޤ�����ꤹ�롣
+	 *  往復時間計測 (rtt) が設定されていて、計測開始 SEQ より
+	 *  後の ACK を受信したら、タイマバックオフをキャンセルし、
+	 *  再送タイマを再設定する。
 	 */
 	if (cep->rtt && SEQ_GT(tcph->ack, cep->rtseq)) {
 		set_rexmt_timer(cep, cep->rtt);
 		}
 
 	/*
-	 *  ���Ƥ�̤��ǧ�ǡ����� ACK ���줿�顢���������ޤ���ߤ���
-	 *  �Ƴ��򵭲����� (����˽��Ϥ���³)��
-	 *  �⤷��ACK ���٤��������¿���Υǡ���������ʤ顢���������ޤ�
-	 *  ���ߤκ��������ॢ���Ȥ����ꤹ�롣
+	 *  全ての未確認データが ACK されたら、再送タイマを停止し、
+	 *  再開を記憶する (さらに出力か持続)。
+	 *  もし、ACK すべき、さらに多くのデータがあるなら、再送タイマに
+	 *  現在の再送タイムアウトを設定する。
 	 */
-	if (tcph->ack == cep->snd_max) {	/* cep->snd_max: ������������ SEQ */
+	if (tcph->ack == cep->snd_max) {	/* cep->snd_max: 送信した最大 SEQ */
 
 #ifdef TCP_CFG_SWBUF_CSAVE
 
 		/*
-		 * ����������ɥХåե��ξʥ��ԡ���ǽ��ͭ���ξ��ϡ�
-		 * �����Ѥߤǡ�ACK����λ����ޤǺ��������ޤ��ѹ����ʤ���
+		 * 送信ウィンドバッファの省コピー機能が有効の場合は、
+		 * 送信済みで、ACKが完了するまで再送タイマを変更しない。
 		 */
 		if ((cep->flags & TCP_CEP_FLG_WBCS_MASK) == TCP_CEP_FLG_WBCS_ACKED)
 			cep->timer[TCP_TIM_REXMT] = 0;
@@ -784,30 +784,30 @@ proc_ack2 (T_NET_BUF *input, T_TCP_CEP *cep, uint_t thoff, bool_t *needoutput)
 		*needoutput = true;
 		}
 	else if (cep->timer[TCP_TIM_PERSIST] == 0) {
-	 	cep->timer[TCP_TIM_REXMT] = cep->rxtcur;	/* cep->rxtcur: ���ߤκ��������ॢ���� */
+	 	cep->timer[TCP_TIM_REXMT] = cep->rxtcur;	/* cep->rxtcur: 現在の再送タイムアウト */
 		}
 
-	/* ��꤬������ǧ�����ǡ���������Ȥ��ν��� */
+	/* 相手が受信確認したデータがあるときの処理 */
 	if (acked) {
-		uint32_t cw   = cep->snd_cwnd;	/* cep->snd_cwnd: ���ԥ�����ɥ�����	*/
-		uint32_t incr = cep->maxseg;		/* cep->maxseg:   ���祻�����ȥ�����	*/
+		uint32_t cw   = cep->snd_cwnd;	/* cep->snd_cwnd: 輻輳ウィンドサイズ	*/
+		uint32_t incr = cep->maxseg;		/* cep->maxseg:   最大セグメントサイズ	*/
 
 		/*
-		 *  ��������꤬������ǧ�����ǡ��������ä��Ȥ��ϡ�
-		 *  ���ԥ�����ɥ��������礭�����롣
-		 *  ���ԥ�����ɥ����� (snd_cwnd) ��
-		 *  ���ԥ�����ɥ������Τ������� (snd_ssthresh) ����礭���Ȥ���
-		 *  ���Բ��������Ԥ���
+		 *  新たに相手が受信確認したデータがあったときは、
+		 *  輻輳ウィンドサイズを大きくする。
+		 *  輻輳ウィンドサイズ (snd_cwnd) が
+		 *  輻輳ウィンドサイズのしきい値 (snd_ssthresh) より大きいときは
+		 *  輻輳回避制御を行い。
 		 *
 		 *    snd_cwnd = snd_cwnd + maxseg * maxseg / snd_cwnd;
 		 *
-		 *  ���������������Ȥ��ϡ��������������������Ԥ���
+		 *  等しいか小さいときは、スロースタート制御を行う。
 		 *
 		 *    snd_cwnd = snd_cwnd + maxseg
 		 *
 		 */
 		if (cw > cep->snd_ssthresh)
-			/* ���Բ������� */
+			/* 輻輳回避制御 */
 			incr = incr * incr / cw;
 
 		if (cw + incr < MAX_TCP_WIN_SIZE)
@@ -816,7 +816,7 @@ proc_ack2 (T_NET_BUF *input, T_TCP_CEP *cep, uint_t thoff, bool_t *needoutput)
 			cep->snd_cwnd = MAX_TCP_WIN_SIZE;
 
 		/*
-		 *  ����������ɥХåե����顢��꤬������ǧ�����ǡ����� (acked) �Υǡ����������롣
+		 *  送信ウィンドバッファから、相手が受信確認したデータ数 (acked) のデータを削除する。
 		 */
 		if (acked > cep->swbuf_count) {
 			cep->snd_wnd -= cep->swbuf_count;
@@ -829,55 +829,55 @@ proc_ack2 (T_NET_BUF *input, T_TCP_CEP *cep, uint_t thoff, bool_t *needoutput)
 			ourfinisacked = false;
 			}
 
-		/* ����������ɥХåե��˶������Ǥ������Ȥ��Τ餻�롣*/
+		/* 送信ウィンドバッファに空きができたことを知らせる。*/
 		syscall(set_flg(cep->snd_flgid, TCP_CEP_EVT_SWBUF_READY));
 
 		/*
-		 *  ��ã��ǧ����Ƥ��ʤ��Ǿ����� SEQ (snd_una) ��
-		 *  ������ã��ǧ���줿 ACK �ޤǿʤᡢ
-		 *  ���������ǡ����� SEQ (snd_nxt) �⡢������
-		 *  ��ã��ǧ����Ƥ��ʤ��Ǿ����� SEQ (snd_una)
-		 *  �ޤǿʤ�롣
+		 *  送達確認されていない最小送信 SEQ (snd_una) を
+		 *  今回送達確認された ACK まで進め、
+		 *  次の送信データの SEQ (snd_nxt) も、新しい
+		 *  送達確認されていない最小送信 SEQ (snd_una)
+		 *  まで進める。
 		 */
 		cep->snd_una += acked;
 		if (SEQ_LT(cep->snd_nxt, cep->snd_una))
 			cep->snd_nxt = cep->snd_una;
 
 		/*
-		 *  ���֤ˤ��ʬ��
+		 *  状態により分岐
 		 */
 		switch (cep->fsm_state) {
-		case TCP_FSM_FIN_WAIT_1:	/* APP ����λ��FIN �����Ѥߡ�ACK �Ԥ� */
+		case TCP_FSM_FIN_WAIT_1:	/* APP が終了、FIN 送信済み、ACK 待ち */
 			if (ourfinisacked) {
 				cep->fsm_state = TCP_FSM_FIN_WAIT_2;
 				cep->timer[TCP_TIM_2MSL] = TCP_TVAL_KEEP_COUNT * TCP_TVAL_KEEP_INTERVAL;
 				}
 			break;
-		case TCP_FSM_CLOSING:		/* Ʊ������������FIN �򴹺Ѥߡ�ACK �Ԥ� */
+		case TCP_FSM_CLOSING:		/* 同時クローズ、FIN 交換済み、ACK 待ち */
 			if (ourfinisacked) {
 				/*
-				 *  �������� FIN ����ǧ����Ƥ���о��֤��ѹ�����
-				 *  ���٤ƤΥ����ޤ�ꥻ�åȤ����塢2MSL �����ޤ����ꤹ�롣
+				 *  送信した FIN が確認されていれば状態を変更し、
+				 *  すべてのタイマをリセットした後、2MSL タイマを設定する。
 				 */
 				cep->fsm_state = TCP_FSM_TIME_WAIT;
 				tcp_cancel_timers(cep);
 				cep->timer[TCP_TIM_2MSL] = 2 * TCP_TVAL_MSL;
 				}
 			break;
-		case TCP_FSM_LAST_ACK:		/* APP ����λ��ACK �Ԥ� */
+		case TCP_FSM_LAST_ACK:		/* APP が終了、ACK 待ち */
 			if (ourfinisacked) {
 				/*
-				 *  �������� FIN ����ǧ����Ƥ���С�cep �򥯥���������
-				 *  �������Ȥ��˴����롣
+				 *  送信した FIN が確認されていれば、cep をクローズし、
+				 *  セグメントを破棄する。
 				 */
 				cep = tcp_close(cep);
 				ret = RET_DROP;
 				}
 			break;
-		case TCP_FSM_TIME_WAIT:		/* ��꤫��� FIN �����Ѥߡ������Ԥ� */
+		case TCP_FSM_TIME_WAIT:		/* 相手からの FIN 受信済み、時間待ち */
 			/*
-			 *  ��꤫�� FIN ���������줿���⤦����2MSL �����ޤ����ꤷ��
-			 *  ACK �����塢�������Ȥ��˴����롣
+			 *  相手から FIN が再送された。もう一度2MSL タイマを設定し、
+			 *  ACK 送信後、セグメントを破棄する。
 			 */
 			cep->timer[TCP_TIM_2MSL] = 2 * TCP_TVAL_MSL;
 			return drop_after_ack(input, cep, thoff);
@@ -888,13 +888,13 @@ proc_ack2 (T_NET_BUF *input, T_TCP_CEP *cep, uint_t thoff, bool_t *needoutput)
 	}
 
 /*
- *  proc_ack1 -- ACK �ν��� (1)
+ *  proc_ack1 -- ACK の処理 (1)
  *
- *    �����:
- *      RET_OK		����
- *      RET_RETURN	����꥿���󤹤롣
- *	RET_DROP	���顼���������Ȥ��˴����롣
- *	RET_RST_DROP	���顼��RST �����������������Ȥ��˴����롣
+ *    戻り値:
+ *      RET_OK		正常
+ *      RET_RETURN	正常、リターンする。
+ *	RET_DROP	エラー、セグメントを破棄する。
+ *	RET_RST_DROP	エラー、RST を送信し、セグメントを破棄する。
  *
  */
 
@@ -904,9 +904,9 @@ proc_ack1 (T_NET_BUF *input, T_TCP_CEP *cep, uint_t thoff, bool_t *needoutput)
 	T_TCP_HDR *tcph = GET_TCP_HDR(input, thoff);
 
 	switch (cep->fsm_state) {
-	case TCP_FSM_SYN_RECVD:		/* SYN ���������SYN �����Ѥ�	*/
+	case TCP_FSM_SYN_RECVD:		/* SYN を受信し、SYN 送信済み	*/
 
-		/* ���֤��ѹ����롣*/
+		/* 状態を変更する。*/
 		if (cep->flags & TCP_CEP_FLG_NEED_FIN) {
 			cep->fsm_state  = TCP_FSM_FIN_WAIT_1;
 			cep->flags &= ~TCP_CEP_FLG_NEED_FIN;
@@ -915,7 +915,7 @@ proc_ack1 (T_NET_BUF *input, T_TCP_CEP *cep, uint_t thoff, bool_t *needoutput)
 			cep->timer[TCP_TIM_KEEP] = TCP_TVAL_KEEP_IDLE;
 			cep->fsm_state  = TCP_FSM_ESTABLISHED;
 
-			/* TCP �̿�ü������TCP ���ո���������롣*/
+			/* TCP 通信端点からTCP 受付口を解放する。*/
 			cep->rep = NULL;
 
 			syscall(set_flg(cep->est_flgid, TCP_CEP_EVT_ESTABLISHED));
@@ -924,7 +924,7 @@ proc_ack1 (T_NET_BUF *input, T_TCP_CEP *cep, uint_t thoff, bool_t *needoutput)
 
 			if (cep->rcv_nblk_tfn == TFN_TCP_ACP_CEP) {
 
-				/* ���Υ��ɥ쥹�򥳥ԡ����롣*/
+				/* 相手のアドレスをコピーする。*/
 				*cep->p_dstaddr = cep->dstaddr;
 
 				if (IS_PTR_DEFINED(cep->callback)) {
@@ -960,7 +960,7 @@ proc_ack1 (T_NET_BUF *input, T_TCP_CEP *cep, uint_t thoff, bool_t *needoutput)
 
 			if (cep->snd_nblk_tfn == TFN_TCP_CON_CEP) {
 
-				/* ���Υ��ɥ쥹�򥳥ԡ����롣*/
+				/* 相手のアドレスをコピーする。*/
 				*cep->p_dstaddr = cep->dstaddr;
 
 				if (IS_PTR_DEFINED(cep->callback)) {
@@ -1008,46 +1008,46 @@ proc_ack1 (T_NET_BUF *input, T_TCP_CEP *cep, uint_t thoff, bool_t *needoutput)
 			}
 
 		/*
-		 *  SDU ���ʤ� FIN ���Ĥ��Ƥ��ʤ���С�tcp_move_ra2rw() ��ƽФ���
+		 *  SDU がなく FIN がついていなければ、tcp_move_ra2rw() を呼出す。
 		 */
-		if (tcph->sum == 0 && (tcph->flags & TCP_FLG_FIN) == 0)		/* tcph->sum �� SDU Ĺ */
+		if (tcph->sum == 0 && (tcph->flags & TCP_FLG_FIN) == 0)		/* tcph->sum は SDU 長 */
 			tcph->flags = tcp_move_ra2rw(cep, tcph->flags);
 		
-		cep->snd_wl1 = tcph->seq - 1;	/* snd_wl1: ������ɹ��� SEQ */
+		cep->snd_wl1 = tcph->seq - 1;	/* snd_wl1: ウィンド更新 SEQ */
 
-		/* break; ��������롣*/
+		/* break; 下に落ちる。*/
 	
-	case TCP_FSM_ESTABLISHED:	/* ���ͥ�������ߴ�λ		*/
-	case TCP_FSM_FIN_WAIT_1:	/* ��λ���ơ�FIN �����Ѥ�		*/
-	case TCP_FSM_FIN_WAIT_2:	/* ��λ��FIN ��ã��ǧ������FIN�Ԥ�*/
-	case TCP_FSM_CLOSE_WAIT:	/* FIN ���������������Ԥ�		*/
-	case TCP_FSM_CLOSING:		/* ��λ��FIN �򴹺Ѥߡ�ACK �Ԥ�	*/
-	case TCP_FSM_LAST_ACK:		/* FIN ��������λ��ACK �Ԥ�	*/
-	case TCP_FSM_TIME_WAIT:		/* ��λ�������Ԥ�		*/
+	case TCP_FSM_ESTABLISHED:	/* コネクション開設完了		*/
+	case TCP_FSM_FIN_WAIT_1:	/* 終了して、FIN 送信済み		*/
+	case TCP_FSM_FIN_WAIT_2:	/* 終了、FIN 伝達確認受信、FIN待ち*/
+	case TCP_FSM_CLOSE_WAIT:	/* FIN 受信、クローズ待ち		*/
+	case TCP_FSM_CLOSING:		/* 終了、FIN 交換済み、ACK 待ち	*/
+	case TCP_FSM_LAST_ACK:		/* FIN 受信、終了、ACK 待ち	*/
+	case TCP_FSM_TIME_WAIT:		/* 終了、時間待ち		*/
 
 		if (SEQ_LE(tcph->ack, cep->snd_una)) {
 
 			/*
-			 *  ������ǧ ACK �� ̤��ǧ�κǾ����� SEQ (snd_una) ��Ʊ���������ΤȤ��ν���
-			 *  �Ĥޤꡢ¿�Ť� ACK ������������Ȥ��̣���Ƥ��롣
+			 *  受信確認 ACK が 未確認の最小送信 SEQ (snd_una) と同じか以前のときの処理
+			 *  つまり、多重に ACK を受信したことを意味している。
 			 */
 
-			if (tcph->sum == 0 && tcph->win == cep->snd_wnd) {	/* tcph->sum �� SDU Ĺ */
+			if (tcph->sum == 0 && tcph->win == cep->snd_wnd) {	/* tcph->sum は SDU 長 */
 
 				/*
-				 *  SDU ���ʤ������Υ�����ɥ��������ѹ�����Ƥ��ʤ���С�
-				 *  ���Ǥ����������������Ȥ���ǡ�ACK (tcph->ack) ��
-				 *  Ʊ�� SEQ ����Ϥޤ륻�����Ȥ�������Ǿü�������ǽ�������롣
-				 *  ���ξ��ϡ���®��ž���ȹ�®�ꥫ�Х��Ԥ���
+				 *  SDU がなく、相手のウィンドサイズが変更されていなければ、
+				 *  すでに送信したセグメントの中で、ACK (tcph->ack) と
+				 *  同じ SEQ から始まるセグメントが、途中で消失した可能性がある。
+				 *  この場合は、高速再転送と高速リカバリを行う。
 				 */
 				NET_COUNT_TCP(net_count_tcp[NC_TCP_RECV_DUP_ACKS], 1);
 
 				if (cep->timer[TCP_TIM_REXMT] == 0 || tcph->ack != cep->snd_una) {
 
 					/*
-					 *  ���������ޤ����åȤ���Ƥ��ʤ��Ȥ���
-					 *  �ޤ��ϡ�ACK (tcph->ack) ��̤��ǧ�κǾ����� SEQ��
-					 *  ���פ��ʤ��Ȥ��ϡ�¿�� ACK ���� 0 �ˤ��롣
+					 *  再送タイマがセットされていないとき、
+					 *  または、ACK (tcph->ack) と未確認の最小送信 SEQが
+					 *  一致しないときは、多重 ACK 数を 0 にする。
 					 */
 					cep->dupacks = 0;
 					}
@@ -1055,17 +1055,17 @@ proc_ack1 (T_NET_BUF *input, T_TCP_CEP *cep, uint_t thoff, bool_t *needoutput)
 				else if (++ cep->dupacks == MAX_TCP_REXMT_THRESH) {
 
 					/*
-					 *  ¿�� ACK ������������ (ɸ�� 3) �ˤʤä���
-					 *  ��®��ž�������򳫻Ϥ��롣
+					 *  多重 ACK 数がしきい値 (標準 3) になったら
+					 *  高速再転送処理を開始する。
 					 */
 					uint_t		win;
 
 					/*
-					 *  ���ԥ�����ɥ�����(snd_cwnd)�Τ������ͤ����ꤹ�롣
+					 *  輻輳ウィンドサイズ(snd_cwnd)のしきい値を設定する。
 					 *
-					 *    ���μ�����ǽ������ɥ����� (snd_wnd) ��
-					 *    ���ԥ�����ɥ����� (snd_cwnd) �� 1/2��
-					 *    ��������2 * maxseg �ʾ塣
+					 *    相手の受信可能ウィンドサイズ (snd_wnd) か
+					 *    輻輳ウィンドサイズ (snd_cwnd) の 1/2。
+					 *    ただし、2 * maxseg 以上。
 					 *
 					 */
 					if (cep->snd_wnd < cep->snd_cwnd)
@@ -1076,18 +1076,18 @@ proc_ack1 (T_NET_BUF *input, T_TCP_CEP *cep, uint_t thoff, bool_t *needoutput)
 						win = 2;
 					cep->snd_ssthresh = win * cep->maxseg;
 
-					/* ���������ޤȱ������֤�ꥻ�åȤ��롣*/
+					/* 再送タイマと往復時間をリセットする。*/
 					cep->timer[TCP_TIM_REXMT] = 0;
 					cep->rtt = 0;
 
-					/* �ü������������Ȥ��������롣*/
+					/* 消失したセグメントを送信する。*/
 					cep->snd_old_nxt = cep->snd_nxt;
 					cep->snd_nxt     = tcph->ack;
 					cep->snd_cwnd    = cep->maxseg;
 
 					/*
-					 *  snd_nxt �򸵤��᤹�褦�����ꤷ��
-					 *  ������ؼ����롣
+					 *  snd_nxt を元に戻すように設定して
+					 *  送信を指示する。
 					 */
 					cep->flags |=  TCP_CEP_FLG_POST_OUTPUT |
 					               TCP_CEP_FLG_FORCE       |
@@ -1095,7 +1095,7 @@ proc_ack1 (T_NET_BUF *input, T_TCP_CEP *cep, uint_t thoff, bool_t *needoutput)
 					               TCP_CEP_FLG_RESTORE_NEXT_OUTPUT;
 					sig_sem(SEM_TCP_POST_OUTPUT);
 
-					/* ���ԥ�����ɥ������򹹿����롣*/
+					/* 輻輳ウィンドサイズを更新する。*/
 					cep->snd_cwnd = (uint16_t)(cep->snd_ssthresh
 					                   + cep->maxseg * cep->dupacks);
 					
@@ -1105,12 +1105,12 @@ proc_ack1 (T_NET_BUF *input, T_TCP_CEP *cep, uint_t thoff, bool_t *needoutput)
 				else if (cep->dupacks > MAX_TCP_REXMT_THRESH) {
 
 					/*
-					 *  ¿�� ACK ������������ (ɸ�� 3) ��Ķ������
-					 *  ���ԥ�����ɥ����������ä��ʤ���������롣
+					 *  多重 ACK 数がしきい値 (標準 3) を超えたら
+					 *  輻輳ウィンドサイズを増加しながら再送する。
 					 */
 					cep->snd_cwnd += cep->maxseg;
 
-					/* ������ؼ����롣*/
+					/* 送信を指示する。*/
 					cep->flags |=  TCP_CEP_FLG_POST_OUTPUT;
 					sig_sem(SEM_TCP_POST_OUTPUT);
 
@@ -1123,11 +1123,11 @@ proc_ack1 (T_NET_BUF *input, T_TCP_CEP *cep, uint_t thoff, bool_t *needoutput)
 			}
 
 		/*
-		 *  ������ǧ ACK �� ̤��ǧ�κǾ����� SEQ (snd_una) �ʹߤΤȤ��ν���
+		 *  受信確認 ACK が 未確認の最小送信 SEQ (snd_una) 以降のときの処理
 		 */
 		if (cep->dupacks >= MAX_TCP_REXMT_THRESH && cep->snd_cwnd > cep->snd_ssthresh)
 		 	/*
-			 *  ��®��ž����ԤäƤ����Ȥ��ϡ����ԥ�����ɥ������򤷤����ͤޤ��᤹��
+			 *  高速再転送を行っていたときは、輻輳ウィンドサイズをしきい値まで戻す。
 			 */
 			cep->snd_cwnd = (uint16_t)cep->snd_ssthresh;
 	
@@ -1135,13 +1135,13 @@ proc_ack1 (T_NET_BUF *input, T_TCP_CEP *cep, uint_t thoff, bool_t *needoutput)
 
 		if (SEQ_GT(tcph->ack, cep->snd_max))
 			/*
-			 *  �������� ACK �������������� SEQ ��Ķ���Ƥ����Ȥ��ν���
+			 *  受信した ACK が送信した最大 SEQ を超えていたときの処理
 			 */
 			return drop_after_ack(input, cep, thoff);
 
 		if (cep->flags & TCP_CEP_FLG_NEED_SYN) {
 			/*
-			 *  SYN �����׵����ä��ơ�̤��ǧ�κǾ����� SEQ ��ʤ�롣
+			 *  SYN 送信要求を取り消して、未確認の最小送信 SEQ を進める。
 			 */
 			cep->flags &= ~TCP_CEP_FLG_NEED_SYN;
 			cep->snd_una ++;
@@ -1154,9 +1154,9 @@ proc_ack1 (T_NET_BUF *input, T_TCP_CEP *cep, uint_t thoff, bool_t *needoutput)
 	}
 
 /*
- *  update_wnd -- ������ɥ������򹹿����롣
+ *  update_wnd -- ウィンドサイズを更新する。
  *
- *    �����: ������ɬ�פʤ� true ���֤���
+ *    戻り値: 送信が必要なら true を返す。
  */
 
 static bool_t
@@ -1164,14 +1164,14 @@ update_wnd (T_TCP_HDR *tcph, T_TCP_CEP *cep)
 {
 
 	/*
-	 *  �������
+	 *  更新条件
 	 *
-	 *    ACK �ե饰�����åȤ���Ƥ��� &&
-	 *    (���󥦥���ɤ򹹿����� SEQ (snd_wl1) �� SEQ ����� ||
-	 *     ���󥦥���ɤ򹹿����� SEQ (snd_wl1) �� SEQ ��Ʊ�� &&
-	 *     (���󥦥���ɤ򹹿����� ACK (snd_wl2) �� ACK ����� ||
-	 *      (���󥦥���ɤ򹹿����� ACK (snd_wl2) �� ACK ��Ʊ�� &&
-	 *       WIN �����μ�����ǽ������ɥ����� (snd_wnd) ����礭��
+	 *    ACK フラグがセットされている &&
+	 *    (前回ウィンドを更新した SEQ (snd_wl1) が SEQ より前 ||
+	 *     前回ウィンドを更新した SEQ (snd_wl1) が SEQ と同じ &&
+	 *     (前回ウィンドを更新した ACK (snd_wl2) が ACK より前 ||
+	 *      (前回ウィンドを更新した ACK (snd_wl2) が ACK と同じ &&
+	 *       WIN が相手の受信可能ウィンドサイズ (snd_wnd) より大きい
 	 *       )
 	 *      )
 	 *     )
@@ -1187,7 +1187,7 @@ update_wnd (T_TCP_HDR *tcph, T_TCP_CEP *cep)
 		cep->snd_wl2 = tcph->ack;
 
 		if (cep->snd_wnd > cep->max_sndwnd)
-			/* ���ޤǤκ�������������ɥ������򹹿����롣*/
+			/* 今までの最大送信ウィンドサイズを更新する。*/
 			cep->max_sndwnd = cep->snd_wnd;
 
 #ifdef TCP_CFG_SWBUF_CSAVE
@@ -1195,14 +1195,14 @@ update_wnd (T_TCP_HDR *tcph, T_TCP_CEP *cep)
 		if ((cep->flags & TCP_CEP_FLG_WBCS_MASK) == TCP_CEP_FLG_WBCS_WOPEN_PEND) {
 
 			/*
-			 *  ����������ɥХåե��ѤΥͥåȥ���Хåե����������ǡ�
-			 *  ���μ���������ɤ������Τ��ԤäƤ���Ȥ��ν���
+			 *  送信ウィンドバッファ用のネットワークバッファ割り当て中で、
+			 *  相手の受信ウィンドが空くのを待っているときの処理
 			 */
 			if (cep->snd_wnd > 0) {
 
 				/*
-				 *  ���μ���������ɤ��������Ȥ��ϡ�
-				 *  ����������ɥХåե��ѤΥͥåȥ���Хåե�������Ƥ�Ƴ����롣
+				 *  相手の受信ウィンドが空いたときは、
+				 *  送信ウィンドバッファ用のネットワークバッファ割り当てを再開する。
 				 */
 				cep->flags = (cep->flags & ~TCP_CEP_FLG_WBCS_MASK)
 				                         |  TCP_CEP_FLG_WBCS_FREE |  TCP_CEP_FLG_POST_OUTPUT;
@@ -1219,7 +1219,7 @@ update_wnd (T_TCP_HDR *tcph, T_TCP_CEP *cep)
 	}
 
 /*
- *  proc_urg -- �۵ޥǡ����Ĥ��Υ������Ȥν���
+ *  proc_urg -- 緊急データつきのセグメントの処理
  */
 
 #ifdef TCP_CFG_EXTENTIONS
@@ -1230,28 +1230,28 @@ proc_urg (T_TCP_HDR *tcph, T_TCP_CEP *cep)
 	if ((tcph->flags & TCP_FLG_URG) && VALID_URG_POINTER(tcph->urp) &&
 	    TCP_FSM_HAVE_RCVD_FIN(cep->fsm_state) == 0) {
 
-		/* �۵ޥǡ����Ĥ��Υ������Ȥν��� */
+		/* 緊急データつきのセグメントの処理 */
 
 		NET_COUNT_TCP(net_count_tcp[NC_TCP_RECV_URG_SEGS], 1);
 		if (tcph->urp + cep->rwbuf_count > cep->rbufsz) {
 
 			/*
-			 *  �۵ޥݥ��󥿤ΰ��֤�����������ɥХåե���
-			 *  �ϰϤ�Ķ����Ȥ��ϲ��⤷�ʤ���
+			 *  緊急ポインタの位置が受信ウィンドバッファの
+			 *  範囲を超えるときは何もしない。
 			 */
 			tcph->urp    = 0;
 			tcph->flags &= ~TCP_FLG_URG;
 			}
 
 		if (SEQ_GT(tcph->seq + tcph->urp, cep->rcv_up))
-			/* �۵ޥݥ��󥿤��������줿�Ȥ��ν��� */
+			/* 緊急ポインタが更新されたときの処理 */
 			cep->rcv_up = tcph->seq + tcph->urp;
 
-		if ((tcph->flags & TCP_FLG_URG) && (tcph->urp + TCP_CFG_URG_OFFSET) < tcph->sum) {	/* tcph->sum �� TCP �� SDU Ĺ */
+		if ((tcph->flags & TCP_FLG_URG) && (tcph->urp + TCP_CFG_URG_OFFSET) < tcph->sum) {	/* tcph->sum は TCP の SDU 長 */
 
 			/*
-			 *  �۵ޥݥ��󥿤ΰ��֤������������������������ξ��ϡ�
-			 *  ������Хå��ؿ���ƤӽФ���
+			 *  緊急ポインタの位置が、今回受信したセグメント内の場合は、
+			 *  コールバック関数を呼び出す。
 			 */
 			cep->urg_tcph = tcph;
 			if (IS_PTR_DEFINED(cep->callback)) {
@@ -1274,14 +1274,14 @@ proc_urg (T_TCP_HDR *tcph, T_TCP_CEP *cep)
 				}
 
 			if (cep->urg_tcph != NULL) {
-				/* ������Хå��ؿ���� tcp_rcv_oob() ��ƽФ��ʤ��ä���*/
+				/* コールバック関数内で tcp_rcv_oob() を呼出さなかった。*/
 				cep->urg_tcph = NULL;
 				tcph->urp = 0;
 				}
 			else {
 				/* 
-				 *  ������Хå��ؿ���� tcp_rcv_oob() ��ƽФ������ϡ�
-				 *  SDU Ĺ�������ͤ����ꤹ�롣
+				 *  コールバック関数内で tcp_rcv_oob() を呼出した時は、
+				 *  SDU 長の補正値を設定する。
 				 */
 				tcph->urp = 1;
 				}
@@ -1308,11 +1308,11 @@ proc_urg (T_TCP_HDR *tcph, T_TCP_CEP *cep)
 #endif	/* of #ifdef TCP_CFG_EXTENTIONS */
 
 /*
- *  drop_after_ack -- �����������Ȥ��˴������塢ACK ���֤� (����: ̾���ȤϹ�äƤ��ʤ�)��
+ *  drop_after_ack -- 受信セグメントを破棄した後、ACK を返す (注意: 名前とは合っていない)。
  *
- *    �����:
- *      RET_RETURN	����꥿���󤹤롣
- *	RET_RST_DROP	���顼��RST �����������������Ȥ��˴����롣
+ *    戻り値:
+ *      RET_RETURN	正常、リターンする。
+ *	RET_RST_DROP	エラー、RST を送信し、セグメントを破棄する。
  */
 
 static ER
@@ -1321,10 +1321,10 @@ drop_after_ack (T_NET_BUF *input, T_TCP_CEP *cep, uint_t thoff)
 	T_TCP_HDR *tcph = GET_TCP_HDR(input, thoff);
 
 	/*
-	 *    SYN �������֤ǡ�ACK ����ã��ǧ����Ƥ��ʤ��Ǿ����� SEQ (snd_una) ���
-	 *    �����ͤ����������줿���� SEQ (snd_max) ������ͤξ��ϡ����� RST ��
-	 *    ���äƽ�λ���롣����ϡ�"LAND" DoS ����ؤ��ɸ�Ǥ��ꡢ��¤���줿 SYN
-	 *    �������Ȥ��������ĤŤ���ݡ��ȴ֤Ǥ� ACK ���ȡ�����ɤ���
+	 *    SYN 受信状態で、ACK が送達確認されていない最小送信 SEQ (snd_una) より
+	 *    前の値か、送信された最大 SEQ (snd_max) より後の値の場合は、相手に RST を
+	 *    送って終了する。これは、"LAND" DoS 攻撃への防御であり、偽造された SYN
+	 *    セグメントを送信しつづけるポート間での ACK ストームを防ぐ。
 	 */
 	if (cep->fsm_state == TCP_FSM_SYN_RECVD && (tcph->flags & TCP_FLG_ACK) &&
 	    (SEQ_GT(cep->snd_una, tcph->ack) ||
@@ -1333,14 +1333,14 @@ drop_after_ack (T_NET_BUF *input, T_TCP_CEP *cep, uint_t thoff)
 
 	syscall(rel_net_buf(input));
 
-	/* ������ؼ����롣*/
+	/* 送信を指示する。*/
 	cep->flags |=  TCP_CEP_FLG_ACK_NOW | TCP_CEP_FLG_POST_OUTPUT;
 	sig_sem(SEM_TCP_POST_OUTPUT);
 	return RET_RETURN;
 	}
 
 /*
- *  close_connection -- ���ͥ����������������꤫�� FIN �����������
+ *  close_connection -- コネクション開放処理、相手から FIN を受信した。
  */
 
 static void
@@ -1365,38 +1365,38 @@ close_connection (T_TCP_CEP *cep, bool_t *needoutput)
 		}
 
 	switch (cep->fsm_state) {
-	case TCP_FSM_SYN_RECVD:		/* SYN ���������SYN �����Ѥ�	*/
-	case TCP_FSM_ESTABLISHED:	/* ���ͥ�������ߴ�λ		*/
+	case TCP_FSM_SYN_RECVD:		/* SYN を受信し、SYN 送信済み	*/
+	case TCP_FSM_ESTABLISHED:	/* コネクション開設完了		*/
 		cep->fsm_state = TCP_FSM_CLOSE_WAIT;
 		break;
 
-	case TCP_FSM_FIN_WAIT_1:	/* APP ����λ��FIN �����Ѥߡ�ACK �Ԥ� */
+	case TCP_FSM_FIN_WAIT_1:	/* APP が終了、FIN 送信済み、ACK 待ち */
 		cep->fsm_state = TCP_FSM_CLOSING;
 		break;
 
-	case TCP_FSM_FIN_WAIT_2:	/* ��꤫��� FIN �Ԥ� */
+	case TCP_FSM_FIN_WAIT_2:	/* 相手からの FIN 待ち */
 		cep->fsm_state = TCP_FSM_TIME_WAIT;
 		tcp_cancel_timers(cep);
 		cep->timer[TCP_TIM_2MSL] = 2 * TCP_TVAL_MSL;
 
 		/*
-		 *  FIN WAIT 2 ���֤Ǥϡ�
-		 *  �����ϲ�ǽ�Ǥ��뤬�����Ǥ������Ͻ�λ���Ƥ��롣
-		 *  ���������⽪λ�����Τǡ����ϥ������Τߵ������롣
+		 *  FIN WAIT 2 状態では、
+		 *  受信は可能であるが、すでに送信は終了している。
+		 *  相手の送信も終了したので、入力タスクのみ起床する。
 		 */
 		syscall(set_flg(cep->snd_flgid, TCP_CEP_EVT_SWBUF_READY));
 
 #if defined(NUM_TCP_TW_CEP_ENTRY) && NUM_TCP_TW_CEP_ENTRY > 0
 
-		/* ��꤫��� FIN ���Ф��Ʊ������֤���*/
+		/* 相手からの FIN に対して応答を返す。*/
 		tcp_respond(NULL, cep, cep->rcv_nxt, cep->snd_una,
 		            cep->rbufsz - cep->rwbuf_count, TCP_FLG_ACK);
 		cep->flags &= ~TCP_CEP_FLG_ACK_NOW;
 		*needoutput = false;
 
 		/*
-		 *  ɬ�פʾ���� Time Wait �� TCP �̿�ü���˰ܤ��ơ�
-		 *  ɸ��� TCP �̿�ü���������롣
+		 *  必要な情報を Time Wait 用 TCP 通信端点に移して、
+		 *  標準の TCP 通信端点を開放する。
 		 */
 		tcp_move_twcep(cep);
 
@@ -1404,16 +1404,16 @@ close_connection (T_TCP_CEP *cep, bool_t *needoutput)
 
 		break;
 
-	case TCP_FSM_TIME_WAIT:		/* ��꤫��� FIN �����Ѥߡ������Ԥ� */
+	case TCP_FSM_TIME_WAIT:		/* 相手からの FIN 受信済み、時間待ち */
 		cep->timer[TCP_TIM_2MSL] = 2 * TCP_TVAL_MSL;
 		break;
 		}
 	}
 
 /*
- *  tcp_input -- TCP �����ϴؿ�
+ *  tcp_input -- TCP の入力関数
  *
- *	����: input �ˤ� IF �إå��� IP �إå�����Ƭ�ˤ��롣
+ *	注意: input には IF ヘッダと IP ヘッダが先頭にある。
  */
 
 uint_t
@@ -1440,7 +1440,7 @@ tcp_input (T_NET_BUF **inputp, uint_t *offp, uint_t *nextp)
 	NET_COUNT_TCP(net_count_tcp[NC_TCP_RECV_SEGS], 1);
 	NET_COUNT_MIB(tcp_stats.tcpInSegs, 1);
 
-	/* �إå�Ĺ������å����롣*/
+	/* ヘッダ長をチェックする。*/
 	if (input->len < IF_IP_TCP_HDR_SIZE) {
 		NET_COUNT_TCP(net_count_tcp[NC_TCP_RECV_BAD_HEADERS], 1);
 		goto drop;
@@ -1449,28 +1449,28 @@ tcp_input (T_NET_BUF **inputp, uint_t *offp, uint_t *nextp)
 	iph  = GET_IP_HDR(input);
 	tcph = GET_TCP_HDR(input, *offp);
 
-	seglen  = input->len - *offp;				/* TCP �Υ�������Ĺ */
+	seglen  = input->len - *offp;				/* TCP のセグメント長 */
 
 	if (IN_CKSUM(input, IPPROTO_TCP, *offp, (uint_t)seglen) != 0) {
 		NET_COUNT_TCP(net_count_tcp[NC_TCP_RECV_BAD_CKSUMS], 1);
 		goto drop;
 		}
 
-	/* TCP �إå�Ĺ������å����롣*/
+	/* TCP ヘッダ長をチェックする。*/
 	if (TCP_HDR_LEN(tcph->doff) < TCP_HDR_SIZE || TCP_HDR_LEN(tcph->doff) > seglen) {
 		NET_COUNT_TCP(net_count_tcp[NC_TCP_RECV_BAD_HEADERS], 1);
 		goto drop;
 		}
-	tcph->sum = seglen - TCP_HDR_LEN(tcph->doff);		/* �������� tcph->sum �� TCP �� SDU Ĺ */
+	tcph->sum = seglen - TCP_HDR_LEN(tcph->doff);		/* ここから tcph->sum は TCP の SDU 長 */
 
 	/*
-	 *  SYN �� FIN ��ξ�ӥåȤ����åȤ���Ƥ�����˴����롣nmap �����к�
-	 *  ��������RFC1644 T/TCP ��ĥ��ǽ�ȶ��礹�롣
+	 *  SYN と FIN の両ビットがセットされていれば破棄する。nmap 等の対策
+	 *  ただし、RFC1644 T/TCP 拡張機能と競合する。
 	 */
 	if ((tcph->flags & (TCP_FLG_SYN | TCP_FLG_FIN)) == (TCP_FLG_SYN | TCP_FLG_FIN))
 		goto drop;
 
-	/* �ͥåȥ��������������ۥ��ȥ����������Ѵ����롣*/
+	/* ネットワークオーダーからホストオーダーに変換する。*/
 
 	NTOHL(tcph->seq);
 	NTOHL(tcph->ack);
@@ -1484,22 +1484,22 @@ find_cep:
 #if defined(NUM_TCP_TW_CEP_ENTRY) && NUM_TCP_TW_CEP_ENTRY > 0
 
 	/*
-	 *  ���֤� Time Wait ��� CEP ��õ�����롣
+	 *  状態が Time Wait 中の CEP を探索する。
 	 */
 	twcep = tcp_find_twcep(&iph->dst, tcph->dport, &iph->src, tcph->sport);
 	if (twcep != NULL) {
 
-		if (tcph->flags & TCP_FLG_RST)		/* RST �ե饰����������Ȥ���̵�뤹�롣*/
+		if (tcph->flags & TCP_FLG_RST)		/* RST フラグを受信したときは無視する。*/
 			goto drop;
 		else {
 
 			/*
-			 *    TCP �̿�ü���� Time Wait �λ������ۥ��Ȥ��饻�����Ȥ��褿�Ȥ��ϡ�
-			 *    ���ۥ��Ȥ� FIN ���Ф��뼫�ۥ��Ȥ� ACK �������Ȥ������
-			 *    »���������Ȥ��̣���Ƥ���Τǡ�ACK �������Ȥ�������롣
+			 *    TCP 通信端点が Time Wait の時、相手ホストからセグメントが来たときは、
+			 *    相手ホストの FIN に対する自ホストの ACK セグメントが途中で
+			 *    損失したことを意味しているので、ACK セグメントを再送する。
 			 */
 
-			/* �ۥ��ȥ�����������ͥåȥ�������������᤹��*/
+			/* ホストオーダーからネットワークオーダーに戻す。*/
 			HTONS(tcph->sport);
 			HTONS(tcph->dport);
 
@@ -1508,18 +1508,18 @@ find_cep:
 		return IPPROTO_DONE;
 		}
 	else
-		/* ɸ��� TCP �̿�ü�������롣*/
+		/* 標準の TCP 通信端点を得る。*/
 		cep = tcp_find_cep(&iph->dst, tcph->dport, &iph->src, tcph->sport);
 
 #else	/* of #if defined(NUM_TCP_TW_CEP_ENTRY) && NUM_TCP_TW_CEP_ENTRY > 0 */
 
-	/* TCP �̿�ü�������롣*/
+	/* TCP 通信端点を得る。*/
 	cep = tcp_find_cep(&iph->dst, tcph->dport, &iph->src, tcph->sport);
 
 #endif	/* of #if defined(NUM_TCP_TW_CEP_ENTRY) && NUM_TCP_TW_CEP_ENTRY > 0 */
 
 	/*
-	 *  TCP �̿�ü�����ʤ����� CEP �ξ��֤����������ʤ��˴����롣
+	 *  TCP 通信端点がない場合と CEP の状態がクローズなら破棄する。
 	 */
 	if (cep == NULL) {
 		syslog(LOG_INFO, "[TCP] unexp port: %d.", tcph->dport);
@@ -1537,29 +1537,29 @@ find_cep:
 		goto drop;
 
 	/*
-	 *  ���ͥ�������ߺѤߤǥ������Ȥ���������Ȥ��ϡ�
-	 *  �����ɥ���֤���¸��ǧ�����ޤ�ꥻ�åȤ��롣
+	 *  コネクション開設済みでセグメントを受信したときは、
+	 *  アイドル時間と生存確認タイマをリセットする。
 	 */
 	cep->idle = 0;
 	if (TCP_FSM_HAVE_ESTABLISHED(cep->fsm_state)) {
 		cep->timer[TCP_TIM_KEEP] = TCP_TVAL_KEEP_IDLE;
 		}
 
-	/* CEP �ξ��֤� LISTEN �ʳ��λ��ϡ����ץ�����������롣*/
+	/* CEP の状態が LISTEN 以外の時は、オプションを処理する。*/
 	if (cep->fsm_state != TCP_FSM_LISTEN)
 		parse_option(tcph, cep);
 
 	/*
-	 *  ������ǽ������ɥ�������׻����롣
+	 *  受信可能ウィンドサイズを計算する。
 	 *
-	 *  rcv_nxt:     ��������Ԥ��Ƥ���Ǿ��� SEQ�ʤ�������ϼ����Ѥߡ�
-	 *  rcv_adv:     ��������Ԥ��Ƥ������� SEQ
-	 *  rbufsz:      ����������ɥХåե�������
-	 *  rwbuf_count:  ����������ɥХåե��ˤ���ǡ�����
-	 *  tcph->sum:   ����������� SDU ������
+	 *  rcv_nxt:     受信を期待している最小の SEQ（これ以前は受信済み）
+	 *  rcv_adv:     受信を期待している最大の SEQ
+	 *  rbufsz:      受信ウィンドバッファサイズ
+	 *  rwbuf_count:  受信ウィンドバッファにあるデータ量
+	 *  tcph->sum:   今回受信した SDU サイズ
 	 *
-	 *  ������������������Ȥ������󥭥塼��Ϣ�뤹��
-	 *  ��ǽ��������Τ� tcph->sum ���θ���롣
+	 *  今回受信したセグメントを順序整列キューに連結する
+	 *  可能性があるので tcph->sum を考慮する。
 	 *
 	 */
 	win = cep->rbufsz - (cep->rwbuf_count + tcph->sum);
@@ -1570,16 +1570,16 @@ find_cep:
 	else
 		cep->rcv_wnd = cep->rcv_adv - cep->rcv_nxt;
 
-	/* CEP �ξ��֤ˤ�������Ԥ���*/
+	/* CEP の状態により処理を行う。*/
 
-	if (cep->fsm_state == TCP_FSM_LISTEN) {		/* ��ư�����ץ� (LISTEN) �ν�����*/
+	if (cep->fsm_state == TCP_FSM_LISTEN) {		/* 受動オープン (LISTEN) の処理。*/
 		if ((ret = listening(input, cep, *offp, iss)) == RET_RST_DROP)
 			goto reset_drop;
 		else if (ret == RET_DROP)
 			goto drop;
-		trim_length(tcph, cep);			/* �������� SDU Ĺ��Ĵ�����롣*/
+		trim_length(tcph, cep);			/* 受信した SDU 長を調整する。*/
 
-		if (tcph->flags & TCP_FLG_ACK) {	/* ACK �ե饰�ν��� */
+		if (tcph->flags & TCP_FLG_ACK) {	/* ACK フラグの処理 */
 			if ((ret = proc_ack2(input, cep, *offp, &needoutput)) == RET_DROP)
 				goto drop;
 			else if (ret == RET_RST_DROP)
@@ -1588,14 +1588,14 @@ find_cep:
 				return IPPROTO_DONE;
 			}
 		}
-	else if (cep->fsm_state == TCP_FSM_SYN_SENT) {	/* ǽư�����ץ�SYN �����Ѥ�	*/
+	else if (cep->fsm_state == TCP_FSM_SYN_SENT) {	/* 能動オープン、SYN 送信済み	*/
 		if ((ret = syn_sent(tcph, cep)) == RET_RST_DROP)
 			goto reset_drop;
 		else if (ret == RET_DROP)
 			goto drop;
-		trim_length(tcph, cep);			/* �������� SDU Ĺ��Ĵ�����롣*/
+		trim_length(tcph, cep);			/* 受信した SDU 長を調整する。*/
 
-		if (tcph->flags & TCP_FLG_ACK) {	/* ACK �ե饰�ν��� */
+		if (tcph->flags & TCP_FLG_ACK) {	/* ACK フラグの処理 */
 			if ((ret = proc_ack2(input, cep, *offp, &needoutput)) == RET_DROP)
 				goto drop;
 			else if (ret == RET_RST_DROP)
@@ -1605,14 +1605,14 @@ find_cep:
 			}
 		}
 	else {
-		if (cep->fsm_state == TCP_FSM_SYN_RECVD) {	/* SYN �������SYN �����Ѥ�	*/
+		if (cep->fsm_state == TCP_FSM_SYN_RECVD) {	/* SYN を受信、SYN 送信済み	*/
 			/*
-			 *  ��꤫�������ǧ����������Ƥ⡢
+			 *  相手から受信確認が送られて来ても、
 			 *
-			 *    ACK <= ̤��ǧ�κǾ����� SEQ (snd_una) &&
-			 *           ������������     SEQ (snd_max) < ACK
+			 *    ACK <= 未確認の最小送信 SEQ (snd_una) &&
+			 *           送信した最大     SEQ (snd_max) < ACK
 			 *
-			 *  �ʤ顢�ꥻ�åȤ����äƥ������Ȥ��˴����롣
+			 *  なら、リセットを送ってセグメントを破棄する。
 			 */
 			if ((tcph->flags & TCP_FLG_ACK) &&
 			    (SEQ_LE(tcph->ack, cep->snd_una) ||
@@ -1621,40 +1621,40 @@ find_cep:
 			}
 
 		/* 
-		 *  RST �ե饰����������Ȥ��ν��� (�۾�����)
+		 *  RST フラグを受信したときの処理 (異常切断)
 		 */
 		if (tcph->flags & TCP_FLG_RST) {
 			if (SEQ_GE(tcph->seq, cep->last_ack_sent) &&
 			    SEQ_LT(tcph->seq, cep->last_ack_sent + cep->rcv_wnd)) {
 				/*
-				 *  ���������������Ȥ� SEQ �����Ǹ���������� ACK (last_ack_sent)
-				 *  ���顢����������ɥ��������ޤǤδ֤ν���
+				 *  受信したセグメントの SEQ が、最後に送信した ACK (last_ack_sent)
+				 *  から、受信ウインドウサイズまでの間の処理
 				 */
 				switch (cep->fsm_state) {
-				case TCP_FSM_SYN_RECVD:		/* SYN ���������SYN �����Ѥ�		*/
+				case TCP_FSM_SYN_RECVD:		/* SYN を受信し、SYN 送信済み		*/
 
-					cep->net_error = EV_CNNRF;	/* ��³��ǽ */
+					cep->net_error = EV_CNNRF;	/* 接続不能 */
 					cep->error     = E_CLS;
 					NET_COUNT_TCP(net_count_tcp[NC_TCP_RECV_RSTS], 1);
 					NET_COUNT_MIB(tcp_stats.tcpAttemptFails, 1);
 					cep = tcp_close(cep);
 					break;
 
-				case TCP_FSM_ESTABLISHED:	/* ���ͥ�������ߴ�λ			*/
-				case TCP_FSM_CLOSE_WAIT:	/* FIN ���������������Ԥ�		*/
+				case TCP_FSM_ESTABLISHED:	/* コネクション開設完了			*/
+				case TCP_FSM_CLOSE_WAIT:	/* FIN 受信、クローズ待ち		*/
 					NET_COUNT_MIB(tcp_stats.tcpEstabResets, 1);
 					/* fallthrough */
 
-				case TCP_FSM_FIN_WAIT_1:	/* ��λ���ơ�FIN �����Ѥ�		*/
-				case TCP_FSM_FIN_WAIT_2:	/* ��λ��FIN ��ã��ǧ������FIN�Ԥ�	*/
+				case TCP_FSM_FIN_WAIT_1:	/* 終了して、FIN 送信済み		*/
+				case TCP_FSM_FIN_WAIT_2:	/* 終了、FIN 伝達確認受信、FIN待ち	*/
 
-					cep->net_error = EV_CNRST;	/* ��³�ꥻ�å� */
+					cep->net_error = EV_CNRST;	/* 接続リセット */
 					cep->error     = E_CLS;
 					NET_COUNT_TCP(net_count_tcp[NC_TCP_RECV_RSTS], 1);
 					/* no break; */
 
-				case TCP_FSM_CLOSING:		/* ��λ��FIN �򴹺Ѥߡ�ACK �Ԥ�	*/
-				case TCP_FSM_LAST_ACK:		/* FIN ��������λ��ACK �Ԥ�	*/
+				case TCP_FSM_CLOSING:		/* 終了、FIN 交換済み、ACK 待ち	*/
+				case TCP_FSM_LAST_ACK:		/* FIN 受信、終了、ACK 待ち	*/
 
 					cep = tcp_close(cep);
 					break;
@@ -1664,22 +1664,22 @@ find_cep:
 			}
 
 		/*
-		 *  CEP �ξ��֤� SYN ���������SYN �����Ѥߤξ��ϡ�
-		 *  ����������ɤ˼��ޤ�褦�˥ǡ�����
-		 *  Ĵ���������ˡ�������³�ˤ��ѥ��åȤ��ɤ����򸡾ڤ��롣
+		 *  CEP の状態が SYN を受信し、SYN 送信済みの場合は、
+		 *  受信ウィンドに収まるようにデータを
+		 *  調整する前に、この接続によるパケットかどうかを検証する。
 		 *
-		 *    ������������ SEQ < ���� SEQ �ν���� (irs)
+		 *    受信した相手の SEQ < 相手の SEQ の初期値 (irs)
 		 *
-		 *  ����ϡ�"LAND" DoS ������ɸ�Ǥ��롣
+		 *  これは、"LAND" DoS 攻撃の防御である。
 		 */
 		if (cep->fsm_state == TCP_FSM_SYN_RECVD && SEQ_LT(tcph->seq, cep->irs)) {
 			goto reset_drop;
 			}
 
 		/*
-		 *  ��������Ԥ��Ƥ���Ǿ��� SEQ (rcv_nxt) - ������������ SEQ ��
-		 *  ���ʤ顢rcv_nxt �����Υǡ����Ϥ��Ǥ˼������Ƥ���Τǡ�������ʬ��
-		 *  ������롣
+		 *  受信を期待している最小の SEQ (rcv_nxt) - 受信した相手の SEQ が
+		 *  正なら、rcv_nxt 以前のデータはすでに受信しているので、その部分を
+		 *  削除する。
 		 *                           <---------- rcv_wnd --------->
 		 *                           rcv_nxt                      rcv_nxt + rcv_wnd
 		 *                           v                            v
@@ -1691,14 +1691,14 @@ find_cep:
 		 *           +----------------------+
 		 *           ^                      ^
 		 *           seq                    seq + len
-		 *           <---------------> ������롣
+		 *           <---------------> 削除する。
 		 */
 		todrop = cep->rcv_nxt - tcph->seq;
 		if (todrop > 0) {
 
 			/*
-			 *  SYN �ե饰���Ĥ��Ƥ���Ȥ��ϡ�����ʬ (1 �����ƥå�)
-			 *  SEQ ��ʤᡢ�۵ޥݥ��󥿤Ⱥ������Ĺ����Ĵ�����롣
+			 *  SYN フラグがついているときは、その分 (1 オクテット)
+			 *  SEQ を進め、緊急ポインタと削除する長さを調整する。
 			 */
 			if (tcph->flags & TCP_FLG_SYN) {
 				tcph->flags &= ~TCP_FLG_SYN;
@@ -1711,34 +1711,34 @@ find_cep:
 				}
 
 			/*
-			 *  �������Ĺ���� SDU ���Ĺ�����Ĥޤꡢ��������Ԥ��Ƥ���
-			 *  �Ǿ��� SEQ (rcv_nxt) ��ã���Ƥ��ʤ�����
-			 *  �������Ĺ���� SDU ��Ʊ���ǡ�FIN �ե饰���Ĥ��Ƥʤ����
-			 *  ���ƺ�����롣
+			 *  削除する長さが SDU より長い、つまり、受信を期待している
+			 *  最小の SEQ (rcv_nxt) に達していないか、
+			 *  削除する長さが SDU と同じで、FIN フラグがついてなければ
+			 *  全て削除する。
 			 */
-			if ( todrop >  tcph->sum ||		/* tcph->sum �� TCP �� SDU Ĺ */
+			if ( todrop >  tcph->sum ||		/* tcph->sum は TCP の SDU 長 */
 			    (todrop == tcph->sum && (tcph->flags & TCP_FLG_FIN) == 0)) {
 				tcph->flags &= ~TCP_FLG_FIN;
 				cep->flags |= TCP_CEP_FLG_ACK_NOW;
-				todrop = tcph->sum;		/* tcph->sum �� TCP �� SDU Ĺ */
+				todrop = tcph->sum;		/* tcph->sum は TCP の SDU 長 */
 				}
 
 			/*
-			 *  SDU �����˵ͤ�롣
+			 *  SDU を前に詰める。
 			 */
-			if (todrop < tcph->sum) {		/* tcph->sum �� TCP �� SDU Ĺ */
+			if (todrop < tcph->sum) {		/* tcph->sum は TCP の SDU 長 */
 				memcpy(GET_TCP_SDU(input, *offp),
 				       GET_TCP_SDU(input, *offp) + todrop, (size_t)(tcph->sum - todrop));
 				}
 
 			/*
-			 *  SEQ �� SDU Ĺ��Ĵ�����롣
+			 *  SEQ と SDU 長を調整する。
 			 */
 			tcph->seq +=     todrop;
-			tcph->sum -= (uint16_t)todrop;	/* tcph->sum �� TCP �� SDU Ĺ */
+			tcph->sum -= (uint16_t)todrop;	/* tcph->sum は TCP の SDU 長 */
 
 			/*
-			 *  �۵ޥݥ��󥿤�Ĵ�����롣
+			 *  緊急ポインタを調整する。
 			 */
 			if (tcph->urp > todrop)
 				tcph->urp -= (uint16_t)todrop;
@@ -1751,17 +1751,17 @@ find_cep:
 			}
 
 		/*  
-		 *  �⤷�桼������������λ������ˡ��ǡ������������
-		 *  ���ϡ�RST �����롣
+		 *  もしユーザタスクが終了した後に、データを受信した
+		 *  場合は、RST を送る。
 		 */
-		if (cep->fsm_state == TCP_FSM_LAST_ACK && tcph->sum > 0) {	/* tcph->sum �� TCP �� SDU Ĺ */
+		if (cep->fsm_state == TCP_FSM_LAST_ACK && tcph->sum > 0) {	/* tcph->sum は TCP の SDU 長 */
 			cep = tcp_close(cep);
 			goto reset_drop;
 			}
 
 		/*
-		 *  �����������Ȥ�����������ɤ�Ķ������ϡ�
-		 *  Ķ����ʬ���롣
+		 *  受信セグメントが受信ウィンドを超える場合は、
+		 *  超えた分を削る。
 		 *
 		 *       <---------- rcv_wnd --------->
 		 *       rcv_nxt                      (rcv_nxt + rcv_wnd)
@@ -1774,17 +1774,17 @@ find_cep:
 		 *                    +----------------------+
 		 *                    ^                      ^
 		 *                    seq                    seq + len
-		 *                                     <-----> ������롣
+		 *                                     <-----> 削除する。
 		 */
-		todrop = (tcph->seq + tcph->sum) - (cep->rcv_nxt + cep->rcv_wnd);	/* tcph->sum �� TCP �� SDU Ĺ */
+		todrop = (tcph->seq + tcph->sum) - (cep->rcv_nxt + cep->rcv_wnd);	/* tcph->sum は TCP の SDU 長 */
 		if (todrop > 0) {
-			if (todrop > tcph->sum) {					/* tcph->sum �� TCP �� SDU Ĺ */
+			if (todrop > tcph->sum) {					/* tcph->sum は TCP の SDU 長 */
 				/*
-				 *  �������� SDU �����Ƥ�����������ɤ�Ķ�����硣
+				 *  受信した SDU の全てが受信ウィンドを超える場合。
 				 *
-				 *  TIME_WAIT ��ˡ���������³�׵�����������
-				 *  �Ť���³���˴�������������³�򳫻Ϥ��롣
-				 *  ��������SEQ �������ʤ�Ǥ��ʤ���Фʤ�ʤ���
+				 *  TIME_WAIT 中に、新たな接続要求を受信したら
+				 *  古い接続を破棄し、新たな接続を開始する。
+				 *  ただし、SEQ は前より進んでいなければならない。
 				 */
 				if ((tcph->flags & TCP_FLG_SYN) &&
 				    cep->fsm_state == TCP_FSM_TIME_WAIT &&
@@ -1796,9 +1796,9 @@ find_cep:
 				    	}
 
 				/*
-				 *  ����������ɤ� 0 �ǡ��������� SEQ ��
-				 *  ��������Ԥ��Ƥ���Ǿ��� SEQ �����פ����Ȥ���
-				 *  ACK ���֤�������ʳ��ϥǡ������˴�����ACK ���֤���
+				 *  受信ウィンドが 0 で、受信した SEQ と
+				 *  受信を期待している最小の SEQ が一致したときは
+				 *  ACK を返す。それ以外はデータを破棄し、ACK を返す。
 				 */
 				if (cep->rcv_wnd == 0 && (tcph->seq == cep->rcv_nxt || tcph->sum == 0)) {
 					cep->flags |= TCP_CEP_FLG_ACK_NOW;
@@ -1809,13 +1809,13 @@ find_cep:
 					return IPPROTO_DONE;
 					}
 				}
-			tcph->sum -= (uint16_t)todrop;	/* tcph->sum �� TCP �� SDU Ĺ */
+			tcph->sum -= (uint16_t)todrop;	/* tcph->sum は TCP の SDU 長 */
 			tcph->flags &= ~(TCP_FLG_PUSH | TCP_FLG_FIN);
 			}
 
 		/*
-		 *  �⤷��SYN �����åȤ���Ƥ���С�
-		 *  ���顼�ʤΤ� RST �����ꡢ��³���˴����롣
+		 *  もし、SYN がセットされていれば、
+		 *  エラーなので RST を送り、接続を破棄する。
 		 */
 		if (tcph->flags & TCP_FLG_SYN) {
 			cep->net_error = EV_CNRST;
@@ -1824,10 +1824,10 @@ find_cep:
 			}
 
 		/*
-		 *  �⤷��ACK �����åȤ���Ƥ��ʤ����ϡ�
-		 *  ���֤� SYN �����Ѥߤ�
-		 *  SYN ���������褦�Ȥ��Ƥ���С�������³���뤬��
-		 *  ����ʳ��ϥ������Ȥ��˴����ƽ�λ���롣
+		 *  もし、ACK がセットされていない場合は、
+		 *  状態が SYN 受信済みか
+		 *  SYN を送信しようとしていれば、処理を続けるが、
+		 *  それ以外はセグメントを破棄して終了する。
 		 */
 		if ((tcph->flags & TCP_FLG_ACK) == 0) {
 			if (!(cep->fsm_state == TCP_FSM_SYN_RECVD || (cep->flags & TCP_CEP_FLG_NEED_SYN)))
@@ -1835,7 +1835,7 @@ find_cep:
 			}
 		else {
 			/*
-			 * ACK �ν���
+			 * ACK の処理
 			 */
 			ret = proc_ack1(input, cep, *offp, &needoutput);
 			if (ret == RET_DROP)
@@ -1849,22 +1849,22 @@ find_cep:
 
 /* step 6 */
 
-	/* ����������ɤ򹹿����롣*/
+	/* 送信ウィンドを更新する。*/
 	if (update_wnd(tcph, cep) == true)
 		needoutput = true;
 
-	/* �۵ޥǡ�����������롣*/
+	/* 緊急データを処理する。*/
 	proc_urg(tcph, cep);
 
 /* do data */
 
 	/*
-	 *  SDU �����뤫��FIN ��̤�����ξ��֤ǡ��ǽ�� FIN ����������Ȥ���
-	 *  �����������ȥ��塼�� net_buf ���ɲä��롣
-	 *  ����ʳ��ξ��ϡ��������Ȥ��˴����롣
+	 *  SDU があるか、FIN を未受信の状態で、最初に FIN を受信したとき、
+	 *  受信セグメントキューに net_buf を追加する。
+	 *  それ以外の場合は、セグメントを破棄する。
 	 */
 	flags = tcph->flags;
-	if ((tcph->sum > 0 || (flags & TCP_FLG_FIN)) &&		/* tcph->sum �� TCP �� SDU Ĺ */
+	if ((tcph->sum > 0 || (flags & TCP_FLG_FIN)) &&		/* tcph->sum は TCP の SDU 長 */
 	    TCP_FSM_HAVE_RCVD_FIN(cep->fsm_state) == 0) {
 		flags = reassemble(input, cep, *offp, flags);
 		}
@@ -1874,14 +1874,14 @@ find_cep:
 		}
 
 	/*
-	 *  FIN ����������饳�ͥ������򥯥��������롣
+	 *  FIN を受信したらコネクションをクローズする。
 	 */
 	if (flags & TCP_FLG_FIN)
 		close_connection(cep, &needoutput);
 
-	/* ���Ϥ�Ԥä��彪λ���롣*/
+	/* 出力を行った後終了する。*/
 	if (needoutput == true || (cep->flags & TCP_CEP_FLG_ACK_NOW)) {
-		/* ������ؼ����롣*/
+		/* 送信を指示する。*/
 		cep->flags |=  TCP_CEP_FLG_POST_OUTPUT;
 		sig_sem(SEM_TCP_POST_OUTPUT);
 		}
@@ -1890,13 +1890,13 @@ find_cep:
 
 reset_drop:
 	/*
-	 *  RST ��������
+	 *  RST 送信処理
 	 */
 
 	if ((tcph->flags & TCP_FLG_RST) || IN_IS_NET_ADDR_MULTICAST(&iph->dst))
 		goto drop;
 
-	/* �ۥ��ȥ�����������ͥåȥ�������������᤹��*/
+	/* ホストオーダーからネットワークオーダーに戻す。*/
 
 	HTONS(tcph->sport);
 	HTONS(tcph->dport);
@@ -1911,11 +1911,11 @@ reset_drop:
 		}
 	else {
 		if (tcph->flags & TCP_FLG_SYN)
-			tcph->sum ++;		/* tcph->sum �� SDU Ĺ */
+			tcph->sum ++;		/* tcph->sum は SDU 長 */
 		tcp_respond(input, cep, tcph->seq + tcph->sum, 0, rbfree, TCP_FLG_RST | TCP_FLG_ACK);
 		}
 
-	/* input �� tcp_respoond ���ֵѤ���롣*/
+	/* input は tcp_respoond で返却される。*/
 	NET_COUNT_TCP(net_count_tcp[NC_TCP_SEND_RSTS], 1);
 	NET_COUNT_MIB(tcp_stats.tcpOutRsts, 1);
 	return IPPROTO_DONE;

@@ -4,29 +4,29 @@
  *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
- *  �嵭����Ԥϡ��ʲ��� (1)��(4) �ξ�狼��Free Software Foundation 
- *  �ˤ�äƸ�ɽ����Ƥ��� GNU General Public License �� Version 2 �˵�
- *  �Ҥ���Ƥ���������������˸¤ꡤ�ܥ��եȥ��������ܥ��եȥ�����
- *  ����Ѥ�����Τ�ޤࡥ�ʲ�Ʊ���ˤ���ѡ�ʣ�������ѡ������ۡʰʲ���
- *  ���ѤȸƤ֡ˤ��뤳�Ȥ�̵���ǵ������롥
- *  (1) �ܥ��եȥ������򥽡��������ɤη������Ѥ�����ˤϡ��嵭������
- *      ��ɽ�����������Ѿ�浪��Ӳ�����̵�ݾڵ��꤬�����Τޤޤη��ǥ���
- *      ����������˴ޤޤ�Ƥ��뤳�ȡ�
- *  (2) �ܥ��եȥ������򡤥饤�֥������ʤɡ�¾�Υ��եȥ�������ȯ�˻�
- *      �ѤǤ�����Ǻ����ۤ�����ˤϡ������ۤ�ȼ���ɥ�����ȡ�����
- *      �ԥޥ˥奢��ʤɡˤˡ��嵭�����ɽ�����������Ѿ�浪��Ӳ���
- *      ��̵�ݾڵ����Ǻܤ��뤳�ȡ�
- *  (3) �ܥ��եȥ������򡤵�����Ȥ߹���ʤɡ�¾�Υ��եȥ�������ȯ�˻�
- *      �ѤǤ��ʤ����Ǻ����ۤ�����ˤϡ����ξ������������ȡ�
- *    (a) �����ۤ�ȼ���ɥ�����ȡ����Ѽԥޥ˥奢��ʤɡˤˡ��嵭����
- *        �ɽ�����������Ѿ�浪��Ӳ�����̵�ݾڵ����Ǻܤ��뤳�ȡ�
- *  (4) �ܥ��եȥ����������Ѥˤ��ľ��Ū�ޤ��ϴ���Ū�������뤤���ʤ�»
- *      ������⡤�嵭����Ԥ����TOPPERS�ץ��������Ȥ����դ��뤳�ȡ�
+ *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
+ *  によって公表されている GNU General Public License の Version 2 に記
+ *  述されている条件を満たす場合に限り，本ソフトウェア（本ソフトウェア
+ *  を改変したものを含む．以下同じ）を使用・複製・改変・再配布（以下，
+ *  利用と呼ぶ）することを無償で許諾する．
+ *  (1) 本ソフトウェアをソースコードの形で利用する場合には，上記の著作
+ *      権表示，この利用条件および下記の無保証規定が，そのままの形でソー
+ *      スコード中に含まれていること．
+ *  (2) 本ソフトウェアを，ライブラリ形式など，他のソフトウェア開発に使
+ *      用できる形で再配布する場合には，再配布に伴うドキュメント（利用
+ *      者マニュアルなど）に，上記の著作権表示，この利用条件および下記
+ *      の無保証規定を掲載すること．
+ *  (3) 本ソフトウェアを，機器に組み込むなど，他のソフトウェア開発に使
+ *      用できない形で再配布する場合には，次の条件を満たすこと．
+ *    (a) 再配布に伴うドキュメント（利用者マニュアルなど）に，上記の著
+ *        作権表示，この利用条件および下記の無保証規定を掲載すること．
+ *  (4) 本ソフトウェアの利用により直接的または間接的に生じるいかなる損
+ *      害からも，上記著作権者およびTOPPERSプロジェクトを免責すること．
  *
- *  �ܥ��եȥ������ϡ�̵�ݾڤ��󶡤���Ƥ����ΤǤ��롥�嵭����Ԥ�
- *  ���TOPPERS�ץ��������Ȥϡ��ܥ��եȥ������˴ؤ��ơ�����Ŭ�Ѳ�ǽ����
- *  �ޤ�ơ������ʤ��ݾڤ�Ԥ�ʤ����ޤ����ܥ��եȥ����������Ѥˤ��ľ
- *  ��Ū�ޤ��ϴ���Ū�������������ʤ�»���˴ؤ��Ƥ⡤������Ǥ�����ʤ���
+ *  本ソフトウェアは，無保証で提供されているものである．上記著作権者お
+ *  よびTOPPERSプロジェクトは，本ソフトウェアに関して，その適用可能性も
+ *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
+ *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
  *  @(#) $Id: net_timer.c,v 1.5.4.1 2015/02/05 02:09:13 abe Exp abe $
  */
@@ -100,13 +100,13 @@
 #include <netinet/tcp_timer.h>
 
 /*
- *  �ѿ�
+ *  変数
  */
 
 static T_NET_CALLOUT callout[NUM_NET_CALLOUT];
 
 /*
- *  �ƽФ�����ȥ���Ͽ
+ *  呼出しエントリ登録
  */
 
 void
@@ -114,7 +114,7 @@ timeout (callout_func func, void *arg, RELTIM timeout)
 {
 	int_t ix;
 
-	/* �ƽФ�����ȥ��������� */
+	/* 呼出しエントリを獲得する */
 	syscall(wai_sem(SEM_CALL_OUT_LOCK));
 	for (ix = NUM_NET_CALLOUT; callout[-- ix].func != NULL; )
 		if (ix == 0) {
@@ -123,7 +123,7 @@ timeout (callout_func func, void *arg, RELTIM timeout)
 			return;
 			}
 
-	/* �ƽФ�����ȥ�����ꤹ�� */
+	/* 呼出しエントリを設定する */
 	callout[ix].func	= func;
 	callout[ix].arg		= arg;
 	callout[ix].timeout	= timeout;
@@ -131,7 +131,7 @@ timeout (callout_func func, void *arg, RELTIM timeout)
 	}
 
 /*
- *  �ƽФ�����ȥ���
+ *  呼出しエントリ削除
  */
 
 void
@@ -139,7 +139,7 @@ untimeout (callout_func func, void *arg)
 {
 	int_t ix;
 
-	/* ����ȥ��õ�� */
+	/* エントリを探す */
 	for (ix = NUM_NET_CALLOUT; ix -- > 0; ) {
 		syscall(wai_sem(SEM_CALL_OUT_LOCK));
 		if (callout[ix].func == func && callout[ix].arg == arg && callout[ix].timeout > 0) {
@@ -152,10 +152,10 @@ untimeout (callout_func func, void *arg)
 	}
 
 /*
- *  �ͥåȥ�������ޥ�����
+ *  ネットワークタイマタスク
  *
- *    ����: ����������ƥ����ȤǼ¹Ԥ���ɬ�פ����뤿�ᡤ
- *          �����ϥ�ɥ�ϻ��ѤǤ��ʤ���
+ *    注意: タスクコンテキストで実行する必要があるため，
+ *          周期ハンドラは使用できない。
  */
 
 static char const tinet_banner[] =
@@ -179,25 +179,25 @@ net_timer_task(intptr_t exinf)
 	        TINET_PRVER          & UINT_C(0x0f));
 	syslog(LOG_NOTICE, "[NET/TIMER:%d] started.", tskid);
 
-	/* IP ���������롣*/
+	/* IP を初期化する。*/
 	IP_INIT();
 
 #ifdef SUPPORT_TCP
 
-	/* TCP ���ϥ�������ư���� */
+	/* TCP 出力タスクを起動する */
 	syscall(act_tsk(TCP_OUTPUT_TASK));
 
 #endif	/* of #ifdef SUPPORT_TCP */
 
 #if defined(SUPPORT_UDP) && defined(UDP_CFG_NON_BLOCKING)
 
-	/* UDP ���ϥ�������ư���� */
+	/* UDP 出力タスクを起動する */
 	syscall(act_tsk(UDP_OUTPUT_TASK));
 
 #endif	/* of #if defined(SUPPORT_UDP) && defined(UDP_CFG_NON_BLOCKING) */
 
 	while (true) {
-		/* �����ॢ���Ȥ�������ȥ��ƽФ���*/
+		/* タイムアウトしたエントリを呼出す。*/
 		syscall(wai_sem(SEM_CALL_OUT_TIMEOUT));
 		for (ix = NUM_NET_CALLOUT; ix -- > 0; ) {
 			syscall(wai_sem(SEM_CALL_OUT_LOCK));
@@ -215,9 +215,9 @@ net_timer_task(intptr_t exinf)
 	}
 
 /*
- *  �ͥåȥ�������ޥϥ�ɥ�
+ *  ネットワークタイマハンドラ
  *
- *    NET_TIMER_CYCLE (100ms) ��˸ƽФ���롣
+ *    NET_TIMER_CYCLE (100ms) 毎に呼出される。
  */
 
 void

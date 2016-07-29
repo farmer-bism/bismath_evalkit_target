@@ -9,73 +9,73 @@
  *              Graduate School of Information Science, Nagoya Univ., JAPAN
  *  Copyright (C) 2008-2010 by Witz Corporation, JAPAN
  * 
- *  ��L���쌠�҂́C�ȉ��� (1)�`(4) �̏������CFree Software Foundation 
- *  �ɂ���Č��\����Ă��� GNU General Public License �� Version 2 �ɋL
- *  �q����Ă�������𖞂����ꍇ�Ɍ���C�{�\�t�g�E�F�A�i�{�\�t�g�E�F�A
- *  �����ς������̂��܂ށD�ȉ������j���g�p�E�����E���ρE�Ĕz�z�i�ȉ��C
- *  ���p�ƌĂԁj���邱�Ƃ𖳏��ŋ�������D
- *  (1) �{�\�t�g�E�F�A���\�[�X�R�[�h�̌`�ŗ��p����ꍇ�ɂ́C��L�̒���
- *      ���\���C���̗��p��������щ��L�̖��ۏ؋K�肪�C���̂܂܂̌`�Ń\�[
- *      �X�R�[�h���Ɋ܂܂�Ă��邱�ƁD
- *  (2) �{�\�t�g�E�F�A���C���C�u�����`���ȂǁC���̃\�t�g�E�F�A�J���Ɏg
- *      �p�ł���`�ōĔz�z����ꍇ�ɂ́C�Ĕz�z�ɔ����h�L�������g�i���p
- *      �҃}�j���A���Ȃǁj�ɁC��L�̒��쌠�\���C���̗��p��������щ��L
- *      �̖��ۏ؋K����f�ڂ��邱�ƁD
- *  (3) �{�\�t�g�E�F�A���C�@��ɑg�ݍ��ނȂǁC���̃\�t�g�E�F�A�J���Ɏg
- *      �p�ł��Ȃ��`�ōĔz�z����ꍇ�ɂ́C���̂����ꂩ�̏����𖞂�����
- *      �ƁD
- *    (a) �Ĕz�z�ɔ����h�L�������g�i���p�҃}�j���A���Ȃǁj�ɁC��L�̒�
- *        �쌠�\���C���̗��p��������щ��L�̖��ۏ؋K����f�ڂ��邱�ƁD
- *    (b) �Ĕz�z�̌`�Ԃ��C�ʂɒ�߂���@�ɂ���āCTOPPERS�v���W�F�N�g��
- *        �񍐂��邱�ƁD
- *  (4) �{�\�t�g�E�F�A�̗��p�ɂ�蒼�ړI�܂��͊ԐړI�ɐ����邢���Ȃ鑹
- *      �Q������C��L���쌠�҂����TOPPERS�v���W�F�N�g��Ɛӂ��邱�ƁD
+ *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
+ *  によって公表されている GNU General Public License の Version 2 に記
+ *  述されている条件を満たす場合に限り，本ソフトウェア（本ソフトウェア
+ *  を改変したものを含む．以下同じ）を使用・複製・改変・再配布（以下，
+ *  利用と呼ぶ）することを無償で許諾する．
+ *  (1) 本ソフトウェアをソースコードの形で利用する場合には，上記の著作
+ *      権表示，この利用条件および下記の無保証規定が，そのままの形でソー
+ *      スコード中に含まれていること．
+ *  (2) 本ソフトウェアを，ライブラリ形式など，他のソフトウェア開発に使
+ *      用できる形で再配布する場合には，再配布に伴うドキュメント（利用
+ *      者マニュアルなど）に，上記の著作権表示，この利用条件および下記
+ *      の無保証規定を掲載すること．
+ *  (3) 本ソフトウェアを，機器に組み込むなど，他のソフトウェア開発に使
+ *      用できない形で再配布する場合には，次のいずれかの条件を満たすこ
+ *      と．
+ *    (a) 再配布に伴うドキュメント（利用者マニュアルなど）に，上記の著
+ *        作権表示，この利用条件および下記の無保証規定を掲載すること．
+ *    (b) 再配布の形態を，別に定める方法によって，TOPPERSプロジェクトに
+ *        報告すること．
+ *  (4) 本ソフトウェアの利用により直接的または間接的に生じるいかなる損
+ *      害からも，上記著作権者およびTOPPERSプロジェクトを免責すること．
  * 
- *  �{�\�t�g�E�F�A�́C���ۏ؂Œ񋟂���Ă�����̂ł���D��L���쌠�҂�
- *  ���TOPPERS�v���W�F�N�g�́C�{�\�t�g�E�F�A�Ɋւ��āC���̓K�p�\����
- *  �܂߂āC�����Ȃ�ۏ؂��s��Ȃ��D�܂��C�{�\�t�g�E�F�A�̗��p�ɂ�蒼
- *  �ړI�܂��͊ԐړI�ɐ����������Ȃ鑹�Q�Ɋւ��Ă��C���̐ӔC�𕉂�Ȃ��D
+ *  本ソフトウェアは，無保証で提供されているものである．上記著作権者お
+ *  よびTOPPERSプロジェクトは，本ソフトウェアに関して，その適用可能性も
+ *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
+ *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
  */
 
 /*
- *		�v���Z�b�T�ˑ����W���[���iRX610�p�j
+ *		プロセッサ依存モジュール（RX610用）
  */
 
 #include "kernel_impl.h"
 
 
 /*
- *  �����ݔ����񐔂�ۑ�����ϐ�
+ *  割込み発生回数を保存する変数
  */
 uint16_t	intnest;
 
 /*
- *  CPU���b�N�t���O�����̂��߂̕ϐ�
+ *  CPUロックフラグ実現のための変数
  */
 #if TIPM_LOCK != -7
-bool_t		lock_flag;		/* CPU���b�N�t���O�̒l��ێ�����ϐ� */
-uint32_t	saved_ipl;		/* �����ݗD��x���x����ۑ�����ϐ� */
+bool_t		lock_flag;		/* CPUロックフラグの値を保持する変数 */
+uint32_t	saved_ipl;		/* 割込み優先度レベルを保存する変数 */
 #endif	/* TIPM_LOCK != -7	*/
 
 
 /*
- *  �v���Z�b�T�ˑ��̏�����
+ *  プロセッサ依存の初期化
  */
 void
 prc_initialize( void )
 {
 	/*
-	 *  �����ݔ����񐔂̏�����
+	 *  割込み発生回数の初期化
 	 *
-	 *  �X�^�[�g�A�b�v�͑S�����݃��b�N��� & ��^�X�N�R���e�L�X�g
-	 *  �ɂē��삷�邽��, ��^�X�N�R���e�L�X�g�ɋU������.
+	 *  スタートアップは全割込みロック状態 & 非タスクコンテキスト
+	 *  にて動作するため, 非タスクコンテキストに偽装する.
 	 */
 	intnest = 1U;
 
 #if TIPM_LOCK != -7
 	/*
-	 *  CPU���b�N�t���O�����̂��߂̕ϐ��̏�����
+	 *  CPUロックフラグ実現のための変数の初期化
 	 */
 	lock_flag = true;
 	saved_ipl = IPL_ENAALL;
@@ -84,22 +84,22 @@ prc_initialize( void )
 
 
 /*
- *  �v���Z�b�T�ˑ��̏I������
+ *  プロセッサ依存の終了処理
  */
 void
 prc_terminate( void )
 {
 	/*
-	 *  ���ɕK�v�ȏ����͂Ȃ�
+	 *  特に必要な処理はない
 	 */
 }
 
 
 /*
- *  CPU��O�̔����󋵂̃��O�o��
+ *  CPU例外の発生状況のログ出力
  *
- *  CPU��O�n���h���̒�����CCPU��O���|�C���^�ip_excinf�j�������Ƃ�
- *  �ČĂяo�����ƂŁCCPU��O�̔����󋵂��V�X�e�����O�ɏo�͂���D
+ *  CPU例外ハンドラの中から，CPU例外情報ポインタ（p_excinf）を引数とし
+ *  て呼び出すことで，CPU例外の発生状況をシステムログに出力する．
  */
 #ifdef SUPPORT_XLOG_SYS
 void
@@ -130,11 +130,11 @@ xlog_sys( void *p_excinf )
 
 
 /*
- *  �����ݗv�����C���̑����̐ݒ�
+ *  割込み要求ラインの属性の設定
  *
- *  ASP�J�[�l���ł̗��p��z�肵�āC�p�����[�^�G���[�̓A�T�[�V�����Ń`�F�b
- *  �N���Ă���Dcfg_int�T�[�r�X�R�[����݂���ꍇ�ɂ́C�G���[��Ԃ��悤
- *  �ɂ��ׂ��ł��낤�D
+ *  ASPカーネルでの利用を想定して，パラメータエラーはアサーションでチェッ
+ *  クしている．cfg_intサービスコールを設ける場合には，エラーを返すよう
+ *  にすべきであろう．
  */
 void
 x_config_int( INTNO intno, ATR intatr, PRI intpri )
@@ -155,18 +155,18 @@ x_config_int( INTNO intno, ATR intatr, PRI intpri )
 #endif
 
 	/*
-	 *  �����݂̃}�X�N
+	 *  割込みのマスク
 	 *
-	 *  �����݂��󂯕t�����܂܁C���x���g���K�^�G�b�W�g���K�̐ݒ��C��
-	 *  ���ݗD��x�̐ݒ���s���̂͊댯�Ȃ��߁C�����ݑ����ɂ�����炸�C
-	 *  ��U�}�X�N����D
+	 *  割込みを受け付けたまま，レベルトリガ／エッジトリガの設定や，割
+	 *  込み優先度の設定を行うのは危険なため，割込み属性にかかわらず，
+	 *  一旦マスクする．
 	 */
 	( void )x_disable_int( intno );
 
 	/*
-	 *  ���x���g���K/�G�b�W�g���K�̐ݒ�
+	 *  レベルトリガ/エッジトリガの設定
 	 *
-	 *  IRQ�̂݃T�|�[�g����
+	 *  IRQのみサポートする
 	 */
 	if( INTNO_IRQ( intno ) != 0U ){
 		irq_offset = INTNO_IRQ_OFFSET( intno );
@@ -185,8 +185,8 @@ x_config_int( INTNO intno, ATR intatr, PRI intpri )
 		}
 		else{
 			/*
-			 *  �R���t�B�M�����[�^�ɂă`�F�b�N���Ă��邽��,
-			 *  �����ւ��邱�Ƃ͂��肦�Ȃ�.
+			 *  コンフィギュレータにてチェックしているため,
+			 *  ここへくることはありえない.
 			 */
 			irq_val = 0U;
 		}
@@ -195,14 +195,14 @@ x_config_int( INTNO intno, ATR intatr, PRI intpri )
 	}
 
 	/*
-	 *  �����݃��x���̐ݒ�
+	 *  割込みレベルの設定
 	 *
-	 *  �����ݔԍ��ɑΉ�����IPR�l��ݒ肷��.
+	 *  割込み番号に対応したIPR値を設定する.
 	 */
     *ipr_reg_addr[intno] = cfg_int_table[intno].intpri;
 
 	/*
-	 *  �����݂̃}�X�N����
+	 *  割込みのマスク解除
  	 */
 	if( ( intatr & TA_ENAINT ) != 0U ){
 		( void )x_enable_int( intno );
@@ -212,7 +212,7 @@ x_config_int( INTNO intno, ATR intatr, PRI intpri )
 
 #ifndef OMIT_DEFAULT_INT_HANDLER
 /*
- *  ���o�^�̊����݂����������ꍇ�ɌĂяo�����
+ *  未登録の割込みが発生した場合に呼び出される
  */
 void
 default_int_handler( void )
@@ -223,7 +223,7 @@ default_int_handler( void )
 
 #ifndef OMIT_DEFAULT_EXC_HANDLER
 /*
- *  ���o�^�̗�O�����������ꍇ�ɌĂяo�����
+ *  未登録の例外が発生した場合に呼び出される
  */
 void
 default_exc_handler( void )

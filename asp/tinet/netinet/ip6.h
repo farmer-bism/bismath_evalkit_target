@@ -4,29 +4,29 @@
  *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
- *  �嵭����Ԥϡ��ʲ��� (1)��(4) �ξ�狼��Free Software Foundation 
- *  �ˤ�äƸ�ɽ����Ƥ��� GNU General Public License �� Version 2 �˵�
- *  �Ҥ���Ƥ���������������˸¤ꡤ�ܥ��եȥ��������ܥ��եȥ�����
- *  ����Ѥ�����Τ�ޤࡥ�ʲ�Ʊ���ˤ���ѡ�ʣ�������ѡ������ۡʰʲ���
- *  ���ѤȸƤ֡ˤ��뤳�Ȥ�̵���ǵ������롥
- *  (1) �ܥ��եȥ������򥽡��������ɤη������Ѥ�����ˤϡ��嵭������
- *      ��ɽ�����������Ѿ�浪��Ӳ�����̵�ݾڵ��꤬�����Τޤޤη��ǥ���
- *      ����������˴ޤޤ�Ƥ��뤳�ȡ�
- *  (2) �ܥ��եȥ������򡤥饤�֥������ʤɡ�¾�Υ��եȥ�������ȯ�˻�
- *      �ѤǤ�����Ǻ����ۤ�����ˤϡ������ۤ�ȼ���ɥ�����ȡ�����
- *      �ԥޥ˥奢��ʤɡˤˡ��嵭�����ɽ�����������Ѿ�浪��Ӳ���
- *      ��̵�ݾڵ����Ǻܤ��뤳�ȡ�
- *  (3) �ܥ��եȥ������򡤵�����Ȥ߹���ʤɡ�¾�Υ��եȥ�������ȯ�˻�
- *      �ѤǤ��ʤ����Ǻ����ۤ�����ˤϡ����ξ������������ȡ�
- *    (a) �����ۤ�ȼ���ɥ�����ȡ����Ѽԥޥ˥奢��ʤɡˤˡ��嵭����
- *        �ɽ�����������Ѿ�浪��Ӳ�����̵�ݾڵ����Ǻܤ��뤳�ȡ�
- *  (4) �ܥ��եȥ����������Ѥˤ��ľ��Ū�ޤ��ϴ���Ū�������뤤���ʤ�»
- *      ������⡤�嵭����Ԥ����TOPPERS�ץ��������Ȥ����դ��뤳�ȡ�
+ *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
+ *  によって公表されている GNU General Public License の Version 2 に記
+ *  述されている条件を満たす場合に限り，本ソフトウェア（本ソフトウェア
+ *  を改変したものを含む．以下同じ）を使用・複製・改変・再配布（以下，
+ *  利用と呼ぶ）することを無償で許諾する．
+ *  (1) 本ソフトウェアをソースコードの形で利用する場合には，上記の著作
+ *      権表示，この利用条件および下記の無保証規定が，そのままの形でソー
+ *      スコード中に含まれていること．
+ *  (2) 本ソフトウェアを，ライブラリ形式など，他のソフトウェア開発に使
+ *      用できる形で再配布する場合には，再配布に伴うドキュメント（利用
+ *      者マニュアルなど）に，上記の著作権表示，この利用条件および下記
+ *      の無保証規定を掲載すること．
+ *  (3) 本ソフトウェアを，機器に組み込むなど，他のソフトウェア開発に使
+ *      用できない形で再配布する場合には，次の条件を満たすこと．
+ *    (a) 再配布に伴うドキュメント（利用者マニュアルなど）に，上記の著
+ *        作権表示，この利用条件および下記の無保証規定を掲載すること．
+ *  (4) 本ソフトウェアの利用により直接的または間接的に生じるいかなる損
+ *      害からも，上記著作権者およびTOPPERSプロジェクトを免責すること．
  *
- *  �ܥ��եȥ������ϡ�̵�ݾڤ��󶡤���Ƥ����ΤǤ��롥�嵭����Ԥ�
- *  ���TOPPERS�ץ��������Ȥϡ��ܥ��եȥ������˴ؤ��ơ�����Ŭ�Ѳ�ǽ����
- *  �ޤ�ơ������ʤ��ݾڤ�Ԥ�ʤ����ޤ����ܥ��եȥ����������Ѥˤ��ľ
- *  ��Ū�ޤ��ϴ���Ū�������������ʤ�»���˴ؤ��Ƥ⡤������Ǥ�����ʤ���
+ *  本ソフトウェアは，無保証で提供されているものである．上記著作権者お
+ *  よびTOPPERSプロジェクトは，本ソフトウェアに関して，その適用可能性も
+ *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
+ *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
  *  @(#) $Id: ip6.h,v 1.5.4.1 2015/02/05 02:10:53 abe Exp abe $
  */
@@ -104,13 +104,13 @@
 #ifdef SUPPORT_INET6
 
 /*
- *  IPv6 �������RFC2460 ����
+ *  IPv6 の定義、RFC2460 参照
  */
 
 #define IPV6_VERSION	6
 
 /*
- *  IPv6 �إå������
+ *  IPv6 ヘッダの定義
  */
 
 typedef struct t_ip6_hdr {
@@ -127,7 +127,7 @@ typedef struct t_ip6_hdr {
 #define IP6_HDR_SIZE		(sizeof(T_IP6_HDR))
 
 /*
- *  IPv6 �إå���¤�Υ��Х��������ޥ���
+ *  IPv6 ヘッダ構造体メンバアクセスマクロ
  */
 
 #define IP6_MAKE_VCF(v,cf)	(((uint32_t)(v)<<28)|(cf))
@@ -137,39 +137,39 @@ typedef struct t_ip6_hdr {
 #define IP6_VCF_CF(vcf)		((uint32_t)(vcf)&ULONG_C(0x0fffffff))
 
 /*
- *  ��ĥ�إå�
+ *  拡張ヘッダ
  */
 
 typedef struct t_ip6_ext_hdr {
 	uint8_t		next;		/* Next Header			*/
-	uint8_t		len;		/* 8 �����ƥå�ñ�̤�Ĺ��	*/
+	uint8_t		len;		/* 8 オクテット単位の長さ	*/
 	} T_IP6_EXT_HDR;
 
 /*
- *  ����� (Hop-by-Hop) ���ץ����إå�
+ *  中継点 (Hop-by-Hop) オプションヘッダ
  */
 
 typedef struct t_ip6_hbh_hdr {
 	uint8_t		next;		/* Next Header			*/
-	uint8_t		len;		/* 8 �����ƥå�ñ�̤�Ĺ������������
-					 * ���Υ��ץ����إå����ΤΥ����ƥåȿ���
-					 * 8 �ǳ�ä��ͤ� - 1 �����롣
+	uint8_t		len;		/* 8 オクテット単位の長さ。ただし、
+					 * このオプションヘッダ全体のオクテット数を
+					 * 8 で割った値の - 1 が入る。
 					 */
 	} T_IP6_HBH_HDR;
 
 /*
- *  ���� (Destination) ���ץ����إå�
+ *  終点 (Destination) オプションヘッダ
  */
 
 typedef struct t_ip6_dest_hdr {
 	uint8_t		next;		/* Next Header			*/
-	uint8_t		len;		/* 8 �����ƥå�ñ�̤�Ĺ������������
-					 * ���Υ��ץ����إå����ΤΥ����ƥåȿ���
-					 * 8 �ǳ�ä��ͤ� - 1 �����롣
+	uint8_t		len;		/* 8 オクテット単位の長さ。ただし、
+					 * このオプションヘッダ全体のオクテット数を
+					 * 8 で割った値の - 1 が入る。
 					 */
 	} T_IP6_DEST_HDR;
 
-/* ����� (Hop-by-Hop) ���ץ���� */
+/* 中継点 (Hop-by-Hop) オプション */
 
 #define IP6OPT_PAD1		UINT_C(0x00)	/* 00 0 00000 */
 #define IP6OPT_PADN		UINT_C(0x01)	/* 00 0 00001 */
@@ -178,105 +178,105 @@ typedef struct t_ip6_dest_hdr {
 #define IP6OPT_TUNNEL_LIMIT	UINT_C(0x04)	/* 00 0 00100 */
 #define IP6OPT_RTR_ALERT	UINT_C(0x05)	/* 00 0 00101 */
 
-#define IP6OPT_MINLEN		2	/* ���ץ����κ�ûĹ		*/
+#define IP6OPT_MINLEN		2	/* オプションの最短長		*/
 
-/* ̤�ΤΥ��ץ����ν����λ��� */
+/* 未知のオプションの処理の指定 */
 
-#define IP6OPT_TYPE_SKIP	UINT_C(0x00)	/* ̵�뤹�롣			*/
-#define IP6OPT_TYPE_DISCARD	UINT_C(0x40)	/* �ǡ����������˴����롣	*/
-#define IP6OPT_TYPE_FORCEICMP	UINT_C(0x80)	/* �˴����ơ�ICMP ���������롣	*/
+#define IP6OPT_TYPE_SKIP	UINT_C(0x00)	/* 無視する。			*/
+#define IP6OPT_TYPE_DISCARD	UINT_C(0x40)	/* データグラムを破棄する。	*/
+#define IP6OPT_TYPE_FORCEICMP	UINT_C(0x80)	/* 破棄して、ICMP を返送する。	*/
 #define IP6OPT_TYPE_ICMP	UINT_C(0xc0)
-		/* �˴����ơ��ޥ�����㥹�ȤǤʤ���� ICMP ���������롣	*/
+		/* 破棄して、マルチキャストでなければ ICMP を返送する。	*/
 
 #define IP6OPT_TYPE(o)		((o)&UINT_C(0xc0))
 
 /*
- *  ��ϩ����إå�
+ *  経路制御ヘッダ
  */
 
 typedef struct t_ip6_rt_hdr {
 	uint8_t		next;		/* Next Header			*/
-	uint8_t		len;		/* 8 �����ƥå�ñ�̤�Ĺ������������
-					 * ���Υ��ץ����إå����ΤΥ����ƥåȿ���
-					 * 8 �ǳ�ä��ͤ� - 1 �����롣
+	uint8_t		len;		/* 8 オクテット単位の長さ。ただし、
+					 * このオプションヘッダ全体のオクテット数を
+					 * 8 で割った値の - 1 が入る。
 					 */
-	uint8_t		type;		/* ��ϩ���楿����		*/
-	uint8_t		segleft;	/* �������ȤλĤ�		*/
+	uint8_t		type;		/* 経路制御タイプ		*/
+	uint8_t		segleft;	/* セグメントの残り		*/
 	} T_IP6_RT_HDR;
 
 /*
- *  ������ 0 ��ϩ����إå�
+ *  タイプ 0 経路制御ヘッダ
  */
 
 typedef struct t_ip6_rt0_hdr {
 	uint8_t		next;		/* Next Header			*/
-	uint8_t		len;		/* 8 �����ƥå�ñ�̤�Ĺ������������
-					 * ���Υ��ץ����إå����ΤΥ����ƥåȿ���
-					 * 8 �ǳ�ä��ͤ� - 1 �����롣
+	uint8_t		len;		/* 8 オクテット単位の長さ。ただし、
+					 * このオプションヘッダ全体のオクテット数を
+					 * 8 で割った値の - 1 が入る。
 					 */
-	uint8_t		type;		/* ��ϩ���楿����		*/
-	uint8_t		segleft;	/* �������ȤλĤ�		*/
-	uint32_t	reserved;	/* ͽ��				*/
+	uint8_t		type;		/* 経路制御タイプ		*/
+	uint8_t		segleft;	/* セグメントの残り		*/
+	uint32_t	reserved;	/* 予約				*/
 	} T_IP6_RT0_HDR;
 
 /*
- *  ���ҥإå�
+ *  断片ヘッダ
  */
 
 typedef struct t_ip6_frag_hdr {
 	uint8_t		next;		/* Next Header			*/
 	uint8_t		reserved;
-	uint16_t	off_flag;	/* ���ե��åȤȥե饰		*/
-	uint32_t	ident;		/* ʬ�伱�̻�			*/
+	uint16_t	off_flag;	/* オフセットとフラグ		*/
+	uint32_t	ident;		/* 分割識別子			*/
 	} T_IP6_FRAG_HDR;
 
-/* ���ҥإå��Υ��ե��åȤȥե饰 */
+/* 断片ヘッダのオフセットとフラグ */
 
 #ifdef _NET_CFG_BYTE_ORDER
 
 #if _NET_CFG_BYTE_ORDER == _NET_CFG_BIG_ENDIAN
 
-#define IP6F_OFF_MASK		UINT_C(0xfff8)		/* ���ե��åȤ��Ф��ޥ���	*/
-#define IP6F_RESERVED_MASK	UINT_C(0x0006)		/* ͽ����Ф��ޥ���		*/
-#define IP6F_MORE_FRAG		UINT_C(0x0001)		/* ��֥ե饰����		*/
+#define IP6F_OFF_MASK		UINT_C(0xfff8)		/* オフセットを取出すマスク	*/
+#define IP6F_RESERVED_MASK	UINT_C(0x0006)		/* 予約を取出すマスク		*/
+#define IP6F_MORE_FRAG		UINT_C(0x0001)		/* 中間フラグメント		*/
 
 #elif _NET_CFG_BYTE_ORDER == _NET_CFG_LITTLE_ENDIAN
 
-#define IP6F_OFF_MASK		UINT_C(0xf8ff)		/* ���ե��åȤ��Ф��ޥ���	*/
-#define IP6F_RESERVED_MASK	UINT_C(0x0600)		/* ͽ����Ф��ޥ���		*/
-#define IP6F_MORE_FRAG		UINT_C(0x0100)		/* ��֥ե饰����		*/
+#define IP6F_OFF_MASK		UINT_C(0xf8ff)		/* オフセットを取出すマスク	*/
+#define IP6F_RESERVED_MASK	UINT_C(0x0600)		/* 予約を取出すマスク		*/
+#define IP6F_MORE_FRAG		UINT_C(0x0100)		/* 中間フラグメント		*/
 
 #endif	/* #if _NET_CFG_BYTE_ORDER == _NET_CFG_BIG_ENDIAN */
 
 #endif	/* of #ifdef _NET_CFG_BYTE_ORDER */
 
 /*
- *  ������
+ *  制限値
  */
 
-#define IPV6_MAXHLIM	UINT_C(255)	/* �ۥåץ�ߥåȤκ�����				*/
-#define IPV6_DEFHLIM	UINT_C(64)	/* �ۥåץ�ߥåȤε�����				*/
-#define IPV6_FRAGTTL	UINT_C(60)	/* ʬ�䤵�줿�ǡ�����������¸���֡��á�	*/
-#define IPV6_MMTU	UINT_C(1280)	/* �Ǿ� MTU���ڥ������� (1024) + �إå� (256)	*/
-#define IPV6_MAXPACKET	UINT_C(65535)	/* �����ܥڥ������ɤ��������ѥ��åȥ�����	*/
+#define IPV6_MAXHLIM	UINT_C(255)	/* ホップリミットの最大値				*/
+#define IPV6_DEFHLIM	UINT_C(64)	/* ホップリミットの規定値				*/
+#define IPV6_FRAGTTL	UINT_C(60)	/* 分割されたデータグラムの生存時間（秒）	*/
+#define IPV6_MMTU	UINT_C(1280)	/* 最小 MTU。ペイロード (1024) + ヘッダ (256)	*/
+#define IPV6_MAXPACKET	UINT_C(65535)	/* ジャンボペイロードを除く最大パケットサイズ	*/
 
 /*
- *  IPv4 �� IPv6 �򥳥�ѥ���������򤹤뤿��Υޥ���
+ *  IPv4 と IPv6 をコンパイル時に選択するためのマクロ
  */
 
 /*
- *  �ۥåץ�ߥåȤε����ͤϡ��롼�����Τˤ���ѹ�����뤳�Ȥ�����
+ *  ホップリミットの規定値は、ルータ通知により変更されることがある
  */
 
 #if NUM_ND6_DEF_RTR_ENTRY > 0
 
-/* �롼�����Τ����������ϡ����Τ��줿�� */
+/* ルータ通知を受信する場合は、通知された値 */
 
 #define IP_DEFTTL	ip6_defhlim
 
 #else	/* #if NUM_ND6_DEF_RTR_ENTRY > 0 */
 
-/* �롼�����Τ�������ʤ������ͤϴ����� */
+/* ルータ通知を受信しない場合の値は既定値 */
 
 #define IP_DEFTTL	IPV6_DEFHLIM
 

@@ -4,29 +4,29 @@
  *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
- *  �嵭����Ԥϡ��ʲ��� (1)��(4) �ξ�狼��Free Software Foundation 
- *  �ˤ�äƸ�ɽ����Ƥ��� GNU General Public License �� Version 2 �˵�
- *  �Ҥ���Ƥ���������������˸¤ꡤ�ܥ��եȥ��������ܥ��եȥ�����
- *  ����Ѥ�����Τ�ޤࡥ�ʲ�Ʊ���ˤ���ѡ�ʣ�������ѡ������ۡʰʲ���
- *  ���ѤȸƤ֡ˤ��뤳�Ȥ�̵���ǵ������롥
- *  (1) �ܥ��եȥ������򥽡��������ɤη������Ѥ�����ˤϡ��嵭������
- *      ��ɽ�����������Ѿ�浪��Ӳ�����̵�ݾڵ��꤬�����Τޤޤη��ǥ���
- *      ����������˴ޤޤ�Ƥ��뤳�ȡ�
- *  (2) �ܥ��եȥ������򡤥饤�֥������ʤɡ�¾�Υ��եȥ�������ȯ�˻�
- *      �ѤǤ�����Ǻ����ۤ�����ˤϡ������ۤ�ȼ���ɥ�����ȡ�����
- *      �ԥޥ˥奢��ʤɡˤˡ��嵭�����ɽ�����������Ѿ�浪��Ӳ���
- *      ��̵�ݾڵ����Ǻܤ��뤳�ȡ�
- *  (3) �ܥ��եȥ������򡤵�����Ȥ߹���ʤɡ�¾�Υ��եȥ�������ȯ�˻�
- *      �ѤǤ��ʤ����Ǻ����ۤ�����ˤϡ����ξ������������ȡ�
- *    (a) �����ۤ�ȼ���ɥ�����ȡ����Ѽԥޥ˥奢��ʤɡˤˡ��嵭����
- *        �ɽ�����������Ѿ�浪��Ӳ�����̵�ݾڵ����Ǻܤ��뤳�ȡ�
- *  (4) �ܥ��եȥ����������Ѥˤ��ľ��Ū�ޤ��ϴ���Ū�������뤤���ʤ�»
- *      ������⡤�嵭����Ԥ����TOPPERS�ץ��������Ȥ����դ��뤳�ȡ�
+ *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
+ *  によって公表されている GNU General Public License の Version 2 に記
+ *  述されている条件を満たす場合に限り，本ソフトウェア（本ソフトウェア
+ *  を改変したものを含む．以下同じ）を使用・複製・改変・再配布（以下，
+ *  利用と呼ぶ）することを無償で許諾する．
+ *  (1) 本ソフトウェアをソースコードの形で利用する場合には，上記の著作
+ *      権表示，この利用条件および下記の無保証規定が，そのままの形でソー
+ *      スコード中に含まれていること．
+ *  (2) 本ソフトウェアを，ライブラリ形式など，他のソフトウェア開発に使
+ *      用できる形で再配布する場合には，再配布に伴うドキュメント（利用
+ *      者マニュアルなど）に，上記の著作権表示，この利用条件および下記
+ *      の無保証規定を掲載すること．
+ *  (3) 本ソフトウェアを，機器に組み込むなど，他のソフトウェア開発に使
+ *      用できない形で再配布する場合には，次の条件を満たすこと．
+ *    (a) 再配布に伴うドキュメント（利用者マニュアルなど）に，上記の著
+ *        作権表示，この利用条件および下記の無保証規定を掲載すること．
+ *  (4) 本ソフトウェアの利用により直接的または間接的に生じるいかなる損
+ *      害からも，上記著作権者およびTOPPERSプロジェクトを免責すること．
  *
- *  �ܥ��եȥ������ϡ�̵�ݾڤ��󶡤���Ƥ����ΤǤ��롥�嵭����Ԥ�
- *  ���TOPPERS�ץ��������Ȥϡ��ܥ��եȥ������˴ؤ��ơ�����Ŭ�Ѳ�ǽ����
- *  �ޤ�ơ������ʤ��ݾڤ�Ԥ�ʤ����ޤ����ܥ��եȥ����������Ѥˤ��ľ
- *  ��Ū�ޤ��ϴ���Ū�������������ʤ�»���˴ؤ��Ƥ⡤������Ǥ�����ʤ���
+ *  本ソフトウェアは，無保証で提供されているものである．上記著作権者お
+ *  よびTOPPERSプロジェクトは，本ソフトウェアに関して，その適用可能性も
+ *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
+ *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
  *  @(#) $Id: ppp_ccp.c,v 1.5 2009/12/24 05:42:40 abe Exp $
  */
@@ -84,7 +84,7 @@
  */
 
 /*
- *  ����ͽ�ꡢ���ߤϤ��٤Ƶ���
+ *  実装予定、現在はすべて拒否
  */
 
 #include <t_services.h>
@@ -100,7 +100,7 @@
 #include <net/ppp_ccp.h>
 
 /*
- *  �ؿ�
+ *  関数
  */
 
 static void ccp_init (void);
@@ -112,51 +112,51 @@ static void ccp_open (void);
 static void ccp_close (void);
 
 /*
- * FSM ����ƽФ���륳����Хå���
+ * FSM から呼出されるコールバック関
  */
 
 static int_t  ccp_reqci	(T_PPP_FSM *fsm, T_NET_BUF *nbuf);
-					/* ���ι���������ǧ���롣	*/
+					/* 相手の構成情報を確認する。	*/
 
 /*
- *  �����ѿ�
+ *  全域変数
  */
 
 T_PPP_FSM_CALLBACKS ccp_callbacks = {
-	NULL,				/* �����������ꥻ�åȤ��롣	*/
-	NULL,				/* ���������Ĺ�����֤���		*/
-	NULL,				/* ������������ɲä��롣		*/
-	NULL,				/* ACK ����������Ȥ��ν���	*/
-	NULL,				/* NAK ����������Ȥ��ν���	*/
-	NULL,				/* REJ ����������Ȥ��ν���	*/
-	ccp_reqci,			/* ���ι���������ǧ���롣	*/
-	NULL,				/* �����³���Ω���롣		*/
-	NULL,				/* �����³��������롣		*/
-	NULL,				/* �����ؤ򳫻Ϥ��롣		*/
-	NULL,				/* �����ؤ�λ���롣		*/
-	NULL,				/* �������롣			*/
-	NULL,				/* ������ CP ����������Ȥ��ν���	*/
+	NULL,				/* 自構成情報をリセットする。	*/
+	NULL,				/* 構成情報の長さを返す。		*/
+	NULL,				/* 自構成情報を追加する。		*/
+	NULL,				/* ACK を受信したときの処理	*/
+	NULL,				/* NAK を受信したときの処理	*/
+	NULL,				/* REJ を受信したときの処理	*/
+	ccp_reqci,			/* 相手の構成情報を確認する。	*/
+	NULL,				/* リンク接続を確立する。		*/
+	NULL,				/* リンク接続を解放する。		*/
+	NULL,				/* 下位層を開始する。		*/
+	NULL,				/* 下位層を終了する。		*/
+	NULL,				/* 再送する。			*/
+	NULL,				/* 不明な CP を受信したときの処理	*/
 	};
 
 T_PPP_FSM ccp_fsm = {
-	&ccp_callbacks,			/* ������Хå��ؿ�		*/
-	PPP_CCP,			/* �ץ��ȥ���			*/
+	&ccp_callbacks,			/* コールバック関数		*/
+	PPP_CCP,			/* プロトコル			*/
 	};
 
 T_PPP_PROTENT ccp_protent = {
 	PPP_CCP,
-	ccp_init,			/* �����			*/
-	ccp_input,			/* ����				*/
-	ccp_protrej,			/* Proto-REJ ��������		*/
-	ccp_lowerup,			/* �����ؤ�ư����		*/
-	ccp_lowerdown,			/* �����ؤ���ߤ���		*/
-	ccp_open,			/* �����ץ󤹤�			*/
-	ccp_close,			/* ������������			*/
-	NULL,				/* �ǡ�������			*/
+	ccp_init,			/* 初期化			*/
+	ccp_input,			/* 入力				*/
+	ccp_protrej,			/* Proto-REJ 受信処理		*/
+	ccp_lowerup,			/* 下位層を起動する		*/
+	ccp_lowerdown,			/* 下位層を停止する		*/
+	ccp_open,			/* オープンする			*/
+	ccp_close,			/* クローズする			*/
+	NULL,				/* データ入力			*/
 	};
 
 /*
- *  ccp_init -- CCP �⥸�塼��ν����
+ *  ccp_init -- CCP モジュールの初期化
  */
 
 static void
@@ -166,7 +166,7 @@ ccp_init (void)
 	}
 
 /*
- *  ccp_input -- CCP ����
+ *  ccp_input -- CCP 入力
  */
 
 static void
@@ -178,20 +178,20 @@ ccp_input (T_NET_BUF *nbuf)
 	}
 
 /*
- *  ccp_reqci -- ���ι����������Ϥ��롣
+ *  ccp_reqci -- 相手の構成情報を解析する。
  */
 
 static int_t
 ccp_reqci (T_PPP_FSM *fsm, T_NET_BUF *nbuf)
 {
 /*
- *  ����ͽ�ꡢ���ߤϤ��٤ƤΥ��ץ�������ݤ��롣
+ *  実装予定、現在はすべてのオプションを拒否する。
  */
 	return nbuf->len > (sizeof(T_PPP_HDR) + sizeof(T_PPP_CP_HDR)) ? PPP_CONFREJ : PPP_CONFACK;
 	}
 
 /*
- *  ccp_protrej -- Proto-REJ ����������Ȥ��ν���
+ *  ccp_protrej -- Proto-REJ を受信したときの処理
  */
 
 static void
@@ -201,7 +201,7 @@ ccp_protrej (void)
 	}
 
 /*
- *  ccp_lowerup -- CCP �����ؤ�ư���롣
+ *  ccp_lowerup -- CCP 下位層を起動する。
  */
 
 static void
@@ -211,7 +211,7 @@ ccp_lowerup (void)
 	}
 
 /*
- *  ccp_lowerdown -- CCP �����ؤ���ߤ��롣
+ *  ccp_lowerdown -- CCP 下位層を停止する。
  */
 
 static void
@@ -221,7 +221,7 @@ ccp_lowerdown (void)
 	}
 
 /*
- *  ccp_open -- CCP �Υ�����
+ *  ccp_open -- CCP のオープ
  */
 
 static void
@@ -231,7 +231,7 @@ ccp_open (void)
 	}
 
 /*
- *  ccp_close -- CCP �Υ�������
+ *  ccp_close -- CCP のクローズ
  */
 
 static void

@@ -9,36 +9,36 @@
  *              Graduate School of Information Science, Nagoya Univ., JAPAN
  *  Copyright (C) 2008-2010 by Witz Corporation, JAPAN
  * 
- *  ��L���쌠�҂́CFree Software Foundation �ɂ���Č��\����Ă��� 
- *  GNU General Public License �� Version 2 �ɋL�q����Ă���������C��
- *  ����(1)�`(4)�̏����𖞂����ꍇ�Ɍ���C�{�\�t�g�E�F�A�i�{�\�t�g�E�F
- *  �A�����ς������̂��܂ށD�ȉ������j���g�p�E�����E���ρE�Ĕz�z�i�ȉ��C
- *  ���p�ƌĂԁj���邱�Ƃ𖳏��ŋ�������D
- *  (1) �{�\�t�g�E�F�A���\�[�X�R�[�h�̌`�ŗ��p����ꍇ�ɂ́C��L�̒���
- *      ���\���C���̗��p��������щ��L�̖��ۏ؋K�肪�C���̂܂܂̌`�Ń\�[
- *      �X�R�[�h���Ɋ܂܂�Ă��邱�ƁD
- *  (2) �{�\�t�g�E�F�A���ė��p�\�ȃo�C�i���R�[�h�i�����P�[�^�u���I�u
- *      �W�F�N�g�t�@�C���⃉�C�u�����Ȃǁj�̌`�ŗ��p����ꍇ�ɂ́C���p
- *      �ɔ����h�L�������g�i���p�҃}�j���A���Ȃǁj�ɁC��L�̒��쌠�\���C
- *      ���̗��p��������щ��L�̖��ۏ؋K����f�ڂ��邱�ƁD
- *  (3) �{�\�t�g�E�F�A���ė��p�s�\�ȃo�C�i���R�[�h�̌`�܂��͋@��ɑg
- *      �ݍ��񂾌`�ŗ��p����ꍇ�ɂ́C���̂����ꂩ�̏����𖞂������ƁD
- *    (a) ���p�ɔ����h�L�������g�i���p�҃}�j���A���Ȃǁj�ɁC��L�̒���
- *        ���\���C���̗��p��������щ��L�̖��ۏ؋K����f�ڂ��邱�ƁD
- *    (b) ���p�̌`�Ԃ��C�ʂɒ�߂���@�ɂ���āC��L���쌠�҂ɕ񍐂���
- *        ���ƁD
- *  (4) �{�\�t�g�E�F�A�̗��p�ɂ�蒼�ړI�܂��͊ԐړI�ɐ����邢���Ȃ鑹
- *      �Q������C��L���쌠�҂�Ɛӂ��邱�ƁD
+ *  上記著作権者は，Free Software Foundation によって公表されている 
+ *  GNU General Public License の Version 2 に記述されている条件か，以
+ *  下の(1)〜(4)の条件を満たす場合に限り，本ソフトウェア（本ソフトウェ
+ *  アを改変したものを含む．以下同じ）を使用・複製・改変・再配布（以下，
+ *  利用と呼ぶ）することを無償で許諾する．
+ *  (1) 本ソフトウェアをソースコードの形で利用する場合には，上記の著作
+ *      権表示，この利用条件および下記の無保証規定が，そのままの形でソー
+ *      スコード中に含まれていること．
+ *  (2) 本ソフトウェアを再利用可能なバイナリコード（リロケータブルオブ
+ *      ジェクトファイルやライブラリなど）の形で利用する場合には，利用
+ *      に伴うドキュメント（利用者マニュアルなど）に，上記の著作権表示，
+ *      この利用条件および下記の無保証規定を掲載すること．
+ *  (3) 本ソフトウェアを再利用不可能なバイナリコードの形または機器に組
+ *      み込んだ形で利用する場合には，次のいずれかの条件を満たすこと．
+ *    (a) 利用に伴うドキュメント（利用者マニュアルなど）に，上記の著作
+ *        権表示，この利用条件および下記の無保証規定を掲載すること．
+ *    (b) 利用の形態を，別に定める方法によって，上記著作権者に報告する
+ *        こと．
+ *  (4) 本ソフトウェアの利用により直接的または間接的に生じるいかなる損
+ *      害からも，上記著作権者を免責すること．
  * 
- *  �{�\�t�g�E�F�A�́C���ۏ؂Œ񋟂���Ă�����̂ł���D��L���쌠�҂́C
- *  �{�\�t�g�E�F�A�Ɋւ��āC���̓K�p�\�����܂߂āC�����Ȃ�ۏ؂��s��
- *  �Ȃ��D�܂��C�{�\�t�g�E�F�A�̗��p�ɂ�蒼�ړI�܂��͊ԐړI�ɐ�������
- *  ���Ȃ鑹�Q�Ɋւ��Ă��C���̐ӔC�𕉂�Ȃ��D
+ *  本ソフトウェアは，無保証で提供されているものである．上記著作権者は，
+ *  本ソフトウェアに関して，その適用可能性も含めて，いかなる保証も行わ
+ *  ない．また，本ソフトウェアの利用により直接的または間接的に生じたい
+ *  かなる損害に関しても，その責任を負わない．
  * 
  */
 
 /*
- *	�^�[�Q�b�g�V�X�e���ˑ����W���[���iStarter Kit�p�j
+ *	ターゲットシステム依存モジュール（Starter Kit用）
  */
 
 #include "kernel_impl.h"
@@ -47,48 +47,48 @@
 #include "rx600/rx600_uart.h"
 
 /*
- *  �^�[�Q�b�g�V�X�e���ˑ� ���������[�`��
+ *  ターゲットシステム依存 初期化ルーチン
  */
 void
 target_initialize( void )
 {
 	/*
-	 *  �v���Z�b�T�ˑ��̏�����
+	 *  プロセッサ依存の初期化
 	 */
 	prc_initialize();
 
 	/*
-	 *  �|�[�g�̐ݒ�
+	 *  ポートの設定
 	 */
 	rx600_uart_init( TARGET_PUTC_PORTID, UART_BAUDRATE, UART_CLKSRC );
 
-	/* �|�[�gP26��TxD1, �|�[�gP25��RxD1�� */
-	/* ���̓R���g���[�����W�X�^(ICR)�̐ݒ� P25(RxD1)����̓o�b�t�@�L���ɂ��� */
+	/* ポートP26をTxD1, ポートP25をRxD1に */
+	/* 入力コントロールレジスタ(ICR)の設定 P25(RxD1)を入力バッファ有効にする */
 	sil_wrb_mem((void *)(PORT2_ICR_ADDR) , 
 					sil_reb_mem((void *)(PORT2_ICR_ADDR)) | PORT_ICR_B5_BIT);
 
-	/* ���̓R���g���[�����W�X�^(ICR)�̐ݒ� P26(TxD1)����̓o�b�t�@�����ɂ��� */
+	/* 入力コントロールレジスタ(ICR)の設定 P26(TxD1)を入力バッファ無効にする */
 	sil_wrb_mem((void *)(PORT2_ICR_ADDR) , 
 					sil_reb_mem((void *)(PORT2_ICR_ADDR)) & ~PORT_ICR_B6_BIT);
 
-	/* �f�[�^�f�B���N�V�������W�X�^(DDR)�̐ݒ� P25(RxD1)����̓|�[�g�ɂ��� */
+	/* データディレクションレジスタ(DDR)の設定 P25(RxD1)を入力ポートにする */
 	sil_wrb_mem((void *)(PORT2_DDR_ADDR) , 
 					sil_reb_mem((void *)(PORT2_DDR_ADDR)) & ~PORT_DDR_B5_BIT);
 
-	/* �f�[�^�f�B���N�V�������W�X�^(DDR)�̐ݒ� P26(TxD1)���o�̓|�[�g�ɂ��� */
+	/* データディレクションレジスタ(DDR)の設定 P26(TxD1)を出力ポートにする */
 	sil_wrb_mem((void *)(PORT2_DDR_ADDR) , 
 					sil_reb_mem((void *)(PORT2_DDR_ADDR)) | PORT_DDR_B6_BIT);
 }
 
 
 /*
- *  �^�[�Q�b�g�V�X�e���̏I�����[�`��
+ *  ターゲットシステムの終了ルーチン
  */
 void
 target_exit( void )
 {
 	/*
-	 *	�v���Z�b�T�ˑ��̏I������
+	 *	プロセッサ依存の終了処理
 	 */
 	prc_terminate();
 
@@ -97,7 +97,7 @@ target_exit( void )
 
 
 /*
- *  �V�X�e�����O�̒჌�x���o�͂̂��߂̕����o��
+ *  システムログの低レベル出力のための文字出力
  */
 void
 target_fput_log( char c )

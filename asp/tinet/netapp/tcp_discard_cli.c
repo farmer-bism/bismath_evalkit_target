@@ -4,39 +4,39 @@
  *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
- *  �嵭����Ԥϡ��ʲ��� (1)��(4) �ξ�狼��Free Software Foundation 
- *  �ˤ�äƸ�ɽ����Ƥ��� GNU General Public License �� Version 2 �˵�
- *  �Ҥ���Ƥ���������������˸¤ꡤ�ܥ��եȥ��������ܥ��եȥ�����
- *  ����Ѥ�����Τ�ޤࡥ�ʲ�Ʊ���ˤ���ѡ�ʣ�������ѡ������ۡʰʲ���
- *  ���ѤȸƤ֡ˤ��뤳�Ȥ�̵���ǵ������롥
- *  (1) �ܥ��եȥ������򥽡��������ɤη������Ѥ�����ˤϡ��嵭������
- *      ��ɽ�����������Ѿ�浪��Ӳ�����̵�ݾڵ��꤬�����Τޤޤη��ǥ���
- *      ����������˴ޤޤ�Ƥ��뤳�ȡ�
- *  (2) �ܥ��եȥ������򡤥饤�֥������ʤɡ�¾�Υ��եȥ�������ȯ�˻�
- *      �ѤǤ�����Ǻ����ۤ�����ˤϡ������ۤ�ȼ���ɥ�����ȡ�����
- *      �ԥޥ˥奢��ʤɡˤˡ��嵭�����ɽ�����������Ѿ�浪��Ӳ���
- *      ��̵�ݾڵ����Ǻܤ��뤳�ȡ�
- *  (3) �ܥ��եȥ������򡤵�����Ȥ߹���ʤɡ�¾�Υ��եȥ�������ȯ�˻�
- *      �ѤǤ��ʤ����Ǻ����ۤ�����ˤϡ����ξ������������ȡ�
- *    (a) �����ۤ�ȼ���ɥ�����ȡ����Ѽԥޥ˥奢��ʤɡˤˡ��嵭����
- *        �ɽ�����������Ѿ�浪��Ӳ�����̵�ݾڵ����Ǻܤ��뤳�ȡ�
- *  (4) �ܥ��եȥ����������Ѥˤ��ľ��Ū�ޤ��ϴ���Ū�������뤤���ʤ�»
- *      ������⡤�嵭����Ԥ����TOPPERS�ץ��������Ȥ����դ��뤳�ȡ�
+ *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
+ *  によって公表されている GNU General Public License の Version 2 に記
+ *  述されている条件を満たす場合に限り，本ソフトウェア（本ソフトウェア
+ *  を改変したものを含む．以下同じ）を使用・複製・改変・再配布（以下，
+ *  利用と呼ぶ）することを無償で許諾する．
+ *  (1) 本ソフトウェアをソースコードの形で利用する場合には，上記の著作
+ *      権表示，この利用条件および下記の無保証規定が，そのままの形でソー
+ *      スコード中に含まれていること．
+ *  (2) 本ソフトウェアを，ライブラリ形式など，他のソフトウェア開発に使
+ *      用できる形で再配布する場合には，再配布に伴うドキュメント（利用
+ *      者マニュアルなど）に，上記の著作権表示，この利用条件および下記
+ *      の無保証規定を掲載すること．
+ *  (3) 本ソフトウェアを，機器に組み込むなど，他のソフトウェア開発に使
+ *      用できない形で再配布する場合には，次の条件を満たすこと．
+ *    (a) 再配布に伴うドキュメント（利用者マニュアルなど）に，上記の著
+ *        作権表示，この利用条件および下記の無保証規定を掲載すること．
+ *  (4) 本ソフトウェアの利用により直接的または間接的に生じるいかなる損
+ *      害からも，上記著作権者およびTOPPERSプロジェクトを免責すること．
  *
- *  �ܥ��եȥ������ϡ�̵�ݾڤ��󶡤���Ƥ����ΤǤ��롥�嵭����Ԥ�
- *  ���TOPPERS�ץ��������Ȥϡ��ܥ��եȥ������˴ؤ��ơ�����Ŭ�Ѳ�ǽ����
- *  �ޤ�ơ������ʤ��ݾڤ�Ԥ�ʤ����ޤ����ܥ��եȥ����������Ѥˤ��ľ
- *  ��Ū�ޤ��ϴ���Ū�������������ʤ�»���˴ؤ��Ƥ⡤������Ǥ�����ʤ���
+ *  本ソフトウェアは，無保証で提供されているものである．上記著作権者お
+ *  よびTOPPERSプロジェクトは，本ソフトウェアに関して，その適用可能性も
+ *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
+ *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
  *  @(#) $Id: tcp_discard_cli.c,v 1.5 2009/12/24 05:44:56 abe Exp $
  */
 
 /* 
- *  TCP DISCARD ���饤�����
+ *  TCP DISCARD クライアント
  *
- *    ���Υ�֥��å��󥰥�����
- *    ��IPv4
- *    ��IPv6
+ *    ・ノンブロッキングコール
+ *    ・IPv4
+ *    ・IPv6
  */
 
 #include <stdlib.h>
@@ -80,16 +80,16 @@
 
 #ifdef USE_TCP_DISCARD_CLI
 
-/* discard �����ФΥݡ����ֹ� */
+/* discard サーバのポート番号 */
 
 #define DISCARD_SRV_PORTNO	UINT_C(9)
 
-/* ɽ�� */
+/* 表示 */
 
 /*#define SHOW_RCV_RANGE*/
 
 /*
- *  �Хåե������������
+ *  バッファサイズの定義
  */
 
 #define NUM_DISCARD		5
@@ -99,12 +99,12 @@
 #define SND_BUF_SIZE		((PAT_END - PAT_BEGIN + 1) * NUM_REP_PAT)
 
 /*
- *  �����ѿ�
+ *  全域変数
  */
 
 bool_t tcp_discard_cli_valid;
 
-/* TCP ������������ɥХåե� */
+/* TCP 送受信ウィンドバッファ */
 
 #ifndef TCP_CFG_SWBUF_CSAVE_ONLY
 uint8_t tcp_discard_cli_swbuf[TCP_DISCARD_CLI_SWBUF_SIZE];
@@ -113,7 +113,7 @@ uint8_t tcp_discard_cli_swbuf[TCP_DISCARD_CLI_SWBUF_SIZE];
 #ifdef USE_TCP_NON_BLOCKING
 
 /*
- *  �ѿ�
+ *  変数
  */
 
 static T_IPEP		nblk_src = {
@@ -124,7 +124,7 @@ static T_IPEP		nblk_dst;
 static ER_UINT		nblk_error;
 
 /*
- *  �Υ�֥��å��󥰥�����Υ�����Хå��ؿ�
+ *  ノンブロッキングコールのコールバック関数
  */
 
 ER
@@ -158,7 +158,7 @@ callback_nblk_tcp_discard_cli (ID cepid, FN fncd, void *p_parblk)
 	}
 
 /*
- *  send_tcp_discard -- DISCARD/TCP �����Ф˥�å��������������롣
+ *  send_tcp_discard -- DISCARD/TCP サーバにメッセージを送信する。
  */
 
 static void
@@ -186,7 +186,7 @@ send_tcp_discard (ID cepid, T_IN_ADDR *ipaddr, uint16_t portno)
 		return;
 		}
 
-	/* ��³����λ����ޤ��Ԥġ�*/
+	/* 接続が完了するまで待つ。*/
 	syscall(wai_sem(SEM_TCP_DISCARD_CLI_NBLK_READY));
 
 	if (nblk_error != E_OK)
@@ -229,7 +229,7 @@ send_tcp_discard (ID cepid, T_IN_ADDR *ipaddr, uint16_t portno)
 		if ((error = tcp_cls_cep(cepid, TMO_NBLK)) != E_WBLK)
 			syslog(LOG_NOTICE, "[TDC:%02d SND] close error: %s", cepid, itron_strerror(error));
 
-		/* ��������λ����ޤ��Ԥġ�*/
+		/* 開放が完了するまで待つ。*/
 		syscall(wai_sem(SEM_TCP_DISCARD_CLI_NBLK_READY));
 		}
 	}
@@ -237,7 +237,7 @@ send_tcp_discard (ID cepid, T_IN_ADDR *ipaddr, uint16_t portno)
 #else	/* of #ifdef USE_TCP_NON_BLOCKING */
 
 /*
- *  send_tcp_discard -- DISCARD/TCP �����Ф˥�å��������������롣
+ *  send_tcp_discard -- DISCARD/TCP サーバにメッセージを送信する。
  */
 
 static void
