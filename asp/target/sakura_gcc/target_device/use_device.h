@@ -11,5 +11,6 @@
 //#define USE_MMC_RSPI_0
 //#define USE_MMC_GPIO_0
 //#define USE_DTCA_0
+#define USE_SCIC_0
 
 #endif

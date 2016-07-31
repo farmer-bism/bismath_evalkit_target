@@ -167,8 +167,8 @@ def tdev_def()
 
   devdef = YAML.load_file(devdef_file)
   
-#  generate_use_device(devdef)
-#  generate_device_id(devdef)
+  generate_use_device(devdef)
+  generate_device_id(devdef)
   generate_device_node(devdef)
 end
   

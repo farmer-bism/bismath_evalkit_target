@@ -15,7 +15,7 @@ GCC_TARGET = rx-elf
 #
 #  コンパイルオプション
 #
-INCLUDES := $(INCLUDES) -I$(TARGETDIR) -I$(SRCDIR)/pdic
+INCLUDES := $(INCLUDES) -I$(TARGETDIR) 
 #COPTS :=
 #CDEFS :=
 #LDFLAGS :=
@@ -39,8 +39,8 @@ KERNEL_COBJS := $(KERNEL_COBJS) target_config.o target_timer.o $(DRIVER_COBJS)
 #
 #  システムサービスに関する定義
 #
-SYSSVC_DIR := $(SYSSVC_DIR) $(SRCDIR)/pdic/renesas
-SYSSVC_COBJS := $(SYSSVC_COBJS) target_serial.o scic_uart.o tinet_target_config.o
+SYSSVC_DIR := $(SYSSVC_DIR) 
+SYSSVC_COBJS := $(SYSSVC_COBJS) target_serial.o tinet_target_config.o
 
 #
 #  コンフィギュレータ関係の変数の定義

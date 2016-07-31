@@ -100,13 +100,13 @@ extern void	target_fput_log( char c );
 /*
  *  シリアルポート数の定義
  */
-#define	TNUM_PORT			UINT_C( 3 )
+#define	TNUM_PORT			UINT_C( 1 )
 
 
 /*
  *  使用するシリアルポートID
  */
-#define	SIO_PORTID			UINT_C( 2 )
+#define	SIO_PORTID			UINT_C( 1 )
 
 #define LOGTASK_PORTID		SIO_PORTID
 

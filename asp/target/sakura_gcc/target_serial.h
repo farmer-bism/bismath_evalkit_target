@@ -50,21 +50,33 @@
 #define TOPPERS_TARGET_SERIAL_H
 
 #include "target_board.h"
-#include "renesas/scic_uart.h"
+#include "driver/rx_gcc/SCIc.h"
 
 /*
  *  SIOの割込みハンドラのベクタ番号
  */
-#define INHNO_SIO_TX	INT_SCI1_TEI1			/* 割込みハンドラ番号 */
-#define INTNO_SIO_TX	INT_SCI1_TEI1			/* 割込み番号 */
-#define INHNO_SIO_RX	INT_SCI1_RXI1			/* 割込みハンドラ番号 */
-#define INTNO_SIO_RX	INT_SCI1_RXI1			/* 割込み番号 */
+#define INHNO_SIO_TX	INT_SCI0_TEI0			/* 割込みハンドラ番号 */
+#define INTNO_SIO_TX	INT_SCI0_TEI0			/* 割込み番号 */
+#define INHNO_SIO_RX	INT_SCI0_RXI0			/* 割込みハンドラ番号 */
+#define INTNO_SIO_RX	INT_SCI0_RXI0			/* 割込み番号 */
 #define INTPRI_SIO		-4						/* 割込み優先度 */
 #define INTATR_SIO		(TA_NULL)				/* 割込み属性 */
 
 #ifndef TOPPERS_MACRO_ONLY
 
 
+
+/*
+ *  カーネル起動時のバナー出力用の初期化
+ */
+void
+std_uart_init(ID siopid, uint8_t bitrate, uint8_t clksrc);
+
+/*
+ *  シリアルI/Oポートへのポーリングでの出力
+ */
+void sci_uart_pol_putc(char c, ID siopid);
+  
 /*
  *  SIOドライバの初期化
  */

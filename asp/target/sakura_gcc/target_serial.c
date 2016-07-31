@@ -50,15 +50,57 @@
 #include <t_syslog.h>
 #include "target_board.h"
 #include "target_serial.h"
+#include "target_syssvc.h"
+
+dnode_id pid_to_devid_table[TNUM_PORT] = {
+  DEV_SCIC0
+};
+#define PID_TO_DEV(siopid) (pid_to_devid_table[siopid-1])
 
 /*
- *  SIOドライバの初期化
+ *  カーネル起動時のバナー出力用の初期化
  */
 void
-sio_initialize(intptr_t exinf)
+std_uart_init(ID siopid, uint8_t bitrate, uint8_t clksrc)
 {
-	scic_uart_initialize();
+	SIOPCB  *p_siopcb ;
+	dnode_id sci_did;
+	const SIOPINIB *p_siopinib;
+
+	sci_did = PID_TO_DEV(siopid);
+	p_siopcb = (SIOPCB*)GET_DEV_STAT(sci_did);
+	p_siopinib = p_siopcb->p_siopinib;
+
+	/*  二重初期化の防止  */
+	p_siopcb->is_initialized = true;
+
+	/*  ハードウェアの初期化処理と送信許可  */
+	scic_uart_setmode(p_siopinib , bitrate, clksrc);
+	scic_uart_trans_enable(p_siopcb);
 }
+/*
+ *  シリアルI/Oポートへのポーリングでの出力
+ */
+void
+sci_uart_pol_putc(char c, ID siopid)
+{
+	SIOPCB  *p_siopcb ;
+	dnode_id sci_did;
+	const SIOPINIB *p_siopinib;
+
+	sci_did = PID_TO_DEV(siopid);
+	p_siopcb = (SIOPCB*)GET_DEV_STAT(sci_did);
+	p_siopinib = p_siopcb->p_siopinib;
+
+	/*
+	 *  送信レジスタが空になるまで待つ
+	 */
+	while((sil_reb_mem(
+			(void *)p_siopinib->ssrreg) & SCI_SSR_TEND_BIT) == 0U);
+
+	sil_wrb_mem((void *)p_siopinib->tdreg, (uint8_t)c);
+}
+
 
 /*
  *  シリアルI/Oポートのオープン
@@ -78,8 +120,8 @@ sio_opn_por(ID siopid, intptr_t exinf)
 	ercd = dis_int(INTNO_SIO_RX);
 	assert(ercd == E_OK);
 	
-	p_siopcb = 
-		scic_uart_opn_por(siopid , exinf , UART_BAUDRATE , UART_CLKSRC);
+	p_siopcb = (SIOPCB*)GET_DEV_STAT(PID_TO_DEV(siopid));
+    scic_uart_opn_por(p_siopcb , exinf , UART_BAUDRATE , UART_CLKSRC);
 
 	/*
 	 *  シリアルI/O割込みをマスク解除する．
@@ -120,7 +162,7 @@ sio_cls_por(SIOPCB *p_siopcb)
  */
 void sio_tx_isr(intptr_t exinf)
 {
-	scic_uart_tx_isr(exinf);
+  scic_uart_tx_isr(PID_TO_DEV(exinf));
 }
 
 /*
@@ -128,7 +170,7 @@ void sio_tx_isr(intptr_t exinf)
  */
 void sio_rx_isr(intptr_t exinf)
 {
-	scic_uart_rx_isr(exinf);
+  scic_uart_rx_isr(PID_TO_DEV(exinf));
 }
 
 /*

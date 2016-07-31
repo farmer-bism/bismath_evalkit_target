@@ -43,7 +43,7 @@
 #include "kernel_impl.h"
 #include <sil.h>
 #include "target_board.h"
-#include "renesas/scic_uart.h"
+#include <target_serial.h>
 #include <target_device/target_device.h>
 
 
@@ -104,47 +104,7 @@ sakura_clock_config( void ){
 
 
 }
-void
-sakura_port_config( void )
-{
-	/*
-	 *  ポートの設定
-	 */
 
-	scic_uart_init( TARGET_PUTC_PORTID, UART_BAUDRATE, UART_CLKSRC );
-
-
-	/* ポートP50をTxD2, ポートP52をRxD2に */
-	/* MPC setting */
-	/* unlock PFS write protection */
-	sil_wrb_mem((void *)(MPC_PWPR_ADDR), MPC_PWPR_PFSW_CLEAR);
-	sil_wrb_mem((void *)(MPC_PWPR_ADDR), MPC_PWPR_PFSWE_BIT);
-	/* p50 is set as TxD2 mode */
-	sil_wrb_mem((void *)(MPC_P50PFS_ADDR), MPC_PFS_PSELA);
-	/* p52 is set as RxD2 mode*/
-	sil_wrb_mem((void *)(MPC_P52PFS_ADDR), MPC_PFS_PSELA);
-	/* lock PFS write */
-	sil_wrb_mem((void *)(MPC_PWPR_ADDR), MPC_PWPR_PFSW_CLEAR);
-	sil_wrb_mem((void *)(MPC_PWPR_ADDR), MPC_PWPR_B0WI_BIT);
-
-	/* port mode setting */
-	/* Port Mode Register(PMR) config. P50 and P52(RxD2) are setted to IP use */
-	sil_wrb_mem((void *)(PORT5_PMR_ADDR) , 
-					sil_reb_mem((void *)(PORT2_PMR_ADDR)) | PORT_PMR_B0_BIT | PORT_PMR_B2_BIT);
-}
-
-void
-sakura_ip_wakeup( void )
-{
-  //unlock register access 
-  sil_wrh_mem((void *)(SYSTEM_PRCR_ADDR), SYSTEM_PRKEY | SYSTEM_PRC1);
-  /*
-   * モジュールストップ機能の設定(SCI2)
-   */
-  *SYSTEM_MSTPCRB_ADDR &= ~(SYSTEM_MSTPCRB_MSTPB29_BIT); /* CMT0 */
-  //lock register access
-  sil_wrh_mem((void *)(SYSTEM_PRCR_ADDR), SYSTEM_PRKEY );
-}
 void
 target_initialize( void )
 {
@@ -155,10 +115,8 @@ target_initialize( void )
 
   prc_initialize();
   sakura_clock_config();
-  //set port direction
-  sakura_port_config();
-  sakura_ip_wakeup();
   target_device_init();
+  std_uart_init(TARGET_PUTC_PORTID, 38, CLK_F4); //9600 baudrate
 
 }
 
@@ -183,9 +141,9 @@ void
 target_fput_log( char c )
 {
 	if( c == '\n' ){
-	   scic_uart_pol_putc( '\r' , TARGET_PUTC_PORTID );
+	   sci_uart_pol_putc( '\r' , TARGET_PUTC_PORTID );
 	}
 
-    scic_uart_pol_putc( c , TARGET_PUTC_PORTID );
+    sci_uart_pol_putc( c , TARGET_PUTC_PORTID );
 }
 

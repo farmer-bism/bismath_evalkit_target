@@ -43,6 +43,8 @@
 #ifndef TOPPERS_RX_UART_H
 #define TOPPERS_RX_UART_H
 
+#include <sil.h>
+#include <target_device/target_device.h>
 /* 指定可能なクロックソース */
 #define CLK_F1	UINT_C(0x00)
 #define CLK_F4	UINT_C(0x01)
@@ -54,6 +56,36 @@
 /*
  *  シリアルI/Oポート管理ブロックの定義
  */
+/*
+ *  シリアルI/Oポート初期化ブロックの定義
+ */
+typedef struct sio_port_initialization_block {
+	volatile uint8_t	*ctlreg;		/* シリアルコントロールレジスタ（SCR) */
+	volatile uint8_t	*modereg;		/* シリアルモードレジスタ（SMR) */
+	volatile uint8_t	*extmodereg;	/* シリアル拡張モードレジスタ（SEMR) */	
+	volatile uint8_t	*statusreg;		/* シリアルステータスレジスタ（SSR） */
+	volatile uint8_t	*tdreg;			/* トランスミットデータレジスタ（TDR)*/
+	volatile uint8_t	*rdreg;			/* レシーブデータレジスタ（RDR) */
+	volatile uint8_t	*bitratereg;	/* ビットレートレジスタ（BRR) */
+	volatile uint8_t	*ssrreg;		/* ステータスレジスタ */
+	uint8_t				tx_intno;		/* 送信（データエンプティ）割り込み番号 */
+	uint8_t				rx_intno;		/* 受信（データフル）割り込み番号 */
+	uint8_t				te_intno;		/* 送信（終了）割り込み番号 */
+} SIOPINIB;
+
+/*
+ *  シリアルI/Oポート管理ブロックの定義
+ */
+struct sio_port_control_block {
+	const SIOPINIB	*p_siopinib; 				/* シリアルI/Oポート初期化ブロック */
+	intptr_t 	exinf;			 				/* 拡張情報 */
+	bool_t		openflag;						/* オープン済みフラグ */
+	bool_t		sendflag;						/* 送信割込みイネーブルフラグ */
+	bool_t		getready;						/* 文字を受信した状態 */
+	bool_t		putready;						/* 文字を送信できる状態 */
+	bool_t		is_initialized; 				/* デバイス初期化済みフラグ */
+};
+
 typedef struct sio_port_control_block	SIOPCB;
 
 /*
@@ -63,56 +95,41 @@ typedef struct sio_port_control_block	SIOPCB;
 #define SIO_RDY_RCV    (2U)        /* 受信通知コールバック */
 
 /*
- *  SIOドライバの初期化ルーチン
- */
-extern void scic_uart_initialize(void);
-
-/*
- * カーネル起動時のバナー出力用の初期化
- */
-extern void scic_uart_init(ID siopid , uint8_t baud , uint8_t clksrc);
-
-/*
- *  シリアルI/Oポートへのポーリングでの出力
- */
-extern void scic_uart_pol_putc(char c, ID siopid);
-
-/*
  *  シリアルI/Oポートのオープン
  */
-extern SIOPCB *scic_uart_opn_por
-	(ID siopid, intptr_t exinf , uint8_t baud , uint8_t clksrc);
+extern void scic_uart_opn_por
+	(void* p_siopcb_v, intptr_t exinf , uint8_t baud , uint8_t clksrc);
 
 /*
  *  シリアルI/Oポートのクローズ
  */
-extern void scic_uart_cls_por(SIOPCB *p_siopcb);
+extern void scic_uart_cls_por(void *p_siopcb);
 
 /*
  *  シリアルI/Oポートへの文字送信
  */
-extern bool_t scic_uart_snd_chr(SIOPCB *p_siopcb, char c);
+extern bool_t scic_uart_snd_chr(void *p_siopcb, char c);
 
 /*
  *  シリアルI/Oポートからの文字受信
  */
-extern int_t scic_uart_rcv_chr(SIOPCB *p_siopcb);
+extern int_t scic_uart_rcv_chr(void *p_siopcb);
 
 /*
  *  シリアルI/Oポートからのコールバックの許可
  */
-extern void  scic_uart_ena_cbr(SIOPCB *p_siopcb, uint_t cbrtn);
+extern void  scic_uart_ena_cbr(void *p_siopcb, uint_t cbrtn);
 
 /*
  *  シリアルI/Oポートからのコールバックの禁止
  */
-extern void scic_uart_dis_cbr(SIOPCB *p_siopcb, uint_t cbrtn);
+extern void scic_uart_dis_cbr(void *p_siopcb, uint_t cbrtn);
 
 /*
  *  SIOの割込みサービスルーチン
  */
-extern void scic_uart_tx_isr(ID siopid);
-extern void scic_uart_rx_isr(ID siopid);
+extern void scic_uart_tx_isr(dnode_id sio_did);
+extern void scic_uart_rx_isr(dnode_id sio_did);
 
 /*
  *  シリアルI/Oポートからの送信可能コールバック
@@ -124,6 +141,14 @@ extern void scic_uart_irdy_snd(intptr_t exinf);
  */
 extern void scic_uart_irdy_rcv(intptr_t exinf);
 
+/*
+ * enable transmit
+ */
+void
+scic_uart_trans_enable(void* p_siopcb_v);
+
+void
+scic_uart_setmode(const SIOPINIB *p_siopinib, uint8_t bitrate, uint8_t clksrc);
 
 #endif /* TOPPERS_MACRO_ONLY */
 #endif /* TOPPERS_RX610_UART_H */

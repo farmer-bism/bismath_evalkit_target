@@ -3,7 +3,6 @@
   num_dev: 1
   init_func: target_dev_ini_rspi
   node_obj: rspi_node
-  
 
 - id: MMC_RSPI
   num_dev: 1
@@ -19,4 +18,9 @@
   num_dev: 1
   init_func: target_dev_ini_dtca
   node_obj: NULL
+
+- id: SCIC
+  num_dev: 1
+  init_func: target_dev_ini_scic
+  node_obj: scic_node
   

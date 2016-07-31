@@ -41,11 +41,10 @@
  *   Renesas SCIc(UART)用 簡易SIOドライバ
  */
 
-#include <sil.h>
 #include <kernel.h>
 #include <t_syslog.h>
 #include "target_syssvc.h"
-#include "scic_uart.h"
+#include "SCIc.h"
 
 /* シリアルモードレジスタ（SMR) */
 #define CKS			UINT_C(0x03)
@@ -79,181 +78,28 @@
 #define SCI_SMR_FLG_ENABLE	(STOP | PM | PE | CHR | CM)
 
 /*
- *  シリアルI/Oポート初期化ブロックの定義
- */
-typedef struct sio_port_initialization_block {
-	volatile uint8_t	*ctlreg;		/* シリアルコントロールレジスタ（SCR) */
-	volatile uint8_t	*modereg;		/* シリアルモードレジスタ（SMR) */
-	volatile uint8_t	*extmodereg;	/* シリアル拡張モードレジスタ（SEMR) */	
-	volatile uint8_t	*statusreg;		/* シリアルステータスレジスタ（SSR） */
-	volatile uint8_t	*tdreg;			/* トランスミットデータレジスタ（TDR)*/
-	volatile uint8_t	*rdreg;			/* レシーブデータレジスタ（RDR) */
-	volatile uint8_t	*bitratereg;	/* ビットレートレジスタ（BRR) */
-	volatile uint8_t	*ssrreg;		/* ステータスレジスタ */
-	uint8_t				tx_intno;		/* 送信（データエンプティ）割り込み番号 */
-	uint8_t				rx_intno;		/* 受信（データフル）割り込み番号 */
-	uint8_t				te_intno;		/* 送信（終了）割り込み番号 */
-} SIOPINIB;
-
-/*
- *  シリアルI/Oポート管理ブロックの定義
- */
-struct sio_port_control_block {
-	const SIOPINIB	*p_siopinib; 				/* シリアルI/Oポート初期化ブロック */
-	intptr_t 	exinf;			 				/* 拡張情報 */
-	bool_t		openflag;						/* オープン済みフラグ */
-	bool_t		sendflag;						/* 送信割込みイネーブルフラグ */
-	bool_t		getready;						/* 文字を受信した状態 */
-	bool_t		putready;						/* 文字を送信できる状態 */
-	bool_t		is_initialized; 				/* デバイス初期化済みフラグ */
-};
-
-/*
- *  シリアルI/Oポート管理ブロックのエリア
- */
-static SIOPCB	siopcb_table[TNUM_SIOP];
-
-/* レジスタテーブル */
-static const SIOPINIB siopinib_table[TNUM_SIOP] =
-{
-	{
-		(volatile uint8_t *)SCI0_SCR_ADDR,
-		(volatile uint8_t *)SCI0_SMR_ADDR,
-		(volatile uint8_t *)SCI0_SEMR_ADDR,
-		(volatile uint8_t *)SCI0_SSR_ADDR,
-		(volatile uint8_t *)SCI0_TDR_ADDR,
-		(volatile uint8_t *)SCI0_RDR_ADDR,
-		(volatile uint8_t *)SCI0_BRR_ADDR,
-		(volatile uint32_t *)SYSTEM_MSTPCRB_ADDR,
-		(volatile uint8_t *)SCI0_SSR_ADDR,
-		INT_SCI0_TXI0,
-		INT_SCI0_RXI0,
-		INT_SCI0_TEI0,
-		0,
-		SYSTEM_MSTPCRB_MSTPB31_BIT,
-	} ,			/* UART0 */
-#if TNUM_SIOP > 1
-	{
-		(volatile uint8_t *)SCI1_SCR_ADDR,
-		(volatile uint8_t *)SCI1_SMR_ADDR,
-		(volatile uint8_t *)SCI1_SEMR_ADDR,
-		(volatile uint8_t *)SCI1_SSR_ADDR,
-		(volatile uint8_t *)SCI1_TDR_ADDR,
-		(volatile uint8_t *)SCI1_RDR_ADDR,
-		(volatile uint8_t *)SCI1_BRR_ADDR,
-		(volatile uint32_t *)SYSTEM_MSTPCRB_ADDR,
-		(volatile uint8_t *)SCI1_SSR_ADDR,
-		INT_SCI1_TXI1,
-		INT_SCI1_RXI1,
-		INT_SCI1_TEI1,
-		1,
-		SYSTEM_MSTPCRB_MSTPB30_BIT,
-	} ,			/* UART1 */
-#endif
-#if TNUM_SIOP > 2
-	{
-		(volatile uint8_t *)SCI2_SCR_ADDR,
-		(volatile uint8_t *)SCI2_SMR_ADDR,
-		(volatile uint8_t *)SCI2_SEMR_ADDR,
-		(volatile uint8_t *)SCI2_SSR_ADDR,
-		(volatile uint8_t *)SCI2_TDR_ADDR,
-		(volatile uint8_t *)SCI2_RDR_ADDR,
-		(volatile uint8_t *)SCI2_BRR_ADDR,
-		(volatile uint32_t *)SYSTEM_MSTPCRB_ADDR,
-		(volatile uint8_t *)SCI2_SSR_ADDR,
-		INT_SCI2_TXI2,
-		INT_SCI2_RXI2,
-		INT_SCI2_TEI2,
-		2,
-		SYSTEM_MSTPCRB_MSTPB29_BIT,
-	} ,			/* UART2 */
-#endif
-#if TNUM_SIOP > 3
-	{
-		(volatile uint8_t *)SCI3_SCR_ADDR,
-		(volatile uint8_t *)SCI3_SMR_ADDR,
-		(volatile uint8_t *)SCI3_SEMR_ADDR,
-		(volatile uint8_t *)SCI3_SSR_ADDR,
-		(volatile uint8_t *)SCI3_TDR_ADDR,
-		(volatile uint8_t *)SCI3_RDR_ADDR,
-		(volatile uint8_t *)SCI3_BRR_ADDR,
-		(volatile uint32_t *)SYSTEM_MSTPCRB_ADDR,
-		(volatile uint8_t *)SCI3_SSR_ADDR,
-		INT_SCI3_TXI3,
-		INT_SCI3_RXI3,
-		INT_SCI3_TEI3,
-		3,
-		SYSTEM_MSTPCRB_MSTPB28_BIT,
-	} ,			/* UART3 */
-#endif
-#if TNUM_SIOP > 4
-	{
-		(volatile uint8_t *)SCI4_SCR_ADDR,
-		(volatile uint8_t *)SCI4_SMR_ADDR,
-		(volatile uint8_t *)SCI4_SEMR_ADDR,
-		(volatile uint8_t *)SCI4_SSR_ADDR,
-		(volatile uint8_t *)SCI4_TDR_ADDR,
-		(volatile uint8_t *)SCI4_RDR_ADDR,
-		(volatile uint8_t *)SCI4_BRR_ADDR,
-		(volatile uint32_t *)SYSTEM_MSTPCRB_ADDR,
-		(volatile uint8_t *)SCI4_SSR_ADDR,
-		INT_SCI4_TXI4,
-		INT_SCI4_RXI4,
-		INT_SCI4_TEI4,
-		4,
-		SYSTEM_MSTPCRB_MSTPB27_BIT,
-	} ,		/* UART4 */
-#endif
-#if TNUM_SIOP > 5
-	{
-		(volatile uint8_t *)SCI5_SCR_ADDR,
-		(volatile uint8_t *)SCI5_SMR_ADDR,
-		(volatile uint8_t *)SCI5_SEMR_ADDR,
-		(volatile uint8_t *)SCI5_SSR_ADDR,
-		(volatile uint8_t *)SCI5_TDR_ADDR,
-		(volatile uint8_t *)SCI5_RDR_ADDR,
-		(volatile uint8_t *)SCI5_BRR_ADDR,
-		(volatile uint32_t *)SYSTEM_MSTPCRB_ADDR,
-		(volatile uint8_t *)SCI5_SSR_ADDR,
-		INT_SCI5_TXI5,
-		INT_SCI5_RXI5,
-		INT_SCI5_TEI5,
-		5,
-		SYSTEM_MSTPCRB_MSTPB26_BIT,
-	} ,		/* UART5 */
-#endif
-#if TNUM_SIOP > 6
-	{
-		(volatile uint8_t *)SCI6_SCR_ADDR,
-		(volatile uint8_t *)SCI6_SMR_ADDR,
-		(volatile uint8_t *)SCI6_SEMR_ADDR,
-		(volatile uint8_t *)SCI6_SSR_ADDR,
-		(volatile uint8_t *)SCI6_TDR_ADDR,
-		(volatile uint8_t *)SCI6_RDR_ADDR,
-		(volatile uint8_t *)SCI6_BRR_ADDR,
-		(volatile uint32_t *)SYSTEM_MSTPCRB_ADDR,
-		(volatile uint8_t *)SCI6_SSR_ADDR,
-		INT_SCI6_TXI6,
-		INT_SCI6_RXI6,
-		INT_SCI6_TEI6,
-		6,
-		SYSTEM_MSTPCRB_MSTPB25_BIT,
-	} ,		/* UART6 */
-#endif
-};
-
-/*
  *  シリアルI/OポートIDから管理ブロックを取り出すためのマクロ
  */
-#define INDEX_SIOP(siopid)	 ((uint_t)((siopid) - 1))
-#define get_siopcb(siopid)	 (&(siopcb_table[INDEX_SIOP(siopid)]))
-#define get_siopinib(siopid) (&(siopinib_table[INDEX_SIOP(siopid)]))
 
+#define get_siopinib(siopcb_stat) (siopcb_stat->p_siopinib)
 
+/*
+ * enable transmit
+ */
+void
+scic_uart_trans_enable(void* p_siopcb_v){
+	SIOPCB          *p_siopcb;
+	const SIOPINIB  *p_siopinib;
+
+	p_siopcb = (SIOPCB*) p_siopcb_v;
+	p_siopinib = p_siopcb->p_siopinib;
+	sil_wrb_mem((void *)p_siopinib->ctlreg,
+					(uint8_t)(sil_reb_mem((void *)p_siopinib->ctlreg) | TE));
+}
 /*
  *  SIOドライバのシリアルモードレジスタ(SMR)
  */
-static void
+void
 scic_uart_setmode(const SIOPINIB *p_siopinib, uint8_t bitrate, uint8_t clksrc)
 {
 	uint8_t i;
@@ -268,11 +114,6 @@ scic_uart_setmode(const SIOPINIB *p_siopinib, uint8_t bitrate, uint8_t clksrc)
 	 *  リセット値と同じ値を設定することになるため,
 	 *  処理は省略する.
 	 */
-
-	/*
-	 *  モジュールストップ機能の設定(SCI1)
-	 */
-	sil_wrw_mem((void *)p_siopinib->mstpcrreg, (~p_siopinib->mstpcr_offset));
 
 	/* 送受信禁止, SCKn端子は入出力ポートとして使用 */
 	sil_wrb_mem((void *)p_siopinib->ctlreg, 0x00U);
@@ -298,76 +139,17 @@ scic_uart_setmode(const SIOPINIB *p_siopinib, uint8_t bitrate, uint8_t clksrc)
 			(sil_reb_mem((void *)p_siopinib->ctlreg) | SCI_SCR_FLG_ENABLE));
 }
 
-
-/*
- *  SIOドライバの初期化ルーチン
- */
-void
-scic_uart_initialize(void)
-{
-	SIOPCB	*p_siopcb;
-	uint_t	i;
-
-	/*
-	 *  シリアルI/Oポート管理ブロックの初期化
-	 */
-	for (p_siopcb = siopcb_table, i = 0; i < TNUM_SIOP; p_siopcb++, i++){
-		p_siopcb->p_siopinib = &(siopinib_table[i]);
-		p_siopcb->openflag = false;
-		p_siopcb->sendflag = false;
-	}
-}
-
-/*
- *  カーネル起動時のバナー出力用の初期化
- */
-void
-scic_uart_init(ID siopid, uint8_t bitrate, uint8_t clksrc)
-{
-	SIOPCB          *p_siopcb   = get_siopcb(siopid);
-	const SIOPINIB  *p_siopinib = get_siopinib(siopid);
-	/*  この時点では、p_siopcb->p_siopinibは初期化されていない  */
-
-	/*  二重初期化の防止  */
-	p_siopcb->is_initialized = true;
-
-	/*  ハードウェアの初期化処理と送信許可  */
-	scic_uart_setmode(p_siopinib , bitrate, clksrc);
-	sil_wrb_mem((void *)p_siopinib->ctlreg, 
-					(uint8_t)(sil_reb_mem((void *)p_siopinib->ctlreg) | TE));
-}
-
-
-/*
- *  シリアルI/Oポートへのポーリングでの出力
- */
-void
-scic_uart_pol_putc(char c, ID siopid)
-{
-	const SIOPINIB *p_siopinib;
-
-	p_siopinib = get_siopinib(siopid);
-
-	/*
-	 *  送信レジスタが空になるまで待つ
-	 */
-	while((sil_reb_mem(
-			(void *)p_siopinib->ssrreg) & SCI_SSR_TEND_BIT) == 0U);
-
-	sil_wrb_mem((void *)p_siopinib->tdreg, (uint8_t)c);
-}
-
 /*
  *  シリアルI/Oポートのオープン
  */
-SIOPCB *
+void
 scic_uart_opn_por
-	(ID siopid, intptr_t exinf, uint8_t bitrate, uint8_t clksrc)
+	(void* p_siopcb_v, intptr_t exinf, uint8_t bitrate, uint8_t clksrc)
 {
 	SIOPCB          *p_siopcb;
 	const SIOPINIB  *p_siopinib;
 
-	p_siopcb = get_siopcb(siopid);
+	p_siopcb = (SIOPCB*) p_siopcb_v;
 	p_siopinib = p_siopcb->p_siopinib;
 
 	/*
@@ -384,33 +166,35 @@ scic_uart_opn_por
 	p_siopcb->getready = p_siopcb->putready = false;
 	p_siopcb->openflag = true;
 
-    return (p_siopcb);
 }
 
 /*
  *  シリアルI/Oポートのクローズ
  */
 void
-scic_uart_cls_por(SIOPCB *p_siopcb)
+scic_uart_cls_por(void *p_siopcb_v)
 {
 	/*
 	 *  UART停止
 	 */
-	sil_wrh_mem((void *)p_siopcb->p_siopinib->ctlreg, 0x00U);
-	p_siopcb->openflag = false;
-	p_siopcb->is_initialized = false;
+  SIOPCB *p_siopcb;
+  p_siopcb = p_siopcb_v;
+  sil_wrh_mem((void *)p_siopcb->p_siopinib->ctlreg, 0x00U);
+  p_siopcb->openflag = false;
+  p_siopcb->is_initialized = false;
 }
 
 /*
  *  シリアルI/Oポートへの文字送信
  */
 bool_t
-scic_uart_snd_chr(SIOPCB *p_siopcb, char c)
+scic_uart_snd_chr(void *p_siopcb_v, char c)
 {
 	bool_t ercd = false;
+    SIOPCB *p_siopcb;
 
-	if((sil_reb_mem(
-		(void *)p_siopcb->p_siopinib->ssrreg) & SCI_SSR_TEND_BIT) != 0){
+    p_siopcb = (SIOPCB *)p_siopcb_v;
+	if((sil_reb_mem((void *)p_siopcb->p_siopinib->ssrreg) & SCI_SSR_TEND_BIT) != 0){
 		sil_wrb_mem((void *)p_siopcb->p_siopinib->tdreg, (uint8_t)c);
 		ercd = true;
 	}
@@ -422,9 +206,12 @@ scic_uart_snd_chr(SIOPCB *p_siopcb, char c)
  *  シリアルI/Oポートからの文字受信
  */
 int_t
-scic_uart_rcv_chr(SIOPCB *p_siopcb)
+scic_uart_rcv_chr(void *p_siopcb_v)
 {
 	int_t c = -1;
+    SIOPCB *p_siopcb;
+
+    p_siopcb = (SIOPCB *)p_siopcb_v;
 
 	/*
 	 *  受信フラグがONのときのみ受信バッファから文字を取得する.
@@ -442,8 +229,11 @@ scic_uart_rcv_chr(SIOPCB *p_siopcb)
  *  シリアルI/Oポートからのコールバックの許可
  */
 void
-scic_uart_ena_cbr(SIOPCB *p_siopcb, uint_t cbrtn)
+scic_uart_ena_cbr(void *p_siopcb_v, uint_t cbrtn)
 {
+    SIOPCB *p_siopcb;
+
+    p_siopcb = (SIOPCB *)p_siopcb_v;
 	switch (cbrtn) {
 		case SIO_RDY_SND:
 			sil_wrb_mem((void *)p_siopcb->p_siopinib->ctlreg, 
@@ -463,8 +253,11 @@ scic_uart_ena_cbr(SIOPCB *p_siopcb, uint_t cbrtn)
  *  シリアルI/Oポートからのコールバックの禁止
  */
 void
-scic_uart_dis_cbr(SIOPCB *p_siopcb, uint_t cbrtn)
+scic_uart_dis_cbr(void *p_siopcb_v, uint_t cbrtn)
 {
+    SIOPCB *p_siopcb;
+
+    p_siopcb = (SIOPCB *)p_siopcb_v;
 	switch (cbrtn) {
 		case SIO_RDY_SND:
 			sil_wrb_mem((void *)p_siopcb->p_siopinib->ctlreg, 
@@ -484,33 +277,33 @@ scic_uart_dis_cbr(SIOPCB *p_siopcb, uint_t cbrtn)
  *  SIOの割込みサービスルーチン
  */
 void
-scic_uart_tx_isr(ID siopid)
+scic_uart_tx_isr(dnode_id sio_did)
 {
-	SIOPCB	*p_siopcb = get_siopcb(siopid);
+  SIOPCB *p_siopcb = GET_DEV_STAT(sio_did);
 
-	if((sil_reb_mem(
-		(void *)p_siopcb->p_siopinib->ssrreg) & SCI_SSR_TEND_BIT) != 0U){
-		/*
-		 *  送信可能コールバックルーチンを呼び出す．
-		 */
-		scic_uart_irdy_snd(p_siopcb->exinf);
-	}
+  if((sil_reb_mem(
+       (void *)p_siopcb->p_siopinib->ssrreg) & SCI_SSR_TEND_BIT) != 0U){
+    /*
+     *  送信可能コールバックルーチンを呼び出す．
+     */
+    scic_uart_irdy_snd(p_siopcb->exinf);
+  }
 }
 
 void
-scic_uart_rx_isr(ID siopid)
+scic_uart_rx_isr(dnode_id sio_did)
 {
-	SIOPCB	*p_siopcb = get_siopcb(siopid);
+  SIOPCB	*p_siopcb = (SIOPCB*)GET_DEV_STAT(sio_did);
 
-	/*
-	 *  受信フラグがONのときのみ受信通知コールバックルーチンを呼び出す.
-	 *  しかし, SCICでは受信フラグがないため, 常に受信通知
-	 *  コールバックルーチンを呼び出す.
-	 *  ここでは受信割込みの発生を信じる.
-	 */
-	/*
-	 *  受信通知コールバックルーチンを呼び出す．
-	 */
-	scic_uart_irdy_rcv(p_siopcb->exinf);
+  /*
+   *  受信フラグがONのときのみ受信通知コールバックルーチンを呼び出す.
+   *  しかし, SCICでは受信フラグがないため, 常に受信通知
+   *  コールバックルーチンを呼び出す.
+   *  ここでは受信割込みの発生を信じる.
+   */
+  /*
+   *  受信通知コールバックルーチンを呼び出す．
+   */
+  scic_uart_irdy_rcv(p_siopcb->exinf);
 }
 

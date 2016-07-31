@@ -71,7 +71,7 @@ extern uint32_t	DEFAULT_ISTACK[];
 /*
  *  ターゲット依存の文字出力に使用するポートの定義  
  */
-#define TARGET_PUTC_PORTID	( 2 )
+#define TARGET_PUTC_PORTID	( 1)
 
 
 #ifndef TOPPERS_MACRO_ONLY
@@ -94,7 +94,7 @@ extern void	target_exit( void )	NoReturn;
 /*
  *  プロセッサ依存モジュール（RX610用）
  */
-#include "rx_gcc/rx610_config.h"
+#include "rx63n_gcc/rx63n_config.h"
 
 
 /*
