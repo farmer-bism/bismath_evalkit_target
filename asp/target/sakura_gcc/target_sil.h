@@ -56,6 +56,6 @@
 /*
  *  プロセッサで共通な定義
  */
-#include "rx63n_gcc/prc_sil.h"
+#include "prc_sil.h"
 
 #endif /* TOPPERS_TARGET_SIL_H */

@@ -10,6 +10,7 @@
  *  Copyright (C) 2003-2004 by Platform Development Center
  *                                          RICOH COMPANY,LTD. JAPAN
  *  Copyright (C) 2008-2010 by Witz Corporation, JAPAN
+ *  Copyright (C) 2016- by Hisashi Hata, JAPAN
  * 
  *  上記著作権者は，以下の(1)〜(4)の条件を満たす場合に限り，本ソフトウェ
  *  ア（本ソフトウェアを改変したものを含む．以下同じ）を使用・複製・改
@@ -43,7 +44,7 @@
  */
 
 /*
- *		タイマドライバ（Renesas Starter Kit for RX610 用）
+ *		タイマドライバ（RX63n 用）
  */
 
 #include "kernel_impl.h"
@@ -73,7 +74,7 @@ target_timer_initialize(intptr_t exinf)
 
   /*
    * カウントアップに用いられるクロック設定
-   * PCLK/32を選択
+   * PCLKB/8を選択
    */
   *CMT0_CMCR_ADDR = CMT_PCLK_DIV_8;
 

@@ -1,13 +1,13 @@
 $ 
-$     asm_config.inc ¶¬—p
-$     ƒpƒX2‚Ìƒ^[ƒQƒbƒgˆË‘¶ƒeƒ“ƒvƒŒ[ƒgirsk_rx_hew—pj
+$     asm_config.inc ç”Ÿæˆç”¨
+$     ãƒ‘ã‚¹2ã®ã‚¿ãƒ¼ã‚²ãƒƒãƒˆä¾å­˜ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆï¼ˆsakura_gccç”¨ï¼‰
 $ 
 $     Copyright (C) 2010 by Witz Corporation, JAPAN
 
 $ 
 
 $ 
-$  ƒvƒƒZƒbƒTˆË‘¶‚Ìƒeƒ“ƒvƒŒ[ƒgƒtƒ@ƒCƒ‹‚ÌƒCƒ“ƒNƒ‹[ƒh
+$  ãƒ—ãƒ­ã‚»ãƒƒã‚µä¾å­˜ã®ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 $ 
 $INCLUDE"prc_asm_config.tf"$
 

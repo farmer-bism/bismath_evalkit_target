@@ -57,7 +57,7 @@
 /*
  *  プロセッサ依存の定義
  */
-#include "rx63n_gcc/prc_syssvc.h"
+#include "prc_syssvc.h"
 
 
 /*

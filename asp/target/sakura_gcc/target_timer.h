@@ -10,6 +10,7 @@
  *  Copyright (C) 2003-2004 by Platform Development Center
  *                                          RICOH COMPANY,LTD. JAPAN
  *  Copyright (C) 2008-2010 by Witz Corporation, JAPAN
+ *  Copyright (C) 2016 by Hisashi Hata, JAPAN
  * 
  *  上記著作権者は，以下の(1)〜(4)の条件を満たす場合に限り，本ソフトウェ
  *  ア（本ソフトウェアを改変したものを含む．以下同じ）を使用・複製・改
@@ -73,7 +74,7 @@ typedef uint16_t	CLOCK;
  *
  *  1msのタイマー割り込みを使用するのでそのクロックを定義する．
  */
-#define TIMER_CLOCK				(6250U)		/* 6.25MHz */
+#define TIMER_CLOCK				(6000U)		/* 6.000MHz */
 #define TO_CLOCK(nume, deno)	((CLOCK)(TIMER_CLOCK * (nume) / (deno)))
 #define	TO_USEC(clock)			((SYSUTM)((clock) * 1000U / TIMER_CLOCK))
 
@@ -106,10 +107,10 @@ typedef uint16_t	CLOCK;
  *  コンペアマッチタイマコンスタントレジスタ（CMCOR）
  *
  *  コンペアマッチ周期を1msとする．
- *  周辺モジュールクロック（PCLK）50MHzを8分周するので，
- *  1周期あたり160nsecとなり，6250周期で1ms（タイムティックの周期）とする．
+ *  周辺モジュールクロック（PCLK）48MHzを8分周するので，
+ *  1周期あたり166.6nsecとなり，6000周期で1ms（タイムティックの周期）とする．
  */
-#define CMCOR_PERIOD			(6250U)
+#define CMCOR_PERIOD			(6000U)
 
 /*
  * コンペアマッチタイマ割り込み要求先設定レジスタi（ISELRi）（i= 割り込みベクタ番号）

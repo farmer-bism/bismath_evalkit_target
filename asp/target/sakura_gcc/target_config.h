@@ -98,7 +98,7 @@ extern void	target_exit( void )	NoReturn;
 /*
  *  プロセッサ依存モジュール（RX63n用）
  */
-#include "rx63n_gcc/rx63n_config.h"
+#include "rx63n_config.h"
 
 
 /*

@@ -41,7 +41,7 @@
 /*
  *  MCU依存情報の読み込み
  */
-#include <rx63n_gcc/rx63n.h>
+#include <rx63n.h>
 
 #ifndef TOPPERS_MACRO_ONLY
 #include "target_device/target_device.h"
@@ -53,9 +53,9 @@
 /*
  *  ボーレート設定
  */
-#define BAUD_38400BPS		UINT_C( 0x28 )
+#define BAUD_9600BPS		UINT_C( 38 )
 
-#define UART_BAUDRATE		BAUD_38400BPS
+#define UART_BAUDRATE		BAUD_9600BPS
 
 
 /*
