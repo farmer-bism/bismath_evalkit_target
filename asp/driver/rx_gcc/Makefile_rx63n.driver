@@ -5,5 +5,4 @@ DRIVER_COBJS =
 #include $(DRIVERDIR)/Makefile.mmc_rspi
 #include $(DRIVERDIR)/Makefile.mmc_gpio
 #include $(DRIVERDIR)/Makefile.DTCa
-#include $(DRIVERDIR)/Makefile.SCIc
-include $(DRIVERDIR)/Makefile.SCIg
+include $(DRIVERDIR)/Makefile.SCIc

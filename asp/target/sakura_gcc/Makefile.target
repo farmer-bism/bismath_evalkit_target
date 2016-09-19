@@ -27,7 +27,7 @@ INCLUDES := $(INCLUDES) -I$(TARGETDIR)
 
 DRIVERDIR = $(SRCDIR)/driver/rx_gcc
 
-include $(DRIVERDIR)/Makefile.driver
+include $(DRIVERDIR)/Makefile_rx63n.driver
 
 #
 #  カーネルに関する定義
