@@ -3,6 +3,7 @@
  * 
  *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
+ *  Copyright (C) 2014 Cores Co., Ltd. Japan
  * 
  *  上記著作権者は，以下の(1)〜(4)の条件を満たす場合に限り，本ソフトウェ
  *  ア（本ソフトウェアを改変したものを含む．以下同じ）を使用・複製・改
@@ -36,80 +37,15 @@
  *  @(#) $Id$
  */
 
-/*
- *  ターゲット依存モジュール（RX64M用）
- */
-
-#include <sil.h>
-
-#if defined(SUPPORT_ETHER)
-
-#include <tinet_defs.h>
-#include <tinet_config.h>
-#include "target_board.h"
-
+#ifndef _TINET_NIC_CONFIG_H_
+#define _TINET_NIC_CONFIG_H_
 
 /*
- *  edmac_bus_init -- ターゲット依存部のバスの初期化
+ *  ネットワークインタフェースの内部識別名のリネーム
  */
 
-void
-edmac_bus_init (void)
-{
-	/* イーサネット・コントローラの動作を許可 */
-	sil_wrh_mem((uint16_t *)SYSTEM_PRCR_ADDR, (uint16_t)0xA502);	/* 書込み許可 */
-	sil_wrw_mem((uint32_t *)SYSTEM_MSTPCRB_ADDR,
-		sil_rew_mem((uint32_t *)SYSTEM_MSTPCRB_ADDR) & ~SYSTEM_MSTPCRB_MSTPB15_ETH0);
-	sil_wrh_mem((uint16_t *)SYSTEM_PRCR_ADDR, (uint16_t)0xA500);	/* 書込み禁止 */
+#include "nic_rename.h"
 
-	/* EtherNET有効 */
-	/* P71-72, P74-77 RMII_MDIO, RMII_MDC,RXD1, RXD0, REF50CK, RX-ER */
-	sil_wrb_mem((uint8_t *)PORT7_PMR_ADDR,
-		sil_reb_mem((uint8_t *)PORTA_PMR_ADDR) | 0xF6);
-	/* P80〜3 TXD-EN, TXD0, TXD1, CRS */
-	sil_wrb_mem((uint8_t *)PORT8_PMR_ADDR,
-		sil_reb_mem((uint8_t *)PORTB_PMR_ADDR) | 0x0F);
+#include "if_EDMACa.h"
 
-	/* 書き込みプロテクトレジスタの設定 PFSWEビットへの書き込みを許可 */
-	sil_wrb_mem((uint8_t *)(MPC_PWPR_ADDR) , 0x00);
-	/* 書き込みプロテクトレジスタの設定 PxxFSレジスタへの書き込みを許可 */
-	sil_wrb_mem((uint8_t *)(MPC_PWPR_ADDR) , 0x40);
-
-	/* P71をET_MDIOとする */
-	sil_wrb_mem((uint8_t *)MPC_P71PFS_ADDR, 0x11); 
-	/* P72をET_MDCとする */
-	sil_wrb_mem((uint8_t *)MPC_P72PFS_ADDR, 0x11); 
-    //	/* PA5をET_LINKSTAとする */
-    //	sil_wrb_mem((uint8_t *)MPC_PA5PFS_ADDR, 0x11); 
-
-	/* P74をRXD1とする */
-	sil_wrb_mem((uint8_t *)MPC_P74PFS_ADDR, 0x12);
-	/* P75をRXD0とする */
-	sil_wrb_mem((uint8_t *)MPC_P75PFS_ADDR, 0x12);
-	/* P76をREF50CKとする */
-	sil_wrb_mem((uint8_t *)MPC_P76PFS_ADDR, 0x12);
-	/* P77をRX-ERとする */
-	sil_wrb_mem((uint8_t *)MPC_P77PFS_ADDR, 0x12);
-	/* P80をTXD-ENとする */
-	sil_wrb_mem((uint8_t *)MPC_P80PFS_ADDR, 0x12);
-	/* P81をTXD0とする */
-	sil_wrb_mem((uint8_t *)MPC_P81PFS_ADDR, 0x12);
-	/* P82をTXD1とする */
-	sil_wrb_mem((uint8_t *)MPC_P82PFS_ADDR, 0x12);
-	/* P83をCRSとする */
-	sil_wrb_mem((uint8_t *)MPC_P83PFS_ADDR, 0x12);
-
-	/* 書き込みプロテクトレジスタの設定 書き込みを禁止 */
-	sil_wrb_mem((uint8_t *)(MPC_PWPR_ADDR) , 0x80);
-}
-
-/*
- *  rx62n_inter_init -- ターゲット依存部の割込みの初期化
- */
-
-void
-edmac_inter_init (void)
-{
-}
-
-#endif	/* of #if defined(SUPPORT_ETHER) */
+#endif	/* of #ifndef _TINET_NIC_CONFIG_H_ */

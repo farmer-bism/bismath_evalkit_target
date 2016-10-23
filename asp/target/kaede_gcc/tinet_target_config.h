@@ -40,6 +40,19 @@
 #define _TINET_TARGET_CONFIG_H_
 
 /*
+ * NIC target config
+ */
+//Base address of ethernet device define
+#define TINET_EDMAC_BASE EDMAC0_BASE_ADDR
+#define TINET_ETHERC_BASE ETHERC0_BASE_ADDR
+#define TINET_GRP_INT_GEN_ADDR ICU_GENAL1_ADDR
+#define TINET_GRP_INT_ST_ADDR ICU_GRPAL1_ADDR
+#define TINET_GRP_EINT_BIT GROUP_AL1_B4_EDMAC0_EINT0
+
+//PHY function define
+//#define TTINET_PHY_SUPPORT_LINKSTA
+
+/*
  *  TCP/IP に関する定義
  */
 
@@ -180,39 +193,39 @@
 #define MAX_PAP_REXMT		10			/* 認証要求の最大再送回数	*/
 
 /*
- *  RX63N Ethernet Controler に関する定義
+ *  RX64M Ethernet Controler に関する定義
  */
 
-#define NUM_IF_RX62N_TXBUF		4	/* 送信バッファ数			*/
-#define NUM_IF_RX62N_RXBUF		4	/* 受信バッファ数			*/
-//#define IF_RX62N_BUF_PAGE_SIZE	1518	/* バッファサイズ */
-#define IF_RX62N_BUF_PAGE_SIZE	0x600	/* バッファサイズ */
+#define NUM_IF_EDMAC_TXBUF		4	/* 送信バッファ数			*/
+#define NUM_IF_EDMAC_RXBUF		4	/* 受信バッファ数			*/
+//#define IF_EDMAC_BUF_PAGE_SIZE	1518	/* バッファサイズ */
+#define IF_EDMAC_BUF_PAGE_SIZE	0x600	/* バッファサイズ */
 
-#define TMO_IF_RX62N_GET_NET_BUF	1	/* [ms]、受信用 net_buf 獲得タイムアウト	*/
+#define TMO_IF_EDMAC_GET_NET_BUF	1	/* [ms]、受信用 net_buf 獲得タイムアウト	*/
 					/* [s]、 送信タイムアウト			*/
-#define TMO_IF_RX62N_XMIT		(2*IF_TIMER_HZ)
+#define TMO_IF_EDMAC_XMIT		(2*IF_TIMER_HZ)
 
-/*#define IF_RX62N_CFG_ACCEPT_ALL		 マルチキャスト、エラーフレームも受信するときはコメントを外す。*/
+/*#define IF_EDMAC_CFG_ACCEPT_ALL		 マルチキャスト、エラーフレームも受信するときはコメントを外す。*/
 
 /*
  *  イーサネット出力時に、NIC で net_buf を開放する場合に指定する。
  *
- *  注意: 以下の指定は、指定例であり、if_rx62n では、
+ *  注意: 以下の指定は、指定例であり、if_edmac では、
  *        開放しないので、以下のコメントを外してはならない。
  */
 
 /*#define ETHER_NIC_CFG_RELEASE_NET_BUF*/
 
 /*
- *  RX63N Ethernet Controller に関する定義
+ *  RX64M Ethernet Controller に関する定義
  */
 
-#define RX63N_BASE_ADDRESS		ULONG_C(0x00200000)	/* NIC のレジスタベースアドレス */
+#define RX64M_BASE_ADDRESS		ULONG_C(0x00200000)	/* NIC のレジスタベースアドレス */
 
-#define INHNO_IF_RX62N_TRX	INT_ETHER_EINT	/* パケット送受信 */
-#define INTNO_IF_RX62N_TRX	INT_ETHER_EINT	/* パケット送受信 */
-#define INTATR_IF_RX62N_TRX	(TA_NULL)	/* 割込み属性	*/
-#define INTPRI_IF_RX62N_TRX	(-5)		/* 割込み優先度	*/
+#define INHNO_IF_EDMAC_TRX	INT_ICU_GROUPAL1	/* パケット送受信 */
+#define INTNO_IF_EDMAC_TRX	INT_ICU_GROUPAL1	/* パケット送受信 */
+#define INTATR_IF_EDMAC_TRX	(TA_NULL)	/* 割込み属性	*/
+#define INTPRI_IF_EDMAC_TRX	(-5)		/* 割込み優先度	*/
 
 /*
  *  ARP に関する定義
@@ -321,7 +334,7 @@
 /*
  *  注意!!
  *
- *  RX63N Ethernet Controler のディバイスドライバ（if_rx62n）の最低割当て長は
+ *  RX64M Ethernet Controler のディバイスドライバ（if_EDMACa）の最低割当て長は
  *  60（アラインして 62）オクテットのため IF + IP +TCP よりは
  *  64 オクテットのネットワークバッファの方が最適である。
  */
@@ -488,8 +501,8 @@
  *  関数
  */
 
-extern void rx62n_bus_init (void);
-extern void rx62n_inter_init (void);
+extern void edmac_bus_init (void);
+extern void edmac_inter_init (void);
 
 #endif	/* of #ifndef TOPPERS_MACRO_ONLY */
 

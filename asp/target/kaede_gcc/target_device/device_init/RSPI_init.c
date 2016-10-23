@@ -7,9 +7,7 @@
 #include <target_device/device_init/RSPI_init.h>
 #include <driver/rx_gcc/RSPI.h>
 
-#define RSPI_CH0_BASE 0x00088380
-#define RSPI_CH1_BASE 0x000883A0
-#define RSPI_CH2_BASE 0x000883C0
+#define RSPI_CH0_BASE 0x000D0100
 
 #ifdef USE_RSPI_0
 
@@ -60,68 +58,3 @@ void target_dev_ini_rspi_0(){
 }
 #endif
 
-#ifdef USE_RSPI_1
-//device info define
-
-rspi_dstat rspi_st_1 = {
-  RSPI_CH1_BASE,
-  0,
-  INT_RSPI1_SPRI1,
-  INT_RSPI1_SPTI1,
-  RSPI_1_IP_LOCK_SEM,
-  RSPI_1_INT_SYNC_SEM
-};
-
-const dev_node_t rspi_node_1 = {
-  NULL,
-  (void*)&rspi_st_1
-};
-
-
-
-void target_dev_init_rspi_1(){
-	/* MPC setting */
-	/* unlock PFS write protection */
-	sil_wrb_mem((void *)(MPC_PWPR_ADDR), MPC_PWPR_PFSW_CLEAR);
-	sil_wrb_mem((void *)(MPC_PWPR_ADDR), MPC_PWPR_PFSWE_BIT);
-
-    rspi_1 not implemented
-    
-	/* lock PFS write */
-	sil_wrb_mem((void *)(MPC_PWPR_ADDR), MPC_PWPR_PFSW_CLEAR);
-	sil_wrb_mem((void *)(MPC_PWPR_ADDR), MPC_PWPR_B0WI_BIT);
-
-}
-#endif
-
-
-#ifdef USE_RSPI_2
-//device info define
-rspi_dstat rspi_st_2 = {
-  RSPI_CH2_BASE,
-  INT_RSPI2_SPRI2,
-  INT_RSPI2_SPTI2,
-  RSPI_2_IP_LOCK_SEM,
-  RSPI_2_INT_SYNC_SEM
-};
-
-const dev_node_t rspi_node_2 = {
-  NULL,
-  (void*)&rspi_st_2
-};
-
-
-void target_dev_init_rspi_2(){
-	/* MPC setting */
-	/* unlock PFS write protection */
-	sil_wrb_mem((void *)(MPC_PWPR_ADDR), MPC_PWPR_PFSW_CLEAR);
-	sil_wrb_mem((void *)(MPC_PWPR_ADDR), MPC_PWPR_PFSWE_BIT);
-
-    rspi 2 not implemented
-    
-	/* lock PFS write */
-	sil_wrb_mem((void *)(MPC_PWPR_ADDR), MPC_PWPR_PFSW_CLEAR);
-	sil_wrb_mem((void *)(MPC_PWPR_ADDR), MPC_PWPR_B0WI_BIT);
-
-}
-#endif

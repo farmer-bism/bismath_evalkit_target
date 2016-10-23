@@ -3,6 +3,7 @@
  * 
  *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
+ *  Copyright (C) 2014 Cores Co., Ltd. Japan
  * 
  *  上記著作権者は，以下の(1)〜(4)の条件を満たす場合に限り，本ソフトウェ
  *  ア（本ソフトウェアを改変したものを含む．以下同じ）を使用・複製・改
@@ -37,79 +38,82 @@
  */
 
 /*
- *  ターゲット依存モジュール（RX64M用）
+ * Copyright (C) 1993, David Greenman. This software may be used, modified,
+ *   copied, distributed, and sold, in both source and binary form provided
+ *   that the above copyright and these terms are retained. Under no
+ *   circumstances is the author responsible for the proper functioning
+ *   of this software, nor does the author assume any responsibility
+ *   for damages incurred with its use.
  */
 
-#include <sil.h>
-
-#if defined(SUPPORT_ETHER)
-
-#include <tinet_defs.h>
-#include <tinet_config.h>
-#include "target_board.h"
-
+#ifndef _IF_EDMAC_H_
+#define _IF_EDMAC_H_
 
 /*
- *  edmac_bus_init -- ターゲット依存部のバスの初期化
+ *  NIC の選択マクロ
  */
 
-void
-edmac_bus_init (void)
-{
-	/* イーサネット・コントローラの動作を許可 */
-	sil_wrh_mem((uint16_t *)SYSTEM_PRCR_ADDR, (uint16_t)0xA502);	/* 書込み許可 */
-	sil_wrw_mem((uint32_t *)SYSTEM_MSTPCRB_ADDR,
-		sil_rew_mem((uint32_t *)SYSTEM_MSTPCRB_ADDR) & ~SYSTEM_MSTPCRB_MSTPB15_ETH0);
-	sil_wrh_mem((uint16_t *)SYSTEM_PRCR_ADDR, (uint16_t)0xA500);	/* 書込み禁止 */
+#define IF_ETHER_NIC_GET_SOFTC()	edmac_get_softc()
+#define IF_ETHER_NIC_WATCHDOG(i)	edmac_watchdog(i)
+#define IF_ETHER_NIC_PROBE(i)		edmac_probe(i)
+#define IF_ETHER_NIC_INIT(i)		edmac_init(i)
+#define IF_ETHER_NIC_READ(i)		edmac_read(i)
+#define IF_ETHER_NIC_RESET(i)		edmac_reset(i)
+#define IF_ETHER_NIC_START(i,o)		edmac_start(i,o)
 
-	/* EtherNET有効 */
-	/* P71-72, P74-77 RMII_MDIO, RMII_MDC,RXD1, RXD0, REF50CK, RX-ER */
-	sil_wrb_mem((uint8_t *)PORT7_PMR_ADDR,
-		sil_reb_mem((uint8_t *)PORTA_PMR_ADDR) | 0xF6);
-	/* P80〜3 TXD-EN, TXD0, TXD1, CRS */
-	sil_wrb_mem((uint8_t *)PORT8_PMR_ADDR,
-		sil_reb_mem((uint8_t *)PORTB_PMR_ADDR) | 0x0F);
+#define T_IF_ETHER_NIC_SOFTC		struct t_edmac_softc
 
-	/* 書き込みプロテクトレジスタの設定 PFSWEビットへの書き込みを許可 */
-	sil_wrb_mem((uint8_t *)(MPC_PWPR_ADDR) , 0x00);
-	/* 書き込みプロテクトレジスタの設定 PxxFSレジスタへの書き込みを許可 */
-	sil_wrb_mem((uint8_t *)(MPC_PWPR_ADDR) , 0x40);
+/* IPv6 関係 */
 
-	/* P71をET_MDIOとする */
-	sil_wrb_mem((uint8_t *)MPC_P71PFS_ADDR, 0x11); 
-	/* P72をET_MDCとする */
-	sil_wrb_mem((uint8_t *)MPC_P72PFS_ADDR, 0x11); 
-    //	/* PA5をET_LINKSTAとする */
-    //	sil_wrb_mem((uint8_t *)MPC_PA5PFS_ADDR, 0x11); 
+#define IF_ETHER_NIC_IN6_IFID(i,a)	get_mac6_ifid(i,a)	/* インタフェース識別子の設定		*/
+#define IF_ETHER_NIC_ADDMULTI(s)	edmac_addmulti(s)		/* マルチキャストアドレスの登録		*/
 
-	/* P74をRXD1とする */
-	sil_wrb_mem((uint8_t *)MPC_P74PFS_ADDR, 0x12);
-	/* P75をRXD0とする */
-	sil_wrb_mem((uint8_t *)MPC_P75PFS_ADDR, 0x12);
-	/* P76をREF50CKとする */
-	sil_wrb_mem((uint8_t *)MPC_P76PFS_ADDR, 0x12);
-	/* P77をRX-ERとする */
-	sil_wrb_mem((uint8_t *)MPC_P77PFS_ADDR, 0x12);
-	/* P80をTXD-ENとする */
-	sil_wrb_mem((uint8_t *)MPC_P80PFS_ADDR, 0x12);
-	/* P81をTXD0とする */
-	sil_wrb_mem((uint8_t *)MPC_P81PFS_ADDR, 0x12);
-	/* P82をTXD1とする */
-	sil_wrb_mem((uint8_t *)MPC_P82PFS_ADDR, 0x12);
-	/* P83をCRSとする */
-	sil_wrb_mem((uint8_t *)MPC_P83PFS_ADDR, 0x12);
-
-	/* 書き込みプロテクトレジスタの設定 書き込みを禁止 */
-	sil_wrb_mem((uint8_t *)(MPC_PWPR_ADDR) , 0x80);
-}
+#if !defined(TOPPERS_MACRO_ONLY) && !defined(_MACRO_ONLY)
 
 /*
- *  rx62n_inter_init -- ターゲット依存部の割込みの初期化
+ *  前方参照
  */
 
-void
-edmac_inter_init (void)
-{
-}
+#ifndef T_IF_SOFTC_DEFINED
 
-#endif	/* of #if defined(SUPPORT_ETHER) */
+typedef struct t_if_softc T_IF_SOFTC;
+
+#define T_IF_SOFTC_DEFINED
+
+#endif	/* of #ifndef T_IF_SOFTC_DEFINED */
+
+#ifndef T_NET_BUF_DEFINED
+
+typedef struct t_net_buf T_NET_BUF;
+
+#define T_NET_BUF_DEFINED
+
+#endif	/* of #ifndef T_NET_BUF_DEFINED */
+
+/*
+ *  ディスクリプタテーブルのアライメント定義
+ */
+#define ALIGN_OF_DESC 16 //set 16,32 or 64.
+/*
+ * バッファアドレスのアライメント定義
+ */
+
+#define ALIGN_OF_BUF 32 
+
+/*
+ *  関数
+ */
+
+extern T_IF_SOFTC *edmac_get_softc(void);
+extern void edmac_watchdog(T_IF_SOFTC *ic);
+extern void edmac_probe(T_IF_SOFTC *ic);
+extern void edmac_init(T_IF_SOFTC *ic);
+extern void edmac_reset(T_IF_SOFTC *ic);
+extern T_NET_BUF *edmac_read(T_IF_SOFTC *ic);
+extern void edmac_start(T_IF_SOFTC *ic, T_NET_BUF *output);
+extern ER edmac_addmulti(T_IF_SOFTC *ic);
+extern void if_edmac_trx_handler(void);
+
+#endif /* #if !defined(TOPPERS_MACRO_ONLY) && !defined(_MACRO_ONLY) */
+
+#endif	/* of #ifndef _IF_EDMAC_H_ */

@@ -97,7 +97,7 @@
 #include <net/net_count.h>
 #include <net/net_buf.h>
 
-#include "if_rx62nreg.h"
+#include "if_EDMACareg.h"
 #include <string.h>
 #include "ether_phy.h"
 
@@ -111,13 +111,13 @@ extern uint8_t mac_addr[ETHER_ADDR_LEN];
  *  ネットワークインタフェースに依存するソフトウェア情報 
  */
 
-typedef struct t_rx62n_softc {
-	T_RX62N_TX_DESC *tx_write;
-	T_RX62N_RX_DESC *rx_read;
+typedef struct t_edmac_softc {
+	T_EDMAC_TX_DESC *tx_write;
+	T_EDMAC_RX_DESC *rx_read;
 	bool_t link_pre;
 	bool_t link_now;
 	bool_t over_flow;
-} T_RX62N_SOFTC;
+} T_EDMAC_SOFTC;
 
 /*
  *  ネットワークインタフェースのソフトウェア情報
@@ -125,23 +125,23 @@ typedef struct t_rx62n_softc {
 
 /* ネットワークインタフェースに依存するソフトウェア情報 */
 
-static T_RX62N_SOFTC rx62n_softc;
+static T_EDMAC_SOFTC edmac_softc;
 
-typedef struct t_rx62n_buf {
-  uint8_t *rx_buff[NUM_IF_RX62N_RXBUF];
-  uint8_t *tx_buff[NUM_IF_RX62N_TXBUF];
-  T_RX62N_RX_DESC *rx_desc;
-  T_RX62N_TX_DESC *tx_desc;
-} T_RX62N_BUF;
+typedef struct t_edmac_buf {
+  uint8_t *rx_buff[NUM_IF_EDMAC_RXBUF];
+  uint8_t *tx_buff[NUM_IF_EDMAC_TXBUF];
+  T_EDMAC_RX_DESC *rx_desc;
+  T_EDMAC_TX_DESC *tx_desc;
+} T_EDMAC_BUF;
 
 #if defined(__RX)
 #pragma	section	ETH_MEMORY
 #endif
-T_RX62N_BUF rx62n_buf;
-uint8_t rx_buff_mem[NUM_IF_RX62N_RXBUF][IF_RX62N_BUF_PAGE_SIZE + ALIGN_OF_BUF];
-uint8_t tx_buff_mem[NUM_IF_RX62N_TXBUF][IF_RX62N_BUF_PAGE_SIZE + ALIGN_OF_BUF];
-uint8_t rx_desc_mem[sizeof(T_RX62N_RX_DESC)*NUM_IF_RX62N_RXBUF+ALIGN_OF_DESC];
-uint8_t tx_desc_mem[sizeof(T_RX62N_TX_DESC)*NUM_IF_RX62N_TXBUF+ALIGN_OF_DESC];
+T_EDMAC_BUF edmac_buf;
+uint8_t rx_buff_mem[NUM_IF_EDMAC_RXBUF][IF_EDMAC_BUF_PAGE_SIZE + ALIGN_OF_BUF];
+uint8_t tx_buff_mem[NUM_IF_EDMAC_TXBUF][IF_EDMAC_BUF_PAGE_SIZE + ALIGN_OF_BUF];
+uint8_t rx_desc_mem[sizeof(T_EDMAC_RX_DESC)*NUM_IF_EDMAC_RXBUF+ALIGN_OF_DESC];
+uint8_t tx_desc_mem[sizeof(T_EDMAC_TX_DESC)*NUM_IF_EDMAC_TXBUF+ALIGN_OF_DESC];
 
 #if defined(__RX)
 #pragma	section
@@ -152,9 +152,9 @@ uint8_t tx_desc_mem[sizeof(T_RX62N_TX_DESC)*NUM_IF_RX62N_TXBUF+ALIGN_OF_DESC];
 T_IF_SOFTC if_softc = {
 	{0,},						/* ネットワークインタフェースのアドレス	*/
 	0,							/* 送信タイムアウト			*/
-	&rx62n_softc,				/* ディバイス依存のソフトウェア情報	*/
-	SEM_IF_RX62N_SBUF_READY,	/* 送信セマフォ			*/
-	SEM_IF_RX62N_RBUF_READY,	/* 受信セマフォ			*/
+	&edmac_softc,				/* ディバイス依存のソフトウェア情報	*/
+	SEM_IF_EDMAC_SBUF_READY,	/* 送信セマフォ			*/
+	SEM_IF_EDMAC_RBUF_READY,	/* 受信セマフォ			*/
 
 #ifdef SUPPORT_INET6
 
@@ -167,9 +167,9 @@ T_IF_SOFTC if_softc = {
  *  局所変数
  */
 
-static void rx62n_stop (T_RX62N_SOFTC *sc);
-static void rx62n_init_sub (T_IF_SOFTC *ic);
-static void rx62n_set_ecmr (T_IF_SOFTC *ic, enum phy_mode_t mode);
+static void edmac_stop (T_EDMAC_SOFTC *sc);
+static void edmac_init_sub (T_IF_SOFTC *ic);
+static void edmac_set_ecmr (T_IF_SOFTC *ic, enum phy_mode_t mode);
 
 #ifdef SUPPORT_INET6
 
@@ -224,49 +224,49 @@ ds_getmcaf (T_IF_SOFTC *ic, uint32_t *mcaf)
 }
 
 /*
- * rx62n_setrcr -- 受信構成レジスタ (RCR) を設定する。
+ * edmac_setrcr -- 受信構成レジスタ (RCR) を設定する。
  */
 
 static void
-rx62n_setrcr (T_IF_SOFTC *ic)
+edmac_setrcr (T_IF_SOFTC *ic)
 {
-	T_RX62N_SOFTC	*sc = ic->sc;
+	T_EDMAC_SOFTC	*sc = ic->sc;
 }
 
 /*
- * rx62n_addmulti -- マルチキャストアドレスを追加する。
+ * edmac_addmulti -- マルチキャストアドレスを追加する。
  */
 
 ER
-rx62n_addmulti (T_IF_SOFTC *ic)
+edmac_addmulti (T_IF_SOFTC *ic)
 {
-	rx62n_setrcr(ic);
+	edmac_setrcr(ic);
 	return E_OK;
 }
 
 #endif	/* of #ifdef SUPPORT_INET6 */
 
 /*
- *  rx62n_stop -- ネットワークインタフェースを停止する。
+ *  edmac_stop -- ネットワークインタフェースを停止する。
  * 
  *    注意: NIC 割り込み禁止状態で呼び出すこと。
  */
 
 static void
-rx62n_stop (T_RX62N_SOFTC *sc)
+edmac_stop (T_EDMAC_SOFTC *sc)
 {
 	/* 動作モードクリア */
 	sil_wrw_mem(ETHERC_ECMR, 0x00000000);
 }
 
 /*
- *  rx62n_init_sub -- ネットワークインタフェースの初期化
+ *  edmac_init_sub -- ネットワークインタフェースの初期化
  * 
  *    注意: NIC 割り込み禁止状態で呼び出すこと。
  */
 
 static void
-rx62n_init_sub (T_IF_SOFTC *ic)
+edmac_init_sub (T_IF_SOFTC *ic)
 {
 	enum phy_mode_t mode;
 
@@ -286,10 +286,12 @@ rx62n_init_sub (T_IF_SOFTC *ic)
 
 	/* Clear all ETHERC status BFR, PSRTO, LCHNG, MPD, ICD */
 	sil_wrw_mem(ETHERC_ECSR, 0x00000037);
-
+    
+#ifdef TINET_NIC_LINKSTA_SUPPORT
 	/* リンク変化割り込み有効 */
 	sil_wrw_mem(ETHERC_ECSIPR, sil_rew_mem(ETHERC_ECSIPR) | ETHERC_ECSIPR_LCHNGIP);
-
+#endif
+    
 	/* Clear all ETHERC and EDMAC status bits */
 	sil_wrw_mem(EDMAC_EESR, 0x47FF0F9F);
 
@@ -297,7 +299,7 @@ rx62n_init_sub (T_IF_SOFTC *ic)
 	sil_wrw_mem(EDMAC_EESIPR, (EDMAC_EESIPR_TCIP | EDMAC_EESIPR_FRIP | EDMAC_EESIPR_RDEIP | EDMAC_EESIPR_FROFIP));
 
 	/* 受信フレーム長上限（バッファサイズ） */
-	sil_wrw_mem(ETHERC_RFLR, IF_RX62N_BUF_PAGE_SIZE);
+	sil_wrw_mem(ETHERC_RFLR, IF_EDMAC_BUF_PAGE_SIZE);
 
 	/* 96ビット時間（初期値） */
 	sil_wrw_mem(ETHERC_IPGR, 0x00000014);
@@ -306,9 +308,9 @@ rx62n_init_sub (T_IF_SOFTC *ic)
 	sil_wrw_mem(EDMAC_EDMR, sil_rew_mem(EDMAC_EDMR) | EDMAC_EDMR_DE_BIT);
 
 	/* Initialize Rx descriptor list address */
-	sil_wrw_mem(EDMAC_RDLAR, (uint32_t)rx62n_buf.rx_desc);
+	sil_wrw_mem(EDMAC_RDLAR, (uint32_t)edmac_buf.rx_desc);
 	/* Initialize Tx descriptor list address */
-	sil_wrw_mem(EDMAC_TDLAR, (uint32_t)rx62n_buf.tx_desc);
+	sil_wrw_mem(EDMAC_TDLAR, (uint32_t)edmac_buf.tx_desc);
 	/* Copy-back status is RFE & TFE only */
 	sil_wrw_mem(EDMAC_TRSCER, 0x00000000);
 	/* Threshold of Tx_FIFO */
@@ -322,30 +324,30 @@ rx62n_init_sub (T_IF_SOFTC *ic)
 	mode = phy_initialize(0);
 
 	/* ECMRレジスタの設定 */
-	rx62n_set_ecmr(ic, mode);
+	edmac_set_ecmr(ic, mode);
 
 #if defined(TARGET_KERNEL_ASP)
 
 	/* ターゲット依存部の割込み初期化 */
-	rx62n_inter_init();
+	edmac_inter_init();
 
 #endif	/* of #if defined(TARGET_KERNEL_ASP) */
 
 #if defined(TARGET_KERNEL_JSP) && TKERNEL_PRVER >= 0x1042u	/* JSP-1.4.2 以降 */
 
 	/* ターゲット依存部の割込み初期化 */
-	rx62n_inter_init();
+	edmac_inter_init();
 
 #endif	/* of #if defined(TARGET_KERNEL_JSP) && TKERNEL_PRVER >= 0x1042u */
 }
 
 
 /*
- *  rx62n_set_ecmr -- ECMRレジスタの設定
+up *  edmac_set_ecmr -- ECMRレジスタの設定
  */
 
 static void
-rx62n_set_ecmr (T_IF_SOFTC *ic, enum phy_mode_t mode)
+edmac_set_ecmr (T_IF_SOFTC *ic, enum phy_mode_t mode)
 {
 	uint32_t ecmr;
 
@@ -361,11 +363,11 @@ rx62n_set_ecmr (T_IF_SOFTC *ic, enum phy_mode_t mode)
 }
 
 /*
- * rx62n_reset -- ネットワークインタフェースをリセットする。
+ * edmac_reset -- ネットワークインタフェースをリセットする。
  */
 
 void
-rx62n_reset (T_IF_SOFTC *ic)
+edmac_reset (T_IF_SOFTC *ic)
 {
 #ifdef TARGET_KERNEL_JSP
 	IPM	ipm;
@@ -373,63 +375,63 @@ rx62n_reset (T_IF_SOFTC *ic)
 
 	/* NIC からの割り込みを禁止する。*/
 #ifdef TARGET_KERNEL_JSP
-	ipm = rx62n_dis_inter();
+	ipm = edmac_dis_inter();
 #endif
 #ifdef TARGET_KERNEL_ASP
-	syscall(dis_int(INTNO_IF_RX62N_TRX));
+	syscall(dis_int(INTNO_IF_EDMAC_TRX));
 #endif
 
 	NET_COUNT_ETHER_NIC(net_count_ether_nic[NC_ETHER_NIC_RESETS], 1);
-	rx62n_stop(ic->sc);
-	rx62n_init_sub(ic);
+	edmac_stop(ic->sc);
+	edmac_init_sub(ic);
 
 	/* NIC からの割り込みを許可する。*/
 #ifdef TARGET_KERNEL_JSP
-	rx62n_ena_inter(ipm);
+	edmac_ena_inter(ipm);
 #endif
 #ifdef TARGET_KERNEL_ASP
-	syscall(ena_int(INTNO_IF_RX62N_TRX));
+	syscall(ena_int(INTNO_IF_EDMAC_TRX));
 #endif
 }
 
 /*
- *  get_rx62n_softc -- ネットワークインタフェースのソフトウェア情報を返す。
+ *  get_edmac_softc -- ネットワークインタフェースのソフトウェア情報を返す。
  */
 
 T_IF_SOFTC *
-rx62n_get_softc (void)
+edmac_get_softc (void)
 {
 	return &if_softc;
 }
 
 /*
- * rx62n_watchdog -- ネットワークインタフェースのワッチドッグタイムアウト
+ * edmac_watchdog -- ネットワークインタフェースのワッチドッグタイムアウト
  */
 
 void
-rx62n_watchdog (T_IF_SOFTC *ic)
+edmac_watchdog (T_IF_SOFTC *ic)
 {
-	rx62n_reset(ic);
+	edmac_reset(ic);
 }
 
 /*
- * rx62n_probe -- ネットワークインタフェースの検出
+ * edmac_probe -- ネットワークインタフェースの検出
  */
 
 void
-rx62n_probe (T_IF_SOFTC *ic)
+edmac_probe (T_IF_SOFTC *ic)
 {
 	int i;
 #if defined(TARGET_KERNEL_ASP)
 
 	/* ターゲット依存部のバスの初期化 */
-	rx62n_bus_init();
+	edmac_bus_init();
 
 #endif	/* of #if defined(TARGET_KERNEL_ASP) */
 #if defined(TARGET_KERNEL_JSP) && TKERNEL_PRVER >= 0x1042u	/* JSP-1.4.2 以降 */
 
 	/* ターゲット依存部のバスの初期化 */
-	rx62n_bus_init();
+	edmac_bus_init();
 
 #endif	/* of #if defined(TARGET_KERNEL_JSP) && TKERNEL_PRVER >= 0x1042u */
 
@@ -439,60 +441,60 @@ rx62n_probe (T_IF_SOFTC *ic)
 }
 
 /*
- * rx62n_init -- ネットワークインタフェースの初期化
+ * edmac_init -- ネットワークインタフェースの初期化
  */
 
 void
-rx62n_init (T_IF_SOFTC *ic)
+edmac_init (T_IF_SOFTC *ic)
 {
 #ifdef TARGET_KERNEL_JSP
 	IPM	ipm;
 #endif
-	T_RX62N_SOFTC *sc = ic->sc;
-	T_RX62N_TX_DESC *tdsc;
-	T_RX62N_RX_DESC *rdsc;
+	T_EDMAC_SOFTC *sc = ic->sc;
+	T_EDMAC_TX_DESC *tdsc;
+	T_EDMAC_RX_DESC *rdsc;
 	int i;
     uint32_t buff_offset;
 
 	/* NIC からの割り込みを禁止する。*/
 #ifdef TARGET_KERNEL_JSP
-	ipm = rx62n_dis_inter();
+	ipm = edmac_dis_inter();
 #endif
 #ifdef TARGET_KERNEL_ASP
-	syscall(dis_int(INTNO_IF_RX62N_TRX));
+	syscall(dis_int(INTNO_IF_EDMAC_TRX));
 #endif
 
     //set address of buff
     //    buff must be aligned 32 byte
     buff_offset = (uint32_t)&((T_NET_BUF *)0)->buf;
-    for(i=0; i<NUM_IF_RX62N_RXBUF; i++)
-      rx62n_buf.rx_buff[i] = (uint8_t*)(((uint32_t)rx_buff_mem[i] & (~ALIGN_OF_BUF+1)) + ALIGN_OF_BUF );
+    for(i=0; i<NUM_IF_EDMAC_RXBUF; i++)
+      edmac_buf.rx_buff[i] = (uint8_t*)(((uint32_t)rx_buff_mem[i] & (~ALIGN_OF_BUF+1)) + ALIGN_OF_BUF );
     
-    for(i=0; i< NUM_IF_RX62N_TXBUF; i++)
-      rx62n_buf.tx_buff[i] = (uint8_t*)(((uint32_t)tx_buff_mem[i] & (~ALIGN_OF_BUF+1)) + ALIGN_OF_BUF);
+    for(i=0; i< NUM_IF_EDMAC_TXBUF; i++)
+      edmac_buf.tx_buff[i] = (uint8_t*)(((uint32_t)tx_buff_mem[i] & (~ALIGN_OF_BUF+1)) + ALIGN_OF_BUF);
     
     //set addres of descripteor table
     //    descripteor table must be aligned to length of burst.
-    rx62n_buf.tx_desc = (T_RX62N_TX_DESC*)(((uint32_t)tx_desc_mem & (~ALIGN_OF_DESC+1)) + ALIGN_OF_DESC);
-    rx62n_buf.rx_desc = (T_RX62N_RX_DESC*)(((uint32_t)rx_desc_mem & (~ALIGN_OF_DESC+1)) + ALIGN_OF_DESC);
+    edmac_buf.tx_desc = (T_EDMAC_TX_DESC*)(((uint32_t)tx_desc_mem & (~ALIGN_OF_DESC+1)) + ALIGN_OF_DESC);
+    edmac_buf.rx_desc = (T_EDMAC_RX_DESC*)(((uint32_t)rx_desc_mem & (~ALIGN_OF_DESC+1)) + ALIGN_OF_DESC);
 
-	tdsc = (T_RX62N_TX_DESC *)rx62n_buf.tx_desc;
+	tdsc = (T_EDMAC_TX_DESC *)edmac_buf.tx_desc;
 	sc->tx_write = tdsc;
-	for ( i=0 ; i < NUM_IF_RX62N_TXBUF ; i++ ) {
+	for ( i=0 ; i < NUM_IF_EDMAC_TXBUF ; i++ ) {
 		memset(tdsc, 0, sizeof(*tdsc));
 		tdsc->tbl = 0;
-		tdsc->tba = (uint32_t)rx62n_buf.tx_buff[i];
+		tdsc->tba = (uint32_t)edmac_buf.tx_buff[i];
 		tdsc++;
 	}
 	tdsc--;
 	tdsc->tdle = 1;
 
-	rdsc = (T_RX62N_RX_DESC *)rx62n_buf.rx_desc;
+	rdsc = (T_EDMAC_RX_DESC *)edmac_buf.rx_desc;
 	sc->rx_read = rdsc;
-	for ( i=0 ; i < NUM_IF_RX62N_RXBUF ; i++ ) {
+	for ( i=0 ; i < NUM_IF_EDMAC_RXBUF ; i++ ) {
 		memset(rdsc, 0, sizeof(*rdsc));
-		rdsc->rbl = IF_RX62N_BUF_PAGE_SIZE;
-		rdsc->rba = (uint32_t)rx62n_buf.rx_buff[i];
+		rdsc->rbl = IF_EDMAC_BUF_PAGE_SIZE;
+		rdsc->rba = (uint32_t)edmac_buf.rx_buff[i];
 		rdsc->rfl = 0;
 		rdsc->ract = 1;
 		rdsc++;
@@ -500,8 +502,8 @@ rx62n_init (T_IF_SOFTC *ic)
 	rdsc--;
 	rdsc->rdle = 1;
 
-	/* rx62n_init 本体を呼び出す。*/
-	rx62n_init_sub(ic);
+	/* edmac_init 本体を呼び出す。*/
+	edmac_init_sub(ic);
 
 	if (sil_rew_mem(EDMAC_EDRRR) == 0) {
 		sil_wrw_mem(EDMAC_EDRRR, EDMAC_EDRRR_RR);
@@ -509,21 +511,24 @@ rx62n_init (T_IF_SOFTC *ic)
 
 	/* NIC からの割り込みを許可する。*/
 #ifdef TARGET_KERNEL_JSP
-	rx62n_ena_inter(ipm);
+	edmac_ena_inter(ipm);
 #endif
 #ifdef TARGET_KERNEL_ASP
-	syscall(ena_int(INTNO_IF_RX62N_TRX));
+	sil_wrw_mem((uint32_t *)TINET_GRP_INT_GEN_ADDR ,
+                sil_rew_mem((uint32_t *)TINET_GRP_INT_GEN_ADDR)|TINET_GRP_EINT_BIT
+                );
+	syscall(ena_int(INTNO_IF_EDMAC_TRX));
 #endif
 }
 
 /*
- * rx62n_read -- フレームの読み込み
+ * edmac_read -- フレームの読み込み
  */
 T_NET_BUF *
-rx62n_read (T_IF_SOFTC *ic)
+edmac_read (T_IF_SOFTC *ic)
 {
-	T_RX62N_SOFTC *sc = ic->sc;
-	T_RX62N_RX_DESC *desc;
+	T_EDMAC_SOFTC *sc = ic->sc;
+	T_EDMAC_RX_DESC *desc;
 	uint16_t len;
 	T_NET_BUF *input = NULL;
 	uint16_t align;
@@ -531,6 +536,7 @@ rx62n_read (T_IF_SOFTC *ic)
 	ER error;
 	enum phy_mode_t mode;
 
+#ifdef TINET_PHY_SUPOORT_LINKSTA
 	/* リンク状態に変化あり */
 	if (sc->link_pre != sc->link_now) {
 		sc->link_pre = sc->link_now;
@@ -540,9 +546,10 @@ rx62n_read (T_IF_SOFTC *ic)
 			mode = phy_initialize(0);
 
 			/* ECMRレジスタの設定 */
-			rx62n_set_ecmr(ic, mode);
+			edmac_set_ecmr(ic, mode);
 		}
 	}
+#endif
 
 	if (sc->over_flow) {
 		sc->over_flow = false;
@@ -570,7 +577,7 @@ rx62n_read (T_IF_SOFTC *ic)
 	 */
 	align = ((((len - sizeof(T_IF_HDR)) + 3) >> 2) << 2) + sizeof(T_IF_HDR);
 
-	if ((error = tget_net_buf(&input, align, TMO_IF_RX62N_GET_NET_BUF)) == E_OK && input != NULL) {
+	if ((error = tget_net_buf(&input, align, TMO_IF_EDMAC_GET_NET_BUF)) == E_OK && input != NULL) {
 		dst = input->buf;
 		memcpy(dst, (void *)desc->rba, len);
 	}
@@ -583,8 +590,8 @@ rx62n_read (T_IF_SOFTC *ic)
 	desc->ract = 1;
 
 	desc++;
-	if (desc == &rx62n_buf.rx_desc[NUM_IF_RX62N_RXBUF]) {
-		desc = rx62n_buf.rx_desc;
+	if (desc == &edmac_buf.rx_desc[NUM_IF_EDMAC_RXBUF]) {
+		desc = edmac_buf.rx_desc;
 	}
 	sc->rx_read = desc;
 
@@ -596,14 +603,14 @@ rx62n_read (T_IF_SOFTC *ic)
 }
 
 /*
- * rx62n_start -- 送信フレームをバッファリングする。
+ * edmac_start -- 送信フレームをバッファリングする。
  */
 
 void
-rx62n_start (T_IF_SOFTC *ic, T_NET_BUF *output)
+edmac_start (T_IF_SOFTC *ic, T_NET_BUF *output)
 {
-	T_RX62N_SOFTC *sc = ic->sc;
-	T_RX62N_TX_DESC *desc, *next;
+	T_EDMAC_SOFTC *sc = ic->sc;
+	T_EDMAC_TX_DESC *desc, *next;
 	uint8_t *buf = NULL;
 	int32_t len, res, pos;
 	uint32_t tfp;
@@ -618,14 +625,14 @@ rx62n_start (T_IF_SOFTC *ic, T_NET_BUF *output)
 		buf = (uint8_t *)desc->tba;
 
 		next = desc + 1;
-		if (next == &rx62n_buf.tx_desc[NUM_IF_RX62N_TXBUF]) {
-			next = rx62n_buf.tx_desc;
+		if (next == &edmac_buf.tx_desc[NUM_IF_EDMAC_TXBUF]) {
+			next = edmac_buf.tx_desc;
 		}
 		sc->tx_write = next;
 
 		len = res;
-		if ( len > IF_RX62N_BUF_PAGE_SIZE ) {
-			len = IF_RX62N_BUF_PAGE_SIZE;
+		if ( len > IF_EDMAC_BUF_PAGE_SIZE ) {
+			len = IF_EDMAC_BUF_PAGE_SIZE;
 			tfp = 0x0;
 		}
 		else
@@ -647,21 +654,27 @@ rx62n_start (T_IF_SOFTC *ic, T_NET_BUF *output)
 }
 
 /*
- *  RX62N Ethernet Controler 送受信割り込みハンドラ
+ *  EDMAC Ethernet Controler 送受信割り込みハンドラ
  */
 
 void
-if_rx62n_trx_handler (void)
+if_edmac_trx_handler (void)
 {
 	T_IF_SOFTC *ic;
-	T_RX62N_SOFTC *sc;
+	T_EDMAC_SOFTC *sc;
 	uint32_t ecsr, eesr, psr;
+    
+    //check group interrupt status
+    if((sil_rew_mem((uint32_t*) TINET_GRP_INT_ST_ADDR)|TINET_GRP_EINT_BIT) == 0)
+      return ;
 
-	i_begin_int(INTNO_IF_RX62N_TRX);
+    
+	i_begin_int(INTNO_IF_EDMAC_TRX);
 
 	ic = &if_softc;
 	sc = ic->sc;
 
+#ifdef TINET_PHY_SUPPORT_LINKSTA
 	ecsr = sil_rew_mem(ETHERC_ECSR);
 
 	if (ecsr & ETHERC_ECSR_LCHNG) {
@@ -677,7 +690,8 @@ if_rx62n_trx_handler (void)
 			isig_sem(ic->semid_rxb_ready);
 		}
 	}
-
+#endif
+    
 	eesr = sil_rew_mem(EDMAC_EESR);
 
 	if (eesr & EDMAC_EESR_FR) {
@@ -704,5 +718,5 @@ if_rx62n_trx_handler (void)
 		isig_sem(ic->semid_rxb_ready);
 	}
 
-	i_end_int(INTNO_IF_RX62N_TRX);
+	i_end_int(INTNO_IF_EDMAC_TRX);
 }
