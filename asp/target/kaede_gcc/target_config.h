@@ -119,6 +119,7 @@ extern void	target_exit( void )	NoReturn;
 #define LOG_EXC_ENTER	( 0 )
 #define LOG_EXC_LEAVE	( 0 )
 
+
 #ifdef TOPPERS_ENABLE_TRACE
 #include "logtrace/trace_config.h"
 #endif /* TOPPERS_ENABLE_TRACE */

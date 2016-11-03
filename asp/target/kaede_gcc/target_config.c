@@ -57,6 +57,9 @@ target_initialize( void )
 	 */
 
   prc_initialize();
+#ifdef USE_DATA_SDRAM
+  target_sdram_config();
+#endif
   target_device_init();
   std_uart_init(TARGET_PUTC_PORTID, UART_BAUDRATE, CLK_F4); //9600 baudrate
 

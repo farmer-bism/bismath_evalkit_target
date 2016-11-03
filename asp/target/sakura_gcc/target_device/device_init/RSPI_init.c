@@ -34,7 +34,7 @@ void target_dev_ini_rspi_0(){
 	sil_wrh_mem((void *)(SYSTEM_PRCR_ADDR), SYSTEM_PRKEY | SYSTEM_PRC1);
 
 	//enable RSPI0
-	*SYSTEM_MSTPCRB_ADDR &= ~(SYSTEM_MSTPCRA_MSTPA17_BIT); /* RSPI0 */
+	*SYSTEM_MSTPCRB_ADDR &= ~(SYSTEM_MSTPCRB_MSTPB17_RSPI0); /* RSPI0 */
 	//lock register access
 	sil_wrh_mem((void *)(SYSTEM_PRCR_ADDR), SYSTEM_PRKEY );
 	/* end power management setting */

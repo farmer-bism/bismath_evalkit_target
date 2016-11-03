@@ -34,7 +34,7 @@ include $(DRIVERDIR)/Makefile_rx64m.driver
 #
 KERNEL_DIR := $(KERNEL_DIR) $(TARGETDIR) $(DRIVERDIR)
 KERNEL_ASMOBJS := $(KERNEL_ASMOBJS) target_support.o target_option_mem.o
-KERNEL_COBJS := $(KERNEL_COBJS) target_config.o target_timer.o target_clock_config.o $(DRIVER_COBJS)
+KERNEL_COBJS := $(KERNEL_COBJS) target_config.o target_timer.o target_clock_config.o target_sdram_config.o $(DRIVER_COBJS) 
 
 #
 #  システムサービスに関する定義

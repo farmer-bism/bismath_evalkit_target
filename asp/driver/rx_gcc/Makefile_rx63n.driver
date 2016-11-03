@@ -1,5 +1,5 @@
 
-DRIVER_COBJS =
+#DRIVER_COBJS =
 		
 #include $(DRIVERDIR)/Makefile.RSPI
 #include $(DRIVERDIR)/Makefile.mmc_rspi

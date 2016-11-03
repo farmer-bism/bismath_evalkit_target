@@ -11,7 +11,7 @@
 void target_dev_ini_dtca_0(){
   //unlock register access 
   sil_wrh_mem((void *)(SYSTEM_PRCR_ADDR), SYSTEM_PRKEY | SYSTEM_PRC1);
-  *SYSTEM_MSTPCRA_ADDR &= ~(SYSTEM_MSTPCRA_MSTPA28_BIT); /* DTCa */
+  *SYSTEM_MSTPCRA_ADDR &= ~(SYSTEM_MSTPCRA_MSTPA28_DMAC_DTC); /* DTCa */
   //lock register access
   sil_wrh_mem((void *)(SYSTEM_PRCR_ADDR), SYSTEM_PRKEY );
 

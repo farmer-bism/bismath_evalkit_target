@@ -49,6 +49,6 @@
  *  4 オクテット単位で、アラインする必要がある場合は 4 を指定する。
  */
 
-#define CPU_NET_ALIGN		2
+#define CPU_NET_ALIGN		4
 
 #endif /* _TINET_TARGET_DEFS_H_ */

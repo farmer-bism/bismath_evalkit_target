@@ -40,7 +40,7 @@ dev_info_t dev_info[NUM_TARGET_DEVICE] = {
   {0x0, &mmc_sdcard_gpio_node_0},
 #endif
 #ifdef USE_DTCA_0
-  {0x0, &_0},
+  {0x0, NULL},
 #endif
 #ifdef USE_SCIC_0
   {0x0, &scic_node_0}

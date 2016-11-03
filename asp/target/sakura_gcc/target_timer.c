@@ -63,7 +63,7 @@ target_timer_initialize(intptr_t exinf)
   /*
    * モジュールストップ機能の設定(CMT)
    */
-  *SYSTEM_MSTPCRA_ADDR &= ~(SYSTEM_MSTPCRA_MSTPA15_BIT); /* CMT0 */
+  *SYSTEM_MSTPCRA_ADDR &= ~(SYSTEM_MSTPCRA_MSTPA15_CMT_U0); /* CMT0_UNIT 0 */
   //lock register access
   sil_wrh_mem((void *)(SYSTEM_PRCR_ADDR), SYSTEM_PRKEY );
 

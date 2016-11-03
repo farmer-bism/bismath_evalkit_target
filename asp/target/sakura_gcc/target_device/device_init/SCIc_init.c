@@ -49,7 +49,7 @@ target_dev_ini_scic_0( void )
   /*
    * モジュールストップ機能の設定(SCI2)
    */
-  *SYSTEM_MSTPCRB_ADDR &= ~(SYSTEM_MSTPCRB_MSTPB31_BIT); /* CMT0 */
+  *SYSTEM_MSTPCRB_ADDR &= ~(SYSTEM_MSTPCRB_MSTPB31_SCI0); /* SCI0 */
   //lock register access
   sil_wrh_mem((void *)(SYSTEM_PRCR_ADDR), SYSTEM_PRKEY );
   

@@ -564,6 +564,31 @@
 /*
  *  Register write protection 
  */ 
+#define SYSTEM_MDMONR_ADDR ((uint16_t *)0x00080000)
+#define SYSTEM_MDMONR_MD_LOW 0x0
+#define SYSTEM_MDMONR_MD_HIGH 0x0
+
+#define SYSTEM_MDSR_ADDR ((uint16_t *)0x00080002)
+#define SYSTEM_MDSR_UBTS_MASK 0x20
+#define SYSTEM_MDSR_UBTS_SINGLE 0x0
+#define SYSTEM_MDSR_UBTS_USER 0x20
+
+#define SYSTEM_SYSCR0_ADDR ((uint16_t *)0x00080006)
+#define SYSTEM_SYSCR0_ROME_EN 0x1
+#define SYSTEM_SYSCR0_ROME_DIS 0x0
+#define SYSTEM_SYSCR0_EXBE_EN 0x2
+#define SYSTEM_SYSCR0_EXBE_DIS 0x0
+#define SYSTEM_SYSCR0_KEY 0x5A00
+
+#define SYSTEM_SYSCR1_ADDR ((uint16_t *)0x00080008)
+#define SYSTEM_SYSCR1_RAME_EN 0x1
+#define SYSTEM_SYSCR1_RAME_DIS 0x0
+#define SYSTEM_SYSCR1_ECCRAME_EN 0x4
+#define SYSTEM_SYSCR1_ECCRAME_DIS 0x0
+#define SYSTEM_SYSCR1_SBYRAME_EN 0x8
+#define SYSTEM_SYSCR1_SBYRAME_DIS 0x0
+#define SYSTEM_SYSCR1_RESERV 0x3E
+
 #define SYSTEM_PRCR_ADDR ( 0x000803FE )
 #define SYSTEM_PRKEY  0xA500
 #define SYSTEM_PRC0	( 1UL << 0U )
@@ -1115,7 +1140,6 @@
 #define BUS_SDCCR_EXENB_EN 0x1
 #define BUS_SDCCR_EXENB_DIS 0x0
 #define BUS_SDCCR_BSIZE_16 0x00
-#define BUS_SDCCR_BSIZE_16 0x00
 #define BUS_SDCCR_BSIZE_32 0x10
 #define BUS_SDCCR_BSIZE_8 0x20
 //SDC mode register
@@ -1126,32 +1150,32 @@
 #define BUS_SDAMOD_ADDR ((volatile uint8_t*)0x00083C02)
 #define BUS_SDAMOD_BE_DIS 0x0
 #define BUS_SDAMOD_BE_EN 0x1
-//SDRAM self refresh control register
-#define BUS_ADSELF_ADDR ((volatile uint8_t*)0x00083C10)
 #define BUS_SDAMOD_SFEN_DIS 0x0
 #define BUS_SDAMOD_SFEN_EN 0x1
+//SDRAM self refresh control register
+#define BUS_SDSELF_ADDR ((volatile uint8_t*)0x00083C10)
 //SDRAM refresh control register
-#define BUS_SFRFCR_ADDR ((volatile uint16_t*)0x00083C14)
-#define BUS_SFRFCR_REFW_1 0x0000
-#define BUS_SFRFCR_REFW_2 0x1000
-#define BUS_SFRFCR_REFW_3 0x2000
-#define BUS_SFRFCR_REFW_4 0x3000
-#define BUS_SFRFCR_REFW_5 0x4000
-#define BUS_SFRFCR_REFW_6 0x5000
-#define BUS_SFRFCR_REFW_7 0x6000
-#define BUS_SFRFCR_REFW_8 0x7000
-#define BUS_SFRFCR_REFW_9 0x8000
-#define BUS_SFRFCR_REFW_10 0x9000
-#define BUS_SFRFCR_REFW_11 0xA000
-#define BUS_SFRFCR_REFW_12 0xB000
-#define BUS_SFRFCR_REFW_13 0xC000
-#define BUS_SFRFCR_REFW_14 0xD000
-#define BUS_SFRFCR_REFW_15 0xE000
-#define BUS_SFRFCR_REFW_16 0xF000
+#define BUS_SDRFCR_ADDR ((volatile uint16_t*)0x00083C14)
+#define BUS_SDRFCR_REFW_1 0x0000
+#define BUS_SDRFCR_REFW_2 0x1000
+#define BUS_SDRFCR_REFW_3 0x2000
+#define BUS_SDRFCR_REFW_4 0x3000
+#define BUS_SDRFCR_REFW_5 0x4000
+#define BUS_SDRFCR_REFW_6 0x5000
+#define BUS_SDRFCR_REFW_7 0x6000
+#define BUS_SDRFCR_REFW_8 0x7000
+#define BUS_SDRFCR_REFW_9 0x8000
+#define BUS_SDRFCR_REFW_10 0x9000
+#define BUS_SDRFCR_REFW_11 0xA000
+#define BUS_SDRFCR_REFW_12 0xB000
+#define BUS_SDRFCR_REFW_13 0xC000
+#define BUS_SDRFCR_REFW_14 0xD000
+#define BUS_SDRFCR_REFW_15 0xE000
+#define BUS_SDRFCR_REFW_16 0xF000
 //SDRAM auto refresh control register
-#define BUS_SDREFEN_ADDR ((volatile uint8_t*)0x00083C16)
-#define BUS_SDREFEN_RFEN_DIS 0x0
-#define BUS_SDREFEN_RFEN_EN 0x1
+#define BUS_SDRFEN_ADDR ((volatile uint8_t*)0x00083C16)
+#define BUS_SDRFEN_RFEN_DIS 0x0
+#define BUS_SDRFEN_RFEN_EN 0x1
 //SDRAM initialize sequence control regiset
 #define BUS_SDICR_ADDR ((volatile uint8_t*)0x00083C20)
 #define BUS_SDICR_INIRQ_START 0x1
@@ -1460,7 +1484,60 @@
 #define MPC_PFS_PSELF          0xF
 #define MPC_PFS_ISEL           ( 1U << 6 )
 #define MPC_PFS_ASEL           ( 1U << 7 )
+//address output enable register 0
+#define MPC_PFAOE0_ADDR 0x0008C104
+#define MPC_PFAOE0_A8E_EN 0x1
+#define MPC_PFAOE0_A9E_EN 0x2
+#define MPC_PFAOE0_A10E_EN 0x4
+#define MPC_PFAOE0_A11E_EN 0x8
+#define MPC_PFAOE0_A12E_EN 0x10
+#define MPC_PFAOE0_A13E_EN 0x20
+#define MPC_PFAOE0_A14E_EN 0x40
+#define MPC_PFAOE0_A15E_EN 0x80
 
+//address output enable register 1
+#define MPC_PFAOE1_ADDR 0x0008C105
+#define MPC_PFAOE1_A16E_EN 0x1
+#define MPC_PFAOE1_A17E_EN 0x2
+#define MPC_PFAOE1_A18E_EN 0x4
+#define MPC_PFAOE1_A19E_EN 0x8
+#define MPC_PFAOE1_A20E_EN 0x10
+#define MPC_PFAOE1_A21E_EN 0x20
+#define MPC_PFAOE1_A22E_EN 0x40
+#define MPC_PFAOE1_A23E_EN 0x80
+
+//External bus control register 0
+#define MPC_PFBCR0_ADDR      ((volatile uint8_t *)0x0008C106)
+#define MPC_PFBCR0_ADRLE_PA07_IO        0x0
+#define MPC_PFBCR0_ADRLE_PA07_BUS       0x1
+#define MPC_PFBCR0_ADRHMS_PC_SEL   0x0
+#define MPC_PFBCR0_ADRHMS_P7PC_SEL 0x2
+#define MPC_PFBCR0_ADRHMS_P9_SEL   0x4
+#define MPC_PFBCR0_BCLKO_FORCE_OUT 0x8
+#define MPC_PFBCR0_DHE_IO       0x0
+#define MPC_PFBCR0_DHE_BUS      0x10
+#define MPC_PFBCR0_DH32E_IO     0x0
+#define MPC_PFBCR0_DH32E_BUS    0x20
+#define MPC_PFBCR0_WR1BC1E_IO   0x0
+#define MPC_PFBCR0_WR1BC1E_BUS   0x40
+#define MPC_PFBCR0_WR32BC32E_IO 0x0
+#define MPC_PFBCR0_WR32BC32E_BUS 0x80
+//External bus control register 1
+#define MPC_PFBCR1_ADDR ((volatile uint8_t *)0x0008C107)
+#define MPC_PFBCR1_WATIS_INVALID 0x0
+#define MPC_PFBCR1_WATIS_P55 0x1
+#define MPC_PFBCR1_WATIS_PC5 0x2
+#define MPC_PFBCR1_WATIS_P51 0x3
+#define MPC_PFBCR1_ALEOE_DIS 0x0
+#define MPC_PFBCR1_ALEOE_EN 0x4
+#define MPC_PFBCR1_ALES_P54 0x0
+#define MPC_PFBCR1_ALES_P10 0x8
+#define MPC_PFBCR1_MDSDE_DIS 0x0
+#define MPC_PFBCR1_MDSDE_EN 0x10
+#define MPC_PFBCR1_DQM1E_DIS 0x0
+#define MPC_PFBCR1_DQM1E_EN 0x40
+#define MPC_PFBCR1_SDCLKE_DIS 0x0
+#define MPC_PFBCR1_SDCLKE_EN 0x80
 /*
  *  I/Oポートのレジスタ及び設定ビット情報
  */
@@ -1490,6 +1567,14 @@
 #define PORT_PDR_B5_BIT      ( 0x01U << 5U )
 #define PORT_PDR_B6_BIT      ( 0x01U << 6U )
 #define PORT_PDR_B7_BIT      ( 0x01U << 7U )
+#define PORT_PDR_B0_OUT      PORT_PDR_B0_BIT
+#define PORT_PDR_B1_OUT      PORT_PDR_B1_BIT
+#define PORT_PDR_B2_OUT      PORT_PDR_B2_BIT
+#define PORT_PDR_B3_OUT      PORT_PDR_B3_BIT
+#define PORT_PDR_B4_OUT      PORT_PDR_B4_BIT
+#define PORT_PDR_B5_OUT      PORT_PDR_B5_BIT
+#define PORT_PDR_B6_OUT      PORT_PDR_B6_BIT
+#define PORT_PDR_B7_OUT      PORT_PDR_B7_BIT
 #define PORT0_PODR_ADDR      ( ( volatile uint8_t  * )0x0008C020 )
 #define PORT1_PODR_ADDR      ( ( volatile uint8_t  * )0x0008C021 )
 #define PORT2_PODR_ADDR      ( ( volatile uint8_t  * )0x0008C022 )
@@ -1573,6 +1658,20 @@
  *  Device関連の定義
  *  (base address of device)
  */
+
+/*
+ * External RAM Address
+ */
+#define EXT_CS7_RAM_ADDR 0x01000000
+#define EXT_CS6_RAM_ADDR 0x02000000
+#define EXT_CS5_RAM_ADDR 0x03000000
+#define EXT_CS4_RAM_ADDR 0x04000000
+#define EXT_CS3_RAM_ADDR 0x05000000
+#define EXT_CS2_RAM_ADDR 0x06000000
+#define EXT_CS1_RAM_ADDR 0x07000000
+#define EXT_SDRAM_ADDR 0x08000000
+#define EXT_CS0_RAM_ADDR 0xFF000000
+
 /*
  *  シリアルI/Oの個数
  */

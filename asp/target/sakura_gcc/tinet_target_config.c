@@ -59,7 +59,7 @@ rx62n_bus_init (void)
 	/* イーサネット・コントローラの動作を許可 */
 	sil_wrh_mem((uint16_t *)SYSTEM_PRCR_ADDR, (uint16_t)0xA502);	/* 書込み許可 */
 	sil_wrw_mem((uint32_t *)SYSTEM_MSTPCRB_ADDR,
-		sil_rew_mem((uint32_t *)SYSTEM_MSTPCRB_ADDR) & ~SYSTEM_MSTPCRB_MSTPB15_BIT);
+		sil_rew_mem((uint32_t *)SYSTEM_MSTPCRB_ADDR) & ~SYSTEM_MSTPCRB_MSTPB15_EDMAC);
 	sil_wrh_mem((uint16_t *)SYSTEM_PRCR_ADDR, (uint16_t)0xA500);	/* 書込み禁止 */
 
 	/* EtherNET有効 */

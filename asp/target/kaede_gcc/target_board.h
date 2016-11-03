@@ -48,9 +48,15 @@
 #include "target_device/target_device.h"
 #endif
 
-#define F_PCLKA		120000000UL	/* PCLKA frequency (configured by SCKCR.PCK) */
-#define F_PCLKB		60000000UL	/* PCLKB frequency (configured by SCKCR.PCK) */
+#define F_PCLKA		120000000UL	/* PCLKA frequency (configured by SCKCR.PCK) usec*/
+#define F_PCLKB		60000000UL	/* PCLKB frequency (configured by SCKCR.PCK) usec*/
+#define F_SDCLK
 
+#define F_USEC_UNIT 1000000
+#define F_MSEC_UNIT 1000
+
+#define USEC_TO_COUNT(BUS_CLK, U_TIME) (BUS_CLK/F_USEC_UNIT*U_TIME)
+#define MSEC_TO_COUNT(BUS_CLK, U_TIME) (BUS_CLK/F_MSEC_UNIT*U_TIME)
 
 // stdio config(UART)
 
@@ -68,4 +74,15 @@
 
 #endif	/* TOPPERS_STARTER_KIT_H */
 
- 
+
+
+/*
+ * SD Ram setting
+ */
+
+//#define USE_SYSTEM_SDRAM
+#define USE_DATA_SDRAM
+
+#ifndef TOPPERS_MACRO_ONLY
+void target_sdram_config();
+#endif
