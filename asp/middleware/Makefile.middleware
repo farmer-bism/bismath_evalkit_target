@@ -1,2 +1,4 @@
 
+MIDDLEWAREDIR :=  $(SRCDIR)/middleware
 #include $(MIDDLEWAREDIR)/fatfs_ff11a/src/Makefile.fatfs
+#include $(MIDDLEWAREDIR)/tinet_ftpd/Makefile.ftpd_tinet

@@ -53,15 +53,22 @@
 /*
  *  ボーレート設定
  */
-#define BAUD_9600BPS		UINT_C( 38 )
-
-#define UART_BAUDRATE		BAUD_9600BPS
-
-
-/*
- *  クロックソース
- */
-#define UART_CLKSRC			CLK_F1
+// 9600 bps
+#define BAUD_9600BPS_F4		UINT_C( 38 )
+#define UART_BAUDRATE		BAUD_9600BPS_F4
+#define UART_CLKSRC			CLK_F4
+//38400 bps
+//#define BAUD_38400BPS_F1		UINT_C( 38 )
+//#define UART_BAUDRATE		BAUD_38400BPS_F1
+//#define UART_CLKSRC			CLK_F1
+//57600 bps
+//#define BAUD_57600BPS_F1		UINT_C( 26 )
+//#define UART_BAUDRATE		BAUD_57600BPS_F1
+//#define UART_CLKSRC			CLK_F1
+//115200
+//#define BAUD_115200BPS_F1		UINT_C( 13 )
+//#define UART_BAUDRATE		BAUD_115200BPS_F1
+//#define UART_CLKSRC			CLK_F1
 
 #endif	/* TOPPERS_STARTER_KIT_H */
 

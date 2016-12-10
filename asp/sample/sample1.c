@@ -150,6 +150,7 @@ void task(intptr_t exinf)
 
 	SVC_PERROR(ena_tex());
 	while (true) {
+		tslp_tsk(500);
 		syslog(LOG_NOTICE, "task%d is running (%03d).   %s",
 										tskno, ++n, graph[tskno-1]);
 		for (i = 0; i < task_loop; i++);

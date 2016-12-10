@@ -116,7 +116,7 @@ target_initialize( void )
   prc_initialize();
   sakura_clock_config();
   target_device_init();
-  std_uart_init(TARGET_PUTC_PORTID, UART_BAUDRATE, CLK_F4); //9600 baudrate
+  std_uart_init(TARGET_PUTC_PORTID, UART_BAUDRATE, UART_CLKSRC); //9600 baudrate
 
 }
 
