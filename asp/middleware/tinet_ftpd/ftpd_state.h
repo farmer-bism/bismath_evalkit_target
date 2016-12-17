@@ -34,7 +34,6 @@
 #ifndef FTPD_STATE_H
 #define FTPD_STATE_H
 
-#include "ftpd_sfifo.h"
 #include "vfs.h"
 #include "kernel.h"
 #include <netinet/tcp.h>
@@ -55,12 +54,16 @@ enum ftpd_state_e {
 #define FTPD_CONNECT_MODE_PASIVE 1
 #define FTPD_CONNECT_MODE_ACTIVE 0
 
+#define FTPD_DBUFF_SIZE 512
+#define ftpd_dbuff_used(fsm) (FTPD_DBUFF_SIZE - fsm->buff_len)
+
 struct ftpd_datastate {
   uint32_t connected;
   vfs_dir_t *vfs_dir;
   vfs_dirent_t *vfs_dirent;
   vfs_file_t *vfs_file;
-  sfifo_t fifo;
+  uint8_t data_buff[FTPD_DBUFF_SIZE];
+  uint32_t buff_len;
   struct ftpd_msgstate *msgfs;
 };
 
@@ -68,7 +71,6 @@ struct ftpd_msgstate {
   uint32_t ch_id;
   enum ftpd_state_e state;
   uint32_t connection_mode;
-  sfifo_t fifo;
   vfs_t *vfs;
   ID data_tsk_id;
   T_IPV4EP my_data_ip_port;

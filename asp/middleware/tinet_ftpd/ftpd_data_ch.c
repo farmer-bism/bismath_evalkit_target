@@ -58,26 +58,20 @@ T_IPV4EP data_dst;
 void ftpd_dataclose(ID data_cep_id, struct ftpd_datastate *fsd)
 {
 	fsd->msgfs->datafs = NULL;
-	sfifo_close(&fsd->fifo);
-	tcp_cls_cep(data_cep_id, 1000);
+    fsd->buff_len = 0;
+    tcp_cls_cep(data_cep_id, 1000);
 }
 
 static void send_data(ID data_cep_id, struct ftpd_datastate *fsd)
 {
 	ER err;
 	uint16_t len;
-	if (sfifo_used(&fsd->fifo) > 0) {
-		/* We cannot send more data than space available in the send
-		   buffer. */
-        len = (uint16_t) sfifo_used(&fsd->fifo);
-		err = tcp_snd_dat(data_cep_id, fsd->fifo.buffer, len, 1000);
-		if (err < 0) {
-          //dbg_printf("send_data: error writing!\n");
-          return;
-		}
-		fsd->fifo.writepos = 0;
-		fsd->fifo.readpos = 0;
-	}
+    err = tcp_snd_dat(data_cep_id, fsd->data_buff, fsd->buff_len, 1000);
+    if (err < 0) {
+      //dbg_printf("send_data: error writing!\n");
+      return;
+    }
+    fsd->buff_len = 0;
 }
 
 #define FTPD_DSEND_SIZE 512
@@ -94,8 +88,8 @@ static void send_file(struct ftpd_datastate *fsd, ID data_cep_id)
   
   if (fsd->vfs_file) {
 
-    while((len = vfs_read(fsd->fifo.buffer, 1, FTPD_DSEND_SIZE, fsd->vfs_file)) >0){
-      fsd->fifo.writepos = len;
+    while((len = vfs_read(fsd->data_buff, 1, FTPD_DBUFF_SIZE, fsd->vfs_file)) >0){
+      fsd->buff_len = len;
       send_data(data_cep_id, fsd);
     }
     if (len == 0) {
@@ -113,7 +107,7 @@ static void send_file(struct ftpd_datastate *fsd, ID data_cep_id)
 
   vfs_close(fsd->vfs_file);
   fsd->vfs_file = NULL;
-  ftpd_dataclose(data_cep_id, fsd);
+  ftpd_dataclose(data_cep_id, fsd);;
   fsm->datafs = NULL;
   fsm->state = FTPD_IDLE;
   send_msg(msg_cep_id, fsm, msg226);
@@ -148,47 +142,20 @@ static void send_next_directory(struct ftpd_datastate *fsd, ID data_cep_id, int 
       if (shortlist) {
 
         len = strlen(fsd->vfs_dirent->name);
-        if (sfifo_space(&fsd->fifo) < (len+3)) {
+        if (ftpd_dbuff_used(fsd) < (len+3)) {
           send_data(data_cep_id, fsd);
         }
-        wr_pos = fsd->fifo.writepos;
-        strcpy(fsd->fifo.buffer+wr_pos, fsd->vfs_dirent->name);
-        strcpy(fsd->fifo.buffer+wr_pos+len, "\r\n");
-        fsd->fifo.writepos += len+2;
+        wr_pos = fsd->buff_len;
+        strcpy(fsd->data_buff+wr_pos, fsd->vfs_dirent->name);
+        strcpy(fsd->data_buff+wr_pos+len, "\r\n");
+        fsd->buff_len += len+2;
         fsd->vfs_dirent = NULL;
       }
-      /*
-        else {
-        vfs_stat_t st;
-        vfs_time_t current_time;
-        int current_year;
-        struct tm *s_time;
-        
-        time(&current_time);
-        s_time = gmtime(&current_time);
-        current_year = s_time->tm_year;
-        
-        vfs_stat(fsd->msgfs->vfs, fsd->vfs_dirent->name, &st);
-        s_time = gmtime(&st.st_mtime);
-        if (s_time->tm_year == current_year)
-          len = sprintf(buffer, "-rw-rw-rw-   1 user     ftp  %11ld %s %02i %02i:%02i %s\r\n", st.st_size, month_table[s_time->tm_mon], s_time->tm_mday, s_time->tm_hour, s_time->tm_min, fsd->vfs_dirent->name);
-        else
-          len = sprintf(buffer, "-rw-rw-rw-   1 user     ftp  %11ld %s %02i %5i %s\r\n", st.st_size, month_table[s_time->tm_mon], s_time->tm_mday, s_time->tm_year + 1900, fsd->vfs_dirent->name);
-        if (VFS_ISDIR(st.st_mode))
-          buffer[0] = 'd';
-        if (sfifo_space(&fsd->fifo) < len) {
-          send_data(data_cep_id, fsd);
-          return;
-        }
-        sfifo_write(&fsd->fifo, buffer, len);
-        fsd->vfs_dirent = NULL;
-      }
-      */
 	} else {
       struct ftpd_msgstate *fsm;
       ID msg_cep_id;
       
-      if (sfifo_used(&fsd->fifo) > 0) {
+      if (ftpd_dbuff_used(fsd) > 0) {
         send_data(data_cep_id, fsd);
         return;
       }
@@ -218,25 +185,28 @@ static ER rcv_file(struct ftpd_datastate *arg, ID data_cep_id)
     ID msg_cep_id;
     fsd = arg;
     
-    while((rblen = tcp_rcv_buf(data_cep_id, (void**)&rbuf,1000)) > 0){
-      vfs_write(rbuf, 1, rblen, fsd->vfs_file);
-      tcp_rel_buf(data_cep_id, rblen);
+    //while((rblen = tcp_rcv_buf(data_cep_id, (void**)&rbuf,1000)) > 0){
+    while((rblen = tcp_rcv_dat(data_cep_id, fsd->data_buff, FTPD_DBUFF_SIZE, 1000)) > 0){
+      //vfs_write(rbuf, 1, rblen, fsd->vfs_file);
+    //  tcp_rel_buf(data_cep_id, rblen);
+    	vfs_write(fsd->data_buff, 1, rblen, fsd->vfs_file);
     }
     fsm = fsd->msgfs;
     msg_cep_id = fsm->msg_cep_id;
 
     vfs_close(fsd->vfs_file);
     fsd->vfs_file = NULL;
-    //ftpd_dataclose(data_cep_id, fsd);
-    fsm->datafs = NULL;
+    ftpd_dataclose(data_cep_id, fsd);
     fsm->state = FTPD_IDLE;
     send_msg(msg_cep_id, fsm, msg226);
 
 	return E_OK;
 }
-
+#define FTPD_TRY_CON_COUNT 5
 uint32_t open_dataconnection(ID cep_id, struct ftpd_msgstate *fsm)
 {
+	ER con_result;
+	uint32_t i;
   if (fsm->connection_mode==FTPD_CONNECT_MODE_PASIVE)
     return 0;
 
@@ -248,13 +218,19 @@ uint32_t open_dataconnection(ID cep_id, struct ftpd_msgstate *fsm)
   }
   memset(fsm->datafs, 0, sizeof(struct ftpd_datastate));
   fsm->datafs->msgfs = fsm;
-  sfifo_init(&fsm->datafs->fifo, sfifo_data_buf, FTPD_SFIFO_DATA_BUF_SIZE);
-  
-  if(tcp_con_cep(fsm->data_cep_id, &fsm->my_data_ip_port, &fsm->data_ip_port, 1000) != E_OK){
-    return -1;
+
+  for(i = 0;i < FTPD_TRY_CON_COUNT; i++){
+    if((con_result = tcp_con_cep(fsm->data_cep_id, &fsm->my_data_ip_port, &fsm->data_ip_port, 1000)) == E_OK)
+    	break;
+    tslp_tsk(1000);
   }
-  fsm->datafs->connected = 1;
-  return 0;
+
+  if(con_result == E_OK){
+    fsm->datafs->connected = 1;
+    return 0;
+  }
+  else
+    return -1;
 }
 
 void tcp_ftpd_data_srv_task(intptr_t exinf){
@@ -262,7 +238,7 @@ void tcp_ftpd_data_srv_task(intptr_t exinf){
   struct ftpd_datastate *data_fsm;
   ER error;
   ID data_cep_id;
-  
+
   msg_fsm = ftpd_get_fsm((uint32_t) exinf);
   data_fsm = msg_fsm->datafs;
 

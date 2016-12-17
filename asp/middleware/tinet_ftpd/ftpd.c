@@ -52,7 +52,6 @@
 #include "ftpd_messeage.h"
 #include "ftpd_data_ch.h"
 #include "ftpd_arg_dec.h"
-#include "ftpd_sfifo.h"
 #include "ftpd_init.h"
 
 static T_IPV4EP		ftpd_control_dst;
@@ -196,11 +195,12 @@ static void cmd_retr(const int8_t *arg, ID cep_id, struct ftpd_msgstate *fsm)
 	}
 
     //	send_msg(cep_id, fsm, msg150recv, arg, st.st_size);
-    send_msg(cep_id, fsm, msg150recv); //temp
-	if (open_dataconnection(cep_id, fsm) != 0) {
+    int i;
+	if ((i= open_dataconnection(cep_id, fsm)) != 0) {
       vfs_close(vfs_file);
       return;
 	}
+    send_msg(cep_id, fsm, msg150recv); //temp
     
 	fsm->datafs->vfs_file = vfs_file;
 	fsm->state = FTPD_RETR;
@@ -226,6 +226,7 @@ static void cmd_stor(const int8_t *arg, ID cep_id, struct ftpd_msgstate *fsm)
 
 	fsm->datafs->vfs_file = vfs_file;
 	fsm->state = FTPD_STOR;
+	act_tsk(fsm->data_tsk_id);
 }
 
 static void cmd_noop(const int8_t *arg, ID cep_id, struct ftpd_msgstate *fsm)
@@ -242,8 +243,6 @@ static void cmd_syst(const int8_t *arg, ID cep_id, struct ftpd_msgstate *fsm)
 static void cmd_pasv(const int8_t *arg, ID cep_id, struct ftpd_msgstate *fsm)
 {
   ftpd_init_data_fsm(fsm);
-  
-  sfifo_init(&fsm->datafs->fifo, sfifo_data_buf, FTPD_SFIFO_DATA_BUF_SIZE);
   
   fsm->datafs->msgfs = fsm;
 
@@ -432,50 +431,13 @@ static struct ftpd_command ftpd_commands[] = {
   {NULL, NULL}
 };
 
-static void send_msgdata(ID cep_id, struct ftpd_msgstate *fsm)
-{
-	ER err;
-	uint16_t len;
-	if (sfifo_used(&fsm->fifo) > 0) {
-		int i;
-
-        len = (uint16_t) sfifo_used(&fsm->fifo);
-		i = fsm->fifo.readpos;
-		if ((i + len) > fsm->fifo.size) {
-			err = tcp_snd_dat(cep_id, fsm->fifo.buffer + i, (uint32_t)(fsm->fifo.size - i), 1000);
-			if (err != E_OK) {
-              //dbg_printf("send_msgdata: error writing!\n");
-				return;
-			}
-			len -= fsm->fifo.size - i;
-			fsm->fifo.readpos = 0;
-			i = 0;
-		}
-
-
-		err = tcp_snd_dat(cep_id, fsm->fifo.buffer + i, len, 1);
-		if (err <0) {
-          //dbg_printf("send_msgdata: error writing!\n");
-			return;
-		}
-		fsm->fifo.readpos += err;
-	}
-}
-
 void send_msg(ID cep_id, struct ftpd_msgstate *fsm, const int8_t *msg)
 {
 	uint8_t buffer[128];
 	int len;
 
-    strcpy(buffer, (int8_t*)msg);
-	strcat(buffer, "\r\n");
-	len = strlen(buffer);
-	if (sfifo_space(&fsm->fifo) < len){
-		return;
-    }
-	sfifo_write(&fsm->fifo, buffer, len);
-    //	dbg_printf("response: %s", buffer);
-	send_msgdata(cep_id, fsm);
+    tcp_snd_dat(cep_id, msg, strlen(msg), 1000);
+
 }
 
 static void ftpd_msgerr(void *arg, ER err)
@@ -487,7 +449,6 @@ static void ftpd_msgerr(void *arg, ER err)
 		return;
 	if (fsm->datafs)
 		ftpd_dataclose(fsm->data_cep_id, fsm->datafs);
-	sfifo_close(&fsm->fifo);
 	vfs_close(fsm->vfs);
 	fsm->vfs = NULL;
 	fsm->renamefrom = NULL;
@@ -497,7 +458,6 @@ static void ftpd_msgclose(ID cep_id, struct ftpd_msgstate *fsm)
 {
 	if (fsm->datafs)
 		ftpd_dataclose(fsm->data_cep_id, fsm->datafs);
-	sfifo_close(&fsm->fifo);
 	vfs_close(fsm->vfs);
 	fsm->vfs = NULL;
 	fsm->renamefrom = NULL;
@@ -554,7 +514,6 @@ static ER ftpd_msgaccept(struct ftpd_msgstate* fsm)
 {
 
 	/* Initialize the structure. */
-	sfifo_init(&fsm->fifo, sfifo_control_buf, FTPD_SFIFO_CONTROL_BUF_SIZE);
 	fsm->state = FTPD_IDLE;
 	fsm->vfs = vfs_openfs();
 	if (!fsm->vfs) {
