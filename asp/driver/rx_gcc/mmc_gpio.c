@@ -12,8 +12,13 @@
 
 uint8_t check_ins_sw(void *v_gpio_stat){
   mmc_gpio_dstat *gpio_stat;
+  uint8_t io_val;
   gpio_stat = (mmc_gpio_dstat*)v_gpio_stat;
-  return sil_reb_mem(gpio_stat->cd_pidr_baddr) & gpio_stat->cd_bit_mask;
+  io_val =sil_reb_mem(gpio_stat->cd_pidr_baddr);
+  if((io_val & gpio_stat->cd_bit_mask) == gpio_stat->cd_bit_val)
+	return 1;
+  else
+    return 0;
 }
 
 void deselect_gpio_cs(void *v_gpio_stat){

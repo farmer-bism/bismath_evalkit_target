@@ -45,8 +45,8 @@
  */
 
 
-#ifndef TOPPERS_RX63N_CONFIG_H
-#define TOPPERS_RX63N_CONFIG_H
+#ifndef TOPPERS_RX64M_CONFIG_H
+#define TOPPERS_RX64M_CONFIG_H
 
 
 /*
@@ -67,12 +67,14 @@
 
 void set_icu_ipr(INTNO, uint8_t);
 
+#include "rx64m_support.h"
+
 #endif
 
 /*
- *  プロセッサ依存モジュール（RX63n用）
+ *  プロセッサ依存モジュール（RX64用）
  */
 #include "rx_gcc/rx_common/prc_config.h"
 
-#endif	/* TOPPERS_RX610_CONFIG_H */
+#endif	/* TOPPERS_RX64M_CONFIG_H */
 

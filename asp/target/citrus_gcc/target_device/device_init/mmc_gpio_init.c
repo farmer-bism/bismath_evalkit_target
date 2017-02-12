@@ -11,6 +11,7 @@
 mmc_gpio_dstat mmc_gpio_st_0 = {
   (uint8_t*)PORT1_PIDR_ADDR,
   PORT_PIDR_B5_BIT,
+  PORT_PIDR_B5_BIT,
   (uint8_t*)PORTC_PODR_ADDR,
   PORT_PODR_B0_BIT
 };

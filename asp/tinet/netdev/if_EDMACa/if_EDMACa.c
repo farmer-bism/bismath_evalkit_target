@@ -113,6 +113,7 @@ extern uint8_t mac_addr[ETHER_ADDR_LEN];
 
 typedef struct t_edmac_softc {
 	T_EDMAC_TX_DESC *tx_write;
+	T_EDMAC_TX_DESC *tx_read;  
 	T_EDMAC_RX_DESC *rx_read;
 	bool_t link_pre;
 	bool_t link_now;
@@ -138,8 +139,8 @@ typedef struct t_edmac_buf {
 #pragma	section	ETH_MEMORY
 #endif
 T_EDMAC_BUF edmac_buf;
-uint8_t rx_buff_mem[NUM_IF_EDMAC_RXBUF][IF_EDMAC_BUF_PAGE_SIZE + ALIGN_OF_BUF];
-uint8_t tx_buff_mem[NUM_IF_EDMAC_TXBUF][IF_EDMAC_BUF_PAGE_SIZE + ALIGN_OF_BUF];
+uint8_t rx_buff_mem[NUM_IF_EDMAC_RXBUF][IF_EDMAC_RX_BUF_PAGE_SIZE + ALIGN_OF_BUF];
+uint8_t tx_buff_mem[NUM_IF_EDMAC_TXBUF][IF_EDMAC_TX_BUF_PAGE_SIZE + ALIGN_OF_BUF];
 uint8_t rx_desc_mem[sizeof(T_EDMAC_RX_DESC)*NUM_IF_EDMAC_RXBUF+ALIGN_OF_DESC];
 uint8_t tx_desc_mem[sizeof(T_EDMAC_TX_DESC)*NUM_IF_EDMAC_TXBUF+ALIGN_OF_DESC];
 
@@ -299,7 +300,7 @@ edmac_init_sub (T_IF_SOFTC *ic)
 	sil_wrw_mem(EDMAC_EESIPR, (EDMAC_EESIPR_TCIP | EDMAC_EESIPR_FRIP | EDMAC_EESIPR_RDEIP | EDMAC_EESIPR_FROFIP));
 
 	/* 受信フレーム長上限（バッファサイズ） */
-	sil_wrw_mem(ETHERC_RFLR, IF_EDMAC_BUF_PAGE_SIZE);
+	sil_wrw_mem(ETHERC_RFLR, IF_EDMAC_RX_BUF_PAGE_SIZE);
 
 	/* 96ビット時間（初期値） */
 	sil_wrw_mem(ETHERC_IPGR, 0x00000014);
@@ -479,7 +480,7 @@ edmac_init (T_IF_SOFTC *ic)
     edmac_buf.rx_desc = (T_EDMAC_RX_DESC*)(((uint32_t)rx_desc_mem & (~ALIGN_OF_DESC+1)) + ALIGN_OF_DESC);
 
 	tdsc = (T_EDMAC_TX_DESC *)edmac_buf.tx_desc;
-	sc->tx_write = tdsc;
+	sc->tx_write = sc->tx_read = tdsc;
 	for ( i=0 ; i < NUM_IF_EDMAC_TXBUF ; i++ ) {
 		memset(tdsc, 0, sizeof(*tdsc));
 		tdsc->tbl = 0;
@@ -493,7 +494,7 @@ edmac_init (T_IF_SOFTC *ic)
 	sc->rx_read = rdsc;
 	for ( i=0 ; i < NUM_IF_EDMAC_RXBUF ; i++ ) {
 		memset(rdsc, 0, sizeof(*rdsc));
-		rdsc->rbl = IF_EDMAC_BUF_PAGE_SIZE;
+		rdsc->rbl = IF_EDMAC_RX_BUF_PAGE_SIZE;
 		rdsc->rba = (uint32_t)edmac_buf.rx_buff[i];
 		rdsc->rfl = 0;
 		rdsc->ract = 1;
@@ -612,27 +613,27 @@ edmac_start (T_IF_SOFTC *ic, T_NET_BUF *output)
 	T_EDMAC_SOFTC *sc = ic->sc;
 	T_EDMAC_TX_DESC *desc, *next;
 	uint8_t *buf = NULL;
+    uint16_t i, txbuf_used = 0;
 	int32_t len, res, pos;
 	uint32_t tfp;
 
+    next = sc->tx_write;
 	for ( res = output->len, pos = 0; res > 0; res -= len, pos += len ) {
-		desc = sc->tx_write;
-
+		desc = next;
+        next++;
+        if(next == &edmac_buf.tx_desc[NUM_IF_EDMAC_TXBUF]){
+          next = edmac_buf.tx_desc;
+        }
+        
 		while (desc->tact != 0) {
 			tslp_tsk(1);
 		}
 
 		buf = (uint8_t *)desc->tba;
 
-		next = desc + 1;
-		if (next == &edmac_buf.tx_desc[NUM_IF_EDMAC_TXBUF]) {
-			next = edmac_buf.tx_desc;
-		}
-		sc->tx_write = next;
-
 		len = res;
-		if ( len > IF_EDMAC_BUF_PAGE_SIZE ) {
-			len = IF_EDMAC_BUF_PAGE_SIZE;
+		if ( len > IF_EDMAC_TX_BUF_PAGE_SIZE ) {
+			len = IF_EDMAC_TX_BUF_PAGE_SIZE;
 			tfp = 0x0;
 		}
 		else
@@ -645,12 +646,26 @@ edmac_start (T_IF_SOFTC *ic, T_NET_BUF *output)
 
 		desc->tbl = len;
 		desc->tfp = tfp;
-		desc->tact = 1;
+        txbuf_used++;
 	}
+
+    //the tact of first discliptor in frame must be set last
+    //to prevent reading by EDMAC
+    for(i=0; i<txbuf_used; i++){
+      desc->tact = 1;
+      if(desc == edmac_buf.tx_desc)
+        desc = &edmac_buf.tx_desc[NUM_IF_EDMAC_TXBUF-1];
+      else
+        desc--;
+    }
+
+    sc->tx_write = next;
+    //dmac start
 
 	if (sil_rew_mem(EDMAC_EDTRR) == 0) {
 		sil_wrw_mem(EDMAC_EDTRR, EDMAC_EDTRR_TR);
 	}
+	sig_sem(ic->semid_txb_ready);
 }
 
 /*
@@ -662,12 +677,12 @@ if_edmac_trx_handler (void)
 {
 	T_IF_SOFTC *ic;
 	T_EDMAC_SOFTC *sc;
+    T_EDMAC_TX_DESC *tx_read;
 	uint32_t ecsr, eesr, psr;
     
     //check group interrupt status
     if((sil_rew_mem((uint32_t*) TINET_GRP_INT_ST_ADDR)|TINET_GRP_EINT_BIT) == 0)
       return ;
-
     
 	i_begin_int(INTNO_IF_EDMAC_TRX);
 
@@ -705,8 +720,25 @@ if_edmac_trx_handler (void)
 		/* DMA部割り込み要因クリア */
 		sil_wrw_mem(EDMAC_EESR, EDMAC_EESR_TC);
 
+	    tx_read = sc->tx_read;
+	    //check tx result
+	    while(tx_read->tact == 0) {
+	      if((++tx_read) == &edmac_buf.tx_desc[NUM_IF_EDMAC_TXBUF]){
+	        tx_read = edmac_buf.tx_desc;
+	      }
+	      if(tx_read == sc->tx_write)
+	        break;
+	    }
+	    sc->tx_read = tx_read;
+	    if(tx_read->tact == 1){
+	      //start tx dma, if buffer has untransport data.
+	      while (sil_rew_mem(EDMAC_EDTRR) != EDMAC_EDTRR_TR);
+	      sil_wrw_mem(EDMAC_EDTRR, EDMAC_EDTRR_TR);
+	    }
 		/* 送信割り込み処理 */
-		isig_sem(ic->semid_txb_ready);
+		//isig_sem(ic->semid_txb_ready);
+
+
 	}
 	if (eesr & (EDMAC_EESR_FROF | EDMAC_EESR_RDE)) {
 		/* DMA部割り込み要因クリア */

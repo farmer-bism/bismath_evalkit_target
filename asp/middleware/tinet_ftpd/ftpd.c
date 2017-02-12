@@ -195,8 +195,7 @@ static void cmd_retr(const int8_t *arg, ID cep_id, struct ftpd_msgstate *fsm)
 	}
 
     //	send_msg(cep_id, fsm, msg150recv, arg, st.st_size);
-    int i;
-	if ((i= open_dataconnection(cep_id, fsm)) != 0) {
+	if ((open_dataconnection(cep_id, fsm)) != 0) {
       vfs_close(vfs_file);
       return;
 	}
@@ -531,10 +530,6 @@ void tcp_ftpd_control_srv_task(intptr_t exinf){
   uint8_t rbuf[64];
   struct ftpd_msgstate *fsm;
 
-  if(f_mount(&fatfs, "", 0) != FR_OK)
-	  ext_tsk();
-
-  get_tid(&tskid);
   while(true){
     fsm = ftpd_init_conf((uint32_t)exinf);
     

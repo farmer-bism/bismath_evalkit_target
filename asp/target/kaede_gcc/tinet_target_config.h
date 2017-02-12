@@ -196,10 +196,11 @@
  *  RX64M Ethernet Controler に関する定義
  */
 
-#define NUM_IF_EDMAC_TXBUF		4	/* 送信バッファ数			*/
-#define NUM_IF_EDMAC_RXBUF		4	/* 受信バッファ数			*/
+#define NUM_IF_EDMAC_TXBUF	9 /* 送信バッファ数  (IF_RX62N_TX_BUF_PAGE_SIZE * NUM_IF_RX62N_TXBUF) > (max flame size(1518 byte) *1.5)  */
+#define NUM_IF_EDMAC_RXBUF  4	/* 受信バッファ数			*/
 //#define IF_EDMAC_BUF_PAGE_SIZE	1518	/* バッファサイズ */
-#define IF_EDMAC_BUF_PAGE_SIZE	0x600	/* バッファサイズ */
+#define IF_EDMAC_RX_BUF_PAGE_SIZE	0x600	/* バッファサイズ */
+#define IF_EDMAC_TX_BUF_PAGE_SIZE (256+16+20+20+4)	/* size of tx buffr(data+ether header(aligned 4) +ip header + tcp header + fcs) */
 
 #define TMO_IF_EDMAC_GET_NET_BUF	1	/* [ms]、受信用 net_buf 獲得タイムアウト	*/
 					/* [s]、 送信タイムアウト			*/

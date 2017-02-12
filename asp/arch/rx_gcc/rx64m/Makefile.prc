@@ -24,7 +24,7 @@ COPTS := $(COPTS)
 #
 KERNEL_DIR := $(KERNEL_DIR) $(ARCH_SYS_DIR) 
 KERNEL_ASMOBJS := $(KERNEL_ASMOBJS)
-KERNEL_COBJS := $(KERNEL_COBJS) rx64m_config.o
+KERNEL_COBJS := $(KERNEL_COBJS) rx64m_config.o rx64m_support.o
 
 #
 #  システムサービスに関する定義

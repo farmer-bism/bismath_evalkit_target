@@ -12,6 +12,7 @@ mmc_gpio_dstat mmc_gpio_st_0 = {
   //card detect io define
   (uint8_t*)PORTB_PIDR_ADDR,
   PORT_PIDR_B7_BIT,
+  0,  //io voltage is low when card inserted
   //card select io define
   (uint8_t*)PORTC_PODR_ADDR,
   PORT_PODR_B4_BIT
@@ -40,6 +41,9 @@ void target_dev_ini_mmc_sdcard_gpio_0(){
   //set gpio
   rd = sil_reb_mem(PORTC_PMR_ADDR);
   sil_wrb_mem(PORTC_PMR_ADDR, rd & ~PORT_PMR_B4_BIT);
+  //unselect CS# pin
+  //rd = sil_reb_mem(PORTC_PODR_ADDR);
+  //sil_wrb_mem(PORTC_PODR_ADDR, rd | PORT_PODR_B4_BIT);
 
 }
   

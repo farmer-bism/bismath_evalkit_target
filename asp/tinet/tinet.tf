@@ -5,39 +5,39 @@ $
 $   Copyright (C) 2001-2007 by Dep. of Computer Science and Engineering
 $                    Tomakomai National College of Technology, JAPAN
 $  
-$   �嵭����Ԥϡ��ʲ���(1)��(4)�ξ������������˸¤ꡤ�ܥ��եȥ���
-$   �����ܥ��եȥ���������Ѥ�����Τ�ޤࡥ�ʲ�Ʊ���ˤ���ѡ�ʣ������
-$   �ѡ������ۡʰʲ������ѤȸƤ֡ˤ��뤳�Ȥ�̵���ǵ������롥
-$   (1) �ܥ��եȥ������򥽡��������ɤη������Ѥ�����ˤϡ��嵭������
-$       ��ɽ�����������Ѿ�浪��Ӳ�����̵�ݾڵ��꤬�����Τޤޤη��ǥ���
-$       ����������˴ޤޤ�Ƥ��뤳�ȡ�
-$   (2) �ܥ��եȥ������򡤥饤�֥������ʤɡ�¾�Υ��եȥ�������ȯ�˻�
-$       �ѤǤ�����Ǻ����ۤ�����ˤϡ������ۤ�ȼ���ɥ�����ȡ�����
-$       �ԥޥ˥奢��ʤɡˤˡ��嵭�����ɽ�����������Ѿ�浪��Ӳ���
-$       ��̵�ݾڵ����Ǻܤ��뤳�ȡ�
-$   (3) �ܥ��եȥ������򡤵�����Ȥ߹���ʤɡ�¾�Υ��եȥ�������ȯ�˻�
-$       �ѤǤ��ʤ����Ǻ����ۤ�����ˤϡ����Τ����줫�ξ�����������
-$       �ȡ�
-$     (a) �����ۤ�ȼ���ɥ�����ȡ����Ѽԥޥ˥奢��ʤɡˤˡ��嵭����
-$         �ɽ�����������Ѿ�浪��Ӳ�����̵�ݾڵ����Ǻܤ��뤳�ȡ�
-$   (4) �ܥ��եȥ����������Ѥˤ��ľ��Ū�ޤ��ϴ���Ū�������뤤���ʤ�»
-$       ������⡤�嵭����Ԥ����TOPPERS�ץ��������Ȥ����դ��뤳�ȡ�
-$       �ޤ����ܥ��եȥ������Υ桼���ޤ��ϥ���ɥ桼������Τ����ʤ���
-$       ͳ�˴�Ť����ᤫ��⡤�嵭����Ԥ����TOPPERS�ץ��������Ȥ�
-$       ���դ��뤳�ȡ�
+$   上記著作権者は，以下の(1)〜(4)の条件を満たす場合に限り，本ソフトウェ
+$   ア（本ソフトウェアを改変したものを含む．以下同じ）を使用・複製・改
+$   変・再配布（以下，利用と呼ぶ）することを無償で許諾する．
+$   (1) 本ソフトウェアをソースコードの形で利用する場合には，上記の著作
+$       権表示，この利用条件および下記の無保証規定が，そのままの形でソー
+$       スコード中に含まれていること．
+$   (2) 本ソフトウェアを，ライブラリ形式など，他のソフトウェア開発に使
+$       用できる形で再配布する場合には，再配布に伴うドキュメント（利用
+$       者マニュアルなど）に，上記の著作権表示，この利用条件および下記
+$       の無保証規定を掲載すること．
+$   (3) 本ソフトウェアを，機器に組み込むなど，他のソフトウェア開発に使
+$       用できない形で再配布する場合には，次のいずれかの条件を満たすこ
+$       と．
+$     (a) 再配布に伴うドキュメント（利用者マニュアルなど）に，上記の著
+$         作権表示，この利用条件および下記の無保証規定を掲載すること．
+$   (4) 本ソフトウェアの利用により直接的または間接的に生じるいかなる損
+$       害からも，上記著作権者およびTOPPERSプロジェクトを免責すること．
+$       また，本ソフトウェアのユーザまたはエンドユーザからのいかなる理
+$       由に基づく請求からも，上記著作権者およびTOPPERSプロジェクトを
+$       免責すること．
 $  
-$   �ܥ��եȥ������ϡ�̵�ݾڤ��󶡤���Ƥ����ΤǤ��롥�嵭����Ԥ�
-$   ���TOPPERS�ץ��������Ȥϡ��ܥ��եȥ������˴ؤ��ơ�����λ�����Ū
-$   ���Ф���Ŭ������ޤ�ơ������ʤ��ݾڤ�Ԥ�ʤ����ޤ����ܥ��եȥ���
-$   �������Ѥˤ��ľ��Ū�ޤ��ϴ���Ū�������������ʤ�»���˴ؤ��Ƥ⡤��
-$   ����Ǥ�����ʤ���
+$   本ソフトウェアは，無保証で提供されているものである．上記著作権者お
+$   よびTOPPERSプロジェクトは，本ソフトウェアに関して，特定の使用目的
+$   に対する適合性も含めて，いかなる保証も行わない．また，本ソフトウェ
+$   アの利用により直接的または間接的に生じたいかなる損害に関しても，そ
+$   の責任を負わない．
 $ 
 $   @(#) $Id: $
 $  
 $ =====================================================================
 
 $ =====================================================================
-$ tinet_cfg.h ������
+$ tinet_cfg.h の生成
 $ =====================================================================
 
 $FILE "tinet_cfg.h"$
@@ -85,7 +85,7 @@ $NL$
 #endif /* _TINET_CFG_H_ */$NL$
 
 $ =====================================================================
-$ tinet_cfg.c ������
+$ tinet_cfg.c の生成
 $ =====================================================================
 
 $FILE "tinet_cfg.c"$
@@ -114,7 +114,7 @@ $NL$
 #include <netinet/udp_var.h>$NL$
 
 $ 
-$  ���󥯥롼�ɥǥ��쥯�ƥ��֡�#include��
+$  インクルードディレクティブ（#include）
 $ 
 $NL$
 /*$NL$
@@ -123,7 +123,7 @@ $SPC$*/$NL$
 $NL$
 $INCLUDES$
 
-$	// TCP (IPv4) ���ո�
+$	// TCP (IPv4) 受付口
 $IF LENGTH(TCP4_REP.ID_LIST) + LENGTH(VRID_TCP4_REP.ID_LIST)$
 	$NL$
 	#define TNUM_TCP_REPID	$LENGTH(TCP4_REP.ID_LIST) + LENGTH(VRID_TCP4_REP.ID_LIST)$$NL$
@@ -154,7 +154,7 @@ $IF LENGTH(TCP4_REP.ID_LIST) + LENGTH(VRID_TCP4_REP.ID_LIST)$
 		$TAB$};$NL$
 $END$
 
-$	// TCP (IPv6) ���ո�
+$	// TCP (IPv6) 受付口
 $IF LENGTH(TCP6_REP.ID_LIST) + LENGTH(VRID_TCP6_REP.ID_LIST)$
 	$NL$
 	#define TNUM_TCP_REPID	$LENGTH(TCP6_REP.ID_LIST) + LENGTH(VRID_TCP6_REP.ID_LIST)$$NL$
@@ -185,7 +185,7 @@ $IF LENGTH(TCP6_REP.ID_LIST) + LENGTH(VRID_TCP6_REP.ID_LIST)$
 		$TAB$};$NL$
 $END$
 
-$	// TCP (IPv4) �̿�ü��
+$	// TCP (IPv4) 通信端点
 $IF LENGTH(TCP4_CEP.ID_LIST) + LENGTH(VRID_TCP4_CEP.ID_LIST)$
 	$NL$
 	#define TNUM_TCP_CEPID	$LENGTH(TCP4_CEP.ID_LIST) + LENGTH(VRID_TCP4_CEP.ID_LIST)$$NL$
@@ -226,7 +226,7 @@ $IF LENGTH(TCP4_CEP.ID_LIST) + LENGTH(VRID_TCP4_CEP.ID_LIST)$
 		$TAB$};$NL$
 $END$
 
-$	// TCP (IPv6) �̿�ü��
+$	// TCP (IPv6) 通信端点
 $IF LENGTH(TCP6_CEP.ID_LIST) + LENGTH(VRID_TCP6_CEP.ID_LIST)$
 	$NL$
 	#define TNUM_TCP_CEPID	$LENGTH(TCP6_CEP.ID_LIST) + LENGTH(VRID_TCP6_CEP.ID_LIST)$$NL$
@@ -267,7 +267,7 @@ $IF LENGTH(TCP6_CEP.ID_LIST) + LENGTH(VRID_TCP6_CEP.ID_LIST)$
 		$TAB$};$NL$
 $END$
 
-$	// UDP (IPv4) �̿�ü��
+$	// UDP (IPv4) 通信端点
 $IF LENGTH(UDP4_CEP.ID_LIST) + LENGTH(VRID_UDP4_CEP.ID_LIST)$
 	$NL$
 	#define TNUM_UDP_CEPID	$LENGTH(UDP4_CEP.ID_LIST) + LENGTH(VRID_UDP4_CEP.ID_LIST)$$NL$
@@ -302,7 +302,7 @@ $IF LENGTH(UDP4_CEP.ID_LIST) + LENGTH(VRID_UDP4_CEP.ID_LIST)$
 		$TAB$};$NL$
 $END$
 
-$	// UDP (IPv6) �̿�ü��
+$	// UDP (IPv6) 通信端点
 $IF LENGTH(UDP6_CEP.ID_LIST) + LENGTH(VRID_UDP6_CEP.ID_LIST)$
 	$NL$
 	#define TNUM_UDP_CEPID	$LENGTH(UDP6_CEP.ID_LIST) + LENGTH(VRID_UDP6_CEP.ID_LIST)$$NL$
@@ -338,13 +338,13 @@ $IF LENGTH(UDP6_CEP.ID_LIST) + LENGTH(VRID_UDP6_CEP.ID_LIST)$
 $END$
 
 $ =====================================================================
-$ tinet_kern.cfg ������
+$ tinet_kern.cfg の生成
 $ =====================================================================
 
 $FILE "tinet_kern.cfg"$
 /* tinet_kern.cfg */$NL$
 
-$	// TCP (IPv4) ���ո�
+$	// TCP (IPv4) 受付口
 $IF LENGTH(TCP4_REP.ID_LIST) + LENGTH(VRID_TCP4_REP.ID_LIST)$
 	$NL$
 	#if defined(TCP_CFG_EXTENTIONS)$NL$
@@ -357,7 +357,7 @@ $IF LENGTH(TCP4_REP.ID_LIST) + LENGTH(VRID_TCP4_REP.ID_LIST)$
 	#endif$NL$
 $END$
 
-$	// TCP (IPv4) ���ո�
+$	// TCP (IPv4) 受付口
 $IF LENGTH(TCP6_REP.ID_LIST) + LENGTH(VRID_TCP6_REP.ID_LIST)$
 	$NL$
 	#if defined(TCP_CFG_EXTENTIONS)$NL$
@@ -370,7 +370,7 @@ $IF LENGTH(TCP6_REP.ID_LIST) + LENGTH(VRID_TCP6_REP.ID_LIST)$
 	#endif$NL$
 $END$
 
-$	// TCP (IPv4) �̿�ü��
+$	// TCP (IPv4) 通信端点
 $IF LENGTH(TCP4_CEP.ID_LIST) + LENGTH(VRID_TCP4_CEP.ID_LIST)$
 	$NL$
 	$FOREACH id TCP4_CEP.ID_LIST$
@@ -389,7 +389,7 @@ $IF LENGTH(TCP4_CEP.ID_LIST) + LENGTH(VRID_TCP4_CEP.ID_LIST)$
 	$END$
 $END$
 
-$	// TCP (IPv6) �̿�ü��
+$	// TCP (IPv6) 通信端点
 $IF LENGTH(TCP6_CEP.ID_LIST) + LENGTH(VRID_TCP6_CEP.ID_LIST)$
 	$NL$
 	$FOREACH id TCP6_CEP.ID_LIST$
@@ -408,7 +408,7 @@ $IF LENGTH(TCP6_CEP.ID_LIST) + LENGTH(VRID_TCP6_CEP.ID_LIST)$
 	$END$
 $END$
 
-$	// UDP (IPv4) �̿�ü��
+$	// UDP (IPv4) 通信端点
 $IF LENGTH(UDP4_CEP.ID_LIST) + LENGTH(VRID_UDP4_CEP.ID_LIST)$
 	$NL$
 	$FOREACH id UDP4_CEP.ID_LIST$
@@ -423,7 +423,7 @@ $IF LENGTH(UDP4_CEP.ID_LIST) + LENGTH(VRID_UDP4_CEP.ID_LIST)$
 	$END$
 $END$
 
-$	// UDP (IPv6) �̿�ü��
+$	// UDP (IPv6) 通信端点
 $IF LENGTH(UDP6_CEP.ID_LIST) + LENGTH(VRID_UDP6_CEP.ID_LIST)$
 	$NL$
 	$FOREACH id UDP6_CEP.ID_LIST$

@@ -14,6 +14,7 @@
 typedef struct mmc_gpio_status_type{
   uint8_t *cd_pidr_baddr;
   uint8_t cd_bit_mask;
+  uint8_t cd_bit_val;
   uint8_t *cs_podr_baddr;
   uint8_t cs_bit_mask;
 } mmc_gpio_dstat;

@@ -679,6 +679,7 @@ if_rx62n_trx_handler (void)
 
 	ecsr = sil_rew_mem(ETHERC_ECSR);
 
+#ifdef TINET_PHY_SUPPORT_LINKSTA
 	if (ecsr & ETHERC_ECSR_LCHNG) {
 		/* ETHERC部割り込み要因クリア */
 		sil_wrw_mem(ETHERC_ECSR, ETHERC_ECSR_LCHNG);
@@ -692,6 +693,7 @@ if_rx62n_trx_handler (void)
 			isig_sem(ic->semid_rxb_ready);
 		}
 	}
+#endif
 
 	eesr = sil_rew_mem(EDMAC_EESR);
 
