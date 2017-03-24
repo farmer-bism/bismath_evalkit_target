@@ -12,5 +12,6 @@
 #define USE_MMC_GPIO_0
 #define USE_DTCA_0
 #define USE_SCIG_0
+#define USE_EPTPC_0
 
 #endif
