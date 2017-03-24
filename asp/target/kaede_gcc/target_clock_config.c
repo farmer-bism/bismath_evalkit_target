@@ -2,9 +2,9 @@
  *  TOPPERS/ASP Kernel
  *      Toyohashi Open Platform for Embedded Real-Time Systems/
  *      Advanced Standard Profile Kernel
- * 
+ *
  *  Copyright (C) 2016- by Hisashi Hata, JAPAN
- * 
+ *
  * The above copyright holders grant permission gratis to use,
  * duplicate, modify, or redistribute (hereafter called use) this
  * software (including the one made by modifying this software),
@@ -72,23 +72,23 @@ clock_waitcount_config(void){
 
   //clock wait count set
   sil_wrb_mem((void *)(SYSTEM_MOSCWTCR_ADDR),SYSTEM_CLKWAIT_HE );
-  
+
   //lock lopwermode register access
   sil_wrh_mem((void *)(SYSTEM_PRCR_ADDR), SYSTEM_PRKEY );
 }
 
 
-void 
+void
 target_clock_config( void ){
-  
+
   clock_waitcount_config();
 
   //unlock access of clock setting register
   sil_wrh_mem((void *)(SYSTEM_PRCR_ADDR), SYSTEM_PRKEY | SYSTEM_PRC0);
   //GR-KAEDE Bord OSC is 12MHz
-  //set clock freq(PLL 240MHz, PCKB 60MHz PCKA 120MHz ICK 120MHz)
+  //set clock freq(PLL 120MHz, PCKB 60MHz PCKA 120MHz ICK 120MHz)
   //pll set div 2, mul 20
-  sil_wrh_mem((void *)(CKG_PLLCR_ADDR), CKG_PLLCR_PLIDIV2 | CKG_PLLCR_STC20_0);
+  sil_wrh_mem((void *)(CKG_PLLCR_ADDR), CKG_PLLCR_PLIDIV1 | CKG_PLLCR_STC10_0);
   //set bus clock rate
   sil_wrw_mem((void *)(CKG_SCKCR_ADDR),   CKG_SCKCR_PD_DIV02
                                         | CKG_SCKCR_PC_DIV02
@@ -105,7 +105,7 @@ target_clock_config( void ){
   /*
    * Main clock setting
    */
-  
+
   //Main clock disable
    sil_wrb_mem((void *)(CKG_MOSCCR_ADDR), CKG_CLOCK_DISABLE);
    //Set drivabilty of Main clock
@@ -115,14 +115,14 @@ target_clock_config( void ){
    sil_wrb_mem((void *)(CKG_MOSCCR_ADDR), CKG_CLOCK_ENABLE);
    //Wait Main clock lock
    while(sil_reb_mem((void *)(CKG_MOSCCR_ADDR)) != CKG_CLOCK_ENABLE);
-   
+
   //pll enable
    sil_wrb_mem((void *)(CKG_PLLCR2_ADDR), CKG_CLOCK_ENABLE);
    while(sil_reb_mem((void *)(CKG_PLLCR2_ADDR)) != CKG_CLOCK_ENABLE);
    //PLL lock wait
-   //wait over 10ms, LOCO freq 125Khz, wait count is 125*10 = 1250;                               
+   //wait over 10ms, LOCO freq 125Khz, wait count is 125*10 = 1250;
    //switch clock(PLL select)
-   sil_wrh_mem((void *)(CKG_SCKCR3_ADDR),   CKG_SCKCR3_CKSEL_PLL);                        
+   sil_wrh_mem((void *)(CKG_SCKCR3_ADDR),   CKG_SCKCR3_CKSEL_PLL);
   //lock access of clock setting register
    sil_wrh_mem((void *)(SYSTEM_PRCR_ADDR), SYSTEM_PRKEY );
 }
