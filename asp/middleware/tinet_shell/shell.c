@@ -1,9 +1,9 @@
 /*
  * Copyright (c) 2016-  Hisashi Hata
  * Copyright (c) 2001-2003 Swedish Institute of Computer Science.
- * All rights reserved. 
- * 
- * Redistribution and use in source and binary forms, with or without modification, 
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without modification,
  * are permitted provided that the following conditions are met:
  *
  * 1. Redistributions of source code must retain the above copyright notice,
@@ -12,28 +12,27 @@
  *    this list of conditions and the following disclaimer in the documentation
  *    and/or other materials provided with the distribution.
  * 3. The name of the author may not be used to endorse or promote products
- *    derived from this software without specific prior written permission. 
+ *    derived from this software without specific prior written permission.
  *
- * THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR IMPLIED 
- * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
- * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT 
- * SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, 
- * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT 
- * OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
- * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
- * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING 
- * IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY 
+ * THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR IMPLIED
+ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT
+ * SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT
+ * OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING
+ * IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
  * OF SUCH DAMAGE.
  *
  * This file is part of the tinet_shell
- * 
+ *
  * Author: Hisashi Hata
  * Author: Adam Dunkels <adam@sics.se>
  *
  */
 
 #include <string.h>
-#include <stdio.h>
 
 #include <kernel.h>
 #include "tinet_cfg.h"
@@ -148,7 +147,7 @@ static shell_cmd_t * search_calling_cmd(shell_cmd_t* cmd_table, int8_t* cmd_str)
     }
     shell_cmd ++;
   }
-  
+
   if(shell_cmd->cmd_str == NULL){
     return NULL;
   }
@@ -161,19 +160,19 @@ parse_command(struct command *com, uint32_t len, int8_t *sbuff)
   uint16_t i;
   uint16_t bufp;
   shell_cmd_t *shell_cmd;
-  
+
   //check reserved command
   shell_cmd = search_calling_cmd(tinet_reserv_cmd , sbuff);
-  
+
   //check user defined command
   if((shell_cmd == NULL) && (tinet_usr_cmd != NULL)){
     shell_cmd = search_calling_cmd(tinet_usr_cmd , sbuff);
   }
-  
+
   if(shell_cmd == NULL){
     return ESYNTAX;
   }
-  
+
   com->exec = shell_cmd->call_stub;
   com->nargs = shell_cmd->narg;
 
@@ -195,10 +194,10 @@ parse_command(struct command *com, uint32_t len, int8_t *sbuff)
         return ETOOMANY;
       }
       break;
-    }    
+    }
     if (bufp > len) {
       return ETOOFEW;
-    }    
+    }
     com->args[i] = (uint8_t *)&sbuff[bufp];
     for(; bufp < len && sbuff[bufp] != ' ' && sbuff[bufp] != '\r' &&
       sbuff[bufp] != '\n'; bufp++) {
@@ -244,7 +243,7 @@ static void
 prompt()
 {
   sendstr("> ");
-}  
+}
 /*-----------------------------------------------------------------------------------*/
 #define SHELL_BUFFER_SIZE 128
 uint8_t shell_net_buf[SHELL_BUFFER_SIZE];
@@ -271,14 +270,14 @@ shell_main()
 
     if(cur_len+com_len > SHELL_BUFFER_SIZE)
       cur_len = SHELL_BUFFER_SIZE - cur_len -1;
-    
+
     memcpy(&shell_buf[com_len], shell_net_buf, cur_len);
 #if SHELL_ECHO
     if (echomem != NULL) {
       tcp_snd_dat(TCP_SHELL_CEPID, &shell_buf[com_len], cur_len, 1000);
     }
 #endif /* SHELL_ECHO */
-      
+
     com_len += cur_len;
     //telnet command code check
     if (((shell_buf[0] &0xf0) == 0xf0) ||  ((shell_buf[1] & 0xf0) == 0xf0)) {
@@ -306,7 +305,7 @@ shell_main()
   } while (1);
 }
 /*-----------------------------------------------------------------------------------*/
-void 
+void
 shell_task(intptr_t exinf)
 {
   while (1) {

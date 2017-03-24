@@ -1,9 +1,9 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
- * 
+ *
  *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
- * 
+ *
  *  上記著作権者は，以下の(1)〜(4)の条件を満たす場合に限り，本ソフトウェ
  *  ア（本ソフトウェアを改変したものを含む．以下同じ）を使用・複製・改
  *  変・再配布（以下，利用と呼ぶ）することを無償で許諾する．
@@ -26,13 +26,13 @@
  *      また，本ソフトウェアのユーザまたはエンドユーザからのいかなる理
  *      由に基づく請求からも，上記著作権者およびTOPPERSプロジェクトを
  *      免責すること．
- * 
+ *
  *  本ソフトウェアは，無保証で提供されているものである．上記著作権者お
  *  よびTOPPERSプロジェクトは，本ソフトウェアに関して，特定の使用目的
  *  に対する適合性も含めて，いかなる保証も行わない．また，本ソフトウェ
  *  アの利用により直接的または間接的に生じたいかなる損害に関しても，そ
  *  の責任を負わない．
- * 
+ *
  *  @(#) $Id$
  */
 
@@ -42,12 +42,19 @@
 /*
  * NIC target config
  */
-//Base address of ethernet device define
+//define Base address of ethernet device
 #define TINET_EDMAC_BASE EDMAC0_BASE_ADDR
 #define TINET_ETHERC_BASE ETHERC0_BASE_ADDR
 #define TINET_GRP_INT_GEN_ADDR ICU_GENAL1_ADDR
 #define TINET_GRP_INT_ST_ADDR ICU_GRPAL1_ADDR
 #define TINET_GRP_EINT_BIT GROUP_AL1_B4_EDMAC0_EINT0
+
+static inline vod enable_eth_int(){
+	sil_wrw_mem((uint32_t *)TINET_GRP_INT_GEN_ADDR ,
+                sil_rew_mem((uint32_t *)TINET_GRP_INT_GEN_ADDR)|TINET_GRP_EINT_BIT
+                );
+	syscall(ena_int(INTNO_IF_EDMAC_TRX));
+}
 
 //PHY function define
 //#define TTINET_PHY_SUPPORT_LINKSTA
@@ -77,11 +84,11 @@
 #define DEF_TCP_RCV_SEG		(IF_MTU - (IP_HDR_SIZE + TCP_HDR_SIZE))
 #endif	/* of #ifndef DEF_TCP_RCV_SEG */
 
-/* 
+/*
  *  セグメントの順番を入れ替えるときに新たにネットワークバッファを割当てて、
  *  データをコピーするサイズのしきい値
  */
-#define MAX_TCP_REALLOC_SIZE	1024	
+#define MAX_TCP_REALLOC_SIZE	1024
 
 #define TCP_CFG_OPT_MSS		/* コネクション開設時に、セグメントサイズオプションをつけて送信する。*/
 #define TCP_CFG_DELAY_ACK	/* ACK を遅らせるときはコメントを外す。			*/
@@ -138,7 +145,7 @@
  *  起動時のルータ要請出力回数。
  *  0 を指定するとルータ要請を出力しない。
  */
-#define NUM_ND6_RTR_SOL_RETRY	3	
+#define NUM_ND6_RTR_SOL_RETRY	3
 
 #define IP6_CFG_FRAGMENT		/* データグラムの分割・再構成行う場合はコメントを外す。	*/
 #define NUM_IP6_FRAG_QUEUE	2	/* データグラム再構成キューサイズ			*/
@@ -504,6 +511,16 @@
 
 extern void edmac_bus_init (void);
 extern void edmac_inter_init (void);
+extern void edmac_hard_init_hook (void);
+
+static inline vod enable_eth_int(){
+	sil_wrw_mem((uint32_t *)TINET_GRP_INT_GEN_ADDR ,
+                sil_rew_mem((uint32_t *)TINET_GRP_INT_GEN_ADDR)|TINET_GRP_EINT_BIT
+                );
+	syscall(ena_int(INTNO_IF_EDMAC_TRX));
+}
+
+void edmac_user_stop();
 
 #endif	/* of #ifndef TOPPERS_MACRO_ONLY */
 

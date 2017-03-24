@@ -1,9 +1,9 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
- * 
+ *
  *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
- * 
+ *
  *  上記著作権者は，以下の(1)〜(4)の条件を満たす場合に限り，本ソフトウェ
  *  ア（本ソフトウェアを改変したものを含む．以下同じ）を使用・複製・改
  *  変・再配布（以下，利用と呼ぶ）することを無償で許諾する．
@@ -26,13 +26,13 @@
  *      また，本ソフトウェアのユーザまたはエンドユーザからのいかなる理
  *      由に基づく請求からも，上記著作権者およびTOPPERSプロジェクトを
  *      免責すること．
- * 
+ *
  *  本ソフトウェアは，無保証で提供されているものである．上記著作権者お
  *  よびTOPPERSプロジェクトは，本ソフトウェアに関して，特定の使用目的
  *  に対する適合性も含めて，いかなる保証も行わない．また，本ソフトウェ
  *  アの利用により直接的または間接的に生じたいかなる損害に関しても，そ
  *  の責任を負わない．
- * 
+ *
  *  @(#) $Id$
  */
 
@@ -77,11 +77,11 @@ edmac_bus_init (void)
 	sil_wrb_mem((uint8_t *)(MPC_PWPR_ADDR) , 0x40);
 
 	/* P71をET_MDIOとする */
-	sil_wrb_mem((uint8_t *)MPC_P71PFS_ADDR, 0x11); 
+	sil_wrb_mem((uint8_t *)MPC_P71PFS_ADDR, 0x11);
 	/* P72をET_MDCとする */
-	sil_wrb_mem((uint8_t *)MPC_P72PFS_ADDR, 0x11); 
+	sil_wrb_mem((uint8_t *)MPC_P72PFS_ADDR, 0x11);
     //	/* PA5をET_LINKSTAとする */
-    //	sil_wrb_mem((uint8_t *)MPC_PA5PFS_ADDR, 0x11); 
+    //	sil_wrb_mem((uint8_t *)MPC_PA5PFS_ADDR, 0x11);
 
 	/* P74をRXD1とする */
 	sil_wrb_mem((uint8_t *)MPC_P74PFS_ADDR, 0x12);
@@ -132,4 +132,30 @@ edmac_inter_init (void)
 #endif
 }
 
+
+#ifdef USE_EPTPC_0
+#include <driver/rx_gcc/EPTPC.h>
+
+extern uint8_t target_ptp_mode;
+extern uint8_t mac_addr[6];
+extern PTPINI ptp_conf;
+#endif
+
+
+void
+edmac_hard_init_hook (void)
+{
+#ifdef USE_EPTPC_0
+
+	  eptpc_target_config(mac_addr,
+	                     EPTPC_STCSELR_SCLKDIV_DIV6|EPTPC_STCSELR_SCLKSEL_PCLKA_DIV_1_6,
+	                     EPTPC_STCFR_STCF_20M,
+	                     //EPTPC_MODE_PORT0|EPTPC_MODE_MASTER
+	                     target_ptp_mode
+	                     ) ;
+	  eptpc_init(&ptp_conf);
+#endif
+}
+
 #endif	/* of #if defined(SUPPORT_ETHER) */
+

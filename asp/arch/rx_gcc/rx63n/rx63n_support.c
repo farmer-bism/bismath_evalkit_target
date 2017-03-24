@@ -3,7 +3,8 @@
  *      Toyohashi Open Platform for Embedded Real-Time Systems/
  *      Advanced Standard Profile Kernel
  *
- *  Copyright (C) 2008-2010 by Witz Corporation, JAPAN
+ *  Copyright (C) 2010 by Witz Corporation, JAPAN
+ *  Copyright (C) 2016- by Hisashi Hata, JAPAN
  *
  *  上記著作権者は，以下の(1)〜(4)の条件を満たす場合に限り，本ソフトウェ
  *  ア（本ソフトウェアを改変したものを含む．以下同じ）を使用・複製・改
@@ -35,47 +36,20 @@
  *  の責任を負わない．
  *
  */
+#include <kernel.h>
+#include <rx63n.h>
 
-/*
- *		プロセッサ依存モジュール（RX63n用）
- *
- *  このインクルードファイルは，target_config.h（または，そこからインク
- *  ルードされるファイル）のみからインクルードされる．他のファイルから
- *  直接インクルードしてはならない．
- */
+void set_init_moudlestop_setting(){
+    /* power management setting*/
+	/* unlock register access */
+	sil_wrh_mem((void *)(SYSTEM_PRCR_ADDR), SYSTEM_PRKEY | SYSTEM_PRC1);
 
+	//enable RSPI0
+	sil_wrw_mem((void*)SYSTEM_MSTPCRA_ADDR, 0x46FFFFFF); //reset MSTPCRA
+	sil_wrw_mem((void*)SYSTEM_MSTPCRB_ADDR, 0xFFFFFFFF); //reset MSTPCRB
+	sil_wrw_mem((void*)SYSTEM_MSTPCRC_ADDR, 0xFFFF0000); //reset MSTPCRC
 
-#ifndef TOPPERS_RX64M_CONFIG_H
-#define TOPPERS_RX64M_CONFIG_H
-
-#define ARCH_RENESAS_RX64M
-
-/*
- *  割込み要因数
- */
-#define	INHNO_MAX	UINT_C( 256 )
-
-
-/*
- *  割込み制御用定義
- */
-#define	INVALID_OFFSET				( 0xFFU )
-#define	INTNO_IRQ( intno )			( ( 64U <= ( intno ) ) && ( ( intno ) <= 79U ) )
-#define	INTNO_IRQ_OFFSET( intno )	( ( intno ) - 64U )
-#define	IRQ_MAX						UINT_C( 16 )
-
-#ifndef TOPPERS_MACRO_ONLY
-
-void set_icu_ipr(INTNO, uint8_t);
-
-#include "rx64m_support.h"
-
-#endif
-
-/*
- *  プロセッサ依存モジュール（RX64用）
- */
-#include "rx_gcc/rx_common/prc_config.h"
-
-#endif	/* TOPPERS_RX64M_CONFIG_H */
-
+	//lock register access
+	sil_wrh_mem((void *)(SYSTEM_PRCR_ADDR), SYSTEM_PRKEY );
+	/* end power management setting */
+}

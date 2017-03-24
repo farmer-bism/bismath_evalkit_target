@@ -27,6 +27,7 @@
 #include <string.h>
 #include "boot_elf.h"
 #include "elf_fio.h"
+#include "tinet_target_config.h"
 
 #define SEG_COPY_BUFF_SZ 512
 static uint8_t scopy_buff[SEG_COPY_BUFF_SZ];
@@ -43,9 +44,9 @@ int32_t elf32_cpy_seg(rx_elf32_phdr *phdr, FIL* efp){
   rest = phdr->p_filesz;
   //Check file size
   //When file size is 0, segment is .bss section. do noting.
-  if(rest == 0) 
+  if(rest == 0)
     return 0;
-  
+
   dist_addr = phdr->p_vaddr;
 
   f_lseek(efp, phdr->p_offset);
@@ -87,6 +88,7 @@ int deploy_elf(int8_t *elf_fname, rx_elf32_ehdr *ehdr){
 void boot_elf(int8_t *elf_name){
   rx_elf32_ehdr ehdr;
   deploy_elf(elf_name, &ehdr);
+  edmac_user_stop();
   set_init_moudlestop_setting();
   call_startup(&ehdr);
 }

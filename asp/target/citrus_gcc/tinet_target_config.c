@@ -1,9 +1,9 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
- * 
+ *
  *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
- * 
+ *
  *  上記著作権者は，以下の(1)〜(4)の条件を満たす場合に限り，本ソフトウェ
  *  ア（本ソフトウェアを改変したものを含む．以下同じ）を使用・複製・改
  *  変・再配布（以下，利用と呼ぶ）することを無償で許諾する．
@@ -26,13 +26,13 @@
  *      また，本ソフトウェアのユーザまたはエンドユーザからのいかなる理
  *      由に基づく請求からも，上記著作権者およびTOPPERSプロジェクトを
  *      免責すること．
- * 
+ *
  *  本ソフトウェアは，無保証で提供されているものである．上記著作権者お
  *  よびTOPPERSプロジェクトは，本ソフトウェアに関して，特定の使用目的
  *  に対する適合性も含めて，いかなる保証も行わない．また，本ソフトウェ
  *  アの利用により直接的または間接的に生じたいかなる損害に関しても，そ
  *  の責任を負わない．
- * 
+ *
  *  @(#) $Id$
  */
 
@@ -54,7 +54,7 @@
  */
 
 void
-rx62n_bus_init (void)
+edmac_bus_init (void)
 {
 	/* イーサネット・コントローラの動作を許可 */
 	sil_wrh_mem((uint16_t *)SYSTEM_PRCR_ADDR, (uint16_t)0xA502);	/* 書込み許可 */
@@ -76,11 +76,11 @@ rx62n_bus_init (void)
 	sil_wrb_mem((uint8_t *)(MPC_PWPR_ADDR) , 0x40);
 
 	/* PA3をET_MDIOとする */
-	sil_wrb_mem((uint8_t *)MPC_PA3PFS_ADDR, 0x11); 
+	sil_wrb_mem((uint8_t *)MPC_PA3PFS_ADDR, 0x11);
 	/* PA4をET_MDCとする */
-	sil_wrb_mem((uint8_t *)MPC_PA4PFS_ADDR, 0x11); 
+	sil_wrb_mem((uint8_t *)MPC_PA4PFS_ADDR, 0x11);
 	/* PA5をET_LINKSTAとする */
-	sil_wrb_mem((uint8_t *)MPC_PA5PFS_ADDR, 0x11); 
+	sil_wrb_mem((uint8_t *)MPC_PA5PFS_ADDR, 0x11);
 
 	/* PB0をRXD1とする */
 	sil_wrb_mem((uint8_t *)MPC_PB0PFS_ADDR, 0x12);
@@ -108,7 +108,12 @@ rx62n_bus_init (void)
  */
 
 void
-rx62n_inter_init (void)
+edmac_inter_init (void)
+{
+}
+
+void
+edmac_hard_init_hook (void)
 {
 }
 

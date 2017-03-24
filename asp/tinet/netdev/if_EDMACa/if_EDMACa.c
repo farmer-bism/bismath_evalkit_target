@@ -1,10 +1,10 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
- * 
+ *
  *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *  Copyright (C) 2014-2015 Cores Co., Ltd. Japan
- * 
+ *
  *  上記著作権者は，以下の(1)〜(4)の条件を満たす場合に限り，本ソフトウェ
  *  ア（本ソフトウェアを改変したものを含む．以下同じ）を使用・複製・改
  *  変・再配布（以下，利用と呼ぶ）することを無償で許諾する．
@@ -27,20 +27,20 @@
  *      また，本ソフトウェアのユーザまたはエンドユーザからのいかなる理
  *      由に基づく請求からも，上記著作権者およびTOPPERSプロジェクトを
  *      免責すること．
- * 
+ *
  *  本ソフトウェアは，無保証で提供されているものである．上記著作権者お
  *  よびTOPPERSプロジェクトは，本ソフトウェアに関して，特定の使用目的
  *  に対する適合性も含めて，いかなる保証も行わない．また，本ソフトウェ
  *  アの利用により直接的または間接的に生じたいかなる損害に関しても，そ
  *  の責任を負わない．
- * 
+ *
  *  @(#) $Id$
  */
 
 /*
  * Copyright (c) 1995, David Greenman
  * All rights reserved.
- * 
+ *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
  * are met:
@@ -50,7 +50,7 @@
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in the
  *    documentation and/or other materials provided with the distribution.
- * 
+ *
  * THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS'' AND
  * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -62,7 +62,7 @@
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
- * 
+ *
  * $FreeBSD: src/sys/i386/isa/if_ed.c,v 1.148.2.4 1999/09/25 13:08:18 nyan Exp $
  */
 
@@ -108,12 +108,12 @@
 extern uint8_t mac_addr[ETHER_ADDR_LEN];
 
 /*
- *  ネットワークインタフェースに依存するソフトウェア情報 
+ *  ネットワークインタフェースに依存するソフトウェア情報
  */
 
 typedef struct t_edmac_softc {
 	T_EDMAC_TX_DESC *tx_write;
-	T_EDMAC_TX_DESC *tx_read;  
+	T_EDMAC_TX_DESC *tx_read;
 	T_EDMAC_RX_DESC *rx_read;
 	bool_t link_pre;
 	bool_t link_now;
@@ -249,7 +249,7 @@ edmac_addmulti (T_IF_SOFTC *ic)
 
 /*
  *  edmac_stop -- ネットワークインタフェースを停止する。
- * 
+ *
  *    注意: NIC 割り込み禁止状態で呼び出すこと。
  */
 
@@ -258,11 +258,20 @@ edmac_stop (T_EDMAC_SOFTC *sc)
 {
 	/* 動作モードクリア */
 	sil_wrw_mem(ETHERC_ECMR, 0x00000000);
+    //disable interrupt
+    sil_wrw_mem(EDMAC_EESIPR, 0x00000000);
+    //clear interrupt status
+    sil_wrw_mem(EDMAC_EESR, 0x00000000);
+}
+
+void edmac_user_stop()
+{
+  edmac_stop(NULL);
 }
 
 /*
  *  edmac_init_sub -- ネットワークインタフェースの初期化
- * 
+ *
  *    注意: NIC 割り込み禁止状態で呼び出すこと。
  */
 
@@ -287,12 +296,12 @@ edmac_init_sub (T_IF_SOFTC *ic)
 
 	/* Clear all ETHERC status BFR, PSRTO, LCHNG, MPD, ICD */
 	sil_wrw_mem(ETHERC_ECSR, 0x00000037);
-    
+
 #ifdef TINET_NIC_LINKSTA_SUPPORT
 	/* リンク変化割り込み有効 */
 	sil_wrw_mem(ETHERC_ECSIPR, sil_rew_mem(ETHERC_ECSIPR) | ETHERC_ECSIPR_LCHNGIP);
 #endif
-    
+
 	/* Clear all ETHERC and EDMAC status bits */
 	sil_wrw_mem(EDMAC_EESR, 0x47FF0F9F);
 
@@ -328,6 +337,8 @@ edmac_init_sub (T_IF_SOFTC *ic)
 	edmac_set_ecmr(ic, mode);
 
 #if defined(TARGET_KERNEL_ASP)
+    /* depended ip init hook */
+    edmac_hard_init_hook();
 
 	/* ターゲット依存部の割込み初期化 */
 	edmac_inter_init();
@@ -470,10 +481,10 @@ edmac_init (T_IF_SOFTC *ic)
     buff_offset = (uint32_t)&((T_NET_BUF *)0)->buf;
     for(i=0; i<NUM_IF_EDMAC_RXBUF; i++)
       edmac_buf.rx_buff[i] = (uint8_t*)(((uint32_t)rx_buff_mem[i] & (~ALIGN_OF_BUF+1)) + ALIGN_OF_BUF );
-    
+
     for(i=0; i< NUM_IF_EDMAC_TXBUF; i++)
       edmac_buf.tx_buff[i] = (uint8_t*)(((uint32_t)tx_buff_mem[i] & (~ALIGN_OF_BUF+1)) + ALIGN_OF_BUF);
-    
+
     //set addres of descripteor table
     //    descripteor table must be aligned to length of burst.
     edmac_buf.tx_desc = (T_EDMAC_TX_DESC*)(((uint32_t)tx_desc_mem & (~ALIGN_OF_DESC+1)) + ALIGN_OF_DESC);
@@ -515,10 +526,7 @@ edmac_init (T_IF_SOFTC *ic)
 	edmac_ena_inter(ipm);
 #endif
 #ifdef TARGET_KERNEL_ASP
-	sil_wrw_mem((uint32_t *)TINET_GRP_INT_GEN_ADDR ,
-                sil_rew_mem((uint32_t *)TINET_GRP_INT_GEN_ADDR)|TINET_GRP_EINT_BIT
-                );
-	syscall(ena_int(INTNO_IF_EDMAC_TRX));
+    enable_eth_int();
 #endif
 }
 
@@ -624,7 +632,7 @@ edmac_start (T_IF_SOFTC *ic, T_NET_BUF *output)
         if(next == &edmac_buf.tx_desc[NUM_IF_EDMAC_TXBUF]){
           next = edmac_buf.tx_desc;
         }
-        
+
 		while (desc->tact != 0) {
 			tslp_tsk(1);
 		}
@@ -671,6 +679,23 @@ edmac_start (T_IF_SOFTC *ic, T_NET_BUF *output)
 /*
  *  EDMAC Ethernet Controler 送受信割り込みハンドラ
  */
+#if defined (ARCH_RENESAS_RX64M)
+inline uint8_t is_edmac_interrupt(){
+    //check group interrupt status
+    if((sil_rew_mem((uint32_t*) TINET_GRP_INT_ST_ADDR)|TINET_GRP_EINT_BIT) == 0)
+      return 0;
+    else
+      return 1;
+}
+
+#elif defined(ARCH_RENESAS_RX63N)
+inline uint8_t is_edmac_interrupt(){
+  return 1;
+}
+
+#else
+Error:ARCH_ isnt_defined;
+#endif
 
 void
 if_edmac_trx_handler (void)
@@ -679,11 +704,11 @@ if_edmac_trx_handler (void)
 	T_EDMAC_SOFTC *sc;
     T_EDMAC_TX_DESC *tx_read;
 	uint32_t ecsr, eesr, psr;
-    
+
     //check group interrupt status
-    if((sil_rew_mem((uint32_t*) TINET_GRP_INT_ST_ADDR)|TINET_GRP_EINT_BIT) == 0)
+    if(is_edmac_interrupt())
       return ;
-    
+
 	i_begin_int(INTNO_IF_EDMAC_TRX);
 
 	ic = &if_softc;
@@ -706,7 +731,7 @@ if_edmac_trx_handler (void)
 		}
 	}
 #endif
-    
+
 	eesr = sil_rew_mem(EDMAC_EESR);
 
 	if (eesr & EDMAC_EESR_FR) {
@@ -752,3 +777,5 @@ if_edmac_trx_handler (void)
 
 	i_end_int(INTNO_IF_EDMAC_TRX);
 }
+
+

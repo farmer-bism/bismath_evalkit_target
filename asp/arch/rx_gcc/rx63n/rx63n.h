@@ -2,9 +2,9 @@
  *  TOPPERS/ASP Kernel
  *      Toyohashi Open Platform for Embedded Real-Time Systems/
  *      Advanced Standard Profile Kernel
- * 
+ *
  *  Copyright (C) 2008-2010 by Witz Corporation, JAPAN
- * 
+ *
  *  上記著作権者は，以下の(1)〜(4)の条件を満たす場合に限り，本ソフトウェ
  *  ア（本ソフトウェアを改変したものを含む．以下同じ）を使用・複製・改
  *  変・再配布（以下，利用と呼ぶ）することを無償で許諾する．
@@ -27,13 +27,13 @@
  *      また，本ソフトウェアのユーザまたはエンドユーザからのいかなる理
  *      由に基づく請求からも，上記著作権者およびTOPPERSプロジェクトを
  *      免責すること．
- * 
+ *
  *  本ソフトウェアは，無保証で提供されているものである．上記著作権者お
  *  よびTOPPERSプロジェクトは，本ソフトウェアに関して，特定の使用目的
  *  に対する適合性も含めて，いかなる保証も行わない．また，本ソフトウェ
  *  アの利用により直接的または間接的に生じたいかなる損害に関しても，そ
  *  の責任を負わない．
- * 
+ *
  */
 
 /*
@@ -43,7 +43,6 @@
 #define TOPPERS_RX63N_H
 
 #include <sil.h>
-
 
 /*
  *  CPU例外ハンドラ番号の定義(固定ベクタテーブル)
@@ -221,7 +220,7 @@
 #define INT_DMAC_DMAC1I     199
 #define INT_DMAC_DMAC2I     200
 #define INT_DMAC_DMAC3I     201
-#define INT_EXDMAC_EXDMAC0I 202 
+#define INT_EXDMAC_EXDMAC0I 202
 #define INT_EXDMAC_EXDMAC1I 203
 #define INT_DEU_DEU0        206
 #define INT_DEU_DEU1        207
@@ -275,8 +274,8 @@
  */
 
 /*
- *  Register write protection 
- */ 
+ *  Register write protection
+ */
 #define SYSTEM_PRCR_ADDR ( 0x000803FE )
 #define SYSTEM_PRKEY  0xA500
 #define SYSTEM_PRC0	( 1UL << 0U )
@@ -284,7 +283,7 @@
 #define SYSTEM_PRC3	( 1UL << 3U )
 
 /*
- * Clock generater 
+ * Clock generater
  */
 //SCKCR define
 #define CKG_SCKCR_ADDR ( ( volatile uint32_t *)0x00080020 )
@@ -1309,7 +1308,7 @@
 #define ICU_IER_BASE 0x00087200
 
 
-/* 
+/*
  * 割り込み要因プライオリティレジスタi(i=00h〜8Fh)の設定
  */
 #define ICU_IPR_BASE  0x00087300
@@ -2003,5 +2002,11 @@
 
 #define TNUM_SIOP			( 7 )
 
+//Ethernte device address
+//Ethernet mac base address
+#define ETHERC_BASE_ADDR 0x000C0100
+
+//Ethernet DMAC base address
+#define EDMAC_BASE_ADDR  0x000C0000
 #endif	/* TOPPERS_RX63N_H */
 

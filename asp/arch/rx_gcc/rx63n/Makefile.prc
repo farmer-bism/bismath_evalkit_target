@@ -2,9 +2,9 @@
 #		Makefile のchip依存部（rx用）
 #
 
-# 
-#  チップ依存部ディレクトリ名の定義 
-# 
+#
+#  チップ依存部ディレクトリ名の定義
+#
 ARCH_SYS_DIR = $(SRCDIR)/arch/rx_$(TOOL)/$(PRC)
 
 #
@@ -22,9 +22,9 @@ COPTS := $(COPTS)
 #
 #  カーネルに関する定義
 #
-KERNEL_DIR := $(KERNEL_DIR) $(ARCH_SYS_DIR) 
+KERNEL_DIR := $(KERNEL_DIR) $(ARCH_SYS_DIR)
 KERNEL_ASMOBJS := $(KERNEL_ASMOBJS)
-KERNEL_COBJS := $(KERNEL_COBJS) rx63n_config.o
+KERNEL_COBJS := $(KERNEL_COBJS) rx63n_config.o rx63n_support.o
 
 #
 #  システムサービスに関する定義
@@ -43,19 +43,19 @@ endif
 
 #
 #  依存関係の定義
-# 
+#
 kernel_cfg.timestamp: $(ARCH_SYS_DIR)/rx63n.tf $(ARCH_SYS_DIR)/prc.tf
 #kernel_cfg.timestamp: $(ARCH_COM_DIR)/prc.tf
 
 
-# 
-#  オフセットファイル生成のための定義 
-# 
+#
+#  オフセットファイル生成のための定義
+#
 OFFSET_TF = $(TARGETDIR)/target_offset.tf
 
 
 #
-#  ツール依存部ディレクトリ名の定義 
+#  ツール依存部ディレクトリ名の定義
 #
 TOOLDIR = $(SRCDIR)/arch/$(TOOL)
 
@@ -64,6 +64,6 @@ TOOLDIR = $(SRCDIR)/arch/$(TOOL)
 #
 COPTS := $(COPTS)
 INCLUDES := $(INCLUDES) -I$(TOOLDIR)
-LDFLAGS := -nostdlib $(LDFLAGS) 
+LDFLAGS := -nostdlib $(LDFLAGS)
 CDEFS := $(CDEFS)
 LIBS := $(LIBS)  -lgcc
