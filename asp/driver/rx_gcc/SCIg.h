@@ -93,6 +93,13 @@
 #define SCIG_SSR_FER UINT_C(0x10)
 #define SCIG_SSR_ORER UINT_C(0x20)
 
+#define SCIG_SCMR_SMIF UINT_C(0x1)
+#define SCIG_SCMR_SINV UINT_C(0x4)
+#define SCIG_SCMR_SDIR UINT_C(0x8)
+#define SCIG_SCMR_CHR1 UINT_C(0x10)
+#define SCIG_SCMR_BCP2 UINT_C(0x80)
+#define SCIG_SCMR_RESERVE UINT_C(0x62)
+
 /* シリアル拡張モードレジスタ（SEMR) */
 #define SCIG_SEMR_ACS0		UINT_C(0x01)
 #define SCIG_SEMR_ABCS		UINT_C(0x10)

@@ -93,12 +93,7 @@ scic_uart_setmode(const SIOPINIB *p_siopinib, uint8_t bitrate, uint8_t clksrc)
 
 	/* クロック選択ビット(SMR.CKS[1:0]ビットを設定) */
 	sil_wrb_mem((void *)p_siopinib->modereg, 
-					sil_reb_mem((void *)p_siopinib->modereg) | clksrc);
-
-	/* SMRに送信／ 受信フォーマットを設定) */
-	sil_wrb_mem((void *)p_siopinib->modereg, 
-			sil_reb_mem((void *)p_siopinib->modereg) & (~SCI_SMR_FLG_ENABLE));
-
+					 clksrc);
 	/* ビットレートを設定 */
 	sil_wrb_mem((void *)p_siopinib->bitratereg, bitrate);
 

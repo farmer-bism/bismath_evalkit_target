@@ -682,10 +682,10 @@ edmac_start (T_IF_SOFTC *ic, T_NET_BUF *output)
 #if defined (ARCH_RENESAS_RX64M)
 inline uint8_t is_edmac_interrupt(){
     //check group interrupt status
-    if((sil_rew_mem((uint32_t*) TINET_GRP_INT_ST_ADDR)|TINET_GRP_EINT_BIT) == 0)
-      return 0;
-    else
+    if((sil_rew_mem((uint32_t*) TINET_GRP_INT_ST_ADDR)&TINET_GRP_EINT_BIT))
       return 1;
+    else
+      return 0;
 }
 
 #elif defined(ARCH_RENESAS_RX63N)
@@ -706,7 +706,7 @@ if_edmac_trx_handler (void)
 	uint32_t ecsr, eesr, psr;
 
     //check group interrupt status
-    if(is_edmac_interrupt())
+    if(is_edmac_interrupt()==0)
       return ;
 
 	i_begin_int(INTNO_IF_EDMAC_TRX);

@@ -39,6 +39,7 @@
 #ifndef _TINET_TARGET_CONFIG_H_
 #define _TINET_TARGET_CONFIG_H_
 
+#include "target_board.h"
 /*
  * NIC target config
  */
@@ -48,13 +49,6 @@
 #define TINET_GRP_INT_GEN_ADDR ICU_GENAL1_ADDR
 #define TINET_GRP_INT_ST_ADDR ICU_GRPAL1_ADDR
 #define TINET_GRP_EINT_BIT GROUP_AL1_B4_EDMAC0_EINT0
-
-static inline vod enable_eth_int(){
-	sil_wrw_mem((uint32_t *)TINET_GRP_INT_GEN_ADDR ,
-                sil_rew_mem((uint32_t *)TINET_GRP_INT_GEN_ADDR)|TINET_GRP_EINT_BIT
-                );
-	syscall(ena_int(INTNO_IF_EDMAC_TRX));
-}
 
 //PHY function define
 //#define TTINET_PHY_SUPPORT_LINKSTA
@@ -513,7 +507,7 @@ extern void edmac_bus_init (void);
 extern void edmac_inter_init (void);
 extern void edmac_hard_init_hook (void);
 
-static inline vod enable_eth_int(){
+static inline void enable_eth_int(){
 	sil_wrw_mem((uint32_t *)TINET_GRP_INT_GEN_ADDR ,
                 sil_rew_mem((uint32_t *)TINET_GRP_INT_GEN_ADDR)|TINET_GRP_EINT_BIT
                 );
