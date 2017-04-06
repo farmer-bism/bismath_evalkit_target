@@ -1,13 +1,11 @@
 /*
- * Copyright (c) 2015- Hisashi Hata       
- * Released under the toppers license     
- * https://www.toppers.jp/license.html    
+ * Copyright (c) 2015- Hisashi Hata
+ * Released under the toppers license
+ * https://www.toppers.jp/license.html
  */
 
 #ifndef TARGET_TARGET_DEVICE_ID_H
 #define TARGET_TARGET_DEVICE_ID_H
-
-#include "use_device.h"
 
 typedef enum use_device_id{
   DEV_NULL,
@@ -25,6 +23,9 @@ typedef enum use_device_id{
 #endif
 #ifdef USE_SCIG_0
   DEV_SCIG0,
+#endif
+#ifdef USE_EPTPC_0
+  DEV_EPTPC0,
 #endif
   NUM_TARGET_DEVICE
 }dnode_id;

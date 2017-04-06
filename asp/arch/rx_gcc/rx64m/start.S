@@ -2,14 +2,14 @@
 ;*  TOPPERS/ASP Kernel
 ;*      Toyohashi Open Platform for Embedded Real-Time Systems/
 ;*      Advanced Standard Profile Kernel
-;* 
+;*
 ;*  Copyright (C) 2000-2003 by Embedded and Real-Time Systems Laboratory
 ;*                              Toyohashi Univ. of Technology, JAPAN
 ;*  Copyright (C) 2005,2006 by Embedded and Real-Time Systems Laboratory
 ;*              Graduate School of Information Science, Nagoya Univ., JAPAN
 ;*  Copyright (C) 2008-2010 by Witz Corporation, JAPAN
-;* 
-;*  上記著作権者は，Free Software Foundation によって公表されている 
+;*
+;*  上記著作権者は，Free Software Foundation によって公表されている
 ;*  GNU General Public License の Version 2 に記述されている条件か，以
 ;*  下の(1)〜(4)の条件を満たす場合に限り，本ソフトウェア（本ソフトウェ
 ;*  アを改変したものを含む．以下同じ）を使用・複製・改変・再配布（以下，
@@ -29,12 +29,12 @@
 ;*        こと．
 ;*  (4) 本ソフトウェアの利用により直接的または間接的に生じるいかなる損
 ;*      害からも，上記著作権者を免責すること．
-;* 
+;*
 ;*  本ソフトウェアは，無保証で提供されているものである．上記著作権者は，
 ;*  本ソフトウェアに関して，その適用可能性も含めて，いかなる保証も行わ
 ;*  ない．また，本ソフトウェアの利用により直接的または間接的に生じたい
 ;*  かなる損害に関しても，その責任を負わない．
-;* 
+;*
 
 
 #define TOPPERS_MACRO_ONLY
@@ -53,9 +53,6 @@
 .balign 4
 .global _start
 
-.equ DFLRE,	0x007FC440		; DFLREレジスタ
-.equ DB_BLOCK_ENABLE, 0x2DFF
-		
 _start:
 	;
 	;  電源投入後はレベル0, 全割込み禁止状態である.
@@ -63,15 +60,6 @@ _start:
 	;  の初期化は行わない.
 	;
 
-	;
-	;  内臓ROM（データフラッシュ）領域の設定
-	;
-	;  リセット後, データフラッシュ領域は読み出し禁止となっている
-	;  ため, 読み出し許可に設定する.
-	;
-	mov.l	#DFLRE, r5
-	mov.w	#DB_BLOCK_ENABLE, [R5]
-	
 	;
 	;  スタックポインタの設定
 	;
@@ -91,6 +79,8 @@ _start:
 	;
 	mov.l	#_hardware_init_hook, r5
 	cmp		#0, r5
+
+#ifdef ROM_BOOT_MODE
 	beq.b	init_D
 	jsr		r5
 
@@ -103,9 +93,14 @@ init_D:
     mov.l	#__data_end, r3
     sub	r1, r3
     smovf
+#else
+	beq.b	clear_B
+	jsr		r5
+#endif
 	;
 	;  初期値なし変数領域の初期化
 	;
+
 clear_B:
     mov.l	#0, r2
     mov.l	#__bss_end, r3

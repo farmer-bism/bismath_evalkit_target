@@ -2,7 +2,7 @@
  *  TOPPERS/ASP Kernel
  *      Toyohashi Open Platform for Embedded Real-Time Systems/
  *      Advanced Standard Profile Kernel
- * 
+ *
  *  Copyright (C) 2000-2003 by Embedded and Real-Time Systems Laboratory
  *                              Toyohashi Univ. of Technology, JAPAN
  *  Copyright (C) 2003-2004 by Naoki Saito
@@ -10,7 +10,7 @@
  *  Copyright (C) 2003-2004 by Platform Development Center
  *                                          RICOH COMPANY,LTD. JAPAN
  *  Copyright (C) 2008-2010 by Witz Corporation, JAPAN
- * 
+ *
  *  上記著作権者は，以下の(1)〜(4)の条件を満たす場合に限り，本ソフトウェ
  *  ア（本ソフトウェアを改変したものを含む．以下同じ）を使用・複製・改
  *  変・再配布（以下，利用と呼ぶ）することを無償で許諾する．
@@ -33,13 +33,13 @@
  *      また，本ソフトウェアのユーザまたはエンドユーザからのいかなる理
  *      由に基づく請求からも，上記著作権者およびTOPPERSプロジェクトを
  *      免責すること．
- * 
+ *
  *  本ソフトウェアは，無保証で提供されているものである．上記著作権者お
  *  よびTOPPERSプロジェクトは，本ソフトウェアに関して，特定の使用目的
  *  に対する適合性も含めて，いかなる保証も行わない．また，本ソフトウェ
  *  アの利用により直接的または間接的に生じたいかなる損害に関しても，そ
  *  の責任を負わない．
- * 
+ *
  */
 
 /*
@@ -70,5 +70,6 @@
  */
 #define	TIC_NUME		( 1U )		/* タイムティックの周期の分子 */
 #define	TIC_DENO		( 1U )		/* タイムティックの周期の分母 */
+
 
 #endif /* TOPPERS_TARGET_KERNEL_H */

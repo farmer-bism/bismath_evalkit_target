@@ -23,4 +23,9 @@
   num_dev: 1
   init_func: target_dev_ini_scig
   node_obj: scig_node
+
+- id: EPTPC
+  num_dev: 1
+  init_func: target_dev_ini_eptpc
+  node_obj: eptpc_node
   

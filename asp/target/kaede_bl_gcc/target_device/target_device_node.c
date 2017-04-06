@@ -27,6 +27,10 @@
   extern dev_node_t scig_node_0;
   void target_dev_ini_scig_0();
 #endif
+#ifdef USE_EPTPC_0
+  extern dev_node_t eptpc_node_0;
+  void target_dev_ini_eptpc_0();
+#endif
 
 dev_info_t dev_info[NUM_TARGET_DEVICE] = {
   {0x0, NULL}, //NULL DEVICE
@@ -40,10 +44,13 @@ dev_info_t dev_info[NUM_TARGET_DEVICE] = {
   {0x0, &mmc_sdcard_gpio_node_0},
 #endif
 #ifdef USE_DTCA_0
-  {0x0, 0},
+  {0x0, },
 #endif
 #ifdef USE_SCIG_0
-  {0x0, &scig_node_0}
+  {0x0, &scig_node_0},
+#endif
+#ifdef USE_EPTPC_0
+  {0x0, &eptpc_node_0}
 #endif
 };
 
@@ -62,5 +69,8 @@ void target_device_init(){
 #endif
 #ifdef USE_SCIG_0
   target_dev_ini_scig_0();
+#endif
+#ifdef USE_EPTPC_0
+  target_dev_ini_eptpc_0();
 #endif
 }

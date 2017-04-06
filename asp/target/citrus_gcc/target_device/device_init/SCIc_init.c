@@ -70,9 +70,11 @@ target_dev_ini_scic_0( void )
   /* Port Mode Register(PMR) config. P20(TxD0) and P21(RxD0) are setted to IP use */
   sil_wrb_mem((void *)(PORT2_PMR_ADDR) ,
 				sil_reb_mem((void *)(PORT2_PMR_ADDR)) | PORT_PMR_B0_BIT | PORT_PMR_B1_BIT);
+
   /* pull up Tx, Rx port*/
   sil_wrb_mem((void *)(PORT2_PCR_ADDR),
 		  sil_reb_mem((void *)(PORT2_PCR_ADDR)) | PORT_PCR_B0_BIT | PORT_PCR_B1_BIT);
+
 }
 
 #endif

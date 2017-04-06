@@ -1,7 +1,7 @@
 
 MIDDLEWAREDIR :=  $(SRCDIR)/middleware
-include $(MIDDLEWAREDIR)/fatfs_ff11a/src/Makefile.fatfs
-include $(MIDDLEWAREDIR)/tinet_ftpd/Makefile.tinet_ftpd
-include $(MIDDLEWAREDIR)/tinet_shell/Makefile.tinet_shell
-include $(MIDDLEWAREDIR)/bootload/Makefile.bootload
+#include $(MIDDLEWAREDIR)/fatfs_ff11a/src/Makefile.fatfs
+#include $(MIDDLEWAREDIR)/tinet_ftpd/Makefile.tinet_ftpd
+#include $(MIDDLEWAREDIR)/tinet_shell/Makefile.tinet_shell
+#include $(MIDDLEWAREDIR)/bootload/Makefile.bootload
 
