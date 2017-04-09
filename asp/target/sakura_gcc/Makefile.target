@@ -32,6 +32,12 @@ DRIVERDIR = $(SRCDIR)/driver/rx_gcc
 include $(DRIVERDIR)/Makefile_rx63n.driver
 
 #
+# Middleware Setting
+#
+
+include $(SRCDIR)/middleware/Makefile.middleware
+
+#
 #  カーネルに関する定義
 #
 KERNEL_DIR := $(KERNEL_DIR) $(TARGETDIR) $(DRIVERDIR)
