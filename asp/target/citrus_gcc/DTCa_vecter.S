@@ -4,7 +4,6 @@
  * https://www.toppers.jp/license.html
  */
 
-#include "target_device/use_device.h"
     
 .section DTCA_VECTOR_SEC, "aw", @nobits
 .glb _dtca_table
