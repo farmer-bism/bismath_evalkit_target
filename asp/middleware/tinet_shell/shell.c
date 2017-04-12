@@ -43,7 +43,7 @@
 
 #include "middleware/tinet_shell/shell.h"
 #include "middleware/tinet_shell/tinet_shell.h"
-
+#define WIN32
 #ifdef WIN32
 #define NEWLINE "\r\n"
 #else /* WIN32 */
@@ -79,7 +79,7 @@ void shell_close_connection(){
 
 struct command {
   int8_t (* exec)(uint8_t, int8_t**);
-  uint8_t nargs;
+  int8_t nargs;
   int8_t *args[10];
 };
 
@@ -104,6 +104,10 @@ int8_t cmd_close(uint8_t argc, int8_t *argv[])
   return ECLOSE;
 }
 
+int8_t cmd_dummy(uint8_t argc, int8_t *argv[]){
+  return ESUCCESS;
+}
+
 shell_cmd_t tinet_reserv_cmd[] = {
   {"help", 0, cmd_help, "help: display the help message."NEWLINE},
   {"exit", 0, cmd_close, "exit: exit shell and close connection."NEWLINE},
@@ -111,6 +115,8 @@ shell_cmd_t tinet_reserv_cmd[] = {
   {"^]", 0, cmd_close, NULL},
   {NULL, 0, NULL, NULL}
 };
+
+shell_cmd_t dummy_cmd = {NULL, 0, cmd_dummy, NULL};
 
 /*register user shell command */
 shell_cmd_t* tinet_usr_cmd = NULL;
@@ -124,6 +130,7 @@ void put_help_msg(shell_cmd_t *cur_cmd){
   }
   return;
 }
+
 
 int8_t cmd_help(uint8_t argc, int8_t *argv[])
 {
@@ -139,11 +146,25 @@ void shell_set_usr_cmd(shell_cmd_t* usr_cmd_table){
 
 static shell_cmd_t * search_calling_cmd(shell_cmd_t* cmd_table, int8_t* cmd_str){
   shell_cmd_t *shell_cmd;
+  uint16_t cmd_len;
+  int8_t check_char;
+
+  cmd_len = 0;
+  check_char = *cmd_str;
+  while((check_char != '\n') && (check_char != '\r') && (check_char != ' ')){
+    cmd_len++;
+    check_char = cmd_str[cmd_len];
+  }
+
+  if(cmd_len == 0)
+	  return &dummy_cmd;
 
   shell_cmd = cmd_table;
   while(shell_cmd->cmd_str != NULL){
-    if (strncmp((const int8_t *)cmd_str, shell_cmd->cmd_str, strlen(shell_cmd->cmd_str)) == 0) {
-      break;
+    if(cmd_len == strlen((char*)shell_cmd->cmd_str)){
+      if (strncmp((const int8_t *)cmd_str, shell_cmd->cmd_str, strlen(shell_cmd->cmd_str)) == 0) {
+        break;
+      }
     }
     shell_cmd ++;
   }
@@ -157,16 +178,21 @@ static shell_cmd_t * search_calling_cmd(shell_cmd_t* cmd_table, int8_t* cmd_str)
 static int8_t
 parse_command(struct command *com, uint32_t len, int8_t *sbuff)
 {
-  uint16_t i;
-  uint16_t bufp;
+  uint8_t * com_str;
+  uint16_t i, bufp;
   shell_cmd_t *shell_cmd;
 
+  //space skip
+  com_str = sbuff;
+  while(*com_str == ' ')
+	  com_str++;
+
   //check reserved command
-  shell_cmd = search_calling_cmd(tinet_reserv_cmd , sbuff);
+  shell_cmd = search_calling_cmd(tinet_reserv_cmd , com_str);
 
   //check user defined command
   if((shell_cmd == NULL) && (tinet_usr_cmd != NULL)){
-    shell_cmd = search_calling_cmd(tinet_usr_cmd , sbuff);
+    shell_cmd = search_calling_cmd(tinet_usr_cmd , com_str);
   }
 
   if(shell_cmd == NULL){
@@ -180,15 +206,14 @@ parse_command(struct command *com, uint32_t len, int8_t *sbuff)
     return ESUCCESS;
   }
 
-  bufp = 0;
-  for(; bufp < len && sbuff[bufp] != ' '; bufp++);
+  bufp = strlen(shell_cmd->cmd_str);
   for(i = 0; i < 10; i++) {
-    for(; bufp < len && sbuff[bufp] == ' '; bufp++);
-    if (sbuff[bufp] == '\r' ||
-       sbuff[bufp] == '\n') {
-      sbuff[bufp] = 0;
+    for(; bufp < len && com_str[bufp] == ' '; bufp++);
+    if (com_str[bufp] == '\r' || com_str[bufp] == '\n') {
+      com_str[bufp] = '\0';
       if (i < com->nargs - 1) {
-        return ETOOFEW;
+        com->nargs = i;
+        return ESUCCESS_FEWARGC;
       }
       if (i > com->nargs - 1) {
         return ETOOMANY;
@@ -198,17 +223,16 @@ parse_command(struct command *com, uint32_t len, int8_t *sbuff)
     if (bufp > len) {
       return ETOOFEW;
     }
-    com->args[i] = (uint8_t *)&sbuff[bufp];
-    for(; bufp < len && sbuff[bufp] != ' ' && sbuff[bufp] != '\r' &&
-      sbuff[bufp] != '\n'; bufp++) {
-      if (sbuff[bufp] == '\\') {
-        sbuff[bufp] = ' ';
+    com->args[i] = (int8_t *)&com_str[bufp];
+    for(; bufp < len && com_str[bufp] != ' ' && com_str[bufp] != '\r' && com_str[bufp] != '\n'; bufp++) {
+      if (com_str[bufp] == '\\') {
+        com_str[bufp] = ' ';
       }
     }
     if (bufp > len) {
       return ESYNTAX;
     }
-    sbuff[bufp] = 0;
+    com_str[bufp] = '\0';
     bufp++;
     if (i == com->nargs - 1) {
       break;
@@ -286,7 +310,7 @@ shell_main()
     else if (((com_len > 0) && ((shell_buf[com_len-1] == '\r') || (shell_buf[com_len-1] == '\n'))) ||
       (com_len >= SHELL_BUFFER_SIZE)) {
       err = parse_command(&com, com_len, shell_buf);
-      if (err == ESUCCESS) {
+      if (err >= ESUCCESS) {
         err = com.exec(com.nargs, com.args);
         if (err == ECLOSE){
           shell_close_connection();
