@@ -5,7 +5,7 @@
 #
 #  ボード名，プロセッサ名，開発環境名の定義
 #
-BOARD = AP_RX64M_0A
+BOARD = AP_RX_64M_0A
 PRC = rx64m
 TOOL = gcc
 
@@ -24,6 +24,7 @@ INCLUDES := $(INCLUDES) -I$(TARGETDIR)
 #
 #  Driver Setting
 #
+
 include $(TARGETDIR)/target_device/Makefile.target_device
 
 DRIVERDIR = $(SRCDIR)/driver/rx_gcc
@@ -41,7 +42,7 @@ include $(SRCDIR)/middleware/Makefile.middleware
 #
 KERNEL_DIR := $(KERNEL_DIR) $(TARGETDIR) $(DRIVERDIR)
 KERNEL_ASMOBJS := $(KERNEL_ASMOBJS) target_support.o target_option_mem.o
-KERNEL_COBJS := $(KERNEL_COBJS) target_config.o target_timer.o target_clock_config.o target_sdram_config.o $(DRIVER_COBJS)
+KERNEL_COBJS := $(KERNEL_COBJS) target_config.o target_timer.o  $(DRIVER_COBJS)
 
 #
 #  システムサービスに関する定義
@@ -72,7 +73,7 @@ DATA_START_ADDRESS =
 #
 #  リンカスクリプトの定義
 #
-LDSCRIPT = $(TARGETDIR)/ap_rx64m_0a_gcc.ld
+LDSCRIPT = $(TARGETDIR)/ap_rx64m_0a_bl_gcc.ld
 
 #
 #  スタートアップモジュールに関する定義
@@ -108,3 +109,4 @@ $(OBJFILE): $(TARGETDIR)/target_check.tf
 #  プロセッサ依存部のインクルード
 #
 include $(SRCDIR)/arch/rx_$(TOOL)/$(PRC)/Makefile.prc
+

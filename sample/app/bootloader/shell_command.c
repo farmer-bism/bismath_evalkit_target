@@ -35,11 +35,11 @@ int8_t cmd_boot(uint8_t argc, int8_t *argv[])
     boot_elf("asp_boot");
   else
     boot_elf(argv[0]);
-  
+
   return ECLOSE;
 }
 
 shell_cmd_t usr_cmd[] = {
-  {"boot", 0, cmd_boot, "boot file_name: boot elf_image from sd card. file_name is elf_image name.\r\n"},
+  {"boot", 1, cmd_boot, "boot file_name: boot elf_image from sd card. file_name is elf_image name.\r\n"},
   {NULL, 0, NULL}
 };
