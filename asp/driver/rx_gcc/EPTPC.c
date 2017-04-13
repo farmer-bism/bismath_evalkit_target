@@ -17,7 +17,7 @@ static void init_synfp(PTPINI* pini);
 static uint8_t eptpc_state = EPTPC_RESET;
   
 uint32_t get_port_base(PTPINI* pini){
-  if(pini->port.ptp_mode & EPTPC_MODE_PORT0){
+  if(pini->port->ptp_mode & EPTPC_MODE_PORT0){
     return EPTPC_PORT0_BASEADDR;
   }
   else{
@@ -42,7 +42,7 @@ void eptpc_init(PTPINI* pini){
   //reset eptpc
   eptpc_reset();
 
-  port_mode = pini->port.ptp_mode;
+  port_mode = pini->port->ptp_mode;
   port_base = get_port_base(pini);
 
   //select use port
@@ -107,7 +107,7 @@ void eptpc_init(PTPINI* pini){
 static void init_synfp(PTPINI* pini){
   PTP_PORT* pc;
   uint32_t port_base;
-  pc = &pini->port;
+  pc = pini->port;
 
   port_base = get_port_base(pini);
 
@@ -207,7 +207,7 @@ ER ptp_sync_start(PTPINI* pini){
   if(eptpc_state == EPTPC_RESET)
 	  return EPTPC_UN_INIT;
   port_base = get_port_base(pini);
-  port_mode = pini->port.ptp_mode;
+  port_mode = pini->port->ptp_mode;
 
   //set PTP reception filters. support only ordinary e2e clock
   //config port 0
