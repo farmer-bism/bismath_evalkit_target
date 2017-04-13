@@ -111,25 +111,14 @@ edmac_bus_init (void)
 #ifdef USE_EPTPC_0
 #include <driver/rx_gcc/EPTPC.h>
 
-extern uint8_t target_ptp_mode;
 extern uint8_t mac_addr[6];
-extern PTPINI ptp_conf;
 #endif
 
 
 void
 edmac_inter_init (void)
 {
-#ifdef USE_EPTPC_0
 
-	  eptpc_target_config(mac_addr,
-	                     EPTPC_STCSELR_SCLKDIV_DIV6|EPTPC_STCSELR_SCLKSEL_PCLKA_DIV_1_6,
-	                     EPTPC_STCFR_STCF_20M,
-	                     //EPTPC_MODE_PORT0|EPTPC_MODE_MASTER
-	                     target_ptp_mode
-	                     ) ;
-	  eptpc_init(&ptp_conf);
-#endif
 }
 
 
@@ -146,14 +135,16 @@ void
 edmac_hard_init_hook (void)
 {
 #ifdef USE_EPTPC_0
-
-	  eptpc_target_config(mac_addr,
-	                     EPTPC_STCSELR_SCLKDIV_DIV6|EPTPC_STCSELR_SCLKSEL_PCLKA_DIV_1_6,
-	                     EPTPC_STCFR_STCF_20M,
-	                     //EPTPC_MODE_PORT0|EPTPC_MODE_MASTER
-	                     target_ptp_mode
-	                     ) ;
-	  eptpc_init(&ptp_conf);
+  PTPINI* ptp_stat;
+  ptp_stat = (PTPINI*)GET_DEV_STAT(DEV_EPTPC0);
+  
+  eptpc_target_config(mac_addr,
+                      ptp_stat->sys->ipclk_conf,
+                      ptp_stat->sys->stca_sel,
+                      //EPTPC_MODE_PORT0|EPTPC_MODE_MASTER
+                      ptp_stat->port->ptp_mode
+                      ) ;
+  eptpc_init(&ptp_stat);
 #endif
 }
 

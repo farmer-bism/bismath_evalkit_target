@@ -15,7 +15,8 @@
 #define EPTPC_OK 1
 
 typedef struct eptp_init_cons_t {
-
+  uint32_t ipclk_conf;
+  uint32_t stca_sel;
 } PTPSYS;
 
 typedef struct eptp_port_conf_t{
@@ -31,7 +32,7 @@ typedef struct eptp_port_conf_t{
 
 typedef struct eptp_port_init_t {
   PTPSYS *sys;
-  PTP_PORT port;
+  PTP_PORT *port;
 } PTPINI;
 
 typedef struct PTPCLK_T{

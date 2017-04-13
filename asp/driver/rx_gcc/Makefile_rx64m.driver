@@ -22,5 +22,5 @@ include $(DRIVERDIR)/Makefile.SCIg
 endif
 
 ifeq ($(USE_EPTPC_0),true)
-#include $(DRIVERDIR)/Makefile.EPTPC
+include $(DRIVERDIR)/Makefile.EPTPC
 endif
