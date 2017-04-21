@@ -1,12 +1,55 @@
 /*
- * Copyright (c) 2017- Hisashi Hata
- * Released under the toppers license
- * https://www.toppers.jp/license.html
+ *  TOPPERS/ASP Kernel
+ *      Toyohashi Open Platform for Embedded Real-Time Systems/
+ *      Advanced Standard Profile Kernel
+ *
+ *  Copyright (C) 2017- by Hisashi Hata, JAPAN
+ *
+ * The above copyright holders grant permission gratis to use,
+ * duplicate, modify, or redistribute (hereafter called use) this
+ * software (including the one made by modifying this software),
+ * provided that the following four conditions (1) through (4) are
+ * satisfied.
+ *
+ * (1) When this software is used in the form of source code, the above
+ *     copyright notice, this use conditions, and the disclaimer shown
+ *     below must be retained in the source code without modification.
+ *
+ * (2) When this software is redistributed in the forms usable for the
+ *     development of other software, such as in library form, the above
+ *     copyright notice, this use conditions, and the disclaimer shown
+ *     below must be shown without modification in the document provided
+ *     with the redistributed software, such as the user manual.
+ *
+ * (3) When this software is redistributed in the forms unusable for the
+ *     development of other software, such as the case when the software
+ *     is embedded in a piece of equipment, either of the following two
+ *     conditions must be satisfied:
+ *
+ *   (a) The above copyright notice, this use conditions, and the
+ *       disclaimer shown below must be shown without modification in
+ *       the document provided with the redistributed software, such as
+ *     the user manual.
+ *
+ *   (b) How the software is to be redistributed must be reported to the
+ *       TOPPERS Project according to the procedure described
+ *       separately.
+ *
+ * (4) The above copyright holders and the TOPPERS Project are exempt
+ *     from responsibility for any type of damage directly or indirectly
+ *     caused from the use of this software and are indemnified by any
+ *     users or end users of this software from any and all causes of
+ *     action whatsoever.
+ *
+ * THIS SOFTWARE IS PROVIDED "AS IS." THE ABOVE COPYRIGHT HOLDERS AND
+ * THE TOPPERS PROJECT DISCLAIM ANY EXPRESS OR IMPLIED WARRANTIES,
+ * INCLUDING, BUT NOT LIMITED TO, ITS APPLICABILITY TO A PARTICULAR
+ * PURPOSE. IN NO EVENT SHALL THE ABOVE COPYRIGHT HOLDERS AND THE
+ * TOPPERS PROJECT BE LIABLE FOR ANY TYPE OF DAMAGE DIRECTLY OR
+ * INDIRECTLY CAUSED FROM THE USE OF THIS SOFTWARE.
  */
 
 #include <kernel_impl.h>
-//#include <sil.h>
-//#include <target_board.h>
 #include <driver/rx_gcc/EPTPC.h>
 
 static void init_synfp(PTPINI* pini);
@@ -44,7 +87,6 @@ void eptpc_init(PTPINI* pini){
 
   port_mode = pini->port->ptp_mode;
   port_base = get_port_base(pini);
-
   //select use port
   if(port_mode & EPTPC_MODE_PORT0){
     //port0 select
@@ -65,6 +107,7 @@ void eptpc_init(PTPINI* pini){
 
   //set PTP reception filters. support only ordinary e2e clock
   //config port 0
+  
   if(port_mode & EPTPC_MODE_P2P){
     ;//P2P mode not support
   }
@@ -118,8 +161,8 @@ static void init_synfp(PTPINI* pini){
   sil_wrw_mem((uint32_t*)(EPTPC_DYRPFR_OFFSET + port_base), PTP_CFG_DYRPFR_FLAG);
   //set clock id
   //only support EUI48
-  sil_wrw_mem((uint32_t*)(EPTPC_SYCIDRU_OFFSET + port_base), pc->self_clkid[1]);
-  sil_wrw_mem((uint32_t*)(EPTPC_SYCIDRL_OFFSET + port_base), pc->self_clkid[0]);
+  sil_wrw_mem((uint32_t*)(EPTPC_SYCIDRU_OFFSET + port_base), pc->self_clkid[0]);
+  sil_wrw_mem((uint32_t*)(EPTPC_SYCIDRL_OFFSET + port_base), pc->self_clkid[1]);
   //set port number
   //portnumber shall be 1, 2, ....
   if(pc->ptp_mode & EPTPC_MODE_PORT0)
@@ -129,8 +172,8 @@ static void init_synfp(PTPINI* pini){
   //synfp transmit enable register
   sil_wrw_mem((uint32_t*)(EPTPC_SYTRENR_OFFSET + port_base), 0x0); //disable all
   //set master clock portidentity
-  sil_wrw_mem((uint32_t*)(EPTPC_MTCIDU_OFFSET + port_base), pc->master_clkid[1]);
-  sil_wrw_mem((uint32_t*)(EPTPC_MTCIDL_OFFSET + port_base), pc->master_clkid[0]);
+  sil_wrw_mem((uint32_t*)(EPTPC_MTCIDU_OFFSET + port_base), pc->master_clkid[0]);
+  sil_wrw_mem((uint32_t*)(EPTPC_MTCIDL_OFFSET + port_base), pc->master_clkid[1]);
   sil_wrw_mem((uint32_t*)(EPTPC_MTPID_OFFSET + port_base), pc->master_portnum);
   //config transmission interval
   sil_wrw_mem((uint32_t*)(EPTPC_SYTLIR_OFFSET + port_base), (PTP_CFG_TRANCE_ANNOUNCE_INTERVAL
@@ -142,8 +185,8 @@ static void init_synfp(PTPINI* pini){
   //grandmaster clockquality
   sil_wrw_mem((uint32_t*)(EPTPC_GMCQR_OFFSET + port_base), PTP_CFG_GM_CLKQUALITY);
   //grandmaster port id
-  sil_wrw_mem((uint32_t*)(EPTPC_GMIDRU_OFFSET + port_base), pc->grand_master_clkid[1]);
-  sil_wrw_mem((uint32_t*)(EPTPC_GMIDRL_OFFSET + port_base), pc->grand_master_clkid[0]);
+  sil_wrw_mem((uint32_t*)(EPTPC_GMIDRU_OFFSET + port_base), pc->grand_master_clkid[0]);
+  sil_wrw_mem((uint32_t*)(EPTPC_GMIDRL_OFFSET + port_base), pc->grand_master_clkid[1]);
 
   sil_wrw_mem((uint32_t*)(EPTPC_CUOTSR_OFFSET + port_base), ((CURRENT_UTC_OFFSET << 16) | TIME_SOURCE_INTERNAL_OSCILLATOR));
   sil_wrw_mem((uint32_t*)(EPTPC_SRR_OFFSET + port_base), 0);
@@ -180,6 +223,7 @@ static void init_synfp(PTPINI* pini){
 ER eptpc_get_clock(PTPCLK *p_clk){
   sil_wrw_mem((uint32_t*)EPTPC_GETINFOR_ADDR, EPTPC_GETINFOR_INFO);
   while(sil_rew_mem((uint32_t*)EPTPC_GETINFOR_ADDR) == EPTPC_GETINFOR_INFO);
+
   p_clk->nano_sec = sil_rew_mem((uint32_t*)EPTPC_LCCVRL_ADDR);
   p_clk->sec_l = sil_rew_mem((uint32_t*)EPTPC_LCCVRM_ADDR);
   p_clk->sec_h = sil_rew_mem((uint32_t*)EPTPC_LCCVRU_ADDR);
@@ -221,13 +265,15 @@ ER ptp_sync_start(PTPINI* pini){
     }
     else{
       //slave port
-      sil_wrw_mem((uint32_t*)(EPTPC_SYTRENR_OFFSET + port_base), 0x00000010);
+      sil_wrw_mem((uint32_t*)(EPTPC_SYTRENR_OFFSET + port_base), 0x00000100);
       wait_count = 0;
       //wait offset count update
       while((sil_rew_mem((uint32_t*)(EPTPC_SYSR_OFFSET+port_base))&EPTPC_SYSR_OFMUD) == 0){
-        if(wait_count > 10)
+        if(wait_count > 10){
           return 0;
+        }
         wait_count++;
+        dly_tsk(1000);
       }
 
     }
@@ -242,9 +288,8 @@ ER ptp_sync_start(PTPINI* pini){
   return EPTPC_OK;
 }
 
-void eptpc_target_config(uint8_t* mac_ad, uint32_t ipclk_conf, uint32_t stca_sel, uint8_t port_mode){
+void eptpc_target_config(uint8_t* mac_ad, uint32_t ipclk_conf, uint32_t stca_sel, uint32_t port_mode){
   uint32_t mac_half;
-
   //set mac address
   if(port_mode & EPTPC_MODE_PORT0){
     mac_half = (mac_ad[0] << 16) | (mac_ad[1] << 8) | mac_ad[2];

@@ -130,21 +130,19 @@ extern uint8_t mac_addr[6];
 extern PTPINI ptp_conf;
 #endif
 
-
 void
 edmac_hard_init_hook (void)
 {
 #ifdef USE_EPTPC_0
   PTPINI* ptp_stat;
   ptp_stat = (PTPINI*)GET_DEV_STAT(DEV_EPTPC0);
-  
+
   eptpc_target_config(mac_addr,
                       ptp_stat->sys->ipclk_conf,
                       ptp_stat->sys->stca_sel,
-                      //EPTPC_MODE_PORT0|EPTPC_MODE_MASTER
                       ptp_stat->port->ptp_mode
                       ) ;
-  eptpc_init(&ptp_stat);
+  eptpc_init(ptp_stat);
 #endif
 }
 

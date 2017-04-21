@@ -141,10 +141,9 @@ edmac_hard_init_hook (void)
   eptpc_target_config(mac_addr,
                       ptp_stat->sys->ipclk_conf,
                       ptp_stat->sys->stca_sel,
-                      //EPTPC_MODE_PORT0|EPTPC_MODE_MASTER
                       ptp_stat->port->ptp_mode
                       ) ;
-  eptpc_init(&ptp_stat);
+  eptpc_init(ptp_stat);
 #endif
 }
 
