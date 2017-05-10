@@ -1,16 +1,17 @@
-/*
- bism.c
- Copyright (c) 2016 Hisashi Hata
-
- This software is released under the MIT License.
- http://opensource.org/licenses/mit-license.php
-*/
-
-#ifndef BUILD_IN_SELF_MONITOR_H
-#define BUILD_IN_SELF_MONITOR_H
 
 
-void bism_init();
-uint32_t bism_write(uint8_t* w_dat, uint8_t len);
-void bism_log_store_task(void exif);
+#ifndef BISM_LOG_H
+#define BISM_LOG_H
+
+typedef struct bism_log_t_d {
+  uint32_t len;
+  uint8_t dat[1+1+4+8+22];
+} bism_log;
+
+void bism_init(uint8_t* log_file);
+void bism_close();
+int8_t bism_set_event(bism_log *blog, uint32_t bevent_cls, ...);
+void bism_write(bism_log *blog);
+void bism_push();
+#define bism_get_time eptpc_get_clock
 #endif

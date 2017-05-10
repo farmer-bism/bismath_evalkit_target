@@ -13,6 +13,8 @@ INS_MID_SHELL ?= false
 #INS_MID_BOOTLD ?= true
 INS_MID_BOOTLD ?= false
 
+#INS_MID_BISM ?= true
+INS_MID_BISM ?= false
 
 #
 # Switch instaling middleware
@@ -33,5 +35,9 @@ endif
 
 ifeq ($(INS_MID_BOOTLD),true)
 include $(MIDDLEWAREDIR)/bootload/Makefile.bootload
+endif
+
+ifeq ($(INS_MID_BISM),true)
+include $(MIDDLEWAREDIR)/bism/Makefile.bism
 endif
 
