@@ -82,9 +82,9 @@ static void cmd_port(const int8_t *arg, ID cep_id, struct ftpd_msgstate *fsm)
 {
   int32_t nr;
   uint32_t dec_val[6];
-  
+
   nr = ftpd_num_arg_dec(arg, dec_val, 6);
-  
+
   if (nr < 0) {
     send_msg(cep_id, fsm, msg501);
   } else {
@@ -147,12 +147,13 @@ static void cmd_list_common(const uint8_t *arg, ID cep_id, struct ftpd_msgstate 
     send_msg(cep_id, fsm, msg451);
     return;
   }
-  
+
   if (open_dataconnection(cep_id, fsm) != 0) {
+    send_msg(cep_id, fsm, msg550);
     vfs_closedir(vfs_dir);
     return;
   }
-  
+
   fsm->datafs->vfs_dir = vfs_dir;
   fsm->datafs->vfs_dirent = NULL;
   if (shortlist != 0)
@@ -183,7 +184,7 @@ static void cmd_retr(const int8_t *arg, ID cep_id, struct ftpd_msgstate *fsm)
       send_msg(cep_id, fsm, msg550);
       return;
     }
-    
+
 	if (!VFS_ISREG(st.st_mode)) {
       send_msg(cep_id, fsm, msg550);
       return;
@@ -197,10 +198,11 @@ static void cmd_retr(const int8_t *arg, ID cep_id, struct ftpd_msgstate *fsm)
     //	send_msg(cep_id, fsm, msg150recv, arg, st.st_size);
 	if ((open_dataconnection(cep_id, fsm)) != 0) {
       vfs_close(vfs_file);
+      send_msg(cep_id, fsm, msg550);
       return;
 	}
     send_msg(cep_id, fsm, msg150recv); //temp
-    
+
 	fsm->datafs->vfs_file = vfs_file;
 	fsm->state = FTPD_RETR;
 	act_tsk(fsm->data_tsk_id);
@@ -209,18 +211,19 @@ static void cmd_retr(const int8_t *arg, ID cep_id, struct ftpd_msgstate *fsm)
 static void cmd_stor(const int8_t *arg, ID cep_id, struct ftpd_msgstate *fsm)
 {
 	vfs_file_t *vfs_file;
-    
+
 	vfs_file = vfs_open((vfs_t*)ftpd_get_vfs_file(fsm->ch_id), arg, (const int8_t*)"wb");
 	if (!vfs_file) {
-		send_msg(cep_id, fsm, msg550);
-		return;
+      send_msg(cep_id, fsm, msg550);
+      return;
 	}
 
     //	send_msg(cep_id, fsm, msg150stor, arg); temp
     send_msg(cep_id, fsm, msg150stor);
 	if (open_dataconnection(cep_id, fsm) != 0) {
-		vfs_close(vfs_file);
-		return;
+      send_msg(cep_id, fsm, msg550);
+      vfs_close(vfs_file);
+      return;
 	}
 
 	fsm->datafs->vfs_file = vfs_file;
@@ -242,12 +245,12 @@ static void cmd_syst(const int8_t *arg, ID cep_id, struct ftpd_msgstate *fsm)
 static void cmd_pasv(const int8_t *arg, ID cep_id, struct ftpd_msgstate *fsm)
 {
   ftpd_init_data_fsm(fsm);
-  
+
   fsm->datafs->msgfs = fsm;
 
   fsm->connection_mode = FTPD_CONNECT_MODE_PASIVE;
   fsm->datafs->connected = 0;
-  //temp  
+  //temp
   //send_msg(pcb, fsm, msg227, ip4_addr1(ip_2_ip4(&pcb->local_ip)), ip4_addr2(ip_2_ip4(&pcb->local_ip)), ip4_addr3(ip_2_ip4(&pcb->local_ip)), ip4_addr4(ip_2_ip4(&pcb->local_ip)), (fsm->dataport >> 8) & 0xff, (fsm->dataport) & 0xff);
   send_msg(cep_id, fsm, msg227_short);
 }
@@ -426,7 +429,7 @@ static struct ftpd_command ftpd_commands[] = {
   {(int8_t*)"XMKD", cmd_mkd},
   {(int8_t*)"RMD", cmd_rmd},
   {(int8_t*)"XRMD", cmd_rmd},
-#endif    
+#endif
   {NULL, NULL}
 };
 
@@ -469,43 +472,43 @@ static ER ftpd_msgrecv(struct ftpd_msgstate *fsm, ID cep_id, uint8_t *p_buf, uin
 {
 	int8_t text[FTPD_CONTROL_RBUF_SIZE+1];
     uint32_t buf_len;
-    
+
     buf_len = (rlen > FTPD_CONTROL_RBUF_SIZE) ? FTPD_CONTROL_RBUF_SIZE : rlen;
 
     /* Inform TCP that we have taken the data. */
     int8_t cmd[5];
     int8_t *pt;
     struct ftpd_command *ftpd_cmd;
-      
+
     memmove(text, p_buf, buf_len);
     text[buf_len] = '\0';
-    
+
     pt = &text[strlen(text) - 1];
     while (((*pt == '\r') || (*pt == '\n')) && pt >= text)
       *pt-- = '\0';
-    
+
     //dbg_printf("query: %s\n", text);
-    
+
     strncpy(cmd, text, 4);
     for (pt = cmd; isalpha(*pt) && pt < &cmd[4]; pt++)
       *pt = toupper(*pt);
     *pt = '\0';
-    
+
     for (ftpd_cmd = ftpd_commands; ftpd_cmd->cmd != NULL; ftpd_cmd++) {
       if (!strcmp(ftpd_cmd->cmd, cmd))
         break;
     }
-    
+
     if (strlen(text) < (strlen(cmd) + 1))
       pt = "";
     else
       pt = &text[strlen(cmd) + 1];
-    
+
     if (ftpd_cmd->func)
       ftpd_cmd->func((int8_t*)pt, cep_id, fsm);
     else
       send_msg(cep_id, fsm, msg502);
-    
+
 	return E_OK;
 }
 
@@ -532,7 +535,7 @@ void tcp_ftpd_control_srv_task(intptr_t exinf){
 
   while(true){
     fsm = ftpd_init_conf((uint32_t)exinf);
-    
+
     if((error = tcp_acp_cep(fsm->msg_cep_id, TCP_FTPD_CONTROL_REPID, &ftpd_control_dst, TMO_FEVR)) != E_OK){
       continue;
     }
@@ -561,5 +564,5 @@ void tcp_ftpd_control_srv_task(intptr_t exinf){
       }
     }
   }
-  
+
 }

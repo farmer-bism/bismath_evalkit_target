@@ -62,16 +62,24 @@ void ftpd_dataclose(ID data_cep_id, struct ftpd_datastate *fsd)
     tcp_cls_cep(data_cep_id, 1000);
 }
 
-static void send_data(ID data_cep_id, struct ftpd_datastate *fsd)
+#defne TINET_FTPD_RETRY_NUM 8
+static uint32_t send_data(ID data_cep_id, struct ftpd_datastate *fsd)
 {
 	ER err;
 	uint16_t len;
-    err = tcp_snd_dat(data_cep_id, fsd->data_buff, fsd->buff_len, 1000);
-    if (err < 0) {
-      //dbg_printf("send_data: error writing!\n");
-      return;
-    }
+    uint8_t retry_count;
+
+    retry_count = 0;
+    do{
+      err = tcp_snd_dat(data_cep_id, fsd->data_buff, fsd->buff_len, 1000);
+      if (err >= 0)
+        return err; //send data success
+      retry_count++;
+      dly_tsk(100);
+    }while(retry_count < TINET_FTPD_RETRY_NUM);
+
     fsd->buff_len = 0;
+    return 0; //send data fail
 }
 
 #define FTPD_DSEND_SIZE 512
@@ -80,17 +88,20 @@ static void send_file(struct ftpd_datastate *fsd, ID data_cep_id)
   uint32_t len;
   struct ftpd_msgstate *fsm;
   ID msg_cep_id;
-  
+
   if (!fsd->connected)
     return;
   fsm = fsd->msgfs;
   msg_cep_id = fsm->msg_cep_id;
-  
+
   if (fsd->vfs_file) {
 
     while((len = vfs_read(fsd->data_buff, 1, FTPD_DBUFF_SIZE, fsd->vfs_file)) >0){
       fsd->buff_len = len;
-      send_data(data_cep_id, fsd);
+      if(send_data(data_cep_id, fsd)==0){
+        len=0;
+        break;
+      }
     }
     if (len == 0) {
       if (vfs_eof(fsd->vfs_file) == 0){
@@ -134,7 +145,7 @@ static const char *month_table[12] = {
 static void send_next_directory(struct ftpd_datastate *fsd, ID data_cep_id, int shortlist)
 {
   uint32_t len, wr_pos;
-  
+
   while (1) {
 	if (fsd->vfs_dirent == NULL)
       fsd->vfs_dirent = vfs_readdir(fsd->vfs_dir);
@@ -154,14 +165,14 @@ static void send_next_directory(struct ftpd_datastate *fsd, ID data_cep_id, int 
 	} else {
       struct ftpd_msgstate *fsm;
       ID msg_cep_id;
-      
+
       if (ftpd_dbuff_used(fsd) > 0) {
         send_data(data_cep_id, fsd);
         return;
       }
       fsm = fsd->msgfs;
       msg_cep_id = fsm->msg_cep_id;
-      
+
       vfs_closedir(fsd->vfs_dir);
       fsd->vfs_dir = NULL;
       ftpd_dataclose(data_cep_id, fsd);
@@ -180,11 +191,11 @@ static ER rcv_file(struct ftpd_datastate *arg, ID data_cep_id)
 	struct ftpd_datastate *fsd ;
     uint8_t *rbuf;
     ER_UINT rblen;
-    
+
     struct ftpd_msgstate *fsm;
     ID msg_cep_id;
     fsd = arg;
-    
+
     //while((rblen = tcp_rcv_buf(data_cep_id, (void**)&rbuf,1000)) > 0){
     while((rblen = tcp_rcv_dat(data_cep_id, fsd->data_buff, FTPD_DBUFF_SIZE, 1000)) > 0){
       //vfs_write(rbuf, 1, rblen, fsd->vfs_file);
@@ -211,7 +222,7 @@ uint32_t open_dataconnection(ID cep_id, struct ftpd_msgstate *fsm)
     return 0;
 
   ftpd_init_data_fsm(fsm);
-  
+
   if (fsm->datafs == NULL) {
     send_msg(cep_id, fsm, msg451);
     return 1;
