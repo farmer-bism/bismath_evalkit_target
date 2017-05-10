@@ -66,10 +66,6 @@ typedef struct rspi_dev_status_type{
 
 #define RSPI_INT_ATR TA_ENAINT| TA_EDGE
 
-//interrupt wait type
-#define RSPI_TX_INT_WAIT 0x1
-#define RSPI_RX_INT_WAIT 0x2
-
 //SPCR BIT Define
 #define SPCR_SPMS 0x1
 #define SPCR_TXMD 0x2
