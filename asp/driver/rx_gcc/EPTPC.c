@@ -142,8 +142,8 @@ void eptpc_init(PTPINI* pini){
 
   
   sil_wrw_mem((uint32_t*)(EPTPC_SYIPR_OFFSET+port_base), 0x0);
-  //interrupt enable
-  sil_wrw_mem((uint32_t*)EPTPC_MIEIPR_ADDR, (EPTPC_MIEIPR_ST | EPTPC_MIEIPR_SY0 | EPTPC_MIEIPR_SY1 | EPTPC_MIEIPR_PR));
+  //interrupt disable
+  sil_wrw_mem((uint32_t*)EPTPC_MIEIPR_ADDR, 0);
   eptpc_state = EPTPC_OPERATION;
 }
 
