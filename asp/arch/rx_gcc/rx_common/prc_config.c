@@ -216,9 +216,9 @@ x_config_int( INTNO intno, ATR intatr, PRI intpri )
  *  未登録の割込みが発生した場合に呼び出される
  */
 void
-default_int_handler( void )
+default_int_handler( uint32_t intno )
 {
-	syslog(LOG_EMERG, "Unregistered Interrupt occurs.");
+  syslog(LOG_EMERG, "Unregistered Interrupt occurs. No %d", intno);
 }
 #endif /* OMIT_DEFAULT_INT_HANDLER */
 

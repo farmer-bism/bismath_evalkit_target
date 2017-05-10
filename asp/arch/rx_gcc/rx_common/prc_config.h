@@ -683,7 +683,7 @@ extern void	prc_terminate( void );
 /*
  *  未登録の割込みが発生した場合に呼び出される
  */
-void default_int_handler( void );
+void default_int_handler( uint32_t intno );
 #endif /* OMIT_DEFAULT_INT_HANDLER */
 
 #ifndef OMIT_DEFAULT_EXC_HANDLER
