@@ -17,7 +17,7 @@ mmc_rspi_stat_t mmc_sdcard_rspi0_stat={
   0,       //CardType
   0,      //time out flag
   MMC_RSPI0_ALMHDR_0, //time out task id 0
-  MMC_RSPI0_ALMHDR_0  //time out task id 1
+  MMC_RSPI0_ALMHDR_1  //time out task id 1
 };
 
 dev_node_t mmc_sdcard_rspi_node_0 = {
