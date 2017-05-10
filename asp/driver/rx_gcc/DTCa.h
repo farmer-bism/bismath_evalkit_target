@@ -7,6 +7,7 @@
 #ifndef RENESAS_RX_DTCA_DRIVER
 #define RENESAS_RX_DTCA_DRIVER
 
+#ifndef DTCA_MACRO_ONLY
 #include "target_device/target_device.h"
 
 //DTC discripeter table
@@ -20,10 +21,17 @@ typedef struct dtca_discripter_table {
   volatile uint16_t cra;
 }dtca_descriptor;
 
-//DTC vecter base array
-extern uint32_t dtca_table[256];
+typedef struct desc_buff_t{
+  dtca_descriptor *desc;
+  uint32_t buff_entry;
+} desc_buff;
 
+void dtca_init();
 void set_vecter_table(uint8_t intno, dtca_descriptor *vecter);
+//descriptor buff control
+int8_t dtca_get_desc_buff(desc_buff* dbuff, uint8_t len);
+int8_t dtca_rel_desc_buff(desc_buff* dbuff);
+
 
 //
 // DTCA Macro Controll
@@ -34,6 +42,10 @@ void dtca_disable();
 //Set DTCER to accept irq.
 void dtcer_irq_enable(uint8_t intno);
 void dtcer_irq_disable(uint8_t intno);
+
+//Descriptor buff control
+#define DESC_OK 0
+#define DESC_ER -1
 
 //DTC register define
 //#define DID_DTCA     //defined in target_device_id.h
@@ -52,7 +64,7 @@ void dtcer_irq_disable(uint8_t intno);
 #define MRA_SZ_WORD 0x10
 #define MRA_SZ_LONG 0x20
 
-#define MRA_MD_NOMAL 0x00
+#define MRA_MD_NORMAL 0x00
 #define MRA_MD_REPEAT 0x40
 #define MRA_MD_BLOCK 0x80
 
@@ -72,5 +84,10 @@ void dtcer_irq_disable(uint8_t intno);
 
 #define MRB_CHNE_DIS 0x00
 #define MRB_CHNE_EN 0x80
+
+#endif //DTCA_MACRO_ONLY
+
+#define DTCA_DESC_SIZE 16 //seize of dtca_descriptor
+#define NUM_DTCA_DESC 8
 
 #endif

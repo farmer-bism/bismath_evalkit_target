@@ -1,5 +1,6 @@
 MEMORY
 {
+    SRAM (rwx) : ORIGIN = 0x00000000, LENGTH = 512K
     SDRAM (rwx) : ORIGIN = 0x08000000, LENGTH = 8M
 }
 
@@ -36,22 +37,6 @@ SECTIONS
 	__exidx_start = .;
 	__exidx_end = .;
 
-	.bss : 
-	{
-		__bss_start  = .;
-	    . = ALIGN(4k);
-        *(DTCA_VECTOR_SEC)
-        __dtca_start = .;
-		*(.bss)
-		*(.bss.*)
-		*(COMMON)
-		*(B)
-		*(B_1)
-		*(B_2)
-		*(SI) /* SI is kernel stack section*/
-	    __bss_end = .;
-	} > SDRAM
-
     . = __rodata_end;
 	. = ALIGN(4);
 	__idata_start = .;
@@ -69,7 +54,25 @@ SECTIONS
 	__idata_end = __idata_start + SIZEOF(.data);
 	_edata = .;
 	PROVIDE(edata = .);
+    
+	.bss : 
+	{
+		__bss_start  = .;
+		*(.bss)
+		*(.bss.*)
+		*(COMMON)
+		*(B)
+		*(B_1)
+		*(B_2)
+		*(SI) /* SI is kernel stack section*/
+	    __bss_end = .;
+	} > SDRAM
 
+    .dtca_vect 0x0 :
+   {
+      *(DTCA_VECTOR_SEC)
+    } > SRAM
+    
 	_end = .;
 	PROVIDE(end = .);
 }

@@ -3,6 +3,8 @@
  * Released under the toppers license
  * https://www.toppers.jp/license.html
  */
+//#include <kernel.h>
+#include <kernel_impl.h>
 #include "target_board.h"
 #include "driver/rx_gcc/DTCa.h"
 
@@ -15,8 +17,8 @@ void target_dev_ini_dtca_0(){
   //lock register access
   sil_wrh_mem((void *)(SYSTEM_PRCR_ADDR), SYSTEM_PRKEY );
 
-  //set dtc vecter base
-  sil_wrw_lem((uint32_t *)DTC_DTCCR, dtca_table);
+  //set dtc vecter base and init descripter que
+  dtca_init();
 }
 
 
