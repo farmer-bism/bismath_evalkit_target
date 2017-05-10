@@ -81,7 +81,7 @@ inline uint8_t is_timeout(mmc_rspi_stat_t *mmc_stat, uint8_t flg_bit){
 
 void fast_clk_mode(rspi_dstat* rspi_stat){
     rspi_disable(rspi_stat);
-    rspi_chg_bit_rate(rspi_stat, F_PCLKB/SCLK_FAST-1);
+    rspi_chg_bit_rate(rspi_stat, F_PCLKB/2/SCLK_FAST-1);
     rspi_enable(rspi_stat);
 }
 
@@ -262,6 +262,7 @@ int wait_ready (	/* 1:Ready, 0:Timeout */
                 uint32_t wt			/* Timeout [ms] */
                     )
 {
+  uint8_t try_count;
   clear_timeout_timer(mmc_stat, WAIT_TIME);
   sta_alm(mmc_stat-> tout_task_id_1, wt);
   
@@ -271,9 +272,10 @@ int wait_ready (	/* 1:Ready, 0:Timeout */
     	stp_alm(mmc_stat-> tout_task_id_1);
     	return 1;
     }
+    try_count ++;
     /* This loop takes a time. Insert rot_rdq() here for multitask envilonment. */
     //rot_rdq();
-  } while (!is_timeout(mmc_stat, WAIT_TIME));    /* Wait until card goes ready or timeout */
+  } while ((!is_timeout(mmc_stat, WAIT_TIME)) && (try_count > 10));    /* Wait until card goes ready or timeout */
   stp_alm(mmc_stat-> tout_task_id_1);
   
   return 0;	/* Timeout occured */
@@ -327,7 +329,7 @@ int rcvr_datablock (	/* 1:OK, 0:Error */
   uint8_t token;
 
   clear_timeout_timer(mmc_stat, DATA_TRANS_TIME);
-  sta_alm(mmc_stat-> tout_task_id_0, 200);
+  sta_alm(mmc_stat-> tout_task_id_0, 1000);
   do {							/* Wait for DataStart token in timeout of 200ms */
     token = xchg_spi(mmc_stat, 0xFF);
     /* This loop will take a time. Insert rot_rdq() here for multitask envilonment. */
@@ -335,7 +337,6 @@ int rcvr_datablock (	/* 1:OK, 0:Error */
   stp_alm(mmc_stat-> tout_task_id_0);
 
   if (token != 0xFE) return 0;	/* Function fails if invalid DataStart token or timeout */
-    
   rcvr_spi_multi(mmc_stat, buff, btr);		/* Store trailing data to the buffer */
   xchg_spi(mmc_stat, 0xFF); xchg_spi(mmc_stat, 0xFF);	/* Discard CRC */
     
@@ -369,9 +370,11 @@ int xmit_datablock (	/* 1:OK, 0:Failed */
       xchg_spi(mmc_stat, 0xFF); xchg_spi(mmc_stat, 0xFF);	/* Dummy CRC */
       
       resp = xchg_spi(mmc_stat, 0xFF);			/* Receive data resp */
-      if ((resp & 0x1F) != 0x05)		/* Function fails if the data packet was not accepted */
+      if ((resp & 0x1F) != 0x05){		/* Function fails if the data packet was not accepted */
         return 0;
+      }
 	}
+
 	return 1;
 }
 #endif /* _USE_WRITE */
@@ -443,7 +446,6 @@ DSTATUS rspi_disk_initialize (
 {
 	uint8_t n, cmd, ty, ocr[4];
     mmc_rspi_stat_t *mmc_stat;
-
     mmc_stat = (mmc_rspi_stat_t *)v_stat;
     rspi_get_right(GET_DEV_STAT(mmc_stat->mmc_drv_id));
 
@@ -461,7 +463,7 @@ DSTATUS rspi_disk_initialize (
 	ty = 0;
 	if (send_cmd(mmc_stat, CMD0, 0) == 1) {			/* Put the card SPI/Idle state */
       clear_timeout_timer(mmc_stat, DATA_TRANS_TIME);
-      sta_alm(mmc_stat-> tout_task_id_0, 1000); /* Initialization timeout = 1 sec */
+      sta_alm(mmc_stat-> tout_task_id_0, 10000); /* Initialization timeout = 1 sec */
       if (send_cmd(mmc_stat, CMD8, 0x1AA) == 1) {	/* SDv2? */
         for (n = 0; n < 4; n++) ocr[n] = xchg_spi(mmc_stat, 0xFF);	/* Get 32 bit return value of R7 resp */
         if (ocr[2] == 0x01 && ocr[3] == 0xAA) {				/* Is the card supports vcc of 2.7-3.6V? */
@@ -552,7 +554,6 @@ DRESULT rspi_disk_read (
 	}
 	deselect(mmc_stat);
     rspi_relese_right(GET_DEV_STAT(mmc_stat->mmc_drv_id));
-    
 	return count ? RES_ERROR : RES_OK;	/* Return result */
 }
 
