@@ -1,10 +1,10 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
- * 
+ *
  *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *  Copyright (C) 2014-2015 Cores Co., Ltd. Japan
- * 
+ *
  *  上記著作権者は，以下の(1)〜(4)の条件を満たす場合に限り，本ソフトウェ
  *  ア（本ソフトウェアを改変したものを含む．以下同じ）を使用・複製・改
  *  変・再配布（以下，利用と呼ぶ）することを無償で許諾する．
@@ -27,13 +27,13 @@
  *      また，本ソフトウェアのユーザまたはエンドユーザからのいかなる理
  *      由に基づく請求からも，上記著作権者およびTOPPERSプロジェクトを
  *      免責すること．
- * 
+ *
  *  本ソフトウェアは，無保証で提供されているものである．上記著作権者お
  *  よびTOPPERSプロジェクトは，本ソフトウェアに関して，特定の使用目的
  *  に対する適合性も含めて，いかなる保証も行わない．また，本ソフトウェ
  *  アの利用により直接的または間接的に生じたいかなる損害に関しても，そ
  *  の責任を負わない．
- * 
+ *
  *  @(#) $Id$
  */
 
@@ -60,6 +60,7 @@
 #define EDMAC_EESR_FROF		0x00010000
 #define EDMAC_EESR_RDE		0x00020000
 #define EDMAC_EESR_FR		0x00040000
+#define EDMAC_EESR_TFUF     0x00080000
 #define EDMAC_EESR_TC		0x00200000
 #define EDMAC_EESR_TWB		0x40000000
 
@@ -68,6 +69,7 @@
 #define EDMAC_EESIPR_FROFIP	0x00010000
 #define EDMAC_EESIPR_RDEIP	0x00020000
 #define EDMAC_EESIPR_FRIP	0x00040000
+#define EDMAC_EESIPR_TFUFIP 0x00080000
 #define EDMAC_EESIPR_TCIP	0x00200000
 #define EDMAC_EESIPR_TWBIP	0x40000000
 
@@ -131,17 +133,21 @@
 
 /* 送信ディスクリプタ */
 typedef struct t_edmac_tx_desc {
-	uint32_t	tfs : 26;
-	uint32_t	twbi : 1;
-	uint32_t	tfe : 1;
-	uint32_t	tfp : 2;
-	uint32_t	tdle : 1;
-	uint32_t	tact : 1;
-	uint32_t	: 16;
-	uint32_t	tbl : 16;
-	uint32_t	tba;
-	uint32_t	binding;
+  uint32_t	tfs : 26;
+  uint32_t	twbi : 1;
+  uint32_t	tfe : 1;
+  uint32_t	tfp : 2;
+  uint32_t	tdle : 1;
+  uint32_t	tact : 1;
+  uint32_t	reserved : 16;
+  uint32_t	tbl : 16;
+  uint32_t	tba;
+  uint32_t	next; //use padding filed as next discripter address
 } T_EDMAC_TX_DESC;
+
+#define TX_TBL_PAGE_START_FLG 0x2
+#define TX_TBL_PAGE_END_FLG 0x1
+#define TX_TBL_SINGLE_PAGE 0x3
 
 /* 受信ディスクリプタ */
 typedef struct t_edmac_rx_desc {
@@ -153,7 +159,11 @@ typedef struct t_edmac_rx_desc {
 	uint32_t	rfl : 16;
 	uint32_t	rbl : 16;
 	uint32_t	rba;
-	uint32_t	binding;
+	uint32_t	next; //use padding filed as next discripter address
 } T_EDMAC_RX_DESC;
+
+#define RX_RFP_PAGE_START_FLG 0x2
+#define RX_RFP_PAGE_END_FLG 0x1
+#define RX_RFP_SINGLE_PAGE 0x3
 
 #endif /* EDMACRegH */
