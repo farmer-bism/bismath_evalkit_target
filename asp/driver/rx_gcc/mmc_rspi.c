@@ -262,7 +262,6 @@ int wait_ready (	/* 1:Ready, 0:Timeout */
                 uint32_t wt			/* Timeout [ms] */
                     )
 {
-  uint8_t try_count;
   clear_timeout_timer(mmc_stat, WAIT_TIME);
   sta_alm(mmc_stat-> tout_task_id_1, wt);
   
@@ -272,10 +271,9 @@ int wait_ready (	/* 1:Ready, 0:Timeout */
     	stp_alm(mmc_stat-> tout_task_id_1);
     	return 1;
     }
-    try_count ++;
     /* This loop takes a time. Insert rot_rdq() here for multitask envilonment. */
     //rot_rdq();
-  } while ((!is_timeout(mmc_stat, WAIT_TIME)) && (try_count > 10));    /* Wait until card goes ready or timeout */
+  } while (!is_timeout(mmc_stat, WAIT_TIME));    /* Wait until card goes ready or timeout */
   stp_alm(mmc_stat-> tout_task_id_1);
   
   return 0;	/* Timeout occured */
@@ -307,7 +305,7 @@ int select (mmc_rspi_stat_t* mmc_stat)	/* 1:OK, 0:Timeout */
   select_gpio_cs(GET_DEV_STAT(mmc_stat->mmc_ins_id)); //set cs# low
   xchg_spi(mmc_stat, 0xFF);	/* Dummy clock (force DO enabled) */
   
-  if (wait_ready(mmc_stat, 500)) return 1;	/* Wait for card ready */
+  if (wait_ready(mmc_stat, 1000)) return 1;	/* Wait for card ready */
   
   deselect(mmc_stat);
   return 0;	/* Failed to select the card due to timeout */
@@ -362,7 +360,7 @@ int xmit_datablock (	/* 1:OK, 0:Failed */
 
 	mmc_stat = (mmc_rspi_stat_t*)v_stat;
 
-	if (!wait_ready(mmc_stat, 500)) return 0;		/* Wait for card ready */
+	if (!wait_ready(mmc_stat, 1000)) return 0;		/* Wait for card ready */
 
 	xchg_spi(mmc_stat, token);					/* Send token */
 	if (token != 0xFD) {				/* Send data if token is other than StopTran */
