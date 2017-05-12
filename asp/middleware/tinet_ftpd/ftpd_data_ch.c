@@ -62,11 +62,10 @@ void ftpd_dataclose(ID data_cep_id, struct ftpd_datastate *fsd)
     tcp_cls_cep(data_cep_id, 1000);
 }
 
-#defne TINET_FTPD_RETRY_NUM 8
+#define TINET_FTPD_SEND_RETRY_NUM 8
 static uint32_t send_data(ID data_cep_id, struct ftpd_datastate *fsd)
 {
 	ER err;
-	uint16_t len;
     uint8_t retry_count;
 
     retry_count = 0;
@@ -76,7 +75,7 @@ static uint32_t send_data(ID data_cep_id, struct ftpd_datastate *fsd)
         return err; //send data success
       retry_count++;
       dly_tsk(100);
-    }while(retry_count < TINET_FTPD_RETRY_NUM);
+    }while(retry_count < TINET_FTPD_SEND_RETRY_NUM);
 
     fsd->buff_len = 0;
     return 0; //send data fail
@@ -189,17 +188,13 @@ static void send_next_directory(struct ftpd_datastate *fsd, ID data_cep_id, int 
 static ER rcv_file(struct ftpd_datastate *arg, ID data_cep_id)
 {
 	struct ftpd_datastate *fsd ;
-    uint8_t *rbuf;
     ER_UINT rblen;
 
     struct ftpd_msgstate *fsm;
     ID msg_cep_id;
     fsd = arg;
 
-    //while((rblen = tcp_rcv_buf(data_cep_id, (void**)&rbuf,1000)) > 0){
     while((rblen = tcp_rcv_dat(data_cep_id, fsd->data_buff, FTPD_DBUFF_SIZE, 1000)) > 0){
-      //vfs_write(rbuf, 1, rblen, fsd->vfs_file);
-    //  tcp_rel_buf(data_cep_id, rblen);
     	vfs_write(fsd->data_buff, 1, rblen, fsd->vfs_file);
     }
     fsm = fsd->msgfs;
