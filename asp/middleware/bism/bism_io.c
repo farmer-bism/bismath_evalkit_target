@@ -12,12 +12,12 @@
 
 static bism_bbf_ring bism_buff;
 static FIL bism_fp;
-static uint8_t wait_que_count;
-static uint8_t file_state;
+static int8_t wait_que_count;
 
+#define BISM_FILE_IDLE 0
 #define BISM_FILE_OPEN 1
-#define BISM_FILE_CLOSE_REQ 2
-#define BISM_FILE_CLOSE_END 3
+
+static uint8_t file_state = BISM_FILE_IDLE;
 
 FRESULT bism_io_init(uint8_t* log_file){
   bism_bbf_ring_init(&bism_buff);
@@ -27,7 +27,13 @@ FRESULT bism_io_init(uint8_t* log_file){
 }
 
 void bism_io_close(){
-  file_state = BISM_FILE_CLOSE_REQ;
+  if(file_state == BISM_FILE_IDLE)
+    return;
+  while(wait_que_count != 0){
+    dly_tsk(10);
+  }
+  f_close(&bism_fp);
+  file_state = BISM_FILE_IDLE;
 }
 
 uint32_t bism_buff_write(uint8_t* w_dat, uint8_t len){
@@ -57,22 +63,15 @@ void bism_push_block(){
   }
 }
 
-int test2=0;
-
 void bism_log_store_task(intptr_t exif){
   bism_blk_buff *qued_buff;
   uint32_t writed;
   while(1){
     rcv_dtq(BISM_STOR_DTQ, (intptr_t*)&qued_buff);
     f_write(&bism_fp, qued_buff->buff, qued_buff->write_pos, &writed);
-
     qued_buff->write_pos = 0;
     bism_blk_set_state(qued_buff, BISM_BUF_READEND);
     wait_que_count--;
-    if((wait_que_count == 0) && (file_state == BISM_FILE_CLOSE_REQ)){
-      f_close(&bism_fp);
-      file_state = BISM_FILE_CLOSE_END;
-    }
   }
 }
 

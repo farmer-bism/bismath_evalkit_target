@@ -13,7 +13,7 @@
 
 
 #define BISM_RTASK_PRIORITY 6
-#define	BISM_RTASK_STACK_SIZE 128
+#define	BISM_RTASK_STACK_SIZE 512
 
 
 FRESULT bism_io_init(uint8_t *log_file);
