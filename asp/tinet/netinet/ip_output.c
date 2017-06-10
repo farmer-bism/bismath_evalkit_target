@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: ip_output.c,v 1.5.4.1 2015/02/05 02:10:53 abe Exp abe $
+ *  @(#) $Id: ip_output.c 1.7 2017/6/1 8:49:23 abe $
  */
 
 /*
@@ -92,6 +92,7 @@
 #include <net/ethernet.h>
 #include <net/ppp.h>
 #include <net/net.h>
+#include <net/net_endian.h>
 #include <net/net_buf.h>
 #include <net/net_count.h>
 
@@ -103,6 +104,8 @@
 #if defined(SUPPORT_IPSEC)
 #include <netinet6/ipsec.h>
 #endif
+
+#if defined(_IP4_CFG)
 
 static uint16_t frag_id = 0;
 
@@ -220,7 +223,7 @@ skip_ipsec:
 		NET_COUNT_MIB(ip_stats.ipFragCreates, 1);
 
 		len  = ntohs(ip4h->len);
-		off  = hlen = GET_IP4_HDR_SIZE(ip4h);
+		off  = hlen = GET_IP4_HDR_SIZE(output);
 		while (off < len) {
 			if (off + (IF_MTU - IP4_HDR_SIZE) < len)
 				flen = IF_MTU - IP4_HDR_SIZE;
@@ -244,7 +247,7 @@ skip_ipsec:
 				fip4h->len	= htons(flen + IP4_HDR_SIZE);
 				fip4h->id	= htons(frag_id);
 				fip4h->sum	= 0;
-				fip4h->sum	= in_cksum(fip4h, GET_IP4_HDR_SIZE(fip4h));
+				fip4h->sum	= in_cksum(fip4h, GET_IP4_HDR_SIZE(frag));
 
 				NET_COUNT_IP4(net_count_ip4[NC_IP4_OUT_OCTETS], ntohs(fip4h->len));
 				NET_COUNT_IP4(net_count_ip4[NC_IP4_OUT_PACKETS], 1);
@@ -278,7 +281,7 @@ skip_ipsec:
 		ip4h->id  = htons(frag_id);
 		frag_id ++;
 		ip4h->sum = 0;
-		ip4h->sum = in_cksum(ip4h, GET_IP4_HDR_SIZE(ip4h));
+		ip4h->sum = in_cksum(ip4h, GET_IP4_HDR_SIZE(output));
 
 		NET_COUNT_IP4(net_count_ip4[NC_IP4_OUT_OCTETS], ntohs(ip4h->len));
 		NET_COUNT_IP4(net_count_ip4[NC_IP4_OUT_PACKETS], 1);
@@ -300,7 +303,7 @@ skip_ipsec:
 	ip4h->id  = htons(frag_id);
 	frag_id ++;
 	ip4h->sum = 0;
-	ip4h->sum = in_cksum(ip4h, (uint_t)GET_IP4_HDR_SIZE(ip4h));
+	ip4h->sum = in_cksum(ip4h, (uint_t)GET_IP4_HDR_SIZE(output));
 
 	NET_COUNT_IP4(net_count_ip4[NC_IP4_OUT_OCTETS], ntohs(ip4h->len));
 	NET_COUNT_IP4(net_count_ip4[NC_IP4_OUT_PACKETS], 1);
@@ -319,3 +322,5 @@ skip_ipsec:
 
 	return error;
 	}
+
+#endif	/* of #if defined(_IP4_CFG) */

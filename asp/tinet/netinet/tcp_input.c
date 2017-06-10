@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: tcp_input.c,v 1.5.4.1 2015/02/05 02:10:53 abe Exp abe $
+ *  @(#) $Id: tcp_input.c 1.7 2017/6/1 8:49:24 abe $
  */
 
 /*
@@ -94,6 +94,7 @@
 #include <net/if_loop.h>
 #include <net/ethernet.h>
 #include <net/net.h>
+#include <net/net_endian.h>
 #include <net/net_var.h>
 #include <net/net_buf.h>
 #include <net/net_timer.h>
@@ -101,20 +102,15 @@
 
 #include <netinet/in.h>
 #include <netinet/in_var.h>
-#include <netinet6/in6.h>
-#include <netinet6/in6_var.h>
-#include <netinet6/nd6.h>
 #include <netinet/in_itron.h>
 #include <netinet/ip.h>
 #include <netinet/ip_var.h>
-#include <netinet/ip6.h>
-#include <netinet6/ip6_var.h>
 #include <netinet/ip_icmp.h>
 #include <netinet/tcp.h>
-#include <netinet/tcp_timer.h>
 #include <netinet/tcp_var.h>
 #include <netinet/tcp_fsm.h>
 #include <netinet/tcp_seq.h>
+#include <netinet/tcp_timer.h>
 
 #ifdef SUPPORT_TCP
 
@@ -138,7 +134,7 @@
 
 static void close_connection	(T_TCP_CEP *cep, bool_t *needoutput);
 static void set_rexmt_timer	(T_TCP_CEP *cep,  T_TCP_TIME rtt);
-static uint8_t reassemble		(T_NET_BUF *input, T_TCP_CEP *cep, uint_t thoff, uint8_t flags);
+static uint8_t reassemble	(T_NET_BUF *input, T_TCP_CEP *cep, uint_t thoff, uint8_t flags);
 static ER drop_after_ack	(T_NET_BUF *input, T_TCP_CEP *cep, uint_t thoff);
 static ER listening		(T_NET_BUF *input, T_TCP_CEP *cep, uint_t thoff, T_TCP_SEQ iss);
 static ER proc_ack1		(T_NET_BUF *input, T_TCP_CEP *cep, uint_t thoff, bool_t *needoutput);
@@ -146,95 +142,8 @@ static ER proc_ack2		(T_NET_BUF *input, T_TCP_CEP *cep, uint_t thoff, bool_t *ne
 static ER syn_sent		(T_TCP_HDR *tcph,  T_TCP_CEP *cep);
 static void trim_length		(T_TCP_HDR *tcph,  T_TCP_CEP *cep);
 static void parse_option	(T_TCP_HDR *tcph,  T_TCP_CEP *cep);
-static bool_t update_wnd		(T_TCP_HDR *tcph,  T_TCP_CEP *cep);
+static bool_t update_wnd	(T_TCP_HDR *tcph,  T_TCP_CEP *cep);
 static void proc_urg		(T_TCP_HDR *tcph,  T_TCP_CEP *cep);
-
-#if defined(NUM_TCP_TW_CEP_ENTRY) && NUM_TCP_TW_CEP_ENTRY > 0
-
-/*
- *  タスクからの Time Wait 状態 CEP 分離機能
- */
-
-/*
- *  関数
- */
-
-static T_TCP_TWCEP*tcp_find_twcep (T_IN_ADDR *dstaddr,  uint16_t dstport,
-                                   T_IN_ADDR *peeraddr, uint16_t peerport);
-
-/*
- *  変数
- */
-
-T_TCP_TWCEP tcp_twcep[NUM_TCP_TW_CEP_ENTRY];
-
-/*
- *  tcp_find_twcep -- ポート番号から Time Wait 用 TCP 通信端点を得る。
- *
- *    注意: dstaddr は、ネットワークバイトオーダ
- */
-
-static T_TCP_TWCEP*
-tcp_find_twcep (T_IN_ADDR *dstaddr, uint16_t dstport, T_IN_ADDR *peeraddr, uint16_t peerport)
-{
-	T_TCP_TWCEP*	twcep;
-	
-	/*
-	 *  状態が TIME WAIT で、
-	 *  IP アドレスとポート番号が一致する通信端点を探索する。
-	 */
-	for (twcep = &tcp_twcep[NUM_TCP_TW_CEP_ENTRY]; twcep -- != tcp_twcep; ) {
-		if (twcep->fsm_state == TCP_FSM_TIME_WAIT                   &&
-		    IN_IS_DSTADDR_ACCEPT (&twcep->myaddr.ipaddr,  dstaddr)  &&
-		    IN_ARE_NET_ADDR_EQUAL(&twcep->dstaddr.ipaddr, peeraddr) &&
-		    dstport  == twcep->myaddr.portno                        &&
-		    peerport == twcep->dstaddr.portno)
-			return twcep;
-		}
-
-	return NULL;
-	}
-
-/*
- *  必要な情報を Time Wait 用 TCP 通信端点に移して、
- *  標準の TCP 通信端点を開放する。
- */
-
-void
-tcp_move_twcep (T_TCP_CEP *cep)
-{
-	T_TCP_TWCEP*	twcep;
-
-	/* 空きの Time Wait 用 TCP 通信端点を探索する。*/
-	for (twcep = &tcp_twcep[NUM_TCP_TW_CEP_ENTRY]; twcep -- != tcp_twcep; ) {
-		if (twcep->fsm_state != TCP_FSM_TIME_WAIT) {
-
-			/*
-			 *  通信端点をロックし、
-			 *  必要な情報を Time Wait 用 TCP 通信端点に移す。
-			 */
-			syscall(wai_sem(cep->semid_lock));
-			twcep->rbufsz		= cep->rbufsz;
-			twcep->dstaddr		= cep->dstaddr;
-			twcep->myaddr		= cep->myaddr;
-			twcep->snd_una		= cep->snd_una;
-			twcep->rcv_nxt		= cep->rcv_nxt;
-			twcep->rwbuf_count	= cep->rwbuf_count;
-			twcep->fsm_state	= cep->fsm_state;
-			twcep->timer_2msl	= cep->timer[TCP_TIM_2MSL];
-
-			/* 通信端点をロックを解除する。*/
-			syscall(sig_sem(cep->semid_lock));
-
-			/* 標準 TCP 通信端点を開放する。*/
-			tcp_close(cep);
-
-			break;
-			}
-		}
-	}
-
-#endif	/* of #if defined(NUM_TCP_TW_CEP_ENTRY) && NUM_TCP_TW_CEP_ENTRY > 0 */
 
 /*
  *  parse_option -- TCP ヘッダのオプションを解析する。
@@ -420,7 +329,7 @@ reassemble (T_NET_BUF *input, T_TCP_CEP *cep, uint_t thoff, uint8_t flags)
 		qhdr = GET_TCP_Q_HDR(input, thoff);
 
 		/*  TCP ヘッダの位置を保存する。*/
-		GET_TCP_IP_Q_HDR(input)->thoff = thoff;
+		SET_IP_TCP_Q_HDR_OFFSET(input, thoff);
 
 		/* SDU のオフセット（元はウィンドサイズ）をリセットする。*/
 		qhdr->soff = 0;
@@ -447,10 +356,8 @@ reassemble (T_NET_BUF *input, T_TCP_CEP *cep, uint_t thoff, uint8_t flags)
 static ER
 listening (T_NET_BUF *input, T_TCP_CEP *cep, uint_t thoff, T_TCP_SEQ iss)
 {
-	T_IP_HDR	*iph;
 	T_TCP_HDR	*tcph;
 
-	iph  = GET_IP_HDR(input);
 	tcph = GET_TCP_HDR(input, thoff);
 
 	/* 
@@ -472,54 +379,14 @@ listening (T_NET_BUF *input, T_TCP_CEP *cep, uint_t thoff, T_TCP_SEQ iss)
 	if ((tcph->flags & TCP_FLG_SYN) == 0)
 		return RET_DROP;
 
-#if defined(SUPPORT_INET4)
-
-#ifdef SUPPORT_LOOP
-
 	/*
-	 *  次のときは破棄する。
-	 *    ・ポート番号が同一で、送受信 IP アドレス が同一。
-	 *      ただし、ローカルループバック (127.0.0.1) なら良い。
-	 *    ・マルチキャストアドレス
+	 *  受信可能な IP アドレスとポート番号であることを確認する。
 	 */
-
-	if (tcph->dport == tcph->sport &&
-	    (iph->dst == iph->src && ntohl(iph->src) != IPV4_ADDR_LOOPBACK))
-		return RET_DROP;
-
-#else	/* of #ifdef SUPPORT_LOOP */
-
-	/*
-	 *  次のときは破棄する。
-	 *    ・ポート番号が同一で、送受信 IP アドレス が同一。
-	 *    ・マルチキャストアドレス
-	 */
-
-	if (tcph->dport == tcph->sport && iph->dst == iph->src)
-		return RET_DROP;
-
-#endif	/* of #ifdef SUPPORT_LOOP */
-
-#endif	/* of #if defined(SUPPORT_INET4) */
-
-#if defined(SUPPORT_INET6)
-
-	/*
-	 *  次のときは破棄する。
-	 *    ・ポート番号が同一で、送受信 IP アドレス が同一。
-	 *    ・マルチキャストアドレス
-	 */
-
-	if (tcph->dport == tcph->sport && IN_ARE_ADDR_EQUAL(&iph->dst, &iph->src))
-		return RET_DROP;
-
-#endif	/* of #if defined(SUPPORT_INET6) */
-
-	if (IN_IS_NET_ADDR_MULTICAST(&iph->dst))
+	if (!tcp_is_addr_accept(input, thoff))
 		return RET_DROP;
 
 	/* 相手のアドレスを記録する。*/
-	IN_COPY_TO_HOST(&cep->dstaddr.ipaddr, &iph->src);
+	IN_COPY_TO_HOST(&cep->dstaddr.ipaddr, input);
 	cep->dstaddr.portno = tcph->sport;
 
 	/* オプションを処理する。*/
@@ -918,6 +785,10 @@ proc_ack1 (T_NET_BUF *input, T_TCP_CEP *cep, uint_t thoff, bool_t *needoutput)
 			/* TCP 通信端点からTCP 受付口を解放する。*/
 			cep->rep = NULL;
 
+#if defined(_IP6_CFG) && defined(_IP4_CFG)
+			cep->rep4 = NULL;
+#endif
+
 			syscall(set_flg(cep->est_flgid, TCP_CEP_EVT_ESTABLISHED));
 
 #ifdef TCP_CFG_NON_BLOCKING
@@ -925,7 +796,21 @@ proc_ack1 (T_NET_BUF *input, T_TCP_CEP *cep, uint_t thoff, bool_t *needoutput)
 			if (cep->rcv_nblk_tfn == TFN_TCP_ACP_CEP) {
 
 				/* 相手のアドレスをコピーする。*/
+
+#if defined(_IP6_CFG) && defined(_IP4_CFG)
+
+				if (cep->flags & TCP_CEP_FLG_IPV4) {
+					(*cep->p_dstaddr4).ipaddr = ntohl(cep->dstaddr.ipaddr.s6_addr32[3]);
+					(*cep->p_dstaddr4).portno = cep->dstaddr.portno;
+					}
+				else
+					*cep->p_dstaddr = cep->dstaddr;
+
+#else	/* of #if defined(_IP6_CFG) && defined(_IP4_CFG) */
+
 				*cep->p_dstaddr = cep->dstaddr;
+
+#endif	/* of #if defined(_IP6_CFG) && defined(_IP4_CFG) */
 
 				if (IS_PTR_DEFINED(cep->callback)) {
 
@@ -1368,6 +1253,7 @@ close_connection (T_TCP_CEP *cep, bool_t *needoutput)
 	case TCP_FSM_SYN_RECVD:		/* SYN を受信し、SYN 送信済み	*/
 	case TCP_FSM_ESTABLISHED:	/* コネクション開設完了		*/
 		cep->fsm_state = TCP_FSM_CLOSE_WAIT;
+		syscall(set_flg(cep->snd_flgid, TCP_CEP_EVT_RWBUF_READY));
 		break;
 
 	case TCP_FSM_FIN_WAIT_1:	/* APP が終了、FIN 送信済み、ACK 待ち */
@@ -1420,7 +1306,6 @@ uint_t
 tcp_input (T_NET_BUF **inputp, uint_t *offp, uint_t *nextp)
 {
 	T_NET_BUF	*input = *inputp;
-	T_IP_HDR	*iph;
 	T_TCP_HDR	*tcph;
 	T_TCP_CEP	*cep = NULL;
 	T_TCP_SEQ	iss = 0;
@@ -1441,12 +1326,11 @@ tcp_input (T_NET_BUF **inputp, uint_t *offp, uint_t *nextp)
 	NET_COUNT_MIB(tcp_stats.tcpInSegs, 1);
 
 	/* ヘッダ長をチェックする。*/
-	if (input->len < IF_IP_TCP_HDR_SIZE) {
+	if (input->len < IF_IP_TCP_HDR_SIZE(input)) {
 		NET_COUNT_TCP(net_count_tcp[NC_TCP_RECV_BAD_HEADERS], 1);
 		goto drop;
 		}
 
-	iph  = GET_IP_HDR(input);
 	tcph = GET_TCP_HDR(input, *offp);
 
 	seglen  = input->len - *offp;				/* TCP のセグメント長 */
@@ -1486,7 +1370,7 @@ find_cep:
 	/*
 	 *  状態が Time Wait 中の CEP を探索する。
 	 */
-	twcep = tcp_find_twcep(&iph->dst, tcph->dport, &iph->src, tcph->sport);
+	twcep = tcp_find_twcep(input, *offp);
 	if (twcep != NULL) {
 
 		if (tcph->flags & TCP_FLG_RST)		/* RST フラグを受信したときは無視する。*/
@@ -1509,12 +1393,12 @@ find_cep:
 		}
 	else
 		/* 標準の TCP 通信端点を得る。*/
-		cep = tcp_find_cep(&iph->dst, tcph->dport, &iph->src, tcph->sport);
+		cep = tcp_find_cep(input, *offp);
 
 #else	/* of #if defined(NUM_TCP_TW_CEP_ENTRY) && NUM_TCP_TW_CEP_ENTRY > 0 */
 
 	/* TCP 通信端点を得る。*/
-	cep = tcp_find_cep(&iph->dst, tcph->dport, &iph->src, tcph->sport);
+	cep = tcp_find_cep(input, *offp);
 
 #endif	/* of #if defined(NUM_TCP_TW_CEP_ENTRY) && NUM_TCP_TW_CEP_ENTRY > 0 */
 
@@ -1893,7 +1777,7 @@ reset_drop:
 	 *  RST 送信処理
 	 */
 
-	if ((tcph->flags & TCP_FLG_RST) || IN_IS_NET_ADDR_MULTICAST(&iph->dst))
+	if ((tcph->flags & TCP_FLG_RST) || IN_IS_NET_ADDR_MULTICAST(input))
 		goto drop;
 
 	/* ホストオーダーからネットワークオーダーに戻す。*/
@@ -1906,9 +1790,8 @@ reset_drop:
 	else
 		rbfree = cep->rbufsz - cep->rwbuf_count;
 
-	if (tcph->flags & TCP_FLG_ACK) {
+	if (tcph->flags & TCP_FLG_ACK)
 		tcp_respond(input, cep, 0, tcph->ack, rbfree, TCP_FLG_RST);
-		}
 	else {
 		if (tcph->flags & TCP_FLG_SYN)
 			tcph->sum ++;		/* tcph->sum は SDU 長 */

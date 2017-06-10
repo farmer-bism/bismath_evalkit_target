@@ -1,7 +1,7 @@
 /*
  *  TINET (UDP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: udp_subr.c,v 1.5.4.1 2015/02/05 02:10:53 abe Exp abe $
+ *  @(#) $Id: udp_subr.c 1.7 2017/6/1 8:49:27 abe $
  */
 
 /*
@@ -70,7 +70,9 @@
 
 #include <kernel.h>
 #include <sil.h>
+#include <t_syslog.h>
 #include "kernel_cfg.h"
+#include "tinet_cfg.h"
 
 #endif	/* of #ifdef TARGET_KERNEL_ASP */
 
@@ -79,6 +81,7 @@
 #include <s_services.h>
 #include <t_services.h>
 #include "kernel_id.h"
+#include "tinet_id.h"
 
 #endif	/* of #ifdef TARGET_KERNEL_JSP */
 
@@ -90,24 +93,21 @@
 #include <net/if_loop.h>
 #include <net/ethernet.h>
 #include <net/net.h>
+#include <net/net_endian.h>
 #include <net/net_buf.h>
 #include <net/net_count.h>
 #include <net/ppp_ipcp.h>
 
 #include <netinet/in.h>
-#include <netinet6/in6.h>
 #include <netinet/in_var.h>
 #include <netinet/in_itron.h>
 #include <netinet/ip.h>
 #include <netinet/ip_var.h>
 #include <netinet/ip_icmp.h>
-#include <netinet6/in6_var.h>
-#include <netinet/ip6.h>
-#include <netinet6/ip6_var.h>
-#include <netinet6/nd6.h>
-#include <netinet/icmp6.h>
 #include <netinet/udp.h>
 #include <netinet/udp_var.h>
+
+#include <net/if_var.h>
 
 #ifdef SUPPORT_UDP
 
@@ -115,62 +115,81 @@
  *  局所変数
  */
 
+#if (defined(_IP6_CFG) && TNUM_UDP6_CEPID > 0) || (defined(_IP4_CFG) && TNUM_UDP4_CEPID > 0)
+
 static uint16_t udp_port_auto = UDP_PORT_FIRST_AUTO;	/* 自動割り当て番号	*/
 
-/*
- *  udp_alloc_auto_port -- 自動割り当てポート番号を設定する。
- */
-
-ER
-udp_alloc_auto_port (T_UDP_CEP *cep)
-{
-	int_t	ix;
-	uint16_t	portno, portno_start;
-
-	portno_start = udp_port_auto;
-	do {
-		portno = udp_port_auto ++;
-		if (udp_port_auto > UDP_PORT_LAST_AUTO)
-			udp_port_auto = UDP_PORT_FIRST_AUTO;
-
-		syscall(wai_sem(SEM_UDP_CEP));
-		for (ix = tmax_udp_ccepid; ix -- > 0; ) {
-			if (VALID_UDP_CEP(&udp_cep[ix]) && udp_cep[ix].myaddr.portno == portno) {
-				portno = UDP_PORTANY;
-				break;
-				}
-			}
-
-		if (portno != UDP_PORTANY) {
-			cep->myaddr.portno = portno;
-			syscall(sig_sem(SEM_UDP_CEP));
-			return E_OK;
-			}
-		syscall(sig_sem(SEM_UDP_CEP));
-
-		} while (portno_start != udp_port_auto);
-
-	return E_NOID;
-	}
+#endif	/* of #if (defined(_IP6_CFG) && TNUM_UDP6_CEPID > 0) || (defined(_IP4_CFG) && TNUM_UDP4_CEPID > 0) */
 
 /*
- *  udp_alloc_port -- 指定されたポート番号を設定する。
+ *  IPv6 と IPv4 で引数が異なる関数のコンパイル
  */
 
-ER
-udp_alloc_port (T_UDP_CEP *cep, uint16_t portno)
-{
-	int_t	ix;
+#if defined(_IP6_CFG) && TNUM_UDP6_CEPID > 0
 
-	syscall(wai_sem(SEM_UDP_CEP));
-	for (ix = tmax_udp_ccepid; ix -- > 0; )
-		if (VALID_UDP_CEP(&udp_cep[ix]) && udp_cep[ix].myaddr.portno == portno) {
-			syscall(sig_sem(SEM_UDP_CEP));
-			return E_PAR;
-			}
-	cep->myaddr.portno = portno;
-	syscall(sig_sem(SEM_UDP_CEP));
-	return E_OK;
-	}
+#if defined(_IP4_CFG) && defined(API_CFG_IP4MAPPED_ADDR)
+
+#define UDP_IS_DSTADDR_ACCEPT	udpn_is_dstaddr_accept
+
+#else	/* of #if defined(_IP4_CFG) */
+
+#define UDP_IS_DSTADDR_ACCEPT	udp6_is_dstaddr_accept
+
+#endif	/* of #if defined(_IP4_CFG) */
+
+#define UDP_SEND_DATA		udp6_send_data
+#define UDP_CAN_SND		udp6_can_snd
+#define UDP_CAN_RCV		udp6_can_rcv
+#define UDP_ALLOC_AUTO_PORT	udp6_alloc_auto_port
+#define UDP_ALLOC_PORT		udp6_alloc_port
+#define UDP_FIND_CEP		udp6_find_cep
+#define UDP_NOTIFY		udp6_notify
+#define TMAX_UDP_CEPID		tmax_udp6_cepid
+#define UDP_CEP			udp6_cep
+#define T_UDP_CEP		T_UDP6_CEP
+#define T_IPEP			T_IPV6EP
+#define API_PROTO		API_PROTO_IPV6
+
+#include <netinet6/udp6_subr.c>
+#include <netinet/udpn_subr.c>
+
+#undef	UDP_SEND_DATA
+#undef	UDP_CAN_SND
+#undef	UDP_CAN_RCV
+#undef	UDP_ALLOC_AUTO_PORT
+#undef	UDP_ALLOC_PORT
+#undef	UDP_FIND_CEP
+#undef	UDP_NOTIFY
+#undef	UDP_IS_DSTADDR_ACCEPT
+#undef	TMAX_UDP_CEPID
+#undef	UDP_CEP
+#undef	T_UDP_CEP
+#undef  T_IPEP
+#undef  API_PROTO
+
+#endif	/* of #if defined(_IP6_CFG) && TNUM_UDP6_CEPID > 0 */
+
+#if defined(_IP4_CFG) && ( (TNUM_UDP4_CEPID > 0) || \
+                          ((TNUM_UDP6_CEPID > 0) && defined(API_CFG_IP4MAPPED_ADDR)))
+
+#define UDP_IS_DSTADDR_ACCEPT	udp4_is_dstaddr_accept
+
+#define UDP_SEND_DATA		udp4_send_data
+#define UDP_CAN_SND		udp4_can_snd
+#define UDP_CAN_RCV		udp4_can_rcv
+#define UDP_ALLOC_AUTO_PORT	udp4_alloc_auto_port
+#define UDP_ALLOC_PORT		udp4_alloc_port
+#define UDP_FIND_CEP		udp4_find_cep
+#define UDP_NOTIFY		udp4_notify
+#define TMAX_UDP_CEPID		tmax_udp4_cepid
+#define T_UDP_CEP		T_UDP4_CEP
+#define UDP_CEP			udp4_cep
+#define T_IPEP			T_IPV4EP
+#define API_PROTO		API_PROTO_IPV4
+
+#include <netinet/udp4_subr.c>
+#include <netinet/udpn_subr.c>
+
+#endif	/* of #if defined(_IP4_CFG) && TNUM_UDP4_CEPID > 0 */
 
 #endif	/* of #ifdef SUPPORT_UDP */

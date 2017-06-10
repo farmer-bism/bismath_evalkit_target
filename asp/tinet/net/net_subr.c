@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: net_subr.c,v 1.5.4.1 2015/02/05 02:09:13 abe Exp abe $
+ *  @(#) $Id: net_subr.c 1.7 2017/6/1 8:49:4 abe $
  */
 
 /*
@@ -87,7 +87,12 @@
 #include <tinet_defs.h>
 #include <tinet_config.h>
 
+#include <net/if.h>
+#include <net/if_loop.h>
+#include <net/if_ppp.h>
+#include <net/ethernet.h>
 #include <net/net.h>
+#include <net/net_endian.h>
 
 /*
  *  変数
@@ -102,7 +107,7 @@ static uint32_t next = ULONG_C(1);
 uint32_t
 net_rand (void)
 {
-	next = (next * 1103515245 + 12345) % (ULONG_C(0x7fffffff) + 1);
+	next = (next * 99991 + 12345) & ULONG_C(0x7fffffff);
 	return next;
 	}
 
@@ -113,7 +118,10 @@ net_rand (void)
 void
 net_srand (uint32_t seed)
 {
-	next += seed;
+	SYSTIM now;
+
+	syscall(get_tim(&now));
+	next += now + seed + IF_SRAND();
 	}
 
 /*
@@ -185,6 +193,20 @@ mac2str (char *buf, uint8_t *macaddr)
 #if _NET_CFG_BYTE_ORDER == _NET_CFG_LITTLE_ENDIAN
 
 /*
+ *  rev_memcpy_hword -- 反転メモリコピー（2 バイト）
+ *
+ *    バイト単位にアクセスする事により、
+ *    境界へのアラインの問題を解決する。
+ */
+
+void
+rev_memcpy_hword (void *dst, void *src)
+{
+	*((uint8_t*)dst    ) = *((uint8_t*)src + 1);
+	*((uint8_t*)dst + 1) = *((uint8_t*)src    );
+	}
+
+/*
  *  rev_memcpy_word -- 反転メモリコピー（4 バイト）
  *
  *    バイト単位にアクセスする事により、
@@ -192,12 +214,12 @@ mac2str (char *buf, uint8_t *macaddr)
  */
 
 void
-rev_memcpy_word (uint8_t *dst, uint8_t *src)
+rev_memcpy_word (void *dst, void *src)
 {
-	*(dst    ) = *(src + 3);
-	*(dst + 1) = *(src + 2);
-	*(dst + 2) = *(src + 1);
-	*(dst + 3) = *(src    );
+	*((uint8_t*)dst    ) = *((uint8_t*)src + 3);
+	*((uint8_t*)dst + 1) = *((uint8_t*)src + 2);
+	*((uint8_t*)dst + 2) = *((uint8_t*)src + 1);
+	*((uint8_t*)dst + 3) = *((uint8_t*)src    );
 	}
 
 /*
@@ -208,12 +230,12 @@ rev_memcpy_word (uint8_t *dst, uint8_t *src)
  */
 
 int_t
-rev_memcmp_word (uint8_t *data1, uint8_t *data2)
+rev_memcmp_word (void *data1, void *data2)
 {
 	int_t	ix, diff;
 
-	for (ix = 4; ix -- > 0; ) {
-		diff = *(data1 + ix) -  *(data2 + (3 - ix));
+	for (ix = sizeof(uint32_t); ix -- > 0; ) {
+		diff = *((uint8_t*)data1 + ix) -  *((uint8_t*)data2 + (3 - ix));
 		if (diff != 0)
 			return diff;
 		}

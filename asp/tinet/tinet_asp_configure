@@ -9,104 +9,78 @@
 #  Copyright (C) 2001-2007 by Dep. of Computer Science and Engineering
 #                   Tomakomai National College of Technology, JAPAN
 # 
-#  ¾åµ­Ãøºî¸¢¼Ô¤Ï¡¤°Ê²¼¤Î(1)¡Á(4)¤Î¾ò·ï¤òËş¤¿¤¹¾ì¹ç¤Ë¸Â¤ê¡¤ËÜ¥½¥Õ¥È¥¦¥§
-#  ¥¢¡ÊËÜ¥½¥Õ¥È¥¦¥§¥¢¤ò²şÊÑ¤·¤¿¤â¤Î¤ò´Ş¤à¡¥°Ê²¼Æ±¤¸¡Ë¤ò»ÈÍÑ¡¦Ê£À½¡¦²ş
-#  ÊÑ¡¦ºÆÇÛÉÛ¡Ê°Ê²¼¡¤ÍøÍÑ¤È¸Æ¤Ö¡Ë¤¹¤ë¤³¤È¤òÌµ½ş¤ÇµöÂú¤¹¤ë¡¥
-#  (1) ËÜ¥½¥Õ¥È¥¦¥§¥¢¤ò¥½¡¼¥¹¥³¡¼¥É¤Î·Á¤ÇÍøÍÑ¤¹¤ë¾ì¹ç¤Ë¤Ï¡¤¾åµ­¤ÎÃøºî
-#      ¸¢É½¼¨¡¤¤³¤ÎÍøÍÑ¾ò·ï¤ª¤è¤Ó²¼µ­¤ÎÌµÊİ¾Úµ¬Äê¤¬¡¤¤½¤Î¤Ş¤Ş¤Î·Á¤Ç¥½¡¼
-#      ¥¹¥³¡¼¥ÉÃæ¤Ë´Ş¤Ş¤ì¤Æ¤¤¤ë¤³¤È¡¥
-#  (2) ËÜ¥½¥Õ¥È¥¦¥§¥¢¤ò¡¤¥é¥¤¥Ö¥é¥ê·Á¼°¤Ê¤É¡¤Â¾¤Î¥½¥Õ¥È¥¦¥§¥¢³«È¯¤Ë»È
-#      ÍÑ¤Ç¤­¤ë·Á¤ÇºÆÇÛÉÛ¤¹¤ë¾ì¹ç¤Ë¤Ï¡¤ºÆÇÛÉÛ¤ËÈ¼¤¦¥É¥­¥å¥á¥ó¥È¡ÊÍøÍÑ
-#      ¼Ô¥Ş¥Ë¥å¥¢¥ë¤Ê¤É¡Ë¤Ë¡¤¾åµ­¤ÎÃøºî¸¢É½¼¨¡¤¤³¤ÎÍøÍÑ¾ò·ï¤ª¤è¤Ó²¼µ­
-#      ¤ÎÌµÊİ¾Úµ¬Äê¤ò·ÇºÜ¤¹¤ë¤³¤È¡¥
-#  (3) ËÜ¥½¥Õ¥È¥¦¥§¥¢¤ò¡¤µ¡´ï¤ËÁÈ¤ß¹ş¤à¤Ê¤É¡¤Â¾¤Î¥½¥Õ¥È¥¦¥§¥¢³«È¯¤Ë»È
-#      ÍÑ¤Ç¤­¤Ê¤¤·Á¤ÇºÆÇÛÉÛ¤¹¤ë¾ì¹ç¤Ë¤Ï¡¤¼¡¤Î¤¤¤º¤ì¤«¤Î¾ò·ï¤òËş¤¿¤¹¤³
-#      ¤È¡¥
-#    (a) ºÆÇÛÉÛ¤ËÈ¼¤¦¥É¥­¥å¥á¥ó¥È¡ÊÍøÍÑ¼Ô¥Ş¥Ë¥å¥¢¥ë¤Ê¤É¡Ë¤Ë¡¤¾åµ­¤ÎÃø
-#        ºî¸¢É½¼¨¡¤¤³¤ÎÍøÍÑ¾ò·ï¤ª¤è¤Ó²¼µ­¤ÎÌµÊİ¾Úµ¬Äê¤ò·ÇºÜ¤¹¤ë¤³¤È¡¥
-#  (4) ËÜ¥½¥Õ¥È¥¦¥§¥¢¤ÎÍøÍÑ¤Ë¤è¤êÄ¾ÀÜÅª¤Ş¤¿¤Ï´ÖÀÜÅª¤ËÀ¸¤¸¤ë¤¤¤«¤Ê¤ëÂ»
-#      ³²¤«¤é¤â¡¤¾åµ­Ãøºî¸¢¼Ô¤ª¤è¤ÓTOPPERS¥×¥í¥¸¥§¥¯¥È¤òÌÈÀÕ¤¹¤ë¤³¤È¡¥
-#      ¤Ş¤¿¡¤ËÜ¥½¥Õ¥È¥¦¥§¥¢¤Î¥æ¡¼¥¶¤Ş¤¿¤Ï¥¨¥ó¥É¥æ¡¼¥¶¤«¤é¤Î¤¤¤«¤Ê¤ëÍı
-#      Í³¤Ë´ğ¤Å¤¯ÀÁµá¤«¤é¤â¡¤¾åµ­Ãøºî¸¢¼Ô¤ª¤è¤ÓTOPPERS¥×¥í¥¸¥§¥¯¥È¤ò
-#      ÌÈÀÕ¤¹¤ë¤³¤È¡¥
+#  ä¸Šè¨˜è‘—ä½œæ¨©è€…ã¯ï¼Œä»¥ä¸‹ã®(1)ã€œ(4)ã®æ¡ä»¶ã‚’æº€ãŸã™å ´åˆã«é™ã‚Šï¼Œæœ¬ã‚½ãƒ•ãƒˆã‚¦ã‚§
+#  ã‚¢ï¼ˆæœ¬ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚’æ”¹å¤‰ã—ãŸã‚‚ã®ã‚’å«ã‚€ï¼ä»¥ä¸‹åŒã˜ï¼‰ã‚’ä½¿ç”¨ãƒ»è¤‡è£½ãƒ»æ”¹
+#  å¤‰ãƒ»å†é…å¸ƒï¼ˆä»¥ä¸‹ï¼Œåˆ©ç”¨ã¨å‘¼ã¶ï¼‰ã™ã‚‹ã“ã¨ã‚’ç„¡å„Ÿã§è¨±è«¾ã™ã‚‹ï¼
+#  (1) æœ¬ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚’ã‚½ãƒ¼ã‚¹ã‚³ãƒ¼ãƒ‰ã®å½¢ã§åˆ©ç”¨ã™ã‚‹å ´åˆã«ã¯ï¼Œä¸Šè¨˜ã®è‘—ä½œ
+#      æ¨©è¡¨ç¤ºï¼Œã“ã®åˆ©ç”¨æ¡ä»¶ãŠã‚ˆã³ä¸‹è¨˜ã®ç„¡ä¿è¨¼è¦å®šãŒï¼Œãã®ã¾ã¾ã®å½¢ã§ã‚½ãƒ¼
+#      ã‚¹ã‚³ãƒ¼ãƒ‰ä¸­ã«å«ã¾ã‚Œã¦ã„ã‚‹ã“ã¨ï¼
+#  (2) æœ¬ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚’ï¼Œãƒ©ã‚¤ãƒ–ãƒ©ãƒªå½¢å¼ãªã©ï¼Œä»–ã®ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢é–‹ç™ºã«ä½¿
+#      ç”¨ã§ãã‚‹å½¢ã§å†é…å¸ƒã™ã‚‹å ´åˆã«ã¯ï¼Œå†é…å¸ƒã«ä¼´ã†ãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆï¼ˆåˆ©ç”¨
+#      è€…ãƒãƒ‹ãƒ¥ã‚¢ãƒ«ãªã©ï¼‰ã«ï¼Œä¸Šè¨˜ã®è‘—ä½œæ¨©è¡¨ç¤ºï¼Œã“ã®åˆ©ç”¨æ¡ä»¶ãŠã‚ˆã³ä¸‹è¨˜
+#      ã®ç„¡ä¿è¨¼è¦å®šã‚’æ²è¼‰ã™ã‚‹ã“ã¨ï¼
+#  (3) æœ¬ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚’ï¼Œæ©Ÿå™¨ã«çµ„ã¿è¾¼ã‚€ãªã©ï¼Œä»–ã®ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢é–‹ç™ºã«ä½¿
+#      ç”¨ã§ããªã„å½¢ã§å†é…å¸ƒã™ã‚‹å ´åˆã«ã¯ï¼Œæ¬¡ã®ã„ãšã‚Œã‹ã®æ¡ä»¶ã‚’æº€ãŸã™ã“
+#      ã¨ï¼
+#    (a) å†é…å¸ƒã«ä¼´ã†ãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆï¼ˆåˆ©ç”¨è€…ãƒãƒ‹ãƒ¥ã‚¢ãƒ«ãªã©ï¼‰ã«ï¼Œä¸Šè¨˜ã®è‘—
+#        ä½œæ¨©è¡¨ç¤ºï¼Œã“ã®åˆ©ç”¨æ¡ä»¶ãŠã‚ˆã³ä¸‹è¨˜ã®ç„¡ä¿è¨¼è¦å®šã‚’æ²è¼‰ã™ã‚‹ã“ã¨ï¼
+#  (4) æœ¬ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã®åˆ©ç”¨ã«ã‚ˆã‚Šç›´æ¥çš„ã¾ãŸã¯é–“æ¥çš„ã«ç”Ÿã˜ã‚‹ã„ã‹ãªã‚‹æ
+#      å®³ã‹ã‚‰ã‚‚ï¼Œä¸Šè¨˜è‘—ä½œæ¨©è€…ãŠã‚ˆã³TOPPERSãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã‚’å…è²¬ã™ã‚‹ã“ã¨ï¼
+#      ã¾ãŸï¼Œæœ¬ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã®ãƒ¦ãƒ¼ã‚¶ã¾ãŸã¯ã‚¨ãƒ³ãƒ‰ãƒ¦ãƒ¼ã‚¶ã‹ã‚‰ã®ã„ã‹ãªã‚‹ç†
+#      ç”±ã«åŸºã¥ãè«‹æ±‚ã‹ã‚‰ã‚‚ï¼Œä¸Šè¨˜è‘—ä½œæ¨©è€…ãŠã‚ˆã³TOPPERSãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã‚’
+#      å…è²¬ã™ã‚‹ã“ã¨ï¼
 # 
-#  ËÜ¥½¥Õ¥È¥¦¥§¥¢¤Ï¡¤ÌµÊİ¾Ú¤ÇÄó¶¡¤µ¤ì¤Æ¤¤¤ë¤â¤Î¤Ç¤¢¤ë¡¥¾åµ­Ãøºî¸¢¼Ô¤ª
-#  ¤è¤ÓTOPPERS¥×¥í¥¸¥§¥¯¥È¤Ï¡¤ËÜ¥½¥Õ¥È¥¦¥§¥¢¤Ë´Ø¤·¤Æ¡¤ÆÃÄê¤Î»ÈÍÑÌÜÅª
-#  ¤ËÂĞ¤¹¤ëÅ¬¹çÀ­¤â´Ş¤á¤Æ¡¤¤¤¤«¤Ê¤ëÊİ¾Ú¤â¹Ô¤ï¤Ê¤¤¡¥¤Ş¤¿¡¤ËÜ¥½¥Õ¥È¥¦¥§
-#  ¥¢¤ÎÍøÍÑ¤Ë¤è¤êÄ¾ÀÜÅª¤Ş¤¿¤Ï´ÖÀÜÅª¤ËÀ¸¤¸¤¿¤¤¤«¤Ê¤ëÂ»³²¤Ë´Ø¤·¤Æ¤â¡¤¤½
-#  ¤ÎÀÕÇ¤¤òÉé¤ï¤Ê¤¤¡¥
+#  æœ¬ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã¯ï¼Œç„¡ä¿è¨¼ã§æä¾›ã•ã‚Œã¦ã„ã‚‹ã‚‚ã®ã§ã‚ã‚‹ï¼ä¸Šè¨˜è‘—ä½œæ¨©è€…ãŠ
+#  ã‚ˆã³TOPPERSãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã¯ï¼Œæœ¬ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã«é–¢ã—ã¦ï¼Œç‰¹å®šã®ä½¿ç”¨ç›®çš„
+#  ã«å¯¾ã™ã‚‹é©åˆæ€§ã‚‚å«ã‚ã¦ï¼Œã„ã‹ãªã‚‹ä¿è¨¼ã‚‚è¡Œã‚ãªã„ï¼ã¾ãŸï¼Œæœ¬ã‚½ãƒ•ãƒˆã‚¦ã‚§
+#  ã‚¢ã®åˆ©ç”¨ã«ã‚ˆã‚Šç›´æ¥çš„ã¾ãŸã¯é–“æ¥çš„ã«ç”Ÿã˜ãŸã„ã‹ãªã‚‹æå®³ã«é–¢ã—ã¦ã‚‚ï¼Œã
+#  ã®è²¬ä»»ã‚’è² ã‚ãªã„ï¼
 # 
-#  @(#) $Id: tinet_asp_configure,v 1.5 2009/12/24 06:42:46 abe Exp abe $
+#  @(#) $Id: tinet_asp_configure,v 1.6 2012/07/18 04:07:37 abe Exp abe $
 # 
 
-#require "getopt.pl";
 use Getopt::Std;
 
-#  ¥ª¥×¥·¥ç¥ó¤ÎÄêµÁ
+#  ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã®å®šç¾©
 #
-#  -T <target>		¥¿¡¼¥²¥Ã¥ÈÌ¾¡ÊÉ¬¿Ü¡Ë
-#  -A <applname>	¥¢¥×¥ê¥±¡¼¥·¥ç¥ó¥×¥í¥°¥é¥àÌ¾
-#  -a <appldir>		¥¢¥×¥ê¥±¡¼¥·¥ç¥ó¤Î¥Ç¥£¥ì¥¯¥È¥êÌ¾
-#  -U <applobjs>	Â¾¤Î¥¢¥×¥ê¥±¡¼¥·¥ç¥ó¥×¥í¥°¥é¥à¥Õ¥¡¥¤¥ë
-#			¡Ê.o¥Õ¥¡¥¤¥ëÌ¾¤Ç»ØÄê¡¥Ê£¿ô»ØÄê²Ä¡Ë
-#  -L <kernel_lib>	¥«¡¼¥Í¥ë¥é¥¤¥Ö¥é¥ê¡Êlibkernel.a¡Ë¤Î¥Ç¥£¥ì¥¯¥È¥êÌ¾
-#			¡Ê¾ÊÎ¬¤·¤¿¾ì¹ç¡¤¥«¡¼¥Í¥ë¥é¥¤¥Ö¥é¥ê¤âmake¤¹¤ë¡Ë
-#  -f			¥«¡¼¥Í¥ë¤ò´Ø¿ôÃ±°Ì¤Ç¥³¥ó¥Ñ¥¤¥ë¤¹¤ë¤«¤É¤¦¤«¤Î»ØÄê
-#  -D <srcdir>		¥«¡¼¥Í¥ëÅù¤Î¥½¡¼¥¹¤ÎÃÖ¤«¤ì¤Æ¤¤¤ë¥Ç¥£¥ì¥¯¥È¥ê
-#  -l <srclang>		¥×¥í¥°¥é¥ß¥ó¥°¸À¸ì¡Ê¸½»şÅÀ¤Ç¤Ïc¤Èc++¤Î¤ß¥µ¥İ¡¼¥È¡Ë
-#  -t <templatedir>	¥Æ¥ó¥×¥ì¡¼¥È¥Ç¥£¥ì¥¯¥È¥ê¤ò»ØÄê¡Ê¥Ç¥Õ¥©¥ë¥È¤Ïtinet/asp_sample¡Ë
-#  -d <dbgenv>		¼Â¹Ô´Ä¶­¤ÎÌ¾¾Î
-#  -r			¥È¥ì¡¼¥¹¥í¥°µ­Ï¿¤Î¥µ¥ó¥×¥ë¥³¡¼¥É¤ò»ÈÍÑ¤¹¤ë¤«¤É¤¦¤«¤Î»ØÄê
-#  -p <perl>		perl¤Î¥Ñ¥¹Ì¾¡ÊÌÀ¼¨Åª¤Ë»ØÄê¤¹¤ë¾ì¹ç¡Ë
-#  -g <cfg>		¥³¥ó¥Õ¥£¥®¥å¥ì¡¼¥¿¡Êcfg¡Ë¤Î¥Ñ¥¹Ì¾
-#  -e <tinetdir>	TINET ¤Î¥½¡¼¥¹¤ÎÃÖ¤«¤ì¤Æ¤¤¤ë¥Ç¥£¥ì¥¯¥È¥ê
-#  -i <net_if>		¥Í¥Ã¥È¥ï¡¼¥¯¥¤¥ó¥¿¥Õ¥§¡¼¥¹¡ÊÉ¬¿Ü¡Ë
-#			ether¡¢ppp¡¢loop ¤Î²¿¤ì¤«¤ò»ØÄê¤¹¤ë¡£
-#  -v <net_dev>		¥¤¡¼¥µ¥Í¥Ã¥È¡¦¥Ç¥£¥Ğ¥¤¥¹¥É¥é¥¤¥Ğ
-#  			¡Ê¥Í¥Ã¥È¥ï¡¼¥¯¥¤¥ó¥¿¥Õ¥§¡¼¥¹¤Ë ether ¤ò»ØÄê¤·¤¿¾ì¹ç¤ÏÉ¬¿Ü¡Ë
-#  -n <net_proto>	¥Í¥Ã¥È¥ï¡¼¥¯ÁØ¥×¥í¥È¥³¥ë¡ÊÉ¬¿Ü¡Ë
-#			inet4¡¢inet6 ¤Î²¿¤ì¤«¤ò»ØÄê¤¹¤ë¡£
-#  -s <trans_proto>	¥È¥é¥ó¥¹¥İ¡¼¥ÈÁØ¥×¥í¥È¥³¥ë¡ÊÉ¬¿Ü¡Ë
-#			tcp¡¢udp¡¢tcp/udp ¤Î²¿¤ì¤«¤ò»ØÄê¤¹¤ë¡£
+#  -T <target>		ã‚¿ãƒ¼ã‚²ãƒƒãƒˆåï¼ˆå¿…é ˆï¼‰
+#  -A <applname>	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚°ãƒ©ãƒ å
+#  -a <appldir>		ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªå
+#  -U <applobjs>	ä»–ã®ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚°ãƒ©ãƒ ãƒ•ã‚¡ã‚¤ãƒ«
+#			ï¼ˆ.oãƒ•ã‚¡ã‚¤ãƒ«åã§æŒ‡å®šï¼è¤‡æ•°æŒ‡å®šå¯ï¼‰
+#  -L <kernel_lib>	ã‚«ãƒ¼ãƒãƒ«ãƒ©ã‚¤ãƒ–ãƒ©ãƒªï¼ˆlibkernel.aï¼‰ã®ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªå
+#			ï¼ˆçœç•¥ã—ãŸå ´åˆï¼Œã‚«ãƒ¼ãƒãƒ«ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚‚makeã™ã‚‹ï¼‰
+#  -f			ã‚«ãƒ¼ãƒãƒ«ã‚’é–¢æ•°å˜ä½ã§ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã™ã‚‹ã‹ã©ã†ã‹ã®æŒ‡å®š
+#  -D <srcdir>		ã‚«ãƒ¼ãƒãƒ«ç­‰ã®ã‚½ãƒ¼ã‚¹ã®ç½®ã‹ã‚Œã¦ã„ã‚‹ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒª
+#  -l <srclang>		ãƒ—ãƒ­ã‚°ãƒ©ãƒŸãƒ³ã‚°è¨€èªï¼ˆç¾æ™‚ç‚¹ã§ã¯cã¨c++ã®ã¿ã‚µãƒãƒ¼ãƒˆï¼‰
+#  -t <templatedir>	ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’æŒ‡å®šï¼ˆãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã¯tinet/asp_sampleï¼‰
+#  -d <dbgenv>		å®Ÿè¡Œç’°å¢ƒã®åç§°
+#  -r			ãƒˆãƒ¬ãƒ¼ã‚¹ãƒ­ã‚°è¨˜éŒ²ã®ã‚µãƒ³ãƒ—ãƒ«ã‚³ãƒ¼ãƒ‰ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã®æŒ‡å®š
+#  -p <perl>		perlã®ãƒ‘ã‚¹åï¼ˆæ˜ç¤ºçš„ã«æŒ‡å®šã™ã‚‹å ´åˆï¼‰
+#  -g <cfg>		ã‚³ãƒ³ãƒ•ã‚£ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚¿ï¼ˆcfgï¼‰ã®ãƒ‘ã‚¹å
+#  -e <tinetdir>	TINET ã®ã‚½ãƒ¼ã‚¹ã®ç½®ã‹ã‚Œã¦ã„ã‚‹ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒª
+#  -i <net_if>		ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ã‚¤ãƒ³ã‚¿ãƒ•ã‚§ãƒ¼ã‚¹ï¼ˆå¿…é ˆï¼‰
+#			etherã€pppã€loop ã®ä½•ã‚Œã‹ã‚’æŒ‡å®šã™ã‚‹ã€‚
+#  -v <net_dev>		ã‚¤ãƒ¼ã‚µãƒãƒƒãƒˆãƒ»ãƒ‡ã‚£ãƒã‚¤ã‚¹ãƒ‰ãƒ©ã‚¤ãƒ
+#  			ï¼ˆãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ã‚¤ãƒ³ã‚¿ãƒ•ã‚§ãƒ¼ã‚¹ã« ether ã‚’æŒ‡å®šã—ãŸå ´åˆã¯å¿…é ˆï¼‰
+#  -n <net_proto>	ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯å±¤ãƒ—ãƒ­ãƒˆã‚³ãƒ«ï¼ˆå¿…é ˆï¼‰
+#			inet6ã€inet4ã€inet6/inet4ã€inet6mã€inet6m/inet4 ã®ä½•ã‚Œã‹ã‚’æŒ‡å®šã™ã‚‹ã€‚
+#  -s <trans_proto>	ãƒˆãƒ©ãƒ³ã‚¹ãƒãƒ¼ãƒˆå±¤ãƒ—ãƒ­ãƒˆã‚³ãƒ«ï¼ˆå¿…é ˆï¼‰
+#			tcpã€udpã€tcp/udp ã®ä½•ã‚Œã‹ã‚’æŒ‡å®šã™ã‚‹ã€‚
+#  -m <asptemplatedir>	ASPãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’æŒ‡å®šï¼ˆãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã¯sampleï¼‰
 
-#  »ÈÍÑÎã(1)
+#  ä½¿ç”¨ä¾‹(1)
 #
 #  % ../tinet/tinet_asp_configure -T akih8_3069f_gcc -A echos4 -i ether -v if_ed -n inet4 -s tcp
 
 #
-#  ¥ª¥×¥·¥ç¥ó¤Î½èÍı
-#
-#do Getopt("TAaULDltdpgiensv");
-getopt("TAaULDltdpgiensv");
-
-#
-#  ÊÑ¿ô¤Î½é´ü²½
-#
-
-$target = $opt_T;
-$applname = $opt_A ? $opt_A : "";
-$appldir = $opt_a ? $opt_a : "";
-$applobjs = $opt_U ? $opt_U : "";
-$kernel_lib = $opt_L ? $opt_L : "";
-$kernel_funcobjs = $opt_f ? "true" : "";
-$srclang = $opt_l ? $opt_l : "c";
-$templatedir = $opt_t ? $opt_t : "asp_sample";
-$dbgenv = $opt_d ? "TOPPERS_".$opt_d : "";
-$enable_trace = $opt_r ? "true" : "";
-$net_if = $opt_i;
-$net_dev = $opt_v;
-$net_proto = $opt_n;
-$trans_proto = $opt_s;
-$aspsampledir = "sample";
-
-#
-#  ¥ª¥Ö¥¸¥§¥¯¥È¥Õ¥¡¥¤¥ëÌ¾¤Î³ÈÄ¥»Ò¤òÊÖ¤¹
+#  ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ•ã‚¡ã‚¤ãƒ«åã®æ‹¡å¼µå­ã‚’è¿”ã™
 #
 sub get_objext {
 	local(@uname);
 
 	use POSIX;
-	@uname = uname();
+	@uname = &uname();
 	if ($uname[0] =~ /^cygwin/i) {
 		return("exe");
 	}
@@ -116,7 +90,7 @@ sub get_objext {
 }
 
 #
-#  ¥×¥í¥°¥é¥à¤Î¾ì½ê¤ò¸¡º÷¤¹¤ë
+#  ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã®å ´æ‰€ã‚’æ¤œç´¢ã™ã‚‹
 #
 sub get_path {
 	local($progname, @pathlist) = @_;
@@ -131,7 +105,7 @@ sub get_path {
 }
 
 #
-#  Makefile ¤òÊÑ´¹¤¹¤ë
+#  Makefile ã‚’å¤‰æ›ã™ã‚‹
 #
 sub convMakefileSub {
 	local($infile, $outfile) = @_;
@@ -159,13 +133,13 @@ sub convMakefileSub {
 }
 
 #
-#  Makefile ¤òÊÑ´¹¤¹¤ë
+#  Makefile ã‚’å¤‰æ›ã™ã‚‹
 #
 sub convMakefile {
 	local($infile, $copyright, $outfile) = @_;
 	local($aspMakefile);
 
-	# Mekfile Í­¤ì¤Ğ¥ê¥Í¡¼¥à¤¹¤ë¡£
+	# Mekfile æœ‰ã‚Œã°ãƒªãƒãƒ¼ãƒ ã™ã‚‹ã€‚
 	print STDERR "tinet_asp_configure: Generating $outfile from $infile.\n";
 	if (-f $outfile) {
 		print STDERR "tinet_asp_configure: $outfile exists.",
@@ -173,23 +147,23 @@ sub convMakefile {
 		rename($outfile, $outfile.".bak");
 	}
 
-	# TINET ¤Î¥³¥Ô¡¼¥é¥¤¥È¤ò½ñ¤­¹ş¤à
+	# TINET ã®ã‚³ãƒ”ãƒ¼ãƒ©ã‚¤ãƒˆã‚’æ›¸ãè¾¼ã‚€
 	&convMakefileSub($copyright, $outfile);
 
-	# ½ĞÎÏ¤¹¤ë Makefile ¤ò¥ª¡¼¥×¥ó¤¹¤ë
+	# å‡ºåŠ›ã™ã‚‹ Makefile ã‚’ã‚ªãƒ¼ãƒ—ãƒ³ã™ã‚‹
 	unless (open(OUTFILE, ">> ".$outfile)) {
 		print STDERR "tinet_asp_configure: can't open $outfile\n";
 		exit(1);
 	}
 
-	# »²¾È¤¹¤ë sample/Makefile ¤ò¥ª¡¼¥×¥ó¤¹¤ë¡£
+	# å‚ç…§ã™ã‚‹ sample/Makefile ã‚’ã‚ªãƒ¼ãƒ—ãƒ³ã™ã‚‹ã€‚
 	$aspMakefile = $aspsampledir."/Makefile";
 	unless (open(ASPFILE, $aspMakefile)) {
 		print STDERR "tinet_asp_configure: can't open $aspMakefile\n";
 		exit(1);
 	}
 
-	# »²¾È¤¹¤ë sample/Makefile ¤Î¥³¥Ô¡¼¥é¥¤¥È¤òÆÉ¤ßÈô¤Ğ¤¹¡£
+	# å‚ç…§ã™ã‚‹ sample/Makefile ã®ã‚³ãƒ”ãƒ¼ãƒ©ã‚¤ãƒˆã‚’èª­ã¿é£›ã°ã™ã€‚
 	while ($line = <ASPFILE>) {
 		chop $line;
 		if ($line !~ /^#/) {
@@ -198,7 +172,7 @@ sub convMakefile {
 		}
 	}
 
-	# 'APPLNAME = @(APPLNAME)' ¤Î¹Ô¤Ş¤Ç½ñ¤­¹ş¤à
+	# 'APPLNAME = @(APPLNAME)' ã®è¡Œã¾ã§æ›¸ãè¾¼ã‚€
 	while ($line = <ASPFILE>) {
 		chop $line;
 		while ($line =~ /^(.*)\@\(([A-Za-z0-9_]+)\)(.*)$/) {
@@ -210,7 +184,7 @@ sub convMakefile {
 		}
 	}
 
-	# '#' Á°¤Î¹Ô¤Ş¤Ç½ñ¤­¹ş¤à
+	# '#' å‰ã®è¡Œã¾ã§æ›¸ãè¾¼ã‚€
 	while ($line = <ASPFILE>) {
 		chop $line;
 		while ($line =~ /^(.*)\@\(([A-Za-z0-9_]+)\)(.*)$/) {
@@ -222,19 +196,19 @@ sub convMakefile {
 		print OUTFILE $line,"\n";
 	}
 
-	# °ìÅÙ½ĞÎÏ¤¹¤ë Makefile ¤ò¥¯¥í¡¼¥º¤¹¤ë¡£
+	# ä¸€åº¦å‡ºåŠ›ã™ã‚‹ Makefile ã‚’ã‚¯ãƒ­ãƒ¼ã‚ºã™ã‚‹ã€‚
 	close(OUTFILE);
 
-	# TINET ¤Î Makefile ¤ò½ñ¤­¹ş¤à
+	# TINET ã® Makefile ã‚’æ›¸ãè¾¼ã‚€
 	&convMakefileSub($infile, $outfile);
 
-	# ¤â¤¦°ìÅÙ½ĞÎÏ¤¹¤ë Makefile ¤ò¥ª¡¼¥×¥ó¤¹¤ë
+	# ã‚‚ã†ä¸€åº¦å‡ºåŠ›ã™ã‚‹ Makefile ã‚’ã‚ªãƒ¼ãƒ—ãƒ³ã™ã‚‹
 	unless (open(OUTFILE, ">> ".$outfile)) {
 		print STDERR "tinet_asp_configure: can't open $outfile\n";
 		exit(1);
 	}
 
-	# »²¾È¤¹¤ë sample/Makefile ¤ÎºÇ½ª¹Ô¤Ş¤Ç½ñ¤­¹ş¤à
+	# å‚ç…§ã™ã‚‹ sample/Makefile ã®æœ€çµ‚è¡Œã¾ã§æ›¸ãè¾¼ã‚€
 	while ($line = <ASPFILE>) {
 		chop $line;
 		while ($line =~ /^(.*)\@\(([A-Za-z0-9_]+)\)(.*)$/) {
@@ -248,7 +222,7 @@ sub convMakefile {
 }
 
 #
-#  Makefile ¤òÀ¸À®¤¹¤ë
+#  Makefile ã‚’ç”Ÿæˆã™ã‚‹
 #
 sub genMakefile {
 	local($file, $mandatory) = @_;
@@ -268,7 +242,7 @@ sub genMakefile {
 }
 
 #
-#  ¥Õ¥¡¥¤¥ë¤òÊÑ´¹¤¹¤ë
+#  ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å¤‰æ›ã™ã‚‹
 #
 sub convert {
 	local($infile, $outfile) = @_;
@@ -302,7 +276,7 @@ sub convert {
 }
 
 #
-#  ¥µ¥ó¥×¥ë¤ò¸«¤Ä¤±¤Æ¥Õ¥¡¥¤¥ë¤òÀ¸À®¤¹¤ë
+#  ã‚µãƒ³ãƒ—ãƒ«ã‚’è¦‹ã¤ã‘ã¦ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ç”Ÿæˆã™ã‚‹
 #
 sub generate {
 	local($file, $mandatory) = @_;
@@ -310,18 +284,90 @@ sub generate {
 
 	$path = $sampledir.$file.".".$applname;
 	if (-f $path) {
-		do { convert($path, $file);};
+		&convert($path, $file);
 		return;
 	}	
 
 	$path = $sampledir.$file;
 	if ($mandatory || -f $path) {
-		do { convert($path, $file); };
+		&convert($path, $file);
 	}	
 }
 
 #
-#  TINET ¤Î¥½¡¼¥¹¥Ç¥£¥ì¥¯¥È¥êÌ¾¤ò¼è¤ê½Ğ¤¹
+#  ãƒ¡ã‚¤ãƒ³å‡¦ç†
+#
+#  ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã®å‡¦ç†
+#
+getopt("TAaULDltdpgiensv");
+
+#
+#  å¤‰æ•°ã®åˆæœŸåŒ–
+#
+$perl = $opt_p ? $opt_p : &get_path("perl", ("/usr/local/bin", "/usr/bin"));
+$target = $opt_T;
+$applname = $opt_A ? $opt_A : "";
+$appldir = $opt_a ? $opt_a : "";
+$applobjs = $opt_U ? $opt_U : "";
+$kernel_lib = $opt_L ? $opt_L : "";
+$kernel_funcobjs = $opt_f ? "true" : "";
+$srclang = $opt_l ? $opt_l : "c";
+$templatedir = $opt_t ? $opt_t : "asp_sample";
+$dbgenv = $opt_d ? "TOPPERS_".$opt_d : "";
+$enable_trace = $opt_r ? "true" : "";
+$net_if = $opt_i;
+$net_dev = $opt_v;
+$net_proto = $opt_n;
+$trans_proto = $opt_s;
+$aspsampledir = $opt_m ? $opt_m : "sample";
+$cfg = $opt_g ? $opt_g : "\$(SRCDIR)/cfg/cfg/cfg";
+$cfgfile = $opt_g ? $opt_g : $srcdir."/cfg/cfg/cfg";
+
+#
+#  ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã®ç¢ºèª
+#
+unless ($opt_T) {
+	print STDERR "tinet_asp_configure: -T option is mandatory\n";
+	print STDERR "Installed targets are:\n";
+	foreach $targetname (<$srcdir/target/[a-zA-Z1-9]*>) {
+		$targetname =~ s|$srcdir/target/||;
+		print STDERR "\t$targetname\n";
+	}
+	exit(1);
+}
+unless ($opt_i) {
+	print STDERR "tinet_asp_configure: -i option is mandatory\n";
+	exit(1);
+}
+else {
+	unless ($opt_v) {
+		print STDERR "tinet_asp_configure: -v option is mandatory\n";
+		exit(1);
+	}
+}
+if ($opt_n) {
+	unless ($opt_n eq "inet6" || $opt_n eq "inet4" || $opt_n eq "inet6/inet4" || $opt_n eq "inet6m" || $opt_n eq "inet6m/inet4") {
+		print STDERR "tinet_asp_configure: inet6, inet4, inet6/inet4, inet6m or inet6m/inet4 expected in -n option\n";
+		exit(1);
+	}
+}
+else {
+	print STDERR "tinet_asp_configure: -n option is mandatory\n";
+	exit(1);
+}
+if ($opt_s) {
+	unless ($opt_s eq "tcp" || $opt_s eq "udp" || $opt_s eq "tcp/udp") {
+		print STDERR "tinet_asp_configure: tcp, udp or tcp/udp expected in -s option\n";
+		exit(1);
+	}
+}
+else {
+	print STDERR "tinet_asp_configure: -s option is mandatory\n";
+	exit(1);
+}
+
+#
+#  TINET ã®ã‚½ãƒ¼ã‚¹ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªåã‚’å–ã‚Šå‡ºã™
 #
 $pwd = `pwd`; chop $pwd;
 if ($opt_e) {
@@ -342,7 +388,7 @@ else {
 $sampledir = $tinetdir."/".$templatedir."/";
 
 #
-#  ¥½¡¼¥¹¥Ç¥£¥ì¥¯¥È¥êÌ¾¤ò¼è¤ê½Ğ¤¹
+#  ã‚½ãƒ¼ã‚¹ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªåã‚’å–ã‚Šå‡ºã™
 #
 $pwd = `pwd`; chop $pwd;
 if ($opt_D) {
@@ -362,55 +408,8 @@ else {
 }
 $aspsampledir = $srcdir."/".$aspsampledir;
 
-$perl = $opt_p ? $opt_p : do { get_path("perl", ("/usr/local/bin", "/usr/bin"));};
-$cfg = $opt_g ? $opt_g : "\$(SRCDIR)/cfg/cfg/cfg";
-$cfgfile = $opt_g ? $opt_g : $srcdir."/cfg/cfg/cfg";
-
 #
-#  ¥ª¥×¥·¥ç¥ó¤Î³ÎÇ§
-#
-unless ($opt_T) {
-	print STDERR "tinet_asp_configure: -T option is mandatory\n";
-	print STDERR "Installed targets are:\n";
-	foreach $targetname (<$srcdir/target/[a-zA-Z1-9]*>) {
-		$targetname =~ s|$srcdir/target/||;
-		print STDERR "\t$targetname\n";
-	}
-	exit(1);
-}
-unless ($opt_i) {
-	print STDERR "tinet_jsp_configure: -i option is mandatory\n";
-	exit(1);
-}
-else {
-	unless ($opt_v) {
-		print STDERR "tinet_jsp_configure: -v option is mandatory\n";
-		exit(1);
-	}
-}
-if ($opt_n) {
-	unless ($opt_n eq "inet4" || $opt_n eq "inet6") {
-		print STDERR "tinet_jsp_configure: inet4 or inet6 expected in -n option\n";
-		exit(1);
-	}
-}
-else {
-	print STDERR "tinet_jsp_configure: -n option is mandatory\n";
-	exit(1);
-}
-if ($opt_s) {
-	unless ($opt_s eq "tcp" || $opt_s eq "udp" || $opt_s eq "tcp/udp") {
-		print STDERR "tinet_jsp_configure: tcp, udp or tcp/udp expected in -s option\n";
-		exit(1);
-	}
-}
-else {
-	print STDERR "tinet_jsp_configure: -s option is mandatory\n";
-	exit(1);
-}
-
-#
-#  ÊÑ¿ô¥Æ¡¼¥Ö¥ë¤ÎºîÀ®
+#  å¤‰æ•°ãƒ†ãƒ¼ãƒ–ãƒ«ã®ä½œæˆ
 #
 %vartable = ();
 $vartable{"TARGET"} = $target;
@@ -424,30 +423,34 @@ $vartable{"SRCABSDIR"} = $srcabsdir;
 $vartable{"SRCLANG"} = $srclang;
 $vartable{"DBGENV"} = $dbgenv;
 $vartable{"ENABLE_TRACE"} = $enable_trace;
+$vartable{"OBJEXT"} = &get_objext();
 $vartable{"PERL"} = $perl;
 $vartable{"CFG"} = $cfg;
-$objext = do { get_objext(); };
-$vartable{"OBJEXT"} = $objext;
 $vartable{"TINETDIR"} = $tinetdir;
 $vartable{"TINETABSDIR"} = $tinetabsdir;
 $vartable{"NET_IF"} = $net_if;
 $vartable{"NET_DEV"} = $net_dev;
 
 #
-#  -n ¥ª¥×¥·¥ç¥ó¤Î½èÍı
+#  -n ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã®å‡¦ç†
 #
 
-$vartable{"SUPPORT_INET4"} = "#SUPPORT_INET4 = true";
 $vartable{"SUPPORT_INET6"} = "#SUPPORT_INET6 = true";
-if ($net_proto eq "inet4") {
-	$vartable{"SUPPORT_INET4"} = "SUPPORT_INET4 = true";
-}
-if ($net_proto eq "inet6") {
+$vartable{"SUPPORT_INET4"} = "#SUPPORT_INET4 = true";
+if ($net_proto eq "inet6" || $net_proto eq "inet6/inet4" || $net_proto eq "inet6m" || $net_proto eq "inet6m/inet4") {
 	$vartable{"SUPPORT_INET6"} = "SUPPORT_INET6 = true";
 }
+if ($net_proto eq "inet4" || $net_proto eq "inet6/inet4" || $net_proto eq "inet6m/inet4") {
+	$vartable{"SUPPORT_INET4"} = "SUPPORT_INET4 = true";
+}
+
+$vartable{"API_CFG_IP4MAPPED_ADDR"} = "#API_CFG_IP4MAPPED_ADDR = true";
+if ($net_proto eq "inet6m" || $net_proto eq "inet6m/inet4") {
+	$vartable{"API_CFG_IP4MAPPED_ADDR"} = "API_CFG_IP4MAPPED_ADDR = true";
+}
 
 #
-#  -s ¥ª¥×¥·¥ç¥ó¤Î½èÍı
+#  -s ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã®å‡¦ç†
 #
 
 $vartable{"SUPPORT_TCP"} = "#SUPPORT_TCP = true";
@@ -460,7 +463,7 @@ if ($trans_proto eq "udp" || $trans_proto eq "tcp/udp") {
 }
 
 #
-#  ¥¿¡¼¥²¥Ã¥È¥Ç¥£¥ì¥¯¥È¥ê¤Î¥Á¥§¥Ã¥¯
+#  ã‚¿ãƒ¼ã‚²ãƒƒãƒˆãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®ãƒã‚§ãƒƒã‚¯
 #
 
 if (! -d $srcdir."/target/".$target) {
@@ -469,20 +472,20 @@ if (! -d $srcdir."/target/".$target) {
 }
 
 #
-#  Makefile ¤È¥¢¥×¥ê¥±¡¼¥·¥ç¥ó¥Õ¥¡¥¤¥ë¤ÎÀ¸À®
+#  Makefile ã¨ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ã‚¡ã‚¤ãƒ«ã®ç”Ÿæˆ
 #
 
 &genMakefile("Makefile", 1);
-do { generate($applname.".c", 0);};
-do { generate($applname.".cpp", 0); };
-do { generate($applname.".h", 0); };
-do { generate($applname.".cfg", 0); };
-do { generate("tinet_".$applname.".cfg", 0); };
-do { generate("route_cfg.c", 0); };
-     do { generate("tinet_app_config.h", 0); };
+&generate($applname.".c", 0);
+&generate($applname.".cpp", 0);
+&generate($applname.".h", 0);
+&generate($applname.".cfg", 0);
+&generate("tinet_".$applname.".cfg", 0);
+&generate("route_cfg.c", 0);
+&generate("tinet_app_config.h", 0);
 
 #
-#  cfg ¤¬¤Ç¤­¤Æ¤¤¤ë¤«¤Î¥Á¥§¥Ã¥¯
+#  cfg ãŒã§ãã¦ã„ã‚‹ã‹ã®ãƒã‚§ãƒƒã‚¯
 #
 
 if (!(-x ($objext == "" ? $cfgfile : $cfgfile.".".$objext))) {

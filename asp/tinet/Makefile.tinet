@@ -1,7 +1,7 @@
 #
 #   TINET (TCP/IP Protocol Stack)
 #  
-#   Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+#   Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
 #                    Tomakomai National College of Technology, JAPAN
 #   Copyright (C) 2008-2009 by Hokkaido Industrial Research Institute, JAPAN
 # 
@@ -29,7 +29,7 @@
 #   含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
 #   接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
 #  
-#   @(#) $Id: Makefile.tinet,v 1.5.4.1 2015/02/05 02:07:56 abe Exp abe $
+#   @(#) $Id: Makefile.tinet 1.7 2017/6/1 8:50:42 abe $
 #
 
 #
@@ -62,36 +62,49 @@ ifndef SUPPORT_INET4
 endif
 
 #
-#  ネットワークサービスに関する定義
+#  TINET 1.7 以降は、ネットワーク層の指定を変更した。
 #
-TINET_DIR = $(TINET_ROOT)/net:$(TINET_ROOT)/netinet
-
-TINET_COBJS := $(TINET_COBJS) \
-	       net_buf.o net_count.o net_subr.o net_timer.o \
-               in_subr.o tinet_cfg.o route_cfg.o
-
-ifeq ($(SUPPORT_INET4),true)
-
-	TINET_COBJS := $(TINET_COBJS) \
-	               ip_input.o ip_output.o ip_icmp.o
-	TINET_KERNEL_CFG := $(TINET_KERNEL_CFG) $(TINET_ROOT)/netinet/ip.cfg
-	TINET_CDEFS := $(TINET_CDEFS) -DSUPPORT_INET4
-
-endif
 
 ifeq ($(SUPPORT_INET6),true)
-
-	TINET_DIR := $(TINET_DIR):$(TINET_ROOT)/netinet6
-	TINET_COBJS := $(TINET_COBJS) \
-	               in6.o in6_ifattach.o nd6_rtr.o \
-	               in6_subr.o ip6_input.o icmp6.o \
-	               dest6.o route6.o frag6.o \
-	               ah_input.o esp_input.o \
-	               nd6.o nd6_nbr.o ip6_output.o scope6.o
-	TINET_KERNEL_CFG := $(TINET_KERNEL_CFG) $(TINET_ROOT)/netinet6/ip6.cfg
 	TINET_CDEFS := $(TINET_CDEFS) -DSUPPORT_INET6
-
 endif
+
+ifeq ($(SUPPORT_INET4),true)
+	TINET_CDEFS := $(TINET_CDEFS) -DSUPPORT_INET4
+endif
+
+ifeq ($API_CFG_IP4MAPPED_ADDR,true)
+	TINET_CDEFS := $(TINET_CDEFS) -DAPI_CFG_IP4MAPPED_ADDR
+endif
+
+#
+#  ネットワークサービスに関する定義
+#
+
+#  汎用通信機能
+
+TINET_DIR = $(TINET_ROOT)/net:$(TINET_ROOT)/netinet:$(TINET_ROOT)/netinet6
+TINET_COBJS := $(TINET_COBJS) \
+	       net_buf.o net_count.o net_subr.o net_timer.o if.o \
+               in_subr.o tinet_cfg.o route_cfg.o
+
+#  IPv6
+
+TINET_COBJS := $(TINET_COBJS) \
+               in6.o in6_ifattach.o nd6_rtr.o \
+               in6_subr.o ip6_input.o icmp6.o \
+               dest6.o route6.o frag6.o \
+               ah_input.o esp_input.o \
+               nd6.o nd6_nbr.o ip6_output.o scope6.o
+TINET_KERNEL_CFG := $(TINET_KERNEL_CFG) $(TINET_ROOT)/netinet6/ip6.cfg
+
+#  IPv4
+
+TINET_COBJS := $(TINET_COBJS) \
+               ip_input.o ip_output.o ip_icmp.o in4_subr.o
+TINET_KERNEL_CFG := $(TINET_KERNEL_CFG) $(TINET_ROOT)/netinet/ip.cfg
+
+#  loop back
 
 ifeq ($(NET_IF),loop)
 
@@ -101,13 +114,21 @@ ifeq ($(NET_IF),loop)
 
 endif
 
+#  ppp
+
 ifeq ($(NET_IF),ppp)
 
 	TINET_COBJS := $(TINET_COBJS) \
 	               ppp.o ppp_hdlc.o ppp_lcp.o ppp_fsm.o \
-	               ppp_auth.o ppp_ipcp.o ppp_upap.o
+	               ppp_auth.o ppp_upap.o
 	TINET_KERNEL_CFG := $(TINET_KERNEL_CFG) $(TINET_ROOT)/net/ppp.cfg
 	TINET_CDEFS := $(TINET_CDEFS) -DSUPPORT_PPP
+
+#  IPv6用 cp
+	TINET_COBJS := $(TINET_COBJS) ppp_ipv6cp.o
+
+#  IPv4用 cp
+	TINET_COBJS := $(TINET_COBJS) ppp_ipcp.o
 
 ifeq ($(PPP_CFG_MODEM),true)
 
@@ -142,29 +163,20 @@ ifeq ($(TARGET_KERNEL),JSP)
 
 endif
 
+#  ethernet
+
 ifeq ($(NET_IF),ether)
 
-	TINET_COBJS := $(TINET_COBJS) if.o ethernet.o
-	TINET_KERNEL_CFG := $(TINET_KERNEL_CFG) $(TINET_ROOT)/net/ethernet.cfg
+	TINET_COBJS := $(TINET_COBJS) ethernet.o if6_ether.o if_ether.o
+	TINET_KERNEL_CFG := $(TINET_KERNEL_CFG) \
+	                    $(TINET_ROOT)/net/ethernet.cfg \
+	                    $(TINET_ROOT)/netinet/if_ether.cfg
 	TINET_CDEFS := $(TINET_CDEFS) -DSUPPORT_ETHER
-
-	ifeq ($(SUPPORT_INET4),true)
-
-		TINET_COBJS := $(TINET_COBJS) if_ether.o
-		TINET_KERNEL_CFG := $(TINET_KERNEL_CFG) $(TINET_ROOT)/netinet/if_ether.cfg
-
-	endif
-
-	ifeq ($(SUPPORT_INET6),true)
-
-		TINET_COBJS := $(TINET_COBJS) if6_ether.o 
-
-	endif
-
-
 	include $(TINET_ROOT)/netdev/$(NET_DEV)/Makefile.tinet
 
 endif
+
+#  TCP
 
 ifeq ($(SUPPORT_TCP),true)
 
@@ -175,6 +187,8 @@ ifeq ($(SUPPORT_TCP),true)
 	TINET_CDEFS := $(TINET_CDEFS) -DSUPPORT_TCP
 
 endif
+
+#  UDP
 
 ifeq ($(SUPPORT_UDP),true)
 
@@ -192,29 +206,21 @@ endif
 ifeq ($(NO_USE_TINET_LIBRARY),true)
 
 	ifeq ($(SUPPORT_TCP),true)
-
 		TINET_COBJS := $(TINET_COBJS) tcp_usrreq.o 
-
 	endif
 
 	ifeq ($(SUPPORT_UDP),true)
-
-		TINET_COBJS := $(TINET_COBJS) udp_usrreq.o
-
+		TINET_COBJS := $(TINET_COBJS) udp_usrreq.o udp_usrreq_nblk.o
 	endif
 
 else
 
 	ifeq ($(SUPPORT_TCP),true)
-
 		TINET_LCSRCS := $(TINET_LCSRCS) tcp_usrreq.c 
-
 	endif
 
 	ifeq ($(SUPPORT_UDP),true)
-
-		TINET_LCSRCS := $(TINET_LCSRCS) udp_usrreq.c
-
+		TINET_LCSRCS := $(TINET_LCSRCS) udp_usrreq.c udp_usrreq_nblk.c
 	endif
 
 	TINET_CDEFS := $(TINET_CDEFS) -DTCP_CFG_LIBRARY -DUDP_CFG_LIBRARY
@@ -247,17 +253,23 @@ tcp_usrreq = 	tcp_cre_rep.o tcp_del_rep.o \
 		tcp_rcv_buf.o tcp_rel_buf.o \
 		tcp_set_opt.o tcp_get_opt.o
 
-udp_usrreq = 	udp_can_snd.o udp_can_rcv.o udp_can_cep.o \
-		udp_cre_cep.o udp_del_cep.o \
-		udp_snd_dat.o udp_rcv_dat.o udp_send_data.o \
-		udp_set_opt.o udp_get_opt.o
+udp_usrreq = 	udp_can_cep.o udp_send_data.o \
+		udp_can_snd.o udp_can_rcv.o \
+		udp_snd_dat.o udp_rcv_dat.o \
+		udp_set_opt.o udp_get_opt.o \
+		udp_cre_cep.o udp_del_cep.o
+
+udp_usrreq_nblk = \
+		udp_can_snd_nblk.o udp_can_rcv_nblk.o \
+		udp_snd_dat_nblk.o udp_rcv_dat_nblk.o
 
 #
 #  ライブラリ化するソースファイルから生成される
 #  オブジェクトファイルの依存関係の定義
 #
-$(tcp_usrreq) $(tcp_usrreq:.o=.s) $(tcp_usrreq:.o=.d): tcp_usrreq.c
-$(udp_usrreq) $(udp_usrreq:.o=.s) $(udp_usrreq:.o=.d): udp_usrreq.c udp_usrreq_nblk.c
+$(tcp_usrreq) $(tcp_usrreq:.o=.s) $(tcp_usrreq:.o=.d): tcp_usrreq.c tcpn_usrreq.c
+$(udp_usrreq) $(udp_usrreq:.o=.s) $(udp_usrreq:.o=.d): udp_usrreq.c udpn_usrreq.c
+$(udp_usrreq_nblk) $(udp_usrreq_nblk:.o=.s) $(udp_usrreq_nblk:.o=.d): udp_usrreq_nblk.c
 
 #
 #  TINET ライブラリの定義
@@ -392,6 +404,9 @@ endif
 
 ifeq ($(TARGET_KERNEL),JSP)
 
+#
+#  JAP 用 TINET コンフィギュレーションファイルの生成
+#
 $(TINET_CFG_OUT): $(TINET_CFG)
 	$(CC) -E $(INCLUDES) $(CDEFS) -x c-header $(TINET_CFG) > tmpfile9
 	$(TINET_ROOT)/cfg/tinet_cfg -s tmpfile9	$(IPSEC_CFG_FLAG)

@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: udp_output.c,v 1.5.4.1 2015/02/05 02:10:53 abe Exp abe $
+ *  @(#) $Id: udp_output.c 1.7 2017/6/1 8:49:27 abe $
  */
 
 /*
@@ -72,6 +72,7 @@
 #include <sil.h>
 #include <t_syslog.h>
 #include "kernel_cfg.h"
+#include "tinet_cfg.h"
 
 #endif	/* of #ifdef TARGET_KERNEL_ASP */
 
@@ -80,6 +81,7 @@
 #include <s_services.h>
 #include <t_services.h>
 #include "kernel_id.h"
+#include "tinet_id.h"
 
 #endif	/* of #ifdef TARGET_KERNEL_JSP */
 
@@ -91,21 +93,16 @@
 #include <net/if_loop.h>
 #include <net/ethernet.h>
 #include <net/net.h>
+#include <net/net_endian.h>
 #include <net/net_buf.h>
 #include <net/net_count.h>
 
 #include <netinet/in.h>
-#include <netinet6/in6.h>
 #include <netinet/in_var.h>
 #include <netinet/in_itron.h>
 #include <netinet/ip.h>
 #include <netinet/ip_var.h>
 #include <netinet/ip_icmp.h>
-#include <netinet6/in6_var.h>
-#include <netinet/ip6.h>
-#include <netinet6/ip6_var.h>
-#include <netinet6/nd6.h>
-#include <netinet/icmp6.h>
 #include <netinet/udp.h>
 #include <netinet/udp_var.h>
 
@@ -114,111 +111,46 @@
 #ifdef UDP_CFG_NON_BLOCKING
 
 /*
- *  関数
+ *  IPv6 と IPv4 で引数が異なる関数のコンパイル
  */
 
-static void udp_output (T_UDP_CEP *cep);
+#undef	IN_GET_DATAGRAM
 
-/*
- *  UDP 出力タスク
- *  ノンブロッキングコールを組み込んだとき使用する。
- */
+#if defined(_IP6_CFG) 
 
-static void
-udp_output (T_UDP_CEP *cep)
-{
-	T_NET_BUF	*output;
-	T_UDP_HDR	*udph;
-	ER_UINT		error;
+#define UDP_OUTPUT		udp6_output
+#define GET_UDP_CEPID		GET_UDP6_CEPID
+#define T_UDP_CEP		T_UDP6_CEP
+#define API_PROTO		API_PROTO_IPV6
 
-#ifdef UDP_CFG_OUT_CHECKSUM
-	uint16_t	sum;
-#endif	/* of #ifdef UDP_CFG_OUT_CHECKSUM */
+#if defined(_IP4_CFG)
+#define	IN_GET_DATAGRAM		inn_get_datagram
+#else
+#define	IN_GET_DATAGRAM		in6_get_datagram
+#endif
 
-	/* IP データグラムを割り当てる。*/
-	if ((error = IN_GET_DATAGRAM(&output, (uint_t)(UDP_HDR_SIZE + cep->snd_len), 0,
-	                             &cep->snd_p_dstaddr->ipaddr,
-	                             &cep->myaddr.ipaddr,
-	                             IPPROTO_UDP, IP_DEFTTL, 
-	                             NBA_SEARCH_ASCENT, TMO_UDP_OUTPUT)) != E_OK) {
-		goto err_ret;
-		}
+#include <netinet/udpn_output.c>
 
-	/* UDP ヘッダに情報を設定する。*/
-	udph		= GET_UDP_HDR(output, IF_IP_UDP_HDR_OFFSET);
-	udph->sport	= htons(cep->myaddr.portno);
-	udph->dport	= htons(cep->snd_p_dstaddr->portno);
-	udph->ulen	= htons(UDP_HDR_SIZE + cep->snd_len);
-	udph->sum	= 0;
+#undef	UDP_OUTPUT
+#undef	GET_UDP_CEPID
+#undef	T_UDP_CEP
+#undef  API_PROTO
+#undef	IN_GET_DATAGRAM
 
-	/* データをコピーする。*/
-	memcpy((void*)GET_UDP_SDU(output, IF_IP_UDP_HDR_OFFSET),
-	       cep->snd_data, (size_t)cep->snd_len);
+#endif	/* of #if defined(_IP6_CFG)  */
 
-#ifdef UDP_CFG_OUT_CHECKSUM
+#if defined(_IP4_CFG) && TNUM_UDP4_CEPID > 0
 
-	sum = IN_CKSUM(output, IPPROTO_UDP, IF_IP_UDP_HDR_OFFSET,
-	               (uint_t)(UDP_HDR_SIZE + cep->snd_len));
+#define UDP_OUTPUT		udp4_output
+#define GET_UDP_CEPID		GET_UDP4_CEPID
+#define T_UDP_CEP		T_UDP4_CEP
+#define API_PROTO		API_PROTO_IPV4
 
-	/* 計算したチェックサムの値が 0 なら 0xffff を入れる。*/
-	if (sum == 0)
-		sum = UINT_C(0xffff);
-	udph->sum = sum;
+#define	IN_GET_DATAGRAM		in4_get_datagram
 
-#endif/* of #ifdef UDP_CFG_OUT_CHECKSUM */
+#include <netinet/udpn_output.c>
 
-	/* ネットワークバッファ長を調整する。*/
-	output->len = (uint16_t)(IF_IP_UDP_HDR_SIZE + cep->snd_len);
-
-	/* ネットワーク層 (IP) の出力関数を呼び出す。*/
-	if ((error = IP_OUTPUT(output, TMO_UDP_OUTPUT)) != E_OK)
-		goto err_ret;
-
-
-	NET_COUNT_MIB(udp_stats.udpOutDatagrams, 1);
-
-	if (IS_PTR_DEFINED(cep->callback)) {
-
-		if (error == E_OK)
-			error = cep->snd_len;
-
-#ifdef TCP_CFG_NON_BLOCKING_COMPAT14
-
-		(*cep->callback)(GET_UDP_CEPID(cep), TFN_UDP_SND_DAT, (void*)error);
-
-#else	/* of #ifdef TCP_CFG_NON_BLOCKING_COMPAT14 */
-
-		(*cep->callback)(GET_UDP_CEPID(cep), TFN_UDP_SND_DAT, (void*)&error);
-
-#endif	/* of #ifdef TCP_CFG_NON_BLOCKING_COMPAT14 */
-
-		}
-	else
-		syslog(LOG_WARNING, "[UDP] no call back, CEP: %d.", GET_UDP_CEPID(cep));
-	cep->snd_p_dstaddr = NULL;
-	return;
-
-err_ret:
-	NET_COUNT_UDP(net_count_udp.out_err_packets, 1);
-	if (IS_PTR_DEFINED(cep->callback)) {
-
-#ifdef TCP_CFG_NON_BLOCKING_COMPAT14
-
-		(*cep->callback)(GET_UDP_CEPID(cep), TFN_UDP_SND_DAT, (void*)E_NOMEM);
-
-#else	/* of #ifdef TCP_CFG_NON_BLOCKING_COMPAT14 */
-
-		error = E_NOMEM;
-		(*cep->callback)(GET_UDP_CEPID(cep), TFN_UDP_SND_DAT, (void*)&error);
-
-#endif	/* of #ifdef TCP_CFG_NON_BLOCKING_COMPAT14 */
-
-		}
-	else
-		syslog(LOG_WARNING, "[UDP] no call back, CEP: %d.", GET_UDP_CEPID(cep));
-	cep->snd_p_dstaddr = NULL;
-	return;
-	}
+#endif	/* of #if defined(_IP4_CFG) && TNUM_UDP4_CEPID > 0 */
 
 /*
  *  UDP 出力タスク
@@ -235,25 +167,42 @@ udp_output_task (intptr_t exinf)
 	syslog(LOG_NOTICE, "[UDP OUTPUT:%d] started.", tskid);
 
 
-#if defined(SUPPORT_INET6) && !defined(SUPPORT_TCP)
+#if defined(_IP6_CFG) && !defined(SUPPORT_TCP)
 
 	/* IPv6 のステートレス・アドレス自動設定を実行する。*/
 	in6_if_up(IF_GET_IFNET());
 
-#endif	/* of #if defined(SUPPORT_INET6) && !defined(SUPPORT_TCP) */
+#endif	/* of #if defined(_IP6_CFG) && !defined(SUPPORT_TCP) */
 
 	while (true) {
 
 		/* 出力がポストされるまで待つ。*/
 		syscall(wai_sem(SEM_UDP_POST_OUTPUT));
 
-		for (ix = tmax_udp_ccepid; ix -- > 0; ) {
+#if defined(_IP6_CFG) && TNUM_UDP6_CEPID > 0
 
-			if (udp_cep[ix].flags & UDP_CEP_FLG_POST_OUTPUT) {
-				udp_cep[ix].flags &= ~UDP_CEP_FLG_POST_OUTPUT;
-				udp_output(&udp_cep[ix]);
+		for (ix = tmax_udp6_cepid; ix -- > 0; ) {
+
+			if (udp6_cep[ix].flags & UDP_CEP_FLG_POST_OUTPUT) {
+				udp6_cep[ix].flags &= ~UDP_CEP_FLG_POST_OUTPUT;
+				udp6_output(&udp6_cep[ix]);
 				}
 			}
+
+#endif	/* of #if defined(_IP6_CFG) && TNUM_UDP6_CEPID > 0 */
+
+#if defined(_IP4_CFG) && TNUM_UDP4_CEPID > 0
+
+		for (ix = tmax_udp4_cepid; ix -- > 0; ) {
+
+			if (udp4_cep[ix].flags & UDP_CEP_FLG_POST_OUTPUT) {
+				udp4_cep[ix].flags &= ~UDP_CEP_FLG_POST_OUTPUT;
+				udp4_output(&udp4_cep[ix]);
+				}
+			}
+
+#endif	/* of #if defined(_IP4_CFG) && TNUM_UDP4_CEPID > 0 */
+
 		}
 	}
 

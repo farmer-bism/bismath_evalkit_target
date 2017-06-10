@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: tcp_echo_cli.c,v 1.5.4.1 2015/02/05 02:12:24 abe Exp abe $
+ *  @(#) $Id: tcp_echo_cli.c 1.7 2017/6/1 8:49:58 abe $
  */
 
 /* 
@@ -49,6 +49,7 @@
 #include <sil.h>
 #include <t_syslog.h>
 #include "kernel_cfg.h"
+#include "tinet_cfg.h"
 
 #endif	/* of #ifdef TARGET_KERNEL_ASP */
 
@@ -56,29 +57,16 @@
 
 #include <t_services.h>
 #include "kernel_id.h"
+#include "tinet_id.h"
 
 #endif	/* of #ifdef TARGET_KERNEL_JSP */
 
-#include <tinet_defs.h>
-#include <tinet_config.h>
-
-#include <net/if.h>
-#include <net/if_ppp.h>
-#include <net/if_loop.h>
-#include <net/net.h>
-#include <net/ethernet.h>
-#include <net/net_var.h>
-#include <net/net_timer.h>
-
 #include <netinet/in.h>
 #include <netinet/in_itron.h>
-#include <netinet/ip.h>
-#include <netinet/ip6.h>
-#include <netinet/tcp.h>
 
 #include <netapp/netapp.h>
 #include <netapp/netapp_var.h>
-#include <netapp/echo.h>
+#include <netapp/tcp_echo_cli.h>
 
 #ifdef USE_TCP_ECHO_CLI
 
@@ -95,53 +83,53 @@
 
 #endif	/* of #ifdef USE_TCP_EXTENTIONS */
 
-/* 表示 */
-
-//#define SHOW_RCV_RANGE
-
-/* タイムアウト */
-
-#define CON_TMO		TMO_FEVR
-//#define CON_TMO		(60*SYSTIM_HZ)
-//#define CLS_TMO		TMO_FEVR				/* Close Wait は標準で 60秒 */
-#define CLS_TMO		(70*SYSTIM_HZ+(net_rand()%SYSTIM_HZ)*10)
-//#define RCV_TMO		TMO_FEVR
-#define RCV_TMO		(40*SYSTIM_HZ+(net_rand()%SYSTIM_HZ)*20)
-//#define SND_TMO		TMO_FEVR
-#define SND_TMO		(30*SYSTIM_HZ+(net_rand()%SYSTIM_HZ)*30)
-
 /* 送信間隔 */
 
-//#define SND_DLY			ULONG_C(500)
-#define SND_ITV		(5*SYSTM_HZ)
+#ifdef TOPPERS_S810_CLG3_85
+
+//#define SND_DLY		(500)
+#define START_DLY	(10*SYSTIM_HZ)
+#define SND_ITV		(5*SYSTIM_HZ)
+#define SLP_ITV		(30*SYSTIM_HZ)
+
+#else	/* of #ifdef TOPPERS_S810_CLG3_85 */
+
+//#define SND_DLY		(500)
+#define START_DLY	(10*SYSTIM_HZ)
+#define SND_ITV		(5*SYSTIM_HZ)
 #define SLP_ITV		(60*SYSTIM_HZ)
+
+#endif	/* of #ifdef TOPPERS_S810_CLG3_85 */
 
 /* 自動実行 */
 
+#if defined(TCP_ECHO_CLI_AUTO_RUN_STR)
+#else
 #if 0
 #if defined(SUPPORT_INET6)
-#define AUTO_RUN_STR	"fe80::211:2fff:fe8a:e8c0 - 0"
+#define TCP_ECHO_CLI_AUTO_RUN_STR	"fd90:cce5:25f6:ff81:201:2ff:fe81:e7c9 - 0"
 #else
-#define AUTO_RUN_STR	"172.25.193.140 - 0"
+#define TCP_ECHO_CLI_AUTO_RUN_STR	"172.25.129.140 - 0"
+#endif
 #endif
 #endif
 
-/*
- *  バッファサイズの定義
- */
-
-#define NUM_ECHO		20
-#define NUM_REP_PAT		20
-#define PAT_BEGIN		' '
-#define PAT_END			'~'
-#define SND_BUF_SIZE		((PAT_END - PAT_BEGIN + 1) * NUM_REP_PAT)
-#define RCV_BUF_SIZE		(SND_BUF_SIZE*15/10)
+#if defined(SUPPORT_INET6)
+#if defined(SUPPORT_INET4)
+#define API_PROTO		'n'
+#else
+#define API_PROTO		'6'
+#endif
+#else
+#define API_PROTO		'4'
+#endif
 
 /*
  *  全域変数
  */
 
-bool_t tcp_echo_cli_valid;
+bool_t	tcp_echo_cli_valid;
+uint_t	tcp_echo_cli_scount;
 
 /* TCP 送受信ウィンドバッファ */
 
@@ -153,21 +141,13 @@ uint8_t tcp_echo_cli_swbuf[TCP_ECHO_CLI_SWBUF_SIZE];
 uint8_t tcp_echo_cli_rwbuf[TCP_ECHO_CLI_RWBUF_SIZE];
 #endif
 
-/*
- *  変数
- */
-
-static uint_t	scount;
-static uint_t	rcount;
-
 #ifdef USE_TCP_NON_BLOCKING
 
-static T_IPEP	nblk_src = {
-			IP_ADDRANY,
-			TCP_PORTANY,
-			};
-static T_IPEP	nblk_dst;
-static ER_UINT	nblk_error;
+/*
+ *  全域変数
+ */
+
+ER_UINT	tcp_echo_cli_nblk_error;
 
 /*
  *  ノンブロッキングコールのコールバック関数
@@ -178,7 +158,7 @@ callback_nblk_tcp_echo_cli (ID cepid, FN fncd, void *p_parblk)
 {
 	ER	error = E_OK;
 
-	nblk_error = *(ER*)p_parblk;
+	tcp_echo_cli_nblk_error = *(ER*)p_parblk;
 
 	switch (fncd) {
 
@@ -187,28 +167,33 @@ callback_nblk_tcp_echo_cli (ID cepid, FN fncd, void *p_parblk)
 		break;
 
 	case TFN_TCP_RCV_BUF:
-		if (nblk_error < 0)
-			syslog(LOG_NOTICE, "[TEC:%02d CBN] rcv buf error: %s", cepid, itron_strerror(nblk_error));
+		if (tcp_echo_cli_nblk_error < 0)
+			syslog(LOG_NOTICE, "[TEC%c:%02u CBN] error: %s",
+			                   API_PROTO, cepid, itron_strerror(tcp_echo_cli_nblk_error));
 		syscall(sig_sem(SEM_TCP_ECHO_CLI_NBLK_READY));
 		break;
 
 	case TFN_TCP_CLS_CEP:
-		if (nblk_error < 0)
-			syslog(LOG_NOTICE, "[TEC:%02d CBN] close error: %s", cepid, itron_strerror(nblk_error));
+		if (tcp_echo_cli_nblk_error < 0)
+			syslog(LOG_NOTICE, "[TEC%c:%02u CBN] error: %s",
+			                   API_PROTO, cepid, itron_strerror(tcp_echo_cli_nblk_error));
 		syscall(sig_sem(SEM_TCP_ECHO_CLI_NBLK_READY));
 		break;
 
 	case TFN_TCP_RCV_DAT:
-		if (nblk_error < 0)
-			syslog(LOG_NOTICE, "[TEC:%02d CBN] rcv dat error: %s", cepid, itron_strerror(nblk_error));
+		if (tcp_echo_cli_nblk_error < 0)
+			syslog(LOG_NOTICE, "[TEC%c:%02u CBN] error: %s",
+			                   API_PROTO, cepid, itron_strerror(tcp_echo_cli_nblk_error));
 		syscall(sig_sem(SEM_TCP_ECHO_CLI_NBLK_READY));
 		break;
 
 	case TFN_TCP_SND_OOB:
-		if (nblk_error > 0)
-			syslog(LOG_NOTICE, "[TEC:%02d CBN] snd urg: %4d", cepid, nblk_error);
+		if (tcp_echo_cli_nblk_error > 0)
+			syslog(LOG_NOTICE, "[TEC%c:%02u CBN] snd urg: %4u",
+			                   API_PROTO, cepid, tcp_echo_cli_nblk_error);
 		else
-			syslog(LOG_NOTICE, "[TEC:%02d CBN] snd urg error: %s", cepid, itron_strerror(nblk_error));
+			syslog(LOG_NOTICE, "[TEC%c:%02u CBN] error: %s",
+			                   API_PROTO, cepid, itron_strerror(tcp_echo_cli_nblk_error));
 		break;
 
 	case TFN_TCP_ACP_CEP:
@@ -221,472 +206,29 @@ callback_nblk_tcp_echo_cli (ID cepid, FN fncd, void *p_parblk)
 	return error;
 	}
 
-/*
- *  send_tcp_echo -- ECHO/TCP サーバにメッセージを送信する。
- */
-
-static ER
-send_tcp_echo (ID cepid, T_IN_ADDR *ipaddr, uint16_t portno)
-{
-	static char smsg[SND_BUF_SIZE];
-
-	ER_UINT		slen;
-	ER		error;
-	SYSTIM		time;
-	uint32_t	total;
-	uint16_t	soff, echo, rep;
-	char		*p, pat;
-
-#ifdef SND_URG_DATA_SIZE
-	int_t	urg = SND_URG_COUNT;
-#endif
-
-	nblk_dst.ipaddr = *ipaddr;
-	nblk_dst.portno = portno;
-
-	p = smsg;
-	for (rep = NUM_REP_PAT; rep -- > 0; )
-		for (pat = PAT_BEGIN; pat <= PAT_END; pat ++)
-			*p ++ = pat;
-
-	if ((error = TCP_CON_CEP(cepid, &nblk_src, &nblk_dst, TMO_NBLK)) != E_WBLK) {
-		syslog(LOG_NOTICE, "[TEC:%02d SND] connect error: %s", cepid, itron_strerror(error));
-		return error;
-		}
-
-	/* 接続が完了するまで待つ。*/
-	syscall(wai_sem(SEM_TCP_ECHO_CLI_NBLK_READY));
-
-	if (nblk_error != E_OK)
-		syslog(LOG_NOTICE, "[TEC:%02d SND] connect error: %s", cepid, itron_strerror(nblk_error));
-	else {
-		get_tim(&time);
-		syslog(LOG_NOTICE, "[TEC:%02d SND] connecting: %6lu, to:   %s.%u",
-		                   cepid, time / SYSTIM_HZ, IP2STR(NULL, ipaddr), nblk_dst.portno);
-
-		if ((error = psnd_dtq(DTQ_TCP_ECHO_CLI_RCV, (intptr_t)cepid)) != E_OK) {
-			syslog(LOG_NOTICE, "[TEC:%02d SND] sync error: %s", cepid, itron_strerror(error));
-			goto cls_ret;
-			}
-
-		scount = total = 0;
-		for (echo = NUM_ECHO; echo -- > 0; ) {
-			soff = 0;
-			while (soff < SND_BUF_SIZE) {
-				if ((slen = tcp_snd_dat(cepid, smsg + soff, sizeof(smsg) - soff, SND_TMO)) < 0) {
-					syslog(LOG_NOTICE, "[TEC:%02d SND] snd dat error: %s",
-					                   cepid, itron_strerror(slen));
-					goto cls_ret;
-					}
-				soff  += (uint16_t)slen;
-				total +=     slen;
-				scount ++;
-#ifdef SHOW_RCV_RANGE
-				syslog(LOG_NOTICE, "[TEC:%02d SND] send cnt: %2d, len: %4d, off: %4d",
-				                   cepid, scount, (uint16_t)slen, soff);
-#endif	/* of #ifdef SHOW_RCV_RANGE */
-
-#ifdef SND_URG_DATA_SIZE
-				if (urg) {
-					if (urg == 1) {
-						if ((error = tcp_snd_oob(cepid, smsg, SND_URG_DATA_SIZE, TMO_NBLK)) != E_WBLK)
-							syslog(LOG_NOTICE, "[TEC:%02d SND] snd urg error: %s",
-							                   cepid, itron_strerror(error));
-						}
-					urg --;
-					}
-#endif	/* of #ifdef SND_URG_DATA_SIZE */
-
-#if SND_DLY > 0
-				syscall(dly_tsk(SND_DLY + net_rand() % SYSTIM_HZ));
-#endif
-				}
-			}
-
-	cls_ret:
-		if ((error = tcp_sht_cep(cepid)) < 0)
-			syslog(LOG_NOTICE, "[TEC:%02d SND] shutdown error: %s", cepid, itron_strerror(error));
-
-		/* 受信が完了するまで待つ。*/
-		syscall(slp_tsk());
-		}
-
-	return error;
-	}
-
-/*
- *  TCP ECHO クライアント受信タスク
- */
-
-#ifdef USE_COPYSAVE_API
-
-void
-tcp_echo_cli_rcv_task (intptr_t exinf)
-{
-	ID		tskid, cepid;
-	ER		error;
-	SYSTIM		time;
-	uint32_t	total;
-	uint16_t	roff, rlen;
-	char		*rmsg, head, tail;
-
-	get_tid(&tskid);
-	syslog(LOG_NOTICE, "[TCP ECHO CLI (NBLK,CS) RCV:%d] started.", tskid);
-	while (true) {
-		if ((error = rcv_dtq(DTQ_TCP_ECHO_CLI_RCV, (intptr_t*)&cepid)) != E_OK) {
-			syslog(LOG_NOTICE, "[TEC:%02d RCV] sync error: %s",
-			                   cepid, itron_strerror(error));
-			}
-                else {
-			roff = rcount = total = 0;
-			while (true) {
-				if ((error = tcp_rcv_buf(cepid, (void**)&rmsg, TMO_NBLK)) != E_WBLK) {
-					syslog(LOG_NOTICE, "[TEC:%02d RCV] rcv buf error: %s", cepid, itron_strerror(error));
-					break;
-					}
-
-				/* 受信バッファの獲得が完了するまで待つ。*/
-				syscall(wai_sem(SEM_TCP_ECHO_CLI_NBLK_READY));
-				if (nblk_error < 0)
-					break;
-
-				rlen = nblk_error;
-				head = *rmsg;
-				tail = *(rmsg + rlen - 1);
-				if (rlen > 0) {
-					roff  += rlen;
-					total += rlen;
-					rcount ++;
-#ifdef SHOW_RCV_RANGE
-					syslog(LOG_NOTICE, "[TEC:%02d RCV] "
-					                   "recv cnt: %2d, len: %4d, off: %4d, data: %02x -> %02x",
-					                   cepid, rcount, rlen, roff, head, tail);
-#endif	/* of #ifdef SHOW_RCV_RANGE */
-					}
-				else
-					break;
-
-				if ((error = tcp_rel_buf(cepid, rlen)) != E_OK)
-					syslog(LOG_NOTICE, "[TEC:%02d RCV] rel buf error: %s", 
-					                   cepid, itron_strerror(error));
-				}
-
-			if ((error = tcp_cls_cep(cepid, TMO_NBLK)) != E_WBLK && error != E_OK)
-				syslog(LOG_NOTICE, "[TEC:%02d SND] close error: %s", cepid, itron_strerror(error));
-
-			/* 切断が完了するまで待つ。*/
-			syscall(wai_sem(SEM_TCP_ECHO_CLI_NBLK_READY));
-
-			get_tim(&time);
-			syslog(LOG_NOTICE, "[TEC:%02u RCV] finished:   %6lu, snd: %4u, rcv: %4u, len: %u",
-			                   cepid, time / SYSTIM_HZ, scount, rcount, total);
-			}
-
-		syscall(wup_tsk(TCP_ECHO_CLI_SND_TASK));
-		}
-	}
-
-#else	/* of #ifdef USE_COPYSAVE_API */
-
-void
-tcp_echo_cli_rcv_task (intptr_t exinf)
-{
-	static char rmsg[RCV_BUF_SIZE];
-
-	ID		tskid, cepid;
-	ER		error;
-	SYSTIM		time;
-	uint32_t	total;
-	uint16_t	roff, rlen;
-	char		head, tail;
-
-	get_tid(&tskid);
-	syslog(LOG_NOTICE, "[TCP ECHO CLI (NBLK) RCV:%d] started.", tskid);
-	while (true) {
-		if ((error = rcv_dtq(DTQ_TCP_ECHO_CLI_RCV, (intptr_t*)&cepid)) != E_OK) {
-			syslog(LOG_NOTICE, "[TEC:%02d RCV] sync error: %s",
-			                   cepid, itron_strerror(error));
-			}
-                else {
-			roff = rcount = total = 0;
-			while (true) {
-				if ((error = tcp_rcv_dat(cepid, rmsg, sizeof(rmsg), TMO_NBLK)) != E_WBLK) {
-					syslog(LOG_NOTICE, "[TEC:%02d RCV] rcv error: %s", cepid, itron_strerror(error));
-					break;
-					}
-
-				/* 受信が完了するまで待つ。*/
-				syscall(wai_sem(SEM_TCP_ECHO_CLI_NBLK_READY));
-				if (nblk_error < 0)
-					break;
-
-				rlen = nblk_error;
-				head = *rmsg;
-				tail = *(rmsg + rlen - 1);
-				rcount ++;
-				if (rlen > 0) {
-					roff  += rlen;
-					total += rlen;
-#ifdef SHOW_RCV_RANGE
-					syslog(LOG_NOTICE, "[TEC:%02d RCV] "
-					                   "recv cnt: %2d, len: %4d, off: %4d, data: %02x -> %02x",
-					                   cepid, rcount, rlen, roff, head, tail);
-#endif	/* of #ifdef SHOW_RCV_RANGE */
-					}
-				else
-					break;
-				}
-
-			if ((error = tcp_cls_cep(cepid, TMO_NBLK)) != E_WBLK && error != E_OK)
-				syslog(LOG_NOTICE, "[TEC:%02d SND] close error: %s", cepid, itron_strerror(error));
-
-			/* 切断が完了するまで待つ。*/
-			syscall(wai_sem(SEM_TCP_ECHO_CLI_NBLK_READY));
-
-			get_tim(&time);
-			syslog(LOG_NOTICE, "[TEC:%02u RCV] finished:   %6lu, snd: %4u, rcv: %4u, len: %u",
-			                   cepid, time / SYSTIM_HZ, scount, rcount, total);
-			}
-
-		syscall(wup_tsk(TCP_ECHO_CLI_SND_TASK));
-		}
-	}
-
-#endif	/* of #ifdef USE_COPYSAVE_API */
-
-#else	/* of #ifdef USE_TCP_NON_BLOCKING */
-
-/*
- *  send_tcp_echo -- ECHO/TCP サーバにメッセージを送信する。
- */
-
-static ER
-send_tcp_echo (ID cepid, T_IN_ADDR *ipaddr, uint16_t portno)
-{
-	static char smsg[SND_BUF_SIZE];
-	static T_IPEP src = {
-		IP_ADDRANY,
-		TCP_PORTANY,
-		};
-
-	T_IPEP		dst;
-	ER_UINT		slen;
-	ER		error;
-	SYSTIM		time;
-	uint32_t	total;
-	uint16_t	soff, echo, rep;
-	char 		pat, *p;
-
-#ifdef SND_URG_DATA_SIZE
-	int_t	urg = SND_URG_COUNT;
-#endif
-
-	dst.ipaddr = *ipaddr;
-	dst.portno = portno;
-
-	p = smsg;
-	for (rep = NUM_REP_PAT; rep -- > 0; )
-		for (pat = PAT_BEGIN; pat <= PAT_END; pat ++)
-			*p ++ = pat;
-
-	if ((error = TCP_CON_CEP(cepid, &src, &dst, CON_TMO)) != E_OK) {
-		syslog(LOG_NOTICE, "[TEC:%02d SND] connect error: %s", cepid, itron_strerror(error));
-		return error;
-		}
-
-	get_tim(&time);
-	syslog(LOG_NOTICE, "[TEC:%02u SND] connecting: %6lu, to:   %s.%u",
-	                   cepid, time / SYSTIM_HZ, IP2STR(NULL, &dst.ipaddr), dst.portno);
-
-	if ((error = psnd_dtq(DTQ_TCP_ECHO_CLI_RCV, (intptr_t)cepid)) != E_OK) {
-		syslog(LOG_NOTICE, "[TEC:%02d SND] sync error: %s", cepid, itron_strerror(error));
-		goto cls_ret;
-		}
-
-	scount = total = 0;
-	for (echo = NUM_ECHO; echo -- > 0; ) {
-		soff = 0;
-		while (soff < SND_BUF_SIZE) {
-			if ((slen = tcp_snd_dat(cepid, smsg + soff, sizeof(smsg) - soff, SND_TMO)) < 0) {
-				syslog(LOG_NOTICE, "[TEC:%02d SND] snd dat error: %s", cepid, itron_strerror(slen));
-				goto cls_ret;
-				}
-			soff  += (uint16_t)slen;
-			total +=     slen;
-			scount ++;
-#ifdef SHOW_RCV_RANGE
-			syslog(LOG_NOTICE, "[TEC:%02d SND] send count: %3d, len: %4d, offset: %4d",
-			                   cepid, scount, (uint16_t)slen, soff);
-#endif	/* of #ifdef SHOW_RCV_RANGE */
-
-#ifdef SND_URG_DATA_SIZE
-			if (urg > 0) {
-				if (urg == 1) {
-					if ((slen = tcp_snd_oob(cepid, smsg, SND_URG_DATA_SIZE, SND_TMO)) >= 0)
-						syslog(LOG_NOTICE, "[TEC:%02d SND] snd urg: %4d",
-						                   cepid, (uint16_6)slen);
-					else
-						syslog(LOG_NOTICE, "[TEC:%02d SND] snd urg error: %s",
-						                   cepid, itron_strerror(slen));
-					}
-				urg --;
-				}
-#endif	/* of #ifdef SND_URG_DATA_SIZE */
-
-#if SND_DLY > 0
-			syscall(dly_tsk(SND_DLY + net_rand() % SYSTIM_HZ));
-#endif
-			}
-		}
-
-cls_ret:
-	if ((error = tcp_sht_cep(cepid)) < 0)
-		syslog(LOG_NOTICE, "[TEC:%02d SND] shutdown error: %s", cepid, itron_strerror(error));
-
-	/* 受信が完了するまで待つ。*/
-	syscall(slp_tsk());
-
-	return error;
-	}
-
-/*
- *  TCP ECHO クライアント受信タスク
- */
-
-#ifdef USE_COPYSAVE_API
-
-void
-tcp_echo_cli_rcv_task (intptr_t exinf)
-{
-	ID		tskid, cepid;
-	ER_UINT		rlen;
-	ER		error;
-	SYSTIM		time;
-	uint32_t	total;
-	uint16_t	roff;
-	char		*rmsg;
-
-	get_tid(&tskid);
-	syslog(LOG_NOTICE, "[TCP ECHO CLI (CS) RCV:%d] started.", tskid);
-	while (true) {
-		if ((error = rcv_dtq(DTQ_TCP_ECHO_CLI_RCV, (intptr_t*)&cepid)) != E_OK) {
-			syslog(LOG_NOTICE, "[TEC:%02d RCV] sync error: %s",
-			                   cepid, itron_strerror(error));
-			}
-		else {
-			roff = rcount = total = 0;
-			while (true) {
-				if ((rlen = tcp_rcv_buf(cepid, (void**)&rmsg, RCV_TMO)) < 0) {
-					syslog(LOG_NOTICE, "[TEC:%02d RCV] rcv buf error: %s",
-					                   cepid, itron_strerror(rlen));
-					break;
-					}
-				else if (rlen > 0) {
-					roff  += (uint16_t)rlen;
-					total +=     rlen;
-					rcount ++;
-#ifdef SHOW_RCV_RANGE
-					syslog(LOG_NOTICE, "[TEC:%02d RCV] recv count: %3d, len: %4d, data: %02x -> %02x",
-					                   cepid, rcount, (uint16_t)rlen, *rmsg, *(rmsg + rlen - 1));
-#endif	/* of #ifdef SHOW_RCV_RANGE */
-					}
-				else
-					break;
-				if ((error = tcp_rel_buf(cepid, rlen)) != E_OK)
-					syslog(LOG_NOTICE, "[TEC:%02d RCV] rel buf error: %s", cepid, itron_strerror(error));
-				}
-
-			if ((error = tcp_cls_cep(cepid, CLS_TMO)) < 0)
-				syslog(LOG_NOTICE, "[TEC:%02d RCV] close error: %s", cepid, itron_strerror(error));
-
-			get_tim(&time);
-			syslog(LOG_NOTICE, "[TEC:%02u RCV] finished:   %6lu, snd: %4u, rcv: %4u, len: %u",
-			                   cepid, time / SYSTIM_HZ, scount, rcount, total);
-			}
-
-		syscall(wup_tsk(TCP_ECHO_CLI_SND_TASK));
-		}
-	}
-
-#else	/* of #ifdef USE_COPYSAVE_API */
-
-void
-tcp_echo_cli_rcv_task (intptr_t exinf)
-{
-	static char rmsg[RCV_BUF_SIZE];
-
-	ID		tskid, cepid;
-	ER_UINT		rlen;
-	ER		error;
-	SYSTIM		time;
-	uint32_t	total;
-	uint16_t	roff;
-
-	get_tid(&tskid);
-	syslog(LOG_NOTICE, "[TCP ECHO CLI RCV:%d] started.", tskid);
-	while (true) {
-		if ((error = rcv_dtq(DTQ_TCP_ECHO_CLI_RCV, (intptr_t*)&cepid)) != E_OK) {
-			syslog(LOG_NOTICE, "[TEC:%02d RCV] sync error: %s",
-			                   cepid, itron_strerror(error));
-			}
-                else {
-			roff = rcount = total = 0;
-			while (true) {
-				if ((rlen = tcp_rcv_dat(cepid, rmsg, sizeof(rmsg), RCV_TMO)) < 0) {
-					syslog(LOG_NOTICE, "[TEC:%02d RCV] rcv dat error: %s", cepid, itron_strerror(rlen));
-					tcp_can_cep(cepid, TFN_TCP_ALL);
-					break;
-					}
-				else if (rlen > 0) {
-					roff  += (uint16_t)rlen;
-					total +=     rlen;
-					rcount ++;
-#ifdef SHOW_RCV_RANGE
-					syslog(LOG_NOTICE, "[TEC:%02d RCV] recv count: %3d, len: %4d, data: %02x -> %02x",
-					                   cepid, rcount, (uint16_t)rlen, *rmsg, *(rmsg + rlen - 1));
-#endif	/* of #ifdef SHOW_RCV_RANGE */
-					}
-				else
-					break;
-				}
-
-			if ((error = tcp_cls_cep(cepid, CLS_TMO)) < 0)
-				syslog(LOG_NOTICE, "[TEC:%02d RCV] close error: %s", cepid, itron_strerror(error));
-
-			get_tim(&time);
-			syslog(LOG_NOTICE, "[TEC:%02u RCV] received:   %6lu, snd: %4u, rcv: %4u, len: %u",
-			                   cepid, time / SYSTIM_HZ, scount, rcount, total);
-			}
-
-		syscall(wup_tsk(TCP_ECHO_CLI_SND_TASK));
-		}
-	}
-
-#endif	/* of #ifdef USE_COPYSAVE_API */
-
 #endif	/* of #ifdef USE_TCP_NON_BLOCKING */
 
 /*
  *  getcomd -- コマンドを得る。
  */
 
-#ifdef AUTO_RUN_STR
+#ifdef TCP_ECHO_CLI_AUTO_RUN_STR
 
 static char *
-getcomd (ID cepid)
+getcomd (ID cepid, bool_t retry, char *apip)
 {
 	ER		error;
 	char		*line = NULL;
-	static char	auto_run_str[] = AUTO_RUN_STR;
+	static char	auto_run_str[] = TCP_ECHO_CLI_AUTO_RUN_STR;
 	static int_t	count = 0;
 
-	if (count == 0) {
+	if (retry || (count == 0)) {
 		line = auto_run_str;
 		dly_tsk(3 * 1000);
 		}
 	else {
 		while ((error = rcv_dtq(DTQ_TCP_ECHO_CLI_SND, (intptr_t*)&line)) != E_OK) {
-			syslog(LOG_NOTICE, "[TEC:%02d TSK] error: %s", cepid, itron_strerror(error));
+			syslog(LOG_NOTICE, "[TEC%c:%02u TSK] error: %s", API_PROTO, cepid, itron_strerror(error));
 			dly_tsk(SLP_ITV);
 			}
 		}
@@ -695,26 +237,59 @@ getcomd (ID cepid)
 	return line;
 	}
 
-#else	/* of #ifdef AUTO_RUN_STR */
+#else	/* of #ifdef TCP_ECHO_CLI_AUTO_RUN_STR */
 
 static char *
-getcomd (ID cepid)
+getcomd (ID cepid, bool_t retry, char *apip)
 {
 	ER	error;
 	char	*line = NULL;
 
 	while ((error = rcv_dtq(DTQ_TCP_ECHO_CLI_SND, (intptr_t*)&line)) != E_OK) {
-		syslog(LOG_NOTICE, "[TEC:%02d TSK] error: %s", cepid, itron_strerror(error));
+		syslog(LOG_NOTICE, "[TEC%c:%02u TSK] error: %s", API_PROTO, cepid, itron_strerror(error));
 		dly_tsk(SLP_ITV);
 		}
+
+#if defined(SUPPORT_INET6) && defined(SUPPORT_INET4) && defined(USE_TCP4_ECHO_CLI)
+
+	if (*line == '6') {
+		line ++;
+		*apip = API_PROTO_IPV6;
+		}
+	else if (*line == '4') {
+		line ++;
+		*apip = API_PROTO_IPV4;
+		}
+	else {
+		*apip= DEFAULT_API_PROTO;
+		if (*line && *line != ' ')
+			line ++;
+		}
+
+#else	/* of #if defined(SUPPORT_INET6) && defined(SUPPORT_INET4) && defined(USE_TCP4_ECHO_CLI) */
+
+	*apip= DEFAULT_API_PROTO;
+	if (*line && *line != ' ')
+		line ++;
+
+#endif	/* of #if defined(SUPPORT_INET6) && defined(SUPPORT_INET4) && defined(USE_TCP4_ECHO_CLI) */
+
 	return line;
 	}
 
-#endif	/* of #ifdef AUTO_RUN_STR */
+#endif	/* of #ifdef TCP_ECHO_CLI_AUTO_RUN_STR */
 
 /*
  *  TCP ECHO クライアント送信タスク
  */
+
+/*
+ *  IP アドレスの指定
+ */
+
+#define ADDR_IPVn	'n'
+#define ADDR_IPV6	'6'
+#define ADDR_IPV4	'4'
 
 void
 tcp_echo_cli_snd_task (intptr_t exinf)
@@ -722,9 +297,11 @@ tcp_echo_cli_snd_task (intptr_t exinf)
 	ID		tskid, cepid;
 	ER		error;
 	T_IN_ADDR	addr;
-	uint16_t	portno;
-	int_t		rep, count;
 	char		*line;
+	int_t		rep, count;
+	bool_t		retry = false;
+	uint16_t	portno;
+	char		apip;
 
 #ifdef USE_TCP_EXTENTIONS
 
@@ -732,13 +309,60 @@ tcp_echo_cli_snd_task (intptr_t exinf)
 
 #endif	/* of #ifdef USE_TCP_EXTENTIONS */
 
+#ifdef TCP_ECHO_CLI_AUTO_RUN_STR
+	dly_tsk(START_DLY);
+#endif
 	get_tid(&tskid);
-	syslog(LOG_NOTICE, "[TCP ECHO CLI SND:%d,%d] started.", tskid, (ID)exinf);
+	syslog(LOG_NOTICE, "[TCP%c ECHO CLI SND:%d,%d] started.", DEFAULT_API_PROTO, tskid, (ID)exinf);
 	while (true) {
-		line = getcomd((ID)exinf);
-		line = skip_blanks(GET_IPADDR(&addr, skip_blanks(line)));	/* IP Address */
+		line = skip_blanks(getcomd((ID)exinf, retry, &apip));
 
-		if ('0' <= *line && *line <= '9') {				/* Port No */
+#if defined(SUPPORT_INET6) && !defined(SUPPORT_INET4) && !defined(API_CFG_IP4MAPPED_ADDR)
+
+		if (apip == API_PROTO_IPV4) {
+			syslog(LOG_NOTICE, "[TEC%c:%02u TSK] error: E_PAR", API_PROTO, (ID)exinf);
+			retry = true;
+			continue;
+			}
+
+#endif	/* of #if defined(SUPPORT_INET6) && !defined(SUPPORT_INET4) && !defined(API_CFG_IP4MAPPED_ADDR) */
+
+		if ((line = lookup_ipaddr(&addr, line, apip)) == NULL) {
+			syslog(LOG_NOTICE, "[TEC%c:%02u TSK] sleep %d.%03u[s], unknown host.",
+			       API_PROTO, (ID)exinf, SLP_ITV / SYSTIM_HZ, SLP_ITV % SYSTIM_HZ);
+			dly_tsk(SLP_ITV);
+			syslog(LOG_NOTICE, "[TEC%c:%02u TSK] resume.", API_PROTO, (ID)exinf);
+			retry = true;
+			continue;
+			}
+		else
+			retry = false;
+
+#if defined(SUPPORT_INET6)
+
+#if defined(USE_TCP4_ECHO_CLI)
+
+#else	/* of #if defined(USE_TCP4_ECHO_CLI) */
+
+		if (in6_is_addr_ipv4mapped(&addr))
+			apip = API_PROTO_IPV4;
+		else
+			apip = API_PROTO_IPV6;
+
+#endif	/* of #if defined(USE_TCP4_ECHO_CLI) */
+
+#else	/* of #if defined(SUPPORT_INET6) */
+
+		if (apip == API_PROTO_IPV6) {
+			syslog(LOG_NOTICE, "[TEC%c:%02u TSK] error: E_PAR", API_PROTO, (ID)exinf);
+			retry = true;
+			continue;
+			}
+
+#endif	/* of #if defined(SUPPORT_INET6) */
+
+		line = skip_blanks(line);
+		if ('0' <= *line && *line <= '9') {	/* Port No */
 			line = get_int(&rep, line);
 			portno = (uint16_t)rep;
 			}
@@ -748,10 +372,12 @@ tcp_echo_cli_snd_task (intptr_t exinf)
 			}
 
 		line = skip_blanks(line);
-		if ('0' <= *line && *line <= '9')				/* Repeat */
+		if ('0' <= *line && *line <= '9')	/* Repeat */
 			line = get_int(&rep, line);
-		else
+		else {
+			line ++;
 			rep = 1;
+			}
 
 #ifdef USE_TCP_EXTENTIONS
 
@@ -775,14 +401,44 @@ tcp_echo_cli_snd_task (intptr_t exinf)
 		ccep.callback = NULL;
 #endif
 
-		if ((error = alloc_tcp_cep(&cepid, tskid, &ccep)) != E_OK) {
-			syslog(LOG_NOTICE, "[TEC:%02d TSK] CEP create error: %s", cepid, itron_strerror(error));
+#if defined(SUPPORT_INET6) && defined(SUPPORT_INET4) && defined(USE_TCP4_ECHO_CLI)
+
+		if (apip == API_PROTO_IPV6) {
+			if ((error = alloc_tcp6_cep(&cepid, tskid, &ccep)) != E_OK) {
+				syslog(LOG_NOTICE, "[TEC%c:%02u TSK] error: %s", apip, cepid, itron_strerror(error));
+				continue;
+				}
+			}
+		else {
+			if ((error = alloc_tcp4_cep(&cepid, tskid, &ccep)) != E_OK) {
+				syslog(LOG_NOTICE, "[TEC%c:%02u TSK] error: %s", apip, cepid, itron_strerror(error));
+				continue;
+				}
+			}
+
+#else	/* of #if defined(SUPPORT_INET6) && defined(SUPPORT_INET4) && defined(USE_TCP4_ECHO_CLI) */
+
+		if ((error = ALLOC_TCP_CEP(&cepid, tskid, &ccep)) != E_OK) {
+			syslog(LOG_NOTICE, "[TEC%c:%02u TSK] error: %s", apip, cepid, itron_strerror(error));
 			continue;
 			}
 
+#endif	/* of #if defined(SUPPORT_INET6) && defined(SUPPORT_INET4) && defined(USE_TCP4_ECHO_CLI) */
+
 #else	/* of #ifdef USE_TCP_EXTENTIONS */
 
+#if defined(SUPPORT_INET6) && defined(SUPPORT_INET4) && defined(USE_TCP4_ECHO_CLI)
+
+		if (apip == API_PROTO_IPV6)
+			cepid = (ID)exinf;
+		else
+			cepid = TCP4_ECHO_CLI_CEPID;
+
+#else	/* of #if defined(SUPPORT_INET6) && defined(SUPPORT_INET4) && defined(USE_TCP4_ECHO_CLI) */
+
 		cepid = (ID)exinf;
+
+#endif	/* of #if defined(SUPPORT_INET6) && defined(SUPPORT_INET4) && defined(USE_TCP4_ECHO_CLI) */
 
 #endif	/* of #ifdef USE_TCP_EXTENTIONS */
 
@@ -790,36 +446,36 @@ tcp_echo_cli_snd_task (intptr_t exinf)
 		count = 0;
 		while (rep == 0 || count < rep) {
 			if (!tcp_echo_cli_valid) {
-				syslog(LOG_NOTICE, "[TEC:%02d TSK] canceled.", cepid);
+				syslog(LOG_NOTICE, "[TEC%c:%02u TSK] canceled.", apip, cepid);
 				break;
 				}
 
 			count ++;
 			if (rep == 0) {
-				syslog(LOG_NOTICE, "[TEC:%02d TSK] start:              repeat: %d", cepid, count);
-				error = send_tcp_echo(cepid, &addr, portno);
-				syslog(LOG_NOTICE, "[TEC:%02d TSK] finished:           repeat: %d", cepid, count);
+				syslog(LOG_NOTICE, "[TEC%c:%02u TSK] start:       repeat: %d", apip, cepid, count);
+				error = tcp_echo_cli_snd(cepid, &addr, portno, apip);
+				syslog(LOG_NOTICE, "[TEC%c:%02u TSK] finsh:       repeat: %d", apip, cepid, count);
 				}
 			else {
-				syslog(LOG_NOTICE, "[TEC:%02d TSK] start:              repeat: %d/%d", cepid, count, rep);
-				error = send_tcp_echo(cepid, &addr, portno);
-				syslog(LOG_NOTICE, "[TEC:%02d TSK] finished:           repeat: %d/%d", cepid, count, rep);
+				syslog(LOG_NOTICE, "[TEC%c:%02u TSK] start:       repeat: %d/%d", apip, cepid, count, rep);
+				error = tcp_echo_cli_snd(cepid, &addr, portno, apip);
+				syslog(LOG_NOTICE, "[TEC%c:%02u TSK] finsh:       repeat: %d/%d", apip, cepid, count, rep);
 				}
 
 			if (error != E_OK) {
-				syslog(LOG_NOTICE, "[TEC:%02d TSK] sleep %d[ms], error: %s",
-				                   cepid, SLP_ITV, itron_strerror(error));
+				syslog(LOG_NOTICE, "[TEC%c:%02u TSK] sleep %d.%03u[s], error: %s",
+				                   apip, cepid, SLP_ITV / SYSTIM_HZ, SLP_ITV % SYSTIM_HZ, itron_strerror(error));
 				tslp_tsk(SLP_ITV);
-				syslog(LOG_NOTICE, "[TEC:%02d TSK] resume.", cepid);
+				syslog(LOG_NOTICE, "[TEC%c:%02u TSK] resume.", apip, cepid);
 				}
 
 #if defined(SND_ITV)
 #if SND_ITV > 0
-			if (count > 0) {
+			if (count < rep) {
 				uint_t itv;
 				
 				itv = SND_ITV;
-				syslog(LOG_NOTICE, "[TEC:%02d TSK] interval: %d[ms].", cepid, itv);
+				syslog(LOG_NOTICE, "[TEC%c:%02u TSK] interval: %d[s].", apip, cepid, itv / SYSTIM_HZ);
 				syscall(dly_tsk(SND_ITV));
 				}
 #endif
@@ -828,8 +484,8 @@ tcp_echo_cli_snd_task (intptr_t exinf)
 
 #ifdef USE_TCP_EXTENTIONS
 
-		if ((error = free_tcp_cep(cepid)) != E_OK)
-			syslog(LOG_NOTICE, "[TEC:%02d TSK] CEP delete error: %s", cepid, itron_strerror(error));
+		if ((error = FREE_TCP_CEP(cepid)) != E_OK)
+			syslog(LOG_NOTICE, "[TEC%c:%02u TSK] error: %s", apip, cepid, itron_strerror(error));
 
 #endif	/* of #ifdef USE_TCP_EXTENTIONS */
 

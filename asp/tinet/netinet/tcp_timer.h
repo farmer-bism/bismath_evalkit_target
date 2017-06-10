@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: tcp_timer.h,v 1.5 2009/12/24 05:47:21 abe Exp $
+ *  @(#) $Id: tcp_timer.h 1.7 2017/6/1 8:49:38 abe $
  */
 
 /*
@@ -72,7 +72,7 @@
 
 /* TCP タイマ変数 */
 
-#define NUM_TCP_TIMERS		4	/* TCP のタイマ数	*/
+//#define NUM_TCP_TIMERS		4	/* TCP のタイマ数	*/
 
 #define TCP_TIM_REXMT		0	/* 再送タイマ		*/
 #define TCP_TIM_PERSIST		1	/* 持続タイマ		*/
@@ -133,10 +133,6 @@
  */
 
 #define TCP_MAX_REXMT_SHIFT	12	/* 最大再送回数		*/
-
-/* TCP タイマ値の型 */
-
-typedef int16_t T_TCP_TIME;
 
 /*
  *  関数

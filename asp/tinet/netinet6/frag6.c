@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: frag6.c,v 1.5.4.1 2015/02/05 02:11:26 abe Exp abe $
+ *  @(#) $Id: frag6.c 1.7 2017/6/1 8:49:41 abe $
  */
 
 /*	$FreeBSD: src/sys/netinet6/frag6.c,v 1.9 2002/04/19 04:46:22 suz Exp $	*/
@@ -91,19 +91,19 @@
 #include <net/if_arp.h>
 #include <net/ppp_ipcp.h>
 #include <net/net.h>
+#include <net/net_endian.h>
 #include <net/net_buf.h>
 #include <net/net_var.h>
 #include <net/net_count.h>
 
 #include <netinet/in.h>
-#include <netinet6/in6.h>
-#include <netinet6/in6_var.h>
+#include <netinet/in_var.h>
+#include <netinet/ip.h>
+#include <netinet/ip_var.h>
+#include <netinet/ip_icmp.h>
 #include <netinet6/nd6.h>
-#include <netinet/ip6.h>
-#include <netinet6/ip6_var.h>
-#include <netinet/icmp6.h>
 
-#ifdef SUPPORT_INET6
+#ifdef _IP6_CFG
 
 #ifdef IP6_CFG_FRAGMENT
 
@@ -668,4 +668,4 @@ buf_rel:
 	return IPPROTO_DONE;
 	}
 
-#endif /* of #ifdef SUPPORT_INET6 */
+#endif /* of #ifdef _IP6_CFG */

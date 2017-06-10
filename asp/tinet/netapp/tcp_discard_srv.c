@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: tcp_discard_srv.c,v 1.5 2009/12/24 05:44:56 abe Exp $
+ *  @(#) $Id: tcp_discard_srv.c 1.7 2017/6/1 8:49:58 abe $
  */
 
 /* 
@@ -57,25 +57,12 @@
 
 #endif	/* of #ifdef TARGET_KERNEL_JSP */
 
-#include <tinet_defs.h>
-#include <tinet_config.h>
-
-#include <net/if.h>
-#include <net/if_ppp.h>
-#include <net/if_loop.h>
-#include <net/ethernet.h>
-#include <net/net.h>
-#include <net/net_timer.h>
-
 #include <netinet/in.h>
 #include <netinet/in_itron.h>
-#include <netinet/ip.h>
-#include <netinet/ip6.h>
-#include <netinet/tcp.h>
 
 #include <netapp/netapp.h>
 #include <netapp/netapp_var.h>
-#include <netapp/discard.h>
+#include <netapp/tcp_discard_srv.h>
 
 #ifdef USE_TCP_DISCARD_SRV
 
@@ -120,26 +107,26 @@ tcp_discard_srv (ID cepid, ID repid)
 #endif	/* of #ifdef SHOW_RCV_DATA */
 
 	if ((error = TCP_ACP_CEP(cepid, repid, &dst, TMO_FEVR)) != E_OK) {
-		syslog(LOG_NOTICE, "[TDS:%02d ACP] accept error: %s", cepid, itron_strerror(error));
+		syslog(LOG_NOTICE, "[TDSn:%02u ACP] accept error: %s", cepid, itron_strerror(error));
 		return error;
 		}
 
 #ifdef USE_TCP_EXTENTIONS
-	if ((error = free_tcp_rep(repid, true)) != E_OK) {
-		syslog(LOG_NOTICE, "[TDS:%02d DEL] REP delete error: %s", cepid, itron_strerror(error));
+	if ((error = FREE_TCP_REP(repid, true)) != E_OK) {
+		syslog(LOG_NOTICE, "[TDSn:%02u DEL] REP delete error: %s", cepid, itron_strerror(error));
 		return error;
 		}
 #endif	/* of #ifdef USE_TCP_EXTENTIONS */
 
 	count = total = 0;
 	get_tim(&time);
-	syslog(LOG_NOTICE, "[TDS:%02d RCV] connected:  %6ld, from: %s.%d",
+	syslog(LOG_NOTICE, "[TDSn:%02u RCV] conct: %7lu, from: %s.%d",
 	                   cepid, time / SYSTIM_HZ, IP2STR(NULL, &dst.ipaddr), dst.portno);
 	while ((rlen = tcp_rcv_buf(cepid, (void*)&buf, TMO_FEVR)) > 0) {
 		count ++;
 
 #ifdef SHOW_RCV_RANGE
-		syslog(LOG_NOTICE, "[TDS:%02d RCV] count: %4d, len: %4d, data: %02x -> %02x",
+		syslog(LOG_NOTICE, "[TDSn:%02u RCV] count: %6lu, len: %4u, data: %02x -> %02x",
 		       cepid, count, (uint16_t)rlen, *buf, *(buf + rlen - 1));
 #endif	/* of #ifdef SHOW_RCV_RANGE */
 
@@ -149,7 +136,7 @@ tcp_discard_srv (ID cepid, ID repid)
 #endif	/* of #ifdef SHOW_RCV_DATA */
 
 		if ((error = tcp_rel_buf(cepid, rlen)) != E_OK) {
-			syslog(LOG_NOTICE, "[TDS:%02d RCV] rel buf error: %s",
+			syslog(LOG_NOTICE, "[TDSn:%02u RCV] rel buf error: %s",
 			                    cepid, itron_strerror(error));
 			rlen = 0;
 			break;
@@ -158,16 +145,16 @@ tcp_discard_srv (ID cepid, ID repid)
 		}
 
 	if (rlen != 0)
-		syslog(LOG_NOTICE, "[TDS:%02d RCV] recv buf error: %s", cepid, itron_strerror(rlen));
+		syslog(LOG_NOTICE, "[TDSn:%02u RCV] recv buf error: %s", cepid, itron_strerror(rlen));
 
 	if ((error = tcp_sht_cep(cepid)) != E_OK)
-		syslog(LOG_NOTICE, "[TDS:%02d RCV] shutdown error: %s", cepid, itron_strerror(error));
+		syslog(LOG_NOTICE, "[TDSn:%02u RCV] shutdown error: %s", cepid, itron_strerror(error));
 
 	if ((error = tcp_cls_cep(cepid, TMO_FEVR)) != E_OK)
-		syslog(LOG_NOTICE, "[TDS:%02d RCV] close error: %s", cepid, itron_strerror(error));
+		syslog(LOG_NOTICE, "[TDSn:%02u RCV] close error: %s", cepid, itron_strerror(error));
 
 	get_tim(&time);
-	syslog(LOG_NOTICE, "[TDS:%02d RCV] finished:   %6ld,            rcv: %4d, len: %ld",
+	syslog(LOG_NOTICE, "[TDSn:%02u RCV] finsh: %7lu, ttl: %lu",
 	                   cepid, time / SYSTIM_HZ, count, total);
 
 	return error;
@@ -189,42 +176,42 @@ tcp_discard_srv (ID cepid, ID repid)
 	uint8_t		*buf = buffer;
 
 	if ((error = TCP_ACP_CEP(cepid, repid, &dst, TMO_FEVR)) != E_OK) {
-		syslog(LOG_NOTICE, "[TDS:%02d RCV] accept error: %s", cepid, itron_strerror(error));
+		syslog(LOG_NOTICE, "[TDSn:%02u RCV] accept error: %s", cepid, itron_strerror(error));
 		return error;
 		}
 
 #ifdef USE_TCP_EXTENTIONS
-	if ((error = free_tcp_rep(repid, true)) != E_OK) {
-		syslog(LOG_NOTICE, "[TDS:%02d DEL] REP delete error: %s", cepid, itron_strerror(error));
+	if ((error = FREE_TCP_REP(repid, true)) != E_OK) {
+		syslog(LOG_NOTICE, "[TDSn:%02u DEL] REP delete error: %s", cepid, itron_strerror(error));
 		return error;
 		}
 #endif	/* of #ifdef USE_TCP_EXTENTIONS */
 
 	count = total = 0;
 	get_tim(&time);
-	syslog(LOG_NOTICE, "[TDS:%02d RCV] connected:  %6ld, from: %s.%d",
+	syslog(LOG_NOTICE, "[TDSn:%02u RCV] conct: %7lu, from: %s.%d",
 	                   cepid, time / SYSTIM_HZ, IP2STR(NULL, &dst.ipaddr), dst.portno);
 	while ((rlen = tcp_rcv_dat(cepid, buf, BUF_SIZE - 1, TMO_FEVR)) > 0) {
 		count ++;
 
 #ifdef SHOW_RCV_RANGE
-		syslog(LOG_NOTICE, "[TDS:%02d RCV] count: %4d, len: %4d, data: %02x -> %02x",
+		syslog(LOG_NOTICE, "[TDSn:%02u RCV] count: %6lu, len: %4u, data: %02x -> %02x",
 		       cepid, count, (uint16_t)rlen, *buf, *(buf + rlen - 1));
 #endif	/* of #ifdef SHOW_RCV_RANGE */
 
 		total += rlen;
 		}
 	if (rlen != 0)
-		syslog(LOG_NOTICE, "[TDS:%02d RCV] recv error: %s", cepid, itron_strerror(rlen));
+		syslog(LOG_NOTICE, "[TDSn:%02u RCV] recv error: %s", cepid, itron_strerror(rlen));
 
 	if ((error = tcp_sht_cep(cepid)) != E_OK)
-		syslog(LOG_NOTICE, "[TDS:%02d RCV] shutdown error: %s", cepid, itron_strerror(error));
+		syslog(LOG_NOTICE, "[TDSn:%02u RCV] shutdown error: %s", cepid, itron_strerror(error));
 
 	if ((error = tcp_cls_cep(cepid, TMO_FEVR)) != E_OK)
-		syslog(LOG_NOTICE, "[TDS:%02d RCV] close error: %s", cepid, itron_strerror(error));
+		syslog(LOG_NOTICE, "[TDSn:%02u RCV] close error: %s", cepid, itron_strerror(error));
 
 	get_tim(&time);
-	syslog(LOG_NOTICE, "[TDS:%02d RCV] finished:   %6ld,            rcv: %4d, len: %ld",
+	syslog(LOG_NOTICE, "[TDSn:%02u RCV] finsh: %7lu, ttl: %lu",
 	                   cepid, time / SYSTIM_HZ, count, total);
 
 	return error;
@@ -242,22 +229,26 @@ static ER
 get_tcp_rep (ID *repid)
 {
 	ID		tskid;
-	T_TCP_CREP	crep;
+	T_TCPN_CREP	crep;
 
 	get_tid(&tskid);
 
 	crep.repatr = UINT_C(0);
 	crep.myaddr.portno = UINT_C(9);
 
+#if defined(SUPPORT_INET6)
+
+	memcpy(&crep.myaddr.ipaddr, &ipv6_addrany, sizeof(T_IN6_ADDR));
+
+#else	/* #if defined(SUPPORT_INET6) */
+
 #if defined(SUPPORT_INET4)
 	crep.myaddr.ipaddr = IPV4_ADDRANY;
 #endif
 
-#if defined(SUPPORT_INET6)
-	memcpy(&crep.myaddr.ipaddr, &ipv6_addrany, sizeof(T_IN6_ADDR));
-#endif
+#endif	/* #if defined(SUPPORT_INET6) */
 
-	return alloc_tcp_rep(repid, tskid, &crep);
+	return ALLOC_TCP_REP(repid, tskid, &crep);
 	}
 
 /*
@@ -284,7 +275,7 @@ get_tcp_cep (ID *cepid)
 	ccep.rbuf = tcp_discard_srv_rwbuf;
 #endif
 
-	return alloc_tcp_cep(cepid, tskid, &ccep);
+	return ALLOC_TCP_CEP(cepid, tskid, &ccep);
 	}
 
 /*
@@ -298,29 +289,39 @@ tcp_discard_srv_task (intptr_t exinf)
 	ER	error = E_OK;
 
 	syscall(get_tid(&tskid));
-	syslog(LOG_NOTICE, "[TCP ECHO SRV:%d] started.", tskid);
+
+#if defined(SUPPORT_INET6)
+#if defined(SUPPORT_INET4)
+	syslog(LOG_NOTICE, "[TCPn DISCARD SRV:%d] started.", tskid);
+#else
+	syslog(LOG_NOTICE, "[TCP6 DISCARD SRV:%d] started.", tskid);
+#endif
+#else
+	syslog(LOG_NOTICE, "[TCP4 DISCARD SRV:%d] started.", tskid);
+#endif
+
 	while (true) {
 
 		syscall(slp_tsk());
 		if ((error = get_tcp_cep (&cepid)) != E_OK) {
-			syslog(LOG_NOTICE, "[TDS:00 EXT] CEP create error: %s", itron_strerror(error));
+			syslog(LOG_NOTICE, "[TDSn:00 EXT] CEP create error: %s", itron_strerror(error));
 			continue;
 			}
 
 		while (true) {
 
 			if ((error = get_tcp_rep (&repid)) != E_OK) {
-				syslog(LOG_NOTICE, "[TDS:00 EXT] REP create error: %s", itron_strerror(error));
+				syslog(LOG_NOTICE, "[TDSn:00 EXT] REP create error: %s", itron_strerror(error));
 				break;
 				}
 			else if ((error = tcp_discard_srv(cepid, repid)) != E_OK) {
-				error = free_tcp_rep(repid, error != E_DLT);
+				error = FREE_TCP_REP(repid, error != E_DLT);
 				break;
 				}
 			}
 
-		if ((error = free_tcp_cep(cepid)) != E_OK)
-			syslog(LOG_NOTICE, "[TDS:%02d EXT] CEP delete error: %s", cepid, itron_strerror(error));
+		if ((error = FREE_TCP_CEP(cepid)) != E_OK)
+			syslog(LOG_NOTICE, "[TDSn:%02u EXT] CEP delete error: %s", cepid, itron_strerror(error));
 
 		}
 	}
@@ -333,7 +334,17 @@ tcp_discard_srv_task(intptr_t exinf)
 	ID	tskid;
 
 	get_tid(&tskid);
-	syslog(LOG_NOTICE, "[TCP DISCARD SRV:%d,%d] started.", tskid, (ID)exinf);
+
+#if defined(SUPPORT_INET6)
+#if defined(SUPPORT_INET4)
+	syslog(LOG_NOTICE, "[TCPn DISCARD SRV:%d,%d] started.", tskid, (ID)exinf);
+#else
+	syslog(LOG_NOTICE, "[TCP6 DISCARD SRV:%d,%d] started.", tskid, (ID)exinf);
+#endif
+#else
+	syslog(LOG_NOTICE, "[TCP4 DISCARD SRV:%d,%d] started.", tskid, (ID)exinf);
+#endif
+
 	while (true) {
 		while (tcp_discard_srv((ID)exinf, TCP_DISCARD_SRV_REPID) == E_OK)
 			;

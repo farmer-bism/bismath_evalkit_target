@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: ip_icmp.h,v 1.5 2009/12/24 05:47:21 abe Exp $
+ *  @(#) $Id: ip_icmp.h 1.7 2017/6/1 8:49:36 abe $
  */
 
 /*
@@ -70,6 +70,8 @@
 #ifndef _IP_ICMP_H_
 #define _IP_ICMP_H_
 
+#include <netinet/icmp6.h>
+
 /*
  *  ICMP ヘッダの定義、RFC 792
  */
@@ -95,9 +97,9 @@ typedef struct t_icmp_hdr {
 #define GET_ICMP4_HDR(nbuf,ihoff)	((T_ICMP4_HDR*)((uint8_t*)((nbuf)->buf) + ihoff))
 #define GET_ICMP4_SDU(nbuf,ihoff)	((uint8_t*)((nbuf)->buf) + ihoff + ICMP4_HDR_SIZE)
 
-#define GET_ICMP4_HDR_OFFSET(nbuf)	(GET_IF_IP_HDR_SIZE(nbuf))
+#define GET_ICMP4_HDR_OFFSET(nbuf)	(GET_IF_IP4_HDR_SIZE(nbuf))
 
-#define GET_IP4_ICMP4_HDR_SIZE(nbuf)	(GET_IP4_HDR_SIZE(GET_IP4_HDR(nbuf)) + ICMP4_HDR_SIZE)
+#define GET_IP4_ICMP4_HDR_SIZE(nbuf)	(GET_IP4_HDR_SIZE(nbuf) + ICMP4_HDR_SIZE)
 #define GET_IF_IP4_ICMP4_HDR_SIZE(nbuf)	(IF_HDR_SIZE + GET_IP4_ICMP4_HDR_SIZE(nbuf))
 
 /*

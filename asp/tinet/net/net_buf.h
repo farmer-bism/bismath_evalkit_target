@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: net_buf.h,v 1.5 2009/12/24 05:42:40 abe Exp $
+ *  @(#) $Id: net_buf.h 1.7 2017/6/1 8:49:14 abe $
  */
 
 #ifndef _NET_BUF_H_
@@ -60,7 +60,7 @@ struct t_net_buf {
 #if CPU_NET_ALIGN == 4 && IF_HDR_ALIGN != 4
 	uint8_t		halign[4 - IF_HDR_ALIGN];
 #endif
-	uint8_t		buf[4];	/* バッファ本体		*/
+	uint8_t		buf[IF_MIN_LEN];	/* バッファ本体 */
 	};
 
 #ifndef T_NET_BUF_DEFINED
@@ -70,6 +70,7 @@ typedef struct t_net_buf T_NET_BUF;
 #define T_NET_BUF_DEFINED
 
 #endif	/* of #ifndef T_NET_BUF_DEFINED */
+
 /*
  *  64 オクテット
  */
@@ -159,6 +160,8 @@ typedef struct t_net_buf_1024 {
  *  ネットワークインタフェースの最大 PDU サイズ
  */
 
+#if defined(IF_PDU_SIZE)
+
 typedef struct t_net_buf_if_pdu {
 	uint16_t	len;	/* データの長さ		*/
 	uint8_t		idix;	/* mpfid のインデックス	*/
@@ -176,6 +179,8 @@ typedef struct t_net_buf_if_pdu {
 #endif				/* ヘッダの余分		*/
 	} T_NET_BUF_IF_PDU;
 
+#endif	/* of #if defined(IF_PDU_SIZE) */
+
 /*
  *  ネットワークバッファ表
  */
@@ -188,6 +193,7 @@ typedef struct t_net_buf_entry {
 #if NET_COUNT_ENABLE & PROTO_FLG_NET_BUF
 
 	ulong_t		prepares;
+	ulong_t		busies;
 	ulong_t		requests;
 	ulong_t		allocs;
 	ulong_t		errors;

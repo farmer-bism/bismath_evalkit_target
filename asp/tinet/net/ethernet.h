@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: ethernet.h,v 1.5 2009/12/24 05:42:40 abe Exp $
+ *  @(#) $Id: ethernet.h 1.7 2017/6/1 8:49:11 abe $
  */
 
 /*
@@ -97,6 +97,40 @@
 #error IF_ETHER_NIC_HDR_ALIGN expected.
 #endif	/* of #ifndef IF_ETHER_NIC_HDR_ALIGN */
 
+#if defined(__RX)
+
+#pragma pack
+typedef struct t_ether_header {
+
+#if IF_ETHER_NIC_HDR_ALIGN != 0
+
+	uint8_t		align[IF_ETHER_NIC_HDR_ALIGN];	/* アライン調整 */
+
+#endif	/* of #if IF_ETHER_NIC_HDR_ALIGN != 0 */
+
+	uint8_t		dhost[ETHER_ADDR_LEN];
+	uint8_t		shost[ETHER_ADDR_LEN];
+	uint16_t	type;
+	} T_ETHER_HDR;
+#pragma packoption
+
+#elif defined(TOPPERS_S810_CLG3_85)	/* of #if defined(__RX) */
+
+typedef struct t_ether_header {
+
+#if IF_ETHER_NIC_HDR_ALIGN != 0
+
+	uint8_t		align[IF_ETHER_NIC_HDR_ALIGN];	/* アライン調整 */
+
+#endif	/* of #if IF_ETHER_NIC_HDR_ALIGN != 0 */
+
+	uint8_t		dhost[ETHER_ADDR_LEN];
+	uint8_t		shost[ETHER_ADDR_LEN];
+	uint16_t	type;
+	} T_ETHER_HDR;
+
+#else	/* of #if defined(__RX) */
+
 typedef struct t_ether_header {
 
 #if IF_ETHER_NIC_HDR_ALIGN != 0
@@ -109,6 +143,8 @@ typedef struct t_ether_header {
 	uint8_t		shost[ETHER_ADDR_LEN];
 	uint16_t	type;
 	} __attribute__((packed))T_ETHER_HDR;
+
+#endif	/* of #if defined(__RX) */
 
 #define GET_ETHER_HDR(nbuf)		((T_ETHER_HDR*)((nbuf)->buf))
 
@@ -139,6 +175,7 @@ typedef struct t_ether_addr {
 #define T_IF_ADDR		T_ETHER_ADDR		/* インタフェースのアドレス			*/
 #define IF_HDR_ALIGN		2			/* ヘッダのアライン単位				*/
 #define IF_MTU			1500			/* インタフェースの MTU				*/
+#define IF_MIN_LEN		ETHER_MIN_LEN		/* インターフェースフレームの最短長		*/
 
 #define IF_OUTPUT(o,d,g,t)	ether_output(o,d,g,t)	/* インタフェースの出力関数			*/
 #define IF_RAW_OUTPUT(o,t)	ether_raw_output(o,t)	/* インタフェースの出力関数、アドレス解決無し	*/
@@ -147,11 +184,12 @@ typedef struct t_ether_addr {
 #define IF_SOFTC_TO_IFADDR(s)	((T_IF_ADDR*)(s)->ifaddr.lladdr)
 							/* ソフトウェア情報から MAC アドレスを取り出す	*/
 #define IF_GET_IFNET()		ether_get_ifnet()	/* ネットワークインタフェース構造体を返す。		*/
-#define IF_TYPE			IFT_ETHER		/* インターフェースの型				*/
+#define IF_TYPE			IFT_ETHER		/* インタフェースの型				*/
+#define IF_SRAND()		ether_srand()	/* インタフェースの乱数初期値			*/
 
 /* IPv4 関係 */
 
-#define IF_PROTO_IP		ETHER_TYPE_IP		/* インタフェースの IP プロトコル指定		*/
+#define IF_PROTO_IP		ETHER_TYPE_IP		/* インタフェースの IPv4 プロトコル指定		*/
 #define IF_PROTO_ARP		ETHER_TYPE_ARP		/* インタフェースの ARP プロトコル指定		*/
 
 /* IPv6 関係 */
@@ -159,7 +197,7 @@ typedef struct t_ether_addr {
 #define MAX_IF_MADDR_CNT	2			/* インタフェースのマルチキャストアドレス配列の最大サイズ	*/
 #define IF_MADDR_INIT		{ { { 0, 0, 0, 0, 0, 0 } }, { { 0, 0, 0, 0, 0, 0 } } }
 							/* インタフェースのマルチキャストアドレス配列の初期化	*/
-#define IF_PROTO_IPV6		ETHER_TYPE_IPV6		/* インタフェースの IP プロトコル指定			*/
+#define IF_PROTO_IPV6		ETHER_TYPE_IPV6		/* インタフェースの IPv6 プロトコル指定			*/
 #define IF_ADDMULTI(s)		IF_ETHER_NIC_ADDMULTI(s)
 							/* マルチキャストアドレスの登録				*/
 #define IF_IN6_NEED_CACHE(i)	(true)			/* 近隣探索キャッシュを使用する。				*/
@@ -218,16 +256,30 @@ struct t_if_softc {
 	ID			semid_txb_ready;	/* 送信セマフォ				*/
 	ID			semid_rxb_ready;	/* 受信セマフォ				*/
 
-#ifdef SUPPORT_INET6
+#ifdef _IP6_CFG
 
 	T_IF_ADDR 	maddrs[MAX_IF_MADDR_CNT];	/* マルチキャストアドレスリスト	*/
 
-#endif	/* of #ifdef SUPPORT_INET6 */
+#endif	/* of #ifdef _IP6_CFG */
 	};
 
 #endif	/* of #ifdef T_IF_ETHER_NIC_SOFTC */
 
-#ifdef SUPPORT_INET6
+/*
+ *  変数
+ */
+
+#ifdef ETHER_CFG_COLLECT_ADDR
+
+T_ETHER_ADDR ether_collect_addr;
+
+#endif	/* of #ifdef ETHER_CFG_COLLECT_ADDR */
+
+/*
+ *  関数
+ */
+
+#ifdef _IP6_CFG
 
 /* 前方参照 */
 
@@ -239,21 +291,14 @@ typedef struct t_in6_addr T_IN6_ADDR;
 
 #endif	/* of #ifndef T_IN6_ADDR_DEFINED */
 
-/*
- *  関数
- */
+extern ER ether_in6_resolve_multicast(T_ETHER_ADDR *ifaddr, const T_IN6_ADDR *maddr);
 
-extern ER ether_in6_resolve_multicast(T_ETHER_ADDR *ifaddr, T_IN6_ADDR *maddr);
-
-#endif	/* of #ifdef SUPPORT_INET6 */
-
-/*
- *  関数
- */
+#endif	/* of #ifdef _IP6_CFG */
 
 extern T_IFNET *ether_get_ifnet (void);
-extern ER ether_output (T_NET_BUF *data, void *dst, T_IF_ADDR *gw, TMO tmout);
+extern ER ether_output (T_NET_BUF *data, const void *dst, T_IF_ADDR *gw, TMO tmout);
 extern ER ether_raw_output (T_NET_BUF *data, TMO tmout);
+extern uint32_t ether_srand (void);
 
 #endif	/* of #ifdef SUPPORT_ETHER */
 

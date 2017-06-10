@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: in_rename.h,v 1.5 2009/12/24 05:47:21 abe Exp $
+ *  @(#) $Id: in_rename.h 1.7 2017/6/1 8:49:34 abe $
  */
 
 #ifndef _IN_RENAME_H_
@@ -65,12 +65,10 @@
 #define tcp_close		_tinet_tcp_close
 #define tcp_drop		_tinet_tcp_drop
 #define tcp_respond		_tinet_tcp_respond
-#define tcp_set_header		_tinet_tcp_set_header
 #define	tcp_get_segment		_tinet_tcp_get_segment
 #define tcp_rexmt_val		_tinet_tcp_rexmt_val
 #define tcp_init_cep		_tinet_tcp_init_cep
 #define tcp_notify		_tinet_tcp_notify
-#define tcp_find_cep		_tinet_tcp_find_cep
 #define tcp_alloc_auto_port	_tinet_tcp_alloc_auto_port
 #define tcp_alloc_port		_tinet_tcp_alloc_port
 #define tcp_free_reassq		_tinet_tcp_free_reassq
@@ -82,6 +80,11 @@
 #define tcp_can_recv_more	_tinet_tcp_can_recv_more
 #define tcp_output_trace	_tinet_tcp_output_trace
 #define tcp_input_trace		_tinet_tcp_input_trace
+#define tcp_find_cep		_tinet_tcp_find_cep
+#define tcp_find_twcep		_tinet_tcp_find_twcep
+#define tcp_is_addr_accept	_tinet_tcp_is_addr_accept
+#define tcp_move_twcep		_tinet_tcp_move_twcep
+#define tcpn_get_segment	_tinet_tcpn_get_segment
 
 /* netinet/tcp_subr_cs.c */
 
@@ -135,7 +138,8 @@
 
 /* tcp_cfg.c */
 
-#define tcp_rep			_tinet_tcp_rep
+#define tcp6_rep		_tinet_tcp6_rep
+#define tcp4_rep		_tinet_tcp4_rep
 #define tcp_cep			_tinet_tcp_cep
 #define tcp_twcep		_tinet_tcp_twcep
 #define tmax_tcp_repid		_tinet_tmax_tcp_repid
@@ -145,12 +149,23 @@
 
 /* netinet/udp_input.c */
 
-#define udp_input		_tinet_udp_input
+#define udp6_reply_no_port	_tinet_udp6_reply_no_port
+#define udp6_input_select	_tinet_udp6_input_select
+#define udp6_input		_tinet_udp6_input
+#define udp4_reply_no_port	_tinet_udp4_reply_no_port
+#define udp4_input_select	_tinet_udp4_input_select
+#define udp4_input		_tinet_udp4_input
 
 /* netinet/udp_subr.c */
 
-#define udp_alloc_port		_tinet_udp_alloc_port
-#define udp_alloc_auto_port	_tinet_udp_alloc_auto_port
+#define udp6_alloc_port		_tinet_udp6_alloc_port
+#define udp6_alloc_auto_port	_tinet_udp6_alloc_auto_port
+#define udp6_notify		_tinet_udp6_notify
+#define udp6_find_cep		_tinet_udp6_find_cep
+#define udp4_alloc_port		_tinet_udp4_alloc_port
+#define udp4_alloc_auto_port	_tinet_udp4_alloc_auto_port
+#define udp4_notify		_tinet_udp4_notify
+#define udp4_find_cep		_tinet_udp4_find_cep
 
 /* netinet/udp_usrreq.c */
 
@@ -163,7 +178,8 @@
 
 /* udp_cfg.c */
 
-#define udp_cep			_tinet_udp_cep
+#define udp6_cep		_tinet_udp6_cep
+#define udp4_cep		_tinet_udp4_cep
 #define tmax_udp_cepid		_tinet_tmax_udp_cepid
 #define tmax_udp_ccepid		_tinet_tmax_udp_cepid	/* TINET 1.3 との互換性のための定義 */
 
@@ -187,20 +203,35 @@
 
 /* netinet/in_subr.c */
 
-#define in4_set_header		_tinet_in4_set_header
-#define in4_get_datagram	_tinet_in4_get_datagram
-#define in4_cksum		_tinet_in4_cksum
-#define in4_rtalloc		_tinet_in4_rtalloc
-#define in4_rtredirect		_tinet_in4_rtredirect
-#define in4_init		_tinet_in4_init
-#define in4_is_dstaddr_accept	_tinet_in4_is_dstaddr_accept
-#define in4_ifawithifp		_tinet_in4_ifawithifp
-#define in_cksum		_tinet_in_cksum
+#define inn_addrwithifp		_tinet_inn_addrwithifp
 #define in_cksum_carry		_tinet_in_cksum_carry
+#define inn_is_addr_multicast	_tinet_inn_is_addr_multicast
+#define inn_get_datagram	_tinet_inn_get_datagram
+#define inn_is_dstaddr_accept	_tinet_inn_is_dstaddr_accept
+#define ip_exchg_addr		_tinet_ip_exchg_addr
+#define inn_copy_to_host	_tinet_inn_copy_to_host
 #define in_cksum_sum		_tinet_in_cksum_sum
+#define inn_are_net_srcaddr_equal	\
+				_tinet_inn_are_net_srcaddr_equal
+
+/* netinet/in4_subr.c */
+
+#define in4_add_ifaddr		_tinet_in4_add_ifaddr
+#define in4_set_header		_tinet_in4_set_header
+#define inn4_is_dstaddr_accept	_tinet_inn4_is_dstaddr_accept
+#define in4_rtredirect		_tinet_in4_rtredirect
 #define in_rtnewentry		_tinet_in_rtnewentry
-#define in_rtinit		_tinet_in_rtinit
+#define in_cksum		_tinet_in_cksum
+#define	in4_addrwithifp		_tinet_in4_addrwithifp
+#define in4_rtalloc		_tinet_in4_rtalloc
+#define in4_init		_tinet_in4_init
 #define in_rttimer		_tinet_in_rttimer
+#define in4_get_ifaddr		_tinet_in4_get_ifaddr
+#define in4_get_datagram	_tinet_in4_get_datagram
+#define in4_is_dstaddr_accept	_tinet_in4_is_dstaddr_accept
+#define in4_cksum		_tinet_in4_cksum
+#define in_rtinit		_tinet_in_rtinit
+#define in4_ifawithifp		_tinet_in4_ifawithifp
 
 /* netinet/if_ether.c */
 

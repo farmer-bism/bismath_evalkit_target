@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: wwws.c,v 1.5 2009/12/24 05:44:56 abe Exp $
+ *  @(#) $Id: wwws.c 1.7 2017/6/1 8:50:3 abe $
  */
 
 /* 
@@ -74,16 +74,14 @@
 #include <net/if_loop.h>
 #include <net/ethernet.h>
 #include <net/net.h>
+#include <net/net_endian.h>
 #include <net/net_buf.h>
-#include <net/net_timer.h>
 #include <net/net_count.h>
 
 #include <netinet/in.h>
 #include <netinet/in_itron.h>
-#include <netinet/ip.h>
-#include <netinet/ip6.h>
-#include <netinet/tcp.h>
 
+#include <netapp/netapp.h>
 #include <netapp/netapp_var.h>
 #include <netapp/wwws.h>
 
@@ -116,6 +114,32 @@ static ER index_html(ID cepid, T_WWW_RWBUF *srbuf);
 static ER stat_html(ID cepid, T_WWW_RWBUF *srbuf);
 
 #endif	/* of #if NET_COUNT_ENABLE */
+
+#ifdef USE_TCP_EXTENTIONS
+
+#if defined(SUPPORT_INET6) && defined(SUPPORT_INET4) && defined(USE_WWW4_SRV)
+
+#if NUM_WWW_SRV_TASKS >= 2		/* 2 を超える個数は想定していない。	*/
+
+#define WWW4_SRV_TASK	WWW_SRV_TASK1
+#define WWW6_SRV_TASK	WWW_SRV_TASK2
+
+#else	/* of #if NUM_WWW_SRV_TASKS >= 2 */
+
+#define WWW4_SRV_TASK	WWW_SRV_TASK1
+#define WWW6_SRV_TASK	WWW_SRV_TASK1
+
+#endif	/* of #if NUM_WWW_SRV_TASKS >= 2 */
+
+#else	/* of #if defined(SUPPORT_INET6) && defined(SUPPORT_INET4) && defined(USE_WWW4_SRV) */
+
+#define WWW4_SRV_TASK	WWW_SRV_TASK1
+#define WWW6_SRV_TASK	WWW_SRV_TASK1
+
+#endif	/* of #if defined(SUPPORT_INET6) && defined(SUPPORT_INET4) && defined(USE_WWW4_SRV) */
+
+#endif	/* of #ifdef USE_TCP_EXTENTIONS */
+
 
 /*
  *  全域変数
@@ -160,6 +184,50 @@ static const char *status[] = {
 #define ST_OK		0
 #define ST_NOT_FOUND	1
 
+/*
+ *  接続相手の情報構造体
+ */
+
+#ifdef  NUM_WWW4_SRV_TASKS
+#undef  NUM_WWW4_SRV_TASKS
+#endif
+#define NUM_WWW4_SRV_TASKS		1
+
+typedef struct t_www_srv_info {
+	ID	cepid;		/* 通信端点 ID		*/
+	ID	repid;		/* 受付口   ID		*/
+	T_IPEP	dst;		/* 接続相手アドレス情報	*/
+	} T_WWW_SRV_INFO;
+
+#define INDEX_SRV_INFO(id)	((id)-1)
+
+#ifdef USE_TCP_EXTENTIONS
+
+static T_WWW_SRV_INFO www_srv_info[NUM_WWW_SRV_TASKS];
+					/* 2 を超える個数は想定していない。	*/
+
+#else	/* of #ifdef USE_TCP_EXTENTIONS */
+
+static T_WWW_SRV_INFO www_srv_info[] = {
+
+#if defined(SUPPORT_INET6) && defined(SUPPORT_INET4) && defined(USE_WWW4_SRV)
+
+	{ WWW4_SRV_CEPID1, WWW4_SRV_REPID },
+
+#else	/* of #if defined(SUPPORT_INET6) && defined(SUPPORT_INET4) && defined(USE_WWW4_SRV) */
+
+	{ WWW_SRV_CEPID1, WWW_SRV_REPID },
+
+#endif	/* of #if defined(SUPPORT_INET6) && defined(SUPPORT_INET4) && defined(USE_WWW4_SRV) */
+
+#if NUM_WWW_SRV_TASKS >= 2		/* 2 を超える個数は想定していない。	*/
+	{ WWW_SRV_CEPID2, WWW_SRV_REPID },
+#endif
+
+	};
+
+#endif	/* of #ifdef USE_TCP_EXTENTIONS */
+
 #ifdef USE_COPYSAVE_API
 
 /*
@@ -179,12 +247,12 @@ get_char (ID cepid, T_WWW_RWBUF *srbuf)
 	else  {
 		if (srbuf->rbuf.index >= srbuf->rbuf.len) {
 			if ((error = tcp_rel_buf(cepid, srbuf->rbuf.len)) != E_OK)
-				syslog(LOG_WARNING, "[WWW:%02d] tcp_rel_buf error: %s",
+				syslog(LOG_WARNING, "[WWWn:%02u REL] tcp_rel_buf error: %s",
 				       cepid, itron_strerror(error));
 			srbuf->rbuf.index = 0;
 			if ((len = tcp_rcv_buf(cepid, (void**)&srbuf->rbuf.buf, TMO_FEVR)) <= 0) {
 				if (len < 0)
-					syslog(LOG_WARNING, "[WWW:%02d] tcp_rcv_buf error: %s",
+					syslog(LOG_WARNING, "[WWWn:%02u RCV] tcp_rcv_buf error: %s",
 					       cepid, itron_strerror(len));
 				srbuf->rbuf.len = 0;
 				return EOF;
@@ -227,13 +295,13 @@ put_str (ID cepid, T_WWW_RWBUF *srbuf, const char *str)
 	while (len > 0) {
 		if (srbuf->sbuf.index >= srbuf->sbuf.len)
 			if ((error = flush_sbuf(cepid, srbuf)) != E_OK) {
-				syslog(LOG_WARNING, "[WWW:%02d] tcp_snd_dat error: %s", cepid, itron_strerror(error));
+				syslog(LOG_WARNING, "[WWWn:%02u SND] error: %s", cepid, itron_strerror(error));
 			return 0;
 			}
 
 		if (srbuf->sbuf.len == 0) {
 			if ((blen = tcp_get_buf(cepid, (void**)&srbuf->sbuf.buf, TMO_FEVR)) < 0) {
-				syslog(LOG_WARNING, "[WWW:%02d] tcp_get_buf error: %s", cepid, itron_strerror(srbuf->sbuf.len));
+				syslog(LOG_WARNING, "[WWWn:%02u GET] error: %s", cepid, itron_strerror(srbuf->sbuf.len));
 				return 0;
 				}
 			srbuf->sbuf.len = (uint16_t)blen;
@@ -271,7 +339,7 @@ get_char (ID cepid, T_WWW_RWBUF *srbuf)
 		if (srbuf->rbuf.index >= srbuf->rbuf.len) {
 			if ((len = tcp_rcv_dat(cepid, srbuf->rbuf.buf, sizeof(srbuf->rbuf.buf), TMO_FEVR)) <= 0) {
 				if (len < 0) {
-					syslog(LOG_WARNING, "[WWW:%02d] tcp_rcv_dat error: %s",
+					syslog(LOG_WARNING, "[WWWn:%02u RCV] error: %s",
 					       cepid, itron_strerror(len));
 					}
 				return EOF;
@@ -320,7 +388,7 @@ put_str (ID cepid, T_WWW_RWBUF *srbuf, const char *str)
 	while (len > 0) {
 		if (srbuf->sbuf.index >= srbuf->sbuf.len)
 			if ((error = flush_sbuf(cepid, srbuf)) != E_OK) {
-				syslog(LOG_WARNING, "[WWW:%02d] tcp_snd_dat error: %s", cepid, itron_strerror(error));
+				syslog(LOG_WARNING, "[WWWn:%02u SND] error: %s", cepid, itron_strerror(error));
 			return 0;
 			}
 		if (len > srbuf->sbuf.len - srbuf->sbuf.index)
@@ -475,10 +543,12 @@ get_method (ID cepid, T_WWW_RWBUF *srbuf, T_WWW_LINE *line)
 {
 	int_t	ix;
 
-	for (ix = NUM_FILES; ix -- > 0; )
+	for (ix = NUM_FILES; ix -- > 0; ) {
 		if (!strcmp(file[ix].uri, &line->buf[line->off[1]])) {
+			//syslog(LOG_NOTICE, "[WWWn:%02u PTH] '%s'", cepid, &line->buf[line->off[1]]);
 			return (*file[ix].func)(cepid, srbuf);
 			}
+		}
 	put_status(cepid, srbuf, ST_NOT_FOUND);
 	return E_NOEXS;
 	}
@@ -493,42 +563,41 @@ parse_request (ID cepid, T_WWW_RWBUF *srbuf)
 	T_WWW_LINE	*method, *line;
 	ER		error = E_OK;
 	int_t		blen = 0;
-	uint16_t	len;
 
 	if ((error = tget_mpf(MPF_WWW_LINE, (void*)&method, TMO_FEVR)) != E_OK) {
-		syslog(LOG_CRIT, "[WWW:%02d] get line error: %s.",
+		syslog(LOG_CRIT, "[WWWn:%02u MPF] get line error: %s.",
 		       cepid, itron_strerror(error));
 		return error;
 		}
 
-	if ((len = get_line(cepid, method, srbuf)) == 0) {
+	if (get_line(cepid, method, srbuf) == 0) {
 		if ((error = rel_mpf(MPF_WWW_LINE, method)) != E_OK)
-			syslog(LOG_WARNING, "[WWW:%02d] release line buffer error: %s.",
+			syslog(LOG_WARNING, "[WWWn:%02u MPF] release line buffer error: %s.",
 			       cepid, itron_strerror(error));
 		return error;
 		}
 
 	if ((error = tget_mpf(MPF_WWW_LINE, (void*)&line, TMO_FEVR)) != E_OK) {
-		syslog(LOG_CRIT, "[WWW:%02d] get line buffer error: %s.",
+		syslog(LOG_CRIT, "[WWWn:%02u MPF] get line buffer error: %s.",
 		       cepid, itron_strerror(error));
 		if ((error = rel_mpf(MPF_WWW_LINE, method)) != E_OK)
-			syslog(LOG_WARNING, "[WWW:%02d] release line buffer error: %s.",
+			syslog(LOG_WARNING, "[WWWn:%02u MPF] release line buffer error: %s.",
 			       cepid, itron_strerror(error));
 		return error;
 		}
 
-	while ((len = get_line(cepid, line, srbuf)) > 0) {	/* ヘッダをスキップする。*/
+	while (get_line(cepid, line, srbuf) > 0) {	/* ヘッダをスキップする。*/
 		split_fields(line, ": ");
 		if (strcmp("Content-Length", &line->buf[line->off[0]]) == 0)
 			blen = atoi(&line->buf[line->off[1]]);
 		}
-	while (blen > 0 && (len = get_line(cepid, line, srbuf)) > 0) {
+	while (blen > 0 && get_line(cepid, line, srbuf) > 0) {
 		/* エンティティ・ボディをスキップする。*/
 		blen -= line->len;
 		}
 
 	if ((error = rel_mpf(MPF_WWW_LINE, line)) != E_OK)
-		syslog(LOG_WARNING, "[WWW:%02d] release line buffer error: %s.",
+		syslog(LOG_WARNING, "[WWWn:%02u MPF] release line buffer error: %s.",
 		       cepid, itron_strerror(error));
 	
 	split_fields(method, ": ");
@@ -538,7 +607,7 @@ parse_request (ID cepid, T_WWW_RWBUF *srbuf)
 	flush_sbuf(cepid, srbuf);
 
 	if ((error = rel_mpf(MPF_WWW_LINE, method)) != E_OK)
-		syslog(LOG_WARNING, "[WWW:%02d] release line buffer error: %s.",
+		syslog(LOG_WARNING, "[WWWn:%02u MPF] release line buffer error: %s.",
 		       cepid, itron_strerror(error));
 
 	return error;
@@ -566,15 +635,25 @@ index_html (ID cepid, T_WWW_RWBUF *srbuf)
 		"<hr>この WWW サーバは<br>"
 
 #ifdef TARGET_KERNEL_ASP
-		"ASP Kernel Release 1.3 (patchlevel = 2) for " TARGET_NAME " (" __DATE__ "," __TIME__ ") と<br>\r\n"
+		"ASP Kernel for " TARGET_NAME " (" __DATE__ "," __TIME__ ") と<br>\r\n"
 #endif
 
 #ifdef TARGET_KERNEL_JSP
-		"JSP Kernel Release 1.4 (patchlevel = 3) for " TARGET_NAME " (" __DATE__ "," __TIME__ ") と<br>\r\n"
+		"JSP Kernel for " TARGET_NAME " (" __DATE__ "," __TIME__ ") と<br>\r\n"
 #endif
 
 		"TINET TCP/IP プロトコルスタックによりサービスしています。<br><hr>\r\n"
+
+#if NET_COUNT_ENABLE
+
 		"<ul><li type=\"square\"><a href=\"stat.html\">ネットワーク統計情報</a></ul><hr>\r\n"
+
+#else	/* of #if NET_COUNT_ENABLE */
+
+		"<ul><li type=\"square\">ネットワーク統計情報</ul><hr>\r\n"
+
+#endif	/* of #if NET_COUNT_ENABLE */
+
 		"FreeBSD: Copyright (c) 1982, 1986, 1988, 1990, 1993, 1994, 1995<br>\r\n"
 		"The Regents of the University of California.  All rights reserved.<br><br>\r\n"
 
@@ -628,7 +707,7 @@ index_html (ID cepid, T_WWW_RWBUF *srbuf)
 	len += put_content_length(cepid, srbuf, strlen(response) - 2);	/* 2 は最初の \r\n */
 	len += put_str(cepid, srbuf, response);
 	get_tim(&finish);
-	syslog(LOG_NOTICE, "[WWW:%02u]     send:               index.html, len: %4u, time: %lu [ms]",
+	syslog(LOG_NOTICE, "[WWWn:%02u SND] send: index.html, len: %4u, time: %lu [ms]",
 	                   cepid, len, (finish - start) * 1000 / SYSTIM_HZ);
 	return E_OK;
 	}
@@ -1529,86 +1608,12 @@ stat_html (ID cepid, T_WWW_RWBUF *srbuf)
 	len += put_str(cepid, srbuf, res_suffix);
 
 	get_tim(&finish);
-	syslog(LOG_NOTICE, "[WWW:%02u]     send:               stat.html,  len: %4u, time: %lu [ms]",
+	syslog(LOG_NOTICE, "[WWWn:%02u SND]send: stat.html,  len: %4u, time: %lu [ms]",
 	                   cepid, len, (finish - start) * 1000 / SYSTIM_HZ);
 	return E_OK;
 	}
 
 #endif	/* of #if NET_COUNT_ENABLE */
-
-/*
- *  WWW サーバ
- */
-
-static ER
-www_srv (ID cepid, ID repid)
-{
-#if defined(SUPPORT_INET4)
-
-	T_IPV4EP	dst;
-
-#endif	/* of #if defined(SUPPORT_INET4) */
-
-#if defined(SUPPORT_INET6)
-
-	T_IPV6EP	dst;
-
-#endif	/* of #if defined(SUPPORT_INET6) */
-
-	T_WWW_RWBUF	*srbuf;
-	ER		error;
-	SYSTIM		time;
-
-	if ((error = TCP_ACP_CEP(cepid, repid, &dst, TMO_FEVR)) != E_OK) {
-		syslog(LOG_WARNING, "[WWW:%02d] accept error: %s", cepid, itron_strerror(error));
-		return error;
-		}
-
-	get_tim(&time);
-	syslog(LOG_NOTICE, "[WWW:%02u]     connected:  %6lu, from: %s.%u",
-	                   cepid, time / SYSTIM_HZ, IP2STR(NULL, &dst.ipaddr), dst.portno);
-
-	if ((error = tget_mpf(MPF_WWW_RWBUF, (void*)&srbuf, TMO_FEVR)) != E_OK) {
-		syslog(LOG_CRIT, "[WWW:%02d] get buffer error: %s.", cepid, itron_strerror(error));
-		srbuf = NULL;
-		}
-	else {
-		srbuf->rbuf.len = srbuf->rbuf.index = srbuf->sbuf.index = srbuf->unget = 0;
-
-#ifdef USE_COPYSAVE_API
-
-		srbuf->sbuf.len = 0;
-
-#else	/* of #ifdef USE_COPYSAVE_API */
-
-		srbuf->sbuf.len = sizeof(srbuf->sbuf.buf);
-
-#endif	/* of #ifdef USE_COPYSAVE_API */
-
-		if ((error = parse_request(cepid, srbuf)) != E_OK)
-			syslog(LOG_WARNING, "[WWW:%02d] parse request error: %s",
-			       cepid, itron_strerror(error));
-		}
-
-	if ((error = tcp_sht_cep(cepid)) != E_OK)
-		syslog(LOG_WARNING, "[WWW:%02d] shutdown error: %s", cepid, itron_strerror(error));
-
-	if (srbuf != NULL) {
-		while (get_char(cepid, srbuf) != EOF)
-			;
-		if (srbuf != NULL && (error = rel_mpf(MPF_WWW_RWBUF, srbuf)) != E_OK)
-			syslog(LOG_WARNING, "[WWW:%02d] release buffer error: %s.",
-			       cepid, itron_strerror(error));
-		}
-
-	if ((error = tcp_cls_cep(cepid, TMO_FEVR)) != E_OK)
-		syslog(LOG_WARNING, "[WWW:%02d] close error: %s", cepid, itron_strerror(error));
-
-	get_tim(&time);
-	syslog(LOG_NOTICE, "[WWW:%02u]     finished:   %6lu", cepid, time / SYSTIM_HZ);
-
-	return error;
-	}
 
 #ifdef USE_TCP_EXTENTIONS
 
@@ -1616,31 +1621,62 @@ www_srv (ID cepid, ID repid)
  *  get_tcp_rep -- TCP 受付口を獲得する。
  */
 
+#if defined(SUPPORT_INET6) && defined(SUPPORT_INET4)
+
 static ER
 get_tcp_rep (ID *repid)
 {
 	ID		tskid;
-	T_TCP_CREP	crep;
+	T_TCP6_CREP	crep6;
+	T_TCP_CREP	crep4;
+
+	get_tid(&tskid);
+	if (tskid == WWW4_SRV_TASK) {
+		crep4.repatr = UINT_C(0);
+		crep4.myaddr.portno = UINT_C(80);
+		crep4.myaddr.ipaddr = IPV4_ADDRANY;
+		return alloc_tcp4_rep(repid, tskid, &crep4);
+		}
+	else {
+		crep6.repatr = UINT_C(0);
+		crep6.myaddr.portno = UINT_C(80);
+		memcpy(&crep6.myaddr.ipaddr, &ipv6_addrany, sizeof(T_IN6_ADDR));
+		return alloc_tcp6_rep(repid, tskid, &crep6);
+		}
+	}
+
+#else	/* of #if defined(SUPPORT_INET6) && defined(SUPPORT_INET4) */
+
+static ER
+get_tcp_rep (ID *repid)
+{
+	ID		tskid;
+	T_TCPN_CREP	crep;
 
 	get_tid(&tskid);
 
 	crep.repatr = UINT_C(0);
 	crep.myaddr.portno = UINT_C(80);
 
+#if defined(SUPPORT_INET6)
+
+	memcpy(&crep.myaddr.ipaddr, &ipv6_addrany, sizeof(T_IN6_ADDR));
+
+#else	/* #if defined(SUPPORT_INET6) */
+
 #if defined(SUPPORT_INET4)
 	crep.myaddr.ipaddr = IPV4_ADDRANY;
 #endif
 
-#if defined(SUPPORT_INET6)
-	memcpy(&crep.myaddr.ipaddr, &ipv6_addrany, sizeof(T_IN6_ADDR));
-#endif
+#endif	/* #if defined(SUPPORT_INET6) */
 
-
-	return alloc_tcp_rep(repid, tskid, &crep);
+	return ALLOC_TCP_REP(repid, tskid, &crep);
 	}
 
+#endif	/* of #if defined(SUPPORT_INET6) && defined(SUPPORT_INET4) */
+
 /*
- *  get_tcp_cep -- TCP 通信端点とを獲得する。
+ *  get_tcp_cep -- TCP 通信端点を獲得する。
  */
 
 static ER
@@ -1667,8 +1703,169 @@ get_tcp_cep (ID *cepid)
 	ccep.rbuf = www_srv_rwbuf[0];
 #endif
 
-	return alloc_tcp_cep(cepid, tskid, &ccep);
+#if defined(SUPPORT_INET6) && defined(SUPPORT_INET4)
+
+	if (tskid == WWW4_SRV_TASK)
+		return alloc_tcp4_cep(cepid, tskid, &ccep);
+	else
+		return alloc_tcp6_cep(cepid, tskid, &ccep);
+
+#else	/* of #if defined(SUPPORT_INET6) && defined(SUPPORT_INET4) */
+
+	return ALLOC_TCP_CEP(cepid, tskid, &ccep);
+
+#endif	/* of #if defined(SUPPORT_INET6) && defined(SUPPORT_INET4) */
+
 	}
+
+#endif	/* of #ifdef USE_TCP_EXTENTIONS */
+
+/*
+ *  tcp_passive_open -- 受動オープンを実行する。
+ *
+ *    USE_TCP_NON_BLOCKING	OFF
+ */
+
+#if defined(SUPPORT_INET6) && defined(SUPPORT_INET4)
+
+static ER
+tcp_passive_open (T_WWW_SRV_INFO *info, char apip)
+{
+	ER		error = E_OK;
+	T_IPV4EP	dst4;
+
+	if (apip == API_PROTO_IPV6) {
+		/* 受付口は IPv6 */
+		if ((error = tcp6_acp_cep(info->cepid, info->repid, &info->dst, TMO_FEVR)) != E_OK)
+			return error;
+
+#ifdef USE_TCP_EXTENTIONS
+		if ((error = free_tcp6_rep(info->repid, true)) != E_OK)
+			return error;
+#endif	/* of #ifdef USE_TCP_EXTENTIONS */
+
+		}
+	else {
+		/* 受付口は IPv4 */
+		if ((error = tcp_acp_cep(info->cepid, info->repid, &dst4, TMO_FEVR)) != E_OK)
+			return error;
+		in6_make_ipv4mapped (&info->dst.ipaddr, dst4.ipaddr);
+		info->dst.portno = dst4.portno;
+
+#ifdef USE_TCP_EXTENTIONS
+		if ((error = free_tcp4_rep(info->repid, true)) != E_OK)
+			return error;
+#endif	/* of #ifdef USE_TCP_EXTENTIONS */
+		}
+
+	return error;
+	}
+
+#else	/* of #if defined(SUPPORT_INET6) && defined(SUPPORT_INET4) */
+
+static ER
+tcp_passive_open (T_WWW_SRV_INFO *info, char apip)
+{
+	ER		error = E_OK;
+
+	if ((error = TCP_ACP_CEP(info->cepid, info->repid, &info->dst, TMO_FEVR)) != E_OK)
+		return error;
+
+#ifdef USE_TCP_EXTENTIONS
+	if ((error = FREE_TCP_REP(info->repid, true)) != E_OK)
+		return error;
+#endif	/* of #ifdef USE_TCP_EXTENTIONS */
+
+	return error;
+	}
+
+#endif	/* of #if defined(SUPPORT_INET6) && defined(SUPPORT_INET4) */
+
+/*
+ *  WWW サーバ
+ */
+
+static ER
+www_srv (uint_t six, char apip)
+{
+	T_WWW_RWBUF	*srbuf;
+	ER		error;
+	SYSTIM		now;
+
+	if ((error = tcp_passive_open(&www_srv_info[six], apip)) != E_OK)
+		return error;
+
+	syscall(get_tim(&now));
+
+#if defined(SUPPORT_INET6) && defined(SUPPORT_INET4) && defined(USE_WWW4_SRV)
+
+	if (apip == API_PROTO_IPV6)
+		syslog(LOG_NOTICE, "[WWW6:%02u ACP] conct:  %6lu,from: %s.%u",
+		                   www_srv_info[six].cepid, now / SYSTIM_HZ,
+		                   ipv62str(NULL, &www_srv_info[six].dst.ipaddr),
+		                   www_srv_info[six].dst.portno);
+	else
+		syslog(LOG_NOTICE, "[WWW4:%02u ACP] conct:  %6lu,from: %s.%u",
+		                   www_srv_info[six].cepid, now / SYSTIM_HZ,
+		                   ip2str(NULL, &www_srv_info[six].dst.ipaddr.s6_addr32[3]),
+		                   www_srv_info[six].dst.portno);
+
+#else	/* of #if defined(SUPPORT_INET6) && defined(SUPPORT_INET4) && defined(USE_WWW4_SRV) */
+
+	syslog(LOG_NOTICE, "[WWWn:%02u ACP] conct:  %6lu,from: %s.%u",
+	                   www_srv_info[six].cepid, now / SYSTIM_HZ,
+	                   IP2STR(NULL, &www_srv_info[six].dst.ipaddr),
+	                   www_srv_info[six].dst.portno);
+
+#endif	/* of #if defined(SUPPORT_INET6) && defined(SUPPORT_INET4) && defined(USE_WWW4_SRV) */
+
+	if ((error = tget_mpf(MPF_WWW_RWBUF, (void*)&srbuf, TMO_FEVR)) != E_OK) {
+		syslog(LOG_CRIT, "[WWWn:%02u MPF] get buffer error: %s.",
+		                 www_srv_info[six].cepid, itron_strerror(error));
+		srbuf = NULL;
+		}
+	else {
+		srbuf->rbuf.len = srbuf->rbuf.index = srbuf->sbuf.index = srbuf->unget = 0;
+
+#ifdef USE_COPYSAVE_API
+
+		srbuf->sbuf.len = 0;
+
+#else	/* of #ifdef USE_COPYSAVE_API */
+
+		srbuf->sbuf.len = sizeof(srbuf->sbuf.buf);
+
+#endif	/* of #ifdef USE_COPYSAVE_API */
+
+		if ((error = parse_request(www_srv_info[six].cepid, srbuf)) != E_OK)
+			syslog(LOG_WARNING, "[WWWn:%02u RCV] parse request error: %s",
+			                    www_srv_info[six].cepid, itron_strerror(error));
+		}
+
+	if ((error = tcp_sht_cep(www_srv_info[six].cepid)) != E_OK)
+		syslog(LOG_WARNING, "[WWWn:%02u SHD] shutdown error: %s", 
+		                    www_srv_info[six].cepid, itron_strerror(error));
+
+	if (srbuf != NULL) {
+		while (get_char(www_srv_info[six].cepid, srbuf) != EOF)
+			;
+		if (srbuf != NULL && (error = rel_mpf(MPF_WWW_RWBUF, srbuf)) != E_OK)
+			syslog(LOG_WARNING, "[WWWn:%02u REL] release buffer error: %s.",
+			                    www_srv_info[six].cepid, itron_strerror(error));
+		}
+
+	if ((error = tcp_cls_cep(www_srv_info[six].cepid, TMO_FEVR)) != E_OK)
+		syslog(LOG_WARNING, "[WWWn:%02u CLS] close error: %s",
+ 		                    www_srv_info[six].cepid, itron_strerror(error));
+
+	get_tim(&now);
+	syslog(LOG_NOTICE, "[WWWn:%02u FIN] finsh:  %6lu",
+	                   www_srv_info[six].cepid, now / SYSTIM_HZ);
+
+	return error;
+	}
+
+#ifdef USE_TCP_EXTENTIONS
 
 /*
  *  WWW サーバタスク
@@ -1677,35 +1874,108 @@ get_tcp_cep (ID *cepid)
 void
 www_srv_task(intptr_t exinf)
 {
-	ID	tskid, cepid, repid;
+	ID	tskid;
 	ER	error = E_OK;
+	uint_t	six;
+	char	apip;
 
 	syscall(get_tid(&tskid));
-	syslog(LOG_NOTICE, "[WWW:%d] started.", tskid);
+	six = INDEX_SRV_INFO((ID)exinf);
+
+#if defined(SUPPORT_INET6) && defined(SUPPORT_INET4) && defined(USE_WWW4_SRV)
+
+	if (six >= NUM_WWW4_SRV_TASKS)
+		apip = API_PROTO_IPV6;
+	else
+		apip = API_PROTO_IPV4;
+
+#else	/* of #if defined(SUPPORT_INET6) && defined(SUPPORT_INET4) && defined(USE_WWW4_SRV) */
+
+	apip = API_PROTO_IPVn;
+
+#endif	/* of #if defined(SUPPORT_INET6) && defined(SUPPORT_INET4) && defined(USE_WWW4_SRV) */
+
+	syslog(LOG_NOTICE, "[WWW%c:%d] started.", apip, tskid);
 	while (true) {
 
 		syscall(slp_tsk());
-		if ((error = get_tcp_cep (&cepid)) != E_OK) {
-			syslog(LOG_NOTICE, "[WWW:00 EXT] CEP create error: %s", itron_strerror(error));
+		if ((error = get_tcp_cep(&www_srv_info[six].cepid)) != E_OK) {
+			syslog(LOG_NOTICE, "[WWW%c:%02u EXT] create CEP error: %s",
+				           apip, www_srv_info[six].cepid, itron_strerror(error));
 			continue;
 			}
 
-		if ((error = get_tcp_rep (&repid)) != E_OK) {
-			syslog(LOG_NOTICE, "[WWW:00 EXT] REP create error: %s", itron_strerror(error));
-			free_tcp_cep(cepid);
-			continue;
-			}
+		while (true) {
 
-		while (true)
-			if ((error = www_srv(cepid, repid)) != E_OK) {
-				error = free_tcp_rep(repid, error != E_DLT);
+			if ((error = get_tcp_rep(&www_srv_info[six].repid)) != E_OK) {
+				syslog(LOG_NOTICE, "[WWW%c:%02u EXT] create REP error: %02u, %s",
+				                   apip, www_srv_info[six].cepid, www_srv_info[six].repid, itron_strerror(error));
 				break;
 				}
+			else if ((error = www_srv(six, apip)) != E_OK) {
 
-		if ((error = free_tcp_cep(cepid)) != E_OK)
-			syslog(LOG_NOTICE, "[WWW:%02d EXT] CEP delete error: %s", cepid, itron_strerror(error));
+#if defined(SUPPORT_INET6) && defined(SUPPORT_INET4)
+
+				if (tskid == WWW4_SRV_TASK)
+					error = free_tcp4_rep(www_srv_info[six].repid, error != E_DLT);
+				else
+					error = free_tcp6_rep(www_srv_info[six].repid, error != E_DLT);
+
+#else	/* of #if defined(SUPPORT_INET6) && defined(SUPPORT_INET4) */
+
+				error = FREE_TCP_REP(www_srv_info[six].repid, error != E_DLT);
+
+#endif	/* of #if defined(SUPPORT_INET6) && defined(SUPPORT_INET4) */
+
+				if (error != E_OK) {
+					syslog(LOG_NOTICE, "[WWW%c:%02u EXT] delete REP error: %02u, %s",
+				                           apip, www_srv_info[six].cepid,
+				                                              www_srv_info[six].repid, itron_strerror(error));
+
+					}
+				break;
+				}
+			}
+
+#if defined(SUPPORT_INET6) && defined(SUPPORT_INET4)
+
+		if (tskid == WWW4_SRV_TASK) {
+			if ((error = free_tcp4_cep(www_srv_info[six].cepid)) != E_OK)
+				syslog(LOG_NOTICE, "[WWW%c:%02u EXT] delete CEP error: %s",
+					           apip, www_srv_info[six].cepid, itron_strerror(error));
+			}
+		else {
+			if ((error = free_tcp6_cep(www_srv_info[six].cepid)) != E_OK)
+				syslog(LOG_NOTICE, "[WWW%c:%02u EXT] delete CEP error: %s",
+					           apip, www_srv_info[six].cepid, itron_strerror(error));
+			}
+
+#else	/* of #if defined(SUPPORT_INET6) && defined(SUPPORT_INET4) */
+
+		if ((error = FREE_TCP_CEP(www_srv_info[six].cepid)) != E_OK)
+			syslog(LOG_NOTICE, "[WWW%c:%02u EXT] delete CEP error: %s",
+				           apip, www_srv_info[six].cepid, itron_strerror(error));
+
+#endif	/* of #if defined(SUPPORT_INET6) && defined(SUPPORT_INET4) */
 
 		}
+	}
+
+/*
+ *  wakeup_www_srv -- WWW サーバタスクの休止解除
+ */
+
+ER
+wakeup_www_srv (char apip)
+{
+	ID	taskid;
+
+	if (apip == API_PROTO_IPV6)
+		taskid = WWW6_SRV_TASK;
+	else
+		taskid = WWW4_SRV_TASK;
+	syslog(LOG_NOTICE, "[WWW%c(EXT):%d] wake up.", apip, taskid);
+	return wup_tsk(taskid);
 	}
 
 #else	/* of #ifdef USE_TCP_EXTENTIONS */
@@ -1717,13 +1987,32 @@ www_srv_task(intptr_t exinf)
 void
 www_srv_task(intptr_t exinf)
 {
-	ID	tskid;
+	ID	tskid, cepid;
+	uint_t	six;
+	char	apip;
 
 	get_tim(&srv_start);
 	get_tid(&tskid);
-	syslog(LOG_NOTICE, "[WWW:%d,%d] started.", tskid, (int_t)exinf);
+	six = INDEX_SRV_INFO((ID)exinf);
+	cepid = www_srv_info[INDEX_SRV_INFO((ID)exinf)].cepid;
+
+#if defined(SUPPORT_INET6) && defined(SUPPORT_INET4) && defined(USE_WWW4_SRV)
+
+	if (six >= NUM_WWW4_SRV_TASKS)
+		apip = API_PROTO_IPV6;
+	else
+		apip = API_PROTO_IPV4;
+
+#else	/* of #if defined(SUPPORT_INET6) && defined(SUPPORT_INET4) && defined(USE_WWW4_SRV) */
+
+	apip = API_PROTO_IPVn;
+
+#endif	/* of #if defined(SUPPORT_INET6) && defined(SUPPORT_INET4) && defined(USE_WWW4_SRV) */
+
+	syslog(LOG_NOTICE, "[WWW%c SRV:%d,%d] started.", apip, tskid, cepid);
+
 	while (true) {
-		while (www_srv((int_t)exinf, WWW_SRV_REPID) == E_OK)
+		while (www_srv(six, apip) == E_OK)
 			;
 		}
 	}

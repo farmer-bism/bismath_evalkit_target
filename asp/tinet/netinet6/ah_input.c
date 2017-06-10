@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: ah_input.c,v 1.5 2009/12/24 05:48:16 abe Exp $
+ *  @(#) $Id: ah_input.c 1.7 2017/6/1 8:49:40 abe $
  */
 
 /*	$FreeBSD: src/sys/netinet6/ah_input.c,v 1.12 2002/04/19 04:46:22 suz Exp $	*/
@@ -81,6 +81,7 @@
 #include <tinet_config.h>
 
 #include <net/net.h>
+#include <net/net_endian.h>
 #include <net/if.h>
 #include <net/if_loop.h>
 #include <net/if_ppp.h>
@@ -91,16 +92,15 @@
 #include <net/net_count.h>
 
 #include <netinet/in.h>
-#include <netinet6/in6.h>
-#include <netinet6/in6_var.h>
+#include <netinet/in_var.h>
+#include <netinet/ip.h>
+#include <netinet/ip_var.h>
+#include <netinet/ip_icmp.h>
 #include <netinet6/nd6.h>
-#include <netinet/ip6.h>
-#include <netinet6/ip6_var.h>
-#include <netinet/icmp6.h>
 #include <netinet6/ah.h>
 #include <netinet6/ah6.h>
 
-#ifdef SUPPORT_INET6
+#ifdef _IP6_CFG
 
 /*
  *  ah6_input -- 認証ヘッダの入力関数
@@ -115,4 +115,4 @@ ah6_input (T_NET_BUF **input, uint_t *offp, uint_t *nextp)
 	return IPPROTO_DONE;
 	}
 
-#endif /* of #ifdef SUPPORT_INET6 */
+#endif /* of #ifdef _IP6_CFG */

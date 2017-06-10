@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: tcp_subr_cs.c,v 1.5.4.1 2015/02/05 02:10:53 abe Exp abe $
+ *  @(#) $Id: tcp_subr_cs.c 1.7 2017/6/1 8:49:25 abe $
  */
 
 /*
@@ -94,34 +94,31 @@
 #include <net/if_loop.h>
 #include <net/ethernet.h>
 #include <net/if_arp.h>
-#include <net/ppp_ipcp.h>
 #include <net/net.h>
+#include <net/net_endian.h>
 #include <net/net_var.h>
 #include <net/net_buf.h>
 #include <net/net_timer.h>
 #include <net/net_count.h>
 
 #include <netinet/in.h>
-#include <netinet6/in6.h>
-#include <netinet6/in6_var.h>
 #include <netinet/in_var.h>
+#include <netinet/in_itron.h>
 #include <netinet/ip.h>
 #include <netinet/ip_var.h>
-#include <netinet/ip6.h>
-#include <netinet6/ip6_var.h>
-#include <netinet6/nd6.h>
 #include <netinet/tcp.h>
-#include <netinet/tcp_timer.h>
 #include <netinet/tcp_var.h>
 #include <netinet/tcp_fsm.h>
 #include <netinet/tcp_seq.h>
-#include <netinet/in_itron.h>
+#include <netinet/tcp_timer.h>
 
 #ifdef SUPPORT_TCP
 
 #ifdef TCP_CFG_SWBUF_CSAVE
 
-#ifndef TCP_CFG_SWBUF_CSAVE_ONLY
+#ifdef TCP_CFG_SWBUF_CSAVE_ONLY
+
+#else	/* of #ifdef TCP_CFG_SWBUF_CSAVE_ONLY */
 
 /*
  *  TCP 通信端点の送信ウィンドバッファの省コピー機能が有効な場合
@@ -241,7 +238,7 @@ tcp_is_swbuf_full (T_TCP_CEP *cep)
 		return tcp_is_swbuf_full_cs(cep);
 	}
 
-#endif	/* of #ifndef TCP_CFG_SWBUF_CSAVE_ONLY */
+#endif	/* of #ifdef TCP_CFG_SWBUF_CSAVE_ONLY */
 
 /*
  *  tcp_drop_swbuf_cs -- 送信ウィンドバッファから指定されたオクテット分削除する（専用）。
@@ -269,12 +266,12 @@ ER_UINT
 tcp_write_swbuf_cs (T_TCP_CEP *cep, void *data, uint_t len)
 {
 	ER_UINT	error;
+	uint_t	hdr_size = IF_IP_TCP_NET_HDR_SIZE(&cep->dstaddr.ipaddr);
 
 	/* 通信端点をロックする。*/
 	syscall(wai_sem(cep->semid_lock));
 
-	if ((error = net_buf_siz(cep->swbufq)) > 0 && error >= IF_IP_TCP_HDR_SIZE) {
-
+	if ((error = net_buf_siz(cep->swbufq)) > 0 && error >= hdr_size) {
 
 		/*
 		 *  +-----------+--------+---------+---------+
@@ -290,12 +287,12 @@ tcp_write_swbuf_cs (T_TCP_CEP *cep, void *data, uint_t len)
 		 *  パッディングする。その分を考慮して送信ウィンドバッファの
 		 *  空きサイズを 4 オクテット境界に調整する。
 		 */
-		error = (uint_t)(((error - IF_IP_TCP_HDR_SIZE) >> 2 << 2) + IF_IP_TCP_HDR_SIZE);
+		error = (uint_t)(((error - hdr_size) >> 2 << 2) + hdr_size);
 
 		if (len > cep->sbufsz - cep->swbuf_count)
 			len = (uint_t)(cep->sbufsz - cep->swbuf_count);
-		if (len > (error - IF_IP_TCP_HDR_SIZE))
-			len = (uint_t)(error - IF_IP_TCP_HDR_SIZE);
+		if (len > (error - hdr_size))
+			len = (uint_t)(error - hdr_size);
 
 		/* 送信ウインドサイズによりサイズを調整する。*/
 		if (len > cep->snd_wnd) 
@@ -314,8 +311,8 @@ tcp_write_swbuf_cs (T_TCP_CEP *cep, void *data, uint_t len)
 		error             = len;
 
 		/* ネットワークバッファ長と IP データグラム長を設定する。*/
-		cep->swbufq->len = (uint16_t)(cep->swbuf_count + IF_IP_TCP_HDR_SIZE);
-		SET_IP_SDU_SIZE(GET_IP_HDR(cep->swbufq), cep->swbuf_count + TCP_HDR_SIZE);
+		cep->swbufq->len = (uint16_t)(cep->swbuf_count + hdr_size);
+		SET_IP_SDU_SIZE(cep->swbufq, cep->swbuf_count + TCP_HDR_SIZE);
 
 		/* フラグを、送信可能に設定する。*/
 		cep->flags = (cep->flags & ~TCP_CEP_FLG_WBCS_MASK) | TCP_CEP_FLG_WBCS_SEND_READY;
@@ -323,7 +320,7 @@ tcp_write_swbuf_cs (T_TCP_CEP *cep, void *data, uint_t len)
 
 	else {	/* 送信ウインドバッファが不正 */
 		syslog(LOG_WARNING, "[TCP] illegal window buff for send, CEP: %d, %4d < %4d.",
-		                    GET_TCP_CEPID(cep), error, IF_IP_TCP_HDR_SIZE);
+		                    GET_TCP_CEPID(cep), error, hdr_size);
 
 		/* 送信ウィンドバッファキューのネットワークバッファを解放する。*/
 		tcp_free_swbufq_cs(cep);
@@ -347,10 +344,9 @@ tcp_wait_swbuf_cs (T_TCP_CEP *cep, TMO tmout)
 	ER	error;
 	int_t	win;
 
-
 	/* 送信ウィンドバッファが割当て済みで、空きがあれば終了する。*/
 	if ((cep->flags & TCP_CEP_FLG_WBCS_MASK) == TCP_CEP_FLG_WBCS_NBUF_READY &&
-	    (cep->swbuf_count + IF_IP_TCP_HDR_SIZE) < net_buf_siz(cep->swbufq))
+	    (cep->swbuf_count + IF_IP_TCP_NET_HDR_SIZE(&cep->dstaddr.ipaddr)) < net_buf_siz(cep->swbufq))
 		return E_OK;
 
 	/* 送信中であれば、終了するまで待機する。*/
@@ -422,9 +418,9 @@ tcp_wait_swbuf_cs (T_TCP_CEP *cep, TMO tmout)
 		}
 
 	/* ネットワークバッファを獲得する。*/
-	if ((error = tcp_get_segment(&cep->swbufq, cep, 0,
+	if ((error = tcpn_get_segment(&cep->swbufq, cep, 0,
 	                             TCP_CFG_SWBUF_CSAVE_MIN_SIZE,
-	                             TCP_CFG_SWBUF_CSAVE_MAX_SIZE - IF_IP_TCP_HDR_SIZE,
+	                             TCP_CFG_SWBUF_CSAVE_MAX_SIZE,
 	                             NBA_SEARCH_DESCENT, tmout)) != E_OK)
 		return error;
 
@@ -462,7 +458,7 @@ tcp_get_swbuf_addr_cs (T_TCP_CEP *cep, void **p_buf)
 		 *  パッディングする。その分を考慮して送信ウィンドバッファの
 		 *  空きサイズを 4 オクテット境界に調整する。
 		 */
-		error = (uint_t)(((error - IF_IP_TCP_HDR_SIZE) >> 2 << 2) - cep->swbuf_count);
+		error = (uint_t)(((error - IF_IP_TCP_NET_HDR_SIZE(&cep->dstaddr.ipaddr)) >> 2 << 2) - cep->swbuf_count);
 
 		/* 送信ウインドサイズによりサイズを調整する。*/
 		if (error > cep->snd_wnd) 
@@ -507,8 +503,8 @@ tcp_send_swbuf_cs (T_TCP_CEP *cep, uint_t len)
 	cep->swbuf_count += len;
 
 	/* ネットワークバッファ長と IP データグラム長を設定する。*/
-	cep->swbufq->len = (uint16_t)(cep->swbuf_count + IF_IP_TCP_HDR_SIZE);
-	SET_IP_SDU_SIZE(GET_IP_HDR(cep->swbufq), len + TCP_HDR_SIZE);
+	cep->swbufq->len = (uint16_t)(cep->swbuf_count + IF_IP_TCP_NET_HDR_SIZE(&cep->dstaddr.ipaddr));
+	SET_IP_SDU_SIZE(cep->swbufq, len + TCP_HDR_SIZE);
 
 	/* tcp_get_buf の割当て長をリセットする。*/
 	cep->get_buf_len = 0;
@@ -572,7 +568,7 @@ bool_t
 tcp_is_swbuf_full_cs (T_TCP_CEP *cep)
 {
 	return (cep->flags & TCP_CEP_FLG_WBCS_MASK) != TCP_CEP_FLG_WBCS_NBUF_READY ||
-	        cep->swbuf_count >= cep->swbufq->len - IF_IP_TCP_HDR_SIZE;
+	        cep->swbuf_count >= cep->swbufq->len - IF_IP_TCP_NET_HDR_SIZE(&cep->dstaddr.ipaddr);
 	}
 
 /*
@@ -589,7 +585,7 @@ tcp_init_swbuf (T_TCP_CEP *cep)
 	cep->swbuf_count = 0;
 
 	/* 送信ウインドバッファのアドレスを設定する。*/
-	cep->sbuf_wptr = cep->sbuf_rptr = GET_TCP_SDU(cep->swbufq, IF_IP_TCP_HDR_OFFSET);
+	cep->sbuf_wptr = cep->sbuf_rptr = GET_TCP_SDU(cep->swbufq, IF_IP_TCP_NET_HDR_OFFSET(&cep->dstaddr.ipaddr));
 
 	/* フラグを、ネットワークバッファ割当て済みに設定する。*/
 	cep->flags = (cep->flags & ~(TCP_CEP_FLG_WBCS_NBUF_REQ | TCP_CEP_FLG_WBCS_MASK))
@@ -663,7 +659,9 @@ tcp_pull_res_nbuf (ATR nbatr)
 
 #ifdef TCP_CFG_RWBUF_CSAVE 
 
-#ifndef TCP_CFG_RWBUF_CSAVE_ONLY
+#ifdef TCP_CFG_RWBUF_CSAVE_ONLY
+
+#else	/* of #ifdef TCP_CFG_RWBUF_CSAVE_ONLY */
 
 /*
  *  TCP 通信端点の受信ウィンドバッファの省コピー機能が有効な場合
@@ -735,7 +733,7 @@ tcp_write_rwbuf (T_TCP_CEP *cep, T_NET_BUF *input, uint_t thoff)
 		tcp_write_rwbuf_cs(cep, input, thoff);
 	}
 
-#endif	/* of #ifndef TCP_CFG_RWBUF_CSAVE_ONLY */
+#endif	/* of #ifdef TCP_CFG_RWBUF_CSAVE_ONLY */
 
 /*
  *  TCP 通信端点の受信ウィンドバッファの省コピー機能が有効
@@ -752,7 +750,7 @@ tcp_drop_rwbuf_cs (T_TCP_CEP *cep, uint_t len)
 
 	if (cep->rwbufq != NULL) {
 
-		qhdr = GET_TCP_Q_HDR(cep->rwbufq, GET_TCP_IP_Q_HDR(cep->rwbufq)->thoff);
+		qhdr = GET_TCP_Q_HDR(cep->rwbufq, GET_IP_TCP_Q_HDR_OFFSET(cep->rwbufq));
 		cep->rwbuf_count -= len;
 
 		/* ネットワークバッファにデータが無くなったら解放する。*/
@@ -795,7 +793,7 @@ tcp_read_rwbuf_cs (T_TCP_CEP *cep, void *data, uint_t len)
 	 *  len が 0 になるまで続ける。
 	 */
 	while (cep->rwbufq != NULL && len > 0) {
-		qhdr = GET_TCP_Q_HDR(cep->rwbufq, GET_TCP_IP_Q_HDR(cep->rwbufq)->thoff);
+		qhdr = GET_TCP_Q_HDR(cep->rwbufq, GET_IP_TCP_Q_HDR_OFFSET(cep->rwbufq));
 
 		/*
 		 *  len と受信ウィンドバッファキューの先頭ネットワークバッファの
@@ -807,7 +805,7 @@ tcp_read_rwbuf_cs (T_TCP_CEP *cep, void *data, uint_t len)
 			blen = len;
 
 		memcpy(buf,
-		       GET_TCP_SDU(cep->rwbufq, GET_TCP_IP_Q_HDR(cep->rwbufq)->thoff) + qhdr->soff,
+		       GET_TCP_SDU(cep->rwbufq, GET_IP_TCP_Q_HDR_OFFSET(cep->rwbufq)) + qhdr->soff,
 		       (size_t)blen);
 
 		/*
@@ -849,8 +847,8 @@ tcp_get_rwbuf_addr_cs (T_TCP_CEP *cep, void **p_buf)
 	else {
 
 		/* 受信ウィンドバッファのデータのアドレスの先頭を設定する。*/
-		qhdr = GET_TCP_Q_HDR(cep->rwbufq, GET_TCP_IP_Q_HDR(cep->rwbufq)->thoff);
-		*p_buf = GET_TCP_SDU(cep->rwbufq, GET_TCP_IP_Q_HDR(cep->rwbufq)->thoff) + qhdr->soff;
+		qhdr = GET_TCP_Q_HDR(cep->rwbufq, GET_IP_TCP_Q_HDR_OFFSET(cep->rwbufq));
+		*p_buf = GET_TCP_SDU(cep->rwbufq, GET_IP_TCP_Q_HDR_OFFSET(cep->rwbufq)) + qhdr->soff;
 
 		/* 受信ウィンドバッファのデータ長を計算する。*/
 		len = qhdr->slen;
@@ -879,7 +877,7 @@ tcp_free_rwbufq_cs (T_TCP_CEP *cep)
 
 	if (cep->rwbuf_count == 0 && cep->reassq == NULL) {
 		while (cep->rwbufq != NULL) {
-			next = GET_TCP_Q_HDR(cep->rwbufq, GET_TCP_IP_Q_HDR(cep->rwbufq)->thoff)->next;
+			next = GET_TCP_Q_HDR(cep->rwbufq, GET_IP_TCP_Q_HDR_OFFSET(cep->rwbufq))->next;
 
 #ifdef TCP_CFG_RWBUF_CSAVE_MAX_QUEUES
 
@@ -960,7 +958,7 @@ tcp_write_rwbuf_cs (T_TCP_CEP *cep, T_NET_BUF *input, uint_t thoff)
 	qhdr->next = NULL;
 	nextp = &cep->rwbufq;
 	while (*nextp)
-		nextp = &GET_TCP_Q_HDR(*nextp, GET_TCP_IP_Q_HDR(*nextp)->thoff)->next;
+		nextp = &GET_TCP_Q_HDR(*nextp, GET_IP_TCP_Q_HDR_OFFSET(*nextp))->next;
 	*nextp = input;
 
 	/*
@@ -983,7 +981,7 @@ tcp_write_rwbuf_cs (T_TCP_CEP *cep, T_NET_BUF *input, uint_t thoff)
 
 		int_t	len;
 
-		qhdr = GET_TCP_Q_HDR(cep->rwbufq, GET_TCP_IP_Q_HDR(cep->rwbufq)->thoff);
+		qhdr = GET_TCP_Q_HDR(cep->rwbufq, GET_IP_TCP_Q_HDR_OFFSET(cep->rwbufq));
 		len = qhdr->slen;
 
 		/*
@@ -998,20 +996,15 @@ tcp_write_rwbuf_cs (T_TCP_CEP *cep, T_NET_BUF *input, uint_t thoff)
 
 			/* 受信ウィンドバッファのアドレスを返す。*/
 			*cep->rcv_p_buf = GET_TCP_SDU(cep->rwbufq,
-			                  GET_TCP_IP_Q_HDR(cep->rwbufq)->thoff) + qhdr->soff;
+			                  GET_IP_TCP_Q_HDR_OFFSET(cep->rwbufq)) + qhdr->soff;
 
 			if (IS_PTR_DEFINED(cep->callback))
 
 #ifdef TCP_CFG_NON_BLOCKING_COMPAT14
-
 				(*cep->callback)(GET_TCP_CEPID(cep), cep->rcv_nblk_tfn, (void*)len);
-
-#else	/* of #ifdef TCP_CFG_NON_BLOCKING_COMPAT14 */
-
+#else
 				(*cep->callback)(GET_TCP_CEPID(cep), cep->rcv_nblk_tfn, (void*)&len);
-
-#endif	/* of #ifdef TCP_CFG_NON_BLOCKING_COMPAT14 */
-
+#endif
 			else
 				syslog(LOG_WARNING, "[TCP] no call back, CEP: %d.", GET_TCP_CEPID(cep));
 
@@ -1052,15 +1045,10 @@ tcp_write_rwbuf_cs (T_TCP_CEP *cep, T_NET_BUF *input, uint_t thoff)
 			if (IS_PTR_DEFINED(cep->callback))
 
 #ifdef TCP_CFG_NON_BLOCKING_COMPAT14
-
 				(*cep->callback)(GET_TCP_CEPID(cep), cep->rcv_nblk_tfn, (void*)len);
-
-#else	/* of #ifdef TCP_CFG_NON_BLOCKING_COMPAT14 */
-
+#else
 				(*cep->callback)(GET_TCP_CEPID(cep), cep->rcv_nblk_tfn, (void*)&len);
-
-#endif	/* of #ifdef TCP_CFG_NON_BLOCKING_COMPAT14 */
-
+#endif
 			else
 				syslog(LOG_WARNING, "[TCP] no call back, CEP: %d.", GET_TCP_CEPID(cep));
 			}

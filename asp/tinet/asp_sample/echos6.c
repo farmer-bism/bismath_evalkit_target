@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: echos6.c,v 1.5 2009/12/24 06:20:39 abe Exp $
+ *  @(#) $Id: echos6.c 1.7 2017/6/1 8:50:28 abe $
  */
 
 /* 
@@ -154,7 +154,7 @@ tcp_echo_srv_task(intptr_t exinf)
 	ER		error = E_OK;
 	uint32_t	total;
 	uint16_t	rblen, sblen, rlen, slen, soff, count;
-	char		*rbuf, *sbuf, head, tail;
+	char		*rbuf, *sbuf;
 
 	get_tid(&tskid);
 	syslog(LOG_NOTICE, "[TCP ECHO SRV (NBLK):%d,%d] (copy save API) started.", tskid, (int_t)exinf);
@@ -196,15 +196,10 @@ tcp_echo_srv_task(intptr_t exinf)
 			/* バッファの残りにより、受信長を調整する。*/
 			if (rblen > BUF_SIZE - rlen)
 				rblen = BUF_SIZE - rlen;
+
 			total += rblen;
 			rlen   = rblen;
-
-			head = *rbuf;
-			tail = *(rbuf + rblen - 1);
 			count ++;
-			/*syslog(LOG_NOTICE, "[TCP ECHO SRV (NBLK) RCV] "
-			                   "count: %4d, len: %4d, data %02x -> %02x",
-			                   ++ count, rblen, head, tail);*/
 			memcpy(buffer, rbuf, rblen);
 
 			if ((error = tcp_rel_buf((int_t)exinf, rlen)) < 0) {
@@ -272,7 +267,6 @@ tcp_echo_srv_task(intptr_t exinf)
 	ER		error;
 	uint32_t	total;
 	uint16_t	rlen, slen, soff, count;
-	char		head, tail;
 
 	get_tid(&tskid);
 	syslog(LOG_NOTICE, "[TCP ECHO SRV (NBLK):%d,%d] started.", tskid, (int_t)exinf);
@@ -315,11 +309,7 @@ tcp_echo_srv_task(intptr_t exinf)
 
 			rlen   = (uint16_t)nblk_rlen;
 			total += (uint32_t)nblk_rlen;
-			head = *buffer;
-			tail = *(buffer + rlen - 1);
 			count ++;
-			/*syslog(LOG_NOTICE, "[TCP ECHO SRV (NBLK) RCV] count: %4d, len: %4d, data %02x -> %02x",
-			                   ++ count, rlen, head, tail);*/
 			soff = 0;
 			while (rlen > 0) {
 				if ((error = tcp_snd_dat((int_t)exinf, &buffer[soff], rlen, TMO_NBLK)) != E_WBLK) {
@@ -373,7 +363,7 @@ tcp_echo_srv_task(intptr_t exinf)
 	ER		error = E_OK;
 	uint32_t	total;
 	uint16_t	rlen, slen, soff, count;
-	char		*rbuf, *sbuf, head, tail;
+	char		*rbuf, *sbuf;
 
 	get_tid(&tskid);
 	syslog(LOG_NOTICE, "[TCP ECHO SRV:%d,%d] (copy save API) started.", tskid, (int_t)exinf);
@@ -394,12 +384,7 @@ tcp_echo_srv_task(intptr_t exinf)
 
 			rlen   = (uint16_t)rblen;
 			total += (uint32_t)rblen;
-			head = *rbuf;
-			tail = *(rbuf + rlen - 1);
 			count ++;
-			/*syslog(LOG_NOTICE, "[TCP ECHO SRV RCV] count: %4d, len: %4d, data %02x -> %02x",
-			       ++ count, rlen, head, tail);*/
-
 			soff = 0;
 			while (rlen > 0) {
 

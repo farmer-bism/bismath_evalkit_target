@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: netapp.h,v 1.5 2009/12/24 05:44:56 abe Exp $
+ *  @(#) $Id: netapp.h 1.7 2017/6/1 8:50:22 abe $
  */
 
 #ifndef _NETAPP_H_
@@ -38,23 +38,33 @@
  *  IPv4 と IPv6 の切換えマクロ
  */
 
-#if defined(SUPPORT_INET4)
-#define PUT_IPADDR(p,a,w)	put_ipv4addr(p,a,w)
-#endif
-
 #if defined(SUPPORT_INET6)
+
 #define PUT_IPADDR(p,a,w)	put_ipv6addr(p,a,w)
-#endif
+
+#else	/* of #if defined(SUPPORT_INET6) */
+
+#if defined(SUPPORT_INET4)
+
+#define PUT_IPADDR(p,a,w)	put_ipv4addr(p,a,w)
+
+#endif	/* of #if defined(SUPPORT_INET4) */
+
+#endif	/* of #if defined(SUPPORT_INET6) */
 
 /*
  *  コンソールに用いるシリアルポート番号
  */
 
 #ifndef CONSOLE_PORTID
-
 #define	CONSOLE_PORTID		LOGTASK_PORTID
+#endif
 
-#endif	/* of #ifndef CONSOLE_PORTID */
+/*
+ *  コンソールに用いる LCD ポート番号
+ */
+
+#define	LCD_PORTID		0
 
 /*
  *  数値変換のための変換表
@@ -79,11 +89,10 @@ extern int_t cons_putnumber (ID portid, ulong_t val, int_t radix,
 extern void cons_printf (ID portid, const char *fmt, ...);
 extern int_t put_macaddr (ID portid, uint8_t *mac, int_t width);
 
-#if defined(SUPPORT_INET4)
+#ifdef T_IN4_ADDR_DEFINED
 extern int_t put_ipv4addr (ID portid, T_IN4_ADDR *addr, int_t width);
 #endif
-
-#if defined(SUPPORT_INET6)
+#ifdef T_IN6_ADDR_DEFINED
 extern int_t put_ipv6addr (ID portid, const T_IN6_ADDR *addr, int_t width);
 #endif
 

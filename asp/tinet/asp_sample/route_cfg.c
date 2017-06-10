@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: route_cfg.c,v 1.5 2009/12/24 06:20:39 abe Exp $
+ *  @(#) $Id: route_cfg.c 1.7 2017/6/1 8:50:29 abe $
  */
 
 /* 
@@ -43,13 +43,25 @@
 #include <netinet/in.h>
 #include <netinet/in_var.h>
 
+/* IPv6 に関する定義 */
+
+#ifdef _IP6_CFG
+
+#if NUM_IN6_ROUTE_ENTRY > 0
+
+T_IN6_RTENTRY routing6_tbl[NUM_IN6_ROUTE_ENTRY];
+
+#endif	/* of #if NUM_IN6_ROUTE_ENTRY > 0 */
+
+#endif	/* of #ifdef _IP6_CFG */
+
 /* IPv4 に関する定義 */
 
-#ifdef SUPPORT_INET4
+#ifdef _IP4_CFG
 
 #ifdef SUPPORT_LOOP
 
-T_IN4_RTENTRY routing_tbl[NUM_ROUTE_ENTRY] = {
+T_IN4_RTENTRY routing4_tbl[NUM_IN4_ROUTE_ENTRY] = {
 	{ 0, 0, 0 },
 	};
 
@@ -57,7 +69,7 @@ T_IN4_RTENTRY routing_tbl[NUM_ROUTE_ENTRY] = {
 
 #ifdef SUPPORT_PPP
 
-T_IN4_RTENTRY routing_tbl[NUM_ROUTE_ENTRY] = {
+T_IN4_RTENTRY routing4_tbl[NUM_IN4_ROUTE_ENTRY] = {
 	{ 0, 0, 0 },
 	};
 
@@ -65,7 +77,7 @@ T_IN4_RTENTRY routing_tbl[NUM_ROUTE_ENTRY] = {
 
 #ifdef SUPPORT_ETHER
 
-T_IN4_RTENTRY routing_tbl[NUM_ROUTE_ENTRY] = {
+T_IN4_RTENTRY routing4_tbl[NUM_IN4_ROUTE_ENTRY] = {
 
 	/* 異なる LAN、default gateway による間接配送	*/
 	{ 0,			0,			IPV4_ADDR_DEFAULT_GW	},
@@ -81,16 +93,4 @@ T_IN4_RTENTRY routing_tbl[NUM_ROUTE_ENTRY] = {
 
 #endif	/* of #ifdef SUPPORT_ETHER */
 
-#endif	/* of #ifdef SUPPORT_INET4 */
-
-/* IPv6 に関する定義 */
-
-#ifdef SUPPORT_INET6
-
-#if NUM_ROUTE_ENTRY > 0
-
-T_IN6_RTENTRY routing_tbl[NUM_ROUTE_ENTRY] = { };
-
-#endif	/* of #if NUM_ROUTE_ENTRY > 0 */
-
-#endif	/* of #ifdef SUPPORT_INET6 */
+#endif	/* of #ifdef _IP4_CFG */

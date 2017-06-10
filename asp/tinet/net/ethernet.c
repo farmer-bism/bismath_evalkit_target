@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: ethernet.c,v 1.5.4.1 2015/02/05 02:09:13 abe Exp abe $
+ *  @(#) $Id: ethernet.c 1.7 2017/6/1 8:49:1 abe $
  */
 
 /* 
@@ -62,6 +62,7 @@
 #include <net/if_llc.h>
 #include <net/if_arp.h>
 #include <net/net.h>
+#include <net/net_endian.h>
 #include <net/net_var.h>
 #include <net/net_buf.h>
 #include <net/net_timer.h>
@@ -70,11 +71,11 @@
 #include <netinet/in.h>
 #include <netinet/in_var.h>
 #include <netinet/if_ether.h>
+
 #include <netinet6/if6_ether.h>
 #include <netinet6/nd6.h>
 
 #include <net/if_var.h>
-#include <net/if6_var.h>
 
 #ifdef SUPPORT_ETHER
 
@@ -82,14 +83,14 @@
  *  変数
  */
 
-#if defined(SUPPORT_INET4)
+#if defined(_IP4_CFG)
 
 const uint8_t ether_broad_cast_addr[ETHER_ADDR_LEN] = {
 	UINT_C(0xff), UINT_C(0xff), UINT_C(0xff),
 	UINT_C(0xff), UINT_C(0xff), UINT_C(0xff)
 	};
 
-#endif	/* of #if defined(SUPPORT_INET4) */
+#endif	/* of #if defined(_IP4_CFG) */
 
 /*
  *  変数
@@ -97,34 +98,11 @@ const uint8_t ether_broad_cast_addr[ETHER_ADDR_LEN] = {
 
 /* ネットワークインタフェース構造体 */
 
-#if defined(SUPPORT_INET4)
-
-static T_IFNET ether_ifnet = {
-	NULL,			/* ネットワークインタフェースのソフトウェア情報	*/
-	{
-		IPV4_ADDR_LOCAL,	/* IPv4 アドレス		*/
-		IPV4_ADDR_LOCAL_MASK,	/* サブネットマスク		*/
-		},
-	};
-
-#endif	/* of #if defined(SUPPORT_INET4) */
-
-#if defined(SUPPORT_INET6)
-
-static T_IFNET ether_ifnet = {
-	NULL,			/* ネットワークインタフェースのソフトウェア情報	*/
-	{},			/* IPv6 アドレス情報				*/
-	{},			/* マルチキャスト IPv6 アドレス			*/
-	0,			/* フラグ					*/
-	};
-
-#endif	/* of #if defined(SUPPORT_INET6) */
+static T_IFNET ether_ifnet;
 
 #ifdef SUPPORT_MIB
 
-/*
- *  SNMP の 管理情報ベース (MIB)
- */
+/*  SNMP の 管理情報ベース (MIB) */
 
 T_IF_STATS if_stats;
 
@@ -157,6 +135,34 @@ ieee_802_input (T_NET_BUF *input)
 #endif	/* of #ifdef ETHER_CFG_802_WARNING */
 
 /*
+ *  ether_srand -- 乱数を初期値を返す。
+ */
+
+uint32_t
+ether_srand (void)
+{
+	T_IF_SOFTC	*ic;
+	uint32_t	rval;
+
+	ic = IF_ETHER_NIC_GET_SOFTC();
+	rval  = (ic->ifaddr.lladdr[2] << 24)
+	      + (ic->ifaddr.lladdr[3] << 16)
+	      + (ic->ifaddr.lladdr[4] <<  8)
+	      + (ic->ifaddr.lladdr[5]      );
+
+#ifdef ETHER_CFG_COLLECT_ADDR
+
+	rval += (ether_collect_addr.lladdr[2] << 24)
+	      + (ether_collect_addr.lladdr[3] << 16)
+	      + (ether_collect_addr.lladdr[4] <<  8)
+	      + (ether_collect_addr.lladdr[5]      );
+
+#endif	/* of #ifdef ETHER_CFG_COLLECT_ADDR */
+
+	return rval;
+	}
+
+/*
  *  ether_get_ifnet -- ネットワークインタフェース構造体を返す。
  */
 
@@ -166,14 +172,14 @@ ether_get_ifnet (void)
 	return &ether_ifnet;
 	}
 
-#if defined(SUPPORT_INET6)
+#if defined(_IP6_CFG)
 
 /*
  *  ether_in6_resolve_multicast -- イーサネットのマルチキャストアドレスへの変換
  */
 
 ER
-ether_in6_resolve_multicast (T_ETHER_ADDR *ifaddr, T_IN6_ADDR *maddr)
+ether_in6_resolve_multicast (T_ETHER_ADDR *ifaddr, const T_IN6_ADDR *maddr)
 {
 	/* マルチキャストアドレスかチェックする。*/
 	if (!IN6_IS_ADDR_MULTICAST(maddr))
@@ -185,7 +191,7 @@ ether_in6_resolve_multicast (T_ETHER_ADDR *ifaddr, T_IN6_ADDR *maddr)
 	return E_OK;
 	}
 
-#endif	/* of #if defined(SUPPORT_INET6) */
+#endif	/* of #if defined(_IP6_CFG) */
 
 /*
  *  ether_raw_output -- Ethernet インタフェースの出力関数、MAC アドレス解決無し
@@ -218,7 +224,7 @@ ether_raw_output (T_NET_BUF *output, TMO tmout)
  */
 
 ER
-ether_output (T_NET_BUF *output, void *dst, T_IF_ADDR *gw, TMO tmout)
+ether_output (T_NET_BUF *output, const void *dst, T_IF_ADDR *gw, TMO tmout)
 {
 	T_IF_SOFTC	*ic;
 	ER		error = E_OK;
@@ -229,7 +235,7 @@ ether_output (T_NET_BUF *output, void *dst, T_IF_ADDR *gw, TMO tmout)
 
 	switch(ntohs(GET_ETHER_HDR(output)->type)) {
 
-#if defined(SUPPORT_INET4)
+#if defined(_IP4_CFG)
 
 	case ETHER_TYPE_IP:		/* IPv4	*/
 		if (arp_resolve(&ic->ifaddr, output, *(uint32_t*)dst)) {	/* true ならアドレス解決済 */
@@ -237,13 +243,13 @@ ether_output (T_NET_BUF *output, void *dst, T_IF_ADDR *gw, TMO tmout)
 			}
 		break;
 
-#endif	/* of #if defined(SUPPORT_INET4) */
+#endif	/* of #if defined(_IP4_CFG) */
 
-#if defined(SUPPORT_INET6)
+#if defined(_IP6_CFG)
 
 	case ETHER_TYPE_IPV6:		/* IPv6	*/
 		error = nd6_storelladdr((T_ETHER_ADDR*)GET_ETHER_HDR(output)->dhost,
-		                        (T_IN6_ADDR*)dst, gw);
+		                        (const T_IN6_ADDR*)dst, gw);
 		if (error == E_OK)
 			error = ether_raw_output(output, tmout);
 
@@ -256,7 +262,7 @@ ether_output (T_NET_BUF *output, void *dst, T_IF_ADDR *gw, TMO tmout)
 			}
 		break;
 
-#endif	/* of #if defined(SUPPORT_INET6) */
+#endif	/* of #if defined(_IP6_CFG) */
 
 	default:
 		NET_COUNT_MIB(if_stats.ifOutErrors, 1);
@@ -343,9 +349,19 @@ ether_input_task(intptr_t exinf)
 	T_ETHER_HDR	*eth;
 	ID		tskid;
 	uint16_t	proto;
+	uint8_t		rcount = 0;
 
 	/* ネットワークインタフェース管理を初期化する。*/
 	ifinit();
+
+	/* イーサネットネットワークインタフェース管理を初期化する。*/
+
+#if defined(_IP4_CFG)
+
+	ether_ifnet.in4_ifaddr.addr = IPV4_ADDR_LOCAL;		/* IPv4 アドレス		*/
+	ether_ifnet.in4_ifaddr.mask = IPV4_ADDR_LOCAL_MASK;	/* サブネットマスク		*/
+
+#endif	/* of #if defined(_IP4_CFG) */
 
 	/* NIC を初期化する。*/
 	ic = IF_ETHER_NIC_GET_SOFTC();
@@ -363,14 +379,17 @@ ether_input_task(intptr_t exinf)
 	syslog(LOG_NOTICE, "[ETHER INPUT:%2d] started on MAC Addr: %s.",
 	                   tskid, mac2str(NULL, ic->ifaddr.lladdr));
 
-#if defined(SUPPORT_INET4)
+#if defined(_IP4_CFG)
 
 	/* ARP を初期化する。*/
 	arp_init();
 
-#endif	/* of #if defined(SUPPORT_INET4) */
+#endif	/* of #if defined(_IP4_CFG) */
 
 	ether_ifnet.ic = ic;
+
+	/* 乱数生成を初期化する。*/
+	net_srand(0);
 
 	while (true) {
 		syscall(wai_sem(ic->semid_rxb_ready));
@@ -381,6 +400,19 @@ ether_input_task(intptr_t exinf)
 			eth = GET_ETHER_HDR(input);
 			proto = ntohs(eth->type);
 
+			/* 乱数生成を初期化する。*/
+			if (rcount == 0) {
+
+#ifdef ETHER_CFG_COLLECT_ADDR
+				memcpy(ether_collect_addr.lladdr, eth->shost, 
+				sizeof(ether_collect_addr.lladdr));
+#endif	/* of #ifdef ETHER_CFG_COLLECT_ADDR */
+
+				net_srand(0);
+				}
+			rcount ++;
+
+
 #ifdef SUPPORT_MIB
 			if ((*eth->dhost & ETHER_MCAST_ADDR) == 0) {
 				NET_COUNT_MIB(if_stats.ifInUcastPkts, 1);
@@ -390,7 +422,7 @@ ether_input_task(intptr_t exinf)
 				}
 #endif	/* of #ifdef SUPPORT_MIB */
 
-#if defined(SUPPORT_INET4) && defined(ETHER_CFG_ACCEPT_ALL)
+#if defined(_IP4_CFG) && defined(ETHER_CFG_ACCEPT_ALL)
 
 			if ((*eth->dhost & ETHER_MCAST_ADDR) && *eth->dhost != 0xff) {
 
@@ -409,11 +441,11 @@ ether_input_task(intptr_t exinf)
 				continue;
 				}
 
-#endif	/* of #if defined(SUPPORT_INET4) && defined(ETHER_CFG_ACCEPT_ALL) */
+#endif	/* of #if defined(_IP4_CFG) && defined(ETHER_CFG_ACCEPT_ALL) */
 
 			switch(proto) {
 
-#if defined(SUPPORT_INET4)
+#if defined(_IP4_CFG)
 
 			case ETHER_TYPE_IP:		/* IP	*/
 				ip_input(input);
@@ -423,15 +455,15 @@ ether_input_task(intptr_t exinf)
 				arp_input(&ic->ifaddr, input);
 				break;
 
-#endif	/* of #if defined(SUPPORT_INET4) */
+#endif	/* of #if defined(_IP4_CFG) */
 
-#if defined(SUPPORT_INET6)
+#if defined(_IP6_CFG)
 
 			case ETHER_TYPE_IPV6:		/* IPv6	*/
 				ip6_input(input);
 				break;
 
-#endif	/* of #if defined(SUPPORT_INET6) */
+#endif	/* of #if defined(_IP6_CFG) */
 
 			default:
 

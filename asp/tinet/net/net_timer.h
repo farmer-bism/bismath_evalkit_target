@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: net_timer.h,v 1.5 2009/12/24 05:42:40 abe Exp $
+ *  @(#) $Id: net_timer.h 1.7 2017/6/1 8:49:16 abe $
  */
 
 /*
@@ -83,7 +83,7 @@
 						/* タイマの周波数			*/
 #define NET_TIMER_HZ		(SYSTIM_HZ/NET_TIMER_CYCLE)
 
-#ifdef SUPPORT_INET6
+#ifdef _IP6_CFG
 #define NUM_NET_CALLOUT		12		/* タイムアウト呼出し数、10 以上	*/
 #else
 #define NUM_NET_CALLOUT		10		/* タイムアウト呼出し数、10 以上	*/

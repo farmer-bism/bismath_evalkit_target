@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: nd6_rtr.c,v 1.5.4.1 2015/02/05 02:11:26 abe Exp abe $
+ *  @(#) $Id: nd6_rtr.c 1.7 2017/6/1 8:49:44 abe $
  */
 
 /*	$FreeBSD: src/sys/netinet6/nd6_rtr.c,v 1.11 2002/04/19 04:46:23 suz Exp $	*/
@@ -92,6 +92,7 @@
 #include <net/if_arp.h>
 #include <net/ppp_ipcp.h>
 #include <net/net.h>
+#include <net/net_endian.h>
 #include <net/net_var.h>
 #include <net/net_buf.h>
 #include <net/net_timer.h>
@@ -99,15 +100,14 @@
 
 #include <netinet/in.h>
 #include <netinet/in_var.h>
-#include <netinet6/in6.h>
-#include <netinet6/in6_var.h>
+#include <netinet/ip.h>
+#include <netinet/ip_var.h>
+#include <netinet/ip_icmp.h>
+
 #include <netinet6/nd6.h>
 #include <netinet6/in6_ifattach.h>
-#include <netinet/ip6.h>
-#include <netinet/icmp6.h>
-#include <netinet6/ip6_var.h>
 
-#include <net/if6_var.h>
+#include <net/if_var.h>
 
 /*
  *  外部関数の定義
@@ -115,7 +115,7 @@
 
 extern const char *itron_strerror (ER ercd);
 
-#ifdef SUPPORT_INET6
+#ifdef _IP6_CFG
 
 #if NUM_ND6_DEF_RTR_ENTRY > 0
 
@@ -283,7 +283,7 @@ pfxlist_onlink_check (void)
 	 *  少なくとも 1 台存在するか確認する。
 	 */
 	for (ix = NUM_IN6_IFADDR_ENTRY; ix -- > 0; ) {
-		ia = &ifp->in_ifaddrs[ix];
+		ia = &ifp->in6_ifaddrs[ix];
 		if ((ia->flags & (IN6_IFF_DEFINED | IN6_IFF_AUTOCONF)) != 0 &&
 		     ia->prefix_index != ND6_PREFIX_IX_INVALID) {
 			pr = &nd6_prefix[ia->prefix_index];
@@ -298,7 +298,7 @@ pfxlist_onlink_check (void)
 		 *  少なくとも 1 台存在する時の処理。
 		 */
 		for (ix = NUM_IN6_IFADDR_ENTRY; ix -- > 0; ) {
-			ia = &ifp->in_ifaddrs[ix];
+			ia = &ifp->in6_ifaddrs[ix];
 			if ((ia->flags & (IN6_IFF_DEFINED | IN6_IFF_AUTOCONF)) != 0 &&
 			     ia->prefix_index != ND6_PREFIX_IX_INVALID) {
 				pr = &nd6_prefix[ia->prefix_index];
@@ -315,7 +315,7 @@ pfxlist_onlink_check (void)
 		 *  1 台存在しない時は全てのアドレスを利用できるようにする。
 		 */
 		for (ix = NUM_IN6_IFADDR_ENTRY; ix -- > 0; ) {
-			ia = &ifp->in_ifaddrs[ix];
+			ia = &ifp->in6_ifaddrs[ix];
 			if ((ia->flags & (IN6_IFF_DEFINED | IN6_IFF_AUTOCONF)) != 0)
 				ia->flags &= ~IN6_IFF_DETACHED;
 			}
@@ -477,7 +477,7 @@ in6_ifadd (T_ND6_PREFIX *pr, T_IN6_IFADDR *ia, int_t router_index)
 	T_IN6_IFADDR	*lla;
 	int_t		ix;
 
-	lla = &ifp->in_ifaddrs[IPV6_IFADDR_IX_LINKLOCAL];
+	lla = &ifp->in6_ifaddrs[IPV6_IFADDR_IX_LINKLOCAL];
 
 	/*
 	 *  リンクローカルアドレスが未登録であれば何もしない。
@@ -584,7 +584,7 @@ nd6_prefix_onlink (T_ND6_PREFIX *pr)
 		return E_OBJ;
 
 	/* リンクローカルアドレスが未登録であれば何もしない。*/
-	lla = &ifp->in_ifaddrs[IPV6_IFADDR_IX_LINKLOCAL];
+	lla = &ifp->in6_ifaddrs[IPV6_IFADDR_IX_LINKLOCAL];
 	if ((lla->flags & IN6_IFF_DEFINED) == 0)
 		return E_OK;
 
@@ -593,7 +593,7 @@ nd6_prefix_onlink (T_ND6_PREFIX *pr)
 	 *  アドレス情報を探す。
 	 */
 	for (ix = NUM_IN6_IFADDR_ENTRY; ix --; ) {
-		ia = &ifp->in_ifaddrs[ix];
+		ia = &ifp->in6_ifaddrs[ix];
 		if (ia->prefix_index == (pr - nd6_prefix))
 			break;
 		}
@@ -633,7 +633,7 @@ nd6_prefix_offlink (T_ND6_PREFIX *pr)
 	 *  アドレス情報を探す。
 	 */
 	for (ix = NUM_IN6_IFADDR_ENTRY; ix --; ) {
-		ia = &ifp->in_ifaddrs[ix];
+		ia = &ifp->in6_ifaddrs[ix];
 		if (ia->prefix_index == (pr - nd6_prefix))
 			break;
 		}
@@ -691,7 +691,6 @@ nd6_prelist_add (T_ND_OPT_PREFIX_INFO *pi, int_t rtr_index)
 {
 	T_ND6_PREFIX	*pr = NULL;
 	int_t		ix;
-	ER		error;
 
 	/* プレフィックスリストから空きのプレフィックスエントリを探索する。*/
 	for (ix = NUM_ND6_PREFIX_ENTRY; ix --; ) {
@@ -722,7 +721,7 @@ nd6_prelist_add (T_ND_OPT_PREFIX_INFO *pi, int_t rtr_index)
 	in6_init_prefix_ltimes(pr);
 
 	if ((pr->flags & ND6_PREFIX_FLAG_ONLINK) != 0) {
-		if ((error = nd6_prefix_onlink(pr)) != E_OK)
+		if (nd6_prefix_onlink(pr) != E_OK)
 			return NULL;
 		}
 
@@ -811,6 +810,13 @@ prelist_update (T_ND_OPT_PREFIX_INFO *pi, uint_t router_index)
 			return;
 			}
 
+#if 1		/* プレフィックスが未登録の場合だけ表示する。*/
+		syslog(LOG_NOTICE, "[ND6 RTR] add prefix: flags[MOH]: %02x, addr: %s\n"
+		                   "                                      from: %s.",
+		                   nd6_def_router[router_index].flags,
+		                   ipv62str(NULL, &pi->prefix),
+		                   ipv62str(NULL, &nd6_def_router[router_index].addr));
+#endif
 		if ((pr->flags & ND6_PREFIX_FLAG_ONLINK) == 0) {
 			/*
 			 *  オフリンク・プレフィックスの場合は、有効時間を 0 に設定する。
@@ -835,7 +841,7 @@ prelist_update (T_ND_OPT_PREFIX_INFO *pi, uint_t router_index)
 	 *  アドレス情報を探す。
 	 */
 	for (ix = NUM_IN6_IFADDR_ENTRY; ix --; ) {
-		ia = &ifp->in_ifaddrs[ix];
+		ia = &ifp->in6_ifaddrs[ix];
 		if ((ia->flags & IN6_IFF_DEFINED) != 0 &&
 		    ia->prefix_len == pr->prefix_len &&
 		    in6_are_prefix_equal(&ia->addr, &pr->prefix, pr->prefix_len))
@@ -891,7 +897,7 @@ prelist_update (T_ND_OPT_PREFIX_INFO *pi, uint_t router_index)
 				vltime = 2 * 60 * 60;
 				}
 
-			lla = &ifp->in_ifaddrs[IPV6_IFADDR_IX_LINKLOCAL];
+			lla = &ifp->in6_ifaddrs[IPV6_IFADDR_IX_LINKLOCAL];
 
 			/* プレフィックスマスクを生成する。*/
 			in6_plen2pmask(&mask, pr->prefix_len);
@@ -921,7 +927,7 @@ prelist_update (T_ND_OPT_PREFIX_INFO *pi, uint_t router_index)
 		else {
 
 			for (ix = NUM_IN6_IFADDR_ENTRY; ix --; ) {
-				ia = &ifp->in_ifaddrs[ix];
+				ia = &ifp->in6_ifaddrs[ix];
 				if ((ia->flags & IN6_IFF_DEFINED) == 0) {
 					in6_ifadd(pr, ia, router_index);
 					pfxlist_onlink_check();
@@ -970,7 +976,7 @@ nd6_rs_output (void)
 	T_ROUTER_SOLICIT_HDR	*rsh;
 	T_NET_BUF		*output;
 	T_IN6_IFADDR		*ifa;
-	T_IN6_ADDR		*saddr;
+	const T_IN6_ADDR	*saddr;
 	uint16_t		len;
 
 	NET_COUNT_ICMP6(net_count_nd6[NC_ND6_RS_OUT_PACKETS], 1);
@@ -1016,7 +1022,7 @@ nd6_rs_output (void)
  */
 
 T_DEF_ROUTER *
-nd6_defrtrlist_lookup (T_IN6_ADDR *src)
+nd6_defrtrlist_lookup (const T_IN6_ADDR *src)
 {
 	T_DEF_ROUTER	*dr = NULL;
 	int_t		ix;
@@ -1035,7 +1041,7 @@ nd6_defrtrlist_lookup (T_IN6_ADDR *src)
  *
  */
 
-T_IN6_ADDR *
+const T_IN6_ADDR *
 nd6_router_lookup (void)
 {
 	if (def_router_count > 0)
@@ -1259,8 +1265,11 @@ nd6_ra_input (T_NET_BUF *input, uint_t off)
 				/* 推奨有効時間が有効時間より長ければ不正 */
 				syslog(LOG_NOTICE, "[ND6 RTR] preferred(%d) > valid time(%d).", ntohl(pi->preferred), ntohl(pi->valid));
 			else {
-				syslog(LOG_NOTICE, "[ND6 RTR] update prefix: %s from %s.",
-				                   ipv62str(NULL, &pi->prefix), ipv62str(NULL, &ip6h->src));
+#if 0	/* プレフィックスが未登録の場合だけ表示する。*/
+				syslog(LOG_NOTICE, "[ND6 RTR] update prefix: flags[MOH]: %02x, addr: %s\n"
+				                   "                                         from: %s.",
+				                   rah->nd_ra_flags, ipv62str(NULL, &pi->prefix), ipv62str(NULL, &ip6h->src));
+#endif
 				if (rix >= 0) {
 					/*
 					 *  defrtrlist_update の戻り値は、ルータのインデックス。
@@ -1390,7 +1399,7 @@ nd6_rtrsol_ctl (void)
  */
 
 T_ND6_PREFIX *
-nd6_onlink_prefix_lookup (T_IN6_ADDR *dst)
+nd6_onlink_prefix_lookup (const T_IN6_ADDR *dst)
 {
 	SYSTIM		now;
 	T_ND6_PREFIX	*pr;
@@ -1426,4 +1435,4 @@ nd6_onlink_prefix_lookup (T_IN6_ADDR *dst)
 	return NULL;
 	}
 
-#endif /* of #ifdef SUPPORT_INET6 */
+#endif /* of #ifdef _IP6_CFG */

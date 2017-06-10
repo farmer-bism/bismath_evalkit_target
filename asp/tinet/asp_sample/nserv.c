@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: nserv.c,v 1.5 2009/12/24 06:20:39 abe Exp $
+ *  @(#) $Id: nserv.c 1.7 2017/6/1 8:50:29 abe $
  */
 
 /* 
@@ -40,8 +40,11 @@
 #include <t_syslog.h>
 
 #include <net/net.h>
+#include <net/net_endian.h>
 
 #include "nserv.h"
+
+#if defined(SUPPORT_ETHER) && defined(SUPPORT_INET4)
 
 /*
  *  arp_callback_duplicated -- IP アドレス重複検出用コールバック関数
@@ -49,10 +52,12 @@
 
 bool_t arp_callback_duplicated (uint8_t *shost)
 {
-	static uint8_t shost_addr[sizeof("00:00:00:00:00:00")];
+	static char shost_addr[sizeof("00:00:00:00:00:00")];
 
-	mac2str(shost_addr, shost);
+	mac2str(shost_addr, (char *)shost);
 	syslog(LOG_ERROR, "[NSERV] IP address duplicated: %s", shost_addr);
 
 	return false;
 	}
+
+#endif	/* of #if defined(SUPPORT_ETHER) && defined(SUPPORT_INET4) */

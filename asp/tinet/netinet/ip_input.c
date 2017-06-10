@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: ip_input.c,v 1.5.4.1 2015/02/05 02:10:53 abe Exp abe $
+ *  @(#) $Id: ip_input.c 1.7 2017/6/1 8:49:23 abe $
  */
 
 /*
@@ -76,6 +76,7 @@
 #include <sil.h>
 #include <t_syslog.h>
 #include "kernel_cfg.h"
+#include "tinet_cfg.h"
 
 #endif	/* of #ifdef TARGET_KERNEL_ASP */
 
@@ -84,6 +85,7 @@
 #include <s_services.h>
 #include <t_services.h>
 #include "kernel_id.h"
+#include "tinet_id.h"
 
 #endif	/* of #ifdef TARGET_KERNEL_JSP */
 
@@ -96,6 +98,7 @@
 #include <net/ethernet.h>
 #include <net/ppp_ipcp.h>
 #include <net/net.h>
+#include <net/net_endian.h>
 #include <net/net_buf.h>
 #include <net/net_count.h>
 #include <net/net_timer.h>
@@ -106,7 +109,6 @@
 #include <netinet/ip_var.h>
 #include <netinet/ip_icmp.h>
 #include <netinet/tcp.h>
-#include <netinet/tcp_timer.h>
 #include <netinet/tcp_var.h>
 #include <netinet/udp.h>
 #include <netinet/udp_var.h>
@@ -121,6 +123,8 @@
 #endif /* of defined(SUPPORT_IPSEC) */
 
 #include <net/if_var.h>
+
+#if defined(_IP4_CFG)
 
 /*
  *  変数
@@ -344,16 +348,18 @@ ip_init (void)
 ER
 ip_remove_options (T_NET_BUF *nbuf)
 {
-	T_IP_HDR	*iph;
+	T_IP4_HDR	*iph;
+	uint_t		hdr_size;
 
-	iph  = GET_IP_HDR(nbuf);
+	iph  = GET_IP4_HDR(nbuf);
+	hdr_size = GET_IP4_HDR_SIZE(nbuf);
 
-	if (GET_IP_HDR_SIZE(iph) > IP4_HDR_SIZE) {
-		memmove((char *)iph + IP4_HDR_SIZE, GET_IP_SDU(nbuf),
-		        (size_t)(iph->len - GET_IP_HDR_SIZE(iph)));
+	if (hdr_size > IP4_HDR_SIZE) {
+		memmove((char *)iph + IP4_HDR_SIZE, GET_IP4_SDU(nbuf),
+		        (size_t)(iph->len - hdr_size));
 		iph->vhl   = IP4_MAKE_VHL(IPV4_VERSION, IP4_HDR_SIZE >> 2);
-		iph->len  -= (uint16_t)(GET_IP_HDR_SIZE(iph) - IP4_HDR_SIZE);
-		nbuf->len -= (uint16_t)(GET_IP_HDR_SIZE(iph) - IP4_HDR_SIZE);
+		iph->len  -= (uint16_t)(hdr_size - IP4_HDR_SIZE);
+		nbuf->len -= (uint16_t)(hdr_size - IP4_HDR_SIZE);
 		}
 
 	return E_OK;
@@ -388,8 +394,8 @@ ip_input (T_NET_BUF *input)
 		goto buf_rel;
 		}
 
-	ip4h  = GET_IP4_HDR(input);
-	hlen = GET_IP4_HDR_SIZE(ip4h);
+	ip4h = GET_IP4_HDR(input);
+	hlen = GET_IP4_HDR_SIZE(input);
 
 	/* バージョンをチェックする。*/
 	if (IP4_VHL_V(ip4h->vhl) != IPV4_VERSION) {
@@ -428,7 +434,7 @@ ip_input (T_NET_BUF *input)
 
 	/* 送信元アドレスをチェックする。*/
 	src = ntohl(ip4h->src);
-	bc  = (ifp->in_ifaddr.addr & ifp->in_ifaddr.mask) | ~ifp->in_ifaddr.mask;
+	bc  = (ifp->in4_ifaddr.addr & ifp->in4_ifaddr.mask) | ~ifp->in4_ifaddr.mask;
 
 #ifdef SUPPORT_LOOP
 
@@ -440,7 +446,7 @@ ip_input (T_NET_BUF *input)
 
 #else	/* of #ifdef SUPPORT_LOOP */
 
-	if (src == ifp->in_ifaddr.addr || src == bc || src == IPV4_ADDR_BROADCAST || src == IPV4_ADDRANY) {
+	if (src == ifp->in4_ifaddr.addr || src == bc || src == IPV4_ADDR_BROADCAST || src == IPV4_ADDRANY) {
 		NET_COUNT_IP4(net_count_ip4[NC_IP4_IN_ERR_ADDR], 1);
 		NET_COUNT_MIB(ip_stats.ipInAddrErrors, 1);
 		goto buf_rel;
@@ -458,9 +464,9 @@ ip_input (T_NET_BUF *input)
 	 *  場合もデータグラムを受信する。
 	 */
 
-	if ((ifp->in_ifaddr.addr != IPV4_ADDRANY) &&
-	    (!(dst == ifp->in_ifaddr.addr || dst == bc ||
-	       dst == IPV4_ADDR_BROADCAST || dst == IPV4_ADDRANY))) {
+	if ((ifp->in4_ifaddr.addr != IPV4_ADDRANY) &&
+	    (!(dst == ifp->in4_ifaddr.addr || dst == bc ||
+	       dst == IPV4_ADDR_BROADCAST  || dst == IPV4_ADDRANY))) {
 		NET_COUNT_IP4(net_count_ip4[NC_IP4_IN_ERR_ADDR], 1);
 		NET_COUNT_MIB(ip_stats.ipInAddrErrors, 1);
 		goto buf_rel;
@@ -468,8 +474,8 @@ ip_input (T_NET_BUF *input)
 
 #else	/* of #ifdef DHCP_CFG */
 
-	if (!(dst == ifp->in_ifaddr.addr || dst == bc ||
-	      dst == IPV4_ADDR_BROADCAST || dst == IPV4_ADDRANY)) {
+	if (!(dst == ifp->in4_ifaddr.addr || dst == bc ||
+	      dst == IPV4_ADDR_BROADCAST  || dst == IPV4_ADDRANY)) {
 		NET_COUNT_IP4(net_count_ip4[NC_IP4_IN_ERR_ADDR], 1);
 		NET_COUNT_MIB(ip_stats.ipInAddrErrors, 1);
 		goto buf_rel;
@@ -514,21 +520,22 @@ ip_input (T_NET_BUF *input)
 	/* プロトコルを選択する */
 	switch (ip4h->proto) {
 
-#ifdef SUPPORT_UDP
-	case IPPROTO_UDP:
-		NET_COUNT_MIB(ip_stats.ipInDelivers, 1);
-		udp_input(&input, &off, NULL);
-		return;
-		break;
-#endif	/* of #ifdef SUPPORT_UDP */
-
-#ifdef SUPPORT_TCP
+#if defined(SUPPORT_TCP)
 	case IPPROTO_TCP:
 		NET_COUNT_MIB(ip_stats.ipInDelivers, 1);
 		tcp_input(&input, &off, NULL);
 		return;
 		break;
-#endif	/* of #ifdef SUPPORT_UDP */
+#endif	/* of #if defined(SUPPORT_TCP) */
+
+#if defined(SUPPORT_UDP) && ( (TNUM_UDP4_CEPID > 0) || \
+                             ((TNUM_UDP6_CEPID > 0) && defined(API_CFG_IP4MAPPED_ADDR)))
+	case IPPROTO_UDP:
+		NET_COUNT_MIB(ip_stats.ipInDelivers, 1);
+		udp4_input(&input, &off, NULL);
+		return;
+		break;
+#endif	/* of #if defined(SUPPORT_UDP) && TNUM_UDP4_CEPID > 0 */
 
 	case IPPROTO_ICMP:
 		NET_COUNT_MIB(ip_stats.ipInDelivers, 1);
@@ -549,7 +556,7 @@ ip_input (T_NET_BUF *input)
 		NET_COUNT_MIB(ip_stats.ipInUnknownProtos, 1);
 
 		/* ローカル IP アドレスに届いたデータグラムのみ ICMP エラーを通知する。*/
-		if (dst == ifp->in_ifaddr.addr) {
+		if (dst == ifp->in4_ifaddr.addr) {
 			T_IN4_ADDR	src;
 
 			src = ntohl(ip4h->src);
@@ -567,3 +574,5 @@ buf_rel:
 	NET_COUNT_IP4(net_count_ip4[NC_IP4_IN_ERR_PACKETS], 1);
 	syscall(rel_net_buf(input));
 	}
+
+#endif	/* of #if defined(_IP4_CFG) */

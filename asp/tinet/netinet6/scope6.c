@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: scope6.c,v 1.5 2009/12/24 05:48:16 abe Exp $
+ *  @(#) $Id: scope6.c 1.7 2017/6/1 8:49:45 abe $
  */
 
 /*	$FreeBSD: src/sys/netinet6/in6.c,v 1.21 2002/04/19 04:46:22 suz Exp $	*/
@@ -122,19 +122,23 @@
 #include <net/if_loop.h>
 #include <net/ethernet.h>
 #include <net/net.h>
+#include <net/net_endian.h>
 #include <net/net_buf.h>
+
+#include <netinet/in.h>
+#include <netinet/in_var.h>
 
 #include <netinet6/in6.h>
 #include <netinet6/in6_var.h>
 
-#ifdef SUPPORT_INET6
+#ifdef _IP6_CFG
 
 /*
  *  in6_addrscope -- アドレスのスコープ ID を返す。
  */
 
 uint_t
-in6_addrscope (T_IN6_ADDR *addr)
+in6_addrscope (const T_IN6_ADDR *addr)
 {
 	uint_t scope;
 
@@ -167,4 +171,4 @@ in6_addrscope (T_IN6_ADDR *addr)
 	return IPV6_ADDR_SCOPE_GLOBAL;
 	}
 
-#endif /* of #ifdef SUPPORT_INET6 */
+#endif /* of #ifdef _IP6_CFG */

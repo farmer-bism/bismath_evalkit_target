@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: udp_var.h,v 1.5 2009/12/24 05:47:21 abe Exp $
+ *  @(#) $Id: udp_var.h 1.7 2017/6/1 8:49:39 abe $
  */
 
 /*
@@ -74,30 +74,25 @@
  *  UDP ヘッダ・ペイロードアクセスマクロ
  */
 
-#define IP_UDP_HDR_SIZE			(IP_HDR_SIZE + UDP_HDR_SIZE)
-#define IF_IP_UDP_HDR_SIZE		(IF_IP_HDR_SIZE + UDP_HDR_SIZE)
-#define IF_IP_UDP_HDR_OFFSET		(IF_IP_HDR_SIZE)
-
 #define GET_UDP_HDR(nbuf,uhoff)		((T_UDP_HDR*)((uint8_t*)((nbuf)->buf) + uhoff))
+#define GET_UDP_HDR_OFFSET(nbuf)	(GET_IF_IP_HDR_SIZE(nbuf))
 #define GET_UDP_SDU(nbuf,uhoff)		((uint8_t*)((nbuf)->buf) + uhoff+ UDP_HDR_SIZE)
 
-#define GET_UDP_HDR_OFFSET(nbuf)	(GET_IF_IP_HDR_SIZE(nbuf))
-
-#define GET_IP_UDP_HDR_SIZE(nbuf)	(GET_IP_HDR_SIZE(GET_IP_HDR(nbuf)) + UDP_HDR_SIZE)
-#define GET_IF_IP_UDP_HDR_SIZE(nbuf)	(IF_HDR_SIZE + GET_IP_UDP_HDR_SIZE(nbuf))
+#define IF_IP_UDP_HDR_SIZE(nbuf)	(IF_IP_HDR_SIZE(nbuf) + UDP_HDR_SIZE)
+#define IF_IP_UDP_HDR_OFFSET(nbuf)	(IF_IP_HDR_SIZE(nbuf))
 
 /*
  *  TINET 1.1 との互換性のための定義
  */
 
-#if defined(SUPPORT_INET4)
+#if defined(_IP4_CFG)
 
 #define IP4_UDP_HDR_SIZE		IP_UDP_HDR_SIZE
 #define IF_IP4_UDP_HDR_SIZE		IF_IP_UDP_HDR_SIZE
 #define GET_IP4_UDP_HDR_SIZE(nbuf)	GET_IP_UDP_HDR_SIZE(nbuf)	
 #define GET_IF_IP4_UDP_HDR_SIZE(nbuf)	GET_IF_IP_UDP_HDR_SIZE(nbuf)
 
-#endif	/* of #if defined(SUPPORT_INET4) */
+#endif	/* of #if defined(_IP4_CFG) */
 
 /*
  *  コールバック関数の定義
@@ -109,53 +104,7 @@ typedef ER	(*t_udp_callback)(ID cepid, FN fncd, void *p_parblk);
  *  UDP 通信端点
  */
 
-
-/*
- *  IPv4 UDP 通信端点
- */
-typedef struct t_udp4_cep {
-
-	/*
-	 * ITRON TCP/IP API、TCP 通信端点と同じメンバ
-	 */
-	ATR		cepatr;		/* UDP 通信端点属性		*/
-	T_IPV4EP	myaddr;		/* 自分のアドレス		*/
-	t_udp_callback	callback;	/* コールバック関数		*/
-
-	/*
-	 * TINET 独自のメンバ
-	 */
-	uint16_t	flags;		/* 通信端点フラグ		*/
-	ID		semid_lock;	/* 通信端点ロック		*/
-	ID		snd_tskid;	/* 送信タスク識別子		*/
-	ID		rcv_tskid;	/* 受信タスク識別子		*/
-	ID		rcvqid;		/* 非コールバック用受信キュー識別子*/
-	T_NET_BUF	*cb_netbuf;	/* コールバック用受信ネットワークバッファ*/
-
-#ifdef UDP_CFG_NON_BLOCKING
-
-	T_IPV4EP 	*snd_p_dstaddr;	/* 送信相手のアドレスへのポインタ*/
-	T_IPV4EP 	*rcv_p_dstaddr;	/* 受信相手のアドレスへのポインタ*/
-	void		*snd_data;	/* 送信データ領域の先頭アドレス	*/
-	int_t		snd_len;	/* 送信データ領域の長さ		*/
-	void		*rcv_data;	/* 受信データ領域の先頭アドレス	*/
-	int_t		rcv_len;	/* 受信データ領域の長さ		*/
-
-#endif	/* of #ifdef UDP_CFG_NON_BLOCKING */
-
-#ifdef UDP_CFG_EXTENTIONS
-	ER		error;		/* 待ち中に発生したエラー	*/
-#endif
-
-	} T_UDP4_CEP;
-
-#if defined(SUPPORT_INET4)
-#define T_UDP_CEP	T_UDP4_CEP
-#endif
-
-/*
- *  IPv6 UDP 通信端点
- */
+/* IPv6 用 UDP 通信端点 */
 
 typedef struct t_udp6_cep {
 
@@ -193,9 +142,57 @@ typedef struct t_udp6_cep {
 
 	} T_UDP6_CEP;
 
-#if defined(SUPPORT_INET6)
-#define T_UDP_CEP	T_UDP6_CEP
+/* IPv4 用 UDP 通信端点 */
+
+typedef struct t_udp4_cep {
+
+	/*
+	 * ITRON TCP/IP API、TCP 通信端点と同じメンバ
+	 */
+	ATR		cepatr;		/* UDP 通信端点属性		*/
+	T_IPV4EP	myaddr;		/* 自分のアドレス		*/
+	t_udp_callback	callback;	/* コールバック関数		*/
+
+	/*
+	 * TINET 独自のメンバ
+	 */
+	uint16_t	flags;		/* 通信端点フラグ		*/
+	ID		semid_lock;	/* 通信端点ロック		*/
+	ID		snd_tskid;	/* 送信タスク識別子		*/
+	ID		rcv_tskid;	/* 受信タスク識別子		*/
+	ID		rcvqid;		/* 非コールバック用受信キュー識別子*/
+	T_NET_BUF	*cb_netbuf;	/* コールバック用受信ネットワークバッファ*/
+
+#ifdef UDP_CFG_NON_BLOCKING
+
+	T_IPV4EP 	*snd_p_dstaddr;	/* 送信相手のアドレスへのポインタ*/
+	T_IPV4EP	*rcv_p_dstaddr;	/* 受信相手のアドレスへのポインタ*/
+	void		*snd_data;	/* 送信データ領域の先頭アドレス	*/
+	int_t		snd_len;	/* 送信データ領域の長さ		*/
+	void		*rcv_data;	/* 受信データ領域の先頭アドレス	*/
+	int_t		rcv_len;	/* 受信データ領域の長さ		*/
+
+#endif	/* of #ifdef UDP_CFG_NON_BLOCKING */
+
+#ifdef UDP_CFG_EXTENTIONS
+	ER		error;		/* 待ち中に発生したエラー	*/
 #endif
+
+	} T_UDP4_CEP;
+
+#if defined(_IP6_CFG)
+
+#define T_UDP_CEP	T_UDP6_CEP
+
+#else	/* of #if defined(_IP6_CFG) */
+
+#if defined(_IP4_CFG)
+
+#define T_UDP_CEP	T_UDP4_CEP
+
+#endif	/* of #if defined(_IP4_CFG) */
+
+#endif	/* of #if defined(_IP6_CFG) */
 
 /*
  *  UDP 通信端点フラグ
@@ -209,9 +206,9 @@ typedef struct t_udp6_cep {
  *  オブジェクト ID の最小値の定義
  */
 
-#define	TMIN_UDP_CEPID		1	/* UDP 通信端点 ID の最小値 */
-
-#ifdef SUPPORT_MIB
+#define	TMIN_UDP_CEPID		1			/* UDP      通信端点 ID の最小値 */
+#define	TMIN_UDP6_CEPID		1			/* UDP/IPv6 通信端点 ID の最小値 */
+#define	TMIN_UDP4_CEPID		(TNUM_UDP6_CEPID+1)	/* UDP/IPv4 通信端点 ID の最小値 */
 
 /*
  *  SNMP の 管理情報ベース (MIB)
@@ -224,19 +221,21 @@ typedef struct t_udp_stats {
 	uint32_t	udpOutDatagrams;
 } T_UDP_STATS;
 
-#endif	/* of #ifdef SUPPORT_MIB */
-
 /*
  *  関数シミュレーションマクロ
  */
 
-#define VALID_UDP_CEPID(id)	(TMIN_UDP_CEPID<=(id)&&(id)<=tmax_udp_cepid)
+#define VALID_UDP6_CEPID(id)	(TMIN_UDP6_CEPID<=(id)&&(id)<=tmax_udp6_cepid)
+#define VALID_UDP4_CEPID(id)	(TMIN_UDP4_CEPID<=(id)&&(id)<=tmax_udp4_cepid)
 
-#define INDEX_UDP_CEP(id)	((id)-TMIN_UDP_CEPID)
+#define INDEX_UDP6_CEP(id)	((id)-TMIN_UDP6_CEPID)
+#define INDEX_UDP4_CEP(id)	((id)-TMIN_UDP4_CEPID)
 
-#define GET_UDP_CEP(id)		(&(udp_cep[INDEX_UDP_CEP(id)]))
+#define GET_UDP6_CEP(id)	(&(udp6_cep[INDEX_UDP6_CEP(id)]))
+#define GET_UDP4_CEP(id)	(&(udp4_cep[INDEX_UDP4_CEP(id)]))
 
-#define GET_UDP_CEPID(cep)	((ID)(((cep)-udp_cep)+TMIN_UDP_CEPID))
+#define GET_UDP6_CEPID(cep)	((ID)(((cep)-udp6_cep)+TMIN_UDP6_CEPID))
+#define GET_UDP4_CEPID(cep)	((ID)(((cep)-udp4_cep)+TMIN_UDP4_CEPID))
 
 #define VALID_TFN_UDP_CAN(t)	((t)==TFN_UDP_SND_DAT||(t)==TFN_UDP_RCV_DAT||\
 				 (t)==TFN_UDP_ALL)
@@ -248,14 +247,28 @@ typedef struct t_udp_stats {
  *  全域変数
  */
 
-extern T_UDP_CEP udp_cep[];
-extern const ID tmax_udp_cepid;
-
-#ifdef SUPPORT_MIB
-
 extern T_UDP_STATS udp_stats;
 
-#endif	/* of #ifdef SUPPORT_MIB */
+/* UDP 通信端点 */
+
+extern T_UDP6_CEP udp6_cep[];
+extern T_UDP4_CEP udp4_cep[];
+
+#if defined(SUPPORT_INET6)
+#define udp_cep	udp6_cep
+#elif defined(SUPPORT_INET4)
+#define udp_cep	udp4_cep
+#endif
+
+extern const ID tmax_udp_cepid;
+
+#if defined(SUPPORT_INET6) && defined(SUPPORT_INET4)
+extern const ID tmax_udp6_cepid;
+extern const ID tmax_udp4_cepid;
+#else
+#define tmax_udp6_cepid	tmax_udp_cepid
+#define tmax_udp4_cepid	tmax_udp_cepid
+#endif
 
 /*
  *  TINET 1.3 との互換性のための定義
@@ -268,13 +281,31 @@ extern T_UDP_STATS udp_stats;
  *  関数
  */
 
-extern uint_t udp_input (T_NET_BUF **inputp, uint_t *offp, uint_t *nextp);
-extern ER_UINT udp_send_data (T_UDP_CEP *cep, T_IPEP *p_dstaddr,
-                              void *data, int_t len, TMO tmout);
-extern ER udp_can_snd (T_UDP_CEP *cep, ER error);
-extern ER udp_can_rcv (T_UDP_CEP *cep, ER error);
-extern ER udp_alloc_auto_port (T_UDP_CEP *cep);
-extern ER udp_alloc_port (T_UDP_CEP *cep, uint16_t portno);
+/* IPv6 */
+
+extern uint_t udp6_input (T_NET_BUF **inputp, uint_t *offp, uint_t *nextp);
+extern ER_UINT udp6_send_data (T_UDP6_CEP *cep, T_IPV6EP *p_dstaddr,
+                               void *data, int_t len, TMO tmout);
+extern ER udp6_can_snd (T_UDP6_CEP *cep, ER error);
+extern ER udp6_can_rcv (T_UDP6_CEP *cep, ER error);
+extern ER udp6_alloc_auto_port (T_UDP6_CEP *cep);
+extern ER udp6_alloc_port (T_UDP6_CEP *cep, uint16_t portno);
+extern T_UDP6_CEP*udp6_find_cep (T_NET_BUF *input, uint_t off);
+extern void udp6_notify (T_NET_BUF *input, ER error);
+extern void udp6_input_select (T_UDP6_CEP *cep, T_NET_BUF *input, uint_t off);
+
+/* IPv4 */
+
+extern uint_t udp4_input (T_NET_BUF **inputp, uint_t *offp, uint_t *nextp);
+extern ER_UINT udp4_send_data (T_UDP4_CEP *cep, T_IPV4EP *p_dstaddr,
+                               void *data, int_t len, TMO tmout);
+extern ER udp4_can_snd (T_UDP4_CEP *cep, ER error);
+extern ER udp4_can_rcv (T_UDP4_CEP *cep, ER error);
+extern ER udp4_alloc_auto_port (T_UDP4_CEP *cep);
+extern ER udp4_alloc_port (T_UDP4_CEP *cep, uint16_t portno);
+extern T_UDP4_CEP*udp4_find_cep (T_NET_BUF *input, uint_t off);
+extern void udp4_notify (T_NET_BUF *input, ER error);
+extern void udp4_input_select (T_UDP4_CEP *cep, T_NET_BUF *input, uint_t off);
 
 /* ノンブロッキングコールを行う場合に組み込むタスク */
 

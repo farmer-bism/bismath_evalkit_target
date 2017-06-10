@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: in6.c,v 1.5.4.1 2015/02/05 02:11:26 abe Exp abe $
+ *  @(#) $Id: in6.c 1.7 2017/6/1 8:49:42 abe $
  */
 
 /*	$FreeBSD: src/sys/netinet6/in6.c,v 1.21 2002/04/19 04:46:22 suz Exp $	*/
@@ -125,30 +125,34 @@
 #include <net/ethernet.h>
 #include <net/ppp_ipcp.h>
 #include <net/net.h>
+#include <net/net_endian.h>
 #include <net/net_buf.h>
 #include <net/net_timer.h>
 #include <net/net_count.h>
+
+#include <netinet/in.h>
+#include <netinet/in_var.h>
 
 #include <netinet6/in6.h>
 #include <netinet6/in6_var.h>
 #include <netinet6/nd6.h>
 #include <netinet6/in6_ifattach.h>
 
-#include <net/if6_var.h>
+#include <net/if_var.h>
 
-#ifdef SUPPORT_INET6
+#ifdef _IP6_CFG
 
 /*
  *  全域変数
  */
 
-T_IN6_ADDR in6_addr_unspecified =
+const T_IN6_ADDR in6_addr_unspecified =
 	IPV6_ADDR_UNSPECIFIED_INIT;
 
-T_IN6_ADDR in6_addr_linklocal_allnodes =
+const T_IN6_ADDR in6_addr_linklocal_allnodes =
 	IPV6_ADDR_LINKLOCAL_ALLNODES_INIT;
 
-T_IN6_ADDR in6_addr_linklocal_allrouters =
+const T_IN6_ADDR in6_addr_linklocal_allrouters =
 	IPV6_ADDR_LINKLOCAL_ALLROUTERS_INIT;
 
 /*
@@ -171,7 +175,7 @@ in6_addmulti (T_IFNET *ifp, T_IN6_ADDR *maddr)
  */
 
 static ER
-in6_ifinit (T_IFNET *ifp, T_IN6_IFADDR *ia, T_IN6_ADDR *addr, uint_t prefix_len)
+in6_ifinit (T_IFNET *ifp, T_IN6_IFADDR *ia, const T_IN6_ADDR *addr, uint_t prefix_len)
 {
 	/* アドレスとプレフィックス長を設定する。*/
 	ia->addr       = *addr;
@@ -199,7 +203,7 @@ in6_ifainit (void)
 	int_t 		ix;
 
 	for (ix = NUM_IN6_IFADDR_ENTRY; ix -- > 0; ) {
-		ia = &ifp->in_ifaddrs[ix];
+		ia = &ifp->in6_ifaddrs[ix];
 		memset(ia, sizeof(T_IN6_IFADDR), 0);
 		ia->router_index = IN6_RTR_IX_UNREACH;
 		ia->prefix_index = ND6_PREFIX_IX_INVALID;
@@ -225,14 +229,14 @@ in6_if2idlen (T_IFNET *ifp)
  */
 
 int_t
-in6_addr2ifaix (T_IN6_ADDR *addr)
+in6_addr2ifaix (const T_IN6_ADDR *addr)
 {
 	T_IFNET		*ifp = IF_GET_IFNET();
 	T_IN6_IFADDR	*ia;
 	int_t 		ix;
 
 	for (ix = NUM_IN6_IFADDR_ENTRY; ix -- > 0; ) {
-		ia = &ifp->in_ifaddrs[ix];
+		ia = &ifp->in6_ifaddrs[ix];
 		if ((ia->flags & IN6_IFF_DEFINED) != 0 &&
 		    in6_are_prefix_equal(addr, &ia->addr, ia->prefix_len))
 			return ix;
@@ -246,7 +250,7 @@ in6_addr2ifaix (T_IN6_ADDR *addr)
  */
 
 int_t
-in6_addr2maix (T_IN6_ADDR *addr)
+in6_addr2maix (const T_IN6_ADDR *addr)
 {
 	if (addr->s6_addr8[0] == 0xff) {
 		if (addr->s6_addr8[1] == 0x02) {
@@ -267,7 +271,7 @@ in6_addr2maix (T_IN6_ADDR *addr)
  */
 
 ER
-in6_update_ifa (T_IFNET *ifp, T_IN6_IFADDR *ia, T_IN6_ADDR *addr,
+in6_update_ifa (T_IFNET *ifp, T_IN6_IFADDR *ia, const T_IN6_ADDR *addr,
                 uint_t prefix_len, uint32_t vltime, uint32_t pltime,
                 int_t router_index, int_t prefix_index, uint_t flags)
 {
@@ -364,7 +368,7 @@ in6_update_ifa (T_IFNET *ifp, T_IN6_IFADDR *ia, T_IN6_ADDR *addr,
 T_IN6_IFADDR *
 in6ifa_ifpwithix (T_IFNET *ifp, int_t ix)
 {
-	return ix < NUM_IN6_IFADDR_ENTRY? &ifp->in_ifaddrs[ix] : NULL;
+	return ix < NUM_IN6_IFADDR_ENTRY? &ifp->in6_ifaddrs[ix] : NULL;
 	}
 
 /*
@@ -378,38 +382,56 @@ in6ifa_ifpwithrtrix (T_IFNET *ifp, int_t router_index)
 	int_t ix;
 
 	for (ix = NUM_IN6_IFADDR_ENTRY; ix -- > 0; )
-		if (ifp->in_ifaddrs[ix].router_index == router_index)
-			return &ifp->in_ifaddrs[ix];
+		if (ifp->in6_ifaddrs[ix].router_index == router_index)
+			return &ifp->in6_ifaddrs[ix];
 	return NULL;
 	}
 
 /*
- * in6_ifawithifp -- 宛先アドレスにふさわしい送信元アドレスを、
+ * in6_ifawithifp -- 宛先アドレスにふさわしい送信元アドレス情報を、
  *                   ネットワークインタフェースから探索する。
  */
 
 T_IN6_IFADDR *
-in6_ifawithifp (T_IFNET *ifp, T_IN6_ADDR *dst)
+in6_ifawithifp (T_IFNET *ifp, const T_IN6_ADDR *dst)
 {
 	uint_t	scope;
 	int_t	ix;
 
 	/* 宛先アドレスと同じスコープのアドレスを返す。*/
 	if ((ix = in6_addr2ifaix(dst)) != IPV6_IFADDR_IX_INVALID)
-		return &ifp->in_ifaddrs[ix];
+		return &ifp->in6_ifaddrs[ix];
 	else if ((ix = in6_addr2maix(dst)) == IPV6_MADDR_IX_SOL_NODE ||
 	          ix                       == IPV6_MADDR_IX_LL_ALL_NODE)
-		return &ifp->in_ifaddrs[IPV6_IFADDR_IX_LINKLOCAL];
+		return &ifp->in6_ifaddrs[IPV6_IFADDR_IX_LINKLOCAL];
 	else {
 		scope = in6_addrscope(dst);
 		for (ix = NUM_IN6_IFADDR_ENTRY; ix -- > 0; ) {
-			if ((ifp->in_ifaddrs[ix].flags & IN6_IFF_DEFINED) &&
-			    (ifp->in_ifaddrs[ix].flags & IN6_IFF_DETACHED) == 0 &&
-			    in6_addrscope(&ifp->in_ifaddrs[ix].addr) == scope) {
-				return &ifp->in_ifaddrs[ix];
+			if ((ifp->in6_ifaddrs[ix].flags & IN6_IFF_DEFINED) &&
+			    (ifp->in6_ifaddrs[ix].flags & IN6_IFF_DETACHED) == 0 &&
+			    in6_addrscope(&ifp->in6_ifaddrs[ix].addr) == scope) {
+				return &ifp->in6_ifaddrs[ix];
 				}
 			}
 		return NULL;
+		}
+	}
+
+/*
+ * in6_addrwithifp -- 宛先アドレスにふさわしい送信元アドレスを、
+ *                    ネットワークインタフェースから探索する。
+ */
+
+const T_IN6_ADDR *
+in6_addrwithifp (T_IFNET *ifp, T_IN6_ADDR *src, const T_IN6_ADDR *dst)
+{
+	T_IN6_IFADDR *ifaddr;
+
+	if ((ifaddr = in6_ifawithifp(ifp, dst)) == NULL)
+		return NULL;
+	else {
+		*src = ifaddr->addr;
+		return src;
 		}
 	}
 
@@ -430,9 +452,9 @@ in6_if_up (T_IFNET *ifp)
 	/* 重複アドレス検出を行う。*/
 	dad_delay = 0;
 	for (ix = NUM_IN6_IFADDR_ENTRY; ix -- > 0; )
-		if ((ifp->in_ifaddrs[ix].flags & IN6_IFF_DEFINED) &&
-		    (ifp->in_ifaddrs[ix].flags & IN6_IFF_TENTATIVE))
-			nd6_dad_start(ifp, &ifp->in_ifaddrs[ix], &dad_delay);
+		if ((ifp->in6_ifaddrs[ix].flags & IN6_IFF_DEFINED) &&
+		    (ifp->in6_ifaddrs[ix].flags & IN6_IFF_TENTATIVE))
+			nd6_dad_start(ifp, &ifp->in6_ifaddrs[ix], &dad_delay);
 #endif	/* of #if 0 */
 
 #if NUM_ND6_RTR_SOL_RETRY > 0
@@ -448,7 +470,7 @@ in6_if_up (T_IFNET *ifp)
  */
 
 bool_t
-in6_are_prefix_equal (T_IN6_ADDR *addr, T_IN6_ADDR *prefix, uint_t prefix_len)
+in6_are_prefix_equal (const T_IN6_ADDR *addr, const T_IN6_ADDR *prefix, uint_t prefix_len)
 {
 	uint_t bitlen, bytelen;
 
@@ -477,7 +499,7 @@ in6_ifaddr_timer (T_IFNET *ifp)
 
 	syscall(get_tim(&now));
 	for (ix = NUM_IN6_IFADDR_ENTRY; ix -- > 0; ) {
-		ia = &ifp->in_ifaddrs[ix];
+		ia = &ifp->in6_ifaddrs[ix];
 
 		if ((ia->flags & IN6_IFF_DEFINED) == 0)
 			;
@@ -499,4 +521,4 @@ in6_ifaddr_timer (T_IFNET *ifp)
 		}
 	}
 
-#endif /* of #ifdef SUPPORT_INET6 */
+#endif /* of #ifdef _IP6_CFG */

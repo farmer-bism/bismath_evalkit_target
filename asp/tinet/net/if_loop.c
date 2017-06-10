@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: if_loop.c,v 1.5 2009/12/24 05:42:40 abe Exp $
+ *  @(#) $Id: if_loop.c 1.7 2017/6/1 8:49:3 abe $
  */
 
 /*
@@ -67,9 +67,22 @@
  * $FreeBSD: src/sys/net/if_loop.c,v 1.37.2.1 1999/08/29 16:28:19 peter Exp $
  */
 
+#ifdef TARGET_KERNEL_ASP
+
+#include <kernel.h>
+#include <sil.h>
+#include <t_syslog.h>
+#include "kernel_cfg.h"
+
+#endif	/* of #ifdef TARGET_KERNEL_ASP */
+
+#ifdef TARGET_KERNEL_JSP
+
 #include <s_services.h>
 #include <t_services.h>
 #include "kernel_id.h"
+
+#endif	/* of #ifdef TARGET_KERNEL_JSP */
 
 #include <tinet_defs.h>
 #include <tinet_config.h>
@@ -77,6 +90,7 @@
 #include <net/if.h>
 #include <net/if_loop.h>
 #include <net/net.h>
+#include <net/net_endian.h>
 #include <net/net_buf.h>
 #include <net/net_count.h>
 
@@ -84,13 +98,10 @@
 #include <netinet/in_var.h>
 #include <netinet/ip.h>
 #include <netinet/ip_var.h>
-#include <netinet/ip6.h>
-#include <netinet6/ip6_var.h>
 #include <netinet/tcp.h>
 #include <netinet/udp.h>
 
 #include <net/if_var.h>
-#include <net/if6_var.h>
 
 #ifdef SUPPORT_LOOP
 
@@ -110,7 +121,15 @@ extern const char *itron_strerror (ER ercd);
 
 /* ネットワークインタフェース構造体 */
 
-#if defined(SUPPORT_INET4)
+#if defined(_IP6_CFG)
+
+static T_IFNET loop_ifnet = {
+	NULL,			/* ネットワークインタフェースのソフトウェア情報	*/
+	{},			/* IPv6 アドレス情報				*/
+	{},			/* マルチキャスト IPv6 アドレス			*/
+	};
+
+#elif defined(_IP4_CFG)	/* of #if defined(_IP6_CFG) */
 
 static T_IFNET loop_ifnet = {
 	NULL,			/* ネットワークインタフェースのソフトウェア情報	*/
@@ -120,17 +139,7 @@ static T_IFNET loop_ifnet = {
 		},
 	};
 
-#endif	/* of #if defined(SUPPORT_INET4) */
-
-#if defined(SUPPORT_INET6)
-
-static T_IFNET loop_ifnet = {
-	NULL,			/* ネットワークインタフェースのソフトウェア情報	*/
-	{},			/* IPv6 アドレス情報				*/
-	{},			/* マルチキャスト IPv6 アドレス			*/
-	};
-
-#endif	/* of #if defined(SUPPORT_INET6) */
+#endif	/* of #if defined(_IP6_CFG) */
 
 /*
  *  loop_get_ifnet -- ネットワークインタフェース構造体を返す。
@@ -199,21 +208,21 @@ if_loop_input_task (intptr_t exinf)
 			NET_COUNT_LOOP(net_count_loop.in_octets,  input->len);
 			NET_COUNT_LOOP(net_count_loop.in_packets, 1);
 
-#if defined(SUPPORT_INET4)
+#if defined(_IP4_CFG)
 
 			/* IPv4 入力関数を呼び出す */
 			if (IP4_VHL_V(GET_IP4_HDR(input)->vhl) == IPV4_VERSION)
 				ip_input(input);
 
-#endif	/* of #if defined(SUPPORT_INET4) */
+#endif	/* of #if defined(_IP4_CFG) */
 
-#if defined(SUPPORT_INET6)
+#if defined(_IP6_CFG)
 
 			/* IPv6 入力関数を呼び出す */
 			if (IP6_VCF_V(ntohl(GET_IP6_HDR(input)->vcf)) == IPV6_VERSION)
 				ip6_input(input);
 
-#endif	/* of #if defined(SUPPORT_INET6) */
+#endif	/* of #if defined(_IP6_CFG) */
 
 			}
 		}

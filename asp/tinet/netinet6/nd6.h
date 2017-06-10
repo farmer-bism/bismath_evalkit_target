@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: nd6.h,v 1.5 2009/12/24 05:48:16 abe Exp $
+ *  @(#) $Id: nd6.h 1.7 2017/6/1 8:49:50 abe $
  */
 
 /*	$FreeBSD: src/sys/netinet6/nd6.h,v 1.10 2002/04/19 04:46:23 suz Exp $	*/
@@ -65,8 +65,6 @@
  
 #ifndef _ND6_H_
 #define _ND6_H_
-
-#ifdef SUPPORT_INET6
 
 /*
  *  ネットワークインタフェース構造体（T_IFNET）のフラグ
@@ -116,8 +114,6 @@ typedef struct t_llinfo_nd6 {
 #define ND6_MAX_DAD_TRY			15		/* 重複アドレス検出の再送回数		*/
 #define ND6_MAX_MCAST_QUERY		3		/* マルチキャストアドレス要請の再送回数	*/
 #define ND6_MAX_UCAST_QUERY		3		/* ユニキャストアドレス要請の再送回数	*/
-
-#define ND6_INFINITE_LIFETIME		0xffffffff
 
 #define ND6_GCOLLECTION_TIME		(60*60*24*SYSTIM_HZ)
 							/* ゴミ拾い周期、1 日			*/
@@ -233,34 +229,33 @@ extern SYSTIM	nd6_base_reachable_time;
 extern SYSTIM	nd6_reachable_time;
 extern SYSTIM	nd6_recalc_reachtm_interval;
 extern SYSTIM	nd6_retrans_time;
-extern uint8_t	ip6_defhlim;
 
 /*
  *  関数
  */
 
 extern void nd6_ifattach (T_IFNET *ifp);
-extern void nd6_ns_output (T_IFNET *ifp, T_IN6_ADDR *daddr,
-                           T_IN6_ADDR *taddr, T_LLINFO_ND6 *ln, bool_t dad);
-extern void nd6_na_output (T_IFNET *ifp, T_IN6_ADDR *daddr,
-                           T_IN6_ADDR *taddr, uint32_t flags, bool_t tlladdr);
+extern void nd6_ns_output (T_IFNET *ifp, const T_IN6_ADDR *daddr,
+                           const T_IN6_ADDR *taddr, T_LLINFO_ND6 *ln, bool_t dad);
+extern void nd6_na_output (T_IFNET *ifp, const T_IN6_ADDR *daddr,
+                           const T_IN6_ADDR *taddr, uint32_t flags, bool_t tlladdr);
 extern void nd6_dad_start (T_IFNET *ifp, T_IN6_IFADDR *ia, int_t *tick);
 extern ER nd6_output (T_IFNET *ifp, T_NET_BUF *output,
-                      T_IN6_ADDR *dst, T_LLINFO_ND6 *ln, TMO tmout);
+                      const T_IN6_ADDR *dst, T_LLINFO_ND6 *ln, TMO tmout);
 extern void nd6_na_input (T_NET_BUF *input, uint_t off);
 extern void nd6_ns_input (T_NET_BUF *input, uint_t off);
 extern void nd6_ra_input (T_NET_BUF *input, uint_t off);
-extern ER nd6_storelladdr (T_IF_ADDR *out, T_IN6_ADDR *dst, T_IF_ADDR *ifa);
+extern ER nd6_storelladdr (T_IF_ADDR *out, const T_IN6_ADDR *dst, T_IF_ADDR *ifa);
 extern ER nd6_options (uint8_t *opt, void *nh, uint_t len);
-extern T_LLINFO_ND6 *nd6_lookup (T_IN6_ADDR *addr, bool_t create);
+extern T_LLINFO_ND6 *nd6_lookup (const T_IN6_ADDR *addr, bool_t create);
 extern ER nd6_output_hold (T_IFNET *ifp, T_LLINFO_ND6 *ln);
-extern T_LLINFO_ND6 *nd6_cache_lladdr (T_IFNET *ifp, T_IN6_ADDR *from, 
+extern T_LLINFO_ND6 *nd6_cache_lladdr (T_IFNET *ifp, const T_IN6_ADDR *from, 
                                        T_IF_ADDR *lladdr, uint8_t type, uint8_t code);
 extern void nd6_defrtrlist_timer (void);
 extern void nd6_prelist_timer (void);
 extern void nd6_rtrsol_ctl (void);
-extern T_IN6_ADDR *nd6_router_lookup (void);
-extern T_DEF_ROUTER *nd6_defrtrlist_lookup (T_IN6_ADDR *src);
+extern const T_IN6_ADDR *nd6_router_lookup (void);
+extern T_DEF_ROUTER *nd6_defrtrlist_lookup (const T_IN6_ADDR *src);
 extern void nd6_defrtrlist_del (T_DEF_ROUTER *dr);
 extern void nd6_timer (void);
 extern const T_DEF_ROUTER *nd6_get_drl (uint_t *count);
@@ -268,8 +263,6 @@ extern const T_ND6_PREFIX *nd6_get_prl (void);
 extern const T_LLINFO_ND6 *nd6_get_cache (void);
 extern ER nd6_prefix_onlink (T_ND6_PREFIX *pr);
 extern ER nd6_prefix_offlink (T_ND6_PREFIX *pr);
-extern T_ND6_PREFIX *nd6_onlink_prefix_lookup (T_IN6_ADDR *dst);
-
-#endif	/* of #ifdef SUPPORT_INET6 */
+extern T_ND6_PREFIX *nd6_onlink_prefix_lookup (const T_IN6_ADDR *dst);
 
 #endif	/* of #ifndef _ND6_H_ */

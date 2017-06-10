@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: tcp_subr_ncs.c,v 1.5.4.1 2015/02/05 02:10:53 abe Exp abe $
+ *  @(#) $Id: tcp_subr_ncs.c 1.7 2017/6/1 8:49:25 abe $
  */
 
 /*
@@ -94,28 +94,23 @@
 #include <net/if_loop.h>
 #include <net/ethernet.h>
 #include <net/if_arp.h>
-#include <net/ppp_ipcp.h>
 #include <net/net.h>
+#include <net/net_endian.h>
 #include <net/net_var.h>
 #include <net/net_buf.h>
 #include <net/net_timer.h>
 #include <net/net_count.h>
 
 #include <netinet/in.h>
-#include <netinet6/in6.h>
-#include <netinet6/in6_var.h>
 #include <netinet/in_var.h>
+#include <netinet/in_itron.h>
 #include <netinet/ip.h>
 #include <netinet/ip_var.h>
-#include <netinet/ip6.h>
-#include <netinet6/ip6_var.h>
-#include <netinet6/nd6.h>
 #include <netinet/tcp.h>
-#include <netinet/tcp_timer.h>
 #include <netinet/tcp_var.h>
 #include <netinet/tcp_fsm.h>
 #include <netinet/tcp_seq.h>
-#include <netinet/in_itron.h>
+#include <netinet/tcp_timer.h>
 
 #ifdef SUPPORT_TCP
 
@@ -133,15 +128,17 @@ void
 tcp_read_swbuf_ncs (T_TCP_CEP *cep, T_NET_BUF *output, uint_t len, uint_t doff)
 {
 	uint8_t	*wptr, *rptr;
+	uint_t	sdu_size   = GET_IP_SDU_SIZE(output);
+	uint_t	hdr_offset = IF_IP_TCP_HDR_OFFSET(output);
 
 	/* SDU の大きさをチェックする。*/
-	if (GET_IP_SDU_SIZE(GET_IP_HDR(output)) < GET_TCP_HDR_SIZE2(output, IF_IP_TCP_HDR_OFFSET) + len) {
+	if (sdu_size < GET_TCP_HDR_SIZE(output, hdr_offset) + len) {
 		syslog(LOG_INFO, "[TCP] shrink SUD len: %d -> %d",
-		       (uint16_t)len, (uint16_t)(GET_IP_SDU_SIZE(GET_IP_HDR(output)) - GET_TCP_HDR_SIZE2(output, IF_IP_TCP_HDR_OFFSET)));
-		len = GET_IP_SDU_SIZE(GET_IP_HDR(output)) - GET_TCP_HDR_SIZE2(output, IF_IP_TCP_HDR_OFFSET);
+		       (uint16_t)len, (uint16_t)(sdu_size - GET_TCP_HDR_SIZE(output, hdr_offset)));
+		len = sdu_size - GET_TCP_HDR_SIZE(output, hdr_offset);
 		}
 
-	wptr = GET_TCP_SDU(output, IF_IP_TCP_HDR_OFFSET);
+	wptr = GET_TCP_SDU(output, hdr_offset);
 
 	/* 通信端点をロックする。*/
 	syscall(wai_sem(cep->semid_lock));
@@ -221,16 +218,12 @@ tcp_drop_swbuf_ncs (T_TCP_CEP *cep, uint_t len)
 			*cep->snd_p_buf = cep->sbuf_wptr;
 
 			if (IS_PTR_DEFINED(cep->callback))
+
 #ifdef TCP_CFG_NON_BLOCKING_COMPAT14
-
 				(*cep->callback)(GET_TCP_CEPID(cep), cep->snd_nblk_tfn, (void*)(uint32_t)len);
-
-#else	/* of #ifdef TCP_CFG_NON_BLOCKING_COMPAT14 */
-
+#else
 				(*cep->callback)(GET_TCP_CEPID(cep), cep->snd_nblk_tfn, (void*)&len);
-
-#endif	/* of #ifdef TCP_CFG_NON_BLOCKING_COMPAT14 */
-
+#endif
 			else
 				syslog(LOG_WARNING, "[TCP] no call back, CEP: %d.", GET_TCP_CEPID(cep));
 
@@ -267,15 +260,10 @@ tcp_drop_swbuf_ncs (T_TCP_CEP *cep, uint_t len)
 		if (IS_PTR_DEFINED(cep->callback))
 
 #ifdef TCP_CFG_NON_BLOCKING_COMPAT14
-
 			(*cep->callback)(GET_TCP_CEPID(cep), cep->snd_nblk_tfn, (void*)error);
-
-#else	/* of #ifdef TCP_CFG_NON_BLOCKING_COMPAT14 */
-
+#else
 			(*cep->callback)(GET_TCP_CEPID(cep), cep->snd_nblk_tfn, (void*)&error);
-
-#endif	/* of #ifdef TCP_CFG_NON_BLOCKING_COMPAT14 */
-
+#endif
 		else
 			syslog(LOG_WARNING, "[TCP] no call back, CEP: %d.", GET_TCP_CEPID(cep));
 
@@ -627,15 +615,10 @@ tcp_write_rwbuf_ncs (T_TCP_CEP *cep, T_NET_BUF *input, uint_t thoff)
 			if (IS_PTR_DEFINED(cep->callback))
 
 #ifdef TCP_CFG_NON_BLOCKING_COMPAT14
-
 				(*cep->callback)(GET_TCP_CEPID(cep), cep->rcv_nblk_tfn, (void*)(uint32_t)len);
-
-#else	/* of #ifdef TCP_CFG_NON_BLOCKING_COMPAT14 */
-
+#else
 				(*cep->callback)(GET_TCP_CEPID(cep), cep->rcv_nblk_tfn, (void*)&len);
-
-#endif	/* of #ifdef TCP_CFG_NON_BLOCKING_COMPAT14 */
-
+#endif
 			else
 				syslog(LOG_WARNING, "[TCP] no call back, CEP: %d.", GET_TCP_CEPID(cep));
 
@@ -679,15 +662,10 @@ tcp_write_rwbuf_ncs (T_TCP_CEP *cep, T_NET_BUF *input, uint_t thoff)
 			if (IS_PTR_DEFINED(cep->callback))
 
 #ifdef TCP_CFG_NON_BLOCKING_COMPAT14
-
 				(*cep->callback)(GET_TCP_CEPID(cep), cep->rcv_nblk_tfn, (void*)(uint32_t)len);
-
-#else	/* of #ifdef TCP_CFG_NON_BLOCKING_COMPAT14 */
-
+#else
 				(*cep->callback)(GET_TCP_CEPID(cep), cep->rcv_nblk_tfn, (void*)&len);
-
-#endif	/* of #ifdef TCP_CFG_NON_BLOCKING_COMPAT14 */
-
+#endif
 			else
 				syslog(LOG_WARNING, "[TCP] no call back, CEP: %d.", GET_TCP_CEPID(cep));
 			}

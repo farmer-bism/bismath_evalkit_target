@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: ppp_ipcp.c,v 1.5 2009/12/24 05:42:40 abe Exp $
+ *  @(#) $Id: ppp_ipcp.c 1.7 2017/6/1 8:49:7 abe $
  */
 
 /*
@@ -88,6 +88,7 @@
 #include <net/if.h>
 #include <net/if_ppp.h>
 #include <net/net.h>
+#include <net/net_endian.h>
 #include <net/net_buf.h>
 #include <net/net_count.h>
 #include <net/ppp.h>
@@ -101,8 +102,8 @@
 #include <netinet/in_var.h>
 #include <netinet/ip.h>
 #include <netinet/tcp.h>
-#include <netinet/tcp_timer.h>
 #include <netinet/tcp_var.h>
+#include <netinet/tcp_timer.h>
 #include <netinet/udp_var.h>
 
 #include <net/if_var.h>
@@ -148,7 +149,7 @@ static void ipcp_finished(T_PPP_FSM *fsm);	/* 下位層を終了する。		*/
 static T_IFNET ipcp_local_def_cfg = {		/* 自構成情報の規定値		*/
 	NULL,
 	{
-		IPV4_ADDR_LOCAL,		/* IP アドレス			*/
+		IPV4_ADDR_LOCAL,		/* IPv4 アドレス			*/
 		UINT_C(0),			/* サブネットマスク		*/
 		},
 	};
@@ -156,7 +157,7 @@ static T_IFNET ipcp_local_def_cfg = {		/* 自構成情報の規定値		*/
 static T_IFNET ipcp_remote_def_cfg = {		/* 相手の構成情報の規定値	*/
 	NULL,
 	{
-		IPV4_ADDR_REMOTE,		/* IP アドレス			*/
+		IPV4_ADDR_REMOTE,		/* IPv4 アドレス			*/
 		UINT_C(0),			/* サブネットマスク		*/
 		}
 	};
@@ -199,7 +200,7 @@ T_PPP_PROTENT ipcp_protent = {
 	ipcp_lowerdown,			/* 下位層を停止する		*/
 	ipcp_open,			/* オープンする			*/
 	ipcp_close,			/* クローズする			*/
-	ip_input,			/* データ入力、IP 入力		*/
+	ip_input,			/* データ入力、IPv4 入力	*/
 	};
 
 T_IFNET ipcp_local_ack_cfg;		/* 相手に許可されたの自構成情報	*/
@@ -306,7 +307,7 @@ ipcp_cilen (T_PPP_FSM *fsm)
 {
 	int_t cilen = 0;
 
-	cilen += sizeof(T_PPP_CI_HDR) + sizeof(uint32_t);	/* IP アドレス */
+	cilen += sizeof(T_PPP_CI_HDR) + sizeof(uint32_t);	/* IPv4 アドレス */
 
 	return cilen;
 	}
@@ -322,10 +323,10 @@ ipcp_addci (T_PPP_FSM *fsm, T_NET_BUF *output)
 
 	buf = output->buf + sizeof(T_PPP_HDR) + sizeof(T_PPP_CP_HDR);
 
-	/* IP アドレスオプションを追加する。 */
+	/* IPv4 アドレスオプションを追加する。 */
 	*buf ++ = IPCP_CIT_ADDR;
 	*buf ++ = sizeof(T_PPP_CI_HDR) + sizeof(uint32_t);
-	ahtonl(buf, ipcp_local_neg_cfg.in_ifaddr.addr);
+	ahtonl(buf, ipcp_local_neg_cfg.in4_ifaddr.addr);
 	buf += sizeof(uint32_t);
 	}
 
@@ -354,7 +355,7 @@ ipcp_ackci (T_PPP_FSM *fsm, T_NET_BUF *input)
 	if (len < sizeof(T_PPP_CI_HDR) + sizeof(uint32_t)	||
 	    *buf ++ != IPCP_CIT_ADDR			||
 	    *buf ++ != sizeof(T_PPP_CI_HDR) + sizeof(uint32_t)||
-	    nahcmpl(buf, ipcp_local_neg_cfg.in_ifaddr.addr))
+	    nahcmpl(buf, ipcp_local_neg_cfg.in4_ifaddr.addr))
 		return false;
 	buf += sizeof(uint32_t);
 	len -= sizeof(T_PPP_CI_HDR) + sizeof(uint32_t);
@@ -389,7 +390,7 @@ ipcp_nakci (T_PPP_FSM *fsm, T_NET_BUF *input)
 	    	ntoahl(cilong, buf + 2);
 		buf += sizeof(T_PPP_CI_HDR) + sizeof(uint32_t);
 		len -= sizeof(T_PPP_CI_HDR) + sizeof(uint32_t);
-		new_cfg.in_ifaddr.addr = cilong;
+		new_cfg.in4_ifaddr.addr = cilong;
 		}
 
 	/* 後は無視する。*/
@@ -437,7 +438,7 @@ ipcp_rejci (T_PPP_FSM *fsm, T_NET_BUF *input)
 	    *(buf + 1) == sizeof(T_PPP_CI_HDR) + sizeof(uint32_t)) {
 		buf += sizeof(T_PPP_CI_HDR) + sizeof(uint32_t);
 		len -= sizeof(T_PPP_CI_HDR) + sizeof(uint32_t);
-		new_cfg.in_ifaddr.addr = 0;
+		new_cfg.in4_ifaddr.addr = 0;
 		}
 
 	/* 長さが 0 でなければエラー */
@@ -498,29 +499,29 @@ ipcp_reqci (T_PPP_FSM *fsm, T_NET_BUF *input, T_NET_BUF *output)
 		/* CI の型により分岐する。*/
 		switch (type) {
 
-		case IPCP_CIT_ADDR:	/* IP アドレス */
+		case IPCP_CIT_ADDR:	/* IPv4 アドレス */
 
 		 	/* CI 長が、ヘッダ + 4 オクテットでなければエラー */
 		 	if (cilen != sizeof(T_PPP_CI_HDR) + sizeof(uint32_t))
 				code = PPP_CONFREJ;
 			else {
 				ntoahl(addr, ap);
-				if (addr != ipcp_remote_neg_cfg.in_ifaddr.addr &&
-				    (addr == 0 || ipcp_remote_neg_cfg.in_ifaddr.addr != 0)) {
+				if (addr != ipcp_remote_neg_cfg.in4_ifaddr.addr &&
+				    (addr == 0 || ipcp_remote_neg_cfg.in4_ifaddr.addr != 0)) {
 					*np ++ = IPCP_CIT_ADDR;
 					*np ++ = sizeof(T_PPP_CI_HDR) + sizeof(uint32_t);
-					ahtonl(np, ipcp_remote_neg_cfg.in_ifaddr.addr);
+					ahtonl(np, ipcp_remote_neg_cfg.in4_ifaddr.addr);
 					np  += sizeof(uint32_t);
 					code = PPP_CONFNAK;
 					}
 #if 1	/* 要確認 */
-				else if (addr == 0 && ipcp_remote_neg_cfg.in_ifaddr.addr == 0)
+				else if (addr == 0 && ipcp_remote_neg_cfg.in4_ifaddr.addr == 0)
 #else
-				else if (addr == 0 || ipcp_remote_neg_cfg.in_ifaddr.addr == 0)
+				else if (addr == 0 || ipcp_remote_neg_cfg.in4_ifaddr.addr == 0)
 #endif
 					code = PPP_CONFREJ;
 				else
-					ipcp_remote_neg_cfg.in_ifaddr.addr = addr;
+					ipcp_remote_neg_cfg.in4_ifaddr.addr = addr;
 				}
 			break;
 
@@ -581,24 +582,24 @@ ipcp_up (T_PPP_FSM *fsm)
 
 	/*
 	 *  サブネットマスクと
-	 *  ローカル・ブロードキャスト IP アドレスを設定する。
+	 *  ローカル・ブロードキャスト IPv4 アドレスを設定する。
 	 */
-	ipcp_local_ack_cfg.in_ifaddr.mask = MAKE_IPV4_LOCAL_MASK(ipcp_local_neg_cfg.in_ifaddr.addr);
+	ipcp_local_ack_cfg.in4_ifaddr.mask = MAKE_IPV4_LOCAL_MASK(ipcp_local_neg_cfg.in4_ifaddr.addr);
 
 	/* 相手の構成情報の初期設定 */
 	ipcp_remote_ack_cfg = ipcp_remote_neg_cfg;
 
 	/*
 	 *  サブネットマスクと
-	 *  ローカル・ブロードキャスト IP アドレスを設定する。
+	 *  ローカル・ブロードキャスト IPv4 アドレスを設定する。
 	 */
-	ipcp_remote_ack_cfg.in_ifaddr.mask = MAKE_IPV4_LOCAL_MASK(ipcp_remote_neg_cfg.in_ifaddr.addr);
+	ipcp_remote_ack_cfg.in4_ifaddr.mask = MAKE_IPV4_LOCAL_MASK(ipcp_remote_neg_cfg.in4_ifaddr.addr);
 
 	sig_sem(SEM_IPCP_READY);
 
-	syslog(LOG_NOTICE, "[PPP/IPCP] up, Local IP Addr: %s, Remote IP Addr: %s.",
-	                   ip2str(NULL, &ipcp_local_neg_cfg.in_ifaddr.addr),
-	                   ip2str(NULL, &ipcp_remote_neg_cfg.in_ifaddr.addr));
+	syslog(LOG_NOTICE, "[PPP/IPCP] up, Local IPv4 Addr: %s, Remote IPv4 Addr: %s.",
+	                   ip2str(NULL, &ipcp_local_neg_cfg.in4_ifaddr.addr),
+	                   ip2str(NULL, &ipcp_remote_neg_cfg.in4_ifaddr.addr));
 	}
 
 /*

@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: if_var.h,v 1.5 2009/12/24 05:42:40 abe Exp $
+ *  @(#) $Id: if_var.h 1.7 2017/6/1 8:49:13 abe $
  */
 
 /*
@@ -67,26 +67,7 @@
 #ifndef _IF_VAR_H_
 #define _IF_VAR_H_
 
-#if defined(SUPPORT_INET4)
-
-/*
- *  ネットワークインタフェース構造体
- */
-
-struct t_ifnet {
-	T_IF_SOFTC	*ic;		/* ネットワークインタフェースのソフトウェア情報	*/
-	T_IN4_IFADDR 	in_ifaddr;	/* IPv4 アドレス情報				*/
-	};
-
-#ifndef T_IFNET_DEFINED
-
-typedef struct t_ifnet T_IFNET;
-
-#define T_IFNET_DEFINED
-
-#endif	/* of #ifndef T_IFNET_DEFINED */
-
-#endif	/* of #if defined(SUPPORT_INET4) */
+#include <net/if6_var.h>
 
 #ifdef SUPPORT_MIB
 

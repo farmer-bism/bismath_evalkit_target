@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: nd6.c,v 1.5.4.1 2015/02/05 02:11:26 abe Exp abe $
+ *  @(#) $Id: nd6.c 1.7 2017/6/1 8:49:44 abe $
  */
 
 /*	$FreeBSD: src/sys/netinet6/nd6.c,v 1.20 2002/08/02 20:49:14 rwatson Exp $	*/
@@ -97,8 +97,10 @@
 #include <net/if_ppp.h>
 #include <net/ethernet.h>
 #include <net/if_arp.h>
+#include <net/ppp.h>
 #include <net/ppp_ipcp.h>
 #include <net/net.h>
+#include <net/net_endian.h>
 #include <net/net_var.h>
 #include <net/net_buf.h>
 #include <net/net_timer.h>
@@ -106,17 +108,15 @@
 
 #include <netinet/in.h>
 #include <netinet/in_var.h>
-#include <netinet6/in6.h>
-#include <netinet6/in6_var.h>
+#include <netinet/ip.h>
+#include <netinet/ip_var.h>
+#include <netinet/ip_icmp.h>
+
 #include <netinet6/nd6.h>
 
-#include <netinet/ip6.h>
-#include <netinet/icmp6.h>
-#include <netinet6/ip6_var.h>
+#include <net/if_var.h>
 
-#include <net/if6_var.h>
-
-#ifdef SUPPORT_INET6
+#ifdef _IP6_CFG
 
 /*
  *  近隣キャッシュ
@@ -327,7 +327,7 @@ nd6_output_hold (T_IFNET *ifp, T_LLINFO_ND6 *ln)
  */
 
 T_LLINFO_ND6 *
-nd6_lookup (T_IN6_ADDR *addr, bool_t create)
+nd6_lookup (const T_IN6_ADDR *addr, bool_t create)
 {
 	SYSTIM	min = 0xffffffff;
 	int_t	ix, fix = -1, mix = -1;
@@ -369,7 +369,7 @@ nd6_lookup (T_IN6_ADDR *addr, bool_t create)
  */
 
 T_LLINFO_ND6 *
-nd6_cache_lladdr (T_IFNET *ifp, T_IN6_ADDR *from,
+nd6_cache_lladdr (T_IFNET *ifp, const T_IN6_ADDR *from,
                   T_IF_ADDR *lladdr, uint8_t type, uint8_t code)
 {
 	T_LLINFO_ND6	*ln;
@@ -486,7 +486,7 @@ nd6_cache_lladdr (T_IFNET *ifp, T_IN6_ADDR *from,
  */
 
 bool_t
-nd6_is_addr_neighbor (T_IFNET *ifp, T_IN6_ADDR *addr)
+nd6_is_addr_neighbor (T_IFNET *ifp, const T_IN6_ADDR *addr)
 {
 	if (IN6_IS_ADDR_LINKLOCAL(addr))
 		return true;
@@ -507,7 +507,7 @@ nd6_is_addr_neighbor (T_IFNET *ifp, T_IN6_ADDR *addr)
  */
 
 ER
-nd6_output (T_IFNET *ifp, T_NET_BUF *output, T_IN6_ADDR *dst, T_LLINFO_ND6 *ln, TMO tmout)
+nd6_output (T_IFNET *ifp, T_NET_BUF *output, const T_IN6_ADDR *dst, T_LLINFO_ND6 *ln, TMO tmout)
 {
 	ER	error = E_OK;
 	SYSTIM	now;
@@ -621,7 +621,7 @@ err_ret:
  */
 
 ER
-nd6_storelladdr (T_IF_ADDR *out, T_IN6_ADDR *dst, T_IF_ADDR *ifa)
+nd6_storelladdr (T_IF_ADDR *out, const T_IN6_ADDR *dst, T_IF_ADDR *ifa)
 {
 	if (IN6_IS_ADDR_MULTICAST(dst)) {
 		IF_IN6_RESOLVE_MULTICAST(out, dst);
@@ -695,4 +695,4 @@ nd6_options (uint8_t *opt, void *nh, uint_t len)
 	return error;
 	}
 
-#endif /* of #ifdef SUPPORT_INET6 */
+#endif /* of #ifdef _IP6_CFG */

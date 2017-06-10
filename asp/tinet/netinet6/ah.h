@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: ah.h,v 1.5 2009/12/24 05:48:16 abe Exp $
+ *  @(#) $Id: ah.h 1.7 2017/6/1 8:49:47 abe $
  */
 
 /*	$FreeBSD: src/sys/netinet6/ah.h,v 1.7 2002/04/19 04:46:22 suz Exp $	*/
@@ -66,8 +66,6 @@
 #ifndef _AH_H_
 #define _AH_H_
 
-#ifdef SUPPORT_INET6
-
 /*
  *  RFC2402 認証ヘッダ
  */
@@ -80,7 +78,5 @@ typedef struct t_ip6_ah_hdr {
 	uint32_t	spi;	/* Security Parameter Index (SPI)	*/
 	uint32_t	seq;	/* シーケンス番号			*/
 	} T_IP6_AH_HDR;
-
-#endif	/* of #ifdef SUPPORT_INET6 */
 
 #endif	/* of #ifndef _AH_H_ */

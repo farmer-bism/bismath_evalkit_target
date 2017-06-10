@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: echos4.c,v 1.5 2009/12/24 06:20:39 abe Exp $
+ *  @(#) $Id: echos4.c 1.7 2017/6/1 8:50:28 abe $
  */
 
 /* 
@@ -41,6 +41,8 @@
 #include <t_syslog.h>
 #include "kernel_cfg.h"
 #include "tinet_cfg.h"
+
+#include <tinet_config.h>
 
 #include <netinet/in.h>
 #include <netinet/in_itron.h>
@@ -150,14 +152,17 @@ callback_nblk_tcp_echo_srv (ID cepid, FN fncd, void *p_parblk)
 void
 tcp_echo_srv_task(intptr_t exinf)
 {
+	T_IN4_ADDR	addr;
 	ID		tskid;
 	ER		error = E_OK;
 	uint32_t	total;
 	uint16_t	rblen, sblen, rlen, slen, soff, count;
-	char		*rbuf, *sbuf, head, tail;
+	char		*rbuf, *sbuf;
 
 	get_tid(&tskid);
-	syslog(LOG_NOTICE, "[TCP ECHO SRV (NBLK):%d,%d] (copy save API) started.", tskid, (int_t)exinf);
+	addr = IPV4_ADDR_LOCAL;
+	syslog(LOG_NOTICE, "[TCP ECHO SRV (NBLK):%d,%d] (copy save API) started, IP Address: %s.", 
+	                   tskid, (ID)exinf, ip2str(NULL, &addr));
 	while (true) {
 		if ((error = tcp_acp_cep((int_t)exinf, TCP_ECHO_SRV_REPID, &dst, TMO_NBLK)) != E_WBLK) {
 			syslog(LOG_NOTICE, "[TCP ECHO SRV (NBLK) ACP] error: %s", itron_strerror(error));
@@ -196,15 +201,10 @@ tcp_echo_srv_task(intptr_t exinf)
 			/* バッファの残りにより、受信長を調整する。*/
 			if (rblen > BUF_SIZE - rlen)
 				rblen = BUF_SIZE - rlen;
+
 			total += rblen;
 			rlen   = rblen;
-
-			head = *rbuf;
-			tail = *(rbuf + rblen - 1);
 			count ++;
-			/*syslog(LOG_NOTICE, "[TCP ECHO SRV (NBLK) RCV] "
-			                   "count: %4d, len: %4d, data %02x -> %02x",
-			                   ++ count, rblen, head, tail);*/
 			memcpy(buffer, rbuf, rblen);
 
 			if ((error = tcp_rel_buf((int_t)exinf, rlen)) < 0) {
@@ -268,14 +268,16 @@ tcp_echo_srv_task(intptr_t exinf)
 void
 tcp_echo_srv_task(intptr_t exinf)
 {
+	T_IN4_ADDR	addr;
 	ID		tskid;
 	ER		error;
 	uint32_t	total;
 	uint16_t	rlen, slen, soff, count;
-	char		head, tail;
 
 	get_tid(&tskid);
-	syslog(LOG_NOTICE, "[TCP ECHO SRV (NBLK):%d,%d] started.", tskid, (int_t)exinf);
+	addr = IPV4_ADDR_LOCAL;
+	syslog(LOG_NOTICE, "[TCP ECHO SRV (NBLK):%d,%d] started, IP Address: %s.", 
+	                   tskid, (ID)exinf, ip2str(NULL, &addr));
 	while (true) {
 		if ((error = tcp_acp_cep((int_t)exinf, TCP_ECHO_SRV_REPID, &dst, TMO_NBLK)) != E_WBLK) {
 			syslog(LOG_NOTICE, "[TCP ECHO SRV (NBLK) ACP] error: %s", itron_strerror(error));
@@ -315,11 +317,7 @@ tcp_echo_srv_task(intptr_t exinf)
 
 			rlen   = (uint16_t)nblk_rlen;
 			total += (uint32_t)nblk_rlen;
-			head = *buffer;
-			tail = *(buffer + rlen - 1);
 			count ++;
-			/*syslog(LOG_NOTICE, "[TCP ECHO SRV (NBLK) RCV] count: %4d, len: %4d, data %02x -> %02x",
-			                   ++ count, rlen, head, tail);*/
 			soff = 0;
 			while (rlen > 0) {
 				if ((error = tcp_snd_dat((int_t)exinf, &buffer[soff], rlen, TMO_NBLK)) != E_WBLK) {
@@ -368,15 +366,18 @@ tcp_echo_srv_task(intptr_t exinf)
 void
 tcp_echo_srv_task(intptr_t exinf)
 {
+	T_IN4_ADDR	addr;
 	ID		tskid;
 	ER_UINT		rblen, sblen;
 	ER		error = E_OK;
 	uint32_t	total;
 	uint16_t	rlen, slen, soff, count;
-	char		*rbuf, *sbuf, head, tail;
+	char		*rbuf, *sbuf;
 
 	get_tid(&tskid);
-	syslog(LOG_NOTICE, "[TCP ECHO SRV:%d,%d] (copy save API) started.", tskid, (int_t)exinf);
+	addr = IPV4_ADDR_LOCAL;
+	syslog(LOG_NOTICE, "[TCP ECHO SRV:%d,%d] (copy save API) started, IP Address: %s.", 
+	                   tskid, (ID)exinf, ip2str(NULL, &addr));
 	while (true) {
 		if (tcp_acp_cep((int_t)exinf, TCP_ECHO_SRV_REPID, &dst, TMO_FEVR) != E_OK) {
 			syslog(LOG_NOTICE, "[TCP ECHO SRV ACP] error: %s", itron_strerror(error));
@@ -394,12 +395,7 @@ tcp_echo_srv_task(intptr_t exinf)
 
 			rlen   = (uint16_t)rblen;
 			total += (uint32_t)rblen;
-			head = *rbuf;
-			tail = *(rbuf + rlen - 1);
 			count ++;
-			/*syslog(LOG_NOTICE, "[TCP ECHO SRV RCV] count: %4d, len: %4d, data %02x -> %02x",
-			       ++ count, rlen, head, tail);*/
-
 			soff = 0;
 			while (rlen > 0) {
 
@@ -445,13 +441,16 @@ tcp_echo_srv_task(intptr_t exinf)
 void
 tcp_echo_srv_task(intptr_t exinf)
 {
+	T_IN4_ADDR	addr;
 	ID		tskid;
 	ER_UINT		rlen, slen;
 	ER		error = E_OK;
 	uint16_t	soff, count, total;
 
 	get_tid(&tskid);
-	syslog(LOG_NOTICE, "[TCP ECHO SRV:%d,%d] started.", tskid, (int_t)exinf);
+	addr = IPV4_ADDR_LOCAL;
+	syslog(LOG_NOTICE, "[TCP ECHO SRV:%d,%d] started, IP Address: %s.", 
+	                   tskid, (ID)exinf, ip2str(NULL, &addr));
 	while (true) {
 		if (tcp_acp_cep((int_t)exinf, TCP_ECHO_SRV_REPID, &dst, TMO_FEVR) != E_OK) {
 			syslog(LOG_NOTICE, "[TCP ECHO SRV ACP] error: %s", itron_strerror(error));

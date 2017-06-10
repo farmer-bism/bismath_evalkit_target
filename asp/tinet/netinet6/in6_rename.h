@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: in6_rename.h,v 1.5 2009/12/24 05:48:16 abe Exp $
+ *  @(#) $Id: in6_rename.h 1.7 2017/6/1 8:49:49 abe $
  */
 
 #ifndef _IN6_RENAME_H_
@@ -40,22 +40,19 @@
 
 /* netinet6/in6.c */
 
-#define in6_addr_loopback	_tinet_in6_addr_loopback
-#define in6_ifainit		_tinet_in6_ifainit
-#define in6_addr2ifaix		_tinet_in6_addr2ifaix
-#define in6_addr2maix		_tinet_in6_addr2maix
-#define in6_update_ifa		_tinet_in6_update_ifa
-#define in6ifa_ifpwithix	_tinet_in6ifa_ifpwithix
-#define in6ifa_ifpwithrtrix	_tinet_in6ifa_ifpwithrtrix
-#define in6_ifawithifp		_tinet_in6_ifawithifp
-#define in6_if_up		_tinet_in6_if_up
-#define in6_rtalloc		_tinet_in6_rtalloc
 #define in6_are_prefix_equal	_tinet_in6_are_prefix_equal
-#define in6_addr_linklocal_allrouters	\
-				_tinet_in6_addr_linklocal_allrouters
-#define in6_addr_linklocal_allnodes	\
-				_tinet_in6_addr_linklocal_allnodes
+#define in6ifa_ifpwithrtrix	_tinet_in6ifa_ifpwithrtrix
+#define in6_if_up		_tinet_in6_if_up
+#define in6_if2idlen		_tinet_in6_if2idlen
 #define in6_ifaddr_timer	_tinet_in6_ifaddr_timer
+#define in6ifa_ifpwithix	_tinet_in6ifa_ifpwithix
+#define in6_addr2maix		_tinet_in6_addr2maix
+#define in6_ifawithifp		_tinet_in6_ifawithifp
+#define in6_addr2ifaix		_tinet_in6_addr2ifaix
+#define in6_update_ifa		_tinet_in6_update_ifa
+#define in6_ifainit		_tinet_in6_ifainit
+#define in6_addrwithifp		_tinet_in6_addrwithifp
+#define in6_addr_loopback	_tinet_in6_addr_loopback
 
 /* netinet6/in6_ifattach.c */
 
@@ -63,19 +60,25 @@
 
 /* netinet6/in6_subr.c */
 
-#define in6_lookup_multi	_tinet_in6_lookup_multi
-#define get_ip6_hdr_size	_tinet_get_ip6_hdr_size
+#define inn6_is_dstaddr_accept	_tinet_inn6_is_dstaddr_accept
 #define in6_lookup_ifaddr	_tinet_in6_lookup_ifaddr
-#define in6_get_datagram	_tinet_in6_get_datagram
+#define in6_rtalloc		_tinet_in6_rtalloc
+#define in6_get_ifaddr		_tinet_in6_get_ifaddr
 #define in6_cksum		_tinet_in6_cksum
-#define in6_is_dstaddr_accept	_tinet_in6_is_dstaddr_accept
-#define in6_plen2pmask		_tinet_in6_plen2pmask
-#define in6_init		_tinet_in6_init
-#define in6_rtredirect		_tinet_in6_rtredirect
 #define in6_gateway_lookup	_tinet_in6_gateway_lookup
-#define in6_set_header		_tinet_in6_set_header
+#define in6_is_dstaddr_accept	_tinet_in6_is_dstaddr_accept
 #define in6_hostcache_getmtu	_tinet_in6_hostcache_getmtu
+#define in6_set_header		_tinet_in6_set_header
+#define in6_get_datagram	_tinet_in6_get_datagram
+#define in6_rtredirect		_tinet_in6_rtredirect
+#define get_ip6_hdr_size	_tinet_get_ip6_hdr_size
+#define in6_plen2pmask		_tinet_in6_plen2pmask
+#define in6_rtnewentry		_tinet_in6_rtnewentry
+#define in6_rtinit		_tinet_in6_rtinit
+#define in6_rttimer		_tinet_in6_rttimer
+#define in6_lookup_multi	_tinet_in6_lookup_multi
 #define in6_hostcache_update	_tinet_in6_hostcache_update
+#define in6_init		_tinet_in6_init
 
 /* netinet6/if6_ether.c */
 
@@ -150,23 +153,25 @@
 
 /* netinet6/nd6_rtr.c */
 
+#define nd6_get_prl		_tinet_nd6_get_prl
 #define nd6_router_lookup	_tinet_nd6_router_lookup
-#define nd6_defrtrlist_timer	_tinet_nd6_defrtrlist_timer
-#define nd6_prelist_timer	_tinet_nd6_prelist_timer
-#define nd6_ra_input		_tinet_nd6_ra_input
+#define nd6_onlink_prefix_lookup	\
+				_tinet_nd6_onlink_prefix_lookup
+#define nd6_defrtrlist_del	_tinet_nd6_defrtrlist_del
+#define nd6_prefix_onlink	_tinet_nd6_prefix_onlink
+#define nd6_get_drl		_tinet_nd6_get_drl
 #define nd6_rtrsol_ctl		_tinet_nd6_rtrsol_ctl
+#define nd6_defrtrlist_timer	_tinet_nd6_defrtrlist_timer
+#define nd6_ra_input		_tinet_nd6_ra_input
+#define nd6_prelist_timer	_tinet_nd6_prelist_timer
+#define nd6_prefix_offlink	_tinet_nd6_prefix_offlink
+#define nd6_defrtrlist_lookup	_tinet_nd6_defrtrlist_lookup
 #define ip6_defhlim		_tinet_ip6_defhlim
 #define nd6_reachable_time	_tinet_nd6_reachable_time
 #define nd6_base_reachable_time	_tinet_nd6_base_reachable_time
 #define nd6_recalc_reachtm_interval	\
 				_tinet_nd6_recalc_reachtm_interval
 #define nd6_retrans_time	_tinet_nd6_retrans_time
-#define nd6_defrtrlist_lookup	_tinet_nd6_defrtrlist_lookup
-#define nd6_prefix_onlink	_tinet_nd6_prefix_onlink
-#define nd6_prefix_offlink	_tinet_nd6_prefix_offlink
-#define nd6_get_prl		_tinet_nd6_get_prl
-#define nd6_get_drl		_tinet_nd6_get_drl
-#define nd6_defrtrlist_del	_tinet_nd6_defrtrlist_del
 
 /* netinet6/scope6.c */
 

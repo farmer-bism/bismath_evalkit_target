@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: tcp_subr.c,v 1.5.4.1 2015/02/05 02:10:53 abe Exp abe $
+ *  @(#) $Id: tcp_subr.c 1.7 2017/6/1 8:49:24 abe $
  */
 
 /*
@@ -96,29 +96,23 @@
 #include <net/if_ppp.h>
 #include <net/if_loop.h>
 #include <net/ethernet.h>
-#include <net/if_arp.h>
-#include <net/ppp_ipcp.h>
 #include <net/net.h>
+#include <net/net_endian.h>
 #include <net/net_var.h>
 #include <net/net_buf.h>
 #include <net/net_timer.h>
 #include <net/net_count.h>
 
 #include <netinet/in.h>
-#include <netinet6/in6.h>
-#include <netinet6/in6_var.h>
 #include <netinet/in_var.h>
+#include <netinet/in_itron.h>
 #include <netinet/ip.h>
 #include <netinet/ip_var.h>
-#include <netinet/ip6.h>
-#include <netinet6/ip6_var.h>
-#include <netinet6/nd6.h>
 #include <netinet/tcp.h>
-#include <netinet/tcp_timer.h>
 #include <netinet/tcp_var.h>
 #include <netinet/tcp_fsm.h>
 #include <netinet/tcp_seq.h>
-#include <netinet/in_itron.h>
+#include <netinet/tcp_timer.h>
 
 #ifdef SUPPORT_TCP
 
@@ -148,6 +142,210 @@ T_TCP_STATS tcp_stats;
 
 static uint16_t tcp_port_auto = TCP_PORT_FIRST_AUTO;	/* 自動割り当て番号	*/
 
+#if defined(NUM_TCP_TW_CEP_ENTRY) && NUM_TCP_TW_CEP_ENTRY > 0
+
+/*
+ *  タスクからの Time Wait 状態 CEP 分離機能
+ */
+
+/*
+ *  変数
+ */
+
+T_TCP_TWCEP tcp_twcep[NUM_TCP_TW_CEP_ENTRY];
+
+/*
+ *  tcp_move_twcep -- 必要な情報を Time Wait 用 TCP 通信端点に移して、
+ *                    標準の TCP 通信端点を開放する。
+ */
+
+void
+tcp_move_twcep (T_TCP_CEP *cep)
+{
+	T_TCP_TWCEP*	twcep;
+
+	/* 空きの Time Wait 用 TCP 通信端点を探索する。*/
+	for (twcep = &tcp_twcep[NUM_TCP_TW_CEP_ENTRY]; twcep -- != tcp_twcep; ) {
+		if (twcep->fsm_state != TCP_FSM_TIME_WAIT) {
+
+			/*
+			 *  通信端点をロックし、
+			 *  必要な情報を Time Wait 用 TCP 通信端点に移す。
+			 */
+			syscall(wai_sem(cep->semid_lock));
+			twcep->flags		= (uint8_t)cep->flags;
+			twcep->rbufsz		= cep->rbufsz;
+			twcep->dstaddr		= cep->dstaddr;
+			twcep->myaddr		= cep->myaddr;
+			twcep->snd_una		= cep->snd_una;
+			twcep->rcv_nxt		= cep->rcv_nxt;
+			twcep->rwbuf_count	= cep->rwbuf_count;
+			twcep->fsm_state	= cep->fsm_state;
+			twcep->timer_2msl	= cep->timer[TCP_TIM_2MSL];
+
+			/* 通信端点をロックを解除する。*/
+			syscall(sig_sem(cep->semid_lock));
+
+			/* 標準 TCP 通信端点を開放する。*/
+			tcp_close(cep);
+
+			break;
+			}
+		}
+	}
+
+/*
+ *  tcp_find_twcep -- ポート番号から Time Wait 用 TCP 通信端点を得る。
+ */
+
+T_TCP_TWCEP*
+tcp_find_twcep (T_NET_BUF *input, uint_t off)
+{
+	T_TCP_TWCEP*	twcep;
+	T_TCP_HDR	*tcph;
+
+	tcph = GET_TCP_HDR(input, off);
+	
+	/*
+	 *  状態が TIME WAIT で、
+	 *  IP アドレスとポート番号が一致する通信端点を探索する。
+	 */
+	for (twcep = &tcp_twcep[NUM_TCP_TW_CEP_ENTRY]; twcep -- != tcp_twcep; ) {
+		if (twcep->fsm_state == TCP_FSM_TIME_WAIT                   &&
+		    IN_IS_DSTADDR_ACCEPT    (&twcep->myaddr.ipaddr,  input) &&
+		    IN_ARE_NET_SRCADDR_EQUAL(&twcep->dstaddr.ipaddr, input) &&
+		    tcph->dport == twcep->myaddr.portno                     &&
+		    tcph->sport == twcep->dstaddr.portno)
+			return twcep;
+		}
+
+	return NULL;
+	}
+
+#endif	/* of #if defined(NUM_TCP_TW_CEP_ENTRY) && NUM_TCP_TW_CEP_ENTRY > 0 */
+
+/*
+ *  tcp_find_cep -- ポート番号から TCP 通信端点を得る。
+ */
+
+T_TCP_CEP*
+tcp_find_cep (T_NET_BUF *input, uint_t off)
+{
+	T_TCP_CEP*	cep;
+	T_TCP_HDR	*tcph;
+
+	tcph = GET_TCP_HDR(input, off);
+	
+	/*
+	 *  状態が SYN 送信済み以後は、
+	 *  IP アドレスとポート番号が一致する TCP 通信端点を探索する。
+	 */
+	for (cep = &tcp_cep[tmax_tcp_cepid]; cep -- != tcp_cep; ) {
+		if (cep->fsm_state >= TCP_FSM_SYN_SENT                    &&
+		    IN_IS_DSTADDR_ACCEPT    (&cep->myaddr.ipaddr,  input) &&
+		    IN_ARE_NET_SRCADDR_EQUAL(&cep->dstaddr.ipaddr, input) &&
+		    tcph->dport == cep->myaddr.portno                     &&
+		    tcph->sport == cep->dstaddr.portno)
+			return cep;
+		}
+
+	/* IPv4 で受動オープン中の TCP 通信端点を先に探索する。*/	
+	for (cep = &tcp_cep[tmax_tcp_cepid]; cep -- != tcp_cep; ) {
+		if ((cep->flags & TCP_CEP_FLG_IPV4)                   &&
+		     cep->fsm_state == TCP_FSM_LISTEN                 &&
+		     GET_IP_VER(input) == IPV4_VERSION                &&
+		     IN_IS_DSTADDR_ACCEPT(&cep->myaddr.ipaddr, input) &&
+		     tcph->dport == cep->myaddr.portno)
+			return cep;
+		}
+
+	/* 受動オープン中の TCP 通信端点を探索する。*/	
+	for (cep = &tcp_cep[tmax_tcp_cepid]; cep -- != tcp_cep; ) {
+
+#if defined(_IP6_CFG) && defined(_IP4_CFG)
+
+		if (cep->flags & TCP_CEP_FLG_IPV4) {
+			if (cep->fsm_state == TCP_FSM_LISTEN                 &&
+		            GET_IP_VER(input) == IPV4_VERSION                &&
+			    IN_IS_DSTADDR_ACCEPT(&cep->myaddr.ipaddr, input) &&
+			    tcph->dport == cep->myaddr.portno)
+				return cep;
+			}
+		else {
+
+#if defined(API_CFG_IP4MAPPED_ADDR)
+
+			if (cep->fsm_state == TCP_FSM_LISTEN                 &&
+			    IN_IS_DSTADDR_ACCEPT(&cep->myaddr.ipaddr, input) &&
+			    tcph->dport == cep->myaddr.portno)
+				return cep;
+
+#else	/* of #if defined(API_CFG_IP4MAPPED_ADDR) */
+
+			if (cep->fsm_state == TCP_FSM_LISTEN                   &&
+			    INN6_IS_DSTADDR_ACCEPT(&cep->myaddr.ipaddr, input) &&
+			    tcph->dport == cep->myaddr.portno)
+				return cep;
+
+#endif	/* of #if defined(API_CFG_IP4MAPPED_ADDR) */
+
+			}
+
+#else	/* of #if defined(_IP6_CFG) && defined(_IP4_CFG) */
+
+		if (cep->fsm_state == TCP_FSM_LISTEN                 &&
+		    IN_IS_DSTADDR_ACCEPT(&cep->myaddr.ipaddr, input) &&
+		    tcph->dport == cep->myaddr.portno)
+			return cep;
+
+#endif	/* of #if defined(_IP6_CFG) && defined(_IP4_CFG) */
+		}
+
+	return NULL;
+	}
+
+/*
+ *  tcp_is_addr_accept -- 受信可能な IP アドレスとポート番号であることを確認する。
+ */
+
+bool_t
+tcp_is_addr_accept (T_NET_BUF *input, uint_t off)
+{
+	T_TCP_HDR	*tcph;
+
+	tcph = GET_TCP_HDR(input, off);
+
+#if !defined(_IP6_CFG) && defined(_IP4_CFG) && defined(SUPPORT_LOOP)
+
+	/*
+	 *  次のときは破棄する。
+	 *    ・ポート番号が同一で、送受信 IP アドレス が同一。
+	 *      ただし、送信元 IP アドレスがローカルループバックなら良い。
+	 *    ・マルチキャストアドレス
+	 */
+
+	if (tcph->dport == tcph->sport && 
+	    (IN4_ARE_HDR_ADDR_EQUAL(input) && !IN4_ARE_NET_ADDR_EQUAL(&GET_IP4_HDR(input)->dst, &IPV4_ADDR_LOOPBACK)))
+		return RET_DROP;
+
+#else	/* of #if !defined(_IP6_CFG) && defined(_IP4_CFG) && defined(SUPPORT_LOOP) */
+
+	/*
+	 *  次のときは、受信可能ではない。
+	 *    ・ポート番号が同一で、送受信 IP アドレス が同一。
+	 *    ・マルチキャストアドレス
+	 */
+	if (tcph->dport == tcph->sport && IN_ARE_HDR_ADDR_EQUAL(input))
+		return false;
+
+#endif	/* of #if !defined(_IP6_CFG) && defined(_IP4_CFG) && defined(SUPPORT_LOOP) */
+
+	if (IN_IS_NET_ADDR_MULTICAST(input))
+		return false;
+	else
+		return true;
+	}
+
 /*
  *  tcp_free_reassq -- 受信再構成キューのネットワークバッファを解放する。
  *
@@ -162,7 +360,7 @@ tcp_free_reassq (T_TCP_CEP *cep)
 	T_NET_BUF	*q, *nq;
 
 	for (q = cep->reassq; q != NULL; q = nq) {
-		nq = GET_TCP_Q_HDR(q, GET_TCP_IP_Q_HDR(q)->thoff)->next;
+		nq = GET_TCP_Q_HDR(q, GET_IP_TCP_Q_HDR_OFFSET(q))->next;
 		syscall(rel_net_buf(q));
 		}
 	cep->reassq  = NULL;
@@ -184,20 +382,21 @@ tcp_alloc_auto_port (T_TCP_CEP *cep)
 		if (tcp_port_auto > TCP_PORT_LAST_AUTO)
 			tcp_port_auto = TCP_PORT_FIRST_AUTO;
 
-#ifdef TCP_CFG_PASSIVE_OPEN
+#if defined(TNUM_TCP6_REPID)
+#if TNUM_TCP6_REPID > 0
 
-		for (ix = tmax_tcp_repid; ix -- > 0; ) {
+		for (ix = tmax_tcp6_repid; ix -- > 0; ) {
 
 #ifdef TCP_CFG_EXTENTIONS
 
-			if (VALID_TCP_REP(&tcp_rep[ix]) && tcp_rep[ix].myaddr.portno == portno) {
+			if (VALID_TCP_REP(&tcp6_rep[ix]) && tcp6_rep[ix].myaddr.portno == portno) {
 				portno = TCP_PORTANY;
 				break;
 				}
 
 #else	/* of #ifdef TCP_CFG_EXTENTIONS */
 
-			if (tcp_rep[ix].myaddr.portno == portno) {
+			if (tcp6_rep[ix].myaddr.portno == portno) {
 				portno = TCP_PORTANY;
 				break;
 				}
@@ -206,7 +405,34 @@ tcp_alloc_auto_port (T_TCP_CEP *cep)
 
 			}
 
-#endif	/* of #ifdef TCP_CFG_PASSIVE_OPEN */
+#endif	/* of #if TNUM_TCP6_REPID > 0 */
+#endif	/* of #if defined(TNUM_TCP6_REPID) */
+
+#if defined(TNUM_TCP4_REPID)
+#if TNUM_TCP4_REPID > 0
+
+		for (ix = tmax_tcp4_repid; ix -- > 0; ) {
+
+#ifdef TCP_CFG_EXTENTIONS
+
+			if (VALID_TCP_REP(&tcp4_rep[ix]) && tcp4_rep[ix].myaddr.portno == portno) {
+				portno = TCP_PORTANY;
+				break;
+				}
+
+#else	/* of #ifdef TCP_CFG_EXTENTIONS */
+
+			if (tcp4_rep[ix].myaddr.portno == portno) {
+				portno = TCP_PORTANY;
+				break;
+				}
+
+#endif	/* of #ifdef TCP_CFG_EXTENTIONS */
+
+			}
+
+#endif	/* of #if TNUM_TCP4_REPID > 0 */
+#endif	/* of #if defined(TNUM_TCP4_REPID) */
 
 		if (portno != TCP_PORTANY) {
 
@@ -273,24 +499,8 @@ tcp_init_iss (void)
 {
 	SYSTIM now;
 
-#ifdef SUPPORT_ETHER
-
-	T_IF_SOFTC	*ic;
-
-	ic = IF_ETHER_NIC_GET_SOFTC();
-	syscall(get_tim(&now));
-	net_srand(now + (ic->ifaddr.lladdr[2] << 24)
-	              + (ic->ifaddr.lladdr[3] << 16)
-	              + (ic->ifaddr.lladdr[4] <<  8)
-	              + (ic->ifaddr.lladdr[5]      ));
-
-#else	/* of #ifdef SUPPORT_ETHER */
-
 	syscall(get_tim(&now));
 	net_srand(now);
-
-#endif	/* of #ifdef SUPPORT_ETHER */
-
 	tcp_iss = net_rand();
 	}
 
@@ -319,9 +529,9 @@ tcp_close (T_TCP_CEP *cep)
 	 * 以下に関係しないフラグをクリアーする。
 	 * ・送受信ウィンドバッファの省コピー機能
 	 * ・動的な通信端点の生成・削除機能
+	 * ・通信端点のネットワーク層プロトコル
 	 */
-	cep->flags &= (TCP_CEP_FLG_WBCS_NBUF_REQ | TCP_CEP_FLG_WBCS_MASK | 
-	               TCP_CEP_FLG_DYNAMIC       | TCP_CEP_FLG_VALID);
+	cep->flags &= TCP_CEP_FLG_NOT_CLEAR;
 
 #ifdef TCP_CFG_NON_BLOCKING
 
@@ -341,6 +551,11 @@ tcp_close (T_TCP_CEP *cep)
 				case TFN_TCP_ACP_CEP:
 					/* TCP 通信端点からTCP 受付口を解放する。*/
 					cep->rep = NULL;
+
+#if defined(_IP6_CFG) && defined(_IP4_CFG)
+					cep->rep4 = NULL;
+#endif
+
 					(*cep->callback)(GET_TCP_CEPID(cep), cep->rcv_nblk_tfn, (void*)E_CLS);
 					break;
 
@@ -397,6 +612,11 @@ tcp_close (T_TCP_CEP *cep)
 				case TFN_TCP_CON_CEP:
 					/* TCP 通信端点から TCP 受付口を解放する。*/
 					cep->rep = NULL;
+
+#if defined(_IP6_CFG) && defined(_IP4_CFG)
+					cep->rep4 = NULL;
+#endif
+
 					(*cep->callback)(GET_TCP_CEPID(cep), cep->snd_nblk_tfn, (void*)E_CLS);
 					break;
 
@@ -431,8 +651,15 @@ tcp_close (T_TCP_CEP *cep)
 				switch (cep->rcv_nblk_tfn) {
 
 				case TFN_TCP_ACP_CEP:
+
 					/* TCP 通信端点からTCP 受付口を解放する。*/
 					cep->rep = NULL;
+
+#if defined(_IP6_CFG) && defined(_IP4_CFG)
+					cep->rep4 = NULL;
+#endif
+
+					/* 接続エラーを設定する。*/
 					len      = E_CLS;
 					(*cep->callback)(GET_TCP_CEPID(cep), cep->rcv_nblk_tfn, (void*)&len);
 					break;
@@ -489,8 +716,15 @@ tcp_close (T_TCP_CEP *cep)
 				switch (cep->snd_nblk_tfn) {
 
 				case TFN_TCP_CON_CEP:
-					/* TCP 通信端点から TCP 受付口を解放する。*/
+
+					/* TCP 通信端点からTCP 受付口を解放する。*/
 					cep->rep = NULL;
+
+#if defined(_IP6_CFG) && defined(_IP4_CFG)
+					cep->rep4 = NULL;
+#endif
+
+					/* 接続エラーを設定する。*/
 					len      = E_CLS;
 					(*cep->callback)(GET_TCP_CEPID(cep), cep->snd_nblk_tfn, (void*)&len);
 					break;
@@ -589,8 +823,9 @@ tcp_drop (T_TCP_CEP *cep, ER errno)
 		cep->flags |=  TCP_CEP_FLG_POST_OUTPUT | TCP_CEP_FLG_CLOSE_AFTER_OUTPUT;
 		sig_sem(SEM_TCP_POST_OUTPUT);
 		}
-	else
+	else {
 		cep = tcp_close(cep);
+		}
 	return cep;
 	}
 
@@ -602,9 +837,9 @@ void
 tcp_respond (T_NET_BUF *output, T_TCP_CEP *cep,
              T_TCP_SEQ ack, T_TCP_SEQ seq, uint_t rbfree, uint8_t flags)
 {
-	T_IP_HDR	*iph;
 	T_TCP_HDR	*tcph;
 	uint_t		win = 0;
+	uint_t		hdr_offset;
 
 	if ((flags & TCP_FLG_RST) == 0)
 		win = rbfree;
@@ -614,8 +849,7 @@ tcp_respond (T_NET_BUF *output, T_TCP_CEP *cep,
 	 *  net_buf で、そのまま再利用する。
 	 */
 	if (output != NULL) {
-		T_IN_ADDR	ipaddr;
-		uint16_t		portno;
+		uint16_t	portno;
 
 		/*
 		 * IPv4 では、IP ヘッダのオプションを削除する。
@@ -626,24 +860,19 @@ tcp_respond (T_NET_BUF *output, T_TCP_CEP *cep,
 			return;
 			}
 
-		iph  = GET_IP_HDR(output);
+		ip_exchg_addr(output);
 
-		/* IP アドレスを交換する。*/
-		ipaddr = iph->src;
-		iph->src = iph->dst;
-		iph->dst = ipaddr;
-
-#if defined(SUPPORT_INET6)
+#if defined(_IP6_CFG)
 
 		/* トラヒッククラスとフローラベルをクリアする。*/
-		iph->vcf = htonl(IP6_MAKE_VCF(IP6_VCF_V(ntohl(iph->vcf)), 0));
+		SET_IP_CF(output, 0);
 
-#endif	/* of #if defined(SUPPORT_INET6) */
+#endif	/* of #if defined(_IP6_CFG) */
 
 		/* TCP SDU 長を 0 にする。*/
-		SET_IP_SDU_SIZE(iph, TCP_HDR_SIZE);
+		SET_IP_SDU_SIZE(output, TCP_HDR_SIZE);
 
-		tcph = GET_TCP_HDR(output, IF_IP_TCP_HDR_OFFSET);
+		tcph = GET_TCP_HDR(output, IF_IP_TCP_HDR_OFFSET(output));
 
 		/* ポート番号を交換する。*/
 		portno = tcph->sport;
@@ -658,11 +887,11 @@ tcp_respond (T_NET_BUF *output, T_TCP_CEP *cep,
 	else if (cep == NULL)
 		return;
 	else {
-		if (tcp_get_segment(&output, cep, 0,
-		                    0, (uint_t)(net_buf_max_siz() - IF_IP_TCP_HDR_SIZE),
+		if (tcpn_get_segment(&output, cep, 0,
+		                    0, (uint_t)net_buf_max_siz(),
 		                    NBA_SEARCH_ASCENT, TMO_TCP_GET_NET_BUF) != E_OK)
 			return;
-		tcph = GET_TCP_HDR(output, IF_IP_TCP_HDR_OFFSET);
+		tcph = GET_TCP_HDR(output, IF_IP_TCP_HDR_OFFSET(output));
 		flags |= TCP_FLG_ACK;
 		}
 
@@ -675,11 +904,12 @@ tcp_respond (T_NET_BUF *output, T_TCP_CEP *cep,
 	/*
 	 *  チェックサムを設定する。
 	 */
-	tcph->sum = IN_CKSUM(output, IPPROTO_TCP, IF_IP_TCP_HDR_OFFSET, 
-	                     (uint_t)GET_TCP_HDR_SIZE2(output, IF_IP_TCP_HDR_OFFSET));
+	hdr_offset = IF_IP_TCP_HDR_OFFSET(output);
+	tcph->sum = IN_CKSUM(output, IPPROTO_TCP, hdr_offset, 
+	                     (uint_t)GET_TCP_HDR_SIZE(output, hdr_offset));
 
 	/* ネットワークバッファ長を調整する。*/
-	output->len = (uint16_t)GET_IF_IP_TCP_HDR_SIZE2(output, IF_IP_TCP_HDR_OFFSET);
+	output->len = (uint16_t)GET_IF_IP_TCP_HDR_SIZE(output, hdr_offset);
 
 #ifdef TCP_CFG_TRACE
 
@@ -690,28 +920,13 @@ tcp_respond (T_NET_BUF *output, T_TCP_CEP *cep,
 	/* ネットワーク層 (IP) の出力関数を呼び出す。*/
 	IP_OUTPUT(output, TMO_TCP_OUTPUT);
 	}
-
-/*
- *  tcp_set_header -- TCP ヘッダを設定する。
- */
-
-void
-tcp_set_header (T_NET_BUF *nbuf, T_TCP_CEP *cep, uint_t thoff, uint_t optlen)
-{
-	T_TCP_HDR	*tcph = GET_TCP_HDR(nbuf, thoff);
-
-	/* TCP ヘッダに情報を設定する。*/
-	tcph->sport	= htons(cep->myaddr.portno);
-	tcph->dport	= htons(cep->dstaddr.portno);
-	tcph->doff	= TCP_MAKE_DATA_OFF(TCP_HDR_SIZE + optlen);
-	tcph->sum	= tcph->flags = 0;
-	}
-
+#if 0
 /*
  *  tcp_get_segment -- TCP セグメントを獲得し、ヘッダを設定する。
  *
  *    戻り値	エラーコード
  *    optlen	オプションサイズ、4 オクテット単位
+ *    maxlen	最大セグメントサイズ（IF/IP/TCP ヘッダサイズを含まない）
  *    len	TCP SDU サイズ
  */
 
@@ -719,6 +934,7 @@ ER
 tcp_get_segment (T_NET_BUF **nbuf, T_TCP_CEP *cep,
                  uint_t optlen, uint_t len, uint_t maxlen, ATR nbatr, TMO tmout)
 {
+	T_TCP_HDR	*tcph;
 	ER		error;
 
 	/* IP データグラムを獲得する。*/
@@ -728,13 +944,59 @@ tcp_get_segment (T_NET_BUF **nbuf, T_TCP_CEP *cep,
 	                             &cep->dstaddr.ipaddr,
 	                             &cep->myaddr.ipaddr,
 	                             IPPROTO_TCP, IP_DEFTTL, nbatr, tmout)) != E_OK) {
+		syslog(LOG_WARNING, "[TCP] NET BUF busy, len: %d, CEP: %d.",
+		                    (uint16_t)(TCP_HDR_SIZE + optlen + len), GET_TCP_CEPID(cep));
+		return error;
+		}
+
+	/* TCP ヘッダに情報を設定する。*/
+
+	/* TCP ヘッダに情報を設定する。*/
+	tcph = GET_TCP_HDR(*nbuf, IF_IP_TCP_HDR_OFFSET(*nbuf));
+	tcph->sport	= htons(cep->myaddr.portno);
+	tcph->dport	= htons(cep->dstaddr.portno);
+	tcph->doff	= TCP_MAKE_DATA_OFF(TCP_HDR_SIZE + optlen);
+	tcph->sum	= tcph->flags = 0;
+
+	return E_OK;
+	}
+#endif
+/*
+ *  tcpn_get_segment -- TCP セグメントを獲得し、ヘッダを設定する。
+ *
+ *    戻り値	エラーコード
+ *    optlen	オプションサイズ、4 オクテット単位
+ *    maxlen	最大セグメントサイズ（IF/IP/TCP ヘッダサイズを含む）
+ *    len	TCP SDU サイズ
+ */
+
+ER
+tcpn_get_segment (T_NET_BUF **nbuf, T_TCP_CEP *cep,
+                 uint_t optlen, uint_t len, uint_t maxlen, ATR nbatr, TMO tmout)
+{
+	T_TCP_HDR	*tcph;
+	ER		error;
+
+	/* IP データグラムを獲得する。*/
+	if ((error = IN_GET_DATAGRAM(nbuf,
+	                             (uint_t)(TCP_HDR_SIZE + optlen + len),
+	                             (uint_t)(maxlen - IF_IP_NET_HDR_SIZE(&cep->dstaddr.ipaddr)),
+	                             &cep->dstaddr.ipaddr,
+	                             &cep->myaddr.ipaddr,
+	                             IPPROTO_TCP, IP_DEFTTL, nbatr, tmout)) != E_OK) {
 		syslog(LOG_WARNING, "[TCP] NET BUF busy,  len:%4d, CEP: %d.",
 		                    (uint16_t)(TCP_HDR_SIZE + optlen + len), GET_TCP_CEPID(cep));
 		return error;
 		}
 
 	/* TCP ヘッダに情報を設定する。*/
-	tcp_set_header(*nbuf, cep, IF_IP_TCP_HDR_OFFSET, optlen);
+
+	/* TCP ヘッダに情報を設定する。*/
+	tcph = GET_TCP_HDR(*nbuf, IF_IP_TCP_HDR_OFFSET(*nbuf));
+	tcph->sport	= htons(cep->myaddr.portno);
+	tcph->dport	= htons(cep->dstaddr.portno);
+	tcph->doff	= TCP_MAKE_DATA_OFF(TCP_HDR_SIZE + optlen);
+	tcph->sum	= tcph->flags = 0;
 
 	return E_OK;
 	}
@@ -761,19 +1023,12 @@ tcp_can_send_more (T_TCP_CEP *cep, FN fncd, TMO tmout)
 			if (!IS_PTR_DEFINED(cep->callback))
 				error = E_OBJ;
 			else {
-
+				/* コールバック関数を呼び出す。*/
 #ifdef TCP_CFG_NON_BLOCKING_COMPAT14
-
-				/* コールバック関数を呼び出す。*/
 				(*cep->callback)(GET_TCP_CEPID(cep), fncd, (void*)error);
-
-#else	/* of #ifdef TCP_CFG_NON_BLOCKING_COMPAT14 */
-
-				/* コールバック関数を呼び出す。*/
+#else
 				(*cep->callback)(GET_TCP_CEPID(cep), fncd, (void*)&error);
-
-#endif	/* of #ifdef TCP_CFG_NON_BLOCKING_COMPAT14 */
-
+#endif
 				error = E_WBLK;
 				}
 			}
@@ -798,20 +1053,14 @@ tcp_can_send_more (T_TCP_CEP *cep, FN fncd, TMO tmout)
 				if (!IS_PTR_DEFINED(cep->callback))
 					error = E_OBJ;
 				else {
-
-#ifdef TCP_CFG_NON_BLOCKING_COMPAT14
-
-					/* コールバック関数を呼び出す。*/
-					(*cep->callback)(GET_TCP_CEPID(cep), fncd, (void*)E_OBJ);
-
-#else	/* of #ifdef TCP_CFG_NON_BLOCKING_COMPAT14 */
-
-					/* コールバック関数を呼び出す。*/
 					error = E_OBJ;
+
+					/* コールバック関数を呼び出す。*/
+#ifdef TCP_CFG_NON_BLOCKING_COMPAT14
+					(*cep->callback)(GET_TCP_CEPID(cep), fncd, (void*)error);
+#else
 					(*cep->callback)(GET_TCP_CEPID(cep), fncd, (void*)&error);
-
-#endif	/* of #ifdef TCP_CFG_NON_BLOCKING_COMPAT14 */
-
+#endif
 					error = E_WBLK;
 					}
 				}
@@ -859,18 +1108,12 @@ tcp_can_recv_more (ER *error, T_TCP_CEP *cep, FN fncd, TMO tmout)
 			if (!IS_PTR_DEFINED(cep->callback))
 				*error = E_OBJ;
 			else {
+				/* コールバック関数を呼び出す。*/
 #ifdef TCP_CFG_NON_BLOCKING_COMPAT14
-
-				/* コールバック関数を呼び出す。*/
 				(*cep->callback)(GET_TCP_CEPID(cep), fncd, (void*)*error);
-
-#else	/* of #ifdef TCP_CFG_NON_BLOCKING_COMPAT14 */
-
-				/* コールバック関数を呼び出す。*/
+#else
 				(*cep->callback)(GET_TCP_CEPID(cep), fncd, (void*)error);
-
-#endif	/* of #ifdef TCP_CFG_NON_BLOCKING_COMPAT14 */
-
+#endif
 				*error = E_WBLK;
 				}
 			}
@@ -900,20 +1143,14 @@ tcp_can_recv_more (ER *error, T_TCP_CEP *cep, FN fncd, TMO tmout)
 				if (!IS_PTR_DEFINED(cep->callback))
 					*error = E_OBJ;
 				else {
-
-#ifdef TCP_CFG_NON_BLOCKING_COMPAT14
-
-					/* コールバック関数を呼び出す。*/
-					(*cep->callback)(GET_TCP_CEPID(cep), fncd, (void*)E_OBJ);
-
-#else	/* of #ifdef TCP_CFG_NON_BLOCKING_COMPAT14 */
-
-					/* コールバック関数を呼び出す。*/
 					*error = E_OBJ;
+
+					/* コールバック関数を呼び出す。*/
+#ifdef TCP_CFG_NON_BLOCKING_COMPAT14
+					(*cep->callback)(GET_TCP_CEPID(cep), fncd, (void*)*error);
+#else
 					(*cep->callback)(GET_TCP_CEPID(cep), fncd, (void*)error);
-
-#endif	/* of #ifdef TCP_CFG_NON_BLOCKING_COMPAT14 */
-
+#endif
 					*error = E_WBLK;
 					}
 				}
@@ -961,8 +1198,6 @@ tcp_wait_rwbuf (T_TCP_CEP *cep, TMO tmout)
 				 *  通信端点をロックして、
 				 *  受信ウィンドバッファキューのネットワークバッファを解放する。
 				 */
-#ifdef TCP_CFG_RWBUF_CSAVE
-#endif
 				syscall(wai_sem(cep->semid_lock));
 				TCP_FREE_RWBUFQ(cep);
 				syscall(sig_sem(cep->semid_lock));
@@ -971,8 +1206,9 @@ tcp_wait_rwbuf (T_TCP_CEP *cep, TMO tmout)
 				}
 			}
 		}
-	else
+	else {
 		syscall(clr_flg(cep->rcv_flgid, (FLGPTN)(~TCP_CEP_EVT_RWBUF_READY)));
+		}
 
 	return E_OK;
 	}
@@ -994,7 +1230,7 @@ tcp_move_ra2rw (T_TCP_CEP *cep, uint8_t flags)
 	if (TCP_FSM_HAVE_ESTABLISHED(cep->fsm_state)) {
 		while (cep->reassq != NULL) {
 			q = cep->reassq;
-			qhdr = GET_TCP_Q_HDR(q, GET_TCP_IP_Q_HDR(q)->thoff);
+			qhdr = GET_TCP_Q_HDR(q, GET_IP_TCP_Q_HDR_OFFSET(q));
 			if (qhdr->seq != cep->rcv_nxt)
 				break;
 
@@ -1005,7 +1241,7 @@ tcp_move_ra2rw (T_TCP_CEP *cep, uint8_t flags)
 			flags &= TCP_FLG_FIN;
 
 			/* データを受信ウィンドバッファに書き込む。*/
-			TCP_WRITE_RWBUF(cep, q, (uint_t)(GET_TCP_IP_Q_HDR(q)->thoff));
+			TCP_WRITE_RWBUF(cep, q, (uint_t)(GET_IP_TCP_Q_HDR_OFFSET(q)));
 			}
 		}
 	if (cep->reassq != NULL) {
@@ -1028,14 +1264,14 @@ tcp_write_raque (T_NET_BUF *input, T_TCP_CEP *cep, uint_t thoff, uint8_t flags)
 	int32_t		len;
 
 	/*  TCP ヘッダの位置を保存する。*/
-	GET_TCP_IP_Q_HDR(input)->thoff = thoff;
+	SET_IP_TCP_Q_HDR_OFFSET(input, thoff);
 
 	/*
 	 *  MAX_TCP_REALLOC_SIZE 以下の場合は、新たにネットワークバッファを
 	 *  割当てて、データをコピーする。
 	 *  このとき、IP のオプション（拡張ヘッダ）と TCP のオプションは削除する。
 	 */
-	len  = IF_IP_TCP_HDR_SIZE + inqhdr->slen;
+	len  = IF_IP_TCP_HDR_SIZE(input) + inqhdr->slen;
 
 	if (len <= MAX_TCP_REALLOC_SIZE) {
 
@@ -1080,7 +1316,7 @@ tcp_write_raque (T_NET_BUF *input, T_TCP_CEP *cep, uint_t thoff, uint8_t flags)
 	 *                                          q->seq
 	 */
 	for (q = cep->reassq, p = NULL; q != NULL; ) {
-		qhdr = GET_TCP_Q_HDR(q, GET_TCP_IP_Q_HDR(q)->thoff);
+		qhdr = GET_TCP_Q_HDR(q, GET_IP_TCP_Q_HDR_OFFSET(q));
 		if (SEQ_GT(qhdr->seq, inqhdr->seq))
 			break;
 		p = q;
@@ -1106,7 +1342,7 @@ tcp_write_raque (T_NET_BUF *input, T_TCP_CEP *cep, uint_t thoff, uint8_t flags)
 	 *                   inqhdr->seq
 	 */
 	if (p != NULL) {
-		qhdr = GET_TCP_Q_HDR(p, GET_TCP_IP_Q_HDR(p)->thoff);
+		qhdr = GET_TCP_Q_HDR(p, GET_IP_TCP_Q_HDR_OFFSET(p));
 		len = qhdr->seq + qhdr->slen - inqhdr->seq;
 		if (len > 0) {
 
@@ -1169,7 +1405,7 @@ tcp_write_raque (T_NET_BUF *input, T_TCP_CEP *cep, uint_t thoff, uint8_t flags)
 	 *                   qhdr->seq
 	 */
 	while (q != NULL) {
-		qhdr = GET_TCP_Q_HDR(q, GET_TCP_IP_Q_HDR(q)->thoff);
+		qhdr = GET_TCP_Q_HDR(q, GET_IP_TCP_Q_HDR_OFFSET(q));
 		len = inqhdr->seq + inqhdr->slen - qhdr->seq;
 		if (len <= 0)
 			/* len が負なら重なっていない。*/
@@ -1201,7 +1437,7 @@ tcp_write_raque (T_NET_BUF *input, T_TCP_CEP *cep, uint_t thoff, uint8_t flags)
 			}
 		nq = qhdr->next;
 		if (p)
-			GET_TCP_Q_HDR(p, GET_TCP_IP_Q_HDR(p)->thoff)->next = nq;
+			GET_TCP_Q_HDR(p, GET_IP_TCP_Q_HDR_OFFSET(p))->next = nq;
 		else
 			cep->reassq = nq;
 		syscall(rel_net_buf(q));
@@ -1213,8 +1449,8 @@ tcp_write_raque (T_NET_BUF *input, T_TCP_CEP *cep, uint_t thoff, uint8_t flags)
 		cep->reassq = input;
 		}
 	else {
-		inqhdr->next = GET_TCP_Q_HDR(p, GET_TCP_IP_Q_HDR(p)->thoff)->next;
-		GET_TCP_Q_HDR(p, GET_TCP_IP_Q_HDR(p)->thoff)->next = input;
+		inqhdr->next = GET_TCP_Q_HDR(p, GET_IP_TCP_Q_HDR_OFFSET(p))->next;
+		GET_TCP_Q_HDR(p, GET_IP_TCP_Q_HDR_OFFSET(p))->next = input;
 		}
 
 	return tcp_move_ra2rw(cep, flags);
@@ -1243,6 +1479,7 @@ tcp_rexmt_val (T_TCP_CEP *cep)
 void
 tcp_init_cep (T_TCP_CEP *cep)
 {
+
 #ifdef TCP_CFG_RWBUF_CSAVE
 	/*
 	 * 受信ウィンドバッファの省コピー機能を有効にした場合、
@@ -1254,6 +1491,7 @@ tcp_init_cep (T_TCP_CEP *cep)
 		TCP_FREE_RWBUFQ(cep);
 		}
 #endif	/* of #ifdef TCP_CFG_RWBUF_CSAVE */
+
 
 	memset((uint8_t*)cep + offsetof(T_TCP_CEP, timer), 0,
 	       sizeof(T_TCP_CEP) - offsetof(T_TCP_CEP, timer));
@@ -1273,12 +1511,12 @@ tcp_init_cep (T_TCP_CEP *cep)
 	 * 以下に関係しないフラグをクリアーする。
 	 * ・送受信ウィンドバッファの省コピー機能
 	 * ・動的な通信端点の生成・削除機能
+	 * ・通信端点のネットワーク層プロトコル
 	 */
-	cep->flags &= (TCP_CEP_FLG_WBCS_NBUF_REQ | TCP_CEP_FLG_WBCS_MASK | 
-	               TCP_CEP_FLG_DYNAMIC       | TCP_CEP_FLG_VALID);
+	cep->flags &= TCP_CEP_FLG_NOT_CLEAR;
 
 	/* セマフォを初期化する。*/
-	sig_sem (cep->semid_lock);
+	sig_sem(cep->semid_lock);
 
 	/* フラグを初期化する。*/
 	syscall(set_flg(cep->snd_flgid, TCP_CEP_EVT_SWBUF_READY));
@@ -1292,14 +1530,9 @@ tcp_init_cep (T_TCP_CEP *cep)
 void
 tcp_notify (T_NET_BUF *input, ER error)
 {
-	T_IP_HDR	*iph;
-	T_TCP_HDR	*tcph;
 	T_TCP_CEP	*cep;
 
-	iph  = GET_IP_HDR(input);
-	tcph = GET_TCP_HDR(input, GET_TCP_HDR_OFFSET(input));
-
-	if ((cep = tcp_find_cep(&iph->src, tcph->sport, &iph->dst, tcph->dport)) != NULL) {
+	if ((cep = tcp_find_cep(input, GET_TCP_HDR_OFFSET(input))) != NULL) {
 
 		/*
 		 *  コネクション開設済で、ホスト到達不能エラーの場合は、
@@ -1328,43 +1561,6 @@ tcp_notify (T_NET_BUF *input, ER error)
 	}
 
 /*
- *  tcp_find_cep -- ポート番号から TCP 通信端点を得る。
- *
- *    注意: dstaddr は、
- *          TINET-1.2 からネットワークバイトオーダ、
- *          TINET-1.1 までは、ホストバイトオーダ
- */
-
-T_TCP_CEP*
-tcp_find_cep (T_IN_ADDR *dstaddr, uint16_t dstport, T_IN_ADDR *peeraddr, uint16_t peerport)
-{
-	T_TCP_CEP*	cep;
-	
-	/*
-	 *  状態が SYN 送信済み以後は、
-	 *  IP アドレスとポート番号が一致する通信端点を探索する。
-	 */
-	for (cep = &tcp_cep[tmax_tcp_cepid]; cep -- != tcp_cep; ) {
-		if (cep->fsm_state >= TCP_FSM_SYN_SENT                    &&
-		    IN_IS_DSTADDR_ACCEPT (&cep->myaddr.ipaddr,  dstaddr)  &&
-		    IN_ARE_NET_ADDR_EQUAL(&cep->dstaddr.ipaddr, peeraddr) &&
-		    dstport  == cep->myaddr.portno                        &&
-		    peerport == cep->dstaddr.portno)
-			return cep;
-		}
-
-	/* 受動オープン中の通信端点を探索する。*/	
-	for (cep = &tcp_cep[tmax_tcp_cepid]; cep -- != tcp_cep; ) {
-		if (cep->fsm_state == TCP_FSM_LISTEN &&
-		    IN_IS_DSTADDR_ACCEPT(&cep->myaddr.ipaddr, dstaddr) &&
-		    dstport == cep->myaddr.portno)
-			return cep;
-		}
-
-	return NULL;
-	}
-
-/*
  *  tcp_lock_cep -- TCP 通信端点をロックする。
  */
 
@@ -1377,7 +1573,7 @@ tcp_lock_cep (ID cepid, T_TCP_CEP **p_cep, FN tfn)
 	*p_cep = NULL;
 
 	/* TCP 通信端点 ID をチェックする。*/
-	if (!VAID_TCP_CEPID(cepid))
+	if (!VALID_TCP_CEPID(cepid))
 		return E_ID;
 
 	/* TCP 通信端点を得る。*/
@@ -1424,6 +1620,10 @@ tcp_lock_cep (ID cepid, T_TCP_CEP **p_cep, FN tfn)
 	}
 
 #ifdef TCP_CFG_TRACE
+
+/*
+ *  トレース出力に用いるシリアルポート番号
+ */
 
 #ifndef CONSOLE_PORTID
 #define	CONSOLE_PORTID		LOGTASK_PORTID
@@ -1624,7 +1824,6 @@ void
 tcp_output_trace (T_NET_BUF *output, T_TCP_CEP *cep)
 {
 	SYSTIM		time;
-	T_IP_HDR	*iph;
 	T_TCP_HDR	*tcph;
 	char		buf[9];
 
@@ -1632,25 +1831,36 @@ tcp_output_trace (T_NET_BUF *output, T_TCP_CEP *cep)
 	    !(TCP_CFG_TRACE_RPORTNO == TCP_PORTANY || cep->dstaddr.portno == TCP_CFG_TRACE_RPORTNO))
 		return;
 
-#if defined(SUPPORT_INET4)
+#if defined(_IP4_CFG)
+
+#if defined(_IP6_CFG)
+
+	if (!((TCP_CFG_TRACE_IPV4_RADDR == IPV4_ADDRANY) ||
+	     ((cep->flags & TCP_CEP_FLG_IPV4) && 
+	      IN6_IS_ADDR_V4MAPPED(&cep->dstaddr.ipaddr) &&
+	      (ntohl(cep->dstaddr.ipaddr.s6_addr32[3]) == TCP_CFG_TRACE_IPV4_RADDR))))
+		return;
+
+#else	/* of #if defined(_IP6_CFG) */
 
 	if (!(TCP_CFG_TRACE_IPV4_RADDR == IPV4_ADDRANY || cep->dstaddr.ipaddr == TCP_CFG_TRACE_IPV4_RADDR))
 		return;
 
-#endif	/* of #if defined(SUPPORT_INET4) */
+#endif	/* of #if defined(_IP6_CFG) */
+
+#endif	/* of #if defined(_IP4_CFG) */
 
 	syscall(wai_sem(SEM_TCP_TRACE));
 	syscall(get_tim(&time));
-	iph  = GET_IP_HDR(output);
 	tcph = GET_TCP_HDR(output, GET_TCP_HDR_OFFSET(output));
 	if (time > 99999999)
 		trace_printf(CONSOLE_PORTID, "=O%10d", time / 1000);
 	else
 		trace_printf(CONSOLE_PORTID, "=O%6d.%03d", time / 1000, time % 1000);
 	if (cep == NULL)
-		trace_printf(CONSOLE_PORTID, "=c:-- s:-- f:-----");
+		trace_printf(CONSOLE_PORTID, "=c:-- s:-- f:--------");
 	else
-		trace_printf(CONSOLE_PORTID, "=c:%2d s:%s f:%05x",
+		trace_printf(CONSOLE_PORTID, "=c:%2d s:%s f:%08x",
 		                             GET_TCP_CEPID(cep),
 		                             tcp_strfsm[cep->fsm_state], cep->flags);
 	trace_printf(CONSOLE_PORTID, ":%s", get_tcp_flag_str(buf, tcph->flags));
@@ -1663,7 +1873,7 @@ tcp_output_trace (T_NET_BUF *output, T_TCP_CEP *cep)
 		                             ntohl(tcph->seq), ntohl(tcph->ack));
 	trace_printf(CONSOLE_PORTID, " w:%5d l:%4d>\n", 
 	                             ntohs(tcph->win),
-	                             GET_IP_SDU_SIZE(iph) - TCP_HDR_LEN(tcph->doff));
+	                             GET_IP_SDU_SIZE(output) - TCP_HDR_LEN(tcph->doff));
 	syscall(sig_sem(SEM_TCP_TRACE));
 	}
 
@@ -1677,7 +1887,6 @@ void
 tcp_input_trace (T_NET_BUF *input, T_TCP_CEP *cep)
 {
 	SYSTIM		time;
-	T_IP_HDR	*iph;
 	T_TCP_HDR	*tcph;
 	char		buf[9];
 
@@ -1685,25 +1894,36 @@ tcp_input_trace (T_NET_BUF *input, T_TCP_CEP *cep)
 	    !(TCP_CFG_TRACE_RPORTNO == TCP_PORTANY || cep->dstaddr.portno == TCP_CFG_TRACE_RPORTNO))
 		return;
 
-#if defined(SUPPORT_INET4)
+#if defined(_IP4_CFG)
+
+#if defined(_IP6_CFG)
+
+	if (!((TCP_CFG_TRACE_IPV4_RADDR == IPV4_ADDRANY) ||
+	     ((cep->flags & TCP_CEP_FLG_IPV4) && 
+	      IN6_IS_ADDR_V4MAPPED(&cep->dstaddr.ipaddr) &&
+	      (ntohl(cep->dstaddr.ipaddr.s6_addr32[3]) == TCP_CFG_TRACE_IPV4_RADDR))))
+		return;
+
+#else	/* of #if defined(_IP6_CFG) */
 
 	if (!(TCP_CFG_TRACE_IPV4_RADDR == IPV4_ADDRANY || cep->dstaddr.ipaddr == TCP_CFG_TRACE_IPV4_RADDR))
 		return;
 
-#endif	/* of #if defined(SUPPORT_INET4) */
+#endif	/* of #if defined(_IP6_CFG) */
+
+#endif	/* of #if defined(_IP4_CFG) */
 
 	syscall(wai_sem(SEM_TCP_TRACE));
 	syscall(get_tim(&time));
-	iph  = GET_IP_HDR(input);
 	tcph = GET_TCP_HDR(input, GET_TCP_HDR_OFFSET(input));
 	if (time > 99999999)
 		trace_printf(CONSOLE_PORTID, "<I%10d", time / 1000);
 	else
 		trace_printf(CONSOLE_PORTID, "<I%6d.%03d", time / 1000, time % 1000);
 	if (cep == NULL)
-		trace_printf(CONSOLE_PORTID, "=c:-- s:-- f:-----");
+		trace_printf(CONSOLE_PORTID, "=c:-- s:-- f:--------");
 	else
-		trace_printf(CONSOLE_PORTID, "=c:%2d s:%s f:%05x",
+		trace_printf(CONSOLE_PORTID, "=c:%2d s:%s f:%08x",
 		                             GET_TCP_CEPID(cep),
 		                             tcp_strfsm[cep->fsm_state], cep->flags);
 	trace_printf(CONSOLE_PORTID, ":%s", get_tcp_flag_str(buf, tcph->flags));
@@ -1712,7 +1932,7 @@ tcp_input_trace (T_NET_BUF *input, T_TCP_CEP *cep)
 	else
 		trace_printf(CONSOLE_PORTID, " a:%10u s:%10u", tcph->ack, tcph->seq);
 	trace_printf(CONSOLE_PORTID, " w:%5d l:%4d=\n", 
-	                             tcph->win, GET_IP_SDU_SIZE(iph) - TCP_HDR_LEN(tcph->doff));
+	                             tcph->win, GET_IP_SDU_SIZE(input) - TCP_HDR_LEN(tcph->doff));
 	syscall(sig_sem(SEM_TCP_TRACE));
 	}
 

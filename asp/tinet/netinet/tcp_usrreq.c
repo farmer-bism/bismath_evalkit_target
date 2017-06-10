@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: tcp_usrreq.c,v 1.5.4.1 2015/02/05 02:10:53 abe Exp abe $
+ *  @(#) $Id: tcp_usrreq.c 1.7 2017/6/1 8:49:26 abe $
  */
 
 /*
@@ -74,6 +74,7 @@
 #include <kernel.h>
 #include <sil.h>
 #include "kernel_cfg.h"
+#include "tinet_cfg.h"
 
 #endif	/* of #ifdef TARGET_KERNEL_ASP */
 
@@ -82,6 +83,7 @@
 #include <s_services.h>
 #include <t_services.h>
 #include "kernel_id.h"
+#include "tinet_id.h"
 
 #endif	/* of #ifdef TARGET_KERNEL_JSP */
 
@@ -92,8 +94,8 @@
 #include <net/if_ppp.h>
 #include <net/if_loop.h>
 #include <net/ethernet.h>
-#include <net/ppp_ipcp.h>
 #include <net/net.h>
+#include <net/net_endian.h>
 #include <net/net_var.h>
 #include <net/net_buf.h>
 #include <net/net_timer.h>
@@ -101,42 +103,18 @@
 
 #include <netinet/in.h>
 #include <netinet/in_var.h>
-#include <netinet6/in6.h>
-#include <netinet6/in6_var.h>
 #include <netinet/in_itron.h>
 #include <netinet/ip.h>
 #include <netinet/ip_var.h>
-#include <netinet/ip6.h>
-#include <netinet6/ip6_var.h>
 #include <netinet/tcp.h>
-#include <netinet/tcp_timer.h>
 #include <netinet/tcp_var.h>
 #include <netinet/tcp_fsm.h>
 #include <netinet/tcp_seq.h>
+#include <netinet/tcp_timer.h>
 
 #include <net/if_var.h>
 
 #ifdef SUPPORT_TCP
-
-/*
- *  IPv4 と IPv6 の切り替えマクロ
- */
-
-#if defined(SUPPORT_INET4)
-
-#define TCP_CRE_REP	tcp_cre_rep
-#define TCP_ACP_CEP	tcp_acp_cep
-#define TCP_CON_CEP	tcp_con_cep
-
-#endif	/* of #if defined(SUPPORT_INET4) */
-
-#if defined(SUPPORT_INET6)
-
-#define TCP_CRE_REP	tcp6_cre_rep
-#define TCP_ACP_CEP	tcp6_acp_cep
-#define TCP_CON_CEP	tcp6_con_cep
-
-#endif	/* of #if defined(SUPPORT_INET6) */
 
 /*
  *  TINET をライブラリ化しない場合は、全ての機能を
@@ -168,590 +146,70 @@
 #endif	/* of #ifndef TCP_CFG_LIBRARY */
 
 /*
- *  tcp_cre_rep -- TCP 受付口の生成【拡張機能】
+ *  IPv6 と IPv4 で引数が異なる関数のコンパイル
  */
 
-#ifdef __tcp_cre_rep
+#if defined(SUPPORT_INET6)
 
-#ifdef TCP_CFG_EXTENTIONS
+#define T_IPEP			T_IPV6EP
+#define TCP_ACP_CEP		tcp6_acp_cep
+#define TCP_CON_CEP		tcp6_con_cep
+#define TCP_FIND_CEP_REP	tcp6_find_cep_rep
 
-ER
-TCP_CRE_REP (ID repid, T_TCP_CREP *pk_crep)
-{
-	T_TCP_REP	*rep;
-	ER		error;
+#if defined(SUPPORT_INET4)
 
-	/* TCP 受付口 ID をチェックする。*/
-	if (!VAID_TCP_REPID(repid))
-		return E_ID;
+#undef	T_TCP_REP
+#define T_TCP_REP		T_TCP6_REP
 
-	/* pk_crep が NULL ならエラー */
-	if (pk_crep == NULL)
-		return E_PAR;
+#endif	/* of #if defined(SUPPORT_INET4) */
 
-	/* TCP 受付口を得る。*/
-	rep = GET_TCP_REP(repid);
+#define TCP_CRE_REP		tcp6_cre_rep
+#define TCP_DEL_REP_BODY	tcp6_del_rep_body
+#define GET_TCP_REP		GET_TCP6_REP
+#define VALID_TCP_REPID		VALID_TCP6_REPID
+#define T_TCPN_CREP		T_TCP6_CREP
+#define API_PROTO		API_PROTO_IPV6
 
-	/* TCP 受付口が、動的生成用でなければエラー */
-	if (!DYNAMIC_TCP_REP(rep))
-		return E_ID;
+#include <netinet/tcpn_usrreq.c>
 
-	/* 受付口をロックする。*/
-	syscall(wai_sem(rep->semid_lock));
+#undef  T_IPEP
+#undef  TCP_ACP_CEP
+#undef  TCP_CON_CEP
+#undef	TCP_FIND_CEP_REP
 
-	/*
-	 * TCP 受付口をチェックする。生成済みであればエラー
-	 */
-	if (VALID_TCP_REP(rep))
-		error = E_OBJ;
-	else {
+#undef  TCP_CRE_REP
+#undef	TCP_DEL_REP_BODY
+#undef	GET_TCP_REP
+#undef	VALID_TCP_REPID
+#undef	T_TCPN_CREP
+#undef  API_PROTO
 
-		/* TCP 受付口生成情報をコピーする。*/
-		rep->repatr = pk_crep->repatr;		/* 受付口属性		*/
-		rep->myaddr = pk_crep->myaddr;		/* 自分のアドレス	*/
+#endif	/* of #if defined(SUPPORT_INET6) */
 
-		/* TCP 受付口を生成済みにする。*/
-		rep->flags |= TCP_REP_FLG_VALID;
-		error = E_OK;
-		}
+#if defined(SUPPORT_INET4)
 
-	/* 受付口のロックを解除する。*/
-	syscall(sig_sem(rep->semid_lock));
+#define T_IPEP			T_IPV4EP
+#define TCP_ACP_CEP		tcp_acp_cep
+#define TCP_CON_CEP		tcp_con_cep
+#define TCP_FIND_CEP_REP	tcp4_find_cep_rep
 
-	return error;
-	}
+#if defined(SUPPORT_INET6)
 
-#endif	/* of #ifdef TCP_CFG_EXTENTIONS */
+#undef	T_TCP_REP
+#define T_TCP_REP		T_TCP4_REP
 
-#endif	/* of #ifdef __tcp_cre_cep */
+#endif	/* of #if defined(SUPPORT_INET6) */
 
-#ifdef __tcp_del_rep
+#define TCP_CRE_REP		tcp_cre_rep
+#define TCP_DEL_REP_BODY	tcp4_del_rep_body
+#define GET_TCP_REP		GET_TCP4_REP
+#define VALID_TCP_REPID		VALID_TCP4_REPID
+#define T_TCPN_CREP		T_TCP_CREP
+#define API_PROTO		API_PROTO_IPV4
 
-#ifdef TCP_CFG_EXTENTIONS
+#include <netinet/tcpn_usrreq.c>
 
-/*
- *  tcp_find_cep_rep -- TCP 受付口をリンクしている TCP 通信端点を得る。
- */
-
-static T_TCP_CEP*
-tcp_find_cep_rep (T_TCP_REP* rep)
-{
-	T_TCP_CEP*	cep;
-
-	for (cep = &tcp_cep[tmax_tcp_cepid]; cep -- != tcp_cep; ) {
-		if (cep->rep == rep)
-			return cep;
-		}
-
-	return NULL;
-	}
-
-/*
- *  tcp_del_rep -- TCP 受付口の削除【拡張機能】
- */
-
-
-ER
-tcp_del_rep (ID repid)
-{
-	T_TCP_CEP	*cep;
-	T_TCP_REP	*rep;
-	ER		error = E_OK;
-
-	/* TCP 受付口 ID をチェックする。*/
-	if (!VAID_TCP_REPID(repid))
-		return E_ID;
-
-	/* TCP 受付口を得る。*/
-	rep = GET_TCP_REP(repid);
-
-	/* TCP 受付口が、動的生成用でなければエラー */
-	if (!DYNAMIC_TCP_REP(rep))
-		return E_ID;
-
-	/* 受付口をロックする。*/
-	syscall(wai_sem(rep->semid_lock));
-
-	/* TCP 受付口をチェックする。未生成の場合はエラー */
-	if (!VALID_TCP_REP(rep))
-		error = E_NOEXS;
-	else {
-		if ((cep = tcp_find_cep_rep(rep)) != NULL) {
-			/*
-			 * すでに受動オープンしているとき
-			 *（tcp_acp_cep が呼ばれているとき）は、
-			 * tcp_acp_cep を終了させる。
-			 */
-
-			/* 通信端点をロックする。*/
-			syscall(wai_sem(cep->semid_lock));
-
-			/*
-			 *  通信端点から受付口を解放し、
-			 *  イベントフラグをクローズに設定する。
-			 */
-			cep->rep = NULL;
-			cep->fsm_state = TCP_FSM_CLOSED;
-			cep->error = E_DLT;
-			syscall(set_flg(cep->est_flgid, TCP_CEP_EVT_CLOSED));
-
-#ifdef TCP_CFG_NON_BLOCKING
-
-			if (cep->rcv_nblk_tfn != TFN_TCP_UNDEF) {
-				if (IS_PTR_DEFINED(cep->callback)) {
-
-#ifdef TCP_CFG_NON_BLOCKING_COMPAT14
-
-					(*cep->callback)(GET_TCP_CEPID(cep), cep->rcv_nblk_tfn, (void*)E_DLT);
-
-#else	/* of #ifdef TCP_CFG_NON_BLOCKING_COMPAT14 */
-
-					ER	error = E_DLT;
-
-					(*cep->callback)(GET_TCP_CEPID(cep), cep->rcv_nblk_tfn, (void*)&error);
-
-#endif	/* of #ifdef TCP_CFG_NON_BLOCKING_COMPAT14 */
-
-					}
-				else
-					error = E_OBJ;
-				cep->rcv_nblk_tfn = TFN_TCP_UNDEF;
-				}
-
-#endif	/* of #ifdef TCP_CFG_NON_BLOCKING */
-
-			cep->rcv_tskid = TA_NULL;
-			cep->rcv_tfn   = TFN_TCP_UNDEF;
-
-			/* 通信端点のロックを解除する。*/
-			syscall(sig_sem(cep->semid_lock));
-
-			}
-		else
-			error = E_OK;
-
-		/* TCP 受付口を未生成にする。*/
-		rep->flags &= ~TCP_REP_FLG_VALID;
-		}
-
-	/* 受付口のロックを解除する。*/
-	syscall(sig_sem(rep->semid_lock));
-
-	return error;
-	}
-
-#endif	/* of #ifdef TCP_CFG_EXTENTIONS */
-
-#endif	/* of #ifdef __tcp_del_rep */
-
-/*
- *  tcp_cre_cep -- TCP 通信端点の生成【拡張機能】
- */
-
-#ifdef __tcp_cre_cep
-
-#ifdef TCP_CFG_EXTENTIONS
-
-ER
-tcp_cre_cep (ID cepid, T_TCP_CCEP *pk_ccep)
-{
-	T_TCP_CEP	*cep;
-	ER		error;
-
-	/* TCP 通信端点 ID をチェックする。*/
-	if (!VAID_TCP_CEPID(cepid))
-		return E_ID;
-
-	/* pk_ccep が NULL ならエラー */
-	if (pk_ccep == NULL)
-		return E_PAR;
-
-	/* TCP 通信端点を得る。*/
-	cep = GET_TCP_CEP(cepid);
-
-	/* TCP 通信端点が、動的生成用でなければエラー */
-	if (!DYNAMIC_TCP_CEP(cep))
-		return E_ID;
-
-	/* 通信端点をロックする。*/
-	syscall(wai_sem(cep->semid_lock));
-
-	/*
-	 * TCP 通信端点をチェックする。生成済みであればエラー
-	 */
-	if (VALID_TCP_CEP(cep))
-		error = E_OBJ;
-	else {
-
-		/* TCP 通信端点生成情報をコピーする。*/
-		cep->cepatr   = pk_ccep->cepatr;		/* 通信端点属性			*/
-		cep->sbuf     = pk_ccep->sbuf;			/* 送信用ウィンドバッファ	*/
-		cep->sbufsz   = pk_ccep->sbufsz;		/* 送信用ウィンドバッファサイズ	*/
-		cep->rbuf     = pk_ccep->rbuf;			/* 受信用ウィンドバッファ	*/
-		cep->rbufsz   = pk_ccep->rbufsz;		/* 受信用ウィンドバッファサイズ	*/
-		cep->callback = (void*)pk_ccep->callback;	/* コールバック			*/
-
-		/* TCP 通信端点を生成済みにする。*/
-		cep->flags |= TCP_CEP_FLG_VALID;
-		error = E_OK;
-		}
-
-	/* 通信端点のロックを解除する。*/
-	syscall(sig_sem(cep->semid_lock));
-
-	return error;
-	}
-
-#endif	/* of #ifdef TCP_CFG_EXTENTIONS */
-
-#endif	/* of #ifdef __tcp_cre_cep */
-
-/*
- *  tcp_del_cep -- TCP 通信端点の削除【拡張機能】
- */
-
-#ifdef __tcp_del_cep
-
-#ifdef TCP_CFG_EXTENTIONS
-
-ER
-tcp_del_cep (ID cepid)
-{
-	T_TCP_CEP	*cep;
-	ER		error;
-
-	/* TCP 通信端点 ID をチェックする。*/
-	if (!VAID_TCP_CEPID(cepid))
-		return E_ID;
-
-	/* TCP 通信端点を得る。*/
-	cep = GET_TCP_CEP(cepid);
-
-	/* TCP 通信端点が、動的生成用でなければエラー */
-	if (!DYNAMIC_TCP_CEP(cep))
-		return E_ID;
-
-	/* 通信端点をロックする。*/
-	syscall(wai_sem(cep->semid_lock));
-
-	/*
-	 * TCP 通信端点をチェックする。以下の場合はエラー
-	 * ・未生成。
-	 * ・使用中。
-	 */
-	if (!VALID_TCP_CEP(cep))
-		error = E_NOEXS;
-	else if (cep->fsm_state != TCP_FSM_CLOSED)
-		error = E_OBJ;
-	else {
-
-		/* TCP 通信端点を未生成にする。*/
-		cep->flags &= ~TCP_CEP_FLG_VALID;
-		error = E_OK;
-		}
-
-	/* 通信端点のロックを解除する。*/
-	syscall(sig_sem(cep->semid_lock));
-
-	return error;
-	}
-
-#endif	/* of #ifdef TCP_CFG_EXTENTIONS */
-
-#endif	/* of #ifdef __tcp_del_cep */
-
-#ifdef TCP_CFG_PASSIVE_OPEN
-
-/*
- *  tcp_acp_cep -- 接続要求待ち (受動オープン)【標準機能】
- */
-
-#ifdef __tcp_acp_cep
-
-ER
-TCP_ACP_CEP (ID cepid, ID repid, T_IPEP *p_dstaddr, TMO tmout)
-{
-	T_TCP_REP	*rep;
-	T_TCP_CEP	*cep;
-	ER		error;
-	FLGPTN		flag;
-
-	/* TCP 受付口をチェックする。*/
-	if (!VAID_TCP_REPID(repid))
-		return E_ID;
-
-#ifdef TCP_CFG_NON_BLOCKING
-
-	/* p_dstaddr が NULL ならエラー */
-	if (p_dstaddr == NULL)
-		return E_PAR;
-
-#else	/* of #ifdef TCP_CFG_NON_BLOCKING */
-
-	/* p_dstaddr が NULL か、tmout が TMO_NBLK ならエラー */
-	if (p_dstaddr == NULL || tmout == TMO_NBLK)
-		return E_PAR;
-
-#endif	/* of #ifdef TCP_CFG_NON_BLOCKING */
-
-	/*
-	 *  CEP をロックし、API 機能コードとタスク識別子を記録する。
-	 *  すでに記録されていれば、ペンディング中なのでエラー
-	 */
-	if ((error = tcp_lock_cep(cepid, &cep, TFN_TCP_ACP_CEP)) != E_OK)
-		return error;
-
-	/* CEP の FSM がクローズ状態でなければエラー。*/
-	if (cep->fsm_state != TCP_FSM_CLOSED) {
-		error = E_OBJ;
-		goto err_ret;
-		}
-	syscall(clr_flg(cep->est_flgid, (FLGPTN)(~TCP_CEP_EVT_CLOSED)));
-
-	/* TCP 通信端点を初期化する。*/
-	tcp_init_cep(cep);
-
-	/* TCP 受付口を得る。*/
-	rep = GET_TCP_REP(repid);
-
-#ifdef TCP_CFG_EXTENTIONS
-
-	/* TCP 受付口をロックする。*/
-	syscall(wai_sem(rep->semid_lock));
-
-	/* TCP 受付口をチェックする。*/
-	if (!VALID_TCP_REP(rep)) {
-		syscall(sig_sem(rep->semid_lock));
-		error = E_NOEXS;
-		goto err_ret;
-		}
-
-#endif	/* of #ifdef TCP_CFG_EXTENTIONS */
-
-	/* TCP 通信端点にTCP受付口を記録する。*/
-	cep->rep = rep;
-
-#ifdef TCP_CFG_EXTENTIONS
-
-	/* TCP 受付口のロックを解除する。*/
-	syscall(sig_sem(rep->semid_lock));
-
-#endif	/* of #ifdef TCP_CFG_EXTENTIONS */
-
-	/* TCP 受付口のアドレスをコピーする。*/
-	cep->myaddr = rep->myaddr;
-
-	/* 通信端点を設定する。*/
-	cep->fsm_state = TCP_FSM_LISTEN;
-
-#ifdef TCP_CFG_NON_BLOCKING
-
-	/* タイムアウトをチェックする。*/
-	if (tmout == TMO_NBLK) {
-		/* ノンブロッキングコール */
-		cep->p_dstaddr    = p_dstaddr;
-		cep->rcv_nblk_tfn = TFN_TCP_ACP_CEP;
-		return E_WBLK;
-		}
-	else {
-
-#endif	/* of #ifdef TCP_CFG_NON_BLOCKING */
-
-		/*
-		 *  FSM が ESTABLISHED になるまで待つ。
-		 *  FSM が CLOSED になった場合は、エラーが発生したことを意味している。
-		 */
-		error = twai_flg(cep->est_flgid, (TCP_CEP_EVT_CLOSED |
-		                                  TCP_CEP_EVT_ESTABLISHED), TWF_ORW, &flag, tmout);
-		if (error == E_OK) {
-			if (cep->error != E_OK)
-				error = cep->error;
-			else if (cep->fsm_state == TCP_FSM_CLOSED)
-				error = E_TMOUT;
-			}
-
-		syscall(clr_flg(cep->est_flgid, (FLGPTN)(~TCP_CEP_EVT_ESTABLISHED)));
-
-		if (error == E_OK) {
-			/* 相手のアドレスをコピーする。*/
-			*p_dstaddr = cep->dstaddr;
-			}
-		else {
-			/*
-			 *  通信端点から受付口を解放し、
-			 *  イベントフラグをクローズに設定する。
-			 */
-			cep->rep = NULL;
-			cep->fsm_state = TCP_FSM_CLOSED;
-			syscall(set_flg(cep->est_flgid, TCP_CEP_EVT_CLOSED));
-			}
-
-#ifdef TCP_CFG_NON_BLOCKING
-
-		}
-
-#endif	/* of #ifdef TCP_CFG_NON_BLOCKING */
-
-err_ret:
-	cep->rcv_tskid = TA_NULL;
-	cep->rcv_tfn   = TFN_TCP_UNDEF;
-	return error;
-	}
-
-#endif	/* of #ifdef __tcp_acp_cep */
-
-#endif	/* of #ifdef TCP_CFG_PASSIVE_OPEN */
-
-/*
- *  tcp_con_cep -- 接続要求 (能動オープン)【標準機能】
- */
-
-#ifdef __tcp_con_cep
-
-ER
-TCP_CON_CEP (ID cepid, T_IPEP *p_myaddr, T_IPEP *p_dstaddr, TMO tmout)
-{
-	T_TCP_CEP	*cep;
-	ER		error;
-	FLGPTN		flag;
-
-#ifdef TCP_CFG_NON_BLOCKING
-
-	/*
-	 *  p_dstaddr または p_myaddr が NULL か、
-	 *  あて先がマルチキャストアドレスならエラー
-	 */
-	if (p_myaddr == NULL || p_dstaddr == NULL || IN_IS_ADDR_MULTICAST(&p_dstaddr->ipaddr))
-		return E_PAR;
-
-#else	/* of #ifdef TCP_CFG_NON_BLOCKING */
-
-	/*
-	 *  p_dstaddr または p_myaddr が NULL 、
-	 *  あて先がマルチキャストアドレスか、
-	 *  tmout が TMO_NBLK ならエラー
-	 */
-	if (p_myaddr == NULL || p_dstaddr == NULL ||
-	    IN_IS_ADDR_MULTICAST(&p_dstaddr->ipaddr) || tmout == TMO_NBLK)
-		return E_PAR;
-
-#endif	/* of #ifdef TCP_CFG_NON_BLOCKING */
-
-	/*
-	 *  CEP をロックし、API 機能コードとタスク識別子を記録する。
-	 *  すでに記録されていれば、ペンディング中なのでエラー
-	 */
-	if ((error = tcp_lock_cep(cepid, &cep, TFN_TCP_CON_CEP)) != E_OK)
-		return error;
-
-	/* CEP の FSM がクローズ状態でなければエラー。*/
-	if (cep->fsm_state != TCP_FSM_CLOSED) {
-		error = E_OBJ;
-		goto err_ret;
-		}
-	syscall(clr_flg(cep->est_flgid, (FLGPTN)(~TCP_CEP_EVT_CLOSED)));
-
-	/* シーケンス番号を初期化する。*/
-	if (tcp_iss == 0)
-		tcp_init_iss();
-
-	/* 通信端点を初期化する。*/
-	tcp_init_cep(cep);
-
-	/*
-	 *  p_myaddr が NADR (-1) ではなく、自 IP アドレスが ANY でなければ、
-	 *  指定された IP アドレスを割り当てる。
-	 */
-	if (p_myaddr != NADR && !IN_IS_ADDR_ANY(&p_myaddr->ipaddr))
-		cep->myaddr.ipaddr = p_myaddr->ipaddr;
-	else {
-		T_IN_IFADDR	*ia;
-
-		if ((ia = IN_IFAWITHIFP(IF_GET_IFNET(), &p_dstaddr->ipaddr)) == NULL) {
-			error = E_PAR;
-			goto err_ret;
-			}
-		cep->myaddr.ipaddr = ia->addr;
-		}
-
-	/* 通信端点を設定する。*/
-	cep->fsm_state = TCP_FSM_SYN_SENT;
-	cep->dstaddr   = *p_dstaddr;
-	cep->iss       = tcp_iss;
-	cep->timer[TCP_TIM_KEEP] = TCP_TVAL_KEEP_INIT;
-	tcp_iss += TCP_ISS_INCR() / 2;
-	init_send_seq(cep);
-
-#ifdef TCP_CFG_NON_BLOCKING
-
-	/* タイムアウトをチェックする。*/
-	if (tmout == TMO_NBLK) {
-		/* ノンブロッキングコール */
-		cep->p_dstaddr    = p_dstaddr;
-		cep->p_myaddr     = p_myaddr;
-		cep->snd_nblk_tfn = TFN_TCP_CON_CEP;
-
-		/* コネクションの開設をポストする。*/
-		cep->flags |= TCP_CEP_FLG_POST_OUTPUT;
-		sig_sem(SEM_TCP_POST_OUTPUT);
-		return E_WBLK;
-		}
-	else {
-
-#endif	/* of #ifdef TCP_CFG_NON_BLOCKING */
-
-		/*
-		 *  p_myaddr が NADR (-1) か、
-		 *  自ポート番号が TCP_PORTANY なら、自動で割り当てる。
-		 */
-		if (p_myaddr == NADR || p_myaddr->portno == TCP_PORTANY)
-			tcp_alloc_auto_port(cep);
-		else if ((error = tcp_alloc_port(cep, p_myaddr->portno)) != E_OK)
-			goto err_ret;
-
-		/* コネクションの開設をポストする。*/
-		cep->flags |= TCP_CEP_FLG_POST_OUTPUT;
-		sig_sem(SEM_TCP_POST_OUTPUT);
-
-		/*
-		 *  イベントが ESTABLISHED になるまで待つ。
-		 *  イベントが CLOSED になった場合は、何らかのエラーが発生したか、
-		 *  接続要求が拒否されたことを意味している。
-		 */
-		error = twai_flg(cep->est_flgid, (TCP_CEP_EVT_CLOSED |
-		                                  TCP_CEP_EVT_ESTABLISHED), TWF_ORW, &flag, tmout);
-		if (error == E_OK) {
-			if (cep->error != E_OK)
-				error = cep->error;
-			else if (cep->fsm_state == TCP_FSM_CLOSED)
-				error = E_CLS;
-			}
-
-		syscall(clr_flg(cep->est_flgid, (FLGPTN)(~TCP_CEP_EVT_ESTABLISHED)));
-
-		if (error != E_OK) {
-			/*
-			 *  通信端点から受付口を解放し、
-			 *  イベントフラグをクローズに設定する。
-			 */
-			cep->rep = NULL;
-			cep->fsm_state = TCP_FSM_CLOSED;
-			syscall(set_flg(cep->est_flgid, TCP_CEP_EVT_CLOSED));
-			}
-
-#ifdef TCP_CFG_NON_BLOCKING
-
-		}
-
-#endif	/* of #ifdef TCP_CFG_NON_BLOCKING */
-
-err_ret:
-	cep->snd_tskid = TA_NULL;
-	cep->snd_tfn   = TFN_TCP_UNDEF;
-	return error;
-	}
-
-#endif	/* of #ifdef __tcp_con_cep */
+#endif	/* of #if defined(SUPPORT_INET4) */
 
 #ifdef __tcp_cls_cep
 
@@ -903,8 +361,7 @@ tcp_cls_cep (ID cepid, TMO tmout)
 				 * ・送受信ウィンドバッファの省コピー機能
 				 * ・動的な通信端点の生成・削除機能
 				 */
-				cep->flags &= (TCP_CEP_FLG_WBCS_NBUF_REQ | TCP_CEP_FLG_WBCS_MASK | 
-				               TCP_CEP_FLG_DYNAMIC       | TCP_CEP_FLG_VALID);
+				cep->flags &= TCP_CEP_FLG_NOT_CLEAR;
 
 				/* 
 				 *  通信端点をロックし、
@@ -1024,18 +481,12 @@ tcp_snd_dat (ID cepid, void *data, int_t len, TMO tmout)
 			cep->flags |= TCP_CEP_FLG_POST_OUTPUT;
 			sig_sem(SEM_TCP_POST_OUTPUT);
 
+			/* コールバック関数を呼び出す。*/
 #ifdef TCP_CFG_NON_BLOCKING_COMPAT14
-
-			/* コールバック関数を呼び出す。*/
 			(*cep->callback)(GET_TCP_CEPID(cep), TFN_TCP_SND_DAT, (void*)error);
-
-#else	/* of #ifdef TCP_CFG_NON_BLOCKING_COMPAT14 */
-
-			/* コールバック関数を呼び出す。*/
+#else
 			(*cep->callback)(GET_TCP_CEPID(cep), TFN_TCP_SND_DAT, (void*)&error);
-
-#endif	/* of #ifdef TCP_CFG_NON_BLOCKING_COMPAT14 */
-
+#endif
 			error = E_WBLK;
 			goto err_ret;
 			}
@@ -1081,126 +532,6 @@ err_ret:
 	}
 
 #endif	/* of #ifdef __tcp_snd_dat */
-
-#ifdef __tcp_snd_oob
-
-#ifdef TCP_CFG_EXTENTIONS
-
-/*
- *  tcp_snd_oob -- 緊急データの送信【拡張機能】
- */
-
-ER_UINT
-tcp_snd_oob (ID cepid, void *data, int_t len, TMO tmout)
-{
-	T_TCP_CEP	*cep;
-	ER_UINT		error;
-
-#ifdef TCP_CFG_NON_BLOCKING
-
-	/* data が NULL か、len < 0 ならエラー */
-	if (data == NULL || len < 0)
-		return E_PAR;
-
-#else	/* of #ifdef TCP_CFG_NON_BLOCKING */
-
-	/* data が NULL、len < 0 か、tmout が TMO_NBLK ならエラー */
-	if (data == NULL || len < 0 || tmout == TMO_NBLK)
-		return E_PAR;
-
-#endif	/* of #ifdef TCP_CFG_NON_BLOCKING */
-
-	/*
-	 *  CEP をロックし、API 機能コードとタスク識別子を記録する。
-	 *  すでに記録されていれば、ペンディング中なのでエラー
-	 */
-	if ((error = tcp_lock_cep(cepid, &cep, TFN_TCP_SND_OOB)) != E_OK)
-		return error;
-
-	/* 送信できるか、通信端点の状態を見る。*/
-	if ((error = tcp_can_send_more(cep, TFN_TCP_SND_OOB, tmout)) != E_OK)
-		goto err_ret;
-
-#ifdef TCP_CFG_NON_BLOCKING
-
-	/* タイムアウトをチェックする。*/
-	if (tmout == TMO_NBLK) {		/* ノンブロッキングコール */
-
-		/* 送信ウィンドバッファに空きがあればコールバック関数を呼び出す。*/
-		if (!TCP_IS_SWBUF_FULL(cep)) {
-
-		 	/* 送信ウィンドバッファにデータを書き込む。*/
-			error = TCP_WRITE_SWBUF(cep, data, (uint_t)len);
-
-			/* 送信緊急ポインタを設定する。*/
-			cep->snd_up = cep->snd_una + cep->swbuf_count;
-
-			/* 出力をポストする。*/
-			cep->flags |= TCP_CEP_FLG_POST_OUTPUT;
-			sig_sem(SEM_TCP_POST_OUTPUT);
-
-#ifdef TCP_CFG_NON_BLOCKING_COMPAT14
-
-			/* コールバック関数を呼び出す。*/
-			(*cep->callback)(GET_TCP_CEPID(cep), TFN_TCP_SND_OOB, (void*)error);
-
-#else	/* of #ifdef TCP_CFG_NON_BLOCKING_COMPAT14 */
-
-			/* コールバック関数を呼び出す。*/
-			(*cep->callback)(GET_TCP_CEPID(cep), TFN_TCP_SND_OOB, (void*)&error);
-
-#endif	/* of #ifdef TCP_CFG_NON_BLOCKING_COMPAT14 */
-
-			error = E_WBLK;
-			goto err_ret;
-			}
-		else {
-			cep->snd_data     = data;
-			cep->snd_len      = len;
-			cep->snd_nblk_tfn = TFN_TCP_SND_OOB;
-			TCP_ALLOC_SWBUF(cep);
-
-			return E_WBLK;
-			}
-		}
-	else {		/* 非ノンブロッキングコール */
-
-#endif	/* of #ifdef TCP_CFG_NON_BLOCKING */
-
-	 	/* 送信ウィンドバッファが空くのを待つ。*/
-		if ((error = TCP_WAIT_SWBUF(cep, tmout)) != E_OK)
-			goto err_ret;
-
-	 	/* 送信ウィンドバッファにデータを書き込む。*/
-		if ((error = TCP_WRITE_SWBUF(cep, data, (uint_t)len)) > 0) {
-
-			/* 送信緊急ポインタを設定する。*/
-			cep->snd_up = cep->snd_una + cep->swbuf_count;
-
-			/* データを送信する。送信ウィンドバッファがフルのときは強制的に送信する。*/
-			if (TCP_IS_SWBUF_FULL(cep))
-				cep->flags |= TCP_CEP_FLG_FORCE | TCP_CEP_FLG_FORCE_CLEAR;
-
-			/* 出力をポストする。*/
-			cep->flags |= TCP_CEP_FLG_POST_OUTPUT;
-			sig_sem(SEM_TCP_POST_OUTPUT);
-			}
-
-#ifdef TCP_CFG_NON_BLOCKING
-
-		}
-
-#endif	/* of #ifdef TCP_CFG_NON_BLOCKING */
-
-err_ret:
-	cep->snd_tskid = TA_NULL;
-	cep->snd_tfn   = TFN_TCP_UNDEF;
-	return error;
-	}
-
-#endif	/* of #ifdef TCP_CFG_EXTENTIONS */
-
-#endif	/* of #ifdef __tcp_snd_oob */
 
 #ifdef __tcp_get_buf
 
@@ -1249,18 +580,12 @@ tcp_get_buf (ID cepid, void **p_buf, TMO tmout)
 			/* 送信ウィンドバッファに空きがあればコールバック関数を呼び出す。*/
 			error = TCP_GET_SWBUF_ADDR(cep, p_buf);
 
+			/* コールバック関数を呼び出す。*/
 #ifdef TCP_CFG_NON_BLOCKING_COMPAT14
-
-			/* コールバック関数を呼び出す。*/
 			(*cep->callback)(GET_TCP_CEPID(cep), TFN_TCP_GET_BUF, (void*)error);
-
-#else	/* of #ifdef TCP_CFG_NON_BLOCKING_COMPAT14 */
-
-			/* コールバック関数を呼び出す。*/
+#else
 			(*cep->callback)(GET_TCP_CEPID(cep), TFN_TCP_GET_BUF, (void*)&error);
-
-#endif	/* of #ifdef TCP_CFG_NON_BLOCKING_COMPAT14 */
-
+#endif
 			error = E_WBLK;
 			goto err_ret;
 			}
@@ -1400,16 +725,12 @@ tcp_rcv_dat (ID cepid, void *data, int_t len, TMO tmout)
 			/* 受信ウィンドバッファからデータを取り出す。*/
 			len = TCP_READ_RWBUF(cep, data, (uint_t)len);
 
+			/* コールバック関数を呼び出す。*/
 #ifdef TCP_CFG_NON_BLOCKING_COMPAT14
-
 			(*cep->callback)(GET_TCP_CEPID(cep), TFN_TCP_RCV_DAT, (void*)(uint32_t)len);
-
-#else	/* of #ifdef TCP_CFG_NON_BLOCKING_COMPAT14 */
-
+#else
 			(*cep->callback)(GET_TCP_CEPID(cep), TFN_TCP_RCV_DAT, (void*)&len);
-
-#endif	/* of #ifdef TCP_CFG_NON_BLOCKING_COMPAT14 */
-
+#endif
 			error = E_WBLK;
 			goto err_ret;
 			}
@@ -1448,67 +769,6 @@ err_ret:
 	}
 
 #endif	/* of #ifdef __tcp_rcv_dat */
-
-#ifdef __tcp_rcv_oob
-
-#ifdef TCP_CFG_EXTENTIONS
-
-/*
- *  tcp_rcv_oob -- 緊急データの受信【拡張機能】
- *
- *    注意: 送信側が複数オクテットのデータを送信しても、
- *          緊急ポインタが指す 1 オクテットのデータのみ受信する。
- */
-
-ER_UINT
-tcp_rcv_oob (ID cepid, void *data, int_t len)
-{
-	T_TCP_CEP	*cep;
-	uint8_t		*urg;
-
-	/* TCP 通信端点 ID をチェックする。*/
-	if (!VAID_TCP_CEPID(cepid))
-		return E_ID;
-
-	/* data が NULL か、len < 0 ならエラー */
-	if (data == NULL || len < 0)
-		return E_PAR;
-
-	/* TCP 通信端点を得る。*/
-	cep = GET_TCP_CEP(cepid);
-
-	/* 受信できるか、通信端点の状態を見る。*/
-	/* 受信できるか、fsm_state を見る。*/
-	if (!TCP_FSM_CAN_RECV_MORE(cep->fsm_state))
-		return E_OBJ;
-
-	/*
-	 *  緊急データ入りのセグメントの TCP ヘッダが
-	 *  設定されていなければ、緊急データを受信していない。
-	 */
-	if (cep->urg_tcph == NULL)
-		return E_OBJ;
-
-	/* len == 0 ならバッファオーバーフロー */
-	if (len == 0)
-		return E_BOVR;
-
-	/* 緊急ポインタが指す 1 オクテットのデータを読み取る。*/
-	urg = (uint8_t*)cep->urg_tcph + TCP_DATA_OFF(cep->urg_tcph->doff) + cep->urg_tcph->urp + TCP_CFG_URG_OFFSET;
-	*(uint8_t*)data = *urg;
-
-	/* 読み取ったデータから後ろの SDU を前に詰める。*/
-	memcpy(urg, urg + 1, cep->urg_tcph->sum - (cep->urg_tcph->urp + TCP_CFG_URG_OFFSET) - 1);
-
-	/* tcp_rcv_oob() が呼出されたこと知らせるために、NULL を設定する。*/
-	cep->urg_tcph = NULL;
-
-	return 1;
-	}
-
-#endif	/* of #ifdef TCP_CFG_EXTENTIONS */
-
-#endif	/* of #ifdef __tcp_rcv_oob */
 
 #ifdef __tcp_rcv_buf
 
@@ -1558,18 +818,12 @@ tcp_rcv_buf (ID cepid, void **p_buf, TMO tmout)
 		 	/* 受信ウィンドバッファの空アドレスを獲得する。*/
 			error = TCP_GET_RWBUF_ADDR(cep, p_buf);
 
+			/* コールバック関数を呼び出す。*/
 #ifdef TCP_CFG_NON_BLOCKING_COMPAT14
-
-			/* コールバック関数を呼び出す。*/
 			(*cep->callback)(GET_TCP_CEPID(cep), TFN_TCP_RCV_BUF, (void*)error);
-
-#else	/* of #ifdef TCP_CFG_NON_BLOCKING_COMPAT14 */
-
-			/* コールバック関数を呼び出す。*/
+#else
 			(*cep->callback)(GET_TCP_CEPID(cep), TFN_TCP_RCV_BUF, (void*)&error);
-
-#endif	/* of #ifdef TCP_CFG_NON_BLOCKING_COMPAT14 */
-
+#endif
 			error = E_WBLK;
 			goto err_ret;
 			}
@@ -1704,8 +958,16 @@ tcp_can_snd (T_TCP_CEP *cep, FN fncd)
 			switch (cep->snd_nblk_tfn) {
 
 			case TFN_TCP_CON_CEP:
-				/*  通信端点から受付口を解放する。*/
+				/*
+				 *  通信端点から受付口を解放し、
+				 *  イベントフラグをクローズに設定する。
+				 */
 				cep->rep = NULL;
+
+#if defined(_IP6_CFG) && defined(_IP4_CFG)
+				cep->rep4 = NULL;
+#endif
+
 				cep->fsm_state = TCP_FSM_CLOSED;
 				syscall(set_flg(cep->est_flgid, TCP_CEP_EVT_CLOSED));
 				break;
@@ -1799,6 +1061,11 @@ tcp_can_rcv (T_TCP_CEP *cep, FN fncd)
 				 *  イベントフラグをクローズに設定する。
 				 */
 				cep->rep = NULL;
+
+#if defined(_IP6_CFG) && defined(_IP4_CFG)
+				cep->rep4 = NULL;
+#endif
+
 				cep->fsm_state = TCP_FSM_CLOSED;
 				syscall(set_flg(cep->est_flgid, TCP_CEP_EVT_CLOSED));
 				break;
@@ -1865,7 +1132,7 @@ tcp_can_cep (ID cepid, FN fncd)
 		return E_PAR;
 
 	/* TCP 通信端点 ID をチェックする。*/
-	if (!VAID_TCP_CEPID(cepid))
+	if (!VALID_TCP_CEPID(cepid))
 		return E_ID;
 
 	/* TCP 通信端点を得る。*/
@@ -1913,6 +1180,359 @@ tcp_can_cep (ID cepid, FN fncd)
 
 #endif	/* of #ifdef __tcp_can_cep */
 
+#ifdef TCP_CFG_EXTENTIONS
+
+#ifdef __tcp_cre_cep
+
+/*
+ *  tcp_cre_cep -- TCP 通信端点の生成【拡張機能】
+ */
+
+ER
+tcp_cre_cep (ID cepid, T_TCP_CCEP *pk_ccep)
+{
+	T_TCP_CEP	*cep;
+	ER		error;
+
+	/* TCP 通信端点 ID をチェックする。*/
+	if (!VALID_TCP_CEPID(cepid))
+		return E_ID;
+
+	/* pk_ccep が NULL ならエラー */
+	if (pk_ccep == NULL)
+		return E_PAR;
+
+	/* TCP 通信端点を得る。*/
+	cep = GET_TCP_CEP(cepid);
+
+	/* TCP 通信端点が、動的生成用でなければエラー */
+	if (!DYNAMIC_TCP_CEP(cep))
+		return E_ID;
+
+	/* 通信端点をロックする。*/
+	syscall(wai_sem(cep->semid_lock));
+
+	/*
+	 * TCP 通信端点をチェックする。生成済みであればエラー
+	 */
+	if (VALID_TCP_CEP(cep))
+		error = E_OBJ;
+	else {
+
+		/* TCP 通信端点生成情報をコピーする。*/
+		cep->cepatr   = pk_ccep->cepatr;		/* 通信端点属性			*/
+		cep->sbuf     = pk_ccep->sbuf;			/* 送信用ウィンドバッファ	*/
+		cep->sbufsz   = pk_ccep->sbufsz;		/* 送信用ウィンドバッファサイズ	*/
+		cep->rbuf     = pk_ccep->rbuf;			/* 受信用ウィンドバッファ	*/
+		cep->rbufsz   = pk_ccep->rbufsz;		/* 受信用ウィンドバッファサイズ	*/
+		cep->callback = (void*)pk_ccep->callback;	/* コールバック			*/
+
+		/* TCP 通信端点を生成済みにする。*/
+		cep->flags |= TCP_CEP_FLG_VALID;
+		error = E_OK;
+		}
+
+	/* 通信端点のロックを解除する。*/
+	syscall(sig_sem(cep->semid_lock));
+
+	return error;
+	}
+
+#endif	/* of #ifdef __tcp_cre_cep */
+
+/*
+ *  tcp_del_cep -- TCP 通信端点の削除【拡張機能】
+ */
+
+#ifdef __tcp_del_cep
+
+ER
+tcp_del_cep (ID cepid)
+{
+	T_TCP_CEP	*cep;
+	ER		error;
+
+	/* TCP 通信端点 ID をチェックする。*/
+	if (!VALID_TCP_CEPID(cepid))
+		return E_ID;
+
+	/* TCP 通信端点を得る。*/
+	cep = GET_TCP_CEP(cepid);
+
+	/* TCP 通信端点が、動的生成用でなければエラー */
+	if (!DYNAMIC_TCP_CEP(cep))
+		return E_ID;
+
+	/* 通信端点をロックする。*/
+	syscall(wai_sem(cep->semid_lock));
+
+	/*
+	 * TCP 通信端点をチェックする。以下の場合はエラー
+	 * ・未生成。
+	 * ・使用中。
+	 */
+	if (!VALID_TCP_CEP(cep))
+		error = E_NOEXS;
+	else if (cep->fsm_state != TCP_FSM_CLOSED)
+		error = E_OBJ;
+	else {
+
+		/* TCP 通信端点を未生成にする。*/
+		cep->flags &= ~TCP_CEP_FLG_VALID;
+		error = E_OK;
+		}
+
+	/* 通信端点のロックを解除する。*/
+	syscall(sig_sem(cep->semid_lock));
+
+	return error;
+	}
+
+#endif	/* of #ifdef __tcp_del_cep */
+
+#ifdef __tcp_snd_oob
+
+/*
+ *  tcp_snd_oob -- 緊急データの送信【拡張機能】
+ */
+
+ER_UINT
+tcp_snd_oob (ID cepid, void *data, int_t len, TMO tmout)
+{
+	T_TCP_CEP	*cep;
+	ER_UINT		error;
+
+#ifdef TCP_CFG_NON_BLOCKING
+
+	/* data が NULL か、len < 0 ならエラー */
+	if (data == NULL || len < 0)
+		return E_PAR;
+
+#else	/* of #ifdef TCP_CFG_NON_BLOCKING */
+
+	/* data が NULL、len < 0 か、tmout が TMO_NBLK ならエラー */
+	if (data == NULL || len < 0 || tmout == TMO_NBLK)
+		return E_PAR;
+
+#endif	/* of #ifdef TCP_CFG_NON_BLOCKING */
+
+	/*
+	 *  CEP をロックし、API 機能コードとタスク識別子を記録する。
+	 *  すでに記録されていれば、ペンディング中なのでエラー
+	 */
+	if ((error = tcp_lock_cep(cepid, &cep, TFN_TCP_SND_OOB)) != E_OK)
+		return error;
+
+	/* 送信できるか、通信端点の状態を見る。*/
+	if ((error = tcp_can_send_more(cep, TFN_TCP_SND_OOB, tmout)) != E_OK)
+		goto err_ret;
+
+#ifdef TCP_CFG_NON_BLOCKING
+
+	/* タイムアウトをチェックする。*/
+	if (tmout == TMO_NBLK) {		/* ノンブロッキングコール */
+
+		/* 送信ウィンドバッファに空きがあればコールバック関数を呼び出す。*/
+		if (!TCP_IS_SWBUF_FULL(cep)) {
+
+		 	/* 送信ウィンドバッファにデータを書き込む。*/
+			error = TCP_WRITE_SWBUF(cep, data, (uint_t)len);
+
+			/* 送信緊急ポインタを設定する。*/
+			cep->snd_up = cep->snd_una + cep->swbuf_count;
+
+			/* 出力をポストする。*/
+			cep->flags |= TCP_CEP_FLG_POST_OUTPUT;
+			sig_sem(SEM_TCP_POST_OUTPUT);
+
+			/* コールバック関数を呼び出す。*/
+#ifdef TCP_CFG_NON_BLOCKING_COMPAT14
+			(*cep->callback)(GET_TCP_CEPID(cep), TFN_TCP_SND_OOB, (void*)error);
+#else
+			(*cep->callback)(GET_TCP_CEPID(cep), TFN_TCP_SND_OOB, (void*)&error);
+#endif
+			error = E_WBLK;
+			goto err_ret;
+			}
+		else {
+			cep->snd_data     = data;
+			cep->snd_len      = len;
+			cep->snd_nblk_tfn = TFN_TCP_SND_OOB;
+			TCP_ALLOC_SWBUF(cep);
+
+			return E_WBLK;
+			}
+		}
+	else {		/* 非ノンブロッキングコール */
+
+#endif	/* of #ifdef TCP_CFG_NON_BLOCKING */
+
+	 	/* 送信ウィンドバッファが空くのを待つ。*/
+		if ((error = TCP_WAIT_SWBUF(cep, tmout)) != E_OK)
+			goto err_ret;
+
+	 	/* 送信ウィンドバッファにデータを書き込む。*/
+		if ((error = TCP_WRITE_SWBUF(cep, data, (uint_t)len)) > 0) {
+
+			/* 送信緊急ポインタを設定する。*/
+			cep->snd_up = cep->snd_una + cep->swbuf_count;
+
+			/* データを送信する。送信ウィンドバッファがフルのときは強制的に送信する。*/
+			if (TCP_IS_SWBUF_FULL(cep))
+				cep->flags |= TCP_CEP_FLG_FORCE | TCP_CEP_FLG_FORCE_CLEAR;
+
+			/* 出力をポストする。*/
+			cep->flags |= TCP_CEP_FLG_POST_OUTPUT;
+			sig_sem(SEM_TCP_POST_OUTPUT);
+			}
+
+#ifdef TCP_CFG_NON_BLOCKING
+
+		}
+
+#endif	/* of #ifdef TCP_CFG_NON_BLOCKING */
+
+err_ret:
+	cep->snd_tskid = TA_NULL;
+	cep->snd_tfn   = TFN_TCP_UNDEF;
+	return error;
+	}
+
+#endif	/* of #ifdef __tcp_snd_oob */
+
+#ifdef __tcp_rcv_oob
+
+/*
+ *  tcp_rcv_oob -- 緊急データの受信【拡張機能】
+ *
+ *    注意: 送信側が複数オクテットのデータを送信しても、
+ *          緊急ポインタが指す 1 オクテットのデータのみ受信する。
+ */
+
+ER_UINT
+tcp_rcv_oob (ID cepid, void *data, int_t len)
+{
+	T_TCP_CEP	*cep;
+	uint8_t		*urg;
+
+	/* TCP 通信端点 ID をチェックする。*/
+	if (!VALID_TCP_CEPID(cepid))
+		return E_ID;
+
+	/* data が NULL か、len < 0 ならエラー */
+	if (data == NULL || len < 0)
+		return E_PAR;
+
+	/* TCP 通信端点を得る。*/
+	cep = GET_TCP_CEP(cepid);
+
+	/* 受信できるか、通信端点の状態を見る。*/
+	/* 受信できるか、fsm_state を見る。*/
+	if (!TCP_FSM_CAN_RECV_MORE(cep->fsm_state))
+		return E_OBJ;
+
+	/*
+	 *  緊急データ入りのセグメントの TCP ヘッダが
+	 *  設定されていなければ、緊急データを受信していない。
+	 */
+	if (cep->urg_tcph == NULL)
+		return E_OBJ;
+
+	/* len == 0 ならバッファオーバーフロー */
+	if (len == 0)
+		return E_BOVR;
+
+	/* 緊急ポインタが指す 1 オクテットのデータを読み取る。*/
+	urg = (uint8_t*)cep->urg_tcph + TCP_DATA_OFF(cep->urg_tcph->doff) + cep->urg_tcph->urp + TCP_CFG_URG_OFFSET;
+	*(uint8_t*)data = *urg;
+
+	/* 読み取ったデータから後ろの SDU を前に詰める。*/
+	memcpy(urg, urg + 1, cep->urg_tcph->sum - (cep->urg_tcph->urp + TCP_CFG_URG_OFFSET) - 1);
+
+	/* tcp_rcv_oob() が呼出されたこと知らせるために、NULL を設定する。*/
+	cep->urg_tcph = NULL;
+
+	return 1;
+	}
+
+#endif	/* of #ifdef __tcp_rcv_oob */
+
+#endif	/* of #ifdef TCP_CFG_EXTENTIONS */
+
+#ifdef TCP_CFG_EXTENTIONS
+
+#ifdef __tcp_del_rep
+
+/*
+ *  tcp_del_rep -- TCP 受付口の削除【拡張機能】
+ */
+
+#if defined(SUPPORT_INET6) && TNUM_TCP6_REPID > 0
+
+#if defined(SUPPORT_INET4) && TNUM_TCP4_REPID > 0
+
+ER
+tcp_del_rep (ID repid)
+{
+
+	/*
+	 *  TCP 受付口 ID をチェックする。
+	 *  IPv6 用 TCP 受付口であれば、
+	 *  IPv6 用の「TCP 受付口の削除関数（本体）」を呼出す。
+	 */
+	//NET_DEBUG_TCP3("tcp_del_rep1[r=%d,n=%d,x=%d]\n",
+	//               repid, TMIN_TCP6_REPID, tmax_tcp6_repid);
+	//NET_DEBUG_TCP3("tcp_del_rep2[r=%d,n=%d,x=%d]\n",
+	//               repid, TMIN_TCP4_REPID, tmax_tcp4_repid);
+	if (VALID_TCP6_REPID(repid))
+		return tcp6_del_rep_body(repid);
+
+	/*
+	 *  TCP 受付口 ID をチェックする。
+	 *  IPv4 用 TCP 受付口であれば、
+	 *  IPv4 用の「TCP 受付口の削除関数（本体）」を呼出す。
+	 */
+	else if (VALID_TCP4_REPID(repid))
+		return tcp4_del_rep_body(repid);
+	else
+		return E_ID;
+
+	}
+
+#else	/* of #if defined(SUPPORT_INET4) && TNUM_TCP4_REPID > 0 */
+
+ER
+tcp_del_rep (ID repid)
+{
+
+	/* TCP 受付口 ID をチェックする。*/
+	if (VALID_TCP6_REPID(repid))
+		return tcp6_del_rep_body(repid);
+	else
+		return E_ID;
+
+	}
+
+#endif	/* of #if defined(SUPPORT_INET4) && TNUM_TCP4_REPID > 0 */
+
+#else	/* of #if defined(SUPPORT_INET6) && TNUM_TCP6_REPID > 0 */
+
+ER
+tcp_del_rep (ID repid)
+{
+
+	/* TCP 受付口 ID をチェックする。*/
+	if (VALID_TCP4_REPID(repid))
+		return tcp4_del_rep_body(repid);
+	else
+		return E_ID;
+
+	}
+
+#endif	/* of #if defined(SUPPORT_INET6) && TNUM_TCP6_REPID > 0 */
+
+#endif	/* of #ifdef __tcp_del_rep */
+
 /*
  *  tcp_set_opt -- TCP 通信端点オプションの設定【拡張機能】
  *
@@ -1921,15 +1541,13 @@ tcp_can_cep (ID cepid, FN fncd)
 
 #ifdef __tcp_set_opt
 
-#ifdef TCP_CFG_EXTENTIONS
-
 ER
 tcp_set_opt (ID cepid, int_t optname, void *optval, int_t optlen)
 {
 	T_TCP_CEP	*cep;
 
 	/* TCP 通信端点 ID をチェックする。*/
-	if (!VAID_TCP_CEPID(cepid))
+	if (!VALID_TCP_CEPID(cepid))
 		return E_ID;
 
 	/* TCP 通信端点を得る。*/
@@ -1941,8 +1559,6 @@ tcp_set_opt (ID cepid, int_t optname, void *optval, int_t optlen)
 
 	return E_PAR;
 	}
-
-#endif	/* of #ifdef TCP_CFG_EXTENTIONS */
 
 #endif	/* of #ifdef __tcp_set_opt */
 
@@ -1954,15 +1570,13 @@ tcp_set_opt (ID cepid, int_t optname, void *optval, int_t optlen)
 
 #ifdef __tcp_get_opt
 
-#ifdef TCP_CFG_EXTENTIONS
-
 ER
 tcp_get_opt (ID cepid, int_t optname, void *optval, int_t optlen)
 {
 	T_TCP_CEP	*cep;
 
 	/* TCP 通信端点 ID をチェックする。*/
-	if (!VAID_TCP_CEPID(cepid))
+	if (!VALID_TCP_CEPID(cepid))
 		return E_ID;
 
 	/* TCP 通信端点を得る。*/
@@ -1975,8 +1589,8 @@ tcp_get_opt (ID cepid, int_t optname, void *optval, int_t optlen)
 	return E_PAR;
 	}
 
-#endif	/* of #ifdef TCP_CFG_EXTENTIONS */
-
 #endif	/* of #ifdef __tcp_get_opt */
+
+#endif	/* of #ifdef TCP_CFG_EXTENTIONS */
 
 #endif	/* of #ifdef SUPPORT_TCP */

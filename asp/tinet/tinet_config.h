@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: tinet_config.h,v 1.5.4.1 2015/02/05 02:07:56 abe Exp abe $
+ *  @(#) $Id: tinet_config.h 1.7 2017/6/1 8:50:41 abe $
  */
 
 #ifndef _TINET_CONFIG_H_
@@ -38,9 +38,11 @@
  *  TINET 1.2 との互換性のための定義
  */
 
-/* TCPの受動オープンをサポートする。*/
+/* TCPの受動オープンをサポートする【TINET 1.7 以降不要になった】。*/
 
+#if 0
 #define TCP_CFG_PASSIVE_OPEN
+#endif
 
 /* TCPのノンブロッキングコール機能を組込む。*/
 
@@ -103,6 +105,96 @@
 #define NUM_MPF_NET_BUF4_REASSM	NUM_MPF_NET_BUF_REASSM
 #endif
  */
+
+/*
+ *  TINET 1.5 との互換性のための定義
+ */
+
+/* ルーティング表のエントリ数の定義 */
+
+#define NUM_IN6_ROUTE_ENTRY			\
+	(NUM_IN6_STATIC_ROUTE_ENTRY + NUM_IN6_REDIRECT_ROUTE_ENTRY)
+					/* ルーティング表のエントリ数	*/
+
+#define NUM_IN4_ROUTE_ENTRY		\
+	(NUM_IN4_STATIC_ROUTE_ENTRY + NUM_IN4_REDIRECT_ROUTE_ENTRY)
+					/* ルーティング表のエントリ数	*/
+
+#if defined(SUPPORT_INET6)
+
+#if defined(SUPPORT_INET4)
+
+#else	/* #if defined(SUPPORT_INET4) */
+
+#ifndef NUM_IN6_STATIC_ROUTE_ENTRY
+#define NUM_IN6_STATIC_ROUTE_ENTRY	NUM_STATIC_ROUTE_ENTRY
+#endif
+
+#ifndef NUM_IN6_REDIRECT_ROUTE_ENTRY
+#define NUM_IN6_REDIRECT_ROUTE_ENTRY	NUM_REDIRECT_ROUTE_ENTRY
+#endif
+
+#ifdef  NUM_ROUTE_ENTRY
+#undef  NUM_ROUTE_ENTRY
+#endif
+#define NUM_ROUTE_ENTRY			NUM_IN6_ROUTE_ENTRY
+
+#endif	/* #if defined(SUPPORT_INET4) */
+
+#else	/* of #if defined(SUPPORT_INET6) */
+
+#if defined(SUPPORT_INET4)
+
+#ifndef NUM_IN4_STATIC_ROUTE_ENTRY
+#define NUM_IN4_STATIC_ROUTE_ENTRY	NUM_STATIC_ROUTE_ENTRY
+#endif
+
+#ifndef NUM_IN4_REDIRECT_ROUTE_ENTRY
+#define NUM_IN4_REDIRECT_ROUTE_ENTRY	NUM_REDIRECT_ROUTE_ENTRY
+#endif
+
+#ifdef  NUM_ROUTE_ENTRY
+#undef  NUM_ROUTE_ENTRY
+#endif
+#define NUM_ROUTE_ENTRY			NUM_IN4_ROUTE_ENTRY
+
+#endif	/* of #if defined(SUPPORT_INET4) */
+
+#endif	/* of #if defined(SUPPORT_INET6) */
+
+/* DHCP の定義 */
+
+#ifdef  DHCP4_CLI_CFG
+#define DHCP_CFG
+#endif
+
+/*
+ *  IPv6/IPv4 に関する定義
+ */
+
+/*
+ *  指定されたマクロに対する TINET 内部のマクロの定義
+ *
+ *    SUPPORT_INET6		 .   .  ON  ON  ON  ON
+ *    SUPPORT_INET4		ON  ON   .   .  ON  ON
+ *    API_CFG_IP4MAPPED_ADDR	 .  ON   .  ON   .  ON
+ *    ----------------------    ----------------------
+ *    _IP6_CFG                   .   .  ON  ON  ON  ON
+ *    _IP4_CFG                  ON  ON   .  ON  ON  ON
+ *    
+ */
+
+#if !defined(SUPPORT_INET6) && defined(API_CFG_IP4MAPPED_ADDR)
+#error option selection: !defined(SUPPORT_INET6) && defined(API_CFG_IP4MAPPED_ADDR)
+#endif
+
+#if defined(SUPPORT_INET6)
+#define	_IP6_CFG
+#endif
+
+#if defined(SUPPORT_INET4) || (defined(SUPPORT_INET6) && defined(API_CFG_IP4MAPPED_ADDR))
+#define _IP4_CFG
+#endif
 
 /*
  *  TCP に関する定義
@@ -386,11 +478,6 @@
 
 #include <net/net_rename.h>
 #include <netinet/in_rename.h>
-
-#ifdef SUPPORT_INET6
-
 #include <netinet6/in6_rename.h>
-
-#endif	/* of #ifdef SUPPORT_INET6 */
 
 #endif /* _TINET_CONFIG_H_ */

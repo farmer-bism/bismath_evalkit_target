@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: in6_subr.c,v 1.5.4.1 2015/02/05 02:11:26 abe Exp abe $
+ *  @(#) $Id: in6_subr.c 1.7 2017/6/1 8:49:42 abe $
  */
 
 /*
@@ -121,23 +121,137 @@
 #include <net/ethernet.h>
 #include <net/if_arp.h>
 #include <net/net.h>
+#include <net/net_endian.h>
 #include <net/net_var.h>
 #include <net/net_buf.h>
 #include <net/net_timer.h>
 
 #include <netinet/in.h>
 #include <netinet/in_var.h>
+#include <netinet/ip.h>
+#include <netinet/ip_var.h>
 
-#include <netinet6/in6.h>
-#include <netinet6/in6_var.h>
-#include <netinet/ip6.h>
-#include <netinet6/ip6_var.h>
-#include <netinet6/ah.h>
 #include <netinet6/nd6.h>
+#include <netinet6/ah.h>
 
-#include <net/if6_var.h>
+#include <net/if_var.h>
 
-#ifdef SUPPORT_INET6
+/*
+ *  in6_make_ipv4mapped -- IPv4 射影アドレスを生成する。
+ *
+ *  注意:
+ *    src はホストバイトオーダー
+ *
+ */
+
+T_IN6_ADDR *
+in6_make_ipv4mapped (T_IN6_ADDR *dst, T_IN4_ADDR src)
+{
+	dst->s6_addr32[0] = ULONG_C(0x00000000);
+	dst->s6_addr32[1] = ULONG_C(0x00000000);
+	dst->s6_addr32[2] = IPV6_ADDR_INT32_0000FFFF;
+	dst->s6_addr32[3] = htonl(src);
+
+	return dst;
+	}
+
+#ifdef _IP6_CFG
+
+#if NUM_IN6_REDIRECT_ROUTE_ENTRY > 0
+
+/*
+ *  in6_rtinit -- ルーティング表を初期化する。
+ */
+
+void
+in6_rtinit (void)
+{
+	int_t ix;
+
+	for (ix = 0; ix < NUM_IN6_STATIC_ROUTE_ENTRY; ix ++)
+		routing6_tbl[ix].flags = IN_RTF_DEFINED;
+
+	for ( ; ix < NUM_IN6_ROUTE_ENTRY; ix ++)
+		routing6_tbl[ix].flags = 0;
+	}
+
+/*
+ *  in6_rtnewentry -- 新しいエントリを獲得する。
+ */
+
+T_IN6_RTENTRY *
+in6_rtnewentry (uint8_t flags, uint32_t tmo)
+{
+	SYSTIM		now;
+	T_IN6_RTENTRY	*rt, *frt = NULL;
+	int_t		ix;
+
+	/* 空きエントリを探す。*/
+	for (ix = NUM_IN6_STATIC_ROUTE_ENTRY; ix < NUM_IN6_ROUTE_ENTRY; ix ++) {
+		rt = &routing6_tbl[ix];
+		if ((routing6_tbl[ix].flags & IN_RTF_DEFINED) == 0) {
+			frt = rt;
+			break;
+			}
+		}
+
+	/* expire の単位は [s]。*/
+	syscall(get_tim(&now));
+	now /= SYSTIM_HZ;
+
+	if (frt == NULL) {
+		/* 空きがなければ、有効時間がもっとも短いエントリを空きにする。*/
+		T_IN6_RTENTRY	*srt = NULL;
+		int_t		diff, sdiff = INT_MAX;
+
+		syscall(wai_sem(SEM_IN6_ROUTING_TBL));
+		for (ix = NUM_IN6_STATIC_ROUTE_ENTRY; ix < NUM_IN6_ROUTE_ENTRY; ix ++) {
+			rt = &routing6_tbl[ix];
+			diff = (int_t)(rt->expire - now);
+			if (diff <= 0) {	/* rt->expire <= now */
+				/* 既に、有効時間が過ぎている。*/
+				frt = rt;
+				break;
+				}
+			else if (diff < sdiff) {
+				srt = rt;
+				sdiff = diff;
+				}
+			}
+		if (frt == NULL)
+			frt = srt;
+		frt->flags = 0;
+		syscall(sig_sem(SEM_IN6_ROUTING_TBL));
+		}
+
+	frt->flags  = (uint8_t)(flags | IN_RTF_DEFINED);
+	frt->expire = now + tmo / SYSTIM_HZ;
+	return frt;
+	}
+
+/*
+ *  in6_rttimer -- ルーティング表の管理タイマー
+ */
+
+void
+in6_rttimer (void)
+{
+	SYSTIM	now;
+	int_t	ix;
+
+	/* expire の単位は [s]。*/
+	syscall(get_tim(&now));
+	now /= SYSTIM_HZ;
+
+	syscall(wai_sem(SEM_IN6_ROUTING_TBL));
+	for (ix = NUM_IN6_STATIC_ROUTE_ENTRY; ix < NUM_IN6_ROUTE_ENTRY; ix ++)
+		if ((routing6_tbl[ix].flags & IN_RTF_DEFINED) &&
+		    (int_t)(routing6_tbl[ix].expire - now) <= 0)
+			routing6_tbl[ix].flags = 0;
+	syscall(sig_sem(SEM_IN6_ROUTING_TBL));
+	}
+
+#endif	/* of #if NUM_IN6_REDIRECT_ROUTE_ENTRY > 0 */
 
 #if NUM_IN6_HOSTCACHE_ENTRY > 0
 
@@ -154,14 +268,14 @@ static T_IN6_HOSTCACHE_ENTRY in6_hostcache[NUM_IN6_HOSTCACHE_ENTRY];
  */
 
 T_IN6_IFADDR *
-in6_lookup_ifaddr (T_IFNET *ifp, T_IN6_ADDR *addr)
+in6_lookup_ifaddr (T_IFNET *ifp, const T_IN6_ADDR *addr)
 {
 	int_t ix;
 
 	for (ix = NUM_IN6_IFADDR_ENTRY; ix -- > 0; ) {
-		if ((ifp->in_ifaddrs[ix].flags & IN6_IFF_DEFINED) &&
-		    IN6_ARE_ADDR_EQUAL(addr, &ifp->in_ifaddrs[ix].addr))
-			return &ifp->in_ifaddrs[ix];
+		if ((ifp->in6_ifaddrs[ix].flags & IN6_IFF_DEFINED) &&
+		    IN6_ARE_ADDR_EQUAL(addr, &ifp->in6_ifaddrs[ix].addr))
+			return &ifp->in6_ifaddrs[ix];
 		}
 	return NULL;
 	}
@@ -171,12 +285,12 @@ in6_lookup_ifaddr (T_IFNET *ifp, T_IN6_ADDR *addr)
  */
 
 bool_t
-in6_lookup_multi (T_IFNET *ifp, T_IN6_ADDR *maddr)
+in6_lookup_multi (T_IFNET *ifp, const T_IN6_ADDR *maddr)
 {
 	int_t ix;
 
 	for (ix = MAX_IN6_MADDR_CNT; ix -- > 0; )
-		if (IN6_ARE_ADDR_EQUAL(maddr, &ifp->in_maddrs[ix]))
+		if (IN6_ARE_ADDR_EQUAL(maddr, &ifp->in6_maddrs[ix]))
 			return true;
 	return false;
 	}
@@ -187,7 +301,7 @@ in6_lookup_multi (T_IFNET *ifp, T_IN6_ADDR *maddr)
 
 ER
 in6_set_header (T_NET_BUF *nbuf, uint_t len,
-                T_IN6_ADDR *dstaddr, T_IN6_ADDR *srcaddr,
+                const T_IN6_ADDR *dstaddr, const T_IN6_ADDR *srcaddr,
                 uint8_t next, uint8_t hlim)
 {
 	T_IFNET		*ifp = IF_GET_IFNET();
@@ -231,7 +345,7 @@ in6_set_header (T_NET_BUF *nbuf, uint_t len,
 
 ER
 in6_get_datagram (T_NET_BUF **nbuf, uint_t len, uint_t maxlen,
-                  T_IN6_ADDR *dstaddr, T_IN6_ADDR *srcaddr,
+                  const T_IN6_ADDR *dstaddr, const T_IN6_ADDR *srcaddr,
                   uint8_t next, uint8_t hlim, ATR nbatr, TMO tmout)
 {
 	ER		error;
@@ -268,7 +382,7 @@ in6_get_datagram (T_NET_BUF **nbuf, uint_t len, uint_t maxlen,
  *  in6_get_maxnum_ifaddr -- インタフェースに設定可能な最大アドレス数を返す。
  */
 
-ER_UINT
+uint_t
 in6_get_maxnum_ifaddr (void)
 {
 	return NUM_IN6_IFADDR_ENTRY;
@@ -284,8 +398,8 @@ in6_get_ifaddr (int_t index)
 	T_IFNET		*ifp = IF_GET_IFNET();
 
 	if (index < NUM_IN6_IFADDR_ENTRY &&
-	    (ifp->in_ifaddrs[index].flags & IN6_IFF_DEFINED))
-		return &ifp->in_ifaddrs[index].addr;
+	    (ifp->in6_ifaddrs[index].flags & IN6_IFF_DEFINED))
+		return &ifp->in6_ifaddrs[index].addr;
 	else
 		return NULL;
 	}
@@ -295,14 +409,14 @@ in6_get_ifaddr (int_t index)
  */
 
 char *
-ipv62str (char *buf, const T_IN6_ADDR *p_ip6addr)
+ipv62str (char *buf, const T_IN6_ADDR *p_addr)
 {
-	static char	addr_sbuf[NUM_IPV6ADDR_STR_BUFF][sizeof("0123:4567:89ab:cdef:0123:4567:89ab:cdef")];
+	static char	addr_sbuf[NUM_IPV6ADDR_STR_BUFF][sizeof("0123:4567:89ab:cdef:0123:4567:255.255.255.255")];
 	static int_t	bix = NUM_IPV6ADDR_STR_BUFF;
 
 	bool_t	omit = false, zero = false;
 	char	*start;
-	int_t	ix;
+	int_t	ix, len6;
 
 	if (buf == NULL) {
 		syscall(wai_sem(SEM_IP2STR_BUFF_LOCK));
@@ -313,28 +427,47 @@ ipv62str (char *buf, const T_IN6_ADDR *p_ip6addr)
 		}
 
 	start = buf;
-	if (p_ip6addr == NULL) {
+	if (p_addr == NULL || IN6_IS_ADDR_UNSPECIFIED(p_addr)) {
+		*buf ++ = '0';
 		*buf ++ = ':';
 		*buf ++ = ':';
+		*buf ++ = '0';
 		}
 	else {
-		for (ix = 0; ix < sizeof(T_IN6_ADDR) / 2; ix ++) {
+		if (IN6_IS_ADDR_V4MAPPED(p_addr))
+			len6 = sizeof(T_IN6_ADDR) / 2 - 2;
+		else
+			len6 = sizeof(T_IN6_ADDR) / 2;
+		for (ix = 0; ix < len6; ix ++) {
 			if (omit) {
-				buf += convert_hexdigit(buf, ntohs(p_ip6addr->s6_addr16[ix]), 16, 0, ' '); 
+				buf += convert_hexdigit(buf, ntohs(p_addr->s6_addr16[ix]), 16, 0, ' '); 
 				if (ix < 7)
 					*buf ++ = ':';
 				}
-			else if (ix > 0 && ix < 7 && p_ip6addr->s6_addr16[ix] == 0)
+			else if (ix > 0 && ix < 7 && p_addr->s6_addr16[ix] == 0)
 				zero = true;
 			else {
 				if (zero) {
 					omit = true;
 					*buf ++ = ':';
 					}
-				buf += convert_hexdigit(buf, ntohs(p_ip6addr->s6_addr16[ix]), 16, 0, ' '); 
+				buf += convert_hexdigit(buf, ntohs(p_addr->s6_addr16[ix]), 16, 0, ' '); 
 				if (ix < 7)
 					*buf ++ = ':';
 				}
+			}
+
+		if (len6 == sizeof(T_IN6_ADDR) / 2 - 2) {
+			T_IN4_ADDR ipv4addr;
+
+			ipv4addr = ntohl(p_addr->s6_addr32[3]);
+			buf += convert_hexdigit(buf, (uint_t)((ipv4addr >> 24) & 0xff), 10, 0, ' ');
+			*(buf ++) = '.';
+			buf += convert_hexdigit(buf, (uint_t)((ipv4addr >> 16) & 0xff), 10, 0, ' ');
+			*(buf ++) = '.';
+			buf += convert_hexdigit(buf, (uint_t)((ipv4addr >>  8) & 0xff), 10, 0, ' ');
+			*(buf ++) = '.';
+			buf += convert_hexdigit(buf, (uint_t)((ipv4addr      ) & 0xff), 10, 0, ' ');
 			}
 		}
 	*buf = '\0';
@@ -369,28 +502,16 @@ in6_cksum (T_NET_BUF *nbuf, uint8_t proto, uint_t off, uint_t len)
 	}
 
 /*
- *  in6_is_dstaddr_accept -- 宛先アドレスとして正しいかチェックする。
- */
-
-bool_t
-in6_is_dstaddr_accept (T_IN6_ADDR *myaddr, T_IN6_ADDR *dstaddr)
-{
-	if (IN6_IS_ADDR_UNSPECIFIED(myaddr))
-		return in6_lookup_ifaddr(IF_GET_IFNET(), dstaddr) != NULL;
-	else
-		return IN6_ARE_ADDR_EQUAL(dstaddr, myaddr);
-	}
-
-/*
  *  get_ip6_hdr_size -- 拡張ヘッダも含めた IPv6 ヘッダ長を返す。
  */
 
 uint_t
-get_ip6_hdr_size (T_IP6_HDR *iph)
+get_ip6_hdr_size (T_NET_BUF *nbuf)
 {
-	uint_t	size = IP6_HDR_SIZE, hsize;
-	uint8_t	curr = iph->next, next;
-	uint8_t	*hdr = ((uint8_t *)iph) + IP6_HDR_SIZE;
+	T_IP6_HDR	*iph = GET_IP6_HDR(nbuf);
+	uint_t		size = IP6_HDR_SIZE, hsize;
+	uint8_t		curr = iph->next, next;
+	uint8_t		*hdr = ((uint8_t *)iph) + IP6_HDR_SIZE;
 
 	while (1) {
 		next = *hdr;
@@ -435,8 +556,8 @@ in6_plen2pmask (T_IN6_ADDR *mask, uint_t prefix_len)
  *  in6_rtalloc -- ルーティング表を探索する。
  */
 
-T_IN6_ADDR *
-in6_rtalloc (T_IFNET *ifp, T_IN6_ADDR *dst)
+const T_IN6_ADDR *
+in6_rtalloc (T_IFNET *ifp, const T_IN6_ADDR *dst)
 {
 	if (IN6_IS_ADDR_LINKLOCAL(dst) || IN6_IS_ADDR_MULTICAST(dst))
 		return dst;
@@ -455,7 +576,7 @@ in6_rtalloc (T_IFNET *ifp, T_IN6_ADDR *dst)
 
 		/* 推奨有効時間内のアドレスを探索する。*/
 		for (ix = NUM_IN6_IFADDR_ENTRY; ix -- > 0; ) {
-			ia = &ifp->in_ifaddrs[ix];
+			ia = &ifp->in6_ifaddrs[ix];
 			if (IFA6_IS_READY(ia) &&
 			    in6_are_prefix_equal(dst, &ia->addr, ia->prefix_len) &&
 			    (int32_t)(ia->lifetime.preferred - now) > 0) {
@@ -466,7 +587,7 @@ in6_rtalloc (T_IFNET *ifp, T_IN6_ADDR *dst)
 
 		/* 有効時間内のアドレスを探索する。*/
 		for (ix = NUM_IN6_IFADDR_ENTRY; ix -- > 0; ) {
-			ia = &ifp->in_ifaddrs[ix];
+			ia = &ifp->in6_ifaddrs[ix];
 			if (IFA6_IS_READY(ia) &&
 			    in6_are_prefix_equal(dst, &ia->addr, ia->prefix_len) &&
 			    (int32_t)(ia->lifetime.expire - now) > 0)
@@ -484,33 +605,33 @@ in6_rtalloc (T_IFNET *ifp, T_IN6_ADDR *dst)
 		 *  静的経路表を探索する。
 		 */
 
-#if NUM_ROUTE_ENTRY > 0
+#if NUM_IN6_ROUTE_ENTRY > 0
 
-		syscall(wai_sem(SEM_IN_ROUTING_TBL));
-		for (ix = NUM_ROUTE_ENTRY; ix --; ) {
-			if ((routing_tbl[ix].flags & IN_RTF_DEFINED) &&
-			    in6_are_prefix_equal(dst, &routing_tbl[ix].target,
-			                               routing_tbl[ix].prefix_len)) {
+		syscall(wai_sem(SEM_IN6_ROUTING_TBL));
+		for (ix = NUM_IN6_ROUTE_ENTRY; ix --; ) {
+			if ((routing6_tbl[ix].flags & IN_RTF_DEFINED) &&
+			    in6_are_prefix_equal(dst, &routing6_tbl[ix].target,
+			                               routing6_tbl[ix].prefix_len)) {
 
 				/*
 				 *  向け直しによるエントリは、有効時間が切れる時刻を延長する。
 				 *  expire の単位は [s]。
 				 *  TMO_IN_REDIRECT の単位は [ms]。
 				 */
-				if (ix > NUM_STATIC_ROUTE_ENTRY) {
+				if (ix > NUM_IN6_STATIC_ROUTE_ENTRY) {
 					SYSTIM	now;
 
 					syscall(get_tim(&now));
-					routing_tbl[ix].expire = now / SYSTIM_HZ + TMO_IN_REDIRECT / 1000;
+					routing6_tbl[ix].expire = now / SYSTIM_HZ + TMO_IN_REDIRECT / 1000;
 					}
 
-				syscall(sig_sem(SEM_IN_ROUTING_TBL));
-				return &routing_tbl[ix].gateway;
+				syscall(sig_sem(SEM_IN6_ROUTING_TBL));
+				return &routing6_tbl[ix].gateway;
 				}
 			}
-		syscall(sig_sem(SEM_IN_ROUTING_TBL));
+		syscall(sig_sem(SEM_IN6_ROUTING_TBL));
 
-#endif	/* of #if NUM_ROUTE_ENTRY > 0 */
+#endif	/* of #if NUM_IN6_ROUTE_ENTRY > 0 */
 
 		/*
 		 *  ディフォルトルータ・リストを探索する。
@@ -519,21 +640,21 @@ in6_rtalloc (T_IFNET *ifp, T_IN6_ADDR *dst)
 		}
 	}
 
-#if NUM_REDIRECT_ROUTE_ENTRY > 0
+#if NUM_IN6_REDIRECT_ROUTE_ENTRY > 0
 
 /*
  *  in6_gateway_lookup -- ルーティング表のルータを探索する。
  */
 
-T_IN_RTENTRY *
-in6_gateway_lookup (T_IN6_ADDR *gw)
+T_IN6_RTENTRY *
+in6_gateway_lookup (const T_IN6_ADDR *gw)
 {
 	int_t	ix;
 
-	for (ix = NUM_ROUTE_ENTRY; ix --; )
-		if ((routing_tbl[ix].flags & IN_RTF_DEFINED) &&
-		    IN6_ARE_ADDR_EQUAL(&routing_tbl[ix].gateway, gw))
-			return &routing_tbl[ix];
+	for (ix = NUM_IN6_ROUTE_ENTRY; ix --; )
+		if ((routing6_tbl[ix].flags & IN_RTF_DEFINED) &&
+		    IN6_ARE_ADDR_EQUAL(&routing6_tbl[ix].gateway, gw))
+			return &routing6_tbl[ix];
 	return NULL;
 	}
 
@@ -544,17 +665,17 @@ in6_gateway_lookup (T_IN6_ADDR *gw)
  */
 
 void
-in6_rtredirect (T_IN6_ADDR *gateway, T_IN6_ADDR *target, uint_t prefix_len, uint8_t flags, uint32_t tmo)
+in6_rtredirect (const T_IN6_ADDR *gateway, const T_IN6_ADDR *target, uint_t prefix_len, uint8_t flags, uint32_t tmo)
 {
-	T_IN_RTENTRY	*frt;
+	T_IN6_RTENTRY	*frt;
 
-	frt = in_rtnewentry(flags, tmo);
+	frt = in6_rtnewentry(flags, tmo);
 	frt->gateway    = *gateway;
 	frt->target     = *target;
 	frt->prefix_len = prefix_len;
 	}
 
-#endif	/* of #if NUM_REDIRECT_ROUTE_ENTRY > 0 */
+#endif	/* of #if NUM_IN6_REDIRECT_ROUTE_ENTRY > 0 */
 
 #if NUM_IN6_HOSTCACHE_ENTRY > 0
 
@@ -563,7 +684,7 @@ in6_rtredirect (T_IN6_ADDR *gateway, T_IN6_ADDR *target, uint_t prefix_len, uint
  */
 
 static T_IN6_HOSTCACHE_ENTRY*
-in6_hostcache_lookup (T_IN6_ADDR *dst)
+in6_hostcache_lookup (const T_IN6_ADDR *dst)
 {
 	int_t ix;
 
@@ -636,7 +757,7 @@ in6_hostcache_update (T_IN6_ADDR *dst, uint32_t mtu)
  */
 
 uint32_t
-in6_hostcache_getmtu (T_IN6_ADDR *dst)
+in6_hostcache_getmtu (const T_IN6_ADDR *dst)
 {
 	T_IN6_HOSTCACHE_ENTRY	*hc;
 
@@ -678,11 +799,11 @@ in6_hostcache_timer (void)
 static void
 in6_timer (void)
 {
-#if NUM_REDIRECT_ROUTE_ENTRY > 0
+#if NUM_IN6_REDIRECT_ROUTE_ENTRY > 0
 
-	in_rttimer();
+	in6_rttimer();
 
-#endif	/* of #if NUM_REDIRECT_ROUTE_ENTRY > 0 */
+#endif	/* of #if NUM_IN6_REDIRECT_ROUTE_ENTRY > 0 */
 
 #ifdef IP6_CFG_FRAGMENT
 
@@ -706,14 +827,117 @@ in6_timer (void)
 void
 in6_init (void)
 {
-#if NUM_REDIRECT_ROUTE_ENTRY > 0
+#if NUM_IN6_REDIRECT_ROUTE_ENTRY > 0
 
-	in_rtinit();
+	in6_rtinit();
 
-#endif	/* of #if NUM_REDIRECT_ROUTE_ENTRY > 0 */
+#endif	/* of #if NUM_IN6_REDIRECT_ROUTE_ENTRY > 0 */
 
 	timeout((callout_func)nd6_timer, NULL, ND6_TIMER_TMO);
 	timeout((callout_func)in6_timer, NULL, IN_TIMER_TMO);
 	}
 
-#endif /* of #ifdef SUPPORT_INET6 */
+/*
+ *  in6_is_dstaddr_accept -- 宛先アドレスとして正しいかチェックする。
+ */
+
+bool_t
+in6_is_dstaddr_accept (const T_IN6_ADDR *myaddr, const T_IN6_ADDR *dstaddr)
+{
+	if (IN6_IS_ADDR_UNSPECIFIED(myaddr))
+		return in6_lookup_ifaddr(IF_GET_IFNET(), dstaddr) != NULL;
+	else
+		return IN6_ARE_ADDR_EQUAL(dstaddr, myaddr);
+	}
+
+#if defined(DHCP6_CLI_CFG)
+
+/*
+ *  in6_add_ifaddr -- インタフェースに IPv6 アドレスを設定する。
+ *
+ *    vltime と pltime の単位は[s]
+ */
+
+static ER
+in6_add_ifaddr (T_IN6_ADDR *addr, uint_t prefix_len,
+                uint32_t vltime, uint32_t pltime)
+{
+	T_IFNET		*ifp = IF_GET_IFNET();
+	T_IN6_IFADDR	*ia = NULL;
+	int_t		ix;
+
+	/* 空きのエントリーを探す。*/
+	ix = 0;
+	while (true) {
+		ia = in6ifa_ifpwithix(ifp, ix ++);
+
+		/* 空きが無ければエラー */
+		if (ia == NULL)
+			return E_OBJ;
+
+		if ((ia->flags & IN6_IFF_DEFINED) == 0)
+			break;
+		}
+
+	/* 登録する。*/
+	return in6_update_ifa(ifp, ia, addr, prefix_len, vltime, pltime,
+	                      IN6_RTR_IX_UNREACH, ND6_PREFIX_IX_INVALID, 0);
+	}
+
+/*
+ *  in6_upd_ifaddr -- インタフェースに設定されている IPv6 アドレスを更新する。
+ *
+ *    登録されていなければ、追加する。
+ *    vltime と pltime の単位は[s]
+ */
+
+ER
+in6_upd_ifaddr (T_IN6_ADDR *addr, uint_t prefix_len,
+                uint32_t vltime, uint32_t pltime)
+{
+	T_IFNET		*ifp = IF_GET_IFNET();
+	T_IN6_IFADDR	*ia;
+	int_t		ix;
+
+	/*
+	 *  アドレスが一致するエントリーを探す。
+	 *  無ければ登録する。
+	 */
+	if ((ix = in6_addr2ifaix(addr)) == IPV6_IFADDR_IX_INVALID)
+		return in6_add_ifaddr(addr, prefix_len, vltime, pltime);
+
+	/*
+	 *  インデックス番号から、エントリーに変換する。
+	 *  エラーにならないはずであるが、確認する。
+	 */
+	if ((ia = in6ifa_ifpwithix (ifp, ix)) == NULL)
+		return E_OBJ;
+
+	/* 更新する。*/
+	return in6_update_ifa(ifp, ia, addr, prefix_len, vltime, pltime,
+	                      IN6_RTR_IX_UNREACH, ND6_PREFIX_IX_INVALID, 0);
+	}
+
+/*
+ *  in6_del_ifaddr -- インタフェースに設定されている IPv6 アドレスを削除する。
+ */
+
+ER
+in6_del_ifaddr (T_IN6_ADDR *addr)
+{
+	T_IFNET		*ifp = IF_GET_IFNET();
+	int_t		ix;
+
+	/* アドレスが一致するエントリーを探す。*/
+	if ((ix = in6_addr2ifaix(addr)) != IPV6_IFADDR_IX_INVALID) {
+
+		/* エントリーを無効にする。*/
+		ifp->in6_ifaddrs[ix].flags &= ~IN6_IFF_DEFINED;
+		return E_OK;
+		}
+	return E_PAR;
+	}
+
+#endif	/* of #if defined(DHCP6_CLI_CFG) */
+
+#endif /* of #ifdef _IP6_CFG */

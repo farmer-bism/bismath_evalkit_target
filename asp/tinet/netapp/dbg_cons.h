@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: dbg_cons.h,v 1.5 2009/12/24 05:44:56 abe Exp $
+ *  @(#) $Id: dbg_cons.h 1.7 2017/6/1 8:50:19 abe $
  */
 
 #ifndef _DBG_CONS_
@@ -52,6 +52,14 @@ extern void	dbg_con_task (intptr_t exinf);
  */
 
 extern void act_tasks (void);
-extern void extra_parse (char *line);
+extern void dbg_parse (ID portid, char *line);
+extern void dbg_cons_extra_parse (ID portid, char *line);
+extern void dbg_cons_task_status (ID portid, char *line);
+extern void dbg_cons_network_status (ID portid, char *line);
+extern void dbg_cons_ifconfig (ID portid, char *line);
+extern void dbg_cons_ifconfig6 (ID portid, char *line);
+extern void dbg_cons_ifconfig4 (ID portid, char *line);
+extern void dbg_cons_show_config (ID portid, char *line);
+extern void dbg_cons_ping_comd (ID portid, char *line);
 
 #endif	/* of #ifndef _DBG_CONS_ */

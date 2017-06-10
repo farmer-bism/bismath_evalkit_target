@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: in6_ifattach.c,v 1.5.4.1 2015/02/05 02:11:26 abe Exp abe $
+ *  @(#) $Id: in6_ifattach.c 1.7 2017/6/1 8:49:42 abe $
  */
 
 /*	$FreeBSD: src/sys/netinet6/in6_ifattach.c,v 1.2.2.5 2001/08/13 16:26:17 ume Exp $	*/
@@ -86,15 +86,19 @@
 #include <net/ethernet.h>
 #include <net/if_arp.h>
 #include <net/net.h>
+#include <net/net_endian.h>
+
+#include <netinet/in.h>
+#include <netinet/in_var.h>
 
 #include <netinet6/in6.h>
 #include <netinet6/in6_var.h>
 #include <netinet6/nd6.h>
 #include <netinet6/in6_ifattach.h>
 
-#include <net/if6_var.h>
+#include <net/if_var.h>
 
-#ifdef SUPPORT_INET6
+#ifdef _IP6_CFG
 
 /*
  * EUI64 の定義
@@ -125,6 +129,20 @@ get_mac6_ifid (T_IFNET *ifp, T_IN6_ADDR *ifra_addr)
 
 #endif	/* of #ifdef SUPPORT_ETHER */
 
+#ifdef SUPPORT_PPP
+
+/*
+ * get_rand_ifid -- 乱数により、インタフェース識別子を設定する。
+ */
+
+static ER
+get_rand_ifid (T_IFNET *ifp, T_IN6_ADDR *ifra_addr)
+{
+	return E_OK;
+	}
+
+#endif	/* of #ifdef SUPPORT_PPP */
+
 #ifdef IP6_CFG_AUTO_LINKLOCAL
 
 /*
@@ -148,7 +166,7 @@ in6_ifattach_linklocal (T_IFNET *ifp)
 		return error;
 
 	/* インタフェースのアドレス情報を更新する。*/
-	if ((error = in6_update_ifa(ifp, &ifp->in_ifaddrs[IPV6_IFADDR_IX_LINKLOCAL],
+	if ((error = in6_update_ifa(ifp, &ifp->in6_ifaddrs[IPV6_IFADDR_IX_LINKLOCAL],
 	                            &addr, 64, ND6_INFINITE_LIFETIME,
 	                                       ND6_INFINITE_LIFETIME, 
 	                                       IN6_RTR_IX_UNREACH, ND6_PREFIX_IX_INVALID, 0)) != E_OK)
@@ -170,7 +188,7 @@ in6_ifattach (T_IFNET *ifp)
 
 #ifdef IP6_CFG_AUTO_LINKLOCAL
 
-	if ((ifp->in_ifaddrs[IPV6_IFADDR_IX_LINKLOCAL].flags & IN6_IFF_DEFINED) == 0)
+	if ((ifp->in6_ifaddrs[IPV6_IFADDR_IX_LINKLOCAL].flags & IN6_IFF_DEFINED) == 0)
 		if ((error = in6_ifattach_linklocal(ifp)) != E_OK)
 			return error;
 
@@ -179,4 +197,4 @@ in6_ifattach (T_IFNET *ifp)
 	return error;
 	}
 
-#endif /* of #ifdef SUPPORT_INET6 */
+#endif /* of #ifdef _IP6_CFG */

@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: ah6.h,v 1.5 2009/12/24 05:48:16 abe Exp $
+ *  @(#) $Id: ah6.h 1.7 2017/6/1 8:49:47 abe $
  */
 
 /*	$FreeBSD: src/sys/netinet6/ah6.h,v 1.4 2001/06/11 12:39:03 ume Exp $	*/
@@ -66,14 +66,10 @@
 #ifndef _AH6_H_
 #define _AH6_H_
 
-#ifdef SUPPORT_INET6
-
 /*
  *  関数
  */
 
 extern uint_t ah6_input (T_NET_BUF **inputp, uint_t *offp, uint_t *nextp);
-
-#endif	/* of #ifdef SUPPORT_INET6 */
 
 #endif	/* of #ifndef _AH6_H_ */

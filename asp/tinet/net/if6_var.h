@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: if6_var.h,v 1.5 2009/12/24 05:42:40 abe Exp $
+ *  @(#) $Id: if6_var.h 1.7 2017/6/1 8:49:14 abe $
  */
 
 /*
@@ -67,20 +67,49 @@
 #ifndef _IF6_VAR_H_
 #define _IF6_VAR_H_
 
-#ifdef SUPPORT_INET6
-
 /*
  *  ネットワークインタフェース構造体
  */
 
+#if defined(_IP6_CFG)
+
+#if defined(_IP4_CFG)
+
 struct t_ifnet {
 	T_IF_SOFTC	*ic;		/* ネットワークインタフェースのソフトウェア情報	*/
-	T_IN6_IFADDR 	in_ifaddrs[NUM_IN6_IFADDR_ENTRY];
+	T_IN6_IFADDR 	in6_ifaddrs[NUM_IN6_IFADDR_ENTRY];
 					/* IPv6 アドレス情報				*/
-	T_IN6_ADDR	in_maddrs [MAX_IN6_MADDR_CNT];
+	T_IN6_ADDR	in6_maddrs [MAX_IN6_MADDR_CNT];
+					/* マルチキャスト IPv6 アドレス			*/
+	T_IN4_IFADDR 	in4_ifaddr;	/* IPv4 アドレス情報				*/
+	uint8_t		flags;		/* フラグ					*/
+	};
+
+#else	/* of #if defined(_IP4_CFG) */
+
+struct t_ifnet {
+	T_IF_SOFTC	*ic;		/* ネットワークインタフェースのソフトウェア情報	*/
+	T_IN6_IFADDR 	in6_ifaddrs[NUM_IN6_IFADDR_ENTRY];
+					/* IPv6 アドレス情報				*/
+	T_IN6_ADDR	in6_maddrs [MAX_IN6_MADDR_CNT];
 					/* マルチキャスト IPv6 アドレス			*/
 	uint8_t		flags;		/* フラグ					*/
 	};
+
+#endif	/* of #if defined(_IP4_CFG) */
+
+#else	/* of #if defined(_IP6_CFG) */
+
+#if defined(_IP4_CFG)
+
+struct t_ifnet {
+	T_IF_SOFTC	*ic;		/* ネットワークインタフェースのソフトウェア情報	*/
+	T_IN4_IFADDR 	in4_ifaddr;	/* IPv4 アドレス情報				*/
+	};
+
+#endif	/* of #if defined(_IP4_CFG) */
+
+#endif	/* of #if defined(_IP6_CFG) */
 
 #ifndef T_IFNET_DEFINED
 
@@ -89,6 +118,8 @@ typedef struct t_ifnet T_IFNET;
 #define T_IFNET_DEFINED
 
 #endif	/* of #ifndef T_IFNET_DEFINED */
+
+#if defined(_IP6_CFG)
 
 /*
  *  関数シミュレーションマクロ
@@ -102,6 +133,6 @@ typedef struct t_ifnet T_IFNET;
 
 extern ER if_addmulti (T_IFNET *ifp, void *maddr, uint8_t type);
 
-#endif	/* of #ifdef SUPPORT_INET6 */
+#endif	/* of #if defined(_IP6_CFG) */
 
 #endif	/* of #ifndef _IF6_VAR_H_ */

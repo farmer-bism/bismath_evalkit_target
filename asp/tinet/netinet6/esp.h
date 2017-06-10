@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *  Copyright (C) 2008-2009 by Hokkaido Industrial Research Institute, JAPAN
  *
@@ -29,7 +29,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: esp.h,v 1.5 2009/12/24 05:48:16 abe Exp $
+ *  @(#) $Id: esp.h 1.7 2017/6/1 8:49:47 abe $
  */
 
 /*	$FreeBSD: src/sys/netinet6/esp.h,v 1.6 2002/04/19 04:46:22 suz Exp $	*/
@@ -66,8 +66,6 @@
  
 #ifndef _ESP_H_
 #define _ESP_H_
-
-#if defined(SUPPORT_INET6) || defined(SUPPORT_IPSEC)
 
 /*
  *  RFC2406 暗号化ヘッダ
@@ -127,7 +125,5 @@ extern int_t esp4_input(T_NET_BUF **inputp, uint_t *offp, uint_t *nextp);
 extern int_t esp4_output(T_NET_BUF *m, T_IPSEC_REQUEST *isr, T_NET_BUF** result);
 
 #endif	/* of #ifdef T_IPSEC_REQUEST_DEFINED */
-
-#endif /* defined(SUPPORT_INET6) || defined(SUPPORT_IPSEC) */
 
 #endif	/* of #ifndef _ESP_H_ */

@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: net_cons.c,v 1.5 2009/12/24 05:44:56 abe Exp $
+ *  @(#) $Id: net_cons.c 1.7 2017/6/1 8:49:56 abe $
  */
 
 /* 
@@ -58,15 +58,6 @@
 #include "tinet_id.h"
 
 #endif	/* of #ifdef TARGET_KERNEL_JSP */
-
-#include <tinet_defs.h>
-
-#include <net/if.h>
-#include <net/if_ppp.h>
-#include <net/if_loop.h>
-#include <net/ethernet.h>
-#include <net/net.h>
-#include <net/net_timer.h>
 
 #include <netinet/in.h>
 #include <netinet/in_itron.h>
@@ -108,6 +99,12 @@
 #define TELNET_OPT_DONT		(254)
 #define TELNET_OPT_IAC		(255)
 
+#if defined(SUPPORT_INET6)
+#define API_PROTO		'6'
+#else
+#define API_PROTO		'4'
+#endif
+
 /*
  *  変数
  */
@@ -120,15 +117,17 @@ uint8_t net_cons_rwbuf[NET_CONS_RWBUF_SIZE];
 bool_t	connected	= false;	/* コネクションの状態	*/
 bool_t	wait_accept	= false;	/* 接続要求待ち中	*/
 
+#if defined(SUPPORT_INET6)
+
+T_IPV6EP	dst;
+
+#else	/* of #if defined(SUPPORT_INET6) */
+
 #if defined(SUPPORT_INET4)
 
 T_IPV4EP	dst;
 
 #endif	/* of #if defined(SUPPORT_INET4) */
-
-#if defined(SUPPORT_INET6)
-
-T_IPV6EP	dst;
 
 #endif	/* of #if defined(SUPPORT_INET6) */
 
@@ -155,12 +154,13 @@ callback_nblk_net_cons (ID cepid, FN fncd, void *p_parblk)
 	case TFN_TCP_ACP_CEP:
 		get_tim(&now);
 		if (*(ER*)p_parblk == E_OK) {
-			syslog(LOG_NOTICE, "[NCS:%02u CBN] connected:  %6lu, from: %s.%u",
-			                   cepid, now / SYSTIM_HZ, IP2STR(NULL, &dst.ipaddr), dst.portno);
+			syslog(LOG_NOTICE, "[NCS%c:%02u CBN] conct: %7lu, from: %s.%u",
+			                   API_PROTO, cepid, now / SYSTIM_HZ, IP2STR(NULL, &dst.ipaddr), dst.portno);
 			connected = true;
 			}
 		else
-			syslog(LOG_NOTICE, "[NCS:%02d CBN] error: %s", itron_strerror(*(ER*)p_parblk));
+			syslog(LOG_NOTICE, "[NCS%c:%02d CBN] error: %s",
+			                   API_PROTO, itron_strerror(*(ER*)p_parblk));
 		snd_len = snd_off = rcv_len = rcv_off = 0;
 		wait_accept = false;
 		break;
@@ -192,8 +192,8 @@ flush_snd_buff (void)
 		syscall(wai_sem(SEM_NET_CONS_SEND));
 		if (snd_off > 0) {
 			if ((error = tcp_snd_buf(NET_CONS_CEPID, snd_off)) != E_OK && error != E_CLS)
-				syslog(LOG_NOTICE, "[NCS:%02d SND] flush send error: %s",
-				                   NET_CONS_CEPID, itron_strerror(error));
+				syslog(LOG_NOTICE, "[NCS%c:%02d SND] flush send error: %s",
+				                   API_PROTO, NET_CONS_CEPID, itron_strerror(error));
 			snd_len = snd_off = 0;
 			}
 		syscall(sig_sem(SEM_NET_CONS_SEND));
@@ -217,16 +217,16 @@ cons_putchar (ID portid, char ch)
 		if (snd_off >= snd_len) {
 			if ((error = tcp_snd_buf(NET_CONS_CEPID, snd_off)) != E_OK) {
 				if (error != E_CLS)
-					syslog(LOG_NOTICE, "[NCS:%02d SND] send buff error: %s",
-					                   NET_CONS_CEPID, itron_strerror(error));
+					syslog(LOG_NOTICE, "[NCS%c:%02d SND] send buff error: %s",
+					                   API_PROTO, NET_CONS_CEPID, itron_strerror(error));
 				syscall(sig_sem(SEM_NET_CONS_SEND));
 				return;
 				}
 			snd_off = 0;
 			if ((snd_len = tcp_get_buf(NET_CONS_CEPID, (void*)&snd_buff, TMO_FEVR)) <= 0) {
 				if (snd_len != E_CLS)
-					syslog(LOG_NOTICE, "[NCS:%02d SND] get buff error: %s",
-					                   NET_CONS_CEPID, itron_strerror(snd_len));
+					syslog(LOG_NOTICE, "[NCS%c:%02d SND] get buff error: %s",
+					                   API_PROTO, NET_CONS_CEPID, itron_strerror(snd_len));
 				syscall(sig_sem(SEM_NET_CONS_SEND));
 				return;
 				}
@@ -252,8 +252,8 @@ cons_getchar_raw (void)
 			rcv_off = 0;
 			if ((error = tcp_rel_buf(NET_CONS_CEPID, rcv_len)) != E_OK) {
 				if (error != E_CLS)
-					syslog(LOG_NOTICE, "[NCS:%02d RCV] release buff error: %s",
-					                   NET_CONS_CEPID, itron_strerror(error));
+					syslog(LOG_NOTICE, "[NCS%c:%02d RCV] release buff error: %s",
+					                   API_PROTO, NET_CONS_CEPID, itron_strerror(error));
 				discon_net_cons();
 				return EOF;
 				}
@@ -263,8 +263,8 @@ cons_getchar_raw (void)
 				}
 			else if (rcv_len < 0) {
 				if (rcv_len != E_CLS)
-					syslog(LOG_NOTICE, "[NCS:%02d RCV] recieve buff error: %s",
-					                   NET_CONS_CEPID, itron_strerror(rcv_len));
+					syslog(LOG_NOTICE, "[NCS%c:%02d RCV] recieve buff error: %s",
+					                   API_PROTO, NET_CONS_CEPID, itron_strerror(rcv_len));
 				discon_net_cons();
 				return EOF;
 				}
@@ -283,7 +283,7 @@ int_t
 cons_getchar (ID portid)
 {
 	T_SERIAL_RPOR	rpor;
-	int_t		ch, req;
+	int_t		ch;
 	char		uch;
 	ER		error;
 
@@ -291,7 +291,8 @@ cons_getchar (ID portid)
 		wait_accept = true;
 		error = TCP_ACP_CEP(NET_CONS_CEPID, NET_CONS_REPID, &dst, TMO_NBLK);
 #if 0
-		syslog(LOG_NOTICE, "[NCS:%02d ACP] status: %s",NET_CONS_CEPID, itron_strerror(error));
+		syslog(LOG_NOTICE, "[NCS%c:%02d ACP] status: %s",
+		                   API_PROTO, NET_CONS_CEPID, itron_strerror(error));
 #endif
 		if (error != E_WBLK)
 			return EOF;
@@ -306,7 +307,7 @@ cons_getchar (ID portid)
 					case TELNET_OPT_WONT:
 					case TELNET_OPT_DO:
 					case TELNET_OPT_DONT:
-						req = cons_getchar_raw();
+						cons_getchar_raw();
 						break;
 					case TELNET_OPT_SB:
 						while ((ch = cons_getchar_raw()) != EOF && ch != TELNET_OPT_IAC) {
@@ -353,20 +354,20 @@ discon_net_cons (void)
 		syscall(wai_sem(SEM_NET_CONS_SEND));
 		if (snd_off > 0) {
 			if ((error = tcp_snd_buf(NET_CONS_CEPID, snd_off)) != E_OK && error != E_CLS)
-				syslog(LOG_NOTICE, "[NCS:%02d SND] send buff error: %s",
-				                   NET_CONS_CEPID, itron_strerror(error));
+				syslog(LOG_NOTICE, "[NCS%c:%02d SND] send buff error: %s",
+				                   API_PROTO, NET_CONS_CEPID, itron_strerror(error));
 			}
 		if ((error = tcp_sht_cep(NET_CONS_CEPID)) != E_OK)
-			syslog(LOG_NOTICE, "[NCS:%02d SHT] shutdown error: %s",
-			                   NET_CONS_CEPID, itron_strerror(error));
+			syslog(LOG_NOTICE, "[NCS%c:%02d SHT] shutdown error: %s",
+			                   API_PROTO, NET_CONS_CEPID, itron_strerror(error));
 		if ((error = tcp_cls_cep(NET_CONS_CEPID, TMO_FEVR)) != E_OK)
-			syslog(LOG_NOTICE, "[NCS:%02d CLS] close error: %s",
-			                   NET_CONS_CEPID, itron_strerror(error));
+			syslog(LOG_NOTICE, "[NCS%c:%02d CLS] close error: %s",
+			                   API_PROTO, NET_CONS_CEPID, itron_strerror(error));
 		connected = false;
 		syscall(sig_sem(SEM_NET_CONS_SEND));
 		get_tim(&now);
-		syslog(LOG_NOTICE, "[NCS:%02u SND] disconnected:%5lu, from: %s.%u",
-		                   NET_CONS_CEPID, now / SYSTIM_HZ, IP2STR(NULL, &dst.ipaddr), dst.portno);
+		syslog(LOG_NOTICE, "[NCS%c:%02u SND] discn: %7lu, from: %s.%u",
+		                   API_PROTO, NET_CONS_CEPID, now / SYSTIM_HZ, IP2STR(NULL, &dst.ipaddr), dst.portno);
 		}
 	return error;
 	}
@@ -498,7 +499,7 @@ net_syslog (uint_t prio, const char *format, ...)
 
 			case 'M':
 				str = va_arg(ap, char*);
-				put_macaddr(CONSOLE_PORTID, str, width);
+				put_macaddr(CONSOLE_PORTID, (uint8_t *)str, width);
 				break;
 
 			case '%':

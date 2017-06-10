@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: in.h,v 1.5.4.1 2015/02/05 02:10:53 abe Exp abe $
+ *  @(#) $Id: in.h 1.7 2017/6/1 8:49:33 abe $
  */
 
 /*
@@ -72,13 +72,14 @@
 
 #include <tinet_kernel_defs.h>
 
+#include <netinet/in4.h>
 #include <netinet6/in6.h>
 
 /*
  *  TINET のバージョン情報
  */
 
-#define TINET_PRVER		UINT_C(0x1053)	/* TINET のバージョン番号 */
+#define TINET_PRVER		UINT_C(0x1070)	/* TINET のバージョン番号 */
 
 /*
  *  インターネットシステムの定義、RFC790 参照
@@ -106,33 +107,9 @@
 #define IPPROTO_DONE		UINT_C(257)	/* IPv6 で上位プロトコル入力終了	*/
 
 /*
- *  IPv4 アドレス
+ *  ポートの長さ
  */
 
-/* 前方参照 */
-
-#ifndef T_IN4_ADDR_DEFINED
-
-typedef uint32_t T_IN4_ADDR;
-
-#define T_IN4_ADDR_DEFINED
-
-#endif	/* of #ifndef T_IN4_ADDR_DEFINED */
-
-/*
- *  ITRON TCP/IPv4 アドレス/ポート番号の定義
- */
-
-typedef struct t_ipv4ep {
-	uint32_t	ipaddr;		/* IPv4 アドレス	*/
-	uint16_t	portno;		/* ポート番号		*/
-	} T_IPV4EP;
-
-/*
- *  アドレス/ポートの長さ
- */
-
-#define IPV4_ADDR_LEN		4
 #define PORT_NUM_LEN		2
 
 /*
@@ -151,126 +128,50 @@ typedef struct t_ipv4ep {
 #define UDP_PORT_LAST_AUTO		UINT_C(4999)	/* 自動割り当て終了番号	*/
 
 /*
- *  IP アドレスの定義
+ *  API IPプロトコルの指定
  */
 
-#define IPV4_ADDRANY		ULONG_C(0x00000000)	/* ITRON TCP/IP 標準	*/
-
-#define IPV4_ADDR_LOOPBACK	ULONG_C(0x7f000001)
-#define IPV4_ADDR_LOOPBACK_MASK	IPV4_CLASS_A_MASK
-#define IPV4_ADDR_BROADCAST	ULONG_C(0xffffffff)
-
-#define IPV4_CLASS_A(i)		(((i) & ULONG_C(0x80000000)) == 0)
-#define IPV4_CLASS_A_NET	ULONG_C(0xff000000)
-#define IPV4_CLASS_A_MASK	ULONG_C(0xff000000)
-#define IPV4_CLASS_A_HOST	ULONG_C(0x00ffffff)
-
-#define IPV4_CLASS_B(i)		(((i) & ULONG_C(0xc0000000)) == ULONG_C(0x80000000))
-#define IPV4_CLASS_B_NET	ULONG_C(0xffff0000)
-#define IPV4_CLASS_B_MASK	ULONG_C(0xffff0000)
-#define IPV4_CLASS_B_HOST	ULONG_C(0x0000ffff)
-
-#define IPV4_CLASS_C(i)		(((i) & ULONG_C(0xe0000000)) == ULONG_C(0xc0000000))
-#define IPV4_CLASS_C_NET	ULONG_C(0xffffff00)
-#define IPV4_CLASS_C_MASK	ULONG_C(0xffffff00)
-#define IPV4_CLASS_C_HOST	ULONG_C(0x000000ff)
-
-#define IPV4_CLASS_D(i)		(((i) & ULONG_C(0xf0000000)) == ULONG_C(0xe0000000))
-
-#define IN4_IS_ADDR_MULTICAST(i)	IPV4_CLASS_D(i)
-
-#define MAKE_IPV4_LOCAL_BROADCAST(i)	(IPV4_CLASS_A(i)?((i)|IPV4_CLASS_A_HOST):\
-					 IPV4_CLASS_B(i)?((i)|IPV4_CLASS_B_HOST):\
-					 IPV4_CLASS_C(i)?((i)|IPV4_CLASS_C_HOST):\
-					 IPV4_ADDR_BROADCAST)
-
-#define MAKE_IPV4_LOCAL_MASK(i)		(IPV4_CLASS_A(i)?IPV4_CLASS_A_MASK:\
-					 IPV4_CLASS_B(i)?IPV4_CLASS_B_MASK:\
-					 IPV4_CLASS_C(i)?IPV4_CLASS_C_MASK:\
-					 IPV4_ADDRANY)
-
-#define MAKE_IPV4_ADDR(a,b,c,d)		((T_IN4_ADDR)(((uint32_t)(a)<<24)|((uint32_t)(b)<<16)|((uint32_t)(c)<<8)|(d)))
+#define API_PROTO_IPVn			'n'
+#define API_PROTO_IPV6			'6'
+#define API_PROTO_IPV4			'4'
 
 /*
- *  動的生成用 TCP 通信端点
+ *  動的生成用 TCP/IPv6 通信端点
  */
 
-typedef struct t_tcp_ccep {
-	/* 標準 */
-	ATR		cepatr;		/* 通信端点属性			*/
-	void		*sbuf;		/* 送信用ウィンドバッファ	*/
-	int_t		sbufsz;		/* 送信用ウィンドバッファサイズ	*/
-	void		*rbuf;		/* 受信用ウィンドバッファ	*/
-	int_t		rbufsz;		/* 受信用ウィンドバッファサイズ	*/
-	FP		callback;	/* コールバック			*/
-	/* 実装依存 */
-	} T_TCP_CCEP;
+#define T_TCP6_CCEP			T_TCP_CCEP
 
 /*
- *  動的生成用 TCP 受付口
+ *  バイトオーダ関数の定義
+ *
+ *    tinet/net/net.h でもバイトオーダの定義を行っているが、
+ *    tinet/net/net.h をインクルードしない
+ *    アプリケーションプログラム用に
+ *    ターゲット依存しないバイトオーダ関数を定義する。
  */
 
-#if defined(SUPPORT_INET4)
+#if defined(_NET_CFG_BYTE_ORDER)
 
-typedef struct t_tcp_crep {
-	/* 標準 */
-	ATR		repatr;		/* 受付口属性		*/
-	T_IPV4EP	myaddr;		/* 自分のアドレス	*/
-	/* 実装依存 */
-	} T_TCP_CREP;
+/*  tinet/net/net.h をインクルードしている。*/
 
-#endif	/* of #if defined(SUPPORT_INET4) */
+#else	/* of #if defined(_NET_CFG_BYTE_ORDER) */
 
-/*
- *  動的生成用 UDP 通信端点
- */
+extern uint16_t ntohs (uint16_t net);
+extern uint16_t htons (uint16_t host);
+extern uint32_t ntohl (uint32_t net);
+extern uint32_t htonl (uint32_t host);
 
-#if defined(SUPPORT_INET4)
+#define NTOHS(n)	(n=ntohs(n))
+#define HTONS(h)	(h=htons(h))
+#define NTOHL(n)	(n=ntohl(n))
+#define HTONL(h)	(h=htonl(h))
 
-typedef struct t_udp_ccep {
-	/* 標準 */
-	ATR		cepatr;		/* UDP 通信端点属性		*/
-	T_IPV4EP	myaddr;		/* 自分のアドレス		*/
-	FP		callback;	/* コールバック関数		*/
-	/* 実装依存 */
-	} T_UDP_CCEP;
-
-#endif	/* of #if defined(SUPPORT_INET4) */
-
-/*
- *  IPv4 と IPv6 をコンパイル時に選択するためのマクロ
- */
-
-#if defined(SUPPORT_INET4)
-
-#define T_IN_ADDR			T_IN4_ADDR
-#define T_IPEP				T_IPV4EP
-#define IP_ADDRANY			IPV4_ADDRANY
-
-#define IN_ARE_ADDR_EQUAL(n,h)		(*(n)==*(h))
-#define IN_ARE_NET_ADDR_EQUAL(n,h)	(ntohl(*(n))==*(h))
-#define IN_COPY_TO_NET(d,s)		(*(d)=htonl(*(s)))
-#define IN_COPY_TO_HOST(d,s)		(*(d)=ntohl(*(s)))
-#define IN_IS_ADDR_MULTICAST(a)		IN4_IS_ADDR_MULTICAST(*(a))
-#define IN_IS_NET_ADDR_MULTICAST(a)	IN4_IS_ADDR_MULTICAST(ntohl(*(a)))
-#define IN_IS_ADDR_ANY(a)		(*(a)==IPV4_ADDRANY)
-
-#endif	/* of #if defined(SUPPORT_INET4) */
+#endif	/* of #if defined(_NET_CFG_BYTE_ORDER) */
 
 /*
  *  TINET 独自 API
  */
 
 extern const char *in_strtfn (FN fncd);
-
-#if defined(SUPPORT_INET4)
-
-extern ER in4_add_ifaddr (T_IN4_ADDR addr, T_IN4_ADDR mask);
-extern ER in4_add_route (int_t index, T_IN4_ADDR target,
-                                      T_IN4_ADDR mask, T_IN4_ADDR gateway);
-extern char *ip2str (char *buf, const T_IN4_ADDR *p_ipaddr);
-extern const T_IN4_ADDR *in4_get_ifaddr (int_t index);
-
-#endif	/* of #if defined(SUPPORT_INET4) */
 
 #endif	/* of #ifndef _IN_H_ */

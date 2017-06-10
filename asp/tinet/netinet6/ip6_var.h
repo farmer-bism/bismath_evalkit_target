@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: ip6_var.h,v 1.5 2009/12/24 05:48:16 abe Exp $
+ *  @(#) $Id: ip6_var.h 1.7 2017/6/1 8:49:50 abe $
  */
 
 /*	$FreeBSD: src/sys/netinet6/ip6_var.h,v 1.10 2002/10/16 01:54:45 sam Exp $	*/
@@ -101,8 +101,6 @@
 #ifndef _IP6_VAR_H_
 #define _IP6_VAR_H_
 
-#ifdef SUPPORT_INET6
-
 /*
  *  IPv6 ヘッダ・ペイロードアクセスマクロ
  */
@@ -113,11 +111,12 @@
 #define GET_IP6_SDU(nbuf)		((uint8_t*)((nbuf)->buf) + GET_IF_IP6_HDR_SIZE(nbuf))
 #define GET_IP6_NEXT_HDR(nbuf)		((uint8_t*)((nbuf)->buf) + IF_IP6_HDR_SIZE)
 
-#define GET_IP6_HDR_SIZE(iph)		(get_ip6_hdr_size(iph))
-#define GET_IP6_SDU_SIZE(iph)		(ntohs((iph)->plen))
-#define GET_IF_IP6_HDR_SIZE(nbuf)	(IF_HDR_SIZE + (GET_IP6_HDR_SIZE(GET_IP6_HDR(nbuf))))
+#define GET_IP6_HDR_SIZE(nbuf)		(get_ip6_hdr_size(nbuf))
+#define GET_IP6_SDU_SIZE(nbuf)		(ntohs(GET_IP6_HDR(nbuf)->plen))
+#define GET_IF_IP6_HDR_SIZE(nbuf)	(IF_HDR_SIZE + (GET_IP6_HDR_SIZE(nbuf)))
 
-#define SET_IP6_SDU_SIZE(iph,slen)	((iph)->plen=htons(slen))
+#define SET_IP6_CF(nbuf,cf)		(GET_IP6_HDR(nbuf)->vcf=htonl(IP6_MAKE_VCF(IP6_VCF_V(ntohl(GET_IP6_HDR(nbuf)->vcf)),cf)))
+#define SET_IP6_SDU_SIZE(nbuf,slen)	(GET_IP6_HDR(nbuf)->plen=htons(slen))
 
 /* ip6_output のフラグ */
 
@@ -143,29 +142,10 @@
 #define IP6_OPT_RET_REL		(-2)
 
 /*
- *  IPv4 と IPv6 をコンパイル時に選択するためのマクロ
- */
-
-#define T_TCP_IP_Q_HDR			T_TCP_IP6_Q_HDR
-
-#define IF_IP_HDR_SIZE			IF_IP6_HDR_SIZE
-
-#define GET_IP_HDR(nbuf)		GET_IP6_HDR(nbuf)
-#define GET_IP_SDU(nbuf)		GET_IP6_SDU(nbuf)
-
-#define GET_IP_HDR_SIZE(iph)		GET_IP6_HDR_SIZE(iph)
-#define GET_IP_SDU_SIZE(iph)		GET_IP6_SDU_SIZE(iph)
-#define GET_IF_IP_HDR_SIZE(nbuf)	GET_IF_IP6_HDR_SIZE(nbuf)
-
-#define SET_IP_SDU_SIZE(iph,len)	SET_IP6_SDU_SIZE(iph,len)
-
-#define IP_OUTPUT(nbuf,tmout)		ip6_output(nbuf,0,tmout)
-#define IP_INIT()			ip6_init()
-#define IP_REMOVE_OPTIONS(nbuf)		ip6_remove_exthdrs(nbuf)
-
-/*
  *  IPv6 の MMTU サイズのネットワークバッファ
  */
+
+#if defined(IF_HDR_SIZE)
 
 typedef struct t_net_buf_ipv6_mmtu {
 	uint16_t	len;	/* データの長さ		*/
@@ -180,6 +160,8 @@ typedef struct t_net_buf_ipv6_mmtu {
 	uint8_t		buf[IF_HDR_SIZE + IPV6_MMTU];
 				/* バッファ本体		*/
 	} T_NET_BUF_IPV6_MMTU;
+
+#endif	/* of #if defined(IF_HDR_SIZE) */
 
 /*
  *  65536 オクテットサイズのネットワークバッファ
@@ -257,7 +239,7 @@ typedef struct t_net_buf6_reassm {
  *  TCP の再構成キューにおける IPv6 ヘッダの定義
  */
 
-typedef struct t_tcp_ip6_q_hdr {
+typedef struct t_ip6_tcp_q_hdr {
 	uint8_t vc;		/* Version:        4 bit		*/
 	uint8_t cf;		/* Traffic Class:  8 bit		*/
 			/* Flow Label:     4 bit (20 bit)	*/
@@ -267,7 +249,7 @@ typedef struct t_tcp_ip6_q_hdr {
 	uint8_t hlim;	/* Hop Limit				*/
 	T_IN6_ADDR src;	/* Source Address			*/
 	T_IN6_ADDR dst;	/* Destination Address			*/
-	} T_TCP_IP6_Q_HDR;
+	} T_IP6_TCP_Q_HDR;
 
 #ifdef SUPPORT_MIB
 
@@ -303,13 +285,19 @@ extern T_IN6_IFSTAT in6_ifstat;
 #endif	/* of #ifdef SUPPORT_MIB */
 
 /*
+ *  変数
+ */
+
+extern uint8_t	ip6_defhlim;
+
+/*
  *  関数
  */
 
 extern ER ip6_output (T_NET_BUF *output, uint16_t flags, TMO tmout);
 extern void ip6_init (void);
 extern uint8_t *ip6_get_prev_hdr (T_NET_BUF *nbuf, uint_t off);
-extern uint_t get_ip6_hdr_size (T_IP6_HDR *iph);
+extern uint_t get_ip6_hdr_size (T_NET_BUF *nbuf);
 extern ER_UINT ip6_nexthdr (T_NET_BUF *nbuf, uint_t off, uint_t proto, uint_t *nextp);
 extern ER_UINT ip6_lasthdr (T_NET_BUF *nbuf, uint_t off, uint_t proto, uint_t *nextp);
 extern ER_UINT ip6_unknown_opt (T_NET_BUF *input, uint8_t *opt);
@@ -318,7 +306,5 @@ extern uint_t route6_input (T_NET_BUF **inputp, uint_t *offp, uint_t *nextp);
 extern uint_t frag6_input  (T_NET_BUF **inputp, uint_t *offp, uint_t *nextp);
 extern void frag6_timer (void);
 extern ER ip6_remove_exthdrs (T_NET_BUF *nbuf);
-
-#endif	/* of #ifdef SUPPORT_INET6 */
 
 #endif	/* of #ifndef _IP6_VAR_H_ */

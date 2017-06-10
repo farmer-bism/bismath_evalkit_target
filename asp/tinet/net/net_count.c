@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: net_count.c,v 1.5 2009/12/24 05:42:40 abe Exp $
+ *  @(#) $Id: net_count.c 1.7 2017/6/1 8:49:4 abe $
  */
 
 /*
@@ -119,6 +119,7 @@
 #include <tinet_config.h>
 
 #include <net/net.h>
+#include <net/net_endian.h>
 #include <net/net_count.h>
 
 /*
@@ -140,6 +141,13 @@ T_NET_COUNT_VAL	net_count_ppp_lcp_in_octets;
 T_NET_COUNT_VAL	net_count_ppp_lcp_in_packets;
 
 #endif	/* of #if NET_COUNT_ENABLE & PROTO_FLG_PPP_LCP */
+
+#if NET_COUNT_ENABLE & PROTO_FLG_PPP_IPV6CP
+
+T_NET_COUNT_VAL	net_count_ppp_ipv6cp_in_octets;
+T_NET_COUNT_VAL	net_count_ppp_ipv6cp_in_packets;
+
+#endif	/* of #if NET_COUNT_ENABLE & PROTO_FLG_PPP_IPV6CP */
 
 #if NET_COUNT_ENABLE & PROTO_FLG_PPP_IPCP
 
@@ -189,7 +197,7 @@ T_NET_COUNT_VAL net_count_ether_nic[NC_ETHER_NIC_SIZE];
 
 #endif	/* of #ifdef SUPPORT_ETHER */
 
-#if defined(SUPPORT_INET4)
+#if defined(_IP4_CFG)
 
 #if NET_COUNT_ENABLE & PROTO_FLG_ARP
 
@@ -209,9 +217,9 @@ T_NET_COUNT	net_count_icmp4;
 
 #endif	/* of #if NET_COUNT_ENABLE & PROTO_FLG_ICMP4 */
 
-#endif	/* of #if defined(SUPPORT_INET4) */
+#endif	/* of #if defined(_IP4_CFG) */
 
-#if defined(SUPPORT_INET6)
+#if defined(_IP6_CFG)
 
 #if NET_COUNT_ENABLE & PROTO_FLG_IP6
 
@@ -231,7 +239,7 @@ T_NET_COUNT_VAL	net_count_nd6[NC_ND6_SIZE];
 
 #endif	/* of #if NET_COUNT_ENABLE & PROTO_FLG_ND6 */
 
-#endif	/* of #if defined(SUPPORT_INET6) */
+#endif	/* of #if defined(_IP6_CFG) */
 
 #ifdef SUPPORT_TCP
 

@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: net_rename.h,v 1.5 2009/12/24 05:42:40 abe Exp $
+ *  @(#) $Id: net_rename.h 1.7 2017/6/1 8:49:16 abe $
  */
 
 #ifndef _NET_RENAME_H_
@@ -40,20 +40,22 @@
 
 /* net/ethernet.c */
 
+#define ether_input_task	_tinet_ether_input_task
+#define ether_get_ifnet		_tinet_ether_get_ifnet
+#define ether_in6_resolve_multicast	\
+				_tinet_ether_in6_resolve_multicast
+#define ether_srand		_tinet_ether_srand
+#define ether_output		_tinet_ether_output
+#define	ether_raw_output	_tinet_ether_raw_output
+#define ether_output_task	_tinet_ether_output_task
+
 #define ether_broad_cast_addr	_tinet_ether_broad_cast_addr
 #define ether_ipv4_addr_local	_tinet_ether_ipv4_addr_local
 #define ether_ipv4_addr_local_mask	\
 				_tinet_ether_ipv4_addr_local_mask
 
-#define	ether_raw_output	_tinet_ether_raw_output
-#define ether_output		_tinet_ether_output
 #define ether_in6_ifaddr	_tinet_ether_in6_ifaddr
 #define ether_in6_ifaddr_list	_tinet_ether_in6_ifaddr_list
-#define ether_in6_resolve_multicast	\
-				_tinet_ether_in6_resolve_multicast
-#define ether_input_task	_tinet_ether_input_task
-#define ether_get_ifnet		_tinet_ether_get_ifnet
-#define ether_output_task	_tinet_ether_output_task
 
 /* net/if.c */
 
@@ -92,7 +94,8 @@
 
 /* route_cfg.c */
 
-#define routing_tbl		_tinet_routing_tbl
+#define routing6_tbl		_tinet_routing6_tbl
+#define routing4_tbl		_tinet_routing4_tbl
 
 #ifdef SUPPORT_PPP
 

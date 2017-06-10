@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: icmp6.h,v 1.5.4.1 2015/02/05 02:10:53 abe Exp abe $
+ *  @(#) $Id: icmp6.h 1.7 2017/6/1 8:49:32 abe $
  */
 
 /*	$FreeBSD: src/sys/netinet/icmp6.h,v 1.2.2.3 2001/07/06 05:36:35 sumikawa Exp $	*/
@@ -101,8 +101,6 @@
 #ifndef _IP_ICMP6_H_
 #define _IP_ICMP6_H_
 
-#ifdef SUPPORT_INET6
-
 /*
  *  ICMPv6 ヘッダ
  */
@@ -132,7 +130,7 @@ typedef struct t_icmp6_hdr {
 #define GET_ICMP6_HDR(nbuf,ihoff)	((T_ICMP6_HDR*)((uint8_t*)((nbuf)->buf) + ihoff))
 #define GET_ICMP6_SDU(nbuf,ihoff)	((uint8_t*)((nbuf)->buf) + ihoff + ICMP6_HDR_SIZE)
 
-#define GET_IP6_ICMP6_HDR_SIZE(nbuf)	(GET_IP6_HDR_SIZE(GET_IP6_HDR(nbuf)) + ICMP6_HDR_SIZE)
+#define GET_IP6_ICMP6_HDR_SIZE(nbuf)	(GET_IP6_HDR_SIZE(nbuf) + ICMP6_HDR_SIZE)
 #define GET_IF_IP6_ICMP6_HDR_SIZE(nbuf)	(IF_HDR_SIZE + GET_IP6_ICMP6_HDR_SIZE(nbuf))
 
 /*
@@ -229,7 +227,7 @@ typedef struct t_neighbor_solicit_hdr {
 					((uint8_t*)((nbuf)->buf) + nhoff + NEIGHBOR_SOLICIT_HDR_SIZE)
 
 #define GET_IP6_NEIGHBOR_SOLICIT_HDR_SIZE(nbuf)		\
-					(GET_IP6_HDR_SIZE(GET_IP6_HDR(nbuf)) + NEIGHBOR_SOLICIT_HDR_SIZE)
+					(GET_IP6_HDR_SIZE(nbuf) + NEIGHBOR_SOLICIT_HDR_SIZE)
 #define GET_IF_IP6_NEIGHBOR_SOLICIT_HDR_SIZE(nbuf)	\
 					(GET_IP6_NEIGHBOR_SOLICIT_HDR_SIZE(nbuf) + IF_HDR_SIZE)
 
@@ -260,7 +258,7 @@ typedef struct t_neighbor_advert_hdr {
 					((uint8_t*)((nbuf)->buf) + nhoff + NEIGHBOR_ADVERT_HDR_SIZE)
 
 #define GET_IP6_NEIGHBOR_ADVERT_HDR_SIZE(nbuf)		\
-					(GET_IP6_HDR_SIZE(GET_IP6_HDR(nbuf)) + NEIGHBOR_ADVERT_HDR_SIZE)
+					(GET_IP6_HDR_SIZE(nbuf) + NEIGHBOR_ADVERT_HDR_SIZE)
 #define GET_IF_IP6_NEIGHBOR_ADVERT_HDR_SIZE(nbuf)	\
 					(GET_IP6_NEIGHBOR_ADVERT_HDR_SIZE(nbuf) + IF_HDR_SIZE)
 
@@ -284,6 +282,10 @@ typedef struct t_neighbor_advert_hdr {
 
 /*
  *  ルータ通知
+ *
+ *    RFC4291: IP Version 6 Addressing Architecture
+ *    RFC4941: Privacy Extensions for Stateless Address Autoconfiguration in IPv6
+ *    RFC6106: IPv6 Router Advertisement Options for DNS Configuration
  */
 
 typedef struct t_router_advert_hdr {
@@ -310,7 +312,7 @@ typedef struct t_router_advert_hdr {
 					((uint8_t*)((nbuf)->buf) + nhoff + ROUTER_ADVERT_HDR_SIZE)
 
 #define GET_IP6_ROUTER_ADVERT_HDR_SIZE(nbuf)	\
-					(GET_IP6_HDR_SIZE(GET_IP6_HDR(nbuf)) + ROUTER_ADVERT_HDR_SIZE)
+					(GET_IP6_HDR_SIZE(nbuf) + ROUTER_ADVERT_HDR_SIZE)
 #define GET_IF_IP6_ROUTER_ADVERT_HDR_SIZE(nbuf)	\
 					(GET_IP6_ROUTER_ADVERT_HDR_SIZE(nbuf) + IF_HDR_SIZE)
 
@@ -321,6 +323,17 @@ typedef struct t_router_advert_hdr {
 #define ND_RA_FLAG_MANAGED		UINT_C(0x80)
 #define ND_RA_FLAG_OTHER		UINT_C(0x40)
 #define ND_RA_FLAG_HA			UINT_C(0x20)
+
+/*
+ *  M: RA以外の方法で自動的にアドレスを設定することを許可する。
+ *  O: RA以外の方法で自動的にアドレス以外の情報を設定することをを許可する。
+ *
+ *   M   O
+ *  ON  ON	アドレスとそれ以外の情報をDHCPv6で設定する（statefull）
+ *  ON  OFF	アドレスはDHCPv6で設定するが、それ以外は手動で設定する。
+ *  OFF ON	アドレスは RA で設定するが、それ以外の情報をDHCPv6で設定する（stateless）
+ *  OFF OFF	DHCPv6 は使用しない。
+ */
 
 /*
  *  ルータ要請
@@ -346,7 +359,7 @@ typedef struct t_router_solicit_hdr {
 					((uint8_t*)((nbuf)->buf) + nhoff + ROUTER_SOLICIT_HDR_SIZE)
 
 #define GET_IP6_ROUTER_SOLICIT_HDR_SIZE(nbuf)		\
-					(GET_IP6_HDR_SIZE(GET_IP6_HDR(nbuf)) + ROUTER_SOLICIT_HDR_SIZE)
+					(GET_IP6_HDR_SIZE(nbuf) + ROUTER_SOLICIT_HDR_SIZE)
 #define GET_IF_IP6_ROUTER_SOLICIT_HDR_SIZE(nbuf)	\
 					(GET_IP6_ROUTER_SOLICIT_HDR_SIZE(nbuf) + IF_HDR_SIZE)
 
@@ -478,7 +491,5 @@ extern void icmp6_error (T_NET_BUF *input, uint8_t type, uint8_t code, uint32_t 
 extern void icmp6_echo_reply (T_NET_BUF *input, uint_t ihoff);
 
 #endif	/* of #ifdef ICMP_CFG_CALLBACK_ECHO_REPLY */
-
-#endif	/* of #ifdef SUPPORT_INET6 */
 
 #endif	/* of #ifndef _IP_ICMP6_H_ */

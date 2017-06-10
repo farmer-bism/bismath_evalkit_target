@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: udp_discard_cli.c,v 1.5 2009/12/24 05:44:56 abe Exp $
+ *  @(#) $Id: udp_discard_cli.c 1.7 2017/6/1 8:50:1 abe $
  */
 
 /* 
@@ -55,27 +55,14 @@
 
 #endif	/* of #ifdef TARGET_KERNEL_JSP */
 
-#include <tinet_defs.h>
-#include <tinet_config.h>
-
-#include <net/if.h>
-#include <net/if_ppp.h>
-#include <net/if_loop.h>
-#include <net/ethernet.h>
-#include <net/net.h>
-#include <net/net_var.h>
-#include <net/net_timer.h>
-
 #include <netinet/in.h>
-#include <netinet/ip.h>
-#include <netinet/ip6.h>
-#include <netinet/udp.h>
-#include <netinet/udp_var.h>
 #include <netinet/in_itron.h>
+#include <netinet/ip.h>
+#include <netinet/udp.h>
 
 #include <netapp/netapp.h>
 #include <netapp/netapp_var.h>
-#include <netapp/discard.h>
+#include <netapp/udp_discard_cli.h>
 
 #ifdef USE_UDP_DISCARD_CLI
 
@@ -90,6 +77,12 @@
 #define PAT_BEGIN	' '
 #define PAT_END		'~'
 
+#if defined(SUPPORT_INET6)
+#define API_PROTO		'6'
+#else
+#define API_PROTO		'4'
+#endif
+
 /*
  *  全域変数
  */
@@ -103,7 +96,11 @@ bool_t udp_discard_cli_valid;
 static ER
 send_udp_discard (ID cepid, T_IN_ADDR *ipaddr, uint16_t portno)
 {
-	static char smsg[IF_MTU - IP_UDP_HDR_SIZE];
+#if defined(SUPPORT_INET6)
+	static char smsg[IPV6_MMTU - (IP6_HDR_SIZE + UDP_HDR_SIZE)];
+#else
+	static char smsg[IP4_MSS - (IP4_HDR_SIZE + UDP_HDR_SIZE)];
+#endif
 
 	T_IPEP		dst;
 	ER_UINT		len;
@@ -116,31 +113,31 @@ send_udp_discard (ID cepid, T_IN_ADDR *ipaddr, uint16_t portno)
 	dst.portno = portno;
 
 	p = smsg;
-	for (slen = IF_MTU - IP_UDP_HDR_SIZE; slen > 0; )
+	for (slen = sizeof(smsg); slen > 0; )
 		for (pat = PAT_BEGIN; slen > 0 && pat <= PAT_END; pat ++, slen --)
 			*p ++ = pat;
 
 	get_tim(&time);
-	syslog(LOG_NOTICE, "[UDC:%02d SND] sending:    %6ld, to:   %s.%d",
-	                   cepid, time / SYSTIM_HZ, IP2STR(NULL, &dst.ipaddr), dst.portno);
+	syslog(LOG_NOTICE, "[UDC%c:%02u SND] send:  %7lu, to:   %s.%d",
+	                   API_PROTO, cepid, time / SYSTIM_HZ, IP2STR(NULL, &dst.ipaddr), dst.portno);
 
 	scount = total = 0;
 	udp_discard_cli_valid = true;
-	for (slen = IF_MTU - IP_UDP_HDR_SIZE; udp_discard_cli_valid && slen > 0; slen --) {
+	for (slen = sizeof(smsg); udp_discard_cli_valid && slen > 0; slen --) {
 		scount ++;
 		if ((len = UDP_SND_DAT(cepid, &dst, smsg, slen, TMO_FEVR)) < 0) {
-			syslog(LOG_NOTICE, "[UDC:%02d SND] send error: %s", cepid, itron_strerror(len));
+			syslog(LOG_NOTICE, "[UDC%c:%02u SND] error: %s", API_PROTO, cepid, itron_strerror(len));
 			return len;
 			}
 		else
-			syslog(LOG_NOTICE, "[UDC:%02d SND] send: %4d, %4d", cepid, scount, slen);
+			syslog(LOG_NOTICE, "[UDC%c:%02u SND] send:  %7lu, %4u", API_PROTO, cepid, scount, slen);
 		total += len;
-		dly_tsk(10 * SYSTIM_HZ + net_rand() % (10 * SYSTIM_HZ));
+		dly_tsk(10 * SYSTIM_HZ + netapp_rand() % (10 * SYSTIM_HZ));
 		}
 
 	get_tim(&time);
-	syslog(LOG_NOTICE, "[UDC:%02d SND] finished:   %6ld, snd: %4d,            len: %ld",
-		           cepid, time / SYSTIM_HZ, scount, total);
+	syslog(LOG_NOTICE, "[UDC%c:%02u SND] finsh: %7lu, snd: %4u,            len: %ld",
+		           API_PROTO, cepid, time / SYSTIM_HZ, scount, total);
 	return E_OK;
 	}
 
@@ -157,18 +154,34 @@ udp_discard_cli_task (intptr_t exinf)
 	char		*line;
 	int_t		no;
 	uint16_t	portno;
+	char		apip;
 
 #ifdef USE_UDP_EXTENTIONS
 
+#if defined(SUPPORT_INET6)
+	T_UDP6_CCEP	ccep;
+#else
 	T_UDP_CCEP	ccep;
+#endif
 
 #endif	/* of #ifdef USE_UDP_EXTENTIONS */
+
+#if defined(SUPPORT_INET6)
+	apip = API_PROTO_IPV6;
+#else
+	apip = API_PROTO_IPV4;
+#endif
 
 	get_tid(&tskid);
 	syslog(LOG_NOTICE, "[UDP DISCARD CLI:%d,%d] started.", tskid, (ID)exinf);
 	while (true) {
 		if (rcv_dtq(DTQ_UDP_DISCARD_CLI, (intptr_t*)&line) == E_OK) {
 			line = skip_blanks(GET_IPADDR(&addr, skip_blanks(line)));	/* IP Address */
+
+			if ((line = lookup_ipaddr(&addr, line, apip)) == NULL) {
+				syslog(LOG_NOTICE, "[UDC%c:%02u TSK] unknown host.", (ID)exinf);
+				continue;
+				}
 
 			if ('0' <= *line && *line <= '9') {				/* Port No */
 				line = get_int(&no, line);
@@ -185,16 +198,20 @@ udp_discard_cli_task (intptr_t exinf)
 			ccep.callback = NULL;
 			ccep.myaddr.portno = UDP_PORTANY;
 
+#if defined(SUPPORT_INET6)
+
+			memcpy(&ccep.myaddr.ipaddr, &ipv6_addrany, sizeof(T_IN6_ADDR));
+
+#else	/* #if defined(SUPPORT_INET6) */
+
 #if defined(SUPPORT_INET4)
 			ccep.myaddr.ipaddr = IPV4_ADDRANY;
 #endif
 
-#if defined(SUPPORT_INET6)
-			memcpy(&ccep.myaddr.ipaddr, &ipv6_addrany, sizeof(T_IN6_ADDR));
-#endif
+#endif	/* #if defined(SUPPORT_INET6) */
 
-			if ((error = alloc_udp_cep(&cepid, tskid, &ccep)) != E_OK) {
-				syslog(LOG_NOTICE, "[UDC:%02d TSK] CEP create error: %s", cepid, itron_strerror(error));
+			if ((error = ALLOC_UDP_CEP(&cepid, tskid, &ccep)) != E_OK) {
+				syslog(LOG_NOTICE, "[UDC%c:%02u TSK] CEP create error: %s", API_PROTO, cepid, itron_strerror(error));
 				continue;
 				}
 
@@ -205,12 +222,12 @@ udp_discard_cli_task (intptr_t exinf)
 #endif	/* of #ifdef USE_UDP_EXTENTIONS */
 
 			if ((error = send_udp_discard(cepid, &addr, portno)) != E_OK)
-				syslog(LOG_NOTICE, "[UDC:%02d TSK] error: %s", cepid, itron_strerror(error));
+				syslog(LOG_NOTICE, "[UDC%c:%02u TSK] error: %s", API_PROTO, cepid, itron_strerror(error));
 
 #ifdef USE_UDP_EXTENTIONS
 
-			if ((error = free_udp_cep(cepid, !(error == E_NOEXS || error == E_DLT))) != E_OK)
-				syslog(LOG_NOTICE, "[UDC:%02d TSK] CEP delete error: %s", cepid, itron_strerror(error));
+			if ((error = FREE_UDP_CEP(cepid, !(error == E_NOEXS || error == E_DLT))) != E_OK)
+				syslog(LOG_NOTICE, "[UDC%c:%02u TSK] CEP delete error: %s", API_PROTO, cepid, itron_strerror(error));
 
 #endif	/* of #ifdef USE_UDP_EXTENTIONS */
 

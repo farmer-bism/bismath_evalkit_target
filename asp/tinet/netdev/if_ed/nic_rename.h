@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: nic_rename.h,v 1.5 2009/12/24 05:46:31 abe Exp $
+ *  @(#) $Id: nic_rename.h 1.7 2017/6/1 8:49:53 abe $
  */
 
 #ifndef _NIF_RENAME_H_
@@ -51,12 +51,7 @@
 
 /* config/<cpu>/tinet_cpu_config.c */
 
-#define ed_inter_clear	_tinet_ed_inter_clear
-
-#ifdef SUPPORT_INET6
-
+#define ed_inter_clear		_tinet_ed_inter_clear
 #define ed_addmulti		_tinet_ed_addmulti
-
-#endif	/* of #ifdef SUPPORT_INET6 */
 
 #endif	/* of #ifndef _NIF_RENAME_H_ */

@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: ppp.h,v 1.5 2009/12/24 05:42:40 abe Exp $
+ *  @(#) $Id: ppp.h 1.7 2017/6/1 8:49:17 abe $
  */
 
 /*
@@ -73,15 +73,17 @@
  *  PPP ヘッダのプロトコルフィールドの値
  */
 
-#define PPP_IP		UINT_C(0x0021)		/* IP   */
+#define PPP_IP		UINT_C(0x0021)		/* IPv4		*/
+#define PPP_IPV6	UINT_C(0x0057)		/* IPv6		*/
 
-#define PPP_IPCP	UINT_C(0x8021)		/* IPCP */
-#define PPP_CCP		UINT_C(0x80fd)		/* CCP */
+#define PPP_IPCP	UINT_C(0x8021)		/* IPCP		*/
+#define PPP_IPV6CP	UINT_C(0x8057)		/* IPV6CP	*/
+#define PPP_CCP		UINT_C(0x80fd)		/* CCP		*/
 
-#define PPP_LCP		UINT_C(0xc021)		/* LCP  */
-#define PPP_PAP		UINT_C(0xc023)		/* PAP  */
-#define PPP_LQR		UINT_C(0xc025)		/* LQR  */
-#define PPP_CHAP	UINT_C(0xc223)		/* CHAP */
+#define PPP_LCP		UINT_C(0xc021)		/* LCP		*/
+#define PPP_PAP		UINT_C(0xc023)		/* PAP		*/
+#define PPP_LQR		UINT_C(0xc025)		/* LQR		*/
+#define PPP_CHAP	UINT_C(0xc223)		/* CHAP		*/
 
 #define GET_PPP_HDR(nbuf)	((T_PPP_HDR*)((nbuf)->buf))
 

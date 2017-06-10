@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: ping6.c,v 1.5 2009/12/24 05:44:56 abe Exp $
+ *  @(#) $Id: ping6.c 1.7 2017/6/1 8:49:57 abe $
  */
 
 /* 
@@ -60,32 +60,35 @@
 #include <net/ppp_var.h>
 #include <net/ppp_ipcp.h>
 #include <net/net.h>
+#include <net/net_endian.h>
 #include <net/net_buf.h>
 #include <net/net_timer.h>
 #include <net/net_count.h>
 
 #include <netinet/in.h>
 #include <netinet/in_var.h>
+#include <netinet/ip.h>
+#include <netinet/ip_var.h>
+#include <netinet/ip_icmp.h>
 
-#include <netinet6/in6.h>
-#include <netinet6/in6_var.h>
 #include <netinet6/nd6.h>
 
-#include <netinet/ip6.h>
-#include <netinet6/ip6_var.h>
-#include <netinet/icmp6.h>
-
-#include <net/if6_var.h>
+#include <net/if_var.h>
 
 #ifdef USE_PING
+
+#if defined(SUPPORT_INET6)
 
 /*
  *  変数
  */
 
-static uint16_t	send_icmp6_id = 0;
+#if 0
 static uint16_t	curr_icmp6_id;
 static uint16_t	curr_icmp6_size;
+#endif
+
+static uint16_t	send_icmp6_id = 0;
 static uint16_t	reply_count;
 static SYSTIM	icmp6_start_time;
 
@@ -107,15 +110,13 @@ icmp6_reply_timeout (void *arg)
 void
 icmp6_echo_reply (T_NET_BUF *input, uint_t ihoff)
 {
-	T_IP6_HDR	*ip6h;
-	SYSTIM		time;
+	SYSTIM	time;
 
 	syscall(get_tim(&time));
-	ip6h  = GET_IP6_HDR(input);
-
-	syslog(LOG_NOTICE, "[PING6] reply: %5d [ms] from: %s",
+	untimeout(icmp6_reply_timeout, NULL);
+	syslog(LOG_NOTICE, "[PING6] reply: %5ld [ms] from: %s",
 	                   (time - icmp6_start_time) * 1000 / SYSTIM_HZ,
-	                   ipv62str(NULL, &ip6h->src));
+	                   ipv62str(NULL, &GET_IP6_HDR(input)->src));
 	reply_count ++;
 	}
 
@@ -168,14 +169,18 @@ ping6 (T_IN6_ADDR *addr, uint_t tmo, uint_t size)
 	                        (uint8_t*)icmp6h - output->buf, ICMP6_HDR_SIZE + size);
 
 	/* 応答チェック用の変数を設定する。*/
-	curr_icmp6_id   = send_icmp6_id ++;
-	curr_icmp6_size = size;
-
 	reply_count = 0;
 
+#if 0
+	curr_icmp6_id   = send_icmp6_id ++;
+	curr_icmp6_size = size;
+#endif
+
+#if 0
 	syslog(LOG_NOTICE, "[PING6] send: TMO:%d, SIZE:%d, to: %s, from %s",
 	                   tmo, size,
 	                   ipv62str(NULL, addr), ipv62str(NULL, &ia->addr));
+#endif
 
 	/* 送信後、現在の時間を記憶し、タイムアウトを設定する。*/
 	ip6_output(output, ipflags, TMO_FEVR);
@@ -186,5 +191,7 @@ ping6 (T_IN6_ADDR *addr, uint_t tmo, uint_t size)
 	timeout(icmp6_reply_timeout, NULL, tmo * NET_TIMER_HZ);
 
 	}
+
+#endif	/* of #if defined(SUPPORT_INET6) */
 
 #endif	/* of #ifdef USE_PING */

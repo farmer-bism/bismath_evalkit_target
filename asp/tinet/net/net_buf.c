@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: net_buf.c,v 1.5.4.1 2015/02/05 02:09:13 abe Exp abe $
+ *  @(#) $Id: net_buf.c 1.7 2017/6/1 8:49:3 abe $
  */
 
 #ifdef TARGET_KERNEL_ASP
@@ -56,18 +56,15 @@
 #include <net/if_ppp.h>
 #include <net/ethernet.h>
 #include <net/net.h>
+#include <net/net_endian.h>
 #include <net/net_buf.h>
 #include <net/net_count.h>
 
 #include <netinet/in.h>
 #include <netinet/in_var.h>
-#include <netinet6/in6.h>
 #include <netinet/ip.h>
 #include <netinet/ip_var.h>
-#include <netinet/ip6.h>
-#include <netinet6/ip6_var.h>
 #include <netinet/tcp.h>
-#include <netinet/tcp_timer.h>
 #include <netinet/tcp_var.h>
 
 /*
@@ -97,6 +94,7 @@ static T_NET_BUF_ENTRY net_buf_table[] = {
 #endif	/* of #if defined(NUM_MPF_NET_BUF6_65536) && NUM_MPF_NET_BUF6_65536 > 0 */
 
 #if defined(NUM_MPF_NET_BUF6_REASSM) && NUM_MPF_NET_BUF6_REASSM > 0
+
 	{
 		MPF_NET_BUF_REASSM,
 		IP6_CFG_FRAG_REASSM_SIZE,
@@ -108,9 +106,11 @@ static T_NET_BUF_ENTRY net_buf_table[] = {
 #endif	/* of #if NET_COUNT_ENABLE & PROTO_FLG_NET_BUF */
 
 		},
-#endif	/* of #if defined(NUM_MPF_NET_BUF6_REASSM) && NUM_MPF_NET_BUF6_REASSM > 0 */
+
+#else	/* of #if defined(NUM_MPF_NET_BUF6_REASSM) && NUM_MPF_NET_BUF6_REASSM > 0 */
 
 #if defined(NUM_MPF_NET_BUF4_REASSM) && NUM_MPF_NET_BUF4_REASSM > 0
+
 	{
 		MPF_NET_BUF_REASSM,
 		IP4_CFG_FRAG_REASSM_SIZE,
@@ -122,7 +122,10 @@ static T_NET_BUF_ENTRY net_buf_table[] = {
 #endif	/* of #if NET_COUNT_ENABLE & PROTO_FLG_NET_BUF */
 
 		},
+
 #endif	/* of #if defined(NUM_MPF_NET_BUF4_REASSM) && NUM_MPF_NET_BUF4_REASSM > 0 */
+
+#endif	/* of #if defined(NUM_MPF_NET_BUF6_REASSM) && NUM_MPF_NET_BUF6_REASSM > 0 */
 
 #if defined(NUM_MPF_NET_BUF_IF_PDU) && NUM_MPF_NET_BUF_IF_PDU > 0
 	{
@@ -222,7 +225,7 @@ static T_NET_BUF_ENTRY net_buf_table[] = {
 		},
 #endif	/* of #if defined(NUM_MPF_NET_BUF_128) && NUM_MPF_NET_BUF_128 > 0 */
 
-#if defined(SUPPORT_INET4)
+#if defined(_IP4_CFG)
 
 #if defined(NUM_MPF_NET_BUF_64) && NUM_MPF_NET_BUF_64 > 0
 	{
@@ -238,7 +241,7 @@ static T_NET_BUF_ENTRY net_buf_table[] = {
 		},
 #endif	/* of #if defined(NUM_MPF_NET_BUF_64) && NUM_MPF_NET_BUF_64 > 0 */
 
-#endif	/* of #if defined(SUPPORT_INET4) */
+#endif	/* of #if defined(_IP4_CFG) */
 
 #if defined(NUM_MPF_NET_BUF_CSEG) && NUM_MPF_NET_BUF_CSEG > 0
 	{
@@ -307,7 +310,11 @@ tget_net_buf_up (T_NET_BUF **buf, uint_t minlen, uint_t maxlen, TMO tmout)
 			(*buf)->idix  = (uint8_t)ix;
 			(*buf)->len   = (uint16_t)minlen;
 			(*buf)->flags = 0;
+
+#if NET_COUNT_ENABLE & PROTO_FLG_NET_BUF
 			NET_COUNT_NET_BUF(net_buf_table[ix].allocs, 1);
+			net_buf_table[ix].busies ++;
+#endif
 			return error;
 			}
 		else if (ix == 0 || net_buf_table[ix].size > maxlen)
@@ -315,7 +322,8 @@ tget_net_buf_up (T_NET_BUF **buf, uint_t minlen, uint_t maxlen, TMO tmout)
 		ix --;
 		}
 
-	syslog(LOG_WARNING, "[NET BUF] busy, index=%d, len=%4d.", (uint16_t)req_ix, minlen);
+	syslog(LOG_WARNING, "[BUF] busy, up   index:%d,%d[%4d], len:%4d.",
+	                    (uint16_t)req_ix, ix, net_buf_table[req_ix].size, minlen);
 	*buf = NULL;
 	NET_COUNT_NET_BUF(net_buf_table[req_ix].errors, 1);
 	return error;
@@ -345,7 +353,11 @@ tget_net_buf_down (T_NET_BUF **buf, uint_t minlen, uint_t maxlen, TMO tmout)
 			(*buf)->idix  = (uint8_t)ix;
 			(*buf)->len   = net_buf_table[ix].size;
 			(*buf)->flags = 0;
+
+#if NET_COUNT_ENABLE & PROTO_FLG_NET_BUF
 			NET_COUNT_NET_BUF(net_buf_table[ix].allocs, 1);
+			net_buf_table[ix].busies ++;
+#endif
 			return error;
 			}
 		ix ++;
@@ -353,7 +365,8 @@ tget_net_buf_down (T_NET_BUF **buf, uint_t minlen, uint_t maxlen, TMO tmout)
 			break;
 		}
 
-	syslog(LOG_WARNING, "[NET BUF] busy, index=%d, len=%4d.", (uint16_t)req_ix, maxlen);
+	syslog(LOG_WARNING, "[BUF] busy, down index:%d,%d[%4d], len:%4d.",
+	                    (uint16_t)req_ix, ix, net_buf_table[req_ix].size, minlen);
 	*buf = NULL;
 	NET_COUNT_NET_BUF(net_buf_table[req_ix].errors, 1);
 	return error;
@@ -379,12 +392,16 @@ tget_net_buf_ex (T_NET_BUF **buf, uint_t minlen, uint_t maxlen, ATR nbatr, TMO t
 		return E_PAR;
 		}
 
+#if defined(SUPPORT_TCP) && defined(TCP_CFG_SWBUF_CSAVE)
+
 	/* TCP で予約したネットワークバッファを取り出す。*/
 	if ((nbatr & NBA_RESERVE_TCP) != 0) {
 		if ((*buf = TCP_PULL_RES_NBUF(nbatr)) != NULL) {
 			return E_OK;
 			}
 		}
+
+#endif	/* of #if defined(SUPPORT_TCP) && defined(TCP_CFG_SWBUF_CSAVE) */
 
 	if ((nbatr & NBA_SEARCH_DESCENT) != 0)
 		return tget_net_buf_down(buf, minlen, maxlen, tmout);
@@ -422,13 +439,22 @@ rel_net_buf (T_NET_BUF *buf)
 		}
 	else {
 
+#if defined(SUPPORT_TCP) && defined(TCP_CFG_SWBUF_CSAVE)
+
 		/* TCP で、ネットワークバッファを予約する。*/
 		if (TCP_PUSH_RES_NBUF(buf) == NULL)
 			return E_OK;
 
+#endif	/* of #if defined(SUPPORT_TCP) && defined(TCP_CFG_SWBUF_CSAVE) */
+
 		/* 固定メモリプールに返す。*/
-		if ((error = rel_mpf((ID)net_buf_table[buf->idix].index, buf)) != E_OK)
+
+#if NET_COUNT_ENABLE & PROTO_FLG_NET_BUF
+		net_buf_table[buf->idix].busies --;
+#endif
+		if ((error = rel_mpf((ID)net_buf_table[buf->idix].index, buf)) != E_OK) {
 			syslog(LOG_WARNING, "[NET BUF] %s, ID=%d.", itron_strerror(error), buf->idix);
+			}
 		}
 	return error;
 	}

@@ -10,10 +10,14 @@ NET_IF = @(NET_IF)
 
 NET_DEV = @(NET_DEV)
 
-#  ネットワーク層の選択、何れか一つ選択する。
+#  ネットワーク層の選択
 
-@(SUPPORT_INET4)
 @(SUPPORT_INET6)
+@(SUPPORT_INET4)
+
+#  API に組込む機能の選択
+
+@(API_CFG_IP4MAPPED_ADDR)
 
 #  トランスポート層の選択
 

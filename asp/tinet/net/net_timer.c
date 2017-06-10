@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: net_timer.c,v 1.5.4.1 2015/02/05 02:09:13 abe Exp abe $
+ *  @(#) $Id: net_timer.c 1.7 2017/6/1 8:49:5 abe $
  */
 
 /*
@@ -89,15 +89,14 @@
 #include <net/if_loop.h>
 #include <net/ethernet.h>
 #include <net/net.h>
+#include <net/net_endian.h>
 #include <net/net_buf.h>
 #include <net/net_timer.h>
 
 #include <netinet/in.h>
+#include <netinet/in_var.h>
 #include <netinet/ip.h>
 #include <netinet/ip_var.h>
-#include <netinet/ip6.h>
-#include <netinet6/ip6_var.h>
-#include <netinet/tcp_timer.h>
 
 /*
  *  変数
@@ -161,7 +160,7 @@ untimeout (callout_func func, void *arg)
 static char const tinet_banner[] =
 "\n"
 "TINET %d.%d.%d (" __DATE__ ", " __TIME__ ")\n"
-"Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering\n"
+"Copyright (C) 2001-2012 by Dep. of Computer Science and Engineering\n"
 "                    Tomakomai National College of Technology, JAPAN\n";
 
 void
@@ -180,7 +179,14 @@ net_timer_task(intptr_t exinf)
 	syslog(LOG_NOTICE, "[NET/TIMER:%d] started.", tskid);
 
 	/* IP を初期化する。*/
-	IP_INIT();
+
+#if defined(_IP6_CFG)
+	ip6_init();
+#endif
+
+#if defined(_IP4_CFG)
+	ip_init();
+#endif
 
 #ifdef SUPPORT_TCP
 

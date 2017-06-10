@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: in6_var.h,v 1.5 2009/12/24 05:48:16 abe Exp $
+ *  @(#) $Id: in6_var.h 1.7 2017/6/1 8:49:50 abe $
  */
 
 /*	$FreeBSD: src/sys/netinet6/in6_var.h,v 1.3.2.2 2001/07/03 11:01:52 ume Exp $	*/
@@ -101,7 +101,72 @@
 #ifndef _IN6_VAR_H_
 #define _IN6_VAR_H_
 
-#ifdef SUPPORT_INET6
+/*
+ *  アドレスの定義
+ */
+
+#ifdef _NET_CFG_BYTE_ORDER
+
+#if _NET_CFG_BYTE_ORDER == _NET_CFG_BIG_ENDIAN
+
+#define IPV6_ADDR_INT32_ONE		ULONG_C(0x00000001)
+#define IPV6_ADDR_INT32_TWO		ULONG_C(0x00000002)
+#define IPV6_ADDR_INT32_0000FFFF	ULONG_C(0x0000ffff)
+#define IPV6_ADDR_INT32_MNL		ULONG_C(0xff010000)
+#define IPV6_ADDR_INT32_MLL		ULONG_C(0xff020000)
+#define IPV6_ADDR_INT32_ULL		ULONG_C(0xfe800000)
+#define IPV6_ADDR_INT16_ULL		UINT_C(0xfe80)
+#define IPV6_ADDR_INT16_USL		UINT_C(0xfec0)
+#define IPV6_ADDR_INT16_MLL		UINT_C(0xff02)
+
+#elif _NET_CFG_BYTE_ORDER == _NET_CFG_LITTLE_ENDIAN
+
+#define IPV6_ADDR_INT32_ONE		ULONG_C(0x01000000)
+#define IPV6_ADDR_INT32_TWO		ULONG_C(0x02000000)
+#define IPV6_ADDR_INT32_0000FFFF	ULONG_C(0xffff0000)
+#define IPV6_ADDR_INT32_MNL		ULONG_C(0x000001ff)
+#define IPV6_ADDR_INT32_MLL		ULONG_C(0x000002ff)
+#define IPV6_ADDR_INT32_ULL		ULONG_C(0x000080fe)
+#define IPV6_ADDR_INT16_ULL		UINT_C(0x80fe)
+#define IPV6_ADDR_INT16_USL		UINT_C(0xc0fe)
+#define IPV6_ADDR_INT16_MLL		UINT_C(0x02ff)
+
+#endif	/* #if _NET_CFG_BYTE_ORDER == _NET_CFG_BIG_ENDIAN */
+
+#endif	/* of #ifdef _NET_CFG_BYTE_ORDER */
+
+/*
+ *  特別なアドレスのチェック
+ */
+
+/* IPv4 互換 */
+
+#ifdef _NET_CFG_BYTE_ORDER
+#define IN6_IS_ADDR_V4COMPAT(a)		\
+	(memcmp((void *)(a), (void *)&in6_addr_unspecified, sizeof(T_IN6_ADDR) - 4) == 0 && \
+	 (a)->s6_addr32[3] > IPV6_ADDR_INT32_ONE)
+#endif
+
+/* IPv4 射影 */
+
+#ifdef _NET_CFG_BYTE_ORDER
+#define IN6_IS_ADDR_V4MAPPED(a)		\
+	(((a)->s6_addr32[0] == ULONG_C(0x00000000)) && \
+	 ((a)->s6_addr32[1] == ULONG_C(0x00000000)) && \
+	 ((a)->s6_addr32[2] == IPV6_ADDR_INT32_0000FFFF))
+#endif
+
+/* 要請マルチキャスト */
+
+#ifdef _NET_CFG_BYTE_ORDER
+#define IN6_IS_ADDR_NS_MULTICAST(a)	\
+	(((a)->s6_addr32[0] == IPV6_ADDR_INT32_MLL) && \
+	 ((a)->s6_addr32[1] == ULONG_C(0x00000000)) && \
+	 ((a)->s6_addr32[2] == IPV6_ADDR_INT32_ONE) && \
+	 ((a)->s6_addr8[12] == UINT_C(0xff)))
+#endif
+
+#ifndef _MACRO_ONLY
 
 /*
  *  アドレス有効時間構造体
@@ -196,10 +261,6 @@ typedef struct t_in6_ifaddr {
 #define MAX_IN6_MADDR_CNT		MAX_IF_MADDR_CNT
 						/* IPv6 マルチキャストアドレス配列の最大サイズ	*/
 
-/*
- *  ルーティングの制御
- */
-
 /* ルーティング表エントリ構造体 */
 
 typedef struct t_in6_rtentry {
@@ -230,19 +291,10 @@ typedef struct t_in6_hostcache_entry {
 #define IN6_IS_HOSTCACHE_BUSY(e)	(!IN6_IS_HOSTCACHE_FREE(e))
 
 /*
- *  IPv4 と IPv6 をコンパイル時に選択するためのマクロ
+ *  ルーティング表
  */
 
-#define IN_SET_HEADER(nbuf,len,dst,src,next,hlim)	\
-					in6_set_header(nbuf,len,dst,src,next,hlim)
-#define IN_GET_DATAGRAM(nbuf,len,maxlen,dst,src,next,hlim,nbatr,tmout)	\
-					in6_get_datagram(nbuf,len,maxlen,dst,src,next,hlim,nbatr,tmout)
-#define IN_CKSUM(nbuf,proto,off,len)	in6_cksum(nbuf,proto,off,len)
-#define IN_IS_DSTADDR_ACCEPT(myaddr,dstaddr)			\
-					in6_is_dstaddr_accept(myaddr,dstaddr)
-#define IN_IFAWITHIFP(ifp,dst)		in6_ifawithifp(ifp,dst)
-#define T_IN_IFADDR			T_IN6_IFADDR
-#define T_IN_RTENTRY			T_IN6_RTENTRY
+extern T_IN6_RTENTRY routing6_tbl[];
 
 /*
  *  前方参照
@@ -263,45 +315,55 @@ typedef struct t_ifnet T_IFNET;
 extern uint32_t linkmtu;
 
 /*
+ *  関数シミュレーションマクロ
+ */
+
+#define IN6_COPY_TO_HOST(dst,nbuf)	memcpy(dst,&GET_IP6_HDR(nbuf)->src,sizeof(T_IN6_ADDR))
+#define INN6_IS_DSTADDR_ACCEPT(addr,nbuf)	\
+					in6_is_dstaddr_accept(addr,&GET_IP6_HDR(nbuf)->dst)
+
+/*
  *  関数
  */
 
 extern void in6_ifainit (void);
-extern int_t in6_addr2maix (T_IN6_ADDR *addr);
-extern ER in6_update_ifa (T_IFNET *ifp, T_IN6_IFADDR *ia, T_IN6_ADDR *addr,
+extern int_t in6_addr2maix (const T_IN6_ADDR *addr);
+extern ER in6_update_ifa (T_IFNET *ifp, T_IN6_IFADDR *ia, const T_IN6_ADDR *addr,
                           uint_t prefix_len, uint32_t vltime, uint32_t pltime,
                           int_t router_index, int_t prefix_index, uint_t flags);
 extern ER in6_set_header (T_NET_BUF *nbuf, uint_t len,
-                          T_IN6_ADDR *dstaddr, T_IN6_ADDR *srcaddr,
+                          const T_IN6_ADDR *dstaddr, const T_IN6_ADDR *srcaddr,
                           uint8_t next, uint8_t hlim);
 extern ER in6_get_datagram (T_NET_BUF **nbuf, uint_t len, uint_t maxlen,
-                            T_IN6_ADDR *dstaddr, T_IN6_ADDR *srcaddr,
+                            const T_IN6_ADDR *dstaddr, const T_IN6_ADDR *srcaddr,
                             uint8_t next, uint8_t hlim, ATR nbatr, TMO tmout);
 extern uint16_t in6_cksum (T_NET_BUF *nbuf, uint8_t proto, uint_t off, uint_t len);
 extern T_IN6_IFADDR *in6ifa_ifpwithix (T_IFNET *ifp, int_t ix);
 extern T_IN6_IFADDR *in6ifa_ifpwithrtrix (T_IFNET *ifp, int_t rtr_ix);
-extern T_IN6_IFADDR *in6_ifawithifp (T_IFNET *ifp, T_IN6_ADDR *dst);
+extern T_IN6_IFADDR *in6_ifawithifp (T_IFNET *ifp, const T_IN6_ADDR *dst);
+extern const T_IN6_ADDR *in6_addrwithifp (T_IFNET *ifp, T_IN6_ADDR *src, const T_IN6_ADDR *dst);
 extern void ip6_input (T_NET_BUF *input);
-extern T_IN6_IFADDR *in6_lookup_ifaddr (T_IFNET *ifp, T_IN6_ADDR *addr);
-extern bool_t in6_lookup_multi (T_IFNET *ifp, T_IN6_ADDR *maddr);
-extern bool_t in6_is_dstaddr_accept (T_IN6_ADDR *myaddr, T_IN6_ADDR *dstaddr);
-extern T_IN6_ADDR *in6_rtalloc (T_IFNET *ifp, T_IN6_ADDR *dst);
+extern T_IN6_IFADDR *in6_lookup_ifaddr (T_IFNET *ifp, const T_IN6_ADDR *addr);
+extern bool_t in6_lookup_multi (T_IFNET *ifp, const T_IN6_ADDR *maddr);
+extern bool_t in6_is_dstaddr_accept (const T_IN6_ADDR *myaddr, const T_IN6_ADDR *dstaddr);
+extern bool_t inn6_is_dstaddr_accept (const T_IN6_ADDR *myaddr, T_NET_BUF *input);
+extern const T_IN6_ADDR *in6_rtalloc (T_IFNET *ifp, const T_IN6_ADDR *dst);
 extern int_t in6_if2idlen (T_IFNET *ifp);
-extern int_t in6_addr2ifaix (T_IN6_ADDR *addr);
+extern int_t in6_addr2ifaix (const T_IN6_ADDR *addr);
 extern void in6_plen2pmask (T_IN6_ADDR *mask, uint_t prefix_len);
-extern bool_t in6_are_prefix_equal (T_IN6_ADDR *addr, T_IN6_ADDR *prefix,
+extern bool_t in6_are_prefix_equal (const T_IN6_ADDR *addr, const T_IN6_ADDR *prefix,
                                   uint_t prefix_len);
 extern void in6_ifaddr_timer (T_IFNET *ifp);
-extern T_IN6_RTENTRY *in6_gateway_lookup (T_IN6_ADDR *src);
-extern void in6_rtredirect (T_IN6_ADDR *gateway, T_IN6_ADDR *target,
+extern T_IN6_RTENTRY *in6_gateway_lookup (const T_IN6_ADDR *src);
+extern void in6_rtredirect (const T_IN6_ADDR *gateway, const T_IN6_ADDR *target,
                             uint_t prefix_len, uint8_t flags, uint32_t tmo);
 extern void in6_init (void);
 extern void in6_if_up (T_IFNET *ifp);
 extern void in6_hostcache_update (T_IN6_ADDR *dst, uint32_t mtu);
-extern uint32_t in6_hostcache_getmtu (T_IN6_ADDR *dst);
-extern uint_t in6_addrscope (T_IN6_ADDR *addr);
+extern uint32_t in6_hostcache_getmtu (const T_IN6_ADDR *dst);
+extern uint_t in6_addrscope (const T_IN6_ADDR *addr);
 extern const T_NET_BUF**ip6_get_frag_queue (void);
 
-#endif	/* of #ifdef SUPPORT_INET6 */
+#endif	/* of #ifndef _MACRO_ONLY */
 
 #endif	/* of #ifndef _IN6_VAR_H_ */

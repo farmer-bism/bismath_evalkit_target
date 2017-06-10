@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: if.c,v 1.5 2009/12/24 05:42:40 abe Exp $
+ *  @(#) $Id: if.c 1.7 2017/6/1 8:49:2 abe $
  */
 
 /*
@@ -85,15 +85,21 @@
 #include <tinet_config.h>
 
 #include <net/if.h>
+#include <net/if_ppp.h>
+#include <net/if_loop.h>
 #include <net/ethernet.h>
 #include <net/if_arp.h>
 #include <net/net.h>
+#include <net/net_endian.h>
 #include <net/net_timer.h>
+
+#include <netinet/in.h>
+#include <netinet/in_var.h>
 
 #include <netinet6/in6.h>
 #include <netinet6/in6_var.h>
 
-#include <net/if6_var.h>
+#include <net/if_var.h>
 
 #ifdef SUPPORT_ETHER
 
@@ -132,7 +138,9 @@ ifinit (void)
 	timeout(if_slowtimo, NULL, IF_TIMER_TMO);
 	}
 
-#ifdef SUPPORT_INET6
+#endif /* of #ifdef SUPPORT_ETHER */
+
+#ifdef _IP6_CFG
 
 /*
  *  if_addmulti -- マルチキャストアドレスの登録
@@ -141,6 +149,8 @@ ifinit (void)
 ER
 if_addmulti (T_IFNET *ifp, void *maddr, uint8_t type)
 {
+#if MAX_IF_MADDR_CNT > 0
+
 	T_IF_ADDR	llmaddr;
 	ER		error = E_OK;
 	int_t		ix;
@@ -151,7 +161,7 @@ if_addmulti (T_IFNET *ifp, void *maddr, uint8_t type)
 			return E_PAR;
 
 		/* IPv6 マルチキャストアドレスを登録する。*/
-		ifp->in_maddrs[ix] = *(T_IN6_ADDR*)maddr;
+		ifp->in6_maddrs[ix] = *(T_IN6_ADDR*)maddr;
 
 		/* インタフェースのアドレスに変換し、登録する。*/
 		error = IF_IN6_RESOLVE_MULTICAST(&llmaddr, (T_IN6_ADDR*)maddr);
@@ -161,8 +171,12 @@ if_addmulti (T_IFNET *ifp, void *maddr, uint8_t type)
 		}
 
 	return IF_ADDMULTI(ifp->ic);
+
+#else	/* of #if MAX_IF_MADDR_CNT > 0 */
+
+	return E_OK;
+
+#endif	/* of #if MAX_IF_MADDR_CNT > 0 */
 	}
 
-#endif	/* of #ifdef SUPPORT_INET6 */
-
-#endif /* of #ifdef SUPPORT_ETHER */
+#endif	/* of #ifdef _IP6_CFG */

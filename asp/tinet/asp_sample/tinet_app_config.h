@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: tinet_app_config.h,v 1.5.4.1 2015/02/05 02:08:29 abe Exp abe $
+ *  @(#) $Id: tinet_app_config.h 1.7 2017/6/1 8:50:37 abe $
  */
 
 #ifndef _TINET_APP_CONFIG_H_
@@ -61,14 +61,6 @@
 /* TCP に関する定義 */
 
 /*
- *  TCPの能動オープンのみサポートすることを指定する。
- */
-
-#ifdef UNDEF_TCP_CFG_PASSIVE_OPEN
-#undef TCP_CFG_PASSIVE_OPEN
-#endif
-
-/*
  *  TCP 通信端点の送受信ウィンドバッファの省コピー機能
  *    注意: Makefile で指定している。
  */
@@ -96,13 +88,17 @@
 
 #ifdef USE_TCP_MSS_SEG
 
+#ifdef SUPPORT_INET6
+
+#define TCP_CFG_SWBUF_CSAVE_MAX_SIZE	(IF_HDR_SIZE + IPV6_MMTU)	/* 最大サイズ */
+
+#else	/* of #ifdef SUPPORT_INET6 */
+
 #ifdef SUPPORT_INET4
 #define TCP_CFG_SWBUF_CSAVE_MAX_SIZE	(IF_HDR_SIZE + IP4_MSS)		/* 最大サイズ */
 #endif
 
-#ifdef SUPPORT_INET6
-#define TCP_CFG_SWBUF_CSAVE_MAX_SIZE	(IF_HDR_SIZE + IPV6_MMTU)	/* 最大サイズ */
-#endif
+#endif	/* of #ifdef SUPPORT_INET6 */
 
 #else	/* of #ifdef USE_TCP_MSS_SEG */
 
@@ -133,13 +129,17 @@
 #undef MAX_TCP_SND_SEG
 #endif
 
+#ifdef SUPPORT_INET6
+
+#define MAX_TCP_SND_SEG			TCP6_MSS
+
+#else	/* of #ifdef SUPPORT_INET6 */
+
 #ifdef SUPPORT_INET4
 #define MAX_TCP_SND_SEG			TCP_MSS
 #endif
 
-#ifdef SUPPORT_INET6
-#define MAX_TCP_SND_SEG			TCP6_MSS
-#endif
+#endif	/* of #ifdef SUPPORT_INET6 */
 
 #endif	/* of #ifdef USE_TCP_MSS_SEG */
 
@@ -153,13 +153,17 @@
 #undef DEF_TCP_RCV_SEG
 #endif
 
+#ifdef SUPPORT_INET6
+
+#define DEF_TCP_RCV_SEG			TCP6_MSS
+
+#else	/* of #ifdef SUPPORT_INET6 */
+
 #ifdef SUPPORT_INET4
 #define DEF_TCP_RCV_SEG			TCP_MSS
 #endif
 
-#ifdef SUPPORT_INET6
-#define DEF_TCP_RCV_SEG			TCP6_MSS
-#endif
+#endif	/* of #ifdef SUPPORT_INET6 */
 
 #endif	/* of #ifdef USE_TCP_MSS_SEG */
 
@@ -231,9 +235,30 @@
  */
 //#define UDP_CFG_EXTENTIONS
 
-/* IPv4 に関する定義 */
+/* IPv6 に関する定義 */
 
-#ifdef SUPPORT_INET4
+#ifdef SUPPORT_PPP
+
+#define NUM_IN6_STATIC_ROUTE_ENTRY	0
+#define NUM_IN6_REDIRECT_ROUTE_ENTRY	0
+
+#endif	/* of #ifdef SUPPORT_PPP */
+
+#ifdef SUPPORT_LOOP
+
+#define NUM_IN6_STATIC_ROUTE_ENTRY	0
+#define NUM_IN6_REDIRECT_ROUTE_ENTRY	0
+
+#endif	/* of #ifdef SUPPORT_LOOP */
+
+#ifdef SUPPORT_ETHER
+
+#define NUM_IN6_STATIC_ROUTE_ENTRY	0
+#define NUM_IN6_REDIRECT_ROUTE_ENTRY	1
+
+#endif	/* of #ifdef SUPPORT_ETHER */
+
+/* IPv4 に関する定義 */
 
 #ifdef SUPPORT_PPP
 
@@ -249,67 +274,38 @@
 #define IPV4_ADDR_REMOTE		MAKE_IPV4_ADDR(0,0,0,0)		/* 相手に割り当ててもらう場合	*/
 #endif
 
-#define NUM_STATIC_ROUTE_ENTRY		1
-#define NUM_REDIRECT_ROUTE_ENTRY	0
+#define NUM_IN4_STATIC_ROUTE_ENTRY	1
+#define NUM_IN4_REDIRECT_ROUTE_ENTRY	0
 
 #endif	/* of #ifdef SUPPORT_PPP */
 
 #ifdef SUPPORT_ETHER
 
-#ifdef DHCP_CFG
+#ifdef DHCP4_CLI_CFG
 
 #define IPV4_ADDR_LOCAL			MAKE_IPV4_ADDR(0,0,0,0)
 #define IPV4_ADDR_LOCAL_MASK		MAKE_IPV4_ADDR(0,0,0,0)
 #define IPV4_ADDR_DEFAULT_GW		MAKE_IPV4_ADDR(0,0,0,0)
 
-#else	/* of #ifdef DHCP_CFG */
+#else	/* of #ifdef DHCP4_CLI_CFG */
 
-#define IPV4_ADDR_LOCAL			MAKE_IPV4_ADDR(172,25,129,205)
+#define IPV4_ADDR_LOCAL			MAKE_IPV4_ADDR(172,25,129,200)
 #define IPV4_ADDR_LOCAL_MASK		MAKE_IPV4_ADDR(255,255,255,0)
 #define IPV4_ADDR_DEFAULT_GW		MAKE_IPV4_ADDR(172,25,129,140)
 
-#endif	/* of #ifdef DHCP_CFG */
+#endif	/* of #ifdef DHCP4_CLI_CFG */
 
-#define NUM_STATIC_ROUTE_ENTRY		3
-#define NUM_REDIRECT_ROUTE_ENTRY	1
+#define NUM_IN4_STATIC_ROUTE_ENTRY	3
+#define NUM_IN4_REDIRECT_ROUTE_ENTRY	1
 
 #endif	/* of #ifdef SUPPORT_ETHER */
 
 #ifdef SUPPORT_LOOP
 
-#define NUM_STATIC_ROUTE_ENTRY		1
-#define NUM_REDIRECT_ROUTE_ENTRY	0
+#define NUM_IN4_STATIC_ROUTE_ENTRY	1
+#define NUM_IN4_REDIRECT_ROUTE_ENTRY	0
 
 #endif	/* of #ifdef SUPPORT_LOOP */
-
-#endif	/* of #ifdef SUPPORT_INET4 */
-
-/* IPv6 に関する定義 */
-
-#ifdef SUPPORT_INET6
-
-#ifdef SUPPORT_PPP
-
-#define NUM_STATIC_ROUTE_ENTRY		0
-#define NUM_REDIRECT_ROUTE_ENTRY	0
-
-#endif	/* of #ifdef SUPPORT_PPP */
-
-#ifdef SUPPORT_LOOP
-
-#define NUM_STATIC_ROUTE_ENTRY		0
-#define NUM_REDIRECT_ROUTE_ENTRY	0
-
-#endif	/* of #ifdef SUPPORT_LOOP */
-
-#ifdef SUPPORT_ETHER
-
-#define NUM_STATIC_ROUTE_ENTRY		0
-#define NUM_REDIRECT_ROUTE_ENTRY	1
-
-#endif	/* of #ifdef SUPPORT_ETHER */
-
-#endif	/* of #ifdef SUPPORT_INET6 */
 
 /*
  *  データリンク層 (ネットワークインタフェース) に関する定義
@@ -578,9 +574,9 @@
 #else	/* of #ifdef USE_TCP_MSS_SEG */
 
 #if (defined(TCP_CFG_RWBUF_CSAVE) || defined(TCP_CFG_SWBUF_CSAVE)) && defined(USE_COPYSAVE_API)
-#define NUM_MPF_NET_BUF_IF_PDU		6
+#define NUM_MPF_NET_BUF_IF_PDU		9
 #else
-#define NUM_MPF_NET_BUF_IF_PDU		5
+#define NUM_MPF_NET_BUF_IF_PDU		8
 #endif
 
 #endif	/* of #ifdef USE_TCP_MSS_SEG */
@@ -612,5 +608,40 @@
 #endif	/* of ifdef NET_BUF_CFG_LONG_LEN */
 
 #endif	/* of #ifdef SUPPORT_ETHER */
+
+/*
+ *  DNS サーバに関する定義
+ */
+
+/* DNS サーバの IP アドレス */
+
+#if !defined(DHCP6_CLI_CFG)
+
+#define IPV6_ADDR_DNS_INIT	\
+	{{{ UINT_C(0xfd), UINT_C(0x90), UINT_C(0xcc), UINT_C(0xe5), \
+	    UINT_C(0x25), UINT_C(0xf6), UINT_C(0xff), UINT_C(0x81), \
+	    UINT_C(0x02), UINT_C(0xa0), UINT_C(0x24), UINT_C(0xff), \
+	    UINT_C(0xfe), UINT_C(0x56), UINT_C(0xc5), UINT_C(0xd6) }}}
+
+#endif	/* of #if !defined(DHCP6_CLI_CFG) */
+
+#if !defined(DHCP4_CLI_CFG)
+#define IPV4_ADDR_DNS		MAKE_IPV4_ADDR(172,25,129,140)
+#endif
+
+/* DOMAIN 名 */
+
+#if !(defined(DHCP4_CLI_CFG) || defined(DHCP6_CLI_CFG))
+#define RSLV_CFG_DNS_DOMAIN_NAME_STR	"jo.tomakomai-ct.ac.jp"
+#endif
+
+/*
+ *  DHCP クライアントに関する定義
+ */
+
+/* DHCPv6 の動作モードの設定 */
+
+#define DHCP6_CLI_CFG_MODE	DHCP6_CLI_CFG_STATELESS
+//#define DHCP6_CLI_CFG_MODE	DHCP6_CLI_CFG_STATEFULL
 
 #endif /* _TINET_APP_CONFIG_H_ */

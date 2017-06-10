@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: in_var.h,v 1.5 2009/12/24 05:47:21 abe Exp $
+ *  @(#) $Id: in_var.h 1.7 2017/6/1 8:49:34 abe $
  */
 
 /*
@@ -70,11 +70,8 @@
 #ifndef _IN_VAR_H_
 #define _IN_VAR_H_
 
-#if defined(SUPPORT_INET6)
-
+#include <netinet/in4_var.h>
 #include <netinet6/in6_var.h>
-
-#endif	/* of #if defined(SUPPORT_INET6) */
 
 /*
  *  独自のエラーコード
@@ -101,45 +98,6 @@
 #define IN_TIMER_TMO		(SYSTIM_HZ/NET_TIMER_CYCLE)
 
 /*
- *  インタフェースアドレス構造体
- */
-
-typedef struct t_in4_ifaddr {
-	T_IN4_ADDR		addr;		/* IPv4 アドレス	*/
-	T_IN4_ADDR		mask;		/* サブネットマスク	*/
-	} T_IN4_IFADDR;
-
-/*
- *  ルーティング表エントリ構造体
- */
-
-typedef struct t_in4_rtentry {
-	T_IN4_ADDR	target;		/* 目標ネットワークアドレス			*/
-	T_IN4_ADDR	mask;		/* 目標ネットワークアドレスのサブネットマスク	*/
-	T_IN4_ADDR	gateway;	/* ゲートウェイの IP アドレス			*/
-	uint32_t	expire;		/* 有効時間が切れる時刻 [s]			*/
-	uint8_t		flags;		/* フラグ					*/
-	} T_IN4_RTENTRY;
-
-/*
- *  TINET 1.1 との互換性のための定義
- */
-
-#ifdef NUM_ROUTE_ENTRY
-
-#define NUM_STATIC_ROUTE_ENTRY		NUM_ROUTE_ENTRY
-#define NUM_REDIRECT_ROUTE_ENTRY	0
-#define T_RT_ENTRY			T_IN_RTENTRY
-
-#else	/* of #ifdef NUM_ROUTE_ENTRY */
-
-#define NUM_ROUTE_ENTRY			\
-	(NUM_STATIC_ROUTE_ENTRY + NUM_REDIRECT_ROUTE_ENTRY)
-					/* ルーティング表のエントリ数	*/
-
-#endif	/* of #ifdef NUM_ROUTE_ENTRY */
-
-/*
  *  ルーティングエントリ状態フラグ
  */
 
@@ -150,98 +108,100 @@ typedef struct t_in4_rtentry {
  *  IPv4 と IPv6 をコンパイル時に選択するためのマクロ
  */
 
-#if defined(SUPPORT_INET4)
+#if defined(_IP6_CFG)
 
-#define IN_SET_HEADER(nbuf,len,dst,src,proto,ttl)	\
-					in4_set_header(nbuf,len,dst,src,proto,ttl)
+#define T_IN_ADDR			T_IN6_ADDR
+#define T_IPEP				T_IPV6EP
+#define IP_ADDRANY			IPV6_ADDRANY
+
+#elif defined(_IP4_CFG)	/* of #if defined(_IP6_CFG) */
+
+#define T_IN_ADDR			T_IN4_ADDR
+#define T_IPEP				T_IPV4EP
+#define IP_ADDRANY			IPV4_ADDRANY
+
+#endif	/* of #if defined(_IP6_CFG) */
+
+#if defined(_IP6_CFG)
+
+#if defined(_IP4_CFG)
+
+#define IN_CKSUM(nbuf,proto,off,len)	(GET_IP_VER(nbuf)==IPV6_VERSION	\
+					?in6_cksum(nbuf,proto,off,len)	\
+					:in4_cksum(nbuf,proto,off,len))
+#define IN_IS_DSTADDR_ACCEPT(myaddr,nbuf)	\
+					inn_is_dstaddr_accept(myaddr,nbuf)
+#define IN_ARE_HDR_ADDR_EQUAL(nbuf)	(GET_IP_VER(nbuf)==IPV6_VERSION	\
+					?IN6_ARE_ADDR_EQUAL(&GET_IP6_HDR(nbuf)->dst,&GET_IP6_HDR(nbuf)->src)	\
+					:IN4_ARE_ADDR_EQUAL(&GET_IP4_HDR(nbuf)->dst,&GET_IP4_HDR(nbuf)->src))
+#define IN_ARE_NET_SRCADDR_EQUAL(ipaddr,nbuf)	\
+		    			inn_are_net_srcaddr_equal(ipaddr,nbuf)
+#define IN_COPY_TO_HOST(dst,nbuf)	inn_copy_to_host(dst,nbuf)
+#define IN_GET_DATAGRAM(nbuf,len,maxlen,dst,src,next,hlim,nbatr,tmout)	\
+					inn_get_datagram(nbuf,len,maxlen,dst,src,next,hlim,nbatr,tmout)
+#define IN_IS_ADDR_MULTICAST(addr)	inn_is_addr_multicast(addr)
+#define IN_IS_NET_ADDR_MULTICAST(nbuf)	IN_IS_ADDR_MULTICAST(&GET_IP6_HDR(nbuf)->dst)
+#define IN_ADDRWITHIFP(ifp,src,dst)	inn_addrwithifp(ifp,src,dst)
+#define IN_IS_ADDR_ANY(addr)		IN6_IS_ADDR_UNSPECIFIED(addr)
+
+#else	/* of #if defined(_IP4_CFG) */
+
+#define IN_CKSUM(nbuf,proto,off,len)	in6_cksum(nbuf,proto,off,len)
+#define IN_IS_DSTADDR_ACCEPT(myaddr,nbuf)	\
+					INN6_IS_DSTADDR_ACCEPT(myaddr,nbuf)
+#define IN_ARE_HDR_ADDR_EQUAL(nbuf)	IN6_ARE_ADDR_EQUAL(&GET_IP6_HDR(nbuf)->dst,&GET_IP6_HDR(nbuf)->src)
+#define IN_ARE_NET_SRCADDR_EQUAL(ipaddr,nbuf)	\
+		    			IN6_ARE_ADDR_EQUAL(ipaddr,&GET_IP6_HDR(nbuf)->src)
+#define IN_COPY_TO_HOST(dst,nbuf)	IN6_COPY_TO_HOST(dst, nbuf)
+#define IN_GET_DATAGRAM(nbuf,len,maxlen,dst,src,next,hlim,nbatr,tmout)	\
+					in6_get_datagram(nbuf,len,maxlen,dst,src,next,hlim,nbatr,tmout)
+#define IN_IS_ADDR_MULTICAST(addr)	IN6_IS_ADDR_MULTICAST(addr)
+#define IN_IS_NET_ADDR_MULTICAST(nbuf)	IN6_IS_ADDR_MULTICAST(&GET_IP6_HDR(nbuf)->dst)
+#define IN_ADDRWITHIFP(ifp,src,dst)	in6_addrwithifp(ifp,src,dst)
+#define IN_IS_ADDR_ANY(addr)		IN6_IS_ADDR_UNSPECIFIED(addr)
+
+#endif	/* of #if defined(_IP4_CFG) */
+
+#else	/* of #if defined(_IP6_CFG) */
+
+#if defined(_IP4_CFG)
+
+#define IN_CKSUM(nbuf,proto,off,len)	in4_cksum(nbuf,proto,off,len)
+#define IN_IS_DSTADDR_ACCEPT(myaddr,nbuf)	\
+					inn4_is_dstaddr_accept(myaddr,nbuf)
+#define IN_ARE_HDR_ADDR_EQUAL(nbuf)	IN4_ARE_ADDR_EQUAL(&GET_IP4_HDR(nbuf)->dst,&GET_IP4_HDR(nbuf)->src)
+#define IN_ARE_NET_SRCADDR_EQUAL(ipaddr,nbuf)	\
+					(*(ipaddr)==ntohl(GET_IP4_HDR(nbuf)->src))
+#define IN_COPY_TO_HOST(dst,nbuf)	IN4_COPY_TO_HOST(dst, nbuf)
 #define IN_GET_DATAGRAM(nbuf,len,maxlen, dst,src,proto,ttl,nbatr,tmout)	\
 					in4_get_datagram(nbuf,len,maxlen, dst,src,proto,ttl,nbatr,tmout)
-#define IN_CKSUM(nbuf,proto,off,len)	in4_cksum(nbuf,proto,off,len)
-#define IN_IS_DSTADDR_ACCEPT(myaddr,dstaddr)			\
-					in4_is_dstaddr_accept(myaddr,dstaddr)
-#define IN_IFAWITHIFP(ifp,dst)		in4_ifawithifp(ifp,dst)
-#define T_IN_IFADDR			T_IN4_IFADDR
-#define T_IN_RTENTRY			T_IN4_RTENTRY
+#define IN_IS_ADDR_MULTICAST(addr)	IN4_IS_ADDR_MULTICAST(*(addr))
+#define IN_IS_NET_ADDR_MULTICAST(nbuf)	IN4_IS_ADDR_MULTICAST(ntohl(GET_IP4_HDR(nbuf)->dst))
+#define IN_ADDRWITHIFP(ifp,src,dst)	in4_addrwithifp(ifp,src,dst)
+#define IN_IS_ADDR_ANY(addr)		IN4_IS_ADDR_ANY(addr)
 
-#endif	/* of #if defined(SUPPORT_INET4) */
+#else	/* of #if defined(_IP4_CFG) */
 
-/*
- *  ルーティング表
- */
+#error "not implemented."
 
-extern T_IN_RTENTRY routing_tbl[];
+#endif	/* of #if defined(_IP4_CFG) */
 
-/*
- *  前方参照
- */
+#endif	/* of #if defined(_IP6_CFG) */
 
-#ifndef T_NET_BUF_DEFINED
-typedef struct t_net_buf T_NET_BUF;
-#define T_NET_BUF_DEFINED
-#endif
-
-#ifndef T_IFNET_DEFINED
-typedef struct t_ifnet T_IFNET;
-#define T_IFNET_DEFINED
-#endif
+#ifndef _MACRO_ONLY
 
 /*
  *  関数
  */
+extern bool_t	inn_is_dstaddr_accept (T_IN6_ADDR *myaddr, T_NET_BUF *nbuf);
+extern bool_t	inn_is_addr_multicast (T_IN6_ADDR *addr);
+extern bool_t	inn_are_net_srcaddr_equal (T_IN6_ADDR *ipaddr, T_NET_BUF *nbuf);
+extern void	inn_copy_to_host (T_IN6_ADDR *dst, T_NET_BUF *nbuf);
+extern ER	inn_get_datagram (T_NET_BUF **nbuf, uint_t len, uint_t maxlen,
+		                  T_IN6_ADDR *dstaddr, T_IN6_ADDR *srcaddr,
+		                  uint8_t next, uint8_t hlim, ATR nbatr, TMO tmout);
+extern T_IN6_ADDR *inn_addrwithifp (T_IFNET *ifp, T_IN6_ADDR *src, T_IN6_ADDR *dst);
 
-extern void ip_input (T_NET_BUF *data);
-extern ER in4_set_header (T_NET_BUF *nbuf, uint_t len,
-                          T_IN4_ADDR *dstaddr, T_IN4_ADDR *srcaddr, uint8_t proto, uint8_t ttl);
-extern ER in4_get_datagram (T_NET_BUF **nbuf, uint_t len, uint_t maxlen,
-                            T_IN4_ADDR *dstaddr, T_IN4_ADDR *srcaddr,
-                            uint8_t proto, uint8_t ttl, ATR nbatr, TMO tmout);
-extern uint16_t in4_cksum (T_NET_BUF *nbuf, uint8_t proto, uint_t off, uint_t len);
-extern T_IN4_ADDR in4_rtalloc (T_IN4_ADDR dst);
-extern void in4_rtredirect (T_IN4_ADDR gateway, T_IN4_ADDR target, uint8_t flags, uint32_t tmo);
-extern void in4_init (void);
-extern T_IN4_IFADDR *in4_ifawithifp (T_IFNET *ifp, T_IN4_ADDR *dst);
-extern T_IN_RTENTRY *in_rtnewentry (uint8_t flags, uint32_t tmo);
-extern void in_rttimer (void);
-extern void in_rtinit (void);
-extern const T_NET_BUF**ip_get_frag_queue (void);
-
-/*
- *  in4_is_dstaddr_accept -- 宛先アドレスとして正しいかチェックする。
- *
- *    注意: dstaddr は、
- *          TINET-1.2 からネットワークバイトオーダ、
- *          TINET-1.1 までは、ホストバイトオーダ
- */
-extern bool_t in4_is_dstaddr_accept (T_IN4_ADDR *myaddr, T_IN4_ADDR *dstaddr);
-
-/*
- *  in_cksum -- チェックサム計算関数、IPv4、ICMPv4 用
- *
- *  注意: data は 4 オクテット単位でパディングすること。
- *        data が 2 オクテット単位にアラインされていないと
- *        例外が発生する可能性がある。
- *        len  は 4 オクテット単位にアラインされていること。
- */
-extern uint16_t in_cksum(void *data, uint_t len /*オクテット単位*/);
-
-/*
- *  in_cksum_sum -- チェックサムの合計計算関数
- *
- *  注意: data は 4 オクテット単位でパディングすること。
- *        data が 2 オクテット単位にアラインされていないと
- *        例外が発生する可能性がある。
- *        len  は 4 オクテット単位にアラインされていること。
- */
-extern uint32_t in_cksum_sum (void *data, uint_t len /*オクテット単位*/);
-
-/*
- *  in_cksum_carry -- チェックサムの桁上げ計算関数
- *
- *  注意: data は 4 オクテット単位でパディングすること。
- *        data が 2 オクテット単位にアラインされていないと
- *        例外が発生する可能性がある。
- *        len  は 4 オクテット単位にアラインされていること。
- */
-extern uint32_t in_cksum_carry (uint32_t sum);
+#endif	/* of #ifndef _MACRO_ONLY */
 
 #endif	/* of #ifndef _IN_VAR_H_ */

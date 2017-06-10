@@ -1,254 +1,199 @@
-                  TCP/IP е╫еэе╚е│еые╣е┐е├епб╩TINETб╦
-          ецб╝е╢е║е▐е╦ехевеыб╩еъеъб╝е╣ 1.5.3б╦б╬2015/1/19б╧
+                  TCP/IP уГЧуГнуГИуВ│уГлуВ╣уВ┐уГГуВпя╝ИTINETя╝Й
+            уГжуГ╝уВ╢уВ║уГЮуГЛуГеуВвуГля╝ИуГкуГкуГ╝уВ╣ 1.7я╝Йя╝╗2017/4/5я╝╜
 
-1.  TCP/IP е╫еэе╚е│еые╣е┐е├епб╩TINETб╦д╬│╡═╫
+1.  TCP/IP уГЧуГнуГИуВ│уГлуВ╣уВ┐уГГуВпя╝ИTINETя╝ЙуБоцжВшжБ
 
-  TINET д╧бв TOPPERS/ASP д╚ TOPPERS/JSP ═╤д╬ TCP/IP е╫еэе╚е│еые╣е┐е├еп
-д╟двдыбг
+  TINET уБпуАБTOPPERS/ASP уБи TOPPERS/JSP чФиуБо IPv6/IPv4 уГЗуГеуВвуГлуВ╣уВ┐уГГуВп
+уБо TCP/IP уГЧуГнуГИуВ│уГлуВ╣уВ┐уГГуВпуБзуБВуВЛуАВ
 
-1. 1  ╡б╟╜░ь═ў
+1. 1  цйЯшГ╜ф╕Ашжз
 
-  ░╩▓╝д╦бвTINET еъеъб╝е╣ 1.5 д╬╡б╟╜░ь═ўдЄ╝ид╣бг
+  ф╗еф╕ЛуБлуАБTINET уГкуГкуГ╝уВ╣ 1.7 уБоцйЯшГ╜ф╕АшжзуВТчд║уБЩуАВ
 
    (1)   API
 
-         бжITRON TCP/IP API ╗┼══д╬╔╕╜р╡б╟╜
-         бж╗├─ъ┼кд╩ ITRON TCP/IPб╩е╨б╝е╕ечеє 6б╦API ╗┼══д╬╔╕╜р╡б╟╜
-         бжITRON TCP/IP API ╗┼══д╬│╚─е╡б╟╜
+         уГ╗ITRON TCP/IP API ф╗ХцзШуБоциЩц║ЦцйЯшГ╜
+         уГ╗цЪлхоЪчЪДуБк ITRON TCP/IPя╝ИуГРуГ╝уВ╕уГзуГ│ 6я╝ЙAPI ф╗ХцзШуБоциЩц║ЦцйЯшГ╜
+         уГ╗ITRON TCP/IP API ф╗ХцзШуБоцЛбх╝╡цйЯшГ╜
 
    (2)   TCP
 
-         бжBSD д╬─╠┐о╡б╟╜
-         бж║╟┬че╗е░есеєе╚е╡еде║б╩MSSб╦еке╫е╖ечеє
-         бж╛╩е│е╘б╝ API
-         бже╬еєе╓еэе├енеєе░е│б╝еыб╩┴╚╣■д▀┴к┬Є▓─б╦
-         бже┐е╣епдлдщд╬ Time Wait ╛ї┬╓д╬ TCP ─╠┐о├╝┼└╩м╬е╡б╟╜б╩┴╚╣■д▀
-           ┴к┬Є▓─б╦
-         бж┴ў╝ї┐оежегеєе╔е╨е├е╒ебд╬╛╩е│е╘б╝╡б╟╜б╩┴╚╣■д▀┴к┬Є▓─б╦
-         бжTCP е╪е├е└д╬е╚еьб╝е╣╜╨╬╧╡б╟╜б╩┴╚╣■д▀┴к┬Є▓─б╦
+         уГ╗BSD уБощАЪф┐бцйЯшГ╜
+         уГ╗цЬАхдзуВ╗уВ░уГбуГ│уГИуВ╡уВдуВ║я╝ИMSSя╝ЙуВкуГЧуВ╖уГзуГ│
+         уГ╗чЬБуВ│уГФуГ╝ API
+         уГ╗уГОуГ│уГЦуГнуГГуВнуГ│уВ░уВ│уГ╝уГля╝Ич╡Дш╛╝уБ┐щБ╕цКЮхПпя╝Й
+         уГ╗уВ┐уВ╣уВпуБЛуВЙуБо Time Wait чК╢цЕЛуБо TCP щАЪф┐бчлпчВ╣хИЖщЫвцйЯшГ╜я╝Ич╡Дш╛╝уБ┐
+           щБ╕цКЮхПпя╝Й
+         уГ╗щАБхПЧф┐буВжуВгуГ│уГЙуГРуГГуГХуВбуБочЬБуВ│уГФуГ╝цйЯшГ╜я╝Ич╡Дш╛╝уБ┐щБ╕цКЮхПпя╝Й
+         уГ╗TCP уГШуГГуГАуБоуГИуГмуГ╝уВ╣хЗ║хКЫцйЯшГ╜я╝Ич╡Дш╛╝уБ┐щБ╕цКЮхПпя╝Й
 
    (3)   UDP
 
-         бже╬еєе╓еэе├енеєе░е│б╝еыб╩┴╚╣■д▀┴к┬Є▓─б╦
+         уГ╗уГОуГ│уГЦуГнуГГуВнуГ│уВ░уВ│уГ╝уГля╝Ич╡Дш╛╝уБ┐щБ╕цКЮхПпя╝Й
 
-   (4)   ╢с╬┘├╡║ў
+   (4)   ш┐СщЪгцОвч┤в
 
-         бж╢с╬┘├╡║ў═╫└┴д╬┴ў╝ї┐о
-         бж╢с╬┘├╡║ў─╠├╬д╬┴ў╝ї┐о
-         бжеыб╝е┐─╠├╬есе├е╗б╝е╕д╬╝ї┐о
-         бжеыб╝е┐═╫└┴есе├е╗б╝е╕д╬┴ў┐о
-         бжеве╔еье╣╜┼╩г╕б╜╨╡б╟╜
+         уГ╗ш┐СщЪгцОвч┤вшжБшлЛуБощАБхПЧф┐б
+         уГ╗ш┐СщЪгцОвч┤вщАЪчЯеуБощАБхПЧф┐б
+         уГ╗уГлуГ╝уВ┐щАЪчЯеуГбуГГуВ╗уГ╝уВ╕уБохПЧф┐б
+         уГ╗уГлуГ╝уВ┐шжБшлЛуГбуГГуВ╗уГ╝уВ╕уБощАБф┐б
+         уГ╗уВвуГЙуГмуВ╣щЗНшдЗцдЬхЗ║цйЯшГ╜
 
-   (5)   ICMPv4
+   (5)   ICMPv6
 
-         бжеие│б╝═╫╡сбж▒■┼·д╬┴ў╝ї┐о
-         бжеиещб╝д╬┴ў┐об╩┴╚╣■д▀┴к┬Є▓─б╦
-         бж╕■д▒─╛д╖есе├е╗б╝е╕д╬╝ї┐об╩┴╚╣■д▀┴к┬Є▓─б╦
+         уГ╗уВиуВ│уГ╝шжБц▒ВуГ╗х┐ЬчнФуБощАБхПЧф┐б
+         уГ╗уВиуГйуГ╝уБощАБф┐бя╝Ич╡Дш╛╝уБ┐щБ╕цКЮхПпя╝Й
+         уГ╗хРСуБСчЫ┤уБЧуГбуГГуВ╗уГ╝уВ╕уБохПЧф┐бя╝Ич╡Дш╛╝уБ┐щБ╕цКЮхПпя╝Й
+         уГ╗Path MTU
 
-   (6)   ICMPv6
+   (6)   ICMPv4
 
-         бжеие│б╝═╫╡сбж▒■┼·д╬┴ў╝ї┐о
-         бжеиещб╝д╬┴ў┐об╩┴╚╣■д▀┴к┬Є▓─б╦
-         бж╕■д▒─╛д╖есе├е╗б╝е╕д╬╝ї┐об╩┴╚╣■д▀┴к┬Є▓─б╦
-         бжPath MTU
+         уГ╗уВиуВ│уГ╝шжБц▒ВуГ╗х┐ЬчнФуБощАБхПЧф┐б
+         уГ╗уВиуГйуГ╝уБощАБф┐бя╝Ич╡Дш╛╝уБ┐щБ╕цКЮхПпя╝Й
+         уГ╗хРСуБСчЫ┤уБЧуГбуГГуВ╗уГ╝уВ╕уБохПЧф┐бя╝Ич╡Дш╛╝уБ┐щБ╕цКЮхПпя╝Й
 
-   (7)   IPv4
+   (7)   IPv6
 
-         бж└┼┼к╖╨╧й╔╜
-         бжIP е╟б╝е┐е░ещерд╬╩м│фбж║╞╣╜└об╩┴╚╣■д▀┴к┬Є▓─б╦
-         бжIPSECб╩┴╚╣■д▀┴к┬Є▓─бве╒е├епд╬д▀╝┬┴їб╦б┌еъеъб╝е╣ 1.5 ┐╖╡мб█
+         уГ╗уВвуГЙуГмуВ╣уБошЗкхЛХшинхоЪ
+         уГ╗щЭЩчЪДч╡Мш╖пшби
+         уГ╗щЭЮ PC ч│╗уГЗуВгуВ╕уВ┐уГлцйЯхЩиуБ╕уБощБйчФиуБлхРСуБСуБЯ IPv6 цЬАх░ПшжБц▒Вф╗ХцзШуБо
+           IPv6 цЬАх░ПуГЫуВ╣уГИф╗ХцзШуБлц║ЦцЛа
+         уГ╗цЛбх╝╡уГШуГГуГАуБоуВиуГйуГ╝уБощАЪчЯе
+         уГ╗цЦнчЙЗуГШуГГуГАя╝Ич╡Дш╛╝уБ┐щБ╕цКЮхПпя╝Й
+         уГ╗уГЫуВ╣уГИцГЕха▒уВнуГгуГГуВ╖уГея╝Ич╡Дш╛╝уБ┐щБ╕цКЮхПпя╝Й
+         уГ╗IPv6/IPv4 хоМхЕиуГЗуГеуВвуГлуВ╣уВ┐уГГуВпуАРуГкуГкуГ╝уВ╣ 1.7 цЦ░шжПуАС
+         уГ╗IPv4 х░Дх╜▒уВвуГЙуГмуВ╣я╝Ич╡Дш╛╝уБ┐щБ╕цКЮхПпя╝ЙуАРуГкуГкуГ╝уВ╣ 1.7 цЦ░шжПуАС
 
-   (8)   IPv6
+   (8)   IPv4
 
-         бжеве╔еье╣д╬╝л╞░└▀─ъ
-         бж└┼┼к╖╨╧й╔╜
-         бж╚є PC ╖╧е╟еге╕е┐еы╡б┤яд╪д╬┼м═╤д╦╕■д▒д┐ IPv6 ║╟╛о═╫╡с╗┼══д╬
-           IPv6 ║╟╛ое█е╣е╚╗┼══д╦╜р╡Є
-         бж│╚─ее╪е├е└д╬еиещб╝д╬─╠├╬
-         бж├╟╩╥е╪е├е└б╩┴╚╣■д▀┴к┬Є▓─б╦
-         бже█е╣е╚╛Ё╩єенеуе├е╖ехб╩┴╚╣■д▀┴к┬Є▓─б╦
+         уГ╗щЭЩчЪДч╡Мш╖пшби
+         уГ╗IP уГЗуГ╝уВ┐уВ░уГйуГауБохИЖхЙ▓уГ╗хЖНцзЛцИРя╝Ич╡Дш╛╝уБ┐щБ╕цКЮхПпя╝Й
+         уГ╗IPSECя╝Ич╡Дш╛╝уБ┐щБ╕цКЮхПпуАБуГХуГГуВпуБоуБ┐хоЯшгЕя╝Й
 
-   (9)   д╜д╬┬╛
+   (9)   уБЭуБоф╗Ц
 
-         бжARP ═╫╡сбж▒■┼·д╬┴ў╝ї┐о
-         бжARP д╟д╬ IPv4 еве╔еье╣╜┼╩г╕б╜╨╡б╟╜
-         бжDHCP д╪д╬┬╨▒■
-         бжSNMP ═╤┤╔═¤╛Ё╩єе┘б╝е╣б╩MIBб╦д╬─є╢б
+         уГ╗ARP шжБц▒ВуГ╗х┐ЬчнФуБощАБхПЧф┐б
+         уГ╗ARP уБзуБо IPv4 уВвуГЙуГмуВ╣щЗНшдЗцдЬхЗ║цйЯшГ╜
+         уГ╗DHCP уБ╕уБохп╛х┐Ь
+         уГ╗SNMP чФичобчРЖцГЕха▒уГЩуГ╝уВ╣я╝ИMIBя╝ЙуБоцПРф╛Ы
 
-1. 2  ╞░║ю│╬╟з║╤д▀д╬е╖е╣е╞ер
+1. 2  хИ╢щЩРф║ЛщаЕ
 
-1. 2. 1  │л╚п┤─╢н
+  ф╗еф╕ЛуБлуАБTINET уГкуГкуГ╝уВ╣ 1.7 уБохИ╢ч┤Дф║ЛщаЕуВТш┐░уБ╣уВЛуАВ
 
-  │л╚п┤─╢нд╧бв Windows ╛хд╬ cygwin ╛хд╟бвGCC дЄ═╤ддд╞│л╚пдЄ╣╘д├д┐бгGCC
-┼∙д╬е╨б╝е╕ечеєдЄ░╩▓╝д╦╝ид╣бг
+   (1)   IPv6 уБзуБпуАБуГНуГГуГИуГпуГ╝уВпуВдуГ│уВ┐уГХуВзуГ╝уВ╣уБпуВдуГ╝уВ╡уГНуГГуГИуБоуБ┐щБ╕цКЮуБзуБНуВЛуАВ
+   (2)   IPv6 уБзуБпуАБTCP уБи UDP уБоф╕бцЦ╣уВТщБ╕цКЮуБЩуВЛуБЛуАБ уБйуБбуВЙуБЛф╕АуБдуВТщБ╕цКЮ
+         уБЧуБкуБСуВМуБ░уБкуВЙуБкуБДуАВ уБ╛уБЯуАБUDP уБоуБ┐уВТщБ╕цКЮуБЧуБЯха┤хРИуБпуАБуГОуГ│уГЦуГнуГГ
+         уВнуГ│уВ░цйЯшГ╜уВТч╡ДуБ┐ш╛╝уВАх┐ЕшжБуБМуБВуВЛуАВ
+   (3)   уГОуГ│уГЦуГнуГГуВнуГ│уВ░уВ│уГ╝уГлуБлуБКуБДуБжуВВуАБ щАЪф┐бчлпчВ╣уБоцОТф╗ЦхИ╢х╛буБоуБЯуВБуАБ
+         чЯнцЩВщЦУуБзуБВуВЛуБМуГЦуГнуГГуВпуБЩуВЛуБУуБиуБМуБВуВЛуАВ 
+   (4)   IPv6 уБлщЦвуБЩуВЛ ITRON TCP/IP API 2.0 ф╗ХцзШуБлуБпцЬкхп╛х┐ЬуБзуБВуВЛуАВ
+         TINET уГкуГкуГ╝уВ╣ 1.2 уБЛуВЙуБоцЪлхоЪчЪДуБк ITRON TCP/IPя╝ИуГРуГ╝уВ╕уГзуГ│ 6я╝Й
+         API ф╗ХцзШуБлуБоуБ┐хп╛х┐ЬуБЧуБжуБДуВЛуАВ
+   (5)   ITRON TCP/IP API щГихИЖуБоуГйуВдуГЦуГйуГкхМЦуБпшбМуВПуВМуБжуБДуВЛуБМуАБуГйуВдуГЦуГй
+         уГкуБиуВвуГЧуГкуВ▒уГ╝уВ╖уГзуГ│уГЧуГнуВ░уГйуГауВТхИеуАЕуБлцзЛчпЙуБЧуБжуБКуБНуАБ х╛МуБзуГкуГ│
+         уВпуБЩуВЛцЦ╣ц│ХуБпуВ╡уГЭуГ╝уГИуБЧуБжуБДуБкуБДуАВ
+   (6)   шинхоЪуБишкнхЗ║уБЧхПпшГ╜уБк TCP щАЪф┐бчлпчВ╣уВкуГЧуВ╖уГзуГ│уБпчДбуБДуБЯуВБуАБTCP щАЪф┐б
+         члпчВ╣уВкуГЧуВ╖уГзуГ│уБошинхоЪ API уБишкнхЗ║уБЧ API уБоцИ╗уВКхАдуБп E_PAR уБзуБВуВЛуАВ
+   (7)   шинхоЪуБишкнхЗ║уБЧхПпшГ╜уБк UDP щАЪф┐бчлпчВ╣уВкуГЧуВ╖уГзуГ│уБпчДбуБДуБЯуВБуАБUDP щАЪф┐б
+         члпчВ╣уВкуГЧуВ╖уГзуГ│уБошинхоЪ API уБишкнхЗ║уБЧ API уБоцИ╗уВКхАдуБп E_PAR уБзуБВуВЛуАВ
 
-   (1)   GCC 2.x.x ╖╧
+1. 3  уГЗуВгуГмуВпуГИуГкцзЛцИР
 
-            binutils-2.11.2
-            gcc-2.95.3
-            newlib-1.9.0
+  TINET уБоуГЗуВгуГмуВпуГИуГкуБпуАБ TOPPERS/ASP уБ╛уБЯуБп TOPPERS/JSP уБоуГлуГ╝уГИуГЗуВг
+уГмуВпуГИуГкуБоф╕ЛуБлч╜оуБПуБУуБиуВТцГ│хоЪуБЧуБжуБКуВКуАБф╗еф╕ЛуБоуГЗуВгуГмуВпуГИуГкуБЛуВЙцзЛцИРуБХуВМуБж
+уБДуВЛуАВ
 
-д╩дкбвcygwin д╬ make д╬е╨б╝е╕ечеє 3.81 д╟д╧бв е│еєе╤едеыдм└╡╛яд╦╣╘дид╩
-ддд┐дсбвд│дь░╩│░д╬е╨б╝е╕ечеєд╬ make дЄ╗╚═╤д╣дыд│д╚бгд▐д┐бв╗▓╣═д╟двдыдмбв
-TOPPERS/ASP д╟д╧бв░╩▓╝д╬е╨б╝е╕ечеєд╟дт╞░║юдЄ│╬╟зд╖д┐бг
+   tinet                   TINET уБоуГлуГ╝уГИуГЗуВгуГмуВпуГИуГк
+   tinet/cfg               TINET уВ│уГ│уГХуВгуВоуГеуГмуГ╝уВ┐я╝ИTOPPERS/JSP чФиуБоуБ┐я╝Й
+   tinet/doc               уГЙуВнуГеуГбуГ│уГИщбЮ
+   tinet/net               ц▒ОчФиуГНуГГуГИуГпуГ╝уВп
+   tinet/netapp            уВ╡уГ│уГЧуГлуБоуГНуГГуГИуГпуГ╝уВпуГЧуГнуВ░уГйуГа
+   tinet/netdev            уГНуГГуГИуГпуГ╝уВпуВдуГ│уВ┐уГХуВзуГ╝уВ╣уБоуГЙуГйуВдуГР
+   tinet/netinet           IPv4/TCP/UDP/ICMP
+   tinet/netinet6          IPv6/ICMPv6/NDP
 
-   (1)   GCC 3.x.x ╖╧
+1. 4  уГЙуВнуГеуГбуГ│уГИщбЮ
 
-            binutils-2.15
-            gcc-3.4.3
-            newlib-1.12.0
+  уГЙуВнуГеуГбуГ│уГИщбЮуВТф╗еф╕ЛуБлчд║уБЩуАВхЕиуБжуБоуГХуВбуВдуГлуБп PDF уБзуВВцПРф╛ЫуБЧуБжуБДуВЛуАВ
 
-   (2)   GCC 4.x.x ╖╧
+   tinet.txt               уГжуГ╝уВ╢уВ║уГЮуГЛуГеуВвуГл
+   tinet_gcc.txt           уГжуГ╝уВ╢уВ║уГЮуГЛуГеуВвуГлуАРGCC чТ░хвГуАС
+   tinet_cs.txt            уГжуГ╝уВ╢уВ║уГЮуГЛуГеуВвуГлуАРCS+ чТ░хвГя╝ИхПВшАГя╝ЙуАС
+   tinet_sample.txt        уВ╡уГ│уГЧуГлуВвуГЧуГкуВ▒уГ╝уВ╖уГзуГ│
+   tinet_config.txt        уВ│уГ│уГСуВдуГлцЩВуВ│уГ│уГХуВгуВоуГеуГмуГ╝уВ╖уГзуГ│
+   tinet_defs.txt          уГЧуГнуВ╗уГГуВ╡уАБуВ╖уВ╣уГЖуГаф╛ЭхнШхоЪч╛й
 
-            binutils-2.23.2
-            gcc-4.7.3
-            newlib-1.20.0
 
-1. 2. 2  ╞░║ю│╬╟з║╤д▀д╬е╖е╣е╞ерб╩TOPPERS/ASPб╦
 
-  ╕╜║▀бв ╞░║юдЄ│╬╟з║╤д▀д╬е╖е╣е╞ердЄ░╩▓╝д╦╝ид╣бг
 
-   (1)   ╜й╖ю┼┼╗╥─╠╛ж└╜ H8/3069F е═е├е╚┬╨▒■
-        б╩едб╝е╡е═е├е╚бвASP еъеъб╝е╣ 1.3 б┴ 1.7б╦
 
-д▐д┐бв ╞░║юдЄ│╬╟зд╖д╞ддд╩дддм╗▓╣═╝┬┴їд╬е╖е╣е╞ердЄ░╩▓╝д╦╝ид╣бг 
+шЛлх░ПчЙзх╖еценщлШчнЙх░ВщЦАхнжцаб          - 2 -                       цГЕха▒х╖ехнжчзС
 
-   (1)   евеые╒ебе╫еэе╕езепе╚└╜д╬ AP-SH4-1A
-        б╩едб╝е╡е═е├е╚бвASP еъеъб╝е╣ 1.8б╦
 
-1. 2. 3  ╞░║ю│╬╟з║╤д▀д╬е╖е╣е╞ерб╩TOPPERS/JSPб╦
 
-  ╕╜║▀бв ╞░║юдЄ│╬╟з║╤д▀д╬е╖е╣е╞ердЄ░╩▓╝д╦╝ид╣бг
 
-   (1)   ╔╩└ю─╠┐о╖╫┴їе╡б╝е╙е╣└╜ NKEV-010H8
-        б╩едб╝е╡е═е├е╚бвJSP еъеъб╝е╣ 1.4.2б╦
-   (2)   ╜й╖ю┼┼╗╥─╠╛ж└╜ H8/3068F е═е├е╚┬╨▒■
-        б╩едб╝е╡е═е├е╚бвJSP еъеъб╝е╣ 1.4.1б╦
-   (3)   ╜й╖ю┼┼╗╥─╠╛ж└╜ H8/3069F е═е├е╚┬╨▒■
-        б╩едб╝е╡е═е├е╚бвJSP еъеъб╝е╣ 1.4.1 б┴ 1.4.4б╦
+TINET уГжуГ╝уВ╢уВ║уГЮуГЛуГеуВвуГл                          1. 4  уГЙуВнуГеуГбуГ│уГИщбЮ
 
-д▐д┐бв ╞░║юдЄ│╬╟зд╖д╞ддд╩дддм╗▓╣═╝┬┴їд╬е╖е╣е╞ердЄ░╩▓╝д╦╝ид╣бг 
+   tinet_chg.txt           хдЙцЫ┤уГбуГв
+   tinet_ether.pdf         TINET-1.4 уБлуБКуБСуВЛуВдуГ╝уВ╡уГНуГГуГИуБохоЯшгЕя╝ИPDFуБоуБ┐я╝Й
 
-   (1)   ╜й╖ю┼┼╗╥─╠╛ж└╜ H8/3048F
-        б╩PPPбвеыб╝е╫е╨е├епбвJSP еъеъб╝е╣ 1.4.1б╦
+2.  TINET уВ│уГ│уГХуВгуВоуГеуГмуГ╝уВ┐уБи TINET уВ│уГ│уГХуВгуВ░уГмуГ╝уВ╖уГзуГ│уГХуВбуВдуГл
 
-1. 3  е╡е▌б╝е╚д╖д╞дддые═е├е╚еяб╝епедеєе┐е╒езб╝е╣
+2. 1  TOPPERS/ASP
 
-  ╕╜║▀бв е╡е▌б╝е╚д╖д╞дддые═е├е╚еяб╝епедеєе┐е╒езб╝е╣дЄ░╩▓╝д╦╝ид╣бг 
-
-   (1)   едб╝е╡е═е├е╚бвNIC д╧ NE2000 ╕▀┤╣бг
-
-  ╗▓╣═╝┬┴їд╬е═е├е╚еяб╝епедеєе┐е╒езб╝е╣дЄ░╩▓╝д╦╝ид╣бг 
-
-   (1)   еыб╝е╫е╨е├епбг
-   (2)   е╖еъевеые▌б╝е╚дЄ═╤ддд┐ PPP д╟бв─╛└▄└▄┬│д╚ете╟ер└▄┬│бг
-
-д╩дкбвTINET д╧бв╛х╡нд╬е═е├е╚еяб╝епедеєе┐е╒езб╝е╣дЄ░ь╝я╬рд╬д▀┴╚д▀╣■дрд│
-д╚дмд╟днбвеце╦е├е╚┐Їдт 1 д╟двдыбг
-
-1. 4  └й╕┬╗Ў╣р
-
-  ░╩▓╝д╦бвTINET еъеъб╝е╣ 1.5 д╬└й╠є╗Ў╣рдЄ╜╥д┘дыбг
-
-   (1)   ┬╨▒■д╣ды TOPPERS/ASP елб╝е═еыд╧еъеъб╝е╣ 1.3.2 ░╩╣▀д╟двдыбг
-   (2)   ┬╨▒■д╣ды TOPPERS/JSP елб╝е═еыд╧еъеъб╝е╣ 1.4.1 ░╩╣▀д╟двдыбг
-   (3)   е═е├е╚еяб╝еп┴╪д╧ IPv4 д╚ IPv6 д╬д╔д┴дщдл░ьд─д╬д▀┴к┬Єд╟днбв ╞▒
-         ╗■д╦┴╚╣■дрд│д╚д╧д╟днд╩ддбг
-   (4)   IPv6 д╟д╧бве═е├е╚еяб╝епедеєе┐е╒езб╝е╣д╧едб╝е╡е═е├е╚д╬д▀┴к┬Єд╟дндыбг
-   (5)   IPv6 д╟д╧бв TCP д╚ UDP д╬╬╛╩¤дЄ┴к┬Єд╣дыдлбвд╔д┴дщдл░ьд─дЄ┴к┬Є
-         д╖д╩д▒дьд╨д╩дщд╩ддбгд▐д┐бвUDP д╬д▀дЄ┴к┬Єд╖д┐╛ь╣чд╧бв е╬еєе╓еэе├
-         енеєе░╡б╟╜дЄ┴╚д▀╣■др╔м═╫дмдвдыбг
-   (6)   е╬еєе╓еэе├енеєе░е│б╝еыд╦дкддд╞дтбв ─╠┐о├╝┼└д╬╟╙┬╛└й╕цд╬д┐дсбв
-         ├╗╗■┤╓д╟двдыдме╓еэе├епд╣дыд│д╚дмдвдыбг 
-   (7)   IPv6 д╦┤╪д╣ды ITRON TCP/IP API ╗┼══дмд╩ддд┐дсбв╗├─ъ┼кд╩ ITRON
-         TCP/IPб╩е╨б╝е╕ечеє 6б╦API ╗┼══дЄ─ъ╡┴д╖д┐бг
-   (8)   ITRON TCP/IP API ╔Ї╩мд╬ещеде╓ещеъ▓╜д╧╣╘дядьд╞дддыдмбвещеде╓ещ
-         еъд╚еве╫еъе▒б╝е╖ечеєе╫еэе░ещердЄ╩╠б╣д╦╣╜├█д╖д╞дкднбв ╕хд╟еъеє
-         епд╣ды╩¤╦бд╧е╡е▌б╝е╚д╖д╞ддд╩ддбг
-   (9)   └▀─ъд╚╞╔╜╨д╖▓─╟╜д╩ TCP ─╠┐о├╝┼└еке╫е╖ечеєд╧╠╡ддд┐дсбвTCP ─╠┐о
-         ├╝┼└еке╫е╖ечеєд╬└▀─ъ API д╚╞╔╜╨д╖ API д╬╠сдъ├═д╧ E_PAR д╟двдыбг
-   (10)  └▀─ъд╚╞╔╜╨д╖▓─╟╜д╩ UDP ─╠┐о├╝┼└еке╫е╖ечеєд╧╠╡ддд┐дсбвUDP ─╠┐о
-         ├╝┼└еке╫е╖ечеєд╬└▀─ъ API д╚╞╔╜╨д╖ API д╬╠сдъ├═д╧ E_PAR д╟двдыбг
-
-1. 5  е╟егеьепе╚еъ╣╜└о
-
-  TINET д╬е╟егеьепе╚еъд╧бвJSP еыб╝е╚е╟егеьепе╚еъд╬▓╝д╦├╓дпд│д╚дЄ┴█─ъд╖
-д╞дкдъбв░╩▓╝д╬е╟егеьепе╚еъдлдщ╣╜└од╡дьд╞дддыбг 
-
-   tinet                   TINET д╬еыб╝е╚е╟егеьепе╚еъ
-   tinet/cfg               TINET е│еєе╒егеоехеьб╝е┐б╩TOPPERS/JSP ═╤д╬д▀б╦
-   tinet/doc               е╔енехесеєе╚╬р
-   tinet/net               ╚╞═╤е═е├е╚еяб╝еп
-   tinet/netapp            е╡еєе╫еыд╬е═е├е╚еяб╝епе╫еэе░ещер
-   tinet/netdev            е═е├е╚еяб╝епедеєе┐е╒езб╝е╣д╬е╔ещеде╨
-   tinet/netdev/if_ed      NE2000 ╕▀┤╣е═е├е╚еяб╝епедеєе┐е╒езб╝е╣д╬е╔ещеде╨
-   tinet/netinet           TINET д╬╦▄┬╬
-   tinet/netinet6          IPv6 д╬╦▄┬╬
-
-1. 6  е╔енехесеєе╚╬р
-
-  е╔енехесеєе╚╬рдЄ░╩▓╝д╦╝ид╣бг┴┤д╞д╬е╒ебедеыд╧ PDF д╟дт─є╢бд╖д╞дддыбг
-
-   tinet.txt               ецб╝е╢е║е▐е╦ехевеы
-   tinet_config.txt        е│еєе╤едеы╗■е│еєе╒егеоехеьб╝е╖ечеє
-   tinet_defs.txt          е╫еэе╗е├е╡бве╖е╣е╞ер░═┬╕─ъ╡┴
-   tinet_chg.txt           ╩╤╣╣есет
-   tinet-1.5.txt           еъеъб╝е╣ 1.4 длдщ 1.5 д╪д╬░▄╣╘
-   tinet_ether.pdf         TINET-1.4 д╦дкд▒дыедб╝е╡е═е├е╚д╬╝┬┴їб╩PDFд╬д▀б╦
-
-2.  TINET е│еєе╒егеоехеьб╝е┐д╚ TINET е│еєе╒еге░еьб╝е╖ечеєе╒ебедеы
-
-2. 1  TOPPERS/ASP ┤─╢нд╦дкд▒ды TINET е│еєе╒еге░еьб╝е╖ечеєе╒ебедеы
-
-  TOPPERS/ASP ┤─╢нд╟д╧бвTOPPERS/ASP ═╤е│еєе╒егеоехеьб╝е┐дЄ╬о═╤д╣дыд┐дсбв
-TINET ╞╚╝лд╬е│еєе╒егеоехеьб╝е┐д╧д╩ддбг
-  TOPPERS/ASP ═╤е│еєе╒егеоехеьб╝е┐дЄ╬о═╤д╖д╞бвTINET е│еєе╒егеоехеьб╝е╖еч
-еєе╒ебедеыб╩╔╕╜рд╧ tinet_$(APPLNAME).cfgб╦длдщ░╩▓╝д╬е╒ебедеыдЄ└╕└од╣дыбг
+  TOPPERS/ASP уБзуБпуАБ TOPPERS/ASP чФиуВ│уГ│уГХуВгуВоуГеуГмуГ╝уВ┐уВТц╡БчФиуБЩуВЛуБЯуВБуАБ
+TINET чЛмшЗкуБоуВ│уГ│уГХуВгуВоуГеуГмуГ╝уВ┐уБпуБкуБДуАВ
+  TOPPERS/ASP чФиуВ│уГ│уГХуВгуВоуГеуГмуГ╝уВ┐уВТц╡БчФиуБЧуБжуАБTINET уВ│уГ│уГХуВгуВоуГеуГмуГ╝уВ╖уГз
+уГ│уГХуВбуВдуГля╝ИциЩц║ЦуБп tinet_$(APPLNAME).cfgя╝ЙуБЛуВЙф╗еф╕ЛуБоуГХуВбуВдуГлуВТчФЯцИРуБЩуВЛуАВ
 
    (1)   tinet_cfg.c
-         TINET елб╝е═еы╣╜└ое╒ебедеыд╟бв еве╫еъе▒б╝е╖ечеєе╫еэе░ещербв
-         TINET д╚╢жд╦е│еєе╤едеыд╖д╞еъеєепд╣дыбг
+         TINET уВлуГ╝уГНуГлцзЛцИРуГХуВбуВдуГлуБзуАБ уВвуГЧуГкуВ▒уГ╝уВ╖уГзуГ│уГЧуГнуВ░уГйуГауАБ
+         TINET уБихЕ▒уБлуВ│уГ│уГСуВдуГлуБЧуБжуГкуГ│уВпуБЩуВЛуАВ
 
    (2)   tinet_kern.cfg
-         TINET ╞т╔Їд╟╗╚═╤д╣дыелб╝е═еыеке╓е╕езепе╚д╬└┼┼к API дм└╕└од╡дьбв
-         TOPPERS/ASP е╖е╣е╞ере│еєе╒егеоехеьб╝е╖ечеєе╒ебедеыб╩╔╕╜рд╧
-         $(APPLNAME).cfgб╦д╦едеєепеыб╝е╔д╣дыбг
+         TINET хЖЕщГиуБзф╜┐чФиуБЩуВЛуВлуГ╝уГНуГлуВкуГЦуВ╕уВзуВпуГИуБощЭЩчЪД API уБМчФЯцИРуБХуВМуАБ
+         TOPPERS/ASP уВ╖уВ╣уГЖуГауВ│уГ│уГХуВгуВоуГеуГмуГ╝уВ╖уГзуГ│уГХуВбуВдуГля╝ИциЩц║ЦуБп
+         $(APPLNAME).cfgя╝ЙуБлуВдуГ│уВпуГлуГ╝уГЙуБЩуВЛуАВ
 
    (3)   tinet_cfg.h
-         TINET ╞т╔Їд╟╗╚═╤д╣дыелб╝е═еыеке╓е╕езепе╚д╬ ID ╝л╞░│ф╔╒╖ы▓╠е╒еб
-         едеыд╟двдыбг
+         TINET хЖЕщГиуБзф╜┐чФиуБЩуВЛуВлуГ╝уГНуГлуВкуГЦуВ╕уВзуВпуГИуБо ID шЗкхЛХхЙ▓ф╗Шч╡РцЮЬуГХуВб
+         уВдуГлуБзуБВуВЛуАВ
 
-2. 2  TOPPERS/JSP ┤─╢нд╦дкд▒ды TINET е│еєе╒еге░еьб╝е╖ечеєе╒ебедеы
+2. 2  TOPPERS/JSP
 
-  TINET е│еєе╒егеоехеьб╝е┐д╧ tinet/cfg/tinet_cfg (cygwin д╟д╧
-tinet_cfg.exe) д╟двдъбве┐б╝е▓е├е╚д╦д╧░═┬╕д╖д╞ддд╩ддбг TINET е│еєе╒еге░
-еьб╝е┐д╬└╕└од╦д─ддд╞д╧б╓8. TOPPERS/JSP ┤─╢нд╦дкд▒дыедеєе╣е╚б╝еыд╚е╒еб
-едеыд╬║ю└обж╩╤╣╣ б╫дЄ╗▓╛╚д╣дыд│д╚бг 
-  TOPPERS/JSP ═╤ TINET е│еєе╒егеоехеьб╝е┐д╧ TINET е│еєе╒егеоехеьб╝е╖еч
-еєе╒ебедеыб╩╔╕╜рд╧ tinet_$(UNAME).cfgб╦длдщ░╩▓╝д╬е╒ебедеыдЄ└╕└од╣дыбг
+  TINET уВ│уГ│уГХуВгуВоуГеуГмуГ╝уВ┐уБп tinet/cfg/tinet_cfg (cygwin уБзуБп
+tinet_cfg.exe) уБзуБВуВКуАБуВ┐уГ╝уВ▓уГГуГИуБлуБпф╛ЭхнШуБЧуБжуБДуБкуБДуАВ TINET уВ│уГ│уГХуВгуВ░
+уГмуГ╝уВ┐уБочФЯцИРуБлуБдуБДуБжуБпуАМ8. TOPPERS/JSP чТ░хвГуБлуБКуБСуВЛуВдуГ│уВ╣уГИуГ╝уГлуБиуГХуВб
+уВдуГлуБоф╜ЬцИРуГ╗хдЙцЫ┤ уАНуВТхПВчЕзуБЩуВЛуБУуБиуАВ 
+  TOPPERS/JSP чФи TINET уВ│уГ│уГХуВгуВоуГеуГмуГ╝уВ┐уБп TINET уВ│уГ│уГХуВгуВоуГеуГмуГ╝уВ╖уГз
+уГ│уГХуВбуВдуГля╝ИциЩц║ЦуБп tinet_$(UNAME).cfgя╝ЙуБЛуВЙф╗еф╕ЛуБоуГХуВбуВдуГлуВТчФЯцИРуБЩуВЛуАВ
 
    (1)   tinet_cfg.c
-         TINET елб╝е═еы╣╜└ое╒ебедеыд╟бв еве╫еъе▒б╝е╖ечеєе╫еэе░ещербв
-         TINET д╚╢жд╦е│еєе╤едеыд╖д╞еъеєепд╣дыбг
+         TINET уВлуГ╝уГНуГлцзЛцИРуГХуВбуВдуГлуБзуАБ уВвуГЧуГкуВ▒уГ╝уВ╖уГзуГ│уГЧуГнуВ░уГйуГауАБ
+         TINET уБихЕ▒уБлуВ│уГ│уГСуВдуГлуБЧуБжуГкуГ│уВпуБЩуВЛуАВ
 
    (2)   tinet_kern.cfg
-         TINET ╞т╔Їд╟╗╚═╤д╣дыелб╝е═еыеке╓е╕езепе╚д╬└┼┼к API дм└╕└од╡дьбв
-         TOPPERS/JSP е╖е╣е╞ере│еєе╒егеоехеьб╝е╖ечеєе╒ебедеыб╩╔╕╜рд╧
-         $(UNAME).cfgб╦д╦едеєепеыб╝е╔д╣дыбг
+         TINET хЖЕщГиуБзф╜┐чФиуБЩуВЛуВлуГ╝уГНуГлуВкуГЦуВ╕уВзуВпуГИуБощЭЩчЪД API уБМчФЯцИРуБХуВМуАБ
+         TOPPERS/JSP уВ╖уВ╣уГЖуГауВ│уГ│уГХуВгуВоуГеуГмуГ╝уВ╖уГзуГ│уГХуВбуВдуГля╝ИциЩц║ЦуБп
+         $(UNAME).cfgя╝ЙуБлуВдуГ│уВпуГлуГ╝уГЙуБЩуВЛуАВ
 
    (3)   tinet_id.h
-         TINET ╞т╔Їд╟╗╚═╤д╣дыелб╝е═еыеке╓е╕езепе╚д╬ ID ╝л╞░│ф╔╒╖ы▓╠е╒еб
-         едеыд╟двдыбг
+         TINET хЖЕщГиуБзф╜┐чФиуБЩуВЛуВлуГ╝уГНуГлуВкуГЦуВ╕уВзуВпуГИуБо ID шЗкхЛХхЙ▓ф╗Шч╡РцЮЬуГХуВб
+         уВдуГлуБзуБВуВЛуАВ
 
-2. 3  ╗├─ъ┼кд╩ITRON TCP/IPб╩е╨б╝е╕ечеє6б╦API╗┼══
+3.  ITRON TCP/IP APIф╗ХцзШ
 
-  IPv6 д╦┤╪д╣ды ITRON TCP/IP API ╗┼══дмд╩ддд┐дсбв╗├─ъ┼кд╩ ITRON TCP/IP
-б╩е╨б╝е╕ечеє 6б╦API ╗┼══дЄ─ъ╡┴д╖д┐бг
+3. 1  цЪлхоЪчЪДуБкITRON TCP/IPя╝ИуГРуГ╝уВ╕уГзуГ│6я╝ЙAPIф╗ХцзШ
 
-   (1)   1.5.1 е╟б╝е┐╣╜┬дб┐е╟б╝е┐╖┐ (1) IP еве╔еье╣б┐е▌б╝е╚╚╓╣цдЄ╞■дь
-         дые╟б╝е┐╣╜┬д
+  IPv6 уБлщЦвуБЩуВЛ ITRON TCP/IP API 2.0 ф╗ХцзШуБлуБпцЬкхп╛х┐ЬуБзуБВуВЛуАВ TINET уГкуГкуГ╝
+уВ╣ 1.2 уБЛуВЙуБоцЪлхоЪчЪДуБк ITRON TCP/IPя╝ИуГРуГ╝уВ╕уГзуГ│ 6я╝ЙAPI ф╗ХцзШуБлуБоуБ┐хп╛х┐ЬуБЧ
+уБжуБДуВЛуАВ
 
-            /* IPv6 еве╔еье╣ */
+   (1)   1.5.1 уГЗуГ╝уВ┐цзЛщАая╝ПуГЗуГ╝уВ┐хЮЛ (1) IP уВвуГЙуГмуВ╣я╝ПуГЭуГ╝уГИчХкхП╖уВТхЕеуВМ
+         уВЛуГЗуГ╝уВ┐цзЛщАа
+
+            /* IPv6 уВвуГЙуГмуВ╣ */
             struct t_in6_addr {
                 union {
                     uint8_t    __u6_addr8[16];
@@ -258,402 +203,402 @@ tinet_cfg.exe) д╟двдъбве┐б╝е▓е├е╚д╦д╧░═┬╕д╖д╞ддд╩ддбг TINET е│еєе╒еге░
                 } T_IN6_ADDR;
             
             typedef struct t_ipv6ep {
-                T_IN6_ADDR    ipaddr;        /* IPv6 еве╔еье╣ */
-                uint16_t      portno;        /* е▌б╝е╚╚╓╣ц    */
+                T_IN6_ADDR    ipaddr;        /* IPv6 уВвуГЙуГмуВ╣ */
+                uint16_t      portno;        /* уГЭуГ╝уГИчХкхП╖    */
                 } T_IPV6EP;
 
-   (2)   1.5.1 е╟б╝е┐╣╜┬дб┐е╟б╝е┐╖┐ (2) еке╓е╕езепе╚└╕└о═╤д╬е╟б╝е┐╣╜┬д
+   (2)   1.5.1 уГЗуГ╝уВ┐цзЛщАая╝ПуГЗуГ╝уВ┐хЮЛ (2) уВкуГЦуВ╕уВзуВпуГИчФЯцИРчФиуБоуГЗуГ╝уВ┐цзЛщАа
 
             typedef struct t_tcp6_crep {
-                /* ╔╕╜р */
-                ATR         repatr;        /* ╝ї╔╒╕¤┬░└н        */
-                T_IPV6EP    myaddr;        /* ╝л╩мд╬еве╔еье╣    */
-                /* ╝┬┴ї░═┬╕ */
+                /* циЩц║Ц */
+                ATR         repatr;        /* хПЧф╗ШхПгх▒ЮцАз        */
+                T_IPV6EP    myaddr;        /* шЗкхИЖуБоуВвуГЙуГмуВ╣    */
+                /* хоЯшгЕф╛ЭхнШ */
                 } T_TCP6_CREP;
 
-   (3)   1.5.1 е╟б╝е┐╣╜┬дб┐е╟б╝е┐╖┐ (5) ╞├╝ьд╩ IP еве╔еье╣д╚е▌б╝е╚╚╓╣ц
+   (3)   1.5.1 уГЗуГ╝уВ┐цзЛщАая╝ПуГЗуГ╝уВ┐хЮЛ (5) чЙ╣цоКуБк IP уВвуГЙуГмуВ╣уБиуГЭуГ╝уГИчХкхП╖
 
             #define IPV6_ADDR_UNSPECIFIED_INIT    \
                 {{{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, \
                     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }}}
             #define IPV6_ADDRANY        IPV6_ADDR_UNSPECIFIED_INIT
 
-   (4)   2.2 TCP ╝ї╔╒╕¤д╬└╕└об┐║я╜№
-         б┌└┼┼к APIб█
+   (4)   2.2 TCP хПЧф╗ШхПгуБочФЯцИРя╝ПхЙКщЩд
+         уАРщЭЩчЪД APIуАС
                TCP6_CRE_REP(ID repid, { ATR repatr,
                                       { T_IN6_ADDR myipaddr, uint16_t myportno } } );
 
-         б┌API д╬╡б╟╜б█
-                 myipaddr д╬╖┐дм T_IN6_ADDR д╦д╩д├д┐░╩│░д╧бв ITRON
-               TCP/IP API ╗┼══д╚╞▒д╕д╟двдыбгmyipaddr д╦д╧ IPV6_ADDRANY
-               дЄ╗╪─ъд╟дндыбг
+         уАРAPI уБоцйЯшГ╜уАС
+                 myipaddr уБохЮЛуБМ T_IN6_ADDR уБлуБкуБгуБЯф╗ехдЦуБпуАБ ITRON
+               TCP/IP API ф╗ХцзШуБихРМуБШуБзуБВуВЛуАВmyipaddr уБлуБп IPV6_ADDRANY
+               уВТцМЗхоЪуБзуБНуВЛуАВ
 
-   (5)   2.4 └▄┬│б┐└┌├╟б╓└▄┬│═╫╡с┬╘д┴б╩╝ї╞░екб╝е╫еєб╦б╫
-         б┌C ╕└╕ь APIб█
+   (5)   2.4 цОеч╢Ъя╝ПхИЗцЦнуАМцОеч╢ЪшжБц▒Вх╛ЕуБбя╝ИхПЧхЛХуВкуГ╝уГЧуГ│я╝ЙуАН
+         уАРC шиАшкЮ APIуАС
                ER ercd = tcp6_acp_cep(ID cepid, ID repid,
                                       T_IPV6EP *p_dstaddr, TMO tmout);
 
-         б┌API д╬╡б╟╜б█
-                 p_dstaddr д╬╖┐дмбв T_IPV6EP* д╦д╩д├д┐░╩│░д╧бв ITRON
-               TCP/IP API ╗┼══д╚╞▒д╕д╟двдыбг
+         уАРAPI уБоцйЯшГ╜уАС
+                 p_dstaddr уБохЮЛуБМуАБ T_IPV6EP* уБлуБкуБгуБЯф╗ехдЦуБпуАБ ITRON
+               TCP/IP API ф╗ХцзШуБихРМуБШуБзуБВуВЛуАВ
 
-   (6)   2.4 └▄┬│б┐└┌├╟б╓└▄┬│═╫╡сб╩╟╜╞░екб╝е╫еєб╦б╫
-         б┌C ╕└╕ь APIб█
+   (6)   2.4 цОеч╢Ъя╝ПхИЗцЦнуАМцОеч╢ЪшжБц▒Вя╝ИшГ╜хЛХуВкуГ╝уГЧуГ│я╝ЙуАН
+         уАРC шиАшкЮ APIуАС
                ER ercd = tcp6_con_cep(ID cepid, T_IPV6EP *p_myaddr,
                                       T_IPV6EP *p_dstaddr, TMO tmout);
 
-         б┌╡б╟╜б█
-                 p_myaddr д╚ p_dstaddr д╬╖┐дмбв T_IPV6EP* д╦д╩д├д┐░╩│░
-               д╧бвITRON TCP/IP API ╗┼══д╚╞▒д╕д╟двдыбг
+         уАРцйЯшГ╜уАС
+                 p_myaddr уБи p_dstaddr уБохЮЛуБМуАБ T_IPV6EP* уБлуБкуБгуБЯф╗ехдЦ
+               уБпуАБITRON TCP/IP API ф╗ХцзШуБихРМуБШуБзуБВуВЛуАВ
 
-   (7)   3.2 UDP ─╠┐о├╝┼└д╬└╕└об┐║я╜№
-         б┌└┼┼к APIб█
+   (7)   3.2 UDP щАЪф┐бчлпчВ╣уБочФЯцИРя╝ПхЙКщЩд
+         уАРщЭЩчЪД APIуАС
                UDP6_CRE_CEP(ID cepid, { ATR cepatr,
                                       { T_IN6_ADDR myipaddr, uint16_t myportno },
                                         FP callback } );
 
-         б┌╡б╟╜б█
-                 myipaddr д╬╖┐дм T_IN6_ADDR д╦д╩д├д┐░╩│░д╧бв ITRON
-               TCP/IP API ╗┼══д╚╞▒д╕д╟двдыбгmyipaddr д╦д╧ IPV6_ADDRANY
-               дЄ╗╪─ъд╟дндыбг
+         уАРцйЯшГ╜уАС
+                 myipaddr уБохЮЛуБМ T_IN6_ADDR уБлуБкуБгуБЯф╗ехдЦуБпуАБ ITRON
+               TCP/IP API ф╗ХцзШуБихРМуБШуБзуБВуВЛуАВmyipaddr уБлуБп IPV6_ADDRANY
+               уВТцМЗхоЪуБзуБНуВЛуАВ
 
-   (8)   3.3 е╟б╝е┐д╬┴ў╝ї┐об╓е╤е▒е├е╚д╬┴ў┐об╫
-         б┌C ╕└╕ь APIб█
+   (8)   3.3 уГЗуГ╝уВ┐уБощАБхПЧф┐буАМуГСуВ▒уГГуГИуБощАБф┐буАН
+         уАРC шиАшкЮ APIуАС
                ER ercd = udp6_snd_dat(ID cepid, T_IPV6EP *p_dstaddr, 
                                       void *data, int_t len, TMO tmout);
 
-         б┌╡б╟╜б█
-                 p_dstaddr д╬╖┐дмбв T_IPV6EP* д╦д╩д├д┐░╩│░д╧бв ITRON
-               TCP/IP API ╗┼══д╚╞▒д╕д╟двдыбг
+         уАРцйЯшГ╜уАС
+                 p_dstaddr уБохЮЛуБМуАБ T_IPV6EP* уБлуБкуБгуБЯф╗ехдЦуБпуАБ ITRON
+               TCP/IP API ф╗ХцзШуБихРМуБШуБзуБВуВЛуАВ
 
-   (9)   3.4 е╟б╝е┐д╬┴ў╝ї┐об╓е╤е▒е├е╚д╬╝ї┐об╫
-         б┌C ╕└╕ь APIб█
+   (9)   3.4 уГЗуГ╝уВ┐уБощАБхПЧф┐буАМуГСуВ▒уГГуГИуБохПЧф┐буАН
+         уАРC шиАшкЮ APIуАС
                ER ercd = udp6_rcv_dat(ID cepid, T_IPV6EP *p_dstaddr, 
                                       void *data, int_t len, TMO tmout);
 
-         б┌╡б╟╜б█
-                 p_dstaddr д╬╖┐дмбв T_IPV6EP* д╦д╩д├д┐░╩│░д╧бв ITRON
-               TCP/IP API ╗┼══д╚╞▒д╕д╟двдыбг
+         уАРцйЯшГ╜уАС
+                 p_dstaddr уБохЮЛуБМуАБ T_IPV6EP* уБлуБкуБгуБЯф╗ехдЦуБпуАБ ITRON
+               TCP/IP API ф╗ХцзШуБихРМуБШуБзуБВуВЛуАВ
 
-2. 4  е╡е▌б╝е╚д╣дыеке╓е╕езепе╚д╬─ъ╡┴
+3. 2  уВ╡уГЭуГ╝уГИуБЩуВЛуВкуГЦуВ╕уВзуВпуГИуБохоЪч╛й
 
-  е╡е▌б╝е╚д╣дыеке╓е╕езепе╚д╬─ъ╡┴д╧бв░╩▓╝д╦╝ид╣ ITRON TCP/IP API ╗┼══д╬
-└┼┼к APIбв ╗├─ъ┼кд╩ ITRON TCP/IPб╩е╨б╝е╕ечеє 6б╦API ╗┼══д╬└┼┼к APIбв
-TINET ╞╚╝лд╬└┼┼к APIбве╒ебедеыд╬едеєепеыб╝е╔д╟двдыбг
+  уВ╡уГЭуГ╝уГИуБЩуВЛуВкуГЦуВ╕уВзуВпуГИуБохоЪч╛йуБпуАБф╗еф╕ЛуБлчд║уБЩ ITRON TCP/IP API ф╗ХцзШуБо
+щЭЩчЪД APIуАБ цЪлхоЪчЪДуБк ITRON TCP/IPя╝ИуГРуГ╝уВ╕уГзуГ│ 6я╝ЙAPI ф╗ХцзШуБощЭЩчЪД APIуАБ
+TINET чЛмшЗкуБощЭЩчЪД APIуАБуГХуВбуВдуГлуБоуВдуГ│уВпуГлуГ╝уГЙуБзуБВуВЛуАВ
 
-   (1)   TCP ╝ї╔╒╕¤б╩IPv4б╦
-         б┌└┼┼к APIб█
+   (1)   TCP хПЧф╗ШхПгя╝ИIPv4я╝Й
+         уАРщЭЩчЪД APIуАС
                TCP_CRE_REP(ID repid, { ATR repatr,
                                      { uint32_t myipaddr, uint16_t myportno } } );
 
-         б┌е╤ещесб╝е┐б█
-                 е╤ещесб╝е┐д╦д─ддд╞д╧бвITRON TCP/IP API ╗┼══д╚╞▒д╕д╟дв
-               дъбв╝┬┴ї░═┬╕д╬ TCP ╝ї╔╒╕¤┬░└нд╧д╩ддбг
+         уАРуГСуГйуГбуГ╝уВ┐уАС
+                 уГСуГйуГбуГ╝уВ┐уБлуБдуБДуБжуБпуАБITRON TCP/IP API ф╗ХцзШуБихРМуБШуБзуБВ
+               уВКуАБхоЯшгЕф╛ЭхнШуБо TCP хПЧф╗ШхПгх▒ЮцАзуБпуБкуБДуАВ
+         уАРTCP хПЧф╗ШхПгцХ░уБохоЪч╛йуАС
+                 TCP хПЧф╗ШхПгцХ░уВТхоЪч╛йуБЩуВЛуГЧуГкуГЧуГнуВ╗уГГуВ╡уГЗуВгуГмуВпуГЖуВгуГЦуБз
+               уБВуВКуАБtinet_cfg.c уБлхЗ║хКЫуБХуВМуВЛуАВ
+                     #define TNUM_TCP_REPID <TCPхПЧф╗ШхПгцХ░>
 
-         б┌TCP ╝ї╔╒╕¤┐Їд╬─ъ╡┴б█
-                 TCP ╝ї╔╒╕¤┐ЇдЄ─ъ╡┴д╣дые╫еъе╫еэе╗е├е╡е╟егеьепе╞еге╓д╟
-               двдъбвtinet_cfg.c д╦╜╨╬╧д╡дьдыбг
-                     #define TNUM_TCP_REPID <TCP╝ї╔╒╕¤┐Ї>
-
-         б┌TCP ╝ї╔╒╕¤ ID д╬║╟┬ч├═д╬╩╤┐Їд╬─ъ╡┴б█
-                 TCP ╝ї╔╒╕¤ ID д╬║╟┬ч├═д╬╩╤┐Їд╬─ъ╡┴д╟двдъбвtinet_cfg.c
-               д╦╜╨╬╧д╡дьдыбг
+         уАРTCP хПЧф╗ШхПг ID уБоцЬАхдзхАдуБохдЙцХ░уБохоЪч╛йуАС
+                 TCP хПЧф╗ШхПг ID уБоцЬАхдзхАдуБохдЙцХ░уБохоЪч╛йуБзуБВуВКуАБtinet_cfg.c
+               уБлхЗ║хКЫуБХуВМуВЛуАВ
                      const ID tmax_tcp_repid =
                               (TMIN_TCP_REPID + TNUM_TCP_REPID - 1);
 
-   (2)   TCP ─╠┐о├╝┼└б╩IPv4б╦
-         б┌└┼┼к APIб█
+   (2)   TCP щАЪф┐бчлпчВ╣я╝ИIPv4я╝Й
+         уАРщЭЩчЪД APIуАС
                TCP_CRE_CEP(ID cepid, { ATR cepatr, void *sbuf, int_t sbufsz,
                                                    void *rbuf, int_t rbufsz,
                                                    FP callback } );
 
-         б┌е╤ещесб╝е┐б█
-                 е╤ещесб╝е┐д╦д─ддд╞д╧бвITRON TCP/IP API ╗┼══д╚╞▒д╕д╟дв
-               дъбв╝┬┴ї░═┬╕д╬ TCP ─╠┐о├╝┼└┬░└нд╧д╩ддбг
-         б┌TCP ─╠┐о├╝┼└┐Їд╬─ъ╡┴б█
-                 TCP ─╠┐о├╝┼└┐ЇдЄ─ъ╡┴д╣дые╫еъе╫еэе╗е├е╡е╟егеьепе╞еге╓
-               д╟двдъбвtinet_cfg.c д╦╜╨╬╧д╡дьдыбг
-                     #define TNUM_TCP_CEPID <TCP─╠┐о├╝┼└┐Ї>
+         уАРуГСуГйуГбуГ╝уВ┐уАС
+                 уГСуГйуГбуГ╝уВ┐уБлуБдуБДуБжуБпуАБITRON TCP/IP API ф╗ХцзШуБихРМуБШуБзуБВ
+               уВКуАБхоЯшгЕф╛ЭхнШуБо TCP щАЪф┐бчлпчВ╣х▒ЮцАзуБпуБкуБДуАВ
+         уАРTCP щАЪф┐бчлпчВ╣цХ░уБохоЪч╛йуАС
+                 TCP щАЪф┐бчлпчВ╣цХ░уВТхоЪч╛йуБЩуВЛуГЧуГкуГЧуГнуВ╗уГГуВ╡уГЗуВгуГмуВпуГЖуВгуГЦ
+               уБзуБВуВКуАБtinet_cfg.c уБлхЗ║хКЫуБХуВМуВЛуАВ
+                     #define TNUM_TCP_CEPID <TCPщАЪф┐бчлпчВ╣цХ░>
 
-         б┌TCP ─╠┐о├╝┼└ ID д╬║╟┬ч├═д╬╩╤┐Їд╬─ъ╡┴б█
-                 TCP ─╠┐о├╝┼└ ID д╬║╟┬ч├═д╬╩╤┐Їд╬─ъ╡┴д╟двдъбв
-               tinet_cfg.c д╦╜╨╬╧д╡дьдыбг
+         уАРTCP щАЪф┐бчлпчВ╣ ID уБоцЬАхдзхАдуБохдЙцХ░уБохоЪч╛йуАС
+                 TCP щАЪф┐бчлпчВ╣ ID уБоцЬАхдзхАдуБохдЙцХ░уБохоЪч╛йуБзуБВуВКуАБ
+               tinet_cfg.c уБлхЗ║хКЫуБХуВМуВЛуАВ
                      const ID tmax_tcp_cepid =
                               (TMIN_TCP_CEPID + TNUM_TCP_CEPID - 1);
 
-   (3)   UDP ─╠┐о├╝┼└б╩IPv4б╦
-         б┌└┼┼к APIб█
+   (3)   UDP щАЪф┐бчлпчВ╣я╝ИIPv4я╝Й
+         уАРщЭЩчЪД APIуАС
                UDP_CRE_CEP(ID cepid, { ATR cepatr,
                                      { uint32_t myipaddr, uint16_t myportno },
                                        FP callback } );
 
-         б┌е╤ещесб╝е┐б█
-                 е╤ещесб╝е┐д╦д─ддд╞д╧бвITRON UDP/IP API ╗┼══д╚╞▒д╕д╟дв
-               дъбв╝┬┴ї░═┬╕д╬ UDP ─╠┐о├╝┼└┬░└нд╧д╩ддбг
-         б┌UDP ─╠┐о├╝┼└┐Їд╬─ъ╡┴б█
-                 UDP ─╠┐о├╝┼└┐ЇдЄ─ъ╡┴д╣дые╫еъе╫еэе╗е├е╡е╟егеьепе╞еге╓
-               д╟двдъбвtinet_cfg.c д╦╜╨╬╧д╡дьдыбг
-                     #define TNUM_UDP_CEPID <UDP─╠┐о├╝┼└┐Ї>
+         уАРуГСуГйуГбуГ╝уВ┐уАС
+                 уГСуГйуГбуГ╝уВ┐уБлуБдуБДуБжуБпуАБITRON UDP/IP API ф╗ХцзШуБихРМуБШуБзуБВ
+               уВКуАБхоЯшгЕф╛ЭхнШуБо UDP щАЪф┐бчлпчВ╣х▒ЮцАзуБпуБкуБДуАВ
+         уАРUDP щАЪф┐бчлпчВ╣цХ░уБохоЪч╛йуАС
+                 UDP щАЪф┐бчлпчВ╣цХ░уВТхоЪч╛йуБЩуВЛуГЧуГкуГЧуГнуВ╗уГГуВ╡уГЗуВгуГмуВпуГЖуВгуГЦ
+               уБзуБВуВКуАБtinet_cfg.c уБлхЗ║хКЫуБХуВМуВЛуАВ
+                     #define TNUM_UDP_CEPID <UDPщАЪф┐бчлпчВ╣цХ░>
 
-         б┌UDP ─╠┐о├╝┼└ ID д╬║╟┬ч├═д╬╩╤┐Їд╬─ъ╡┴б█
-                 UDP ─╠┐о├╝┼└ ID д╬║╟┬ч├═д╬╩╤┐ЇдЄ─ъ╡┴д╟двдъбв
-               tinet_cfg.c д╦╜╨╬╧д╡дьдыбг
+         уАРUDP щАЪф┐бчлпчВ╣ ID уБоцЬАхдзхАдуБохдЙцХ░уБохоЪч╛йуАС
+                 UDP щАЪф┐бчлпчВ╣ ID уБоцЬАхдзхАдуБохдЙцХ░уВТхоЪч╛йуБзуБВуВКуАБ
+               tinet_cfg.c уБлхЗ║хКЫуБХуВМуВЛуАВ
                      const ID tmax_udp_cepid =
                               (TMIN_UDP_CEPID + TNUM_UDP_CEPID - 1);
 
-   (4)   TCP ╝ї╔╒╕¤б╩IPv6б╦
-         б┌└┼┼к APIб█
+   (4)   TCP хПЧф╗ШхПгя╝ИIPv6я╝Й
+         уАРщЭЩчЪД APIуАС
                TCP6_CRE_REP(ID repid, { ATR repatr,
                                       { T_IN6_ADDR myipaddr, uint16_t myportno } } );
 
-         б┌е╤ещесб╝е┐б█
-                 е╤ещесб╝е┐д╦д─ддд╞д╧бвmyipaddr д╟╗╪─ъд╣ды IP еве╔еье╣
-               д╧ IPv6 д╟двдъбвIPv4 д╬ IP_ADDRANY д╬┬хдядъд╦бв IPv6 д╟
-               д╧ IPV6_ADDRANY дЄ╗╪─ъд╟дндыбг д│дь░╩│░д╧бвITRON TCP/IP
-               API ╗┼══д╚╞▒д╕д╟двдъбв╝┬┴ї░═┬╕д╬ TCP ╝ї╔╒╕¤┬░└нд╧д╩ддбг
+         уАРуГСуГйуГбуГ╝уВ┐уАС
+                 уГСуГйуГбуГ╝уВ┐уБлуБдуБДуБжуБпуАБmyipaddr уБзцМЗхоЪуБЩуВЛ IP уВвуГЙуГмуВ╣
+               уБп IPv6 уБзуБВуВКуАБ IPv4 уБо IP_ADDRANY уБоф╗гуВПуВКуБлуАБIPv6 уБз
+               уБп IPV6_ADDRANY уВТцМЗхоЪуБзуБНуВЛуАВуБУуВМф╗ехдЦуБпуАБ ITRON TCP/IP
+               API ф╗ХцзШуБихРМуБШуБзуБВуВКуАБхоЯшгЕф╛ЭхнШуБо TCP хПЧф╗ШхПгх▒ЮцАзуБпуБкуБДуАВ
+         уАРTCP хПЧф╗ШхПгцХ░уБохоЪч╛йуАС
+                 TCP хПЧф╗ШхПгцХ░уВТхоЪч╛йуБЩуВЛуГЧуГкуГЧуГнуВ╗уГГуВ╡уГЗуВгуГмуВпуГЖуВгуГЦуБз
+               уБВуВКуАБtinet_cfg.c уБлхЗ║хКЫуБХуВМуВЛуАВ
+                     #define TNUM_TCP_REPID <TCPхПЧф╗ШхПгцХ░>
 
-         б┌TCP ╝ї╔╒╕¤┐Їд╬─ъ╡┴б█
-                 TCP ╝ї╔╒╕¤┐ЇдЄ─ъ╡┴д╣дые╫еъе╫еэе╗е├е╡е╟егеьепе╞еге╓д╟
-               двдъбвtinet_cfg.c д╦╜╨╬╧д╡дьдыбг
-                     #define TNUM_TCP_REPID <TCP╝ї╔╒╕¤┐Ї>
-
-         б┌TCP ╝ї╔╒╕¤ ID д╬║╟┬ч├═д╬╩╤┐Їд╬─ъ╡┴б█
-                 TCP ╝ї╔╒╕¤ ID д╬║╟┬ч├═д╬╩╤┐ЇдЄ─ъ╡┴д╟двдъбвtinet_cfg.c
-               д╦╜╨╬╧д╡дьдыбг
+         уАРTCP хПЧф╗ШхПг ID уБоцЬАхдзхАдуБохдЙцХ░уБохоЪч╛йуАС
+                 TCP хПЧф╗ШхПг ID уБоцЬАхдзхАдуБохдЙцХ░уВТхоЪч╛йуБзуБВуВКуАБtinet_cfg.c
+               уБлхЗ║хКЫуБХуВМуВЛуАВ
                      const ID tmax_tcp_repid =
                               (TMIN_TCP_REPID + TNUM_TCP_REPID - 1);
 
-   (5)   TCP ─╠┐о├╝┼└б╩IPv6б╦
-         б┌└┼┼к APIб█
+   (5)   TCP щАЪф┐бчлпчВ╣я╝ИIPv6я╝Й
+         уАРщЭЩчЪД APIуАС
                TCP6_CRE_CEP(ID cepid, { ATR cepatr, void *sbuf, int_t sbufsz,
                                                     void *rbuf, int_t rbufsz,
                                                     FP callback } );
 
-         б┌е╤ещесб╝е┐б█
-                 е╤ещесб╝е┐д╦д─ддд╞д╧бвITRON TCP/IP API ╗┼══д╚╞▒д╕д╟дв
-               дъбв╝┬┴ї░═┬╕д╬ TCP ─╠┐о├╝┼└┬░└нд╧д╩ддбг
-         б┌TCP ─╠┐о├╝┼└┐Їд╬─ъ╡┴б█
-                 TCP ─╠┐о├╝┼└┐ЇдЄ─ъ╡┴д╣дые╫еъе╫еэе╗е├е╡е╟егеьепе╞еге╓
-               д╟двдъбвtinet_cfg.c д╦╜╨╬╧д╡дьдыбг
-                     #define TNUM_TCP_CEPID <TCP─╠┐о├╝┼└┐Ї>
+         уАРуГСуГйуГбуГ╝уВ┐уАС
+                 уГСуГйуГбуГ╝уВ┐уБлуБдуБДуБжуБпуАБITRON TCP/IP API ф╗ХцзШуБихРМуБШуБзуБВ
+               уВКуАБхоЯшгЕф╛ЭхнШуБо TCP щАЪф┐бчлпчВ╣х▒ЮцАзуБпуБкуБДуАВ
 
-         б┌TCP ─╠┐о├╝┼└ ID д╬║╟┬ч├═д╬╩╤┐Їд╬─ъ╡┴б█
-                 ║╟┬чд╬ TCP ─╠┐о├╝┼└ ID д╬║╟┬ч├═д╬╩╤┐ЇдЄ─ъ╡┴д╟двдъбв
-               tinet_cfg.c д╦╜╨╬╧д╡дьдыбг
+         уАРTCP щАЪф┐бчлпчВ╣цХ░уБохоЪч╛йуАС
+                 TCP щАЪф┐бчлпчВ╣цХ░уВТхоЪч╛йуБЩуВЛуГЧуГкуГЧуГнуВ╗уГГуВ╡уГЗуВгуГмуВпуГЖуВгуГЦ
+               уБзуБВуВКуАБtinet_cfg.c уБлхЗ║хКЫуБХуВМуВЛуАВ
+                     #define TNUM_TCP_CEPID <TCPщАЪф┐бчлпчВ╣цХ░>
+
+         уАРTCP щАЪф┐бчлпчВ╣ ID уБоцЬАхдзхАдуБохдЙцХ░уБохоЪч╛йуАС
+                 цЬАхдзуБо TCP щАЪф┐бчлпчВ╣ ID уБоцЬАхдзхАдуБохдЙцХ░уВТхоЪч╛йуБзуБВуВКуАБ
+               tinet_cfg.c уБлхЗ║хКЫуБХуВМуВЛуАВ
                      const ID tmax_tcp_cepid =
                               (TMIN_TCP_CEPID + TNUM_TCP_CEPID - 1);
 
-   (6)   UDP ─╠┐о├╝┼└б╩IPv6б╦
-         б┌└┼┼к APIб█
+   (6)   UDP щАЪф┐бчлпчВ╣я╝ИIPv6я╝Й
+         уАРщЭЩчЪД APIуАС
                UDP6_CRE_CEP(ID cepid, { ATR cepatr,
                                       { T_IN6_ADDR myipaddr, uint16_t myportno },
                                         FP callback } );
 
-         б┌е╤ещесб╝е┐б█
-                 е╤ещесб╝е┐д╦д─ддд╞д╧бвmyipaddr д╟╗╪─ъд╣ды IP еве╔еье╣
-               д╧ IPv6 д╟двдъбвIPv4 д╬ IP_ADDRANY д╬┬хдядъд╦бв IPv6 д╟
-               д╧ IPV6_ADDRANY дЄ╗╪─ъд╟дндыбг д│дь░╩│░д╧бвITRON TCP/IP
-               API ╗┼══д╚╞▒д╕д╟двдъбв╝┬┴ї░═┬╕д╬ TCP ╝ї╔╒╕¤┬░└нд╧д╩ддбг
-         б┌UDP ─╠┐о├╝┼└┐Їд╬─ъ╡┴б█
-                 UDP ─╠┐о├╝┼└┐ЇдЄ─ъ╡┴д╣дые╫еъе╫еэе╗е├е╡е╟егеьепе╞еге╓
-               д╟двдъбвtinet_cfg.c д╦╜╨╬╧д╡дьдыбг
-                     #define TNUM_UDP_CEPID <UDP─╠┐о├╝┼└┐Ї>
+         уАРуГСуГйуГбуГ╝уВ┐уАС
+                 уГСуГйуГбуГ╝уВ┐уБлуБдуБДуБжуБпуАБmyipaddr уБзцМЗхоЪуБЩуВЛ IP уВвуГЙуГмуВ╣
+               уБп IPv6 уБзуБВуВКуАБ IPv4 уБо IP_ADDRANY уБоф╗гуВПуВКуБлуАБIPv6 уБз
+               уБп IPV6_ADDRANY уВТцМЗхоЪуБзуБНуВЛуАВуБУуВМф╗ехдЦуБпуАБ ITRON TCP/IP
+               API ф╗ХцзШуБихРМуБШуБзуБВуВКуАБхоЯшгЕф╛ЭхнШуБо TCP хПЧф╗ШхПгх▒ЮцАзуБпуБкуБДуАВ
+         уАРUDP щАЪф┐бчлпчВ╣цХ░уБохоЪч╛йуАС
+                 UDP щАЪф┐бчлпчВ╣цХ░уВТхоЪч╛йуБЩуВЛуГЧуГкуГЧуГнуВ╗уГГуВ╡уГЗуВгуГмуВпуГЖуВгуГЦ
+               уБзуБВуВКуАБtinet_cfg.c уБлхЗ║хКЫуБХуВМуВЛуАВ
+                     #define TNUM_UDP_CEPID <UDPщАЪф┐бчлпчВ╣цХ░>
 
-         б┌UDP ─╠┐о├╝┼└ ID д╬║╟┬ч├═д╬╩╤┐Їд╬─ъ╡┴б█
-                 UDP ─╠┐о├╝┼└ ID д╬║╟┬ч├═д╬╩╤┐ЇдЄ─ъ╡┴д╟двдъбв
-               tinet_cfg.c д╦╜╨╬╧д╡дьдыбг
+         уАРUDP щАЪф┐бчлпчВ╣ ID уБоцЬАхдзхАдуБохдЙцХ░уБохоЪч╛йуАС
+                 UDP щАЪф┐бчлпчВ╣ ID уБоцЬАхдзхАдуБохдЙцХ░уВТхоЪч╛йуБзуБВуВКуАБ
+               tinet_cfg.c уБлхЗ║хКЫуБХуВМуВЛуАВ
                      const ID tmax_udp_cepid =
                               (TMIN_UDP_CEPID + TNUM_UDP_CEPID - 1);
 
-   (7)   TCP ╝ї╔╒╕¤д╬═╜╠є IDб╩IPv4бвTINET ╞╚╝лб╦
-         б┌└┼┼к APIб█
+   (7)   TCP хПЧф╗ШхПгуБоф║Ич┤Д IDя╝ИIPv4уАБTINET чЛмшЗкя╝Й
+         уАРщЭЩчЪД APIуАС
                VRID_TCP_REP(ID repid);
 
-         б┌е╤ещесб╝е┐б█
-               ID        repid     ═╜╠єд╣дыTCP╝ї╔╒╕¤ID
+         уАРуГСуГйуГбуГ╝уВ┐уАС
+               ID        repid     ф║Ич┤ДуБЩуВЛTCPхПЧф╗ШхПгID
 
-   (8)   TCP ─╠┐о├╝┼└д╬═╜╠є IDб╩IPv4бвTINET ╞╚╝лб╦
-         б┌└┼┼к APIб█
+   (8)   TCP щАЪф┐бчлпчВ╣уБоф║Ич┤Д IDя╝ИIPv4уАБTINET чЛмшЗкя╝Й
+         уАРщЭЩчЪД APIуАС
                VRID_TCP_CEP(ID cepid);
 
-         б┌е╤ещесб╝е┐б█
-               ID        repid     ═╜╠єд╣дыTCP─╠┐о├╝┼└ID
+         уАРуГСуГйуГбуГ╝уВ┐уАС
+               ID        repid     ф║Ич┤ДуБЩуВЛTCPщАЪф┐бчлпчВ╣ID
 
-   (9)   UDP ─╠┐о├╝┼└д╬═╜╠є IDб╩IPv4бвTINET ╞╚╝лб╦
-         б┌└┼┼к APIб█
+   (9)   UDP щАЪф┐бчлпчВ╣уБоф║Ич┤Д IDя╝ИIPv4уАБTINET чЛмшЗкя╝Й
+         уАРщЭЩчЪД APIуАС
                VRID_UDP_CEP(ID cepid);
 
-         б┌е╤ещесб╝е┐б█
-               ID        repid     ═╜╠єд╣дыUDP─╠┐о├╝┼└ID
+         уАРуГСуГйуГбуГ╝уВ┐уАС
+               ID        repid     ф║Ич┤ДуБЩуВЛUDPщАЪф┐бчлпчВ╣ID
 
-   (10)  TCP ╝ї╔╒╕¤д╬═╜╠є IDб╩IPv6бвTINET ╞╚╝лб╦
-         б┌└┼┼к APIб█
+   (10)  TCP хПЧф╗ШхПгуБоф║Ич┤Д IDя╝ИIPv6уАБTINET чЛмшЗкя╝Й
+         уАРщЭЩчЪД APIуАС
                VRID_TCP6_REP(ID repid);
 
-         б┌е╤ещесб╝е┐б█
-               ID        repid     ═╜╠єд╣дыTCP╝ї╔╒╕¤ID
+         уАРуГСуГйуГбуГ╝уВ┐уАС
+               ID        repid     ф║Ич┤ДуБЩуВЛTCPхПЧф╗ШхПгID
 
-   (11)  TCP ─╠┐о├╝┼└д╬═╜╠є IDб╩IPv6бвTINET ╞╚╝лб╦
-         б┌└┼┼к APIб█
+   (11)  TCP щАЪф┐бчлпчВ╣уБоф║Ич┤Д IDя╝ИIPv6уАБTINET чЛмшЗкя╝Й
+         уАРщЭЩчЪД APIуАС
                VRID_TCP6_CEP(ID cepid);
 
-         б┌е╤ещесб╝е┐б█
-               ID        repid     ═╜╠єд╣дыTCP─╠┐о├╝┼└ID
+         уАРуГСуГйуГбуГ╝уВ┐уАС
+               ID        repid     ф║Ич┤ДуБЩуВЛTCPщАЪф┐бчлпчВ╣ID
 
-   (12)  UDP ─╠┐о├╝┼└д╬═╜╠є IDб╩IPv6бвTINET ╞╚╝лб╦
-         б┌└┼┼к APIб█
+   (12)  UDP щАЪф┐бчлпчВ╣уБоф║Ич┤Д IDя╝ИIPv6уАБTINET чЛмшЗкя╝Й
+         уАРщЭЩчЪД APIуАС
                VRID_UDP6_CEP(ID cepid);
 
-         б┌е╤ещесб╝е┐б█
-               ID        repid     ═╜╠єд╣дыUDP─╠┐о├╝┼└ID
+         уАРуГСуГйуГбуГ╝уВ┐уАС
+               ID        repid     ф║Ич┤ДуБЩуВЛUDPщАЪф┐бчлпчВ╣ID
 
-3.  ITRON TCP/IP API │╚─е╡б╟╜
+4.  ITRON TCP/IP API цЛбх╝╡цйЯшГ╜
 
-  TINET еъеъб╝е╣ 1.3 д▐д╟д╧бвITRON TCP/IP API д╬╔╕╜р╡б╟╜д╬д▀д╦┬╨▒■д╖д╞
-ддд┐дмбвеъеъб╝е╣ 1.4 длдщд╧бв│╚─е╡б╟╜д╦дт┬╨▒■д╖д┐бгд┐д└д╖бв ▒■═╤е╫еэе░
-ещердлдщ╗╚═╤д╣ды╛ь╣чд╧бв░╩▓╝д╦╝ид╣е│еєе╤едеы╗■е│еєе╒егеоехеьб╝е╖ечеєе╤
-ещесб╝е┐дЄ╗╪─ъд╖д╩д▒дьд╨д╩дщд╩ддбг 
+  TINET уГкуГкуГ╝уВ╣ 1.3 уБ╛уБзуБпуАБITRON TCP/IP API уБоциЩц║ЦцйЯшГ╜уБоуБ┐уБлхп╛х┐ЬуБЧуБж
+уБДуБЯуБМуАБ уГкуГкуГ╝уВ╣ 1.4 уБЛуВЙуБпуАБцЛбх╝╡цйЯшГ╜уБлуВВхп╛х┐ЬуБЧуБЯуАВуБЯуБауБЧуАБх┐ЬчФиуГЧуГнуВ░
+уГйуГауБЛуВЙф╜┐чФиуБЩуВЛха┤хРИуБпуАБф╗еф╕ЛуБлчд║уБЩуВ│уГ│уГСуВдуГлцЩВуВ│уГ│уГХуВгуВоуГеуГмуГ╝уВ╖уГзуГ│уГС
+уГйуГбуГ╝уВ┐уВТцМЗхоЪуБЧуБкуБСуВМуБ░уБкуВЙуБкуБДуАВ 
 
    (1)   TCP_CFG_EXTENTIONS
-         ITRON TCP/IP API д╬ TCP д╬│╚─е╡б╟╜дЄ═н╕·д╦д╣дыбг
+         ITRON TCP/IP API уБо TCP уБоцЛбх╝╡цйЯшГ╜уВТцЬЙхК╣уБлуБЩуВЛуАВ
 
    (2)   UDP_CFG_EXTENTIONS
-         ITRON TCP/IP API д╬ UDP д╬│╚─е╡б╟╜дЄ═н╕·д╦д╣дыбг
+         ITRON TCP/IP API уБо UDP уБоцЛбх╝╡цйЯшГ╜уВТцЬЙхК╣уБлуБЩуВЛуАВ
 
-3. 1  TCP д╬ ITRON TCP/IP API │╚─е╡б╟╜
+4. 1  TCP уБо ITRON TCP/IP API цЛбх╝╡цйЯшГ╜
 
-  TCP_CFG_EXTENTIONS дЄ╗╪─ъд╣дыд│д╚д╦дшдъ╗╚═╤▓─╟╜д╚д╩ды API дЄ░╩▓╝д╦╝ид╣бг
+  TCP_CFG_EXTENTIONS уВТцМЗхоЪуБЩуВЛуБУуБиуБлуВИуВКф╜┐чФихПпшГ╜уБиуБкуВЛ API уВТф╗еф╕ЛуБлчд║
+уБЩуАВ
 
-   бжTCP ╝ї╔╒╕¤д╬═╜╠є IDб┌└┼┼к APIбвVRID_TCP_REPб█б╩IPv4бвTINET ╞╚╝лб╦
-   бжTCP ╝ї╔╒╕¤д╬═╜╠є IDб┌└┼┼к APIбвVRID_TCP6_REPб█б╩IPv6бвTINET ╞╚╝лб╦
-   бжTCP ─╠┐о├╝┼└д╬═╜╠є IDб┌└┼┼к APIбвVRID_TCP_CEPб█б╩IPv4бвTINET ╞╚╝лб╦
-   бжTCP ─╠┐о├╝┼└д╬═╜╠є IDб┌└┼┼к APIбвVRID_TCP6_CEPб█б╩IPv6бв TINET ╞╚╝лб╦
-   бжTCP ╝ї╔╒╕¤д╬└╕└об┌╞░┼к APIбвtcp_cre_repб█б╩IPv4б╦
-   бжTCP ╝ї╔╒╕¤д╬└╕└об┌╞░┼к APIбвtcp6_cre_repб█б╩IPv6бвTINET ╞╚╝лб╦
-   бжTCP ╝ї╔╒╕¤д╬║я╜№б┌╞░┼к APIбвtcp_del_repб█
-   бжTCP ─╠┐о├╝┼└д╬└╕└об┌╞░┼к APIбвtcp_cre_cepб█
-   бжTCP ─╠┐о├╝┼└д╬║я╜№б┌╞░┼к APIбвtcp_del_cepб█
-   бж╢█╡▐е╟б╝е┐д╬┴ў┐об┌tcp_snd_oobб█
-   бж╢█╡▐е╟б╝е┐д╬╝ї┐об┌tcp_rcv_oobб█
-   бжTCP ─╠┐о├╝┼└еке╫е╖ечеєд╬└▀─ъб┌tcp_set_optб█
-   бжTCP ─╠┐о├╝┼└еке╫е╖ечеєд╬╞╔╜╨д╖б┌tcp_get_optб█
-   бж╢█╡▐е╟б╝е┐╝ї┐об┌е│б╝еые╨е├епбвTEV_TCP_RCV_OOBб█
+   уГ╗TCP хПЧф╗ШхПгуБоф║Ич┤Д IDуАРщЭЩчЪД APIуАБVRID_TCP_REPуАСя╝ИIPv4уАБTINET чЛмшЗкя╝Й
+   уГ╗TCP хПЧф╗ШхПгуБоф║Ич┤Д IDуАРщЭЩчЪД APIуАБVRID_TCP6_REPуАСя╝ИIPv6уАБTINET чЛмшЗкя╝Й
+   уГ╗TCP щАЪф┐бчлпчВ╣уБоф║Ич┤Д IDуАРщЭЩчЪД APIуАБVRID_TCP_CEPуАСя╝ИIPv4уАБTINET чЛмшЗкя╝Й
+   уГ╗TCP щАЪф┐бчлпчВ╣уБоф║Ич┤Д IDуАРщЭЩчЪД APIуАБ VRID_TCP6_CEPуАСя╝ИIPv6уАБTINET чЛмшЗкя╝Й
+   уГ╗TCP хПЧф╗ШхПгуБочФЯцИРуАРхЛХчЪД APIуАБtcp_cre_repуАСя╝ИIPv4я╝Й
+   уГ╗TCP хПЧф╗ШхПгуБочФЯцИРуАРхЛХчЪД APIуАБtcp6_cre_repуАСя╝ИIPv6уАБTINET чЛмшЗкя╝Й
+   уГ╗TCP хПЧф╗ШхПгуБохЙКщЩдуАРхЛХчЪД APIуАБtcp_del_repуАС
+   уГ╗TCP щАЪф┐бчлпчВ╣уБочФЯцИРуАРхЛХчЪД APIуАБtcp_cre_cepуАС
+   уГ╗TCP щАЪф┐бчлпчВ╣уБохЙКщЩдуАРхЛХчЪД APIуАБtcp_del_cepуАС
+   уГ╗ч╖КцАеуГЗуГ╝уВ┐уБощАБф┐буАРtcp_snd_oobуАС
+   уГ╗ч╖КцАеуГЗуГ╝уВ┐уБохПЧф┐буАРtcp_rcv_oobуАС
+   уГ╗TCP щАЪф┐бчлпчВ╣уВкуГЧуВ╖уГзуГ│уБошинхоЪуАРtcp_set_optуАС
+   уГ╗TCP щАЪф┐бчлпчВ╣уВкуГЧуВ╖уГзуГ│уБошкнхЗ║уБЧуАРtcp_get_optуАС
+   уГ╗ч╖КцАеуГЗуГ╝уВ┐хПЧф┐буАРуВ│уГ╝уГлуГРуГГуВпуАБTEV_TCP_RCV_OOBуАС
 
-   (1)   TCP ╝ї╔╒╕¤д╬└╕└од╚║я╜№
-           д│д╬╡б╟╜д╦дшдъбв1 ╕─д╬ TCP ╝ї╔╒╕¤дЄ╩г┐Їд╬е┐е╣епд╟╢ж═нд╣дыд│
-         д╚дмд╟дндыбгд┐д└д╖бв1 ▓єд╦╗╚═╤д╟дндыд╬д╧ 1 ╕─д╬е┐е╣епд╦╕┬─ъд╡
-         дьдыбг ░╩▓╝д╦╔╕╜р┼кд╩╗╚═╤╩¤╦бдЄ╜╥д┘дыбг д╩дкбв ╚╤╗ид╦д╩дыд┐дс
-         IPv6 д╦┤╪д╖д╞д╬└т╠└д╧бв░ь╔Ї╛╩╬мд╖д╞дддыбг
+   (1)   TCP хПЧф╗ШхПгуБочФЯцИРуБихЙКщЩд
+           уБУуБоцйЯшГ╜уБлуВИуВКуАБ1 хАЛуБо TCP хПЧф╗ШхПгуВТшдЗцХ░уБоуВ┐уВ╣уВпуБзхЕ▒цЬЙуБЩуВЛуБУ
+         уБиуБМуБзуБНуВЛуАВуБЯуБауБЧуАБ1 хЫЮуБлф╜┐чФиуБзуБНуВЛуБоуБп 1 хАЛуБоуВ┐уВ╣уВпуБлщЩРхоЪуБХ
+         уВМуВЛуАВ ф╗еф╕ЛуБлциЩц║ЦчЪДуБкф╜┐чФицЦ╣ц│ХуВТш┐░уБ╣уВЛуАВ уБкуБКуАБ чЕйщЫСуБлуБкуВЛуБЯуВБ
+         IPv6 уБлщЦвуБЧуБжуБошкмцШОуБпуАБф╕АщГичЬБчХеуБЧуБжуБДуВЛуАВ
 
-         [1]   TCP ╝ї╔╒╕¤д╬═╜╠є IDб┌└┼┼к APIбв VRID_TCP_REPбв
-               VRID_TCP6_REPб█д╦дшдъбвTCP ╝ї╔╒╕¤ ID дЄ═╜╠єд╣дыбг
+         [1]   TCP хПЧф╗ШхПгуБоф║Ич┤Д IDуАРщЭЩчЪД APIуАБ VRID_TCP_REPуАБ
+               VRID_TCP6_REPуАСуБлуВИуВКуАБTCP хПЧф╗ШхПг ID уВТф║Ич┤ДуБЩуВЛуАВ
 
-               VRID_TCP_REP д╬╜ё╝░дЄ░╩▓╝д╦╝ид╣бг
+               VRID_TCP_REP уБоцЫ╕х╝ПуВТф╗еф╕ЛуБлчд║уБЩуАВ
 
                   VRID_TCP_REP(ID repid);
 
-               е╤ещесб╝е┐ repid д╧═╜╠єд╣ды TCP ╝ї╔╒╕¤ ID д╟двдъбв ░ь╚╠
-               ┼кд╦д╧бв TINET е│еєе╒еге░еьб╝е╖ечеєе╒ебедеыд╦░╩▓╝д╬дшдж
-               д╦╗╪─ъд╣дыбг
+               уГСуГйуГбуГ╝уВ┐ repid уБпф║Ич┤ДуБЩуВЛ TCP хПЧф╗ШхПг ID уБзуБВуВКуАБ ф╕АшИм
+               чЪДуБлуБпуАБ TINET уВ│уГ│уГХуВгуВ░уГмуГ╝уВ╖уГзуГ│уГХуВбуВдуГлуБлф╗еф╕ЛуБоуВИуБЖ
+               уБлцМЗхоЪуБЩуВЛуАВ
 
                   VRID_TCP_REP (TCP_RSV_REPID1);
 
-               д│дьд╦дшдъбв TCP ╝ї╔╒╕¤═╤д╬есетеъ╬╬░шдм│╬╩▌д╡дьбв TINET
-               ╞т╔Їд╟╗╚═╤д╣дыелб╝е═еыеке╓е╕езепе╚д╬ ID ╝л╞░│ф╔╒╖ы▓╠е╒еб
-               едеыб╩TOPPERS/ASP д╧ tinet_cfg.hбв TOPPERS/JSP д╧
-               tinet_id.hб╦д╦бв ┬╨▒■д╣дые▐епеэ─ъ╡┴дм░╩▓╝д╬дшджд╦╜╨╬╧д╡дьдыбг
+               уБУуВМуБлуВИуВКуАБ TCP хПЧф╗ШхПгчФиуБоуГбуГвуГкщаШхЯЯуБМчв║ф┐ЭуБХуВМуАБ TINET
+               хЖЕщГиуБзф╜┐чФиуБЩуВЛуВлуГ╝уГНуГлуВкуГЦуВ╕уВзуВпуГИуБо ID шЗкхЛХхЙ▓ф╗Шч╡РцЮЬуГХуВб
+               уВдуГля╝ИTOPPERS/ASP уБп tinet_cfg.hуАБ TOPPERS/JSP уБп
+               tinet_id.hя╝ЙуБлуАБ хп╛х┐ЬуБЩуВЛуГЮуВпуГнхоЪч╛йуБМф╗еф╕ЛуБоуВИуБЖуБлхЗ║хКЫуБХуВМуВЛуАВ
 
                   #define TCP_RSV_REPID1  1
 
-         [2]   TCP ╝ї╔╒╕¤д╬└╕└об┌╞░┼к APIбвtcp_cre_repбвtcp6_cre_repб█
-               д╦дшдъбвTCP ╝ї╔╒╕¤дЄ└╕└од╣дыбг
+         [2]   TCP хПЧф╗ШхПгуБочФЯцИРуАРхЛХчЪД APIуАБtcp_cre_repуАБtcp6_cre_repуАС
+               уБлуВИуВКуАБTCP хПЧф╗ШхПгуВТчФЯцИРуБЩуВЛуАВ
 
-               д▐д║бвTCP ╝ї╔╒╕¤└╕└о╛Ё╩є╣╜┬д┬╬д╦╛Ё╩єдЄ└▀─ъд╣дыбгIPv4 д╬
-               ╛ь╣чд╬╬удЄ░╩▓╝д╦╝ид╣бг
+               уБ╛уБЪуАБTCP хПЧф╗ШхПгчФЯцИРцГЕха▒цзЛщАаф╜УуБлцГЕха▒уВТшинхоЪуБЩуВЛуАВIPv4 уБо
+               ха┤хРИуБоф╛ЛуВТф╗еф╕ЛуБлчд║уБЩуАВ
 
                   T_TCP_CREP crep;
                   crep.repatr = 0;
                   crep.myaddr.portno = 7;
                   crep.myaddr.ipaddr = IPV4_ADDRANY;
 
-               д▐д┐ IPv6 д╬╛ь╣чд╬╬удЄ░╩▓╝д╦╝ид╣бг
+               уБ╛уБЯ IPv6 уБоха┤хРИуБоф╛ЛуВТф╗еф╕ЛуБлчд║уБЩуАВ
 
                   T_TCP6_CREP crep;
                   crep.repatr = 0;
                   crep.myaddr.portno = 7;
                   memcpy(&crep.myaddr.ipaddr, &ipv6_addrany, sizeof(T_IN6_ADDR));
 
-               ддд║дьдтбв ╝ї╔╒д▒ды╝л╩мд╬ IP еве╔еье╣д╧╡м─ъ├═б╩┴┤д╞б╦д╟двдыбг
-                 ╝бд╦бвtcp_cre_rep д╬╜ё╝░дЄ╝ид╣бг
+               уБДуБЪуВМуВВуАБ хПЧф╗ШуБСуВЛшЗкхИЖуБо IP уВвуГЙуГмуВ╣уБпшжПхоЪхАдя╝ИхЕиуБжя╝ЙуБзуБВуВЛуАВ
+                 цмбуБлуАБtcp_cre_rep уБоцЫ╕х╝ПуВТчд║уБЩуАВ
 
                   ER ercd = tcp_cre_rep(ID repid, T_TCP_CREP *pk_crep);
 
-               е╤ещесб╝е┐ repid д╦д╧ [1] д╟═╜╠єд╖д┐ TCP ╝ї╔╒╕¤ ID дЄ╗╪
-               ─ъд╖бвpk_crep д╦д╧╛х╡нд╟└▀─ъ║╤д▀д╬ TCP ╝ї╔╒╕¤└╕└о╛Ё╩єд╪
-               д╬е▌едеєе┐дЄ╗╪─ъд╣дыбг ░ь╚╠┼кд╩╬удЄ░╩▓╝д╦╝ид╣бг
+               уГСуГйуГбуГ╝уВ┐ repid уБлуБп [1] уБзф║Ич┤ДуБЧуБЯ TCP хПЧф╗ШхПг ID уВТцМЗ
+               хоЪуБЧуАБpk_crep уБлуБпф╕КшиШуБзшинхоЪц╕ИуБ┐уБо TCP хПЧф╗ШхПгчФЯцИРцГЕха▒уБ╕
+               уБоуГЭуВдуГ│уВ┐уВТцМЗхоЪуБЩуВЛуАВф╕АшИмчЪДуБкф╛ЛуВТф╗еф╕ЛуБлчд║уБЩуАВ 
 
                   ercd = tcp_cre_rep(TCP_RSV_REPID1, &crep);
 
-               д│дьд╦дшдъбв VRID_TCP_REP д╟│╬╩▌д╡дьд┐ TCP ╝ї╔╒╕¤═╤д╬ес
-               етеъ╬╬░шд╦ TCP ╝ї╔╒╕¤└╕└о╛Ё╩єдм╜ё╣■д▐дьдыбг
+               уБУуВМуБлуВИуВКуАБ VRID_TCP_REP уБзчв║ф┐ЭуБХуВМуБЯ TCP хПЧф╗ШхПгчФиуБоуГб
+               уГвуГкщаШхЯЯуБл TCP хПЧф╗ШхПгчФЯцИРцГЕха▒уБМцЫ╕ш╛╝уБ╛уВМуВЛуАВ
 
-         [3]   └▄┬│═╫╡с┬╘д┴б╩╝ї╞░екб╝е╫еєб╦б┌tcp_acp_cepбвtcp6_acp_cepб█
-               д╦дшдъбв └▄┬│═╫╡с┬╘д┴б╩╝ї╞░екб╝е╫еєб╦д╣дыбг
+         [3]   цОеч╢ЪшжБц▒Вх╛ЕуБбя╝ИхПЧхЛХуВкуГ╝уГЧуГ│я╝ЙуАРtcp_acp_cepуАБtcp6_acp_cepуАС
+               уБлуВИуВКуАБцОеч╢ЪшжБц▒Вх╛ЕуБбя╝ИхПЧхЛХуВкуГ╝уГЧуГ│я╝ЙуБЩуВЛуАВ 
 
-               tcp_acp_cep д╬╜ё╝░дЄ╝ид╣бг
+               tcp_acp_cep уБоцЫ╕х╝ПуВТчд║уБЩуАВ
 
                   ER ercd = tcp_acp_cep(ID cepid, ID repid,
                                         T_IPV4EP *p_dstaddr, TMO tmout);
 
-               е╤ещесб╝е┐ repid д╦ [1] д╟═╜╠єд╖д┐ TCP ╝ї╔╒╕¤ ID дЄ╗╪─ъ
-               д╣ды░╩│░д╧бв─╠╛яд╬╕╞д╙╜╨д╖д╚╞▒д╕д╟двдыбг 
+               уГСуГйуГбуГ╝уВ┐ repid уБл [1] уБзф║Ич┤ДуБЧуБЯ TCP хПЧф╗ШхПг ID уВТцМЗхоЪ
+               уБЩуВЛф╗ехдЦуБпуАБ щАЪх╕╕уБохС╝уБ│хЗ║уБЧуБихРМуБШуБзуБВуВЛуАВ
 
-         [4]   TCP ╝ї╔╒╕¤д╬║я╜№б┌╞░┼к APIбвtcp_del_repб█д╦дшдъбвTCP ╝ї
-               ╔╒╕¤дЄ║я╜№д╣дыбг
+         [4]   TCP хПЧф╗ШхПгуБохЙКщЩдуАРхЛХчЪД APIуАБtcp_del_repуАСуБлуВИуВКуАБTCP хПЧ
+               ф╗ШхПгуВТхЙКщЩдуБЩуВЛуАВ
 
-                 ─╠╛яд╧бв └▄┬│═╫╡с┬╘д┴б╩╝ї╞░екб╝е╫еєб╦дм╜к╬╗д╖д┐╕хд╦бв
-               TCP ╝ї╔╒╕¤дЄ║я╜№д╣дыдмбв └▄┬│═╫╡с┬╘д┴б╩╝ї╞░екб╝е╫еєб╦├ц
-               д╦бв tcp_del_cep д╦дшдъбвTCP ─╠┐о├╝┼└дЄ║я╜№д╣дыд│д╚дт▓─
-               ╟╜д╟двдыбгд│д╬╛ь╣чбвtcp_acp_cep д╬╠сдъ├═д╦д╧бв E_DLT дм
-               ╩╓д╡дьдыбг TCP ╝ї╔╒╕¤дЄ║я╜№д╣дыд╚бв┬╛д╬е┐е╣епдм╞▒д╕ TCP
-               ╝ї╔╒╕¤ ID дЄ═°═╤д╟дндыбгtcp_del_rep д╬╜ё╝░дЄ╝ид╣бг
+                 щАЪх╕╕уБпуАБ цОеч╢ЪшжБц▒Вх╛ЕуБбя╝ИхПЧхЛХуВкуГ╝уГЧуГ│я╝ЙуБМч╡Вф║ЖуБЧуБЯх╛МуБлуАБ
+               TCP хПЧф╗ШхПгуВТхЙКщЩдуБЩуВЛуБМуАБ цОеч╢ЪшжБц▒Вх╛ЕуБбя╝ИхПЧхЛХуВкуГ╝уГЧуГ│я╝Йф╕н
+               уБлуАБtcp_del_cep уБлуВИуВКуАБ TCP щАЪф┐бчлпчВ╣уВТхЙКщЩдуБЩуВЛуБУуБиуВВхПп
+               шГ╜уБзуБВуВЛуАВ уБУуБоха┤хРИуАБtcp_acp_cep уБоцИ╗уВКхАдуБлуБпуАБE_DLT уБМ
+               ш┐ФуБХуВМуВЛуАВTCP хПЧф╗ШхПгуВТхЙКщЩдуБЩуВЛуБиуАБ ф╗ЦуБоуВ┐уВ╣уВпуБМхРМуБШ TCP
+               хПЧф╗ШхПг ID уВТхИйчФиуБзуБНуВЛуАВtcp_del_rep уБоцЫ╕х╝ПуВТчд║уБЩуАВ
 
                   ER ercd = tcp_del_rep(ID cepid);
 
-               е╤ещесб╝е┐ repid д╦д╧ [1] д╟═╜╠єд╖д┐ TCP ╝ї╔╒╕¤ ID дЄ╗╪
-               ─ъд╣дыбг
+               уГСуГйуГбуГ╝уВ┐ repid уБлуБп [1] уБзф║Ич┤ДуБЧуБЯ TCP хПЧф╗ШхПг ID уВТцМЗ
+               хоЪуБЩуВЛуАВ
 
-   (2)   TCP ─╠┐о├╝┼└д╬└╕└од╚║я╜№
-           д│д╬╡б╟╜д╦дшдъбв1 ╕─д╬ TCP ─╠┐о├╝┼└дЄ╩г┐Їд╬е┐е╣епд╟╢ж═нд╣ды
-         д│д╚дмд╟дндыбгд┐д└д╖бв1 ▓єд╦╗╚═╤д╟дндыд╬д╧ 1 ╕─д╬е┐е╣епд╦╕┬─ъ
-         д╡дьдыбг░╩▓╝д╦╔╕╜р┼кд╩╗╚═╤╩¤╦бдЄ╜╥д┘дыбгд╩дкбв ╚╤╗ид╦д╩дыд┐дс
-         IPv6 д╦┤╪д╖д╞д╬└т╠└д╧бв░ь╔Ї╛╩╬мд╖д╞дддыбг
+   (2)   TCP щАЪф┐бчлпчВ╣уБочФЯцИРуБихЙКщЩд
+           уБУуБоцйЯшГ╜уБлуВИуВКуАБ1 хАЛуБо TCP щАЪф┐бчлпчВ╣уВТшдЗцХ░уБоуВ┐уВ╣уВпуБзхЕ▒цЬЙуБЩуВЛ
+         уБУуБиуБМуБзуБНуВЛуАВуБЯуБауБЧуАБ1 хЫЮуБлф╜┐чФиуБзуБНуВЛуБоуБп 1 хАЛуБоуВ┐уВ╣уВпуБлщЩРхоЪ
+         уБХуВМуВЛуАВ ф╗еф╕ЛуБлциЩц║ЦчЪДуБкф╜┐чФицЦ╣ц│ХуВТш┐░уБ╣уВЛуАВуБкуБКуАБчЕйщЫСуБлуБкуВЛуБЯуВБ
+         IPv6 уБлщЦвуБЧуБжуБошкмцШОуБпуАБф╕АщГичЬБчХеуБЧуБжуБДуВЛуАВ
 
-         [1]   TCP ─╠┐о├╝┼└д╬═╜╠є IDб┌└┼┼к APIбв VRID_TCP_CEPбв
-               VRID_TCP6_CEPб█д╦дшдъбвTCP ─╠┐о├╝┼└ ID дЄ═╜╠єд╣дыбг
+         [1]   TCP щАЪф┐бчлпчВ╣уБоф║Ич┤Д IDуАРщЭЩчЪД APIуАБ VRID_TCP_CEPуАБ
+               VRID_TCP6_CEPуАСуБлуВИуВКуАБTCP щАЪф┐бчлпчВ╣ ID уВТф║Ич┤ДуБЩуВЛуАВ
 
-               VRID_TCP_CEP д╬╜ё╝░дЄ░╩▓╝д╦╝ид╣бг
+               VRID_TCP_CEP уБоцЫ╕х╝ПуВТф╗еф╕ЛуБлчд║уБЩуАВ
 
                   VRID_TCP_CEP(ID cepid);
 
-               е╤ещесб╝е┐ cepid д╧═╜╠єд╣ды TCP ─╠┐о├╝┼└ ID д╟двдъбв ░ь
-               ╚╠┼кд╦д╧бв TINET е│еєе╒еге░еьб╝е╖ечеєе╒ебедеыд╦░╩▓╝д╬дш
-               джд╦╗╪─ъд╣дыбг
+               уГСуГйуГбуГ╝уВ┐ cepid уБпф║Ич┤ДуБЩуВЛ TCP щАЪф┐бчлпчВ╣ ID уБзуБВуВКуАБ ф╕А
+               шИмчЪДуБлуБпуАБ TINET уВ│уГ│уГХуВгуВ░уГмуГ╝уВ╖уГзуГ│уГХуВбуВдуГлуБлф╗еф╕ЛуБоуВИ
+               уБЖуБлцМЗхоЪуБЩуВЛуАВ
 
                   VRID_TCP_CEP (TCP_RSV_CEPID1);
 
-               д│дьд╦дшдъбвTCP ─╠┐о├╝┼└═╤д╬есетеъ╬╬░шдм│╬╩▌д╡дьбвTINET
-               ╞т╔Їд╟╗╚═╤д╣дыелб╝е═еыеке╓е╕езепе╚д╬ ID ╝л╞░│ф╔╒╖ы▓╠е╒еб
-               едеыб╩TOPPERS/ASP д╧ tinet_cfg.hбв TOPPERS/JSP д╧
-               tinet_id.hб╦д╦бв ┬╨▒■д╣дые▐епеэ─ъ╡┴дм░╩▓╝д╬дшджд╦╜╨╬╧д╡дьдыбг
+               уБУуВМуБлуВИуВКуАБTCP щАЪф┐бчлпчВ╣чФиуБоуГбуГвуГкщаШхЯЯуБМчв║ф┐ЭуБХуВМуАБTINET
+               хЖЕщГиуБзф╜┐чФиуБЩуВЛуВлуГ╝уГНуГлуВкуГЦуВ╕уВзуВпуГИуБо ID шЗкхЛХхЙ▓ф╗Шч╡РцЮЬуГХуВб
+               уВдуГля╝ИTOPPERS/ASP уБп tinet_cfg.hуАБ TOPPERS/JSP уБп
+               tinet_id.hя╝ЙуБлуАБ хп╛х┐ЬуБЩуВЛуГЮуВпуГнхоЪч╛йуБМф╗еф╕ЛуБоуВИуБЖуБлхЗ║хКЫуБХуВМуВЛуАВ
 
                   #define TCP_RSV_CEPID1  1
 
-         [2]   TCP ─╠┐о├╝┼└д╬└╕└об┌╞░┼к APIбвtcp_cre_cepб█д╦дшдъбв TCP
-               ─╠┐о├╝┼└дЄ└╕└од╣дыбг
+         [2]   TCP щАЪф┐бчлпчВ╣уБочФЯцИРуАРхЛХчЪД APIуАБ tcp_cre_cepуАСуБлуВИуВКуАБTCP
+               щАЪф┐бчлпчВ╣уВТчФЯцИРуБЩуВЛуАВ
 
-               д▐д║бв TCP ─╠┐о├╝┼└└╕└о╛Ё╩є╣╜┬д┬╬д╦╛Ё╩єдЄ└▀─ъд╣дыбг░ь╚╠
-               ┼кд╩╬удЄ░╩▓╝д╦╝ид╣бг
+               уБ╛уБЪуАБTCP щАЪф┐бчлпчВ╣чФЯцИРцГЕха▒цзЛщАаф╜УуБлцГЕха▒уВТшинхоЪуБЩуВЛуАВ ф╕АшИм
+               чЪДуБкф╛ЛуВТф╗еф╕ЛуБлчд║уБЩуАВ
 
                   T_TCP_CCEP ccep;
                   ccep.cepatr = 0;
@@ -663,234 +608,243 @@ TINET ╞╚╝лд╬└┼┼к APIбве╒ебедеыд╬едеєепеыб╝е╔д╟двдыбг
                   ccep.rbuf = tcp_echo_srv_rwbuf;
                   ccep.callback = (FP)callback_nblk_tcp_echo_srv;
 
-               ╝бд╦бвtcp_cre_cep д╬╜ё╝░дЄ╝ид╣бг
+               цмбуБлуАБtcp_cre_cep уБоцЫ╕х╝ПуВТчд║уБЩуАВ
 
                   ER ercd = tcp_cre_cep(ID cepid, T_TCP_CCEP *pk_ccep);
 
-               е╤ещесб╝е┐ cepid д╦д╧ [1] д╟═╜╠єд╖д┐ TCP ─╠┐о├╝┼└ ID дЄ
-               ╗╪─ъд╖бвpk_ccep д╦д╧╛х╡нд╟└▀─ъ║╤д▀д╬ TCP ─╠┐о├╝┼└└╕└о╛Ё
-               ╩єд╪д╬е▌едеєе┐дЄ╗╪─ъд╣дыбг ░ь╚╠┼кд╩╬удЄ░╩▓╝д╦╝ид╣бг 
+               уГСуГйуГбуГ╝уВ┐ cepid уБлуБп [1] уБзф║Ич┤ДуБЧуБЯ TCP щАЪф┐бчлпчВ╣ ID уВТ
+               цМЗхоЪуБЧуАБpk_ccep уБлуБпф╕КшиШуБзшинхоЪц╕ИуБ┐уБо TCP щАЪф┐бчлпчВ╣чФЯцИРцГЕ
+               ха▒уБ╕уБоуГЭуВдуГ│уВ┐уВТцМЗхоЪуБЩуВЛуАВ ф╕АшИмчЪДуБкф╛ЛуВТф╗еф╕ЛуБлчд║уБЩуАВ 
 
                   ercd = tcp_cre_cep(TCP_RSV_CEPID1, &ccep);
 
-               д│дьд╦дшдъбв VRID_TCP_CEP д╟│╬╩▌д╡дьд┐ TCP ─╠┐о├╝┼└═╤д╬
-               есетеъ╬╬░шд╦ TCP ─╠┐о├╝┼└└╕└о╛Ё╩єдм╜ё╣■д▐дьдыбг
-                 д│д╬╕хбвTCP д╬│╞ API д╬е╤ещесб╝е┐ cepid д╦ [1] д╟═╜╠є
-               д╖д┐ TCP ─╠┐о├╝┼└ ID дЄ╗╪─ъд╣ды░╩│░д╧бв ─╠╛яд╬ TCP ─╠┐о
-               ├╝┼└д╚╞▒д╕дшджд╦╗╚═╤д╟дндыбг
+               уБУуВМуБлуВИуВКуАБ VRID_TCP_CEP уБзчв║ф┐ЭуБХуВМуБЯ TCP щАЪф┐бчлпчВ╣чФиуБо
+               уГбуГвуГкщаШхЯЯуБл TCP щАЪф┐бчлпчВ╣чФЯцИРцГЕха▒уБМцЫ╕ш╛╝уБ╛уВМуВЛуАВ
+                 уБУуБох╛МуАБTCP уБохРД API уБоуГСуГйуГбуГ╝уВ┐ cepid уБл [1] уБзф║Ич┤Д
+               уБЧуБЯ TCP щАЪф┐бчлпчВ╣ ID уВТцМЗхоЪуБЩуВЛф╗ехдЦуБпуАБ щАЪх╕╕уБо TCP щАЪф┐б
+               члпчВ╣уБихРМуБШуВИуБЖуБлф╜┐чФиуБзуБНуВЛуАВ
 
-         [3]   TCP ─╠┐о├╝┼└д╬║я╜№б┌╞░┼к APIбв tcp_del_cepб█д╦дшдъбвTCP
-               ─╠┐о├╝┼└дЄ║я╜№д╣дыбг
+         [3]   TCP щАЪф┐бчлпчВ╣уБохЙКщЩдуАРхЛХчЪД APIуАБtcp_del_cepуАСуБлуВИуВКуАБ TCP
+               щАЪф┐бчлпчВ╣уВТхЙКщЩдуБЩуВЛуАВ
 
-                 tcp_cls_cep дЄ╕╞д╙╜╨д╣д▐д╟д╧бв TCP ─╠┐о├╝┼└дЄ║я╜№д╟дн
-               д╩дддмбвtcp_cls_cep д╬╕хд╧ TCP ─╠┐о├╝┼└дЄ║я╜№д╟днбв┬╛д╬
-               е┐е╣епдм╞▒д╕ TCP ─╠┐о├╝┼└ ID дЄ═°═╤д╟дндыбг tcp_del_cep
-               д╬╜ё╝░дЄ╝ид╣бг
+                 tcp_cls_cep уВТхС╝уБ│хЗ║уБЩуБ╛уБзуБпуАБ TCP щАЪф┐бчлпчВ╣уВТхЙКщЩдуБзуБН
+               уБкуБДуБМуАБtcp_cls_cep уБох╛МуБп TCP щАЪф┐бчлпчВ╣уВТхЙКщЩдуБзуБНуАБф╗ЦуБо
+               уВ┐уВ╣уВпуБМхРМуБШ TCP щАЪф┐бчлпчВ╣ ID уВТхИйчФиуБзуБНуВЛуАВ tcp_del_cep
+               уБоцЫ╕х╝ПуВТчд║уБЩуАВ
 
                   ER ercd = tcp_del_cep(ID cepid);
 
-               е╤ещесб╝е┐ cepid д╦д╧ [1] д╟═╜╠єд╖д┐ TCP ─╠┐о├╝┼└ ID дЄ
-               ╗╪─ъд╣дыбг
+               уГСуГйуГбуГ╝уВ┐ cepid уБлуБп [1] уБзф║Ич┤ДуБЧуБЯ TCP щАЪф┐бчлпчВ╣ ID уВТ
+               цМЗхоЪуБЩуВЛуАВ
 
-   (3)   ╢█╡▐е╟б╝е┐д╬┴ў╝ї┐о
+   (3)   ч╖КцАеуГЗуГ╝уВ┐уБощАБхПЧф┐б
 
-         [1]   ╢█╡▐е╟б╝е┐д╬┴ў┐об┌tcp_snd_oobб█
+         [1]   ч╖КцАеуГЗуГ╝уВ┐уБощАБф┐буАРtcp_snd_oobуАС
 
-               tcp_snd_oob д╬╜ё╝░дЄ░╩▓╝д╦╝ид╣бг
+               tcp_snd_oob уБоцЫ╕х╝ПуВТф╗еф╕ЛуБлчд║уБЩуАВ
 
                   ER_UINT ercd = tcp_snd_oob(ID cepid, void *data, int_t len, TMO tmout);
 
-               д╩дкбв░╩▓╝д╦╝ид╣дшджд╩└й╠єдмдвдыбг 
+               уБкуБКуАБ ф╗еф╕ЛуБлчд║уБЩуВИуБЖуБкхИ╢ч┤ДуБМуБВуВЛуАВ
 
-               бж╢█╡▐е╟б╝е┐д└длдщд╚ддд├д╞бв д╣д╟д╦┴ў┐оежегеєе╔е╨е├е╒еб
-                 д╦двды─╠╛яд╬е╟б╝е┐дшдъ└шд╦┴ў┐од╡дьдыдяд▒д╟д╧д╩ддбг 
-               бжtcp_snd_oob д╟бв╩г┐Їе╨еде╚д╬е╟б╝е┐дЄ┴ў┐од╖д╞дтб╩len >
-                 1б╦бв╝ї┐о┬жд╟╝ї┐од╟дндыд╬д╧бв┴ў┐од╖д┐ data д╬║╟╕хд╬ 1
-                 е╨еде╚д╬д▀д╟двдыбг д▐д┐бвд│дьдшдъ┴░д╬е╟б╝е┐д╧─╠╛яд╬е╟б╝
-                 е┐д╚д╖д╞╝ї┐од╡дьдыбг
+               уГ╗ч╖КцАеуГЗуГ╝уВ┐уБауБЛуВЙуБиуБДуБгуБжуАБ уБЩуБзуБлщАБф┐буВжуВгуГ│уГЙуГРуГГуГХуВб
+                 уБлуБВуВЛщАЪх╕╕уБоуГЗуГ╝уВ┐уВИуВКхЕИуБлщАБф┐буБХуВМуВЛуВПуБСуБзуБпуБкуБДуАВ 
+               уГ╗tcp_snd_oob уБзуАБшдЗцХ░уГРуВдуГИуБоуГЗуГ╝уВ┐уВТщАБф┐буБЧуБжуВВя╝Иlen >
+                 1я╝ЙуАБхПЧф┐бхБ┤уБзхПЧф┐буБзуБНуВЛуБоуБпуАБщАБф┐буБЧуБЯ data уБоцЬАх╛МуБо 1
+                 уГРуВдуГИуБоуБ┐уБзуБВуВЛуАВуБ╛уБЯуАБ уБУуВМуВИуВКхЙНуБоуГЗуГ╝уВ┐уБпщАЪх╕╕уБоуГЗуГ╝
+                 уВ┐уБиуБЧуБжхПЧф┐буБХуВМуВЛуАВ
 
-         [2]   ╢█╡▐е╟б╝е┐д╬╝ї┐об┌tcp_rcv_oobб█
+         [2]   ч╖КцАеуГЗуГ╝уВ┐уБохПЧф┐буАРtcp_rcv_oobуАС
 
-               tcp_rcv_oob д╬╜ё╝░дЄ░╩▓╝д╦╝ид╣бг
+               tcp_rcv_oob уБоцЫ╕х╝ПуВТф╗еф╕ЛуБлчд║уБЩуАВ
 
                   ER_UINT ercd = tcp_rcv_oob(ID cepid, void *data, int_t len);
 
-               д╩дкбв░╩▓╝д╦╝ид╣дшджд╩└й╠єдмдвдыбг 
+               уБкуБКуАБ ф╗еф╕ЛуБлчд║уБЩуВИуБЖуБкхИ╢ч┤ДуБМуБВуВЛуАВ
 
-               бж╢█╡▐е╟б╝е┐╝ї┐од╬е│б╝еые╨е├еп┤╪┐Ї╞тд╟╕╞д╙╜╨д╣д│д╚дЄ┴█
-                 ─ъд╖д╞дддыбг
-               бж╝ї┐од╟дндыд╬д╧бв╢█╡▐е╟б╝е┐д╬║╟╕хд╬ 1 е╨еде╚д╬д▀д╟двдыбг
-                 ╜╛д├д╞бв└╡╛яд╦ tcp_rcv_oob длдщ╠сд├д╞днд┐╗■д╬╠сдъ├═д╧бв
-                 ╛яд╦ 1 д╟двдыбг
+               уГ╗ч╖КцАеуГЗуГ╝уВ┐хПЧф┐буБоуВ│уГ╝уГлуГРуГГуВпщЦвцХ░хЖЕуБзхС╝уБ│хЗ║уБЩуБУуБиуВТцГ│
+                 хоЪуБЧуБжуБДуВЛуАВ
+               уГ╗хПЧф┐буБзуБНуВЛуБоуБпуАБч╖КцАеуГЗуГ╝уВ┐уБоцЬАх╛МуБо 1 уГРуВдуГИуБоуБ┐уБзуБВуВЛуАВ
+                 х╛УуБгуБжуАБцнгх╕╕уБл tcp_rcv_oob уБЛуВЙцИ╗уБгуБжуБНуБЯцЩВуБоцИ╗уВКхАдуБпуАБ
+                 х╕╕уБл 1 уБзуБВуВЛуАВ
 
-         [3]   ╢█╡▐е╟б╝е┐╝ї┐об┌е│б╝еые╨е├епбвTEV_TCP_RCV_OOBб█
-                 ╢█╡▐е╟б╝е┐дЄ╝ї┐од╖д┐╗■бв TCP ─╠┐о├╝┼└д╦╗╪─ъд╡дьд╞ддды
-               е│б╝еые╨е├еп┤╪┐ЇдЄ╕╞д╙╜╨д╣бг д│д╬╗■д╬╗Ў╛▌д╬╝я╬рдм
-               TEV_TCP_RCV_OOB д╟двдыбг д┐д└д╖бвTCP ─╠┐о├╝┼└д╦е│б╝еые╨е├
-               еп┤╪┐Їдм╗╪─ъд╡дьд╞ддд╩дд╛ь╣чбвд▐д┐д╧бв е│б╝еые╨е├еп┤╪┐Ї
-               ╞тд╟ tcp_rcv_oob дм╕╞д╙╜╨д╡дьд╩д▒дьд╨бв╝ї┐од╖д┐╢█╡▐е╟б╝
-               е┐д╧─╠╛яд╬е╟б╝е┐д╚д╖д╞╝ї┐од╣дыбг
+         [3]   ч╖КцАеуГЗуГ╝уВ┐хПЧф┐буАРуВ│уГ╝уГлуГРуГГуВпуАБTEV_TCP_RCV_OOBуАС
+                 ч╖КцАеуГЗуГ╝уВ┐уВТхПЧф┐буБЧуБЯцЩВуАБ TCP щАЪф┐бчлпчВ╣уБлцМЗхоЪуБХуВМуБжуБДуВЛ
+               уВ│уГ╝уГлуГРуГГуВпщЦвцХ░уВТхС╝уБ│хЗ║уБЩуАВ уБУуБоцЩВуБоф║Лш▒буБочиощбЮуБМ
+               TEV_TCP_RCV_OOB уБзуБВуВЛуАВуБЯуБауБЧуАБ TCP щАЪф┐бчлпчВ╣уБлуВ│уГ╝уГлуГРуГГ
+               уВпщЦвцХ░уБМцМЗхоЪуБХуВМуБжуБДуБкуБДха┤хРИуАБ уБ╛уБЯуБпуАБуВ│уГ╝уГлуГРуГГуВпщЦвцХ░
+               хЖЕуБз tcp_rcv_oob уБМхС╝уБ│хЗ║уБХуВМуБкуБСуВМуБ░уАБхПЧф┐буБЧуБЯч╖КцАеуГЗуГ╝
+               уВ┐уБпщАЪх╕╕уБоуГЗуГ╝уВ┐уБиуБЧуБжхПЧф┐буБЩуВЛуАВ
 
-         [4]   е│еєе╤едеы╗■е│еєе╒егеоехеьб╝е╖ечеєе╤ещесб╝е┐
+         [4]   уВ│уГ│уГСуВдуГлцЩВуВ│уГ│уГХуВгуВоуГеуГмуГ╝уВ╖уГзуГ│уГСуГйуГбуГ╝уВ┐
 
                   TCP_CFG_URG_OFFSET
 
-               ╢█╡▐е╟б╝е┐д╬║╟╕хд╬е╨еде╚д╬еке╒е╗е├е╚бв ├═дм -1 д╬╛ь╣чд╧
-               BSD д╬╝┬┴їд╚╞▒д╕д╟бв╢█╡▐е▌едеєе┐д╧бв ╢█╡▐е╟б╝е┐д╬║╟╕хд╬
-               е╨еде╚д╬╝бд╬е╨еде╚дЄ║╣д╣бг ├═дм 0 д╬╛ь╣чд╧ RFC1122 д╬╡м
-               ─ъд╚╞▒д╕д╟бв╢█╡▐е▌едеєе┐д╧бв ╢█╡▐е╟б╝е┐д╬║╟╕хд╬е╨еде╚дЄ
-               ║╣д╣бг┤√─ъ├═д╧ -1 д╟двдыбг
+               ч╖КцАеуГЗуГ╝уВ┐уБоцЬАх╛МуБоуГРуВдуГИуБоуВкуГХуВ╗уГГуГИуАБ хАдуБМ -1 уБоха┤хРИуБп
+               BSD уБохоЯшгЕуБихРМуБШуБзуАБ ч╖КцАеуГЭуВдуГ│уВ┐уБпуАБч╖КцАеуГЗуГ╝уВ┐уБоцЬАх╛МуБо
+               уГРуВдуГИуБоцмбуБоуГРуВдуГИуВТх╖оуБЩуАВ хАдуБМ 0 уБоха┤хРИуБп RFC1122 уБошжП
+               хоЪуБихРМуБШуБзуАБ ч╖КцАеуГЭуВдуГ│уВ┐уБпуАБч╖КцАеуГЗуГ╝уВ┐уБоцЬАх╛МуБоуГРуВдуГИуВТ
+               х╖оуБЩуАВцЧвхоЪхАдуБп -1 уБзуБВуВЛуАВ
 
-   (4)   TCP ─╠┐о├╝┼└еке╫е╖ечеєд╬└▀─ъд╚╞╔╜╨д╖
-           └▀─ъ▓─╟╜д╩ TCP ─╠┐о├╝┼└еке╫е╖ечеєд╧╠╡ддд┐дсбвд╔д┴дщд╬┤╪┐Їдт
-         ╠сдъ├═д╚д╖д╞ E_PAR дм╩╓д╡дьдыбг
+   (4)   TCP щАЪф┐бчлпчВ╣уВкуГЧуВ╖уГзуГ│уБошинхоЪуБишкнхЗ║уБЧ
+           шинхоЪхПпшГ╜уБк TCP щАЪф┐бчлпчВ╣уВкуГЧуВ╖уГзуГ│уБпчДбуБДуБЯуВБуАБуБйуБбуВЙуБощЦвцХ░уВВ
+         цИ╗уВКхАдуБиуБЧуБж E_PAR уБМш┐ФуБХуВМуВЛуАВ
 
-3. 2  UDP д╬ ITRON TCP/IP API │╚─е╡б╟╜
+4. 2  UDP уБо ITRON TCP/IP API цЛбх╝╡цйЯшГ╜
 
-  UDP_CFG_EXTENTIONS дЄ╗╪─ъд╣дыд│д╚д╦дшдъ╗╚═╤▓─╟╜д╚д╩ды API дЄ░╩▓╝д╦╝ид╣бг
+  UDP_CFG_EXTENTIONS уВТцМЗхоЪуБЩуВЛуБУуБиуБлуВИуВКф╜┐чФихПпшГ╜уБиуБкуВЛ API уВТф╗еф╕ЛуБлчд║
+уБЩуАВ
 
-   бжUDP ─╠┐о├╝┼└д╬═╜╠є IDб┌└┼┼к APIбвVRID_UDP_CEPб█б╩IPv4бвTINET ╞╚╝лб╦
-   бжUDP ─╠┐о├╝┼└д╬═╜╠є IDб┌└┼┼к APIбв VRID_UDP6_CEPб█б╩IPv6бвTINET ╞╚╝лб╦
-   бжUDP ─╠┐о├╝┼└д╬└╕└об┌╞░┼к APIбвudp_cre_cepб█б╩IPv4б╦
-   бжUDP ─╠┐о├╝┼└д╬└╕└об┌╞░┼к APIбвudp6_cre_cepб█б╩IPv6бвTINET ╞╚╝лб╦
-   бжUDP ─╠┐о├╝┼└д╬║я╜№б┌╞░┼к APIбвudp_del_cepб█
-   бжUDP ─╠┐о├╝┼└еке╫е╖ечеєд╬└▀─ъб┌udp_set_optб█
-   бжUDP ─╠┐о├╝┼└еке╫е╖ечеєд╬╞╔╜╨д╖б┌udp_get_optб█
+   уГ╗UDP щАЪф┐бчлпчВ╣уБоф║Ич┤Д IDуАРщЭЩчЪД APIуАБVRID_UDP_CEPуАСя╝ИIPv4уАБTINET чЛмшЗкя╝Й
+   уГ╗UDP щАЪф┐бчлпчВ╣уБоф║Ич┤Д IDуАРщЭЩчЪД APIуАБVRID_UDP6_CEPуАСя╝ИIPv6уАБTINET чЛмшЗкя╝Й
+   уГ╗UDP щАЪф┐бчлпчВ╣уБочФЯцИРуАРхЛХчЪД APIуАБudp_cre_cepуАСя╝ИIPv4я╝Й
+   уГ╗UDP щАЪф┐бчлпчВ╣уБочФЯцИРуАРхЛХчЪД APIуАБudp6_cre_cepуАСя╝ИIPv6уАБTINET чЛмшЗкя╝Й
+   уГ╗UDP щАЪф┐бчлпчВ╣уБохЙКщЩдуАРхЛХчЪД APIуАБudp_del_cepуАС
+   уГ╗UDP щАЪф┐бчлпчВ╣уВкуГЧуВ╖уГзуГ│уБошинхоЪуАРudp_set_optуАС
+   уГ╗UDP щАЪф┐бчлпчВ╣уВкуГЧуВ╖уГзуГ│уБошкнхЗ║уБЧуАРudp_get_optуАС
 
-   (1)   UDP ─╠┐о├╝┼└д╬└╕└од╚║я╜№
-           д│д╬╡б╟╜д╦дшдъбв1 ╕─д╬ UDP ─╠┐о├╝┼└дЄ╩г┐Їд╬е┐е╣епд╟╢ж═нд╣ды
-         д│д╚дмд╟дндыбгд┐д└д╖бв1 ▓єд╦╗╚═╤д╟дндыд╬д╧ 1 ╕─д╬е┐е╣епд╦╕┬─ъ
-         д╡дьдыбг░╩▓╝д╦╔╕╜р┼кд╩╗╚═╤╩¤╦бдЄ╜╥д┘дыбгд╩дкбв ╚╤╗ид╦д╩дыд┐дс
-         IPv6 д╦┤╪д╖д╞д╬└т╠└д╧бв░ь╔Ї╛╩╬мд╖д╞дддыбг
+   (1)   UDP щАЪф┐бчлпчВ╣уБочФЯцИРуБихЙКщЩд
+           уБУуБоцйЯшГ╜уБлуВИуВКуАБ1 хАЛуБо UDP щАЪф┐бчлпчВ╣уВТшдЗцХ░уБоуВ┐уВ╣уВпуБзхЕ▒цЬЙуБЩуВЛ
+         уБУуБиуБМуБзуБНуВЛуАВуБЯуБауБЧуАБ1 хЫЮуБлф╜┐чФиуБзуБНуВЛуБоуБп 1 хАЛуБоуВ┐уВ╣уВпуБлщЩРхоЪ
+         уБХуВМуВЛуАВ ф╗еф╕ЛуБлциЩц║ЦчЪДуБкф╜┐чФицЦ╣ц│ХуВТш┐░уБ╣уВЛуАВуБкуБКуАБчЕйщЫСуБлуБкуВЛуБЯуВБ
+         IPv6 уБлщЦвуБЧуБжуБошкмцШОуБпуАБф╕АщГичЬБчХеуБЧуБжуБДуВЛуАВ
 
-         [1]   UDP ─╠┐о├╝┼└д╬═╜╠є IDб┌└┼┼к APIбв VRID_UDP_CEPбв
-               VRID_UDP6_CEPб█д╦дшдъбвUDP ─╠┐о├╝┼└ ID дЄ═╜╠єд╣дыбг
+         [1]   UDP щАЪф┐бчлпчВ╣уБоф║Ич┤Д IDуАРщЭЩчЪД APIуАБ VRID_UDP_CEPуАБ
+               VRID_UDP6_CEPуАСуБлуВИуВКуАБUDP щАЪф┐бчлпчВ╣ ID уВТф║Ич┤ДуБЩуВЛуАВ
 
-               VRID_UDP_CEP д╬╜ё╝░дЄ░╩▓╝д╦╝ид╣бг
+               VRID_UDP_CEP уБоцЫ╕х╝ПуВТф╗еф╕ЛуБлчд║уБЩуАВ
 
                   VRID_UDP_CEP(ID cepid);
 
-               е╤ещесб╝е┐ cepid д╧═╜╠єд╣ды UDP ─╠┐о├╝┼└ ID д╟двдъбв ░ь
-               ╚╠┼кд╦д╧бв TINET е│еєе╒еге░еьб╝е╖ечеєе╒ебедеыд╦░╩▓╝д╬дш
-               джд╦╗╪─ъд╣дыбг
+               уГСуГйуГбуГ╝уВ┐ cepid уБпф║Ич┤ДуБЩуВЛ UDP щАЪф┐бчлпчВ╣ ID уБзуБВуВКуАБ ф╕А
+               шИмчЪДуБлуБпуАБ TINET уВ│уГ│уГХуВгуВ░уГмуГ╝уВ╖уГзуГ│уГХуВбуВдуГлуБлф╗еф╕ЛуБоуВИ
+               уБЖуБлцМЗхоЪуБЩуВЛуАВ
 
                   VRID_UDP_CEP (UDP_RSV_CEPID1);
 
-               д│дьд╦дшдъбвUDP ─╠┐о├╝┼└═╤д╬есетеъ╬╬░шдм│╬╩▌д╡дьбвTINET
-               ╞т╔Їд╟╗╚═╤д╣дыелб╝е═еыеке╓е╕езепе╚д╬ ID ╝л╞░│ф╔╒╖ы▓╠е╒еб
-               едеыб╩TOPPERS/ASP д╧ tinet_cfg.hбв TOPPERS/JSP д╧
-               tinet_id.hб╦д╦бв ┬╨▒■д╣дые▐епеэ─ъ╡┴дм░╩▓╝д╬дшджд╦╜╨╬╧д╡дьдыбг
+               уБУуВМуБлуВИуВКуАБUDP щАЪф┐бчлпчВ╣чФиуБоуГбуГвуГкщаШхЯЯуБМчв║ф┐ЭуБХуВМуАБTINET
+               хЖЕщГиуБзф╜┐чФиуБЩуВЛуВлуГ╝уГНуГлуВкуГЦуВ╕уВзуВпуГИуБо ID шЗкхЛХхЙ▓ф╗Шч╡РцЮЬуГХуВб
+               уВдуГля╝ИTOPPERS/ASP уБп tinet_cfg.hуАБ TOPPERS/JSP уБп
+               tinet_id.hя╝ЙуБлуАБ хп╛х┐ЬуБЩуВЛуГЮуВпуГнхоЪч╛йуБМф╗еф╕ЛуБоуВИуБЖуБлхЗ║хКЫуБХуВМуВЛуАВ
 
                   #define UDP_RSV_CEPID1  1
 
-         [2]   UDP ─╠┐о├╝┼└д╬└╕└об┌╞░┼к APIбвudp_cre_cepб█д╦дшдъбв UDP
-               ─╠┐о├╝┼└дЄ└╕└од╣дыбг
+         [2]   UDP щАЪф┐бчлпчВ╣уБочФЯцИРуАРхЛХчЪД APIуАБ udp_cre_cepуАСуБлуВИуВКуАБUDP
+               щАЪф┐бчлпчВ╣уВТчФЯцИРуБЩуВЛуАВ
 
-               д▐д║бв UDP ─╠┐о├╝┼└└╕└о╛Ё╩є╣╜┬д┬╬д╦╛Ё╩єдЄ└▀─ъд╣дыбг─╠┐о
-               ┴ъ╝ъдлдщд╬е╟б╝е┐д╬╝ї┐одЄ┬╘д─▒■═╤еве╫еъе▒б╝е╖ечеєд╟бв
-               IPv4 д╬╛ь╣чд╬╬удЄ░╩▓╝д╦╝ид╣бг
+               уБ╛уБЪуАБUDP щАЪф┐бчлпчВ╣чФЯцИРцГЕха▒цзЛщАаф╜УуБлцГЕха▒уВТшинхоЪуБЩуВЛуАВ щАЪф┐б
+               чЫ╕цЙЛуБЛуВЙуБоуГЗуГ╝уВ┐уБохПЧф┐буВТх╛ЕуБдх┐ЬчФиуВвуГЧуГкуВ▒уГ╝уВ╖уГзуГ│уБзуАБ
+               IPv4 уБоха┤хРИуБоф╛ЛуВТф╗еф╕ЛуБлчд║уБЩуАВ
 
                   T_UDP_CCEP ccep;
                   ccep.cepatr = 0;
                   ccep.myaddr.portno = 7;
                   ccep.myaddr.ipaddr = IPV4_ADDRANY;
 
-               д▐д┐ IPv6 д╬╛ь╣чд╬╬удЄ░╩▓╝д╦╝ид╣бг
+               уБ╛уБЯ IPv6 уБоха┤хРИуБоф╛ЛуВТф╗еф╕ЛуБлчд║уБЩуАВ
 
                   T_UDP_CCEP ccep;
                   ccep.cepatr = 0;
                   ccep.myaddr.portno = 7;
                   memcpy(&ccep.myaddr.ipaddr, &ipv6_addrany, sizeof(T_IN6_ADDR));
 
-               ддд║дьдтбв ╝ї╔╒д▒ды╝л╩мд╬ IP еве╔еье╣д╧╡м─ъ├═б╩┴┤д╞б╦д╟двдыбг
-                 ╝бд╦бвudp_cre_cep д╬╜ё╝░дЄ╝ид╣бг
+               уБДуБЪуВМуВВуАБ хПЧф╗ШуБСуВЛшЗкхИЖуБо IP уВвуГЙуГмуВ╣уБпшжПхоЪхАдя╝ИхЕиуБжя╝ЙуБзуБВуВЛуАВ
+                 цмбуБлуАБudp_cre_cep уБоцЫ╕х╝ПуВТчд║уБЩуАВ
 
                   ER ercd = udp_cre_cep(ID cepid, T_UDP_CCEP *pk_ccep);
 
-               е╤ещесб╝е┐ cepid д╦д╧ [1] д╟═╜╠єд╖д┐ UDP ─╠┐о├╝┼└ ID дЄ
-               ╗╪─ъд╖бвpk_ccep д╦д╧╛х╡нд╟└▀─ъ║╤д▀д╬ UDP ─╠┐о├╝┼└└╕└о╛Ё
-               ╩єд╪д╬е▌едеєе┐дЄ╗╪─ъд╣дыбг ░ь╚╠┼кд╩╬удЄ░╩▓╝д╦╝ид╣бг 
+               уГСуГйуГбуГ╝уВ┐ cepid уБлуБп [1] уБзф║Ич┤ДуБЧуБЯ UDP щАЪф┐бчлпчВ╣ ID уВТ
+               цМЗхоЪуБЧуАБpk_ccep уБлуБпф╕КшиШуБзшинхоЪц╕ИуБ┐уБо UDP щАЪф┐бчлпчВ╣чФЯцИРцГЕ
+               ха▒уБ╕уБоуГЭуВдуГ│уВ┐уВТцМЗхоЪуБЩуВЛуАВ ф╕АшИмчЪДуБкф╛ЛуВТф╗еф╕ЛуБлчд║уБЩуАВ 
 
                   ercd = udp_cre_cep(UDP_RSV_CEPID1, &ccep);
 
-               д│дьд╦дшдъбв VRID_UDP_CEP д╟│╬╩▌д╡дьд┐ UDP ─╠┐о├╝┼└═╤д╬
-               есетеъ╬╬░шд╦ UDP ─╠┐о├╝┼└└╕└о╛Ё╩єдм╜ё╣■д▐дьдыбг
-                 д│д╬╕хбвUDP д╬│╞ API д╬е╤ещесб╝е┐ cepid д╦ [1] д╟═╜╠є
-               д╖д┐ UDP ─╠┐о├╝┼└ ID дЄ╗╪─ъд╣ды░╩│░д╧бв ─╠╛яд╬ UDP ─╠┐о
-               ├╝┼└д╚╞▒д╕дшджд╦╗╚═╤д╟дндыбг
+               уБУуВМуБлуВИуВКуАБ VRID_UDP_CEP уБзчв║ф┐ЭуБХуВМуБЯ UDP щАЪф┐бчлпчВ╣чФиуБо
+               уГбуГвуГкщаШхЯЯуБл UDP щАЪф┐бчлпчВ╣чФЯцИРцГЕха▒уБМцЫ╕ш╛╝уБ╛уВМуВЛуАВ
+                 уБУуБох╛МуАБUDP уБохРД API уБоуГСуГйуГбуГ╝уВ┐ cepid уБл [1] уБзф║Ич┤Д
+               уБЧуБЯ UDP щАЪф┐бчлпчВ╣ ID уВТцМЗхоЪуБЩуВЛф╗ехдЦуБпуАБ щАЪх╕╕уБо UDP щАЪф┐б
+               члпчВ╣уБихРМуБШуВИуБЖуБлф╜┐чФиуБзуБНуВЛуАВ
 
-         [3]   UDP ─╠┐о├╝┼└д╬║я╜№б┌╞░┼к APIбвudp_del_cepб█д╦дшдъбв UDP
-               ─╠┐о├╝┼└дЄ║я╜№д╣дыбг
+         [3]   UDP щАЪф┐бчлпчВ╣уБохЙКщЩдуАРхЛХчЪД APIуАБ udp_del_cepуАСуБлуВИуВКуАБUDP
+               щАЪф┐бчлпчВ╣уВТхЙКщЩдуБЩуВЛуАВ
 
-                 UDP ─╠┐о├╝┼└д╧ддд─д╟дт║я╜№д╟днбв ┬╛д╬е┐е╣епдм╞▒д╕ UDP
-               ─╠┐о├╝┼└ ID дЄ═°═╤д╟дндыбгд╩дкбв udp_snd_dat д╟┴ў┐о┬╘д┴
-               д╬╗■бвд▐д┐д╧бвudp_rcv_dat д╟╝ї┐о┬╘д┴д╬╗■д╦бвudp_del_cep
-               д╦дшдъбв UDP ─╠┐о├╝┼└дЄ║я╜№д╣дыд╚бвд╜дьд╛дьд╬┤╪┐Їд╬╠сдъ
-               ├═д╦д╧бвE_DLT дм╩╓д╡дьдыбг
-                 ╝бд╦бвudp_del_cep д╬╜ё╝░дЄ╝ид╣бг
+                 UDP щАЪф┐бчлпчВ╣уБпуБДуБдуБзуВВхЙКщЩдуБзуБНуАБ ф╗ЦуБоуВ┐уВ╣уВпуБМхРМуБШ UDP
+               щАЪф┐бчлпчВ╣ ID уВТхИйчФиуБзуБНуВЛуАВ уБкуБКуАБudp_snd_dat уБзщАБф┐бх╛ЕуБб
+               уБоцЩВуАБуБ╛уБЯуБпуАБudp_rcv_dat уБзхПЧф┐бх╛ЕуБбуБоцЩВуБлуАБudp_del_cep
+               уБлуВИуВКуАБUDP щАЪф┐бчлпчВ╣уВТхЙКщЩдуБЩуВЛуБиуАБ уБЭуВМуБЮуВМуБощЦвцХ░уБоцИ╗уВК
+               хАдуБлуБпуАБE_DLT уБМш┐ФуБХуВМуВЛуАВ
+                 цмбуБлуАБudp_del_cep уБоцЫ╕х╝ПуВТчд║уБЩуАВ
 
                   ER ercd = udp_del_cep(ID cepid);
 
-               е╤ещесб╝е┐ cepid д╦д╧ [1] д╟═╜╠єд╖д┐ UDP ─╠┐о├╝┼└ ID дЄ
-               ╗╪─ъд╣дыбг
+               уГСуГйуГбуГ╝уВ┐ cepid уБлуБп [1] уБзф║Ич┤ДуБЧуБЯ UDP щАЪф┐бчлпчВ╣ ID уВТ
+               цМЗхоЪуБЩуВЛуАВ
 
-   (2)   UDP ─╠┐о├╝┼└еке╫е╖ечеєд╬└▀─ъд╚╞╔╜╨д╖
-           └▀─ъ▓─╟╜д╩ TCP ─╠┐о├╝┼└еке╫е╖ечеєд╧╠╡ддд┐дсбвд╔д┴дщд╬┤╪┐Їдт
-         ╠сдъ├═д╚д╖д╞ E_PAR дм╩╓д╡дьдыбг
+   (2)   UDP щАЪф┐бчлпчВ╣уВкуГЧуВ╖уГзуГ│уБошинхоЪуБишкнхЗ║уБЧ
+           шинхоЪхПпшГ╜уБк TCP щАЪф┐бчлпчВ╣уВкуГЧуВ╖уГзуГ│уБпчДбуБДуБЯуВБуАБуБйуБбуВЙуБощЦвцХ░уВВ
+         цИ╗уВКхАдуБиуБЧуБж E_PAR уБМш┐ФуБХуВМуВЛуАВ
 
-4.  еыб╝е╞егеєе░д╬└▀─ъ
+5.  уГлуГ╝уГЖуВгуГ│уВ░уБошинхоЪ
 
-  еыб╝е╞егеєе░еиеєе╚еъд╦д╧бв└┼┼кеыб╝е╞егеєе░еиеєе╚еъд╚╕■д▒─╛д╖б╩ICMPб╦
-д╦дшдыеыб╝е╞егеєе░еиеєе╚еъдмдвдыбг 
-  └┼┼кеыб╝е╞егеєе░еиеєе╚еъд╧бв═╜дс╖шдсдщдьд┐еыб╝е╞егеєе░╛Ё╩єд╟двдъбвеыб╝
-е╞егеєе░└▀─ъе╒ебедеы route_cfg.c д╬еыб╝е╞егеєе░╔╜еиеєе╚еъ╟█╬єд╦└▀─ъд╣
-дыбгд╩дкбве╟еге╒ейеые╚е▓б╝е╚ежезедд╬д▀д╬е╖еєе╫еыд╩е═е├е╚еяб╝епд╟д╧бве╡
-еєе╫еыеве╫еъе▒б╝е╖ечеє echos д╬ route_cfg.c дЄд╜д╬д▐д▐╬о═╤д╟дндыбг
-  ╕■д▒─╛д╖б╩ICMPб╦д╦дшдыеыб╝е╞егеєе░еиеєе╚еъд╧бвTINET е│еєе╒егеоехеьб╝
-е╖ечеєбже╤ещесб╝е┐─ъ╡┴е╒ебедеыд╟бвеыб╝е╞егеєе░╔╜д╟═╜дс│╬╩▌д╣дыеиеєе╚еъ
-┐ЇдЄ─ъ╡┴д╖бв еыб╝е╞егеєе░└▀─ъе╒ебедеы route_cfg.c д╬еыб╝е╞егеєе░╔╜еиеє
-е╚еъ╟█╬єд╦бв╢їд╬еиеєе╚еъд╚д╖д╞│╬╩▌д╣дыбг 
+  уГлуГ╝уГЖуВгуГ│уВ░уВиуГ│уГИуГкуБлуБпуАБщЭЩчЪДуГлуГ╝уГЖуВгуГ│уВ░уВиуГ│уГИуГкуБихРСуБСчЫ┤уБЧя╝ИICMPя╝Й
+уБлуВИуВЛуГлуГ╝уГЖуВгуГ│уВ░уВиуГ│уГИуГкуБМуБВуВЛуАВ 
+  щЭЩчЪДуГлуГ╝уГЖуВгуГ│уВ░уВиуГ│уГИуГкуБпуАБф║ИуВБц▒║уВБуВЙуВМуБЯуГлуГ╝уГЖуВгуГ│уВ░цГЕха▒уБзуБВуВКуАБуГлуГ╝
+уГЖуВгуГ│уВ░шинхоЪуГХуВбуВдуГл route_cfg.c уБоуГлуГ╝уГЖуВгуГ│уВ░шбиуВиуГ│уГИуГкщЕНхИЧуБлшинхоЪуБЩ
+уВЛуАВуБкуБКуАБуГЗуВгуГХуВйуГлуГИуВ▓уГ╝уГИуВжуВзуВдуБоуБ┐уБоуВ╖уГ│уГЧуГлуБкуГНуГГуГИуГпуГ╝уВпуБзуБпуАБуВ╡
+уГ│уГЧуГлуВвуГЧуГкуВ▒уГ╝уВ╖уГзуГ│ echos уБо route_cfg.c уВТуБЭуБоуБ╛уБ╛ц╡БчФиуБзуБНуВЛуАВ
+  хРСуБСчЫ┤уБЧя╝ИICMPя╝ЙуБлуВИуВЛуГлуГ╝уГЖуВгуГ│уВ░уВиуГ│уГИуГкуБпуАБTINET уВ│уГ│уГХуВгуВоуГеуГмуГ╝
+уВ╖уГзуГ│уГ╗уГСуГйуГбуГ╝уВ┐хоЪч╛йуГХуВбуВдуГлуБзуАБуГлуГ╝уГЖуВгуГ│уВ░шбиуБзф║ИуВБчв║ф┐ЭуБЩуВЛуВиуГ│уГИуГк
+цХ░уВТхоЪч╛йуБЧуАБ уГлуГ╝уГЖуВгуГ│уВ░шинхоЪуГХуВбуВдуГл route_cfg.c уБоуГлуГ╝уГЖуВгуГ│уВ░шбиуВиуГ│
+уГИуГкщЕНхИЧуБлуАБ чй║уБоуВиуГ│уГИуГкуБиуБЧуБжчв║ф┐ЭуБЩуВЛуАВ
 
-   (1)   еыб╝е╞егеєе░╔╜д╬еиеєе╚еъ┐Їд╬└▀─ъ
-           еиеєе╚еъ┐Їд╬└▀─ъд╣дые▐епеэд╧бв TINET е│еєе╒егеоехеьб╝е╖ечеєбж
-         е╤ещесб╝е┐─ъ╡┴е╒ебедеыд╟─ъ╡┴д╣дыбг 
+   (1)   уГлуГ╝уГЖуВгуГ│уВ░шбиуБоуВиуГ│уГИуГкцХ░уБошинхоЪ
+           уВиуГ│уГИуГкцХ░уБошинхоЪуБЩуВЛуГЮуВпуГнуБпуАБ TINET уВ│уГ│уГХуВгуВоуГеуГмуГ╝уВ╖уГзуГ│уГ╗
+         уГСуГйуГбуГ╝уВ┐хоЪч╛йуГХуВбуВдуГлуБзхоЪч╛йуБЩуВЛуАВ 
 
-         [1]   NUM_STATIC_ROUTE_ENTRY
-               еыб╝е╞егеєе░╔╜д╬└┼┼кеыб╝е╞егеєе░еиеєе╚еъ┐ЇдЄ╗╪─ъд╣дыбг 
-         [2]   NUM_REDIRECT_ROUTE_ENTRY
-               еыб╝е╞егеєе░╔╜д╟═╜дс│╬╩▌д╣дыбв ╕■д▒─╛д╖б╩ICMPб╦д╦дшдыеыб╝
-               е╞егеєе░еиеєе╚еъ┐ЇдЄ╗╪─ъд╣дыбг 0 дЄ╗╪─ъд╣дыд╚бв╕■д▒─╛д╖
-               б╩ICMPб╦дЄ╠╡╗ыд╣дыбг
+         [1]   NUM_IN6_STATIC_ROUTE_ENTRY
+               IPv6 чФиуБоуГлуГ╝уГЖуВгуГ│уВ░шбиуБощЭЩчЪДуГлуГ╝уГЖуВгуГ│уВ░уВиуГ│уГИуГкцХ░уВТцМЗ
+               хоЪуБЩуВЛуАВ
+         [2]   NUM_IN6_REDIRECT_ROUTE_ENTRY
+               IPv6 чФиуБоуГлуГ╝уГЖуВгуГ│уВ░шбиуБзф║ИуВБчв║ф┐ЭуБЩуВЛуАБхРСуБСчЫ┤уБЧя╝ИICMPя╝Й
+               уБлуВИуВЛуГлуГ╝уГЖуВгуГ│уВ░уВиуГ│уГИуГкцХ░уВТцМЗхоЪуБЩуВЛуАВ 0 уВТцМЗхоЪуБЩуВЛуБиуАБ
+               хРСуБСчЫ┤уБЧя╝ИICMPv6я╝ЙуВТчДбшжЦуБЩуВЛуАВ
+         [3]   NUM_IN4_STATIC_ROUTE_ENTRY
+               IPv4 чФиуБоуГлуГ╝уГЖуВгуГ│уВ░шбиуБощЭЩчЪДуГлуГ╝уГЖуВгуГ│уВ░уВиуГ│уГИуГкцХ░уВТцМЗ
+               хоЪуБЩуВЛуАВ
+         [4]   NUM_IN4_REDIRECT_ROUTE_ENTRY
+               IPv4 чФиуБоуГлуГ╝уГЖуВгуГ│уВ░шбиуБзф║ИуВБчв║ф┐ЭуБЩуВЛуАБхРСуБСчЫ┤уБЧя╝ИICMPя╝Й
+               уБлуВИуВЛуГлуГ╝уГЖуВгуГ│уВ░уВиуГ│уГИуГкцХ░уВТцМЗхоЪуБЩуВЛуАВ 0 уВТцМЗхоЪуБЩуВЛуБиуАБ
+               хРСуБСчЫ┤уБЧя╝ИICMPя╝ЙуВТчДбшжЦуБЩуВЛуАВ
 
-   (2)   еыб╝е╞егеєе░╔╜еиеєе╚еъ╣╜┬д┬╬б╩IPv4б╦
-           IPv4 д╟д╧бв#include <netinet/in_var.h> д╟─ъ╡┴д╡дьд╞дддыбг│╞
-         е╒егб╝еые╔д╬░╒╠гдЄ░╩▓╝д╦╝ид╣бг
+   (2)   уГлуГ╝уГЖуВгуГ│уВ░шбиуВиуГ│уГИуГкцзЛщАаф╜Уя╝ИIPv6я╝Й
+           IPv6 уБзуБпуАБ#include <netinet6/in6_var.h> уБзхоЪч╛йуБХуВМуБжуБДуВЛуАВ
+         хРДуГХуВгуГ╝уГлуГЙуБоцДПхС│уВТф╗еф╕ЛуБлчд║уБЩуАВ
 
-            T_IN4_ADDR      targe           ╠▄╔╕е═е├е╚еяб╝епд╬IPеве╔еье╣бв
-                                            е╟еге╒ейеые╚е▓б╝е╚ежезедд╟д╧0дЄ╗╪─ъд╣дыбг
-            T_IN4_ADDR      mask            ╠▄╔╕е═е├е╚еяб╝епд╬е╡е╓е═е├е╚е▐е╣епбв
-                                            е╟еге╒ейеые╚е▓б╝е╚ежезедд╟д╧0дЄ╗╪─ъд╣дыбг
-            T_IN4_ADDR      gateway         е▓б╝е╚ежезедд╬ IP еве╔еье╣бв
-                                            ╝ле═е├е╚еяб╝еп╞тд╟д╧0дЄ╗╪─ъд╣дыбг
+            T_IN6_ADDR      target          чЫоциЩуГНуГГуГИуГпуГ╝уВпуВвуГЙуГмуВ╣
+            T_IN6_ADDR      gateway         уВ▓уГ╝уГИуВжуВзуВдуБо IP уВвуГЙуГмуВ╣
+            uint32_t        expire          цЬЙхК╣цЩВщЦУуБМхИЗуВМуВЛцЩВхИ╗уАБ0xffffffff уВТцМЗхоЪуБЩуВЛуБУуБиуАВ
+            uint8_t         flags           уГХуГйуВ░уАБ0x01 уВТцМЗхоЪуБЩуВЛуБУуБиуАВ
+            uint8_t         prefix_len      уГЧуГмуГХуВгуГГуВпуВ╣щХ╖
 
-   (3)   еыб╝е╞егеєе░╔╜еиеєе╚еъ╣╜┬д┬╬б╩IPv6б╦
-           IPv6 д╟д╧бв#include <netinet6/in6_var.h> д╟─ъ╡┴д╡дьд╞дддыбг
-         │╞е╒егб╝еые╔д╬░╒╠гдЄ░╩▓╝д╦╝ид╣бг
-
-            T_IN6_ADDR      target          ╠▄╔╕е═е├е╚еяб╝епеве╔еье╣
-            T_IN6_ADDR      gateway         е▓б╝е╚ежезедд╬ IP еве╔еье╣
-            uint32_t        expire          ═н╕·╗■┤╓дм└┌дьды╗■╣ябв0xffffffff дЄ╗╪─ъд╣дыд│д╚бг
-            uint8_t         flags           е╒еще░бв0x01 дЄ╗╪─ъд╣дыд│д╚бг
-            uint8_t         prefix_len      е╫еье╒еге├епе╣─╣
-
-         IP еве╔еье╣д╧бв{{{ д╚ }}} д╟░╧д▀бв 1 екепе╞е├е╚├▒░╠д╟╗╪─ъд╣дыбг
-         ╬удЄ░╩▓╝д╦╝ид╣бг
+         IP уВвуГЙуГмуВ╣уБпуАБ{{{ уБи }}} уБзхЫ▓уБ┐уАБ 1 уВкуВпуГЖуГГуГИхНШф╜НуБзцМЗхоЪуБЩуВЛуАВ
+         ф╛ЛуВТф╗еф╕ЛуБлчд║уБЩуАВ
 
             { { { 0xfe, 0xc0, 0x00, 0x00, 0x00, 0x00, 0x00, 0xff, 0x41,
                   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 } } }
 
-   (4)   едеєепеыб╝е╔е╒ебедеы
-           ░╩▓╝д╬едеєепеыб╝е╔е╒ебедеыдЄ╗╪─ъд╣дыд│д╚бг 
+   (3)   уГлуГ╝уГЖуВгуГ│уВ░шбиуВиуГ│уГИуГкцзЛщАаф╜Уя╝ИIPv4я╝Й
+           IPv4 уБзуБпуАБ#include <netinet/in_var.h> уБзхоЪч╛йуБХуВМуБжуБДуВЛуАВхРД
+         уГХуВгуГ╝уГлуГЙуБоцДПхС│уВТф╗еф╕ЛуБлчд║уБЩуАВ
+
+            T_IN4_ADDR      targe           чЫоциЩуГНуГГуГИуГпуГ╝уВпуБоIPуВвуГЙуГмуВ╣уАБ
+                                            уГЗуВгуГХуВйуГлуГИуВ▓уГ╝уГИуВжуВзуВдуБзуБп0уВТцМЗхоЪуБЩуВЛуАВ
+            T_IN4_ADDR      mask            чЫоциЩуГНуГГуГИуГпуГ╝уВпуБоуВ╡уГЦуГНуГГуГИуГЮуВ╣уВпуАБ
+                                            уГЗуВгуГХуВйуГлуГИуВ▓уГ╝уГИуВжуВзуВдуБзуБп0уВТцМЗхоЪуБЩуВЛуАВ
+            T_IN4_ADDR      gateway         уВ▓уГ╝уГИуВжуВзуВдуБо IP уВвуГЙуГмуВ╣уАБ
+                                            шЗкуГНуГГуГИуГпуГ╝уВпхЖЕуБзуБп0уВТцМЗхоЪуБЩуВЛуАВ
+
+   (4)   уВдуГ│уВпуГлуГ╝уГЙуГХуВбуВдуГл
+           ф╗еф╕ЛуБоуВдуГ│уВпуГлуГ╝уГЙуГХуВбуВдуГлуВТцМЗхоЪуБЩуВЛуБУуБиуАВ 
 
          [1]   TOPPERS/ASP
 
@@ -909,1894 +863,878 @@ TINET ╞╚╝лд╬└┼┼к APIбве╒ебедеыд╬едеєепеыб╝е╔д╟двдыбг
                   #include <netinet/in.h>
                   #include <netinet/in_var.h>
 
-   (5)   еыб╝е╞егеєе░╔╜еиеєе╚еъ╟█╬єб╩IPv4б╦
-           ░╩▓╝д╬дшджд╦╗╪─ъд╣дыд│д╚бг
+   (5)   уГлуГ╝уГЖуВгуГ│уВ░шбиуВиуГ│уГИуГкщЕНхИЧя╝ИIPv6я╝Й
+           ф╗еф╕ЛуБоуВИуБЖуБлцМЗхоЪуБЩуВЛуБУуБиуАВ
 
-            T_IN4_RTENTRY routing_tbl[NUM_ROUTE_ENTRY] = {
-                <еыб╝е╞егеєе░╔╜еиеєе╚еъ╣╜┬д┬╬ 1>,
-                <еыб╝е╞егеєе░╔╜еиеєе╚еъ╣╜┬д┬╬ 2>,
+            T_IN6_RTENTRY routing6_tbl[NUM_ROUTE_ENTRY] = {
+                <уГлуГ╝уГЖуВгуГ│уВ░шбиуВиуГ│уГИуГкцзЛщАаф╜У 1>,
+                <уГлуГ╝уГЖуВгуГ│уВ░шбиуВиуГ│уГИуГкцзЛщАаф╜У 2>,
                 ...
-                <еыб╝е╞егеєе░╔╜еиеєе╚еъ╣╜┬д┬╬ n>,
+                <уГлуГ╝уГЖуВгуГ│уВ░шбиуВиуГ│уГИуГкцзЛщАаф╜У n>,
                 };
 
-   (6)   еыб╝е╞егеєе░╔╜еиеєе╚еъ╟█╬єб╩IPv6б╦
-           ░╩▓╝д╬дшджд╦╗╪─ъд╣дыд│д╚бг
+   (6)   уГлуГ╝уГЖуВгуГ│уВ░шбиуВиуГ│уГИуГкщЕНхИЧя╝ИIPv4я╝Й
+           ф╗еф╕ЛуБоуВИуБЖуБлцМЗхоЪуБЩуВЛуБУуБиуАВ
 
-            T_IN6_RTENTRY routing_tbl[NUM_ROUTE_ENTRY] = {
-                <еыб╝е╞егеєе░╔╜еиеєе╚еъ╣╜┬д┬╬ 1>,
-                <еыб╝е╞егеєе░╔╜еиеєе╚еъ╣╜┬д┬╬ 2>,
+            T_IN4_RTENTRY routing4_tbl[NUM_ROUTE_ENTRY] = {
+                <уГлуГ╝уГЖуВгуГ│уВ░шбиуВиуГ│уГИуГкцзЛщАаф╜У 1>,
+                <уГлуГ╝уГЖуВгуГ│уВ░шбиуВиуГ│уГИуГкцзЛщАаф╜У 2>,
                 ...
-                <еыб╝е╞егеєе░╔╜еиеєе╚еъ╣╜┬д┬╬ n>,
+                <уГлуГ╝уГЖуВгуГ│уВ░шбиуВиуГ│уГИуГкцзЛщАаф╜У n>,
                 };
 
-   (7)   ├╡║ў╜ч╜°
-           ├╡║ўд╧бведеєе╟е├епе╣дм┬чднд╩╜чбвд─д▐дъбв еыб╝е╞егеєе░╔╜еиеє
-         е╚еъ╟█╬єд╬║╟╕хд╬ <еыб╝е╞егеєе░╔╜еиеєе╚еъ╣╜┬д┬╬ n> длдщбв ║╟╜щ
-         д╬ <еыб╝е╞егеєе░╔╜еиеєе╚еъ╣╜┬д┬╬ 1> д╦╕■д├д╞╣╘дядьдыбг
+   (7)   цОвч┤вщаЖх║П
+           цОвч┤вуБпуАБуВдуГ│уГЗуГГуВпуВ╣уБМхдзуБНуБкщаЖуАБуБдуБ╛уВКуАБ уГлуГ╝уГЖуВгуГ│уВ░шбиуВиуГ│
+         уГИуГкщЕНхИЧуБоцЬАх╛МуБо <уГлуГ╝уГЖуВгуГ│уВ░шбиуВиуГ│уГИуГкцзЛщАаф╜У n> уБЛуВЙуАБ цЬАхИЭ
+         уБо <уГлуГ╝уГЖуВгуГ│уВ░шбиуВиуГ│уГИуГкцзЛщАаф╜У 1> уБлхРСуБгуБжшбМуВПуВМуВЛуАВ
 
-5.  TINET ╞╚╝л╡б╟╜
+6.  TINET чЛмшЗкцйЯшГ╜
 
-5. 1  е┐е╣епдлдщд╬ Time Wait ╛ї┬╓д╬ TCP ─╠┐о├╝┼└╩м╬е╡б╟╜
+6. 1  уВ┐уВ╣уВпуБЛуВЙуБо Time Wait чК╢цЕЛуБо TCP щАЪф┐бчлпчВ╣хИЖщЫвцйЯшГ╜
 
-  TCP ─╠┐о├╝┼└д╧бве╜е▒е├е╚едеєе┐е╒езб╝е╣д╦дкд▒дые╒ебедеые╟еге╣епеъе╫е┐
-д╚░█д╩дъбв TCP д╬└▄┬│╛ї┬╓дм┤░┴┤д╦╜к╬╗д╣дыд▐д╟║╞═°═╤▓─╟╜д╚д╧д╩дщд╩ддбг
-TCP/IP е╫еэе╚е│еыд╬╗┼══д╦╜╛джд╚бв └▄┬│╛ї┬╓дм┤░┴┤д╦╜к╬╗д╣дыд▐д╟┐Ї╩мдлдл
-ды╛ь╣чдмдвдыбг╠ф┬ъд╦д╩дыд╬д╧бв└шд╦бвTCP ─╠┐о├╝┼└д╬е│е═епе╖ечеє└┌├╟ API
-д╬ tcp_sht_cep дЄ╕╞╜╨д╖бв е│е═епе╖ечеєдЄ└┌├╟д╣ды╛ь╣чд╟двдыбг д│д╬╗■бв
-tcp_sht_cep д╟╗╪─ъд╡дьд┐ TCP ─╠┐о├╝┼└д╧бв║╟╜к┼кд╦ Time Wait ╛ї┬╓д╦д╩дъбв
-TCP ─╠┐о├╝┼└д╬епеэб╝е║ API д╬ tcp_cls_cep дЄ╕╞╜╨д╖д┐е┐е╣епдтбве┐едерев
-еже╚┬╘д┴╛ї┬╓д╦д╩дыбг╜╛д├д╞бве╡б╝е╨┬ждлдщ└┌├╟д╣ды▒■═╤е╫еэе░ещерб╩WWW д╩
-д╔б╦д╬е┐е╣епд╟д╧бве┐едеревеже╚д╣дыд▐д╟бв╝бд╬└▄┬│═╫╡сдЄ╝ї┐од╣дыд│д╚дмд╟
-днд╩ддбг
-  д│дьд╦┬╨▒■д╣дыд┐дсбв TINET д╧бв╜к╬╗┬╘д┴д╬ TCP ─╠┐о├╝┼└дЄе┐е╣епдлдщ└┌
-дъ╬ед╣д│д╚д╦дшдъбве┐е╣епдм┬╘д┴╛ї┬╓д╦д╩дщд╩дддшджд╦д╣ды╡б╟╜дЄ╗¤д├д╞дкдъбв
-═н╕·д╦д╣дыд┐дсд╦д╧бв е│еєе╤едеы╗■е│еєе╒егеоехеьб╝е╖ечеєе╤ещесб╝е┐
-NUM_TCP_TW_CEP_ENTRY дЄ tinet_app_config.h ┼∙д╦╗╪─ъд╖бв │╬╩▌д╣ды TW ═╤
-TCP ─╠┐о├╝┼└д╬┐Їб╩1 ░╩╛хд╬├═б╦дЄ─ъ╡┴д╣дыбг
-  TCP ─╠┐о├╝┼└дм Time Wait д╦д╩дыд╚бвTCP ─╠┐о├╝┼└длдщбв Time Wait д╦╔м
-═╫д╩─╠┐о┤╔═¤е╟б╝е┐дЄ TW ═╤ TCP ─╠┐о├╝┼└д╦е│е╘б╝д╖бв╕╡д╬ TCP ─╠┐о├╝┼└дЄ
-│л╩№д╣дыбг д│дьд╦╚╝д├д╞бв е┐е╣епдт┬╘д┴╛ї┬╓длдщ│л╩№д╡дьдыбг д▐д┐бвTW ═╤
-TCP ─╠┐о├╝┼└д╦д╧ Time Wait д╦╔м═╫д╩─╠┐о┤╔═¤е╟б╝е┐д╬д▀дЄе│е╘б╝д╣дыд│д╚
-д╟бвесетеъд╬╛├╚ёдЄ═▐дид╞дддыбг
-  д┐д└д╖бвд│д╬╡б╟╜дЄ═н╕·д╦д╖д╞ддд╞дтбве│е═епе╖ечеєд╬╞▒╗■└┌├╟д╬е┐еде▀еє
-е░д╦дшд├д╞д╧бв╩м╬ед╡дьд╩дд╛ь╣чдмдвдыбг 
+  TCP щАЪф┐бчлпчВ╣уБпуАБуВ╜уВ▒уГГуГИуВдуГ│уВ┐уГХуВзуГ╝уВ╣уБлуБКуБСуВЛуГХуВбуВдуГлуГЗуВгуВ╣уВпуГкуГЧуВ┐
+уБичХ░уБкуВКуАБ TCP уБоцОеч╢ЪчК╢цЕЛуБМхоМхЕиуБлч╡Вф║ЖуБЩуВЛуБ╛уБзхЖНхИйчФихПпшГ╜уБиуБпуБкуВЙуБкуБДуАВ
+TCP/IP уГЧуГнуГИуВ│уГлуБоф╗ХцзШуБлх╛УуБЖуБиуАБ цОеч╢ЪчК╢цЕЛуБМхоМхЕиуБлч╡Вф║ЖуБЩуВЛуБ╛уБзцХ░хИЖуБЛуБЛ
+уВЛха┤хРИуБМуБВуВЛуАВхХПщбМуБлуБкуВЛуБоуБпуАБхЕИуБлуАБTCP щАЪф┐бчлпчВ╣уБоуВ│уГНуВпуВ╖уГзуГ│хИЗцЦн API
+уБо tcp_sht_cep уВТхС╝хЗ║уБЧуАБ уВ│уГНуВпуВ╖уГзуГ│уВТхИЗцЦнуБЩуВЛха┤хРИуБзуБВуВЛуАВ уБУуБоцЩВуАБ
+tcp_sht_cep уБзцМЗхоЪуБХуВМуБЯ TCP щАЪф┐бчлпчВ╣уБпуАБцЬАч╡ВчЪДуБл Time Wait чК╢цЕЛуБлуБкуВКуАБ
+TCP щАЪф┐бчлпчВ╣уБоуВпуГнуГ╝уВ║ API уБо tcp_cls_cep уВТхС╝хЗ║уБЧуБЯуВ┐уВ╣уВпуВВуАБуВ┐уВдуГауВв
+уВжуГИх╛ЕуБбчК╢цЕЛуБлуБкуВЛуАВх╛УуБгуБжуАБуВ╡уГ╝уГРхБ┤уБЛуВЙхИЗцЦнуБЩуВЛх┐ЬчФиуГЧуГнуВ░уГйуГая╝ИWWW уБк
+уБйя╝ЙуБоуВ┐уВ╣уВпуБзуБпуАБуВ┐уВдуГауВвуВжуГИуБЩуВЛуБ╛уБзуАБцмбуБоцОеч╢ЪшжБц▒ВуВТхПЧф┐буБЩуВЛуБУуБиуБМуБз
+уБНуБкуБДуАВ
+  уБУуВМуБлхп╛х┐ЬуБЩуВЛуБЯуВБуАБ TINET уБпуАБч╡Вф║Жх╛ЕуБбуБо TCP щАЪф┐бчлпчВ╣уВТуВ┐уВ╣уВпуБЛуВЙхИЗ
+уВКщЫвуБЩуБУуБиуБлуВИуВКуАБуВ┐уВ╣уВпуБМх╛ЕуБбчК╢цЕЛуБлуБкуВЙуБкуБДуВИуБЖуБлуБЩуВЛцйЯшГ╜уВТцМБуБгуБжуБКуВКуАБ
+цЬЙхК╣уБлуБЩуВЛуБЯуВБуБлуБпуАБ уВ│уГ│уГСуВдуГлцЩВуВ│уГ│уГХуВгуВоуГеуГмуГ╝уВ╖уГзуГ│уГСуГйуГбуГ╝уВ┐
+NUM_TCP_TW_CEP_ENTRY уВТ tinet_app_config.h чнЙуБлцМЗхоЪуБЧуАБ чв║ф┐ЭуБЩуВЛ TW чФи
+TCP щАЪф┐бчлпчВ╣уБоцХ░я╝И1 ф╗еф╕КуБохАдя╝ЙуВТхоЪч╛йуБЩуВЛуАВ
+  TCP щАЪф┐бчлпчВ╣уБМ Time Wait уБлуБкуВЛуБиуАБTCP щАЪф┐бчлпчВ╣уБЛуВЙуАБ Time Wait уБлх┐Е
+шжБуБкщАЪф┐бчобчРЖуГЗуГ╝уВ┐уВТ TW чФи TCP щАЪф┐бчлпчВ╣уБлуВ│уГФуГ╝уБЧуАБхЕГуБо TCP щАЪф┐бчлпчВ╣уВТ
+щЦЛцФ╛уБЩуВЛуАВ уБУуВМуБлф╝┤уБгуБжуАБ уВ┐уВ╣уВпуВВх╛ЕуБбчК╢цЕЛуБЛуВЙщЦЛцФ╛уБХуВМуВЛуАВ уБ╛уБЯуАБTW чФи
+TCP щАЪф┐бчлпчВ╣уБлуБп Time Wait уБлх┐ЕшжБуБкщАЪф┐бчобчРЖуГЗуГ╝уВ┐уБоуБ┐уВТуВ│уГФуГ╝уБЩуВЛуБУуБи
+уБзуАБуГбуГвуГкуБоц╢Иш▓╗уВТцКСуБИуБжуБДуВЛуАВ
+  уБЯуБауБЧуАБуБУуБоцйЯшГ╜уВТцЬЙхК╣уБлуБЧуБжуБДуБжуВВуАБуВ│уГНуВпуВ╖уГзуГ│уБохРМцЩВхИЗцЦнуБоуВ┐уВдуГЯуГ│
+уВ░уБлуВИуБгуБжуБпуАБхИЖщЫвуБХуВМуБкуБДха┤хРИуБМуБВуВЛуАВ 
 
-5. 2  ╝ї┐оежегеєе╔е╨е├е╒ебд╬╛╩е│е╘б╝╡б╟╜
+6. 2  хПЧф┐буВжуВгуГ│уГЙуГРуГГуГХуВбуБочЬБуВ│уГФуГ╝цйЯшГ╜
 
-  ITRON TCP/IP API ╗┼══д╟д╧бвTCP ─╠┐о├╝┼└дЄ└╕└од╣ды└┼┼к API д╟бв╝ї┐оеж
-едеєе╔е╨е├е╒ебд╬└ш╞меве╔еье╣д╬╗╪─ъд╦бв NADR дЄ╗╪─ъд╣дыд╚бве╫еэе╚е│еые╣
-е┐е├епд╟бв ╝ї┐оежедеєе╔е╨е├е╒ебдЄ│╬╩▌д╣дыд│д╚д╦д╩д├д╞дддыбг 
-  TINET д╟д╧бве═е├е╚еяб╝епе╨е├е╒ебдЄбв╝ї┐оежедеєе╔е╨е├е╒ебд╚д╣дыд│д╚д╟бв
-NADR д╬╗╪─ъд╦┬╨▒■д╖д╞дддыбг д╡дщд╦бве═е├е╚еяб╝епедеєе┐е╒езб╝е╣д╟╝ї┐од╖
-д┐е╫еэе╚еые│е╟б╝е┐дЄ╩▌╗¤д╣дые═е├е╚еяб╝епе╨е├е╒ебдЄбвд╜д╬д▐д▐╝ї┐оежедеє
-е╔е╨е├е╒ебд╚д╣дыд│д╚д╟бве═е├е╚еяб╝епедеєе┐е╒езб╝е╣д╚бвTINET ╞т╔Їд╟бве╟б╝
-е┐д╬е│е╘б╝дЄ╛╩ддд╞дддыбг╞├д╦бв ╛╩е│е╘б╝ API дЄ╗╚═╤д╣дыд│д╚д╦дшдъбв API
-д╦дкд▒дые╟б╝е┐д╬е│е╘б╝дт╣╘дяд╩ддд│д╚дт▓─╟╜д╟двдыбг 
-  д│д╬╡б╟╜д╦┤╪╖╕д╣дые│еєе╤едеы╗■е│еєе╒егеоехеьб╝е╖ечеєе╤ещесб╝е┐дЄбв░╩
-▓╝д╦╝ид╣бг
+  ITRON TCP/IP API ф╗ХцзШуБзуБпуАБTCP щАЪф┐бчлпчВ╣уВТчФЯцИРуБЩуВЛщЭЩчЪД API уБзуАБхПЧф┐буВж
+уВдуГ│уГЙуГРуГГуГХуВбуБохЕИщануВвуГЙуГмуВ╣уБоцМЗхоЪуБлуАБ NADR уВТцМЗхоЪуБЩуВЛуБиуАБуГЧуГнуГИуВ│уГлуВ╣
+уВ┐уГГуВпуБзуАБ хПЧф┐буВжуВдуГ│уГЙуГРуГГуГХуВбуВТчв║ф┐ЭуБЩуВЛуБУуБиуБлуБкуБгуБжуБДуВЛуАВ 
+  TINET уБзуБпуАБуГНуГГуГИуГпуГ╝уВпуГРуГГуГХуВбуВТуАБхПЧф┐буВжуВдуГ│уГЙуГРуГГуГХуВбуБиуБЩуВЛуБУуБиуБзуАБ
+NADR уБоцМЗхоЪуБлхп╛х┐ЬуБЧуБжуБДуВЛуАВ уБХуВЙуБлуАБуГНуГГуГИуГпуГ╝уВпуВдуГ│уВ┐уГХуВзуГ╝уВ╣уБзхПЧф┐буБЧ
+уБЯуГЧуГнуГИуГлуВ│уГЗуГ╝уВ┐уВТф┐ЭцМБуБЩуВЛуГНуГГуГИуГпуГ╝уВпуГРуГГуГХуВбуВТуАБуБЭуБоуБ╛уБ╛хПЧф┐буВжуВдуГ│
+уГЙуГРуГГуГХуВбуБиуБЩуВЛуБУуБиуБзуАБуГНуГГуГИуГпуГ╝уВпуВдуГ│уВ┐уГХуВзуГ╝уВ╣уБиуАБTINET хЖЕщГиуБзуАБуГЗуГ╝
+уВ┐уБоуВ│уГФуГ╝уВТчЬБуБДуБжуБДуВЛуАВчЙ╣уБлуАБ чЬБуВ│уГФуГ╝ API уВТф╜┐чФиуБЩуВЛуБУуБиуБлуВИуВКуАБ API
+уБлуБКуБСуВЛуГЗуГ╝уВ┐уБоуВ│уГФуГ╝уВВшбМуВПуБкуБДуБУуБиуВВхПпшГ╜уБзуБВуВЛуАВ 
+  уБУуБоцйЯшГ╜уБлщЦвф┐ВуБЩуВЛуВ│уГ│уГСуВдуГлцЩВуВ│уГ│уГХуВгуВоуГеуГмуГ╝уВ╖уГзуГ│уГСуГйуГбуГ╝уВ┐уВТуАБф╗е
+ф╕ЛуБлчд║уБЩуАВ
 
    (1)   TCP_CFG_RWBUF_CSAVE_ONLY
-         TCP ─╠┐о├╝┼└д╬╝ї┐оежегеєе╔е╨е├е╒ебд╬╛╩е│е╘б╝╡б╟╜дЄ┴╚╣■д▀бв д│
-         д╬╡б╟╜д╬д▀╗╚═╤д╣дыбгTCP ─╠┐о├╝┼└дЄ└╕└од╣ды└┼┼к API д╟бв╝ї┐оеж
-         едеєе╔е╨е├е╒ебд╬└ш╞меве╔еье╣д╬╗╪─ъд╦бв ▒■═╤е╫еэе░ещердм═╤░╒д╖
-         д┐е╨е├е╒ебдЄ╗╪─ъд╖д╞дт╠╡╗ыд╣дыбг
+         TCP щАЪф┐бчлпчВ╣уБохПЧф┐буВжуВгуГ│уГЙуГРуГГуГХуВбуБочЬБуВ│уГФуГ╝цйЯшГ╜уВТч╡Дш╛╝уБ┐уАБ уБУ
+         уБоцйЯшГ╜уБоуБ┐ф╜┐чФиуБЩуВЛуАВTCP щАЪф┐бчлпчВ╣уВТчФЯцИРуБЩуВЛщЭЩчЪД API уБзуАБхПЧф┐буВж
+         уВдуГ│уГЙуГРуГГуГХуВбуБохЕИщануВвуГЙуГмуВ╣уБоцМЗхоЪуБлуАБ х┐ЬчФиуГЧуГнуВ░уГйуГауБМчФицДПуБЧ
+         уБЯуГРуГГуГХуВбуВТцМЗхоЪуБЧуБжуВВчДбшжЦуБЩуВЛуАВ
 
    (2)   TCP_CFG_RWBUF_CSAVE
-         TCP ─╠┐о├╝┼└д╬╝ї┐оежегеєе╔е╨е├е╒ебд╬╛╩е│е╘б╝╡б╟╜дЄ┴╚╣■дрбгTCP
-         ─╠┐о├╝┼└дЄ└╕└од╣ды└┼┼к API д╟бв╝ї┐оежедеєе╔е╨е├е╒ебд╬└ш╞меве╔
-         еье╣д╬╗╪─ъд╦бвNADR дЄ╗╪─ъд╖д┐╛ь╣чд╧бв╝ї┐оежегеєе╔е╨е├е╒ебд╬╛╩
-         е│е╘б╝╡б╟╜дЄ╗╚═╤д╣дыдмбв ▒■═╤е╫еэе░ещердм═╤░╒д╖д┐е╨е├е╒ебдЄ╗╪
-         ─ъд╖д┐╛ь╣чд╧бв ╝ї┐оежегеєе╔е╨е├е╒ебд╬╛╩е│е╘б╝╡б╟╜дЄ╗╚═╤д╖д╩ддбг 
+         TCP щАЪф┐бчлпчВ╣уБохПЧф┐буВжуВгуГ│уГЙуГРуГГуГХуВбуБочЬБуВ│уГФуГ╝цйЯшГ╜уВТч╡Дш╛╝уВАуАВTCP
+         щАЪф┐бчлпчВ╣уВТчФЯцИРуБЩуВЛщЭЩчЪД API уБзуАБхПЧф┐буВжуВдуГ│уГЙуГРуГГуГХуВбуБохЕИщануВвуГЙ
+         уГмуВ╣уБоцМЗхоЪуБлуАБNADR уВТцМЗхоЪуБЧуБЯха┤хРИуБпуАБхПЧф┐буВжуВгуГ│уГЙуГРуГГуГХуВбуБочЬБ
+         уВ│уГФуГ╝цйЯшГ╜уВТф╜┐чФиуБЩуВЛуБМуАБ х┐ЬчФиуГЧуГнуВ░уГйуГауБМчФицДПуБЧуБЯуГРуГГуГХуВбуВТцМЗ
+         хоЪуБЧуБЯха┤хРИуБпуАБ хПЧф┐буВжуВгуГ│уГЙуГРуГГуГХуВбуБочЬБуВ│уГФуГ╝цйЯшГ╜уВТф╜┐чФиуБЧуБкуБДуАВ 
 
    (3)   TCP_CFG_RWBUF_CSAVE_MAX_QUEUES
-         TCP ─╠┐о├╝┼└д╬╝ї┐оежегеєе╔е╨е├е╒ебд╬╛╩е│е╘б╝╡б╟╜д╬бв ╝ї┐оежег
-         еєе╔е╨е├е╒ебенехб╝д╬║╟┬чеиеєе╚еъ┐Їд╟двдыбг д┐д└д╖бв└╡╛яд╦╝ї┐о
-         д╖д┐е╗е░есеєе╚дт╟╦┤■д╣дыд┐дсбв║╞┴ў▓є┐Їдм┴¤▓├д╣дыбгд▐д┐бв ╗╪─ъ
-         д╖д╩ддд╚└й╕┬д╖д╩ддбг
+         TCP щАЪф┐бчлпчВ╣уБохПЧф┐буВжуВгуГ│уГЙуГРуГГуГХуВбуБочЬБуВ│уГФуГ╝цйЯшГ╜уБоуАБ хПЧф┐буВжуВг
+         уГ│уГЙуГРуГГуГХуВбуВнуГеуГ╝уБоцЬАхдзуВиуГ│уГИуГкцХ░уБзуБВуВЛуАВ уБЯуБауБЧуАБцнгх╕╕уБлхПЧф┐б
+         уБЧуБЯуВ╗уВ░уГбуГ│уГИуВВча┤цгДуБЩуВЛуБЯуВБуАБхЖНщАБхЫЮцХ░уБМхвЧхКауБЩуВЛуАВуБ╛уБЯуАБ цМЗхоЪ
+         уБЧуБкуБДуБихИ╢щЩРуБЧуБкуБДуАВ
 
-д╩дкбвTCP_CFG_RWBUF_CSAVE_ONLY д╚ TCP_CFG_RWBUF_CSAVE д╬бвддд║дьдт╗╪─ъ
-д╖д╩дд╛ь╣чд╧бв TCP ─╠┐о├╝┼└дЄ└╕└од╣ды└┼┼к API д╟бв╝ї┐оежедеєе╔е╨е├е╒еб
-д╬└ш╞меве╔еье╣д╬╗╪─ъд╦бвNADR дЄ╗╪─ъд╣дыд│д╚дмд╟днд╩ддбг
+уБкуБКуАБTCP_CFG_RWBUF_CSAVE_ONLY уБи TCP_CFG_RWBUF_CSAVE уБоуАБуБДуБЪуВМуВВцМЗхоЪ
+уБЧуБкуБДха┤хРИуБпуАБ TCP щАЪф┐бчлпчВ╣уВТчФЯцИРуБЩуВЛщЭЩчЪД API уБзуАБхПЧф┐буВжуВдуГ│уГЙуГРуГГуГХуВб
+уБохЕИщануВвуГЙуГмуВ╣уБоцМЗхоЪуБлуАБNADR уВТцМЗхоЪуБЩуВЛуБУуБиуБМуБзуБНуБкуБДуАВ
 
-5. 3  ┴ў┐оежегеєе╔е╨е├е╒ебд╬╛╩е│е╘б╝╡б╟╜
+6. 3  щАБф┐буВжуВгуГ│уГЙуГРуГГуГХуВбуБочЬБуВ│уГФуГ╝цйЯшГ╜
 
-  ITRON TCP/IP API ╗┼══д╟д╧бвTCP ─╠┐о├╝┼└дЄ└╕└од╣ды└┼┼к API д╟бв╝ї┐оеж
-едеєе╔е╨е├е╒ебд╚╞▒══д╦бв ┴ў┐оежедеєе╔е╨е├е╒ебд╬└ш╞меве╔еье╣д╬╗╪─ъд╦бв
-NADR дЄ╗╪─ъд╣дыд╚бв е╫еэе╚е│еые╣е┐е├епд╟бв┴ў┐оежедеєе╔е╨е├е╒ебдЄ│╬╩▌д╣
-дыд│д╚д╦д╩д├д╞дддыбг
-  TINET д╟д╧бве═е├е╚еяб╝епе╨е├е╒ебдЄбв┴ў┐оежедеєе╔е╨е├е╒ебд╚д╣дыд│д╚д╟бв
-NADR д╬╗╪─ъд╦┬╨▒■д╖д╞дддыбгд╡дщд╦бв ╜ё╣■д▐дьд┐е╟б╝е┐д╬┴░д╦╔м═╫д╩е╪е├е└
-дЄ╔╒▓├д╖д╞бвд╜д╬д▐д▐е═е├е╚еяб╝епедеєе┐е╒езб╝е╣д╦┼╧д╣д│д╚д╦дшдъбве═е├е╚
-еяб╝епедеєе┐е╒езб╝е╣д╚бвTINET ╞т╔Їд╟бве╟б╝е┐д╬е│е╘б╝дЄ╛╩ддд╞дддыбг╞├д╦бв
-╛╩е│е╘б╝ API дЄ╗╚═╤д╣дыд│д╚д╟бв API д╦дкд▒дые╟б╝е┐д╬е│е╘б╝дт╣╘дяд╩ддд│
-д╚дт▓─╟╜д╟двдыбг
-  д┐д└д╖бв едб╝е╡е═е├е╚╜╨╬╧╗■д╦бв NIC д╟е═е├е╚еяб╝епе╨е├е╒ебдЄ│л╩№д╣ды
-б╩е│еєе╤едеы╗■е│еєе╒егеоехеьб╝е╖ечеєе╤ещесб╝е┐
-ETHER_NIC_CFG_RELEASE_NET_BUF дЄбв╗╪─ъд╣ды╔м═╫дмдвдыб╦е╟еге╨еде╣е╔ещед
-е╨д╟д╧бв д│д╬┴ў┐оежегеєе╔е╨е├е╒ебд╬╛╩е│е╘б╝╡б╟╜дЄ═°═╤д╣дыд│д╚д╧д╟днд╩ддбг 
-  д│д╬╡б╟╜д╦┤╪╖╕д╣дые│еєе╤едеы╗■е│еєе╒егеоехеьб╝е╖ечеєе╤ещесб╝е┐дЄбв░╩
-▓╝д╦╝ид╣бг
+  ITRON TCP/IP API ф╗ХцзШуБзуБпуАБTCP щАЪф┐бчлпчВ╣уВТчФЯцИРуБЩуВЛщЭЩчЪД API уБзуАБхПЧф┐буВж
+уВдуГ│уГЙуГРуГГуГХуВбуБихРМцзШуБлуАБ щАБф┐буВжуВдуГ│уГЙуГРуГГуГХуВбуБохЕИщануВвуГЙуГмуВ╣уБоцМЗхоЪуБлуАБ
+NADR уВТцМЗхоЪуБЩуВЛуБиуАБ уГЧуГнуГИуВ│уГлуВ╣уВ┐уГГуВпуБзуАБщАБф┐буВжуВдуГ│уГЙуГРуГГуГХуВбуВТчв║ф┐ЭуБЩ
+уВЛуБУуБиуБлуБкуБгуБжуБДуВЛуАВ
+  TINET уБзуБпуАБуГНуГГуГИуГпуГ╝уВпуГРуГГуГХуВбуВТуАБщАБф┐буВжуВдуГ│уГЙуГРуГГуГХуВбуБиуБЩуВЛуБУуБиуБзуАБ
+NADR уБоцМЗхоЪуБлхп╛х┐ЬуБЧуБжуБДуВЛуАВуБХуВЙуБлуАБ цЫ╕ш╛╝уБ╛уВМуБЯуГЗуГ╝уВ┐уБохЙНуБлх┐ЕшжБуБкуГШуГГуГА
+уВТф╗ШхКауБЧуБжуАБуБЭуБоуБ╛уБ╛уГНуГГуГИуГпуГ╝уВпуВдуГ│уВ┐уГХуВзуГ╝уВ╣уБлц╕буБЩуБУуБиуБлуВИуВКуАБуГНуГГуГИ
+уГпуГ╝уВпуВдуГ│уВ┐уГХуВзуГ╝уВ╣уБиуАБTINET хЖЕщГиуБзуАБуГЗуГ╝уВ┐уБоуВ│уГФуГ╝уВТчЬБуБДуБжуБДуВЛуАВчЙ╣уБлуАБ
+чЬБуВ│уГФуГ╝ API уВТф╜┐чФиуБЩуВЛуБУуБиуБзуАБ API уБлуБКуБСуВЛуГЗуГ╝уВ┐уБоуВ│уГФуГ╝уВВшбМуВПуБкуБДуБУ
+уБиуВВхПпшГ╜уБзуБВуВЛуАВ
+  уБЯуБауБЧуАБ уВдуГ╝уВ╡уГНуГГуГИхЗ║хКЫцЩВуБлуАБ NIC уБзуГНуГГуГИуГпуГ╝уВпуГРуГГуГХуВбуВТщЦЛцФ╛уБЩуВЛ
+я╝ИуВ│уГ│уГСуВдуГлцЩВуВ│уГ│уГХуВгуВоуГеуГмуГ╝уВ╖уГзуГ│уГСуГйуГбуГ╝уВ┐
+ETHER_NIC_CFG_RELEASE_NET_BUF уВТуАБцМЗхоЪуБЩуВЛх┐ЕшжБуБМуБВуВЛя╝ЙуГЗуВгуГРуВдуВ╣уГЙуГйуВд
+уГРуБзуБпуАБ уБУуБощАБф┐буВжуВгуГ│уГЙуГРуГГуГХуВбуБочЬБуВ│уГФуГ╝цйЯшГ╜уВТхИйчФиуБЩуВЛуБУуБиуБпуБзуБНуБкуБДуАВ 
+  уБУуБоцйЯшГ╜уБлщЦвф┐ВуБЩуВЛуВ│уГ│уГСуВдуГлцЩВуВ│уГ│уГХуВгуВоуГеуГмуГ╝уВ╖уГзуГ│уГСуГйуГбуГ╝уВ┐уВТуАБф╗е
+ф╕ЛуБлчд║уБЩуАВ
 
    (1)   TCP_CFG_SWBUF_CSAVE_ONLY
-         TCP ─╠┐о├╝┼└д╬┴ў┐оежегеєе╔е╨е├е╒ебд╬╛╩е│е╘б╝╡б╟╜дЄ┴╚╣■д▀бв д│
-         д╬╡б╟╜д╬д▀╗╚═╤д╣дыбгTCP ─╠┐о├╝┼└дЄ└╕└од╣ды└┼┼к API д╟бв┴ў┐оеж
-         едеєе╔е╨е├е╒ебд╬└ш╞меве╔еье╣д╬╗╪─ъд╦бв ▒■═╤е╫еэе░ещердм═╤░╒д╖
-         д┐е╨е├е╒ебдЄ╗╪─ъд╖д╞дт╠╡╗ыд╣дыбг
+         TCP щАЪф┐бчлпчВ╣уБощАБф┐буВжуВгуГ│уГЙуГРуГГуГХуВбуБочЬБуВ│уГФуГ╝цйЯшГ╜уВТч╡Дш╛╝уБ┐уАБ уБУ
+         уБоцйЯшГ╜уБоуБ┐ф╜┐чФиуБЩуВЛуАВTCP щАЪф┐бчлпчВ╣уВТчФЯцИРуБЩуВЛщЭЩчЪД API уБзуАБщАБф┐буВж
+         уВдуГ│уГЙуГРуГГуГХуВбуБохЕИщануВвуГЙуГмуВ╣уБоцМЗхоЪуБлуАБ х┐ЬчФиуГЧуГнуВ░уГйуГауБМчФицДПуБЧ
+         уБЯуГРуГГуГХуВбуВТцМЗхоЪуБЧуБжуВВчДбшжЦуБЩуВЛуАВ
 
    (2)   TCP_CFG_SWBUF_CSAVE
-         TCP ─╠┐о├╝┼└д╬┴ў┐оежегеєе╔е╨е├е╒ебд╬╛╩е│е╘б╝╡б╟╜дЄ┴╚╣■дрбгTCP
-         ─╠┐о├╝┼└дЄ└╕└од╣ды└┼┼к API д╟бв┴ў┐оежедеєе╔е╨е├е╒ебд╬└ш╞меве╔
-         еье╣д╬╗╪─ъд╦бвNADR дЄ╗╪─ъд╖д┐╛ь╣чд╧бв┴ў┐оежегеєе╔е╨е├е╒ебд╬╛╩
-         е│е╘б╝╡б╟╜дЄ╗╚═╤д╣дыдмбв ▒■═╤е╫еэе░ещердм═╤░╒д╖д┐е╨е├е╒ебдЄ╗╪
-         ─ъд╖д┐╛ь╣чд╧бв ┴ў┐оежегеєе╔е╨е├е╒ебд╬╛╩е│е╘б╝╡б╟╜дЄ╗╚═╤д╖д╩ддбг 
+         TCP щАЪф┐бчлпчВ╣уБощАБф┐буВжуВгуГ│уГЙуГРуГГуГХуВбуБочЬБуВ│уГФуГ╝цйЯшГ╜уВТч╡Дш╛╝уВАуАВTCP
+         щАЪф┐бчлпчВ╣уВТчФЯцИРуБЩуВЛщЭЩчЪД API уБзуАБщАБф┐буВжуВдуГ│уГЙуГРуГГуГХуВбуБохЕИщануВвуГЙ
+         уГмуВ╣уБоцМЗхоЪуБлуАБNADR уВТцМЗхоЪуБЧуБЯха┤хРИуБпуАБщАБф┐буВжуВгуГ│уГЙуГРуГГуГХуВбуБочЬБ
+         уВ│уГФуГ╝цйЯшГ╜уВТф╜┐чФиуБЩуВЛуБМуАБ х┐ЬчФиуГЧуГнуВ░уГйуГауБМчФицДПуБЧуБЯуГРуГГуГХуВбуВТцМЗ
+         хоЪуБЧуБЯха┤хРИуБпуАБ щАБф┐буВжуВгуГ│уГЙуГРуГГуГХуВбуБочЬБуВ│уГФуГ╝цйЯшГ╜уВТф╜┐чФиуБЧуБкуБДуАВ 
 
    (3)   TCP_CFG_SWBUF_CSAVE_MAX_SIZE
-         TCP ─╠┐о├╝┼└д╬┴ў┐оежегеєе╔е╨е├е╒ебд╬╛╩е│е╘б╝╡б╟╜д╟бв ┴ў┐оежег
-         еєе╔е╨е├е╒ебд╦╗╚═╤д╣дые═е├е╚еяб╝епе╨е├е╒ебд╬║╟┬че╡еде║д╟двдъбв
-         ╔╕╜р├═д╧ IF_PDU_SIZE д╟двдыбг
+         TCP щАЪф┐бчлпчВ╣уБощАБф┐буВжуВгуГ│уГЙуГРуГГуГХуВбуБочЬБуВ│уГФуГ╝цйЯшГ╜уБзуАБ щАБф┐буВжуВг
+         уГ│уГЙуГРуГГуГХуВбуБлф╜┐чФиуБЩуВЛуГНуГГуГИуГпуГ╝уВпуГРуГГуГХуВбуБоцЬАхдзуВ╡уВдуВ║уБзуБВуВКуАБ
+         циЩц║ЦхАдуБп IF_PDU_SIZE уБзуБВуВЛуАВ
 
    (4)   TCP_CFG_SWBUF_CSAVE_MIN_SIZE
-         TCP ─╠┐о├╝┼└д╬┴ў┐оежегеєе╔е╨е├е╒ебд╬╛╩е│е╘б╝╡б╟╜д╟бв ┴ў┐оежег
-         еєе╔е╨е├е╒ебд╦╗╚═╤д╣дые═е├е╚еяб╝епе╨е├е╒ебд╬║╟╛ое╡еде║д╟двдъбв
-         ╔╕╜р├═д╧ 0 д╟двдыбг
+         TCP щАЪф┐бчлпчВ╣уБощАБф┐буВжуВгуГ│уГЙуГРуГГуГХуВбуБочЬБуВ│уГФуГ╝цйЯшГ╜уБзуАБ щАБф┐буВжуВг
+         уГ│уГЙуГРуГГуГХуВбуБлф╜┐чФиуБЩуВЛуГНуГГуГИуГпуГ╝уВпуГРуГГуГХуВбуБоцЬАх░ПуВ╡уВдуВ║уБзуБВуВКуАБ
+         циЩц║ЦхАдуБп 0 уБзуБВуВЛуАВ
 
-д╩дкбвTCP_CFG_SWBUF_CSAVE_ONLY д╚ TCP_CFG_SWBUF_CSAVE д╬бвддд║дьдт╗╪─ъ
-д╖д╩дд╛ь╣чд╧бвTCP ─╠┐о├╝┼└дЄ└╕└од╣ды└┼┼к API д╟бв ┴ў┐оежедеєе╔е╨е├е╒еб
-д╬└ш╞меве╔еье╣д╬╗╪─ъд╦бвNADR дЄ╗╪─ъд╣дыд│д╚дмд╟днд╩ддбг
+уБкуБКуАБTCP_CFG_SWBUF_CSAVE_ONLY уБи TCP_CFG_SWBUF_CSAVE уБоуАБуБДуБЪуВМуВВцМЗхоЪ
+уБЧуБкуБДха┤хРИуБпуАБTCP щАЪф┐бчлпчВ╣уВТчФЯцИРуБЩуВЛщЭЩчЪД API уБзуАБ щАБф┐буВжуВдуГ│уГЙуГРуГГуГХуВб
+уБохЕИщануВвуГЙуГмуВ╣уБоцМЗхоЪуБлуАБNADR уВТцМЗхоЪуБЩуВЛуБУуБиуБМуБзуБНуБкуБДуАВ
 
-5. 4  е╬еєе╓еэе├енеєе░е│б╝еыд╬╠╡╕·▓╜
+6. 4  уГОуГ│уГЦуГнуГГуВнуГ│уВ░уВ│уГ╝уГлуБочДбхК╣хМЦ
 
-  ▒■═╤е╫еэепещерд╟бв е╬еєе╓еэе├енеєе░е│б╝еыдЄ╗╚═╤д╖д╩дд╛ь╣чд╧бв TCP д╚
-UDP д╬е╬еєе╓еэе├енеєе░е│б╝еы╡б╟╜дЄ┴╚╣■д▐д╩ддд╟бвесетеъдЄ└с╠єд╣дыд│д╚дм
-д╟дндыбг
-  д│д╬╡б╟╜д╦┤╪╖╕д╣дые│еєе╤едеы╗■е│еєе╒егеоехеьб╝е╖ечеєе╤ещесб╝е┐дЄбв░╩
-▓╝д╦╝ид╣бг
+  х┐ЬчФиуГЧуГнуВпуГйуГауБзуАБ уГОуГ│уГЦуГнуГГуВнуГ│уВ░уВ│уГ╝уГлуВТф╜┐чФиуБЧуБкуБДха┤хРИуБпуАБ TCP уБи
+UDP уБоуГОуГ│уГЦуГнуГГуВнуГ│уВ░уВ│уГ╝уГлцйЯшГ╜уВТч╡Дш╛╝уБ╛уБкуБДуБзуАБуГбуГвуГкуВТчпАч┤ДуБЩуВЛуБУуБиуБМ
+уБзуБНуВЛуАВ
+  уБУуБоцйЯшГ╜уБлщЦвф┐ВуБЩуВЛуВ│уГ│уГСуВдуГлцЩВуВ│уГ│уГХуВгуВоуГеуГмуГ╝уВ╖уГзуГ│уГСуГйуГбуГ╝уВ┐уВТуАБф╗е
+ф╕ЛуБлчд║уБЩуАВ
 
    (1)   TCP_CFG_NON_BLOCKING
-         TCP д╬е╬еєе╓еэе├енеєе░е│б╝еы╡б╟╜дЄ┴╚╣■дрбг
+         TCP уБоуГОуГ│уГЦуГнуГГуВнуГ│уВ░уВ│уГ╝уГлцйЯшГ╜уВТч╡Дш╛╝уВАуАВ
 
    (2)   UDP_CFG_NON_BLOCKING
-         UDP д╬е╬еєе╓еэе├енеєе░е│б╝еы╡б╟╜дЄ┴╚╣■дрбг
+         UDP уБоуГОуГ│уГЦуГнуГГуВнуГ│уВ░уВ│уГ╝уГлцйЯшГ╜уВТч╡Дш╛╝уВАуАВ
 
-д┐д└д╖бв ▓с╡юд╬еъеъб╝е╣д╚д╬╕▀┤╣└нд╬д┐дсбв д╔д┴дщд╬е╤ещесб╝е┐дтбв
-tinet/tinet_config.h д╦╗╪─ъд╡дьд╞дкдъбв ┤√─ъд╟д╧бве╬еєе╓еэе├енеєе░е│б╝
-еы╡б╟╜дм┴╚╣■д▐дьдыдшджд╦д╩д├д╞дддыбг ╜╛д├д╞бв ┴╚╣■д▐д╩дд╛ь╣чд╧бв
-tinet_app_config.h д╩д╔д╟бв#undef д╦дшдъбв╗╪─ъдЄ▓Є╜№д╖д╩д▒дьд╨д╩дщд╩ддбг
+уБЯуБауБЧуАБ щБОхО╗уБоуГкуГкуГ╝уВ╣уБиуБоф║ТцПЫцАзуБоуБЯуВБуАБ уБйуБбуВЙуБоуГСуГйуГбуГ╝уВ┐уВВуАБ
+tinet/tinet_config.h уБлцМЗхоЪуБХуВМуБжуБКуВКуАБ цЧвхоЪуБзуБпуАБуГОуГ│уГЦуГнуГГуВнуГ│уВ░уВ│уГ╝
+уГлцйЯшГ╜уБМч╡Дш╛╝уБ╛уВМуВЛуВИуБЖуБлуБкуБгуБжуБДуВЛуАВ уБкуБКуАБ уВ╡уГ│уГЧуГлуВвуГЧуГкуВ▒уГ╝уВ╖уГзуГ│уБо
+tinet_app_config.h уБлуБпуАБ цМЗхоЪуВТшзгщЩдуБЩуВЛуГЮуВпуГнуБМхоЪч╛йуБХуВМуБжуБДуВЛуАВч╡Дш╛╝уБ╛
+уБкуБДха┤хРИуБпуАБф╗еф╕ЛуБоуГЮуВпуГнуВТ Makefile уБлхоЪч╛йуБЩуВЛуАВ
 
-5. 5  TCP ╝ї╔╒╕¤д╬╠╡╕·▓╜
+   UNDEF_TCP_CFG_NON_BLOCKING
+   UNDEF_UDP_CFG_NON_BLOCKING
 
-  ▒■═╤е╫еэе░ещердмбвепещедевеєе╚╡б╟╜д╬д▀д╟╣╜└од╡дьбв┴ъ╝ъдлдщд╬└▄┬│═╫╡с
-дЄ╝їд▒╔╒д▒д╩ддд╬д╟двдьд╨бв TCP ╝ї╔╒╕¤д╧╔╘═╫д╟двдъбвд│д╬ TCP ╝ї╔╒╕¤д╚бв
-╜ш═¤┤╪┐ЇдЄ┴╚╣■д▐д╩ддд╟бв есетеъдЄ└с╠єд╣дыд│д╚дмд╟дндыбг 
-  д│д╬╡б╟╜д╦┤╪╖╕д╣дые│еєе╤едеы╗■е│еєе╒егеоехеьб╝е╖ечеєе╤ещесб╝е┐дЄбв░╩
-▓╝д╦╝ид╣бг
+6. 5  TINETуБоуГйуВдуГЦуГйуГкхМЦ
 
-   (1)   TCP_CFG_PASSIVE_OPEN
-         TCP д╬╝ї╞░екб╝е╫еє╡б╟╜дЄ┴╚╣■дрбг
+  TINET уБоуГйуВдуГЦуГйуГкхМЦуБпуАБуГбуГвуГкф╜┐чФищЗПуВТхЙКц╕ЫуБЩуВЛуБУуБиуВТчЫочЪДуБлхоЯшгЕуБЧуБжуБД
+уВЛуАВуБУуБоуБЯуВБуАБуГйуВдуГЦуГйуГкхМЦуБХуВМуБжуБДуВЛуБоуБп ITRON TCP/IP API щГихИЖуБоуБ┐уБзуБВ
+уВКуАБTINET уБоуВ│уВвщГихИЖуБоуГйуВдуГЦуГйуГкхМЦуБпшбМуВПуВМуБжуБДуБкуБДуАВуБ╛уБЯуАБуВ│уГ│уГСуВдуГлцЩВ
+уВкуГЧуВ╖уГзуГ│уБлуВИуВКуАБхЗжчРЖхЖЕхо╣уБМхдЙуВПуВЛуБЯуВБуАБуГйуВдуГЦуГйуГкуВВхЖНцзЛчпЙуБЩуВЛх┐ЕшжБуБМуБВ
+уВЛуАВх╛УуБгуБжуАБуГйуВдуГЦуГйуГкуБиуВвуГЧуГкуВ▒уГ╝уВ╖уГзуГ│уГЧуГнуВ░уГйуГауВТхИеуАЕуБлцзЛчпЙуБЧуБжуБКуБНуАБ
+х╛МуБзуГкуГ│уВпуБЩуВЛцЦ╣ц│ХуБпуВ╡уГЭуГ╝уГИуБЧуБжуБДуБкуБДуАВ 
+  ITRON TCP/IP API щГихИЖуВВуГйуВдуГЦуГйуГкхМЦуБХуБЫуБкуБДуБЯуВБуБлуБпуАБ уВвуГЧуГкуВ▒уГ╝уВ╖уГз
+уГ│уБо Makefile уБл NO_USE_TINET_LIBRARY = true уВТцМЗхоЪуБЩуВЛуАВ
 
-д┐д└д╖бв ▓с╡юд╬еъеъб╝е╣д╚д╬╕▀┤╣└нд╬д┐дсбв д│д╬е╤ещесб╝е┐д╧бв
-tinet/tinet_config.h д╦╗╪─ъд╡дьд╞дкдъбв┤√─ъд╟д╧бв TCP д╬╝ї╞░екб╝е╫еє╡б
-╟╜дм┴╚╣■д▐дьдыдшджд╦д╩д├д╞дддыбг ╜╛д├д╞бв ┴╚╣■д▐д╩дд╛ь╣чд╧бв
-tinet_app_config.h д╩д╔д╟бв#undef д╦дшдъбв╗╪─ъдЄ▓Є╜№д╖д╩д▒дьд╨д╩дщд╩ддбг
+6. 6  TCP уГШуГГуГАуБоуГИуГмуГ╝уВ╣хЗ║хКЫцйЯшГ╜
 
-5. 6  TCP е╪е├е└д╬е╚еьб╝е╣╜╨╬╧╡б╟╜
-
-  ┴ў╝ї┐од╣ды TCP е╗е░есеєе╚д╬ TCP е╪е├е└д╚ TCP ─╠┐о├╝┼└д╬╛Ё╩єдЄ╜╨╬╧д╣
-ды╡б╟╜д╟двдыбгд╩дкбв CONSOLE_PORTID д╟╗╪─ъд╡дьдые╖еъевеые▌б╝е╚д╦─╛└▄╜╨
-╬╧д╣дыд╬д╟бв SYSLOG ╜╨╬╧дм═Ёдьдыд│д╚дмдвдыбг╝ї┐о╗■д╬╜╨╬╧╬уд╚░╒╠гдЄ░╩▓╝
-д╦╝ид╣бг
+  щАБхПЧф┐буБЩуВЛ TCP уВ╗уВ░уГбуГ│уГИуБо TCP уГШуГГуГАуБи TCP щАЪф┐бчлпчВ╣уБоцГЕха▒уВТхЗ║хКЫуБЩ
+уВЛцйЯшГ╜уБзуБВуВЛуАВуБкуБКуАБ CONSOLE_PORTID уБзцМЗхоЪуБХуВМуВЛуВ╖уГкуВвуГлуГЭуГ╝уГИуБлчЫ┤цОехЗ║
+хКЫуБЩуВЛуБоуБзуАБ SYSLOG хЗ║хКЫуБМф╣▒уВМуВЛуБУуБиуБМуБВуВЛуАВхПЧф┐бцЩВуБохЗ║хКЫф╛ЛуБицДПхС│уВТф╗еф╕Л
+уБлчд║уБЩуАВ
 
    <I 329.599=c: 4 s:CW f:60c00:--A---- a: 74461 s: 76082 w:58400 l:   0=
 
-   329.599       ╝ї┐од╖д┐╗■┤╓бв1/1000 ╔├├▒░╠бвд▐д┐д╧ 1 ╔├├▒░╠
-   c: 4          TCP ─╠┐о├╝┼└ ID
-   s:CW          TCP FSM ╛ї┬╓б╩tinet/netinet/tcp_fsm.h ╗▓╛╚б╦
-   f:60c00       TCP ─╠┐о├╝┼└д╬╛ї┬╓е╒еще░б╩16 ┐╩┐Їбв
-                 tinet/netinet/tcp_var.h ╗▓╛╚б╦
-   :--A----      TCP е╪е├е└д╬е╒еще░е╒егб╝еые╔д╬├═б╩tinet/netinet/tcp.h
-                 ╗▓╛╚б╦
-   a: 74461      TCP е╪е├е└д╬│╬╟з▒■┼·╚╓╣цб╩е│е═епе╖ечеє│╬╬й╗■длдщд╬┴ъ
-                 ┬╨├═б╦
-   s: 76082      TCP е╪е├е└д╬е╖б╝е▒еєе╣╚╓╣цб╩е│е═епе╖ечеє│╬╬й╗■длдщд╬
-                 ┴ъ┬╨├═б╦
-   w:58400       TCP е╪е├е└д╬ежедеєе╔е╡еде║
-   l:0           ╝ї┐ое┌едеэб╝е╔е╟б╝е┐┐Ї
+   329.599       хПЧф┐буБЧуБЯцЩВщЦУуАБ1/1000 чзТхНШф╜НуАБуБ╛уБЯуБп 1 чзТхНШф╜Н
+   c: 4          TCP щАЪф┐бчлпчВ╣ ID
+   s:CW          TCP FSM чК╢цЕЛя╝Иtinet/netinet/tcp_fsm.h хПВчЕзя╝Й
+   f:60c00       TCP щАЪф┐бчлпчВ╣уБочК╢цЕЛуГХуГйуВ░я╝И16 щА▓цХ░уАБ
+                 tinet/netinet/tcp_var.h хПВчЕзя╝Й
+   :--A----      TCP уГШуГГуГАуБоуГХуГйуВ░уГХуВгуГ╝уГлуГЙуБохАдя╝Иtinet/netinet/tcp.h
+                 хПВчЕзя╝Й
+   a: 74461      TCP уГШуГГуГАуБочв║шкНх┐ЬчнФчХкхП╖я╝ИуВ│уГНуВпуВ╖уГзуГ│чв║члЛцЩВуБЛуВЙуБочЫ╕
+                 хп╛хАдя╝Й
+   s: 76082      TCP уГШуГГуГАуБоуВ╖уГ╝уВ▒уГ│уВ╣чХкхП╖я╝ИуВ│уГНуВпуВ╖уГзуГ│чв║члЛцЩВуБЛуВЙуБо
+                 чЫ╕хп╛хАдя╝Й
+   w:58400       TCP уГШуГГуГАуБоуВжуВдуГ│уГЙуВ╡уВдуВ║
+   l:0           хПЧф┐буГЪуВдуГнуГ╝уГЙуГЗуГ╝уВ┐цХ░
 
-  ┴ў┐о╗■д╬╜╨╬╧╬уд╚░╒╠гдЄ░╩▓╝д╦╝ид╣бг 
+  щАБф┐бцЩВуБохЗ║хКЫф╛ЛуБицДПхС│уВТф╗еф╕ЛуБлчд║уБЩуАВ 
 
    =O 329.627=c: 4 s:CW f:60d20:--AP--- s: 74461 a: 76082 w: 2920 l:1460>
 
-   329.627       ┴ў┐од╖д┐╗■┤╓бв1/1000 ╔├├▒░╠бвд▐д┐д╧ 1 ╔├├▒░╠
-   c: 4          TCP ─╠┐о├╝┼└ ID
-   s:CW          TCP FSM ╛ї┬╓б╩tinet/netinet/tcp_fsm.h ╗▓╛╚б╦
-   f:60d20       TCP ─╠┐о├╝┼└д╬╛ї┬╓е╒еще░б╩16 ┐╩┐Їбв
-                 tinet/netinet/tcp_var.h ╗▓╛╚б╦
-   :--AP---      TCP е╪е├е└д╬е╒еще░е╒егб╝еые╔д╬├═б╩tinet/netinet/tcp.h
-                 ╗▓╛╚б╦
-   s: 74461      TCP е╪е├е└д╬е╖б╝е▒еєе╣╚╓╣цб╩е│е═епе╖ечеє│╬╬й╗■длдщд╬
-                 ┴ъ┬╨├═б╦
-   a: 76082      TCP е╪е├е└д╬│╬╟з▒■┼·╚╓╣цб╩е│е═епе╖ечеє│╬╬й╗■длдщд╬┴ъ
-                 ┬╨├═б╦
-   w: 2920       TCP е╪е├е└д╬ежедеєе╔е╡еде║
-   l:1460        ┴ў┐ое┌едеэб╝е╔е╟б╝е┐┐Ї
+   329.627       щАБф┐буБЧуБЯцЩВщЦУуАБ1/1000 чзТхНШф╜НуАБуБ╛уБЯуБп 1 чзТхНШф╜Н
+   c: 4          TCP щАЪф┐бчлпчВ╣ ID
+   s:CW          TCP FSM чК╢цЕЛя╝Иtinet/netinet/tcp_fsm.h хПВчЕзя╝Й
+   f:60d20       TCP щАЪф┐бчлпчВ╣уБочК╢цЕЛуГХуГйуВ░я╝И16 щА▓цХ░уАБ
+                 tinet/netinet/tcp_var.h хПВчЕзя╝Й
+   :--AP---      TCP уГШуГГуГАуБоуГХуГйуВ░уГХуВгуГ╝уГлуГЙуБохАдя╝Иtinet/netinet/tcp.h
+                 хПВчЕзя╝Й
+   s: 74461      TCP уГШуГГуГАуБоуВ╖уГ╝уВ▒уГ│уВ╣чХкхП╖я╝ИуВ│уГНуВпуВ╖уГзуГ│чв║члЛцЩВуБЛуВЙуБо
+                 чЫ╕хп╛хАдя╝Й
+   a: 76082      TCP уГШуГГуГАуБочв║шкНх┐ЬчнФчХкхП╖я╝ИуВ│уГНуВпуВ╖уГзуГ│чв║члЛцЩВуБЛуВЙуБочЫ╕
+                 хп╛хАдя╝Й
+   w: 2920       TCP уГШуГГуГАуБоуВжуВдуГ│уГЙуВ╡уВдуВ║
+   l:1460        щАБф┐буГЪуВдуГнуГ╝уГЙуГЗуГ╝уВ┐цХ░
 
-  д│д╬╡б╟╜д╦┤╪╖╕д╣дые│еєе╤едеы╗■е│еєе╒егеоехеьб╝е╖ечеєе╤ещесб╝е┐дЄбв░╩
-▓╝д╦╝ид╣бг
+  уБУуБоцйЯшГ╜уБлщЦвф┐ВуБЩуВЛуВ│уГ│уГСуВдуГлцЩВуВ│уГ│уГХуВгуВоуГеуГмуГ╝уВ╖уГзуГ│уГСуГйуГбуГ╝уВ┐уВТуАБф╗е
+ф╕ЛуБлчд║уБЩуАВ
 
    (1)   TCP_CFG_TRACE
-         TCP е╪е├е└д╬е╚еьб╝е╣╜╨╬╧╡б╟╜дЄ┴╚╣■дрбг
+         TCP уГШуГГуГАуБоуГИуГмуГ╝уВ╣хЗ║хКЫцйЯшГ╜уВТч╡Дш╛╝уВАуАВ
 
    (2)   TCP_CFG_TRACE_IPV4_RADDR
-         е╚еьб╝е╣╜╨╬╧┬╨╛▌д╬еъетб╝е╚е█е╣е╚д╬ IPv4 еве╔еье╣дЄ╗╪─ъд╣дыбг
-         IPV4_ADDRANY дЄ╗╪─ъд╣дыд╚бв┴┤д╞д╬е█е╣е╚дЄ┬╨╛▌д╚д╣дыбг
+         уГИуГмуГ╝уВ╣хЗ║хКЫхп╛ш▒буБоуГкуГвуГ╝уГИуГЫуВ╣уГИуБо IPv4 уВвуГЙуГмуВ╣уВТцМЗхоЪуБЩуВЛуАВ
+         IPV4_ADDRANY уВТцМЗхоЪуБЩуВЛуБиуАБхЕиуБжуБоуГЫуВ╣уГИуВТхп╛ш▒буБиуБЩуВЛуАВ
 
    (3)   TCP_CFG_TRACE_LPORTNO
-         е╚еьб╝е╣╜╨╬╧┬╨╛▌д╬еэб╝елеые█е╣е╚д╬е▌б╝е╚╚╓╣цдЄ╗╪─ъд╣дыбг
-         TCP_PORTANY дЄ╗╪─ъд╣дыд╚бв┴┤д╞д╬е▌б╝е╚╚╓╣цдЄ┬╨╛▌д╦д╣дыбг
+         уГИуГмуГ╝уВ╣хЗ║хКЫхп╛ш▒буБоуГнуГ╝уВлуГлуГЫуВ╣уГИуБоуГЭуГ╝уГИчХкхП╖уВТцМЗхоЪуБЩуВЛуАВ
+         TCP_PORTANY уВТцМЗхоЪуБЩуВЛуБиуАБхЕиуБжуБоуГЭуГ╝уГИчХкхП╖уВТхп╛ш▒буБлуБЩуВЛуАВ
 
    (4)   TCP_CFG_TRACE_RPORTNO
-         е╚еьб╝е╣╜╨╬╧┬╨╛▌д╬еъетб╝е╚е█е╣е╚д╬е▌б╝е╚╚╓╣цдЄ╗╪─ъд╣дыбг
-         TCP_PORTANY дЄ╗╪─ъд╣дыд╚бв┴┤д╞д╬е▌б╝е╚╚╓╣цдЄ┬╨╛▌д╦д╣дыбг
+         уГИуГмуГ╝уВ╣хЗ║хКЫхп╛ш▒буБоуГкуГвуГ╝уГИуГЫуВ╣уГИуБоуГЭуГ╝уГИчХкхП╖уВТцМЗхоЪуБЩуВЛуАВ
+         TCP_PORTANY уВТцМЗхоЪуБЩуВЛуБиуАБхЕиуБжуБоуГЭуГ╝уГИчХкхП╖уВТхп╛ш▒буБлуБЩуВЛуАВ
 
-5. 7  TINETд╬ещеде╓ещеъ▓╜
+6. 7  IPv6уБлуБКуБСуВЛуВвуГЙуГмуВ╣чобчРЖуБиPath MTUуБ╕уБохп╛х┐Ь
 
-  TINET д╬ещеде╓ещеъ▓╜д╧бвесетеъ╗╚═╤╬╠дЄ║я╕║д╣дыд│д╚дЄ╠▄┼кд╦╝┬┴їд╖д╞дд
-дыбгд│д╬д┐дсбвещеде╓ещеъ▓╜д╡дьд╞дддыд╬д╧ ITRON TCP/IP API ╔Ї╩мд╬д▀д╟дв
-дъбвTINET д╬е│ев╔Ї╩мд╬ещеде╓ещеъ▓╜д╧╣╘дядьд╞ддд╩ддбгд▐д┐бве│еєе╤едеы╗■
-еке╫е╖ечеєд╦дшдъбв╜ш═¤╞т═╞дм╩╤дядыд┐дсбвещеде╓ещеъдт║╞╣╜├█д╣ды╔м═╫дмдв
-дыбг╜╛д├д╞бвещеде╓ещеъд╚еве╫еъе▒б╝е╖ечеєе╫еэе░ещердЄ╩╠б╣д╦╣╜├█д╖д╞дкднбв
-╕хд╟еъеєепд╣ды╩¤╦бд╧е╡е▌б╝е╚д╖д╞ддд╩ддбг 
-  ITRON TCP/IP API ╔Ї╩мдтещеде╓ещеъ▓╜д╡д╗д╩ддд┐дсд╦д╧бв еве╫еъе▒б╝е╖еч
-еєд╬ Makefile д╦ NO_USE_TINET_LIBRARY = true дЄ╗╪─ъд╣дыбг
-
-5. 8  IPv6д╦дкд▒дыеве╔еье╣┤╔═¤д╚Path MTUд╪д╬┬╨▒■
-
-  TINET еъеъб╝е╣ 1.3 д▐д╟бвIPv6 д╦дкд▒дыеве╔еье╣┤╔═¤д╧╕┬─ъ┼кд╩┬╨▒■д╬д▀
-д╟двдъбв Path MTU д╦дт┬╨▒■д╖д╞ддд╩длд├д┐дмбве█е╣е╚╛Ё╩єд╬енеуе├е╖ехдЄ╝┬
-┴їд╣дыд│д╚д╦дшдъбвTINET еъеъб╝е╣ 1.4 длдщд╧бвд█д▄┤░┴┤д╦┬╨▒■д╖д┐бг
-  д│д╬╡б╟╜д╦┤╪╖╕д╣дые│еєе╤едеы╗■е│еєе╒егеоехеьб╝е╖ечеєе╤ещесб╝е┐дЄбв░╩
-▓╝д╦╝ид╣бг
+  TINET уГкуГкуГ╝уВ╣ 1.3 уБ╛уБзуАБIPv6 уБлуБКуБСуВЛуВвуГЙуГмуВ╣чобчРЖуБпщЩРхоЪчЪДуБкхп╛х┐ЬуБоуБ┐
+уБзуБВуВКуАБ Path MTU уБлуВВхп╛х┐ЬуБЧуБжуБДуБкуБЛуБгуБЯуБМуАБуГЫуВ╣уГИцГЕха▒уБоуВнуГгуГГуВ╖уГеуВТхоЯ
+шгЕуБЩуВЛуБУуБиуБлуВИуВКуАБTINET уГкуГкуГ╝уВ╣ 1.4 уБЛуВЙуБпуАБуБ╗уБ╝хоМхЕиуБлхп╛х┐ЬуБЧуБЯуАВ
+  уБУуБоцйЯшГ╜уБлщЦвф┐ВуБЩуВЛуВ│уГ│уГСуВдуГлцЩВуВ│уГ│уГХуВгуВоуГеуГмуГ╝уВ╖уГзуГ│уГСуГйуГбуГ╝уВ┐уВТуАБф╗е
+ф╕ЛуБлчд║уБЩуАВ
 
    (1)   NUM_IN6_IFADDR_ENTRY
-         едеєе┐е╒езб╝е╣д╬еве╔еье╣еъе╣е╚б╩IPv6б╦д╬еиеєе╚еъ┐Їд╟двдыбг
+         уВдуГ│уВ┐уГХуВзуГ╝уВ╣уБоуВвуГЙуГмуВ╣уГкуВ╣уГИя╝ИIPv6я╝ЙуБоуВиуГ│уГИуГкцХ░уБзуБВуВЛуАВ
 
    (2)   NUM_ND6_DEF_RTR_ENTRY
-         е╟еге╒ейеые╚еыб╝е┐еъе╣е╚д╬еиеєе╚еъ┐Їд╟бв║╟┬ч├═д╧ 16 д╟двдыбг0
-         дЄ╗╪─ъд╣дыд╚еыб╝е┐─╠├╬дЄ╝ї┐од╖д╩ддбгд┐д└д╖бв╕╜║▀д╧бв еыб╝е┐─╠
-         ├╬д╬╝ї┐о░╩│░д╦е╡еде╚еэб╝елеыеве╔еье╣┼∙дЄ└▀─ъд╣ды╩¤╦бдмд╩ддбг 
+         уГЗуВгуГХуВйуГлуГИуГлуГ╝уВ┐уГкуВ╣уГИуБоуВиуГ│уГИуГкцХ░уБзуАБцЬАхдзхАдуБп 16 уБзуБВуВЛуАВ0
+         уВТцМЗхоЪуБЩуВЛуБиуГлуГ╝уВ┐щАЪчЯеуВТхПЧф┐буБЧуБкуБДуАВуБЯуБауБЧуАБчП╛хЬиуБпуАБ уГлуГ╝уВ┐щАЪ
+         чЯеуБохПЧф┐бф╗ехдЦуБлуВ╡уВдуГИуГнуГ╝уВлуГлуВвуГЙуГмуВ╣чнЙуВТшинхоЪуБЩуВЛцЦ╣ц│ХуБМуБкуБДуАВ 
 
    (3)   NUM_ND6_PREFIX_ENTRY
-         е╫еье╒еге├епе╣еъе╣е╚д╬еиеєе╚еъ┐Їд╟бв║╟┬ч├═д╧ 16 д╟двдыбг
+         уГЧуГмуГХуВгуГГуВпуВ╣уГкуВ╣уГИуБоуВиуГ│уГИуГкцХ░уБзуАБцЬАхдзхАдуБп 16 уБзуБВуВЛуАВ
 
    (4)   NUM_IN6_HOSTCACHE_ENTRY
-         IPv6 ═╤е█е╣е╚╛Ё╩єенеуе├е╖ехд╬еиеєе╚еъ┐Їд╟бв 0 дЄ╗╪─ъд╣дыд╚
-         IPv6 ═╤е█е╣е╚╛Ё╩єенеуе├е╖ехдЄ┴╚╣■д▐д╩ддбгд▐д┐бвд│д╬╛ь╣чбвPath
-         MTU д╪д╬┬╨▒■дт╕┬─ъ┼кд╦д╩дыбг
+         IPv6 чФиуГЫуВ╣уГИцГЕха▒уВнуГгуГГуВ╖уГеуБоуВиуГ│уГИуГкцХ░уБзуАБ 0 уВТцМЗхоЪуБЩуВЛуБи
+         IPv6 чФиуГЫуВ╣уГИцГЕха▒уВнуГгуГГуВ╖уГеуВТч╡Дш╛╝уБ╛уБкуБДуАВуБ╛уБЯуАБуБУуБоха┤хРИуАБPath
+         MTU уБ╕уБохп╛х┐ЬуВВщЩРхоЪчЪДуБлуБкуВЛуАВ
 
-6.  TINET ╞╚╝л API
+6. 8  IPv6/IPv4хоМхЕиуГЗуГеуВвуГлуВ╣уВ┐уГГуВп
 
-6. 1  е═е├е╚еяб╝еп┼¤╖╫╛Ё╩є
+  TINET уГкуГкуГ╝уВ╣ 1.5 уБ╛уБзуАБ ч╡Дш╛╝уБ┐хПпшГ╜уБкуГНуГГуГИуГпуГ╝уВпх▒дуБп IPv6 уБЛ IPv4
+уБоуБДуБЪуВМуБЛуБзуБВуБгуБЯуБМуАБ TINET уГкуГкуГ╝уВ╣ 1.7 уБЛуВЙуБпф╕бцЦ╣уВТч╡Дш╛╝уВАуБУуБиуБМуБМхПп
+шГ╜уБлуБкуБгуБЯуАВ
+  уГНуГГуГИуГпуГ╝уВпх▒дуБиуБЧуБж IPv6 уВТщБ╕цКЮуБЧуБЯха┤хРИуБпуАБ IPv6 уБо API уБлуБКуБСуВЛ
+IPv6 уВвуГЙуГмуВ╣уБиуБЧуБж IPv4 х░Дх╜▒уВвуГЙуГмуВ╣уВТф╜┐чФиуБЩуВЛуБУуБиуБМхПпшГ╜уБзуБВуВЛуАВ
+  уБУуБоцйЯшГ╜уВТцЬЙхК╣уБлуБЩуВЛуВ│уГ│уГСуВдуГлцЩВуВ│уГ│уГХуВгуВоуГеуГмуГ╝уВ╖уГзуГ│уГСуГйуГбуГ╝уВ┐уВТуАБ
+ф╗еф╕ЛуБлчд║уБЩуАВ
+   API_CFG_IP4MAPPED_ADDR
+уБУуБоуВ│уГ│уГСуВдуГлцЩВуВ│уГ│уГХуВгуВоуГеуГмуГ╝уВ╖уГзуГ│уГСуГйуГбуГ╝уВ┐уВТуБЧуБкуБДцЩВуБпуАБф╗еф╕ЛуБочд║
+уБЩ API уБох╝ХцХ░уБиуБЧуБж IPv4 х░Дх╜▒уВвуГЙуГмуВ╣уВТцМЗхоЪуБЩуВЛуБиуАБ цИ╗уВКхАдуБиуБЧуБж E_PAR
+уБМш┐ФуБХуВМуВЛуАВ
 
-  ┴ў╝ї┐оекепе╞е├е╚┐Їбв ┴ў╝ї┐ое╤е▒е├е╚┐Ї┼∙д╬┼¤╖╫╛Ё╩єд╬ележеєе┐
-б╩net_countб╦дмбв├▒╜у╩╤┐Їбв╣╜┬д┬╬бв╟█╬єд╦дшдъ┴╚╣■д▐дьд╞дддыбг
+   [1]   tcp_cre_rep
+   [2]   tcp_acp_cep
+   [3]   tcp_con_cep
+   [4]   udp_cre_cep
+   [5]   udp_snd_dat
 
-   (1)   е═е├е╚еяб╝еп┼¤╖╫╛Ё╩єд╬═н╕·▓╜
-           е│еєе╤едеы╗■е│еєе╒егеоехеьб╝е╖ечеєбже╒ебедеыд╬ддд║дьдлд╟бв
-         е╫еэе╚е│еы╦шд╦е═е├е╚еяб╝еп┼¤╖╫╛Ё╩єдЄ═н╕·д╦д╣ды╗Ўдм╔м═╫д╟двдыбг
-         ═н╕·д╦д╣дыд┐дсд╦д╧бве▐епеэ NET_COUNT_ENABLE д╦бв е╫еэе╚е│еы╝▒
-         ╩╠е╒еще░б╩едеєепеыб╝е╔е╒ебедеы net/net.h д╟─ъ╡┴д╡дьд╞дддыб╦дЄ
-         е╙е├е╚╧└═¤╧┬д╦дшдъ└▀─ъд╣дыбг
+7.  TINET чЛмшЗк API
 
-   (2)   е═е├е╚еяб╝еп┼¤╖╫╛Ё╩єд╬╔╕╜ре╟б╝е┐╖┐д╚╔╕╜р╣╜┬д┬╬
-           ддд║дьдтедеєепеыб╝е╔е╒ебедеы net/net_count.h д╦─ъ╡┴д╡дьд╞дддыбг
+7. 1  уГНуГГуГИуГпуГ╝уВпч╡▒шиИцГЕха▒
+
+  щАБхПЧф┐буВкуВпуГЖуГГуГИцХ░уАБ щАБхПЧф┐буГСуВ▒уГГуГИцХ░чнЙуБоч╡▒шиИцГЕха▒уБоуВлуВжуГ│уВ┐
+я╝Иnet_countя╝ЙуБМуАБхНШч┤ФхдЙцХ░уАБцзЛщАаф╜УуАБщЕНхИЧуБлуВИуВКч╡Дш╛╝уБ╛уВМуБжуБДуВЛуАВ
+
+   (1)   уГНуГГуГИуГпуГ╝уВпч╡▒шиИцГЕха▒уБоцЬЙхК╣хМЦ
+           уВ│уГ│уГСуВдуГлцЩВуВ│уГ│уГХуВгуВоуГеуГмуГ╝уВ╖уГзуГ│уГ╗уГХуВбуВдуГлуБоуБДуБЪуВМуБЛуБзуАБ
+         уГЧуГнуГИуВ│уГлцпОуБлуГНуГГуГИуГпуГ╝уВпч╡▒шиИцГЕха▒уВТцЬЙхК╣уБлуБЩуВЛф║ЛуБМх┐ЕшжБуБзуБВуВЛуАВ
+         цЬЙхК╣уБлуБЩуВЛуБЯуВБуБлуБпуАБуГЮуВпуГн NET_COUNT_ENABLE уБлуАБ уГЧуГнуГИуВ│уГлшнШ
+         хИеуГХуГйуВ░я╝ИуВдуГ│уВпуГлуГ╝уГЙуГХуВбуВдуГл net/net.h уБзхоЪч╛йуБХуВМуБжуБДуВЛя╝ЙуВТ
+         уГУуГГуГИшлЦчРЖхТМуБлуВИуВКшинхоЪуБЩуВЛуАВ
+
+   (2)   уГНуГГуГИуГпуГ╝уВпч╡▒шиИцГЕха▒уБоциЩц║ЦуГЗуГ╝уВ┐хЮЛуБициЩц║ЦцзЛщАаф╜У
+           уБДуБЪуВМуВВуВдуГ│уВпуГлуГ╝уГЙуГХуВбуВдуГл net/net_count.h уБлхоЪч╛йуБХуВМуБжуБДуВЛуАВ
 
             typedef UD T_NET_COUNT_VAL;
             
             typedef struct t_net_count {
-                  T_NET_COUNT_VAL   in_octets;        /* ╝ї┐оекепе╞е├е╚┐Ї     */
-                  T_NET_COUNT_VAL   out_octets;       /* ┴ў┐оекепе╞е├е╚┐Ї     */
-                  T_NET_COUNT_VAL   in_packets;       /* ╝ї┐ое╨е▒е├е╚┐Ї */
-                  T_NET_COUNT_VAL   out_packets;      /* ┴ў┐ое╨е▒е├е╚┐Ї */
-                  T_NET_COUNT_VAL   in_err_packets;   /* ╝ї┐оеиещб╝е╨е▒е├е╚┐Ї */
-                  T_NET_COUNT_VAL   out_err_packets;  /* ┴ў┐оеиещб╝е╨е▒е├е╚┐Ї */
+                  T_NET_COUNT_VAL   in_octets;        /* хПЧф┐буВкуВпуГЖуГГуГИцХ░     */
+                  T_NET_COUNT_VAL   out_octets;       /* щАБф┐буВкуВпуГЖуГГуГИцХ░     */
+                  T_NET_COUNT_VAL   in_packets;       /* хПЧф┐буГРуВ▒уГГуГИцХ░ */
+                  T_NET_COUNT_VAL   out_packets;      /* щАБф┐буГРуВ▒уГГуГИцХ░ */
+                  T_NET_COUNT_VAL   in_err_packets;   /* хПЧф┐буВиуГйуГ╝уГРуВ▒уГГуГИцХ░ */
+                  T_NET_COUNT_VAL   out_err_packets;  /* щАБф┐буВиуГйуГ╝уГРуВ▒уГГуГИцХ░ */
                   } T_NET_COUNT;
 
-   (3)   е╫еэе╚е│еы╦шд╬е═е├е╚еяб╝еп┼¤╖╫╛Ё╩є
-           ░╩▓╝д╦бв е╫еэе╚е│еы╦шд╬е═е├е╚еяб╝еп┼¤╖╫╛Ё╩єд╬╩╤┐Їд▐д┐д╧╟█╬є
-         дЄ╝ид╣бгб╩б╦╞тд╧едеєепеыб╝е╔е╒ебедеы net/net.h д╦─ъ╡┴д╡дьд╞дд
-         дые╫еэе╚е│еы╝▒╩╠е╒еще░д╟двдыбгд▐д┐бв╟█╬є╩╤┐Їд╬╛ь╣чбв ╟█╬єд╬╞т
-         ═╞д╧бведеєепеыб╝е╔е╒ебедеы net/net_count.h дЄ╗▓╛╚д╣дыд│д╚бг
+   (3)   уГЧуГнуГИуВ│уГлцпОуБоуГНуГГуГИуГпуГ╝уВпч╡▒шиИцГЕха▒
+           ф╗еф╕ЛуБлуАБ уГЧуГнуГИуВ│уГлцпОуБоуГНуГГуГИуГпуГ╝уВпч╡▒шиИцГЕха▒уБохдЙцХ░уБ╛уБЯуБпщЕНхИЧ
+         уВТчд║уБЩуАВя╝Ия╝ЙхЖЕуБпуВдуГ│уВпуГлуГ╝уГЙуГХуВбуВдуГл net/net.h уБлхоЪч╛йуБХуВМуБжуБД
+         уВЛуГЧуГнуГИуВ│уГлшнШхИеуГХуГйуВ░уБзуБВуВЛуАВуБ╛уБЯуАБщЕНхИЧхдЙцХ░уБоха┤хРИуАБ щЕНхИЧуБохЖЕ
+         хо╣уБпуАБуВдуГ│уВпуГлуГ╝уГЙуГХуВбуВдуГл net/net_count.h уВТхПВчЕзуБЩуВЛуБУуБиуАВ
 
-         [1]   PPP д╬ HDLCб╩PROTO_FLG_PPP_HDLCб╦
-                 ╔╕╜р╣╜┬д┬╬╩╤┐Їд╟бв╩╤┐Ї╠╛д╧ net_count_hdlc д╟двдыбг
+         [1]   PPP уБо HDLCя╝ИPROTO_FLG_PPP_HDLCя╝Й
+                 циЩц║ЦцзЛщАаф╜УхдЙцХ░уБзуАБхдЙцХ░хРНуБп net_count_hdlc уБзуБВуВЛуАВ
 
-         [2]   PPP д╬╟з╛┌е╫еэе╚е│еыб╩PROTO_FLG_PPP_PAPб╦
-                 ╔╕╜ре╟б╝е┐╖┐╩╤┐Їд╟бв ╩╤┐Ї╠╛д╧бв╝ї┐оекепе╞е├е╚┐Їдм
+         [2]   PPP уБошкНши╝уГЧуГнуГИуВ│уГля╝ИPROTO_FLG_PPP_PAPя╝Й
+                 циЩц║ЦуГЗуГ╝уВ┐хЮЛхдЙцХ░уБзуАБ хдЙцХ░хРНуБпуАБхПЧф┐буВкуВпуГЖуГГуГИцХ░уБМ
 
                   net_count_ppp_upap_in_octets
 
-               ┴ў┐оекепе╞е├е╚┐Їдм
+               щАБф┐буВкуВпуГЖуГГуГИцХ░уБМ
 
                   net_count_ppp_upap_out_octets
 
-         [3]   PPP д╬еъеєеп└й╕це╫еэе╚е│еыб╩PROTO_FLG_PPP_LCPб╦
-                 ╔╕╜ре╟б╝е┐╖┐╩╤┐Їд╟бв╩╤┐Ї╠╛д╧бв ╝ї┐оекепе╞е├е╚┐Їдм
+         [3]   PPP уБоуГкуГ│уВпхИ╢х╛буГЧуГнуГИуВ│уГля╝ИPROTO_FLG_PPP_LCPя╝Й
+                 циЩц║ЦуГЗуГ╝уВ┐хЮЛхдЙцХ░уБзуАБхдЙцХ░хРНуБпуАБ хПЧф┐буВкуВпуГЖуГГуГИцХ░уБМ
 
                   net_count_ppp_lcp_in_octets
 
-               ┴ў┐оекепе╞е├е╚┐Їдм
+               щАБф┐буВкуВпуГЖуГГуГИцХ░уБМ
 
                   net_count_ppp_lcp_out_octets
 
-         [4]   PPP д╬ IP ░═┬╕└й╕це╫еэе╚е│еыб╩PROTO_FLG_PPP_IPCPб╦
-                 ╔╕╜ре╟б╝е┐╖┐╩╤┐Їд╟бв ╩╤┐Ї╠╛д╧бв╝ї┐оекепе╞е├е╚┐Їдм
+         [4]   PPP уБо IP ф╛ЭхнШхИ╢х╛буГЧуГнуГИуВ│уГля╝ИPROTO_FLG_PPP_IPCPя╝Й
+                 циЩц║ЦуГЗуГ╝уВ┐хЮЛхдЙцХ░уБзуАБ хдЙцХ░хРНуБпуАБхПЧф┐буВкуВпуГЖуГГуГИцХ░уБМ
 
                   net_count_ppp_ipcp_in_octets
 
-               ┴ў┐оекепе╞е├е╚┐Їдм
+               щАБф┐буВкуВпуГЖуГГуГИцХ░уБМ
 
                   net_count_ppp_ipcp_out_octets
 
-         [5]   PPP ┴┤┬╬б╩PROTO_FLG_PPPб╦
-                 PPP ┴┤┬╬д╬е═е├е╚еяб╝еп┼¤╖╫╛Ё╩єд╧бв ╔╕╜р╣╜┬д┬╬╩╤┐Їд╟бв
-               ╩╤┐Ї╠╛д╧ net_count_ppp д╟двдыбг д▐д┐бв PPP д╟д╬ net_buf
-               д╬│ф┼Ўд╞╝║╟╘┐Їд╧бв ╔╕╜ре╟б╝е┐╖┐╩╤┐Їд╟бв ╩╤┐Ї╠╛д╧
-               net_count_ppp_no_buf д╟двдыбг
+         [5]   PPP хЕиф╜Уя╝ИPROTO_FLG_PPPя╝Й
+                 PPP хЕиф╜УуБоуГНуГГуГИуГпуГ╝уВпч╡▒шиИцГЕха▒уБпуАБ циЩц║ЦцзЛщАаф╜УхдЙцХ░уБзуАБ
+               хдЙцХ░хРНуБп net_count_ppp уБзуБВуВЛуАВ уБ╛уБЯуАБ PPP уБзуБо net_buf
+               уБохЙ▓х╜УуБжхд▒цХЧцХ░уБпуАБ циЩц║ЦуГЗуГ╝уВ┐хЮЛхдЙцХ░уБзуАБ хдЙцХ░хРНуБп
+               net_count_ppp_no_buf уБзуБВуВЛуАВ
 
-         [6]   еыб╝е╫е╨е├епедеєе┐е╒езб╝е╣б╩PROTO_FLG_LOOPб╦
-                 ╔╕╜р╣╜┬д┬╬╩╤┐Їд╟бв╩╤┐Ї╠╛д╧ net_count_loop д╟двдыбг
+         [6]   уГлуГ╝уГЧуГРуГГуВпуВдуГ│уВ┐уГХуВзуГ╝уВ╣я╝ИPROTO_FLG_LOOPя╝Й
+                 циЩц║ЦцзЛщАаф╜УхдЙцХ░уБзуАБхдЙцХ░хРНуБп net_count_loop уБзуБВуВЛуАВ
 
-         [7]   едб╝е╡е═е├е╚е╟еге╨еде╣е╔ещеде╨ NICб╩PROTO_FLG_ETHER_NICб╦
-                 ╔╕╜ре╟б╝е┐╖┐╟█╬є╩╤┐Їд╟бв ╩╤┐Ї╠╛д╧ net_count_ether_nic
-               д╟двдыбг
+         [7]   уВдуГ╝уВ╡уГНуГГуГИуГЗуВгуГРуВдуВ╣уГЙуГйуВдуГР NICя╝ИPROTO_FLG_ETHER_NICя╝Й
+                 циЩц║ЦуГЗуГ╝уВ┐хЮЛщЕНхИЧхдЙцХ░уБзуАБ хдЙцХ░хРНуБп net_count_ether_nic
+               уБзуБВуВЛуАВ
 
-         [8]   б╩PROTO_FLG_ETHERб╦
-                 ╔╕╜р╣╜┬д┬╬╩╤┐Їд╟бв╩╤┐Ї╠╛д╧ net_count_ether д╟двдыбг
+         [8]   я╝ИPROTO_FLG_ETHERя╝Й
+                 циЩц║ЦцзЛщАаф╜УхдЙцХ░уБзуАБхдЙцХ░хРНуБп net_count_ether уБзуБВуВЛуАВ
 
-         [9]   б╩PROTO_FLG_ARPб╦
-                 ╔╕╜р╣╜┬д┬╬╩╤┐Їд╟бв╩╤┐Ї╠╛д╧ net_count_arp д╟двдыбг
+         [9]   я╝ИPROTO_FLG_ARPя╝Й
+                 циЩц║ЦцзЛщАаф╜УхдЙцХ░уБзуАБхдЙцХ░хРНуБп net_count_arp уБзуБВуВЛуАВ
 
-         [10]  б╩PROTO_FLG_IP4б╦
-                 ╔╕╜ре╟б╝е┐╖┐╟█╬є╩╤┐Їд╟бв╩╤┐Ї╠╛д╧ net_count_ip4 д╟двдыбг
+         [10]  я╝ИPROTO_FLG_IP4я╝Й
+                 циЩц║ЦуГЗуГ╝уВ┐хЮЛщЕНхИЧхдЙцХ░уБзуАБхдЙцХ░хРНуБп net_count_ip4 уБзуБВуВЛуАВ
 
-         [11]  б╩PROTO_FLG_IP6б╦
-                 ╔╕╜ре╟б╝е┐╖┐╟█╬є╩╤┐Їд╟бв╩╤┐Ї╠╛д╧ net_count_ip6 д╟двдыбг
+         [11]  я╝ИPROTO_FLG_IP6я╝Й
+                 циЩц║ЦуГЗуГ╝уВ┐хЮЛщЕНхИЧхдЙцХ░уБзуАБхдЙцХ░хРНуБп net_count_ip6 уБзуБВуВЛуАВ
 
-         [12]  б╩PROTO_FLG_ICMP4б╦
-                 ╔╕╜р╣╜┬д┬╬╩╤┐Їд╟бв╩╤┐Ї╠╛д╧ net_count_icmp4 д╟двдыбг
+         [12]  я╝ИPROTO_FLG_ICMP4я╝Й
+                 циЩц║ЦцзЛщАаф╜УхдЙцХ░уБзуАБхдЙцХ░хРНуБп net_count_icmp4 уБзуБВуВЛуАВ
 
-         [13]  б╩PROTO_FLG_ICMP6б╦
-                 ╔╕╜ре╟б╝е┐╖┐╟█╬є╩╤┐Їд╟бв╩╤┐Ї╠╛д╧ net_count_icmp6 д╟двдыбг
+         [13]  я╝ИPROTO_FLG_ICMP6я╝Й
+                 циЩц║ЦуГЗуГ╝уВ┐хЮЛщЕНхИЧхдЙцХ░уБзуАБхдЙцХ░хРНуБп net_count_icmp6 уБзуБВуВЛуАВ
 
-         [14]  б╩PROTO_FLG_ND6б╦
-                 ╔╕╜ре╟б╝е┐╖┐╟█╬є╩╤┐Їд╟бв╩╤┐Ї╠╛д╧ net_count_nd6 д╟двдыбг
+         [14]  я╝ИPROTO_FLG_ND6я╝Й
+                 циЩц║ЦуГЗуГ╝уВ┐хЮЛщЕНхИЧхдЙцХ░уБзуАБхдЙцХ░хРНуБп net_count_nd6 уБзуБВуВЛуАВ
 
-         [15]  б╩PROTO_FLG_UDPб╦
-                 ╔╕╜р╣╜┬д┬╬╩╤┐Їд╟бв╩╤┐Ї╠╛д╧ net_count_udp д╟двдыбг
+         [15]  я╝ИPROTO_FLG_UDPя╝Й
+                 циЩц║ЦцзЛщАаф╜УхдЙцХ░уБзуАБхдЙцХ░хРНуБп net_count_udp уБзуБВуВЛуАВ
 
-         [16]  б╩PROTO_FLG_TCPб╦
-                 ╔╕╜ре╟б╝е┐╖┐╟█╬є╩╤┐Їд╟бв╩╤┐Ї╠╛д╧ net_count_tcp д╟двдыбг
+         [16]  я╝ИPROTO_FLG_TCPя╝Й
+                 циЩц║ЦуГЗуГ╝уВ┐хЮЛщЕНхИЧхдЙцХ░уБзуАБхдЙцХ░хРНуБп net_count_tcp уБзуБВуВЛуАВ
 
+         [17]  я╝ИPROTO_FLG_NET_BUFя╝Й
+                 net_buf уБлщЦвуБЧуБжуБпуАБ чЙ╣цоКуБзуБВуВЛуБЯуВБуВ╡уГ│уГЧуГлуВвуГЧуГкуВ▒уГ╝
+               уВ╖уГзуГ│ nserv уБзф╜┐чФиуБЧуБжуБДуВЛ netapp/dbg_cons.c уБощЦвцХ░
+               net_count уВТхПВчЕзуБЩуВЛуБУуБиуАВ
 
-         [17]  б╩PROTO_FLG_NET_BUFб╦
-                 net_buf д╦┤╪д╖д╞д╧бв ╞├╝ьд╟двдыд┐дсе╡еєе╫еыеве╫еъе▒б╝
-               е╖ечеє nserv д╟╗╚═╤д╖д╞ддды netapp/dbg_cons.c д╬┤╪┐Ї
-               net_count дЄ╗▓╛╚д╣дыд│д╚бг
+7. 2  SNMP чФичобчРЖцГЕха▒уГЩуГ╝уВ╣я╝ИMIBя╝Й
 
-6. 2  SNMP ═╤┤╔═¤╛Ё╩єе┘б╝е╣б╩MIBб╦
+  уВ│уГ│уГСуВдуГлцЩВуВ│уГ│уГХуВгуВоуГеуГмуГ╝уВ╖уГзуГ│уГ╗уГХуВбуВдуГлуБоуБДуБЪуВМуБЛуБзуАБ уГЮуВпуГн
+SUPPORT_MIB уВТхоЪч╛йуБЩуВЛуБУуБиуБлуВИуВКуАБSNMP чФичобчРЖцГЕха▒уГЩуГ╝уВ╣я╝ИMIBя╝ЙуБлц║ЦцЛауБЧ
+уБЯуГНуГГуГИуГпуГ╝уВпч╡▒шиИуБохПЦх╛ЧуБМхПпшГ╜уБзуБВуВЛуАВуБЯуБауБЧуАБTINET шЗкф╜УуБпуАБчобчРЖцГЕха▒уГЩуГ╝
+уВ╣я╝ИMIBя╝ЙуБлц║ЦцЛауБЧуБЯуГНуГГуГИуГпуГ╝уВпч╡▒шиИуВТцПРф╛ЫуБЩуВЛуБауБСуБзя╝МSNMP уВТуВ╡уГЭуГ╝уГИуБЧ
+уБжуБДуБкуБДуАВуБ╛уБЯуАБRFC1213уАБRFC2465уАБRFC2466 уБлхоЪч╛йуБХуВМуБжуБДуВЛхЕиуБжуБоцГЕха▒уБМ
+хПЦх╛ЧуБзуБНуВЛуВПуБСуБзуБпуБкуБДуАВхПЦх╛ЧуБзуБНуВЛцГЕха▒уБпуАБщЦвф┐ВуБЩуВЛуВдуГ│уВпуГлуГ╝уГЙуГХуВбуВдуГл
+уБоцзЛщАаф╜УуБохоЪч╛йуВТхПВчЕзуБЩуВЛуБУуБиуАВ
+  ф╗еф╕ЛуБлуАБуВ░уГлуГ╝уГЧуАБцзЛщАаф╜УуВТхоЪч╛йуБЧуБжуБДуВЛуВдуГ│уВпуГлуГ╝уГЙуГХуВбуВдуГлуАБцзЛщАаф╜УхРНуАБ
+цзЛщАаф╜УхдЙцХ░хРНуВТчд║уБЩуАВ
 
-  е│еєе╤едеы╗■е│еєе╒егеоехеьб╝е╖ечеєбже╒ебедеыд╬ддд║дьдлд╟бв е▐епеэ
-SUPPORT_MIB дЄ─ъ╡┴д╣дыд│д╚д╦дшдъбвSNMP ═╤┤╔═¤╛Ё╩єе┘б╝е╣б╩MIBб╦д╦╜р╡Єд╖
-д┐е═е├е╚еяб╝еп┼¤╖╫д╬╝ш╞└дм▓─╟╜д╟двдыбгд┐д└д╖бвTINET ╝л┬╬д╧бв┤╔═¤╛Ё╩єе┘б╝
-е╣б╩MIBб╦д╦╜р╡Єд╖д┐е═е├е╚еяб╝еп┼¤╖╫дЄ─є╢бд╣дыд└д▒д╟бдSNMP дЄе╡е▌б╝е╚д╖
-д╞ддд╩ддбгд▐д┐бвRFC1213бвRFC2465бвRFC2466 д╦─ъ╡┴д╡дьд╞ддды┴┤д╞д╬╛Ё╩єдм
-╝ш╞└д╟дндыдяд▒д╟д╧д╩ддбг╝ш╞└д╟днды╛Ё╩єд╧бв┤╪╖╕д╣дыедеєепеыб╝е╔е╒ебедеы
-д╬╣╜┬д┬╬д╬─ъ╡┴дЄ╗▓╛╚д╣дыд│д╚бг
-  ░╩▓╝д╦бве░еыб╝е╫бв╣╜┬д┬╬дЄ─ъ╡┴д╖д╞дддыедеєепеыб╝е╔е╒ебедеыбв╣╜┬д┬╬╠╛бв
-╣╜┬д┬╬╩╤┐Ї╠╛дЄ╝ид╣бг
+   (1)   TCP уВ░уГлуГ╝уГЧ
 
-   (1)   TCP е░еыб╝е╫
+            уВдуГ│уВпуГлуГ╝уГЙуГХуВбуВдуГл    netinet/tcp_var.h
+            цзЛщАаф╜УхРН                T_TCP_STATS
+            хдЙцХ░хРН                  tcp_stats
 
-            едеєепеыб╝е╔е╒ебедеы    netinet/tcp_var.h
-            ╣╜┬д┬╬╠╛                T_TCP_STATS
-            ╩╤┐Ї╠╛                  tcp_stats
+   (2)   UDP уВ░уГлуГ╝уГЧ
 
-   (2)   UDP е░еыб╝е╫
+            уВдуГ│уВпуГлуГ╝уГЙуГХуВбуВдуГл    netinet/udp_var.h
+            цзЛщАаф╜УхРН                T_UDP_STATS
+            хдЙцХ░хРН                  udp_stats
 
-            едеєепеыб╝е╔е╒ебедеы    netinet/udp_var.h
-            ╣╜┬д┬╬╠╛                T_UDP_STATS
-            ╩╤┐Ї╠╛                  udp_stats
+   (3)   ICMPv4 уВ░уГлуГ╝уГЧ
 
-   (3)   ICMPv4 е░еыб╝е╫
+            уВдуГ│уВпуГлуГ╝уГЙуГХуВбуВдуГл    netinet/icmp_var.h
+            цзЛщАаф╜УхРН                T_ICMP_STATS
+            хдЙцХ░хРН                  icmp_stats
 
-            едеєепеыб╝е╔е╒ебедеы    netinet/icmp_var.h
-            ╣╜┬д┬╬╠╛                T_ICMP_STATS
-            ╩╤┐Ї╠╛                  icmp_stats
+   (4)   IPv4 уВ░уГлуГ╝уГЧ
 
-   (4)   IPv4 е░еыб╝е╫
+            уВдуГ│уВпуГлуГ╝уГЙуГХуВбуВдуГл    netinet/ip_var.h
+            цзЛщАаф╜УхРН                T_IP_STATS
+            хдЙцХ░хРН                  ip_stats
 
-            едеєепеыб╝е╔е╒ебедеы    netinet/ip_var.h
-            ╣╜┬д┬╬╠╛                T_IP_STATS
-            ╩╤┐Ї╠╛                  ip_stats
+   (5)   ICMPv6 уВ░уГлуГ╝уГЧ
 
-   (5)   ICMPv6 е░еыб╝е╫
+            уВдуГ│уВпуГлуГ╝уГЙуГХуВбуВдуГл    netinet/icmp6.h
+            цзЛщАаф╜УхРН                T_ICMP6_IFSTAT
+            хдЙцХ░хРН                  icmp6_ifstat
 
-            едеєепеыб╝е╔е╒ебедеы    netinet/icmp6.h
-            ╣╜┬д┬╬╠╛                T_ICMP6_IFSTAT
-            ╩╤┐Ї╠╛                  icmp6_ifstat
+   (6)   IPv6 уВ░уГлуГ╝уГЧ
 
-   (6)   IPv6 е░еыб╝е╫
+            уВдуГ│уВпуГлуГ╝уГЙуГХуВбуВдуГл    netinet6/ip6_var.h
+            цзЛщАаф╜УхРН                T_IN6_IFSTAT
+            хдЙцХ░хРН                  in6_ifstat
 
-            едеєепеыб╝е╔е╒ебедеы    netinet6/ip6_var.h
-            ╣╜┬д┬╬╠╛                T_IN6_IFSTAT
-            ╩╤┐Ї╠╛                  in6_ifstat
+   (7)   уГНуГГуГИуГпуГ╝уВпуВдуГ│уВ┐уГХуВзуГ╝уВ╣я╝ИуВдуГ╝уВ╡уГНуГГуГИя╝ЙуВ░уГлуГ╝уГЧ
 
-   (7)   е═е├е╚еяб╝епедеєе┐е╒езб╝е╣б╩едб╝е╡е═е├е╚б╦е░еыб╝е╫
+            уВдуГ│уВпуГлуГ╝уГЙуГХуВбуВдуГл    net/if_var.h
+            цзЛщАаф╜УхРН                T_IF_STATS
+            хдЙцХ░хРН                  if_stats
 
-            едеєепеыб╝е╔е╒ебедеы    net/if_var.h
-            ╣╜┬д┬╬╠╛                T_IF_STATS
-            ╩╤┐Ї╠╛                  if_stats
+7. 3  TINET хЖЕщГиуВвуВпуВ╗уВ╣щЦвцХ░уАБуВ╡уГЭуГ╝уГИщЦвцХ░уАБхЕихЯЯхдЙцХ░уБиуГЮуВпуГн
 
-6. 3  TINET ╞т╔Їевепе╗е╣┤╪┐Їбве╡е▌б╝е╚┤╪┐Їбв┴┤░ш╩╤┐Їд╚е▐епеэ
+  х┐ЬчФиуГЧуГнуВ░уГйуГауБЛуВЙ TINET хЖЕщГиуБлуВвуВпуВ╗уВ╣уБЩуВЛуБЯуВБуБощЦвцХ░уАБ уВ╡уГЭуГ╝уГИщЦвцХ░уАБ
+хЕихЯЯхдЙцХ░уБиуГЮуВпуГнуБзуБВуВЛуАВ
 
-  ▒■═╤е╫еэе░ещердлдщ TINET ╞т╔Їд╦евепе╗е╣д╣дыд┐дсд╬┤╪┐Їбв е╡е▌б╝е╚┤╪┐Їбв
-┴┤░ш╩╤┐Їд╚е▐епеэд╟двдыбг
+   (1)   IPv6 уВвуГЙуГмуВ╣уВТуГкуГЖуГйуГлшбичП╛я╝ИцЦЗхнЧхИЧя╝ЙуБлхдЙцПЫуБЩуВЛщЦвцХ░
+         уАРC шиАшкЮ APIуАС
+               char *p_retbuf = ipv62str (char *p_buf, const T_IN6_ADDR *p_addr);
 
-   (1)   едеєе┐е╒езб╝е╣д╦ IPv4 еве╔еье╣дЄ└▀─ъд╣ды┤╪┐Ї
-         б┌C ╕└╕ь APIб█
-               ER ercd = in4_add_ifaddr (T_IN4_ADDR addr, T_IN4_ADDR mask);
+         уАРуГСуГйуГбуГ╝уВ┐уАС
+               char           buf       уГкуГЖуГйуГлшбичП╛уБоIPv6уВвуГЙуГмуВ╣уВТца╝ч┤НуБЩуВЛуГРуГГуГХуВб
+               const T_IN6_ADDR         addr      IPv6уВвуГЙуГмуВ╣
 
-         б┌е╤ещесб╝е┐б█
-               T_IN4_ADDR          addr      IPеве╔еье╣
-               T_IN4_ADDR          mask      е╡е╓е═е├е╚е▐е╣еп
+         уАРуГкуВ┐уГ╝уГ│уГСуГйуГбуГ╝уВ┐уАС
+               char           retbuf    уГкуГЖуГйуГлшбичП╛уБо IPv6 уВвуГЙуГмуВ╣уБМца╝ч┤НуБХуВМуБЯуГРуГГуГХуВб
 
-         б┌еъе┐б╝еєе╤ещесб╝е┐б█
-               ER        ercd      еиещб╝е│б╝е╔б╩╕╜║▀д╧╛яд╦E_OKб╦
-
-         б┌еиещб╝е│б╝е╔б█
-               E_OK                ╕╜║▀д╧╛яд╦E_OK
-
-         б┌едеєепеыб╝е╔е╒ебедеыб█
+         уАРуВдуГ│уВпуГлуГ╝уГЙуГХуВбуВдуГлуАС
                <netinet/in.h>
 
-         б┌╡б╟╜б█
-                 едеєе┐е╒езб╝е╣д╦ IPv4 еве╔еье╣дЄ└▀─ъд╣дыбг д┐д└д╖бве═е├
-               е╚еяб╝епедеєе┐е╒езб╝е╣дмедб╝е╡е═е├е╚д╟бв е═е├е╚еяб╝еп┴╪
-               д╚д╖д╞ IPv4 дм╗╪─ъд╡дьд╞ддды╛ь╣чд╬д▀═н╕·д╟двдыбг
+         уАРцйЯшГ╜уАС
+                 IPv6 уВвуГЙуГмуВ╣уВТуГкуГЖуГйуГлшбичП╛я╝ИцЦЗхнЧхИЧя╝ЙуБлхдЙцПЫуБЩуВЛуАВуГСуГй
+               уГбуГ╝уВ┐ buf уБлуБпуАБцЬАф╜О 46 уГРуВдуГИуБощаШхЯЯуБМх┐ЕшжБуБзуБВуВЛуАВуБ╛уБЯуАБ
+               уГСуГйуГбуГ╝уВ┐ buf уБлуАБ NULL уВТцМЗхоЪуБЩуВЛуБиуАБTINET хЖЕщГиуБзчв║ф┐Э
+               уБЧуБжуБВуВЛуГРуГГуГХуВбуБл IPv6 уВвуГЙуГмуВ╣уВТуГкуГЖуГйуГлшбичП╛уБлхдЙцПЫуБЧ
+               уБжцЫ╕уБНш╛╝уБ┐уАБуБЭуБоуВвуГЙуГмуВ╣уВТш┐ФуБЩуАВ уВ│уГ│уГСуВдуГлцЩВуВ│уГ│уГХуВгуВоуГе
+               уГмуГ╝уВ╖уГзуГ│уГСуГйуГбуГ╝уВ┐ NUM_IPADDR_STR_BUFF уБлуВИуВКуГРуГГуГХуВб
+               цХ░уВТцМЗхоЪуБЩуВЛуБУуБиуБМхЗ║цЭеуВЛуАВ уБЯуБауБЧуАБуГРуГГуГХуВбцХ░уВТш╢ЕуБИуБжщАг
+               ч╢ЪчЪДуБлхС╝хЗ║уБЩуБиуГРуГГуГХуВбуВТф╕КцЫ╕уБНуБЩуВЛуАВ 
 
-   (2)   IPv4 ═╤└┼┼к╖╨╧й╔╜д╦╖╨╧й╛Ё╩єдЄ└▀─ъд╣ды┤╪┐Ї
-         б┌C ╕└╕ь APIб█
+   (2)   шинхоЪхПпшГ╜уБкцЬАхдз IPv6 уВвуГЙуГмуВ╣цХ░уВТш┐ФуБЩщЦвцХ░
+         уАРC шиАшкЮ APIуАС
+               u_int num = in6_get_maxnum_ifaddr (void);
+
+         уАРуГкуВ┐уГ╝уГ│уГСуГйуГбуГ╝уВ┐уАС
+               u_int          num       шинхоЪхПпшГ╜уБкцЬАхдзIPv6уВвуГЙуГмуВ╣цХ░
+
+         уАРуВдуГ│уВпуГлуГ╝уГЙуГХуВбуВдуГлуАС
+               <netinet/in.h>
+
+         уАРцйЯшГ╜уАС
+                 уГНуГГуГИуГпуГ╝уВпуВдуГ│уВ┐уГХуВзуГ╝уВ╣уБлшинхоЪхПпшГ╜уБкцЬАхдз IPv6 уВвуГЙ
+               уГмуВ╣цХ░уВТш┐ФуБЩщЦвцХ░уБзуБВуВЛуАВ уБкуБКуАБ чП╛хЬишинхоЪуБХуВМуБжуБДуВЛ IPv6
+               уВвуГЙуГмуВ╣цХ░уБиуБпчХ░уБкуВЛуАВ
+
+   (3)   шинхоЪуБХуВМуБжуБДуВЛ IPv6 уВвуГЙуГмуВ╣уВТш┐ФуБЩщЦвцХ░
+         уАРC шиАшкЮ APIуАС
+               const T_IN6_ADDR *p_addr = in6_get_ifaddr (int_t index);
+
+         уАРуГСуГйуГбуГ╝уВ┐уАС
+               int_t     index     IPv6уВвуГЙуГмуВ╣уБоуВдуГ│уГЗуГГуВпуВ╣хАд
+
+         уАРуГкуВ┐уГ╝уГ│уГСуГйуГбуГ╝уВ┐уАС
+               T_IN6_ADDR     addr      шинхоЪуБХуВМуБжуБДуВЛIPv6уВвуГЙуГмуВ╣уБМца╝ч┤НуБХуВМуБЯуГРуГГуГХуВб
+
+         уАРуВдуГ│уВпуГлуГ╝уГЙуГХуВбуВдуГлуАС
+               <netinet/in.h>
+
+         уАРцйЯшГ╜уАС
+                 уГНуГГуГИуГпуГ╝уВпуВдуГ│уВ┐уГХуВзуГ╝уВ╣уБлшинхоЪуБХуВМуБжуБДуВЛ IPv6 уВвуГЙ
+               уГмуВ╣уВТш┐ФуБЩщЦвцХ░уБзуБВуВЛуАВуБЯуБауБЧуАБ цЬкхоЪч╛йуБоха┤хРИуБп NULL уВТш┐Ф
+               уБЩуАВ index уБлуБп 0 уАЬ ( шинхоЪхПпшГ╜уБкцЬАхдз IPv6 уВвуГЙуГмуВ╣цХ░
+               -1) уВТцМЗхоЪуБзуБНуВЛуАВ
+
+   (4)   шинхоЪуБХуВМуБжуБДуВЛ IPv6 уВвуГЙуГмуВ╣уВТцЫ┤цЦ░уБЩуВЛщЦвцХ░
+         уАРC шиАшкЮ APIуАС
+               ER ercd = in6_upd_ifaddr (T_IN6_ADDR *p_addr,
+                                         uint_t prefixlen,
+                                         uint32_t vltime,
+                                         uint32_t pltime);
+
+         уАРуГСуГйуГбуГ╝уВ┐уАС
+               T_IN6_ADDR          addr      цЫ┤цЦ░уБЩуВЛIPv6уВвуГЙуГмуВ╣
+               int_t     prefixlen уГЧуГмуГХуВгуГГуВпуВ╣щХ╖
+               int32_t   vltime    цЬЙхК╣цЩВщЦУя╝ИхНШф╜НуБпчзТя╝Й
+               int32_t   pltime    цОихеицЬЙхК╣цЩВщЦУя╝ИхНШф╜НуБпчзТя╝Й
+
+         уАРуГкуВ┐уГ╝уГ│уГСуГйуГбуГ╝уВ┐уАС
+               ER        ercd      уВиуГйуГ╝уВ│уГ╝уГЙ
+
+         уАРуВиуГйуГ╝уВ│уГ╝уГЙуАС
+               E_OBJ               чй║уБНуБМуБкуБДуАВ
+               E_PAR               уГСуГйуГбуГ╝уВ┐уВиуГйуГ╝я╝Иp_addrуБМNULLчнЙя╝ЙуАВ
+
+         уАРуВдуГ│уВпуГлуГ╝уГЙуГХуВбуВдуГлуАС
+               <netinet/in.h>
+
+         уАРцйЯшГ╜уАС
+                 уГНуГГуГИуГпуГ╝уВпуВдуГ│уВ┐уГХуВзуГ╝уВ╣уБлшинхоЪуБХуВМуБжуБДуВЛ IPv6 уВвуГЙ
+               уГмуВ╣уБоуГЧуГмуГХуВгуГГуВпуВ╣щХ╖уАБцЬЙхК╣цЩВщЦУуАБ цОихеицЬЙхК╣цЩВщЦУуВТцЫ┤цЦ░уБЩ
+               уВЛуАВ уБЯуБауБЧуАБцЬкхоЪч╛йуБоха┤хРИуБпш┐╜хКауБЩуВЛуАВ
+
+   (5)   шинхоЪуБХуВМуБжуБДуВЛ IPv6 уВвуГЙуГмуВ╣уВТхЙКщЩдуБЩуВЛщЦвцХ░
+         уАРC шиАшкЮ APIуАС
+               ER ercd = in6_del_ifaddr (T_IN6_ADDR *p_addr);
+
+         уАРуГСуГйуГбуГ╝уВ┐уАС
+               T_IN6_ADDR          addr      хЙКщЩдуБЩуВЛIPv6уВвуГЙуГмуВ╣
+
+         уАРуГкуВ┐уГ╝уГ│уГСуГйуГбуГ╝уВ┐уАС
+               ER        ercd      уВиуГйуГ╝уВ│уГ╝уГЙ
+
+         уАРуВиуГйуГ╝уВ│уГ╝уГЙуАС
+               E_PAR               уГСуГйуГбуГ╝уВ┐уВиуГйуГ╝я╝ИцМЗхоЪуБХуВМуБЯуВвуГЙуГмуВ╣уБМуБкуБДчнЙя╝ЙуАВ
+
+         уАРуВдуГ│уВпуГлуГ╝уГЙуГХуВбуВдуГлуАС
+               <netinet/in.h>
+
+         уАРцйЯшГ╜уАС
+                 уГНуГГуГИуГпуГ╝уВпуВдуГ│уВ┐уГХуВзуГ╝уВ╣уБлшинхоЪуБХуВМуБжуБДуВЛ IPv6 уВвуГЙ
+               уГмуВ╣уВТхЙКщЩдуБЩуВЛуАВ
+
+   (6)   шинхоЪхПпшГ╜уБкцЬАхдз IPv4 уВвуГЙуГмуВ╣цХ░уВТш┐ФуБЩщЦвцХ░
+         уАРC шиАшкЮ APIуАС
+               uint_t num = in4_get_maxnum_ifaddr (void);
+
+
+         уАРуГкуВ┐уГ╝уГ│уГСуГйуГбуГ╝уВ┐уАС
+               uint_t         num       шинхоЪхПпшГ╜уБкцЬАхдзIPv4уВвуГЙуГмуВ╣цХ░уВТш┐ФуБЩщЦвцХ░
+
+         уАРуВдуГ│уВпуГлуГ╝уГЙуГХуВбуВдуГлуАС
+               <netinet/in.h>
+
+         уАРцйЯшГ╜уАС
+                 уГНуГГуГИуГпуГ╝уВпуВдуГ│уВ┐уГХуВзуГ╝уВ╣уБлшинхоЪхПпшГ╜уБкцЬАхдз IPv4 уВвуГЙ
+               уГмуВ╣цХ░уВТш┐ФуБЩщЦвцХ░уБзуБВуВЛуАВуБкуБКуАБчП╛хЬиуБпх╕╕уБл 1 уВТш┐ФуБЩуАВ 
+
+   (7)   уВдуГ│уВ┐уГХуВзуГ╝уВ╣уБл IPv4 уВвуГЙуГмуВ╣уВТшинхоЪуБЩуВЛщЦвцХ░
+         уАРC шиАшкЮ APIуАС
+               ER ercd = in4_add_ifaddr (T_IN4_ADDR addr, T_IN4_ADDR mask);
+
+         уАРуГСуГйуГбуГ╝уВ┐уАС
+               T_IN4_ADDR          addr      IPуВвуГЙуГмуВ╣
+               T_IN4_ADDR          mask      уВ╡уГЦуГНуГГуГИуГЮуВ╣уВп
+
+         уАРуГкуВ┐уГ╝уГ│уГСуГйуГбуГ╝уВ┐уАС
+               ER        ercd      уВиуГйуГ╝уВ│уГ╝уГЙя╝ИчП╛хЬиуБпх╕╕уБлE_OKя╝Й
+
+         уАРуВиуГйуГ╝уВ│уГ╝уГЙуАС
+               E_OK                чП╛хЬиуБпх╕╕уБлE_OK
+
+         уАРуВдуГ│уВпуГлуГ╝уГЙуГХуВбуВдуГлуАС
+               <netinet/in.h>
+
+         уАРцйЯшГ╜уАС
+                 уВдуГ│уВ┐уГХуВзуГ╝уВ╣уБл IPv4 уВвуГЙуГмуВ╣уВТшинхоЪуБЩуВЛуАВ
+
+   (8)   IPv4 чФищЭЩчЪДч╡Мш╖пшбиуБлч╡Мш╖пцГЕха▒уВТшинхоЪуБЩуВЛщЦвцХ░
+         уАРC шиАшкЮ APIуАС
                ER ercd = in4_add_route (int index, T_IN4_ADDR target,
                                                    T_IN4_ADDR mask,
                                                    T_IN4_ADDR gateway);
 
-         б┌е╤ещесб╝е┐б█
-               int       index     еиеєе╚еъд╬едеєе╟е├епе╣
-               T_IN4_ADDR          target    ╠▄╔╕е═е├е╚еяб╝епд╬IPеве╔еье╣
-               T_IN4_ADDR          mask      ╠▄╔╕е═е├е╚еяб╝епд╬е╡е╓е═е├е╚е▐е╣еп
-               T_IN4_ADDR          gateway   е▓б╝е╚ежезедд╬IPеве╔еье╣
+         уАРуГСуГйуГбуГ╝уВ┐уАС
+               int       index     уВиуГ│уГИуГкуБоуВдуГ│уГЗуГГуВпуВ╣
+               T_IN4_ADDR          target    чЫоциЩуГНуГГуГИуГпуГ╝уВпуБоIPуВвуГЙуГмуВ╣
+               T_IN4_ADDR          mask      чЫоциЩуГНуГГуГИуГпуГ╝уВпуБоуВ╡уГЦуГНуГГуГИуГЮуВ╣уВп
+               T_IN4_ADDR          gateway   уВ▓уГ╝уГИуВжуВзуВдуБоIPуВвуГЙуГмуВ╣
 
-         б┌еъе┐б╝еєе╤ещесб╝е┐б█
-               ER        ercd      еиещб╝е│б╝е╔
+         уАРуГкуВ┐уГ╝уГ│уГСуГйуГбуГ╝уВ┐уАС
+               ER        ercd      уВиуГйуГ╝уВ│уГ╝уГЙ
 
-         б┌еиещб╝е│б╝е╔б█
-               E_PAR               ░·┐Їindexд╬├═дм╔щдлбве│еєе╤едеы╗■е│еєе╒егеоехеьб╝е╖ечеє
-                                   е╤ещесб╝е┐NUM_ROUTE_ENTRY░╩╛хд╬д╚днE_PAR
+         уАРуВиуГйуГ╝уВ│уГ╝уГЙуАС
+               E_PAR               х╝ХцХ░indexуБохАдуБМш▓ауБЛуАБуВ│уГ│уГСуВдуГлцЩВуВ│уГ│уГХуВгуВоуГеуГмуГ╝уВ╖уГзуГ│
+                                   уГСуГйуГбуГ╝уВ┐NUM_ROUTE_ENTRYф╗еф╕КуБоуБиуБНE_PAR
 
-         б┌едеєепеыб╝е╔е╒ебедеыб█
+         уАРуВдуГ│уВпуГлуГ╝уГЙуГХуВбуВдуГлуАС
                <netinet/in.h>
 
-         б┌╡б╟╜б█
-                 IPv4 ═╤└┼┼к╖╨╧й╔╜д╦╖╨╧й╛Ё╩єдЄ└▀─ъд╣дыбгд┐д└д╖бве═е├е╚
-               еяб╝епедеєе┐е╒езб╝е╣дмедб╝е╡е═е├е╚д╟бв е═е├е╚еяб╝еп┴╪д╚
-               д╖д╞ IPv4 дм╗╪─ъд╡дьд╞ддды╛ь╣чд╬д▀═н╕·д╟двдыбг
+         уАРцйЯшГ╜уАС
+                 IPv4 чФищЭЩчЪДч╡Мш╖пшбиуБлч╡Мш╖пцГЕха▒уВТшинхоЪуБЩуВЛуАВ
 
-   (3)   IPv4 еве╔еье╣дЄеъе╞ещеы╔╜╕╜б╩╩╕╗·╬єб╦д╦╩╤┤╣д╣ды┤╪┐Ї
-         б┌C ╕└╕ь APIб█
+   (9)   IPv4 уВвуГЙуГмуВ╣уВТуГкуГЖуГйуГлшбичП╛я╝ИцЦЗхнЧхИЧя╝ЙуБлхдЙцПЫуБЩуВЛщЦвцХ░
+         уАРC шиАшкЮ APIуАС
                char *p_retbuf = ip2str (char *p_buf, const T_IN4_ADDR *p_ipaddr);
 
-         б┌е╤ещесб╝е┐б█
-               char           buf       еъе╞ещеы╔╜╕╜д╬IPv4еве╔еье╣дЄ│╩╟╝д╣дые╨е├е╒еб
-               const T_IN4_ADDR         ipaddr    IPv4еве╔еье╣
+         уАРуГСуГйуГбуГ╝уВ┐уАС
+               char           buf       уГкуГЖуГйуГлшбичП╛уБоIPv4уВвуГЙуГмуВ╣уВТца╝ч┤НуБЩуВЛуГРуГГуГХуВб
+               const T_IN4_ADDR         ipaddr    IPv4уВвуГЙуГмуВ╣
 
-         б┌еъе┐б╝еєе╤ещесб╝е┐б█
-               char           retbuf    еъе╞ещеы╔╜╕╜д╬ IPv4 еве╔еье╣дм│╩╟╝д╡дьд┐е╨е├е╒еб
+         уАРуГкуВ┐уГ╝уГ│уГСуГйуГбуГ╝уВ┐уАС
+               char           retbuf    уГкуГЖуГйуГлшбичП╛уБо IPv4 уВвуГЙуГмуВ╣уБМца╝ч┤НуБХуВМуБЯуГРуГГуГХуВб
 
-         б┌едеєепеыб╝е╔е╒ебедеыб█
+         уАРуВдуГ│уВпуГлуГ╝уГЙуГХуВбуВдуГлуАС
                <netinet/in.h>
 
-         б┌╡б╟╜б█
-                 IPv4 еве╔еье╣дЄеъе╞ещеы╔╜╕╜б╩╩╕╗·╬єб╦д╦╩╤┤╣д╣дыбге╤ещ
-               есб╝е┐ buf д╦д╧бв║╟─у 16 е╨еде╚д╬╬╬░шдм╔м═╫д╟двдыбгд▐д┐бв
-               е╤ещесб╝е┐ buf д╦бвNULL дЄ╗╪─ъд╣дыд╚бв TINET ╞т╔Їд╟│╬╩▌
-               д╖д╞двдые╨е├е╒ебд╦ IPv4 еве╔еье╣дЄеъе╞ещеы╔╜╕╜д╦╩╤┤╣д╖
-               д╞╜ёдн╣■д▀бв д╜д╬еве╔еье╣дЄ╩╓д╣бге│еєе╤едеы╗■е│еєе╒егеоех
-               еьб╝е╖ечеєе╤ещесб╝е┐ NUM_IPADDR_STR_BUFF д╦дшдъе╨е├е╒еб
-               ┐ЇдЄ╗╪─ъд╣дыд│д╚дм╜╨═шдыбгд┐д└д╖бв е╨е├е╒еб┐ЇдЄ─╢дид╞╧в
-               ┬│┼кд╦╕╞╜╨д╣д╚е╨е├е╒ебдЄ╛х╜ёднд╣дыбг 
+         уАРцйЯшГ╜уАС
+                 IPv4 уВвуГЙуГмуВ╣уВТуГкуГЖуГйуГлшбичП╛я╝ИцЦЗхнЧхИЧя╝ЙуБлхдЙцПЫуБЩуВЛуАВуГСуГй
+               уГбуГ╝уВ┐ buf уБлуБпуАБцЬАф╜О 16 уГРуВдуГИуБощаШхЯЯуБМх┐ЕшжБуБзуБВуВЛуАВуБ╛уБЯуАБ
+               уГСуГйуГбуГ╝уВ┐ buf уБлуАБ NULL уВТцМЗхоЪуБЩуВЛуБиуАБTINET хЖЕщГиуБзчв║ф┐Э
+               уБЧуБжуБВуВЛуГРуГГуГХуВбуБл IPv4 уВвуГЙуГмуВ╣уВТуГкуГЖуГйуГлшбичП╛уБлхдЙцПЫуБЧ
+               уБжцЫ╕уБНш╛╝уБ┐уАБуБЭуБоуВвуГЙуГмуВ╣уВТш┐ФуБЩуАВ уВ│уГ│уГСуВдуГлцЩВуВ│уГ│уГХуВгуВоуГе
+               уГмуГ╝уВ╖уГзуГ│уГСуГйуГбуГ╝уВ┐ NUM_IPADDR_STR_BUFF уБлуВИуВКуГРуГГуГХуВб
+               цХ░уВТцМЗхоЪуБЩуВЛуБУуБиуБМхЗ║цЭеуВЛуАВ уБЯуБауБЧуАБуГРуГГуГХуВбцХ░уВТш╢ЕуБИуБжщАг
+               ч╢ЪчЪДуБлхС╝хЗ║уБЩуБиуГРуГГуГХуВбуВТф╕КцЫ╕уБНуБЩуВЛуАВ 
 
-   (4)   IPv6 еве╔еье╣дЄеъе╞ещеы╔╜╕╜б╩╩╕╗·╬єб╦д╦╩╤┤╣д╣ды┤╪┐Ї
-         б┌C ╕└╕ь APIб█
-               char *p_retbuf = ipv62str (char *p_buf, const T_IN6_ADDR *p_ipaddr);
-
-         б┌е╤ещесб╝е┐б█
-               char           buf       еъе╞ещеы╔╜╕╜д╬IPv6еве╔еье╣дЄ│╩╟╝д╣дые╨е├е╒еб
-               const T_IN6_ADDR         ipaddr    IPv6еве╔еье╣
-
-         б┌еъе┐б╝еєе╤ещесб╝е┐б█
-               char           retbuf    еъе╞ещеы╔╜╕╜д╬ IPv6 еве╔еье╣дм│╩╟╝д╡дьд┐е╨е├е╒еб
-
-         б┌едеєепеыб╝е╔е╒ебедеыб█
-               <netinet/in.h>
-
-         б┌╡б╟╜б█
-                 IPv6 еве╔еье╣дЄеъе╞ещеы╔╜╕╜б╩╩╕╗·╬єб╦д╦╩╤┤╣д╣дыбге╤ещ
-               есб╝е┐ buf д╦д╧бв║╟─у 40 е╨еде╚д╬╬╬░шдм╔м═╫д╟двдыбгд▐д┐бв
-               е╤ещесб╝е┐ buf д╦бвNULL дЄ╗╪─ъд╣дыд╚бв TINET ╞т╔Їд╟│╬╩▌
-               д╖д╞двдые╨е├е╒ебд╦ IPv6 еве╔еье╣дЄеъе╞ещеы╔╜╕╜д╦╩╤┤╣д╖
-               д╞╜ёдн╣■д▀бв д╜д╬еве╔еье╣дЄ╩╓д╣бге│еєе╤едеы╗■е│еєе╒егеоех
-               еьб╝е╖ечеєе╤ещесб╝е┐ NUM_IPADDR_STR_BUFF д╦дшдъе╨е├е╒еб
-               ┐ЇдЄ╗╪─ъд╣дыд│д╚дм╜╨═шдыбгд┐д└д╖бв е╨е├е╒еб┐ЇдЄ─╢дид╞╧в
-               ┬│┼кд╦╕╞╜╨д╣д╚е╨е├е╒ебдЄ╛х╜ёднд╣дыбг 
-
-   (5)   ITRON TCP/IP API ╡б╟╜е│б╝е╔дЄ╩╕╗·╔╜╕╜д╦╩╤┤╣д╣ды┤╪┐Ї
-         б┌C ╕└╕ь APIб█
+   (10)  ITRON TCP/IP API цйЯшГ╜уВ│уГ╝уГЙуВТцЦЗхнЧшбичП╛уБлхдЙцПЫуБЩуВЛщЦвцХ░
+         уАРC шиАшкЮ APIуАС
                const char *p_str = in_strtfn (FN fncd);
 
-         б┌е╤ещесб╝е┐б█
-               FN        fncd      ITRON TCP/IP API ╡б╟╜е│б╝е╔
+         уАРуГСуГйуГбуГ╝уВ┐уАС
+               FN        fncd      ITRON TCP/IP API цйЯшГ╜уВ│уГ╝уГЙ
 
-         б┌еъе┐б╝еєе╤ещесб╝е┐б█
-               const char          str       ITRON TCP/IP API ╡б╟╜е│б╝е╔д╬╩╕╗·╔╜╕╜
+         уАРуГкуВ┐уГ╝уГ│уГСуГйуГбуГ╝уВ┐уАС
+               const char          str       ITRON TCP/IP API цйЯшГ╜уВ│уГ╝уГЙуБоцЦЗхнЧшбичП╛
 
-         б┌едеєепеыб╝е╔е╒ебедеыб█
+         уАРуВдуГ│уВпуГлуГ╝уГЙуГХуВбуВдуГлуАС
                <netinet/in.h>
 
-         б┌╡б╟╜б█
-                 ITRON TCP/IP API ╡б╟╜е│б╝е╔дЄ╩╕╗·╔╜╕╜д╦╩╤┤╣д╣дыбг
+         уАРцйЯшГ╜уАС
+                 ITRON TCP/IP API цйЯшГ╜уВ│уГ╝уГЙуВТцЦЗхнЧшбичП╛уБлхдЙцПЫуБЩуВЛуАВ
 
-   (6)   MAC еве╔еье╣дЄеъе╞ещеы╔╜╕╜б╩╩╕╗·╬єб╦д╦╩╤┤╣д╣ды┤╪┐Ї
-         б┌C ╕└╕ь APIб█
+   (11)  MAC уВвуГЙуГмуВ╣уВТуГкуГЖуГйуГлшбичП╛я╝ИцЦЗхнЧхИЧя╝ЙуБлхдЙцПЫуБЩуВЛщЦвцХ░
+         уАРC шиАшкЮ APIуАС
                char *p_retbuf = mac2str (char *p_buf, uint8_t *p_macaddr);
 
-         б┌е╤ещесб╝е┐б█
-               char      buf       еъе╞ещеы╔╜╕╜д╬MACеве╔еье╣дЄ│╩╟╝д╣дые╨е├е╒еб
-               uint8_t   macaddr   MACеве╔еье╣
+         уАРуГСуГйуГбуГ╝уВ┐уАС
+               char      buf       уГкуГЖуГйуГлшбичП╛уБоMACуВвуГЙуГмуВ╣уВТца╝ч┤НуБЩуВЛуГРуГГуГХуВб
+               uint8_t   macaddr   MACуВвуГЙуГмуВ╣
 
-         б┌еъе┐б╝еєе╤ещесб╝е┐б█
-               char      retbuf    еъе╞ещеы╔╜╕╜д╬ MAC еве╔еье╣дм│╩╟╝д╡дьд┐е╨е├е╒еб
+         уАРуГкуВ┐уГ╝уГ│уГСуГйуГбуГ╝уВ┐уАС
+               char      retbuf    уГкуГЖуГйуГлшбичП╛уБо MAC уВвуГЙуГмуВ╣уБМца╝ч┤НуБХуВМуБЯуГРуГГуГХуВб
 
-         б┌едеєепеыб╝е╔е╒ебедеыб█
-               <sil.h>   TOPPERS/ASP д╟д╧╔м═╫
+         уАРуВдуГ│уВпуГлуГ╝уГЙуГХуВбуВдуГлуАС
+               <sil.h>   TOPPERS/ASP уБзуБпх┐ЕшжБ
                <net/net.h>
 
-         б┌╡б╟╜б█
-                 MAC еве╔еье╣дЄеъе╞ещеы╔╜╕╜б╩╩╕╗·╬єб╦д╦╩╤┤╣д╣дыбг е╤ещ
-               есб╝е┐ buf д╦д╧бв║╟─у 18 е╨еде╚д╬╬╬░шдм╔м═╫д╟двдыбгд▐д┐бв
-               е╤ещесб╝е┐ buf д╦бв NULL дЄ╗╪─ъд╣дыд╚бвTINET ╞т╔Їд╟│╬╩▌
-               д╖д╞двдые╨е├е╒ебд╦ MAC еве╔еье╣дЄеъе╞ещеы╔╜╕╜д╦╩╤┤╣д╖д╞
-               ╜ёдн╣■д▀бвд╜д╬еве╔еье╣дЄ╩╓д╣бг е│еєе╤едеы╗■е│еєе╒егеоех
-               еьб╝е╖ечеєе╤ещесб╝е┐ NUM_MACADDR_STR_BUFF д╦дшдъе╨е├е╒еб
-               ┐ЇдЄ╗╪─ъд╣дыд│д╚дм╜╨═шдыбг д┐д└д╖бве╨е├е╒еб┐ЇдЄ─╢дид╞╧в
-               ┬│┼кд╦╕╞╜╨д╣д╚е╨е├е╒ебдЄ╛х╜ёднд╣дыбг 
+         уАРцйЯшГ╜уАС
+                 MAC уВвуГЙуГмуВ╣уВТуГкуГЖуГйуГлшбичП╛я╝ИцЦЗхнЧхИЧя╝ЙуБлхдЙцПЫуБЩуВЛуАВ уГСуГй
+               уГбуГ╝уВ┐ buf уБлуБпуАБцЬАф╜О 18 уГРуВдуГИуБощаШхЯЯуБМх┐ЕшжБуБзуБВуВЛуАВуБ╛уБЯуАБ
+               уГСуГйуГбуГ╝уВ┐ buf уБлуАБNULL уВТцМЗхоЪуБЩуВЛуБиуАБ TINET хЖЕщГиуБзчв║ф┐Э
+               уБЧуБжуБВуВЛуГРуГГуГХуВбуБл MAC уВвуГЙуГмуВ╣уВТуГкуГЖуГйуГлшбичП╛уБлхдЙцПЫуБЧуБж
+               цЫ╕уБНш╛╝уБ┐уАБ уБЭуБоуВвуГЙуГмуВ╣уВТш┐ФуБЩуАВуВ│уГ│уГСуВдуГлцЩВуВ│уГ│уГХуВгуВоуГе
+               уГмуГ╝уВ╖уГзуГ│уГСуГйуГбуГ╝уВ┐ NUM_MACADDR_STR_BUFF уБлуВИуВКуГРуГГуГХуВб
+               цХ░уВТцМЗхоЪуБЩуВЛуБУуБиуБМхЗ║цЭеуВЛуАВуБЯуБауБЧуАБ уГРуГГуГХуВбцХ░уВТш╢ЕуБИуБжщАг
+               ч╢ЪчЪДуБлхС╝хЗ║уБЩуБиуГРуГГуГХуВбуВТф╕КцЫ╕уБНуБЩуВЛуАВ 
 
-   (7)   IPv6 д╬ IPV6_ADDRANY д╦┬╨▒■д╣ды┴┤░ш╩╤┐Ї
-         б┌C ╕└╕ь APIб█
+   (12)  IPv4 уВвуГЙуГмуВ╣уВТ IPv6 уБо IPv4 х░Дх╜▒уВвуГЙуГмуВ╣уБлхдЙцПЫуБЩуВЛщЦвцХ░
+         уАРC шиАшкЮ APIуАС
+               T_IN6_ADDR *p_dstaddr = in6_make_ipv4mapped (T_IN6_ADDR *dst,
+                                                            T_IN4_ADDR src);
+
+         уАРуГСуГйуГбуГ╝уВ┐уАС
+               T_IN6_ADDR          *dst      ца╝ч┤НхЕИуБоIPv6уВвуГЙуГмуВ╣хдЙцХ░уБ╕уБоуГЭуВдуГ│уВ┐
+               T_IN4_ADDR          src       хдЙцПЫуБЩуВЛIPv4уВвуГЙуГмуВ╣
+
+         уАРуГкуВ┐уГ╝уГ│уГСуГйуГбуГ╝уВ┐уАС
+               T_IN6_ADDR          *p_dstaddr                                        ца╝ч┤НхЕИуБоIPv6уВвуГЙуГмуВ╣хдЙцХ░уБ╕уБоуГЭуВдуГ│уВ┐
+
+         уАРуВдуГ│уВпуГлуГ╝уГЙуГХуВбуВдуГлуАС
+               <netinet/in.h>
+
+         уАРцйЯшГ╜уАС
+                 IPv4 уВвуГЙуГмуВ╣уВТ IPv6 уБо IPv4 х░Дх╜▒уВвуГЙуГмуВ╣уБлхдЙцПЫуБЩуВЛуАВ
+
+   (13)  цМЗхоЪуБЧуБЯ IPv6 уВвуГЙуГмуВ╣уБМ IPv4 х░Дх╜▒уВвуГЙуГмуВ╣уБЛуВТхИдхоЪуБЩуВЛщЦвцХ░
+         уАРC шиАшкЮ APIуАС
+               bool_t ret = in6_is_addr_ipv4mapped (const T_IN6_ADDR *addr);
+
+         уАРуГСуГйуГбуГ╝уВ┐уАС
+               T_IN6_ADDR          *p_dstaddr                                        хИдхоЪуБЩуВЛIPv6уВвуГЙуГмуВ╣хдЙцХ░уБ╕уБоуГЭуВдуГ│уВ┐
+
+         уАРуГкуВ┐уГ╝уГ│уГСуГйуГбуГ╝уВ┐уАС
+               bool_t    ret       IPv6уВвуГЙуГмуВ╣уБМIPv4х░Дх╜▒уВвуГЙуГмуВ╣уБзуБВуВМуБ░trueуБМш┐ФуБХуВМуВЛуАВ
+
+         уАРуВдуГ│уВпуГлуГ╝уГЙуГХуВбуВдуГлуАС
+               <netinet/in.h>
+
+         уАРцйЯшГ╜уАС
+                 цМЗхоЪуБЧуБЯ IPv6 уВвуГЙуГмуВ╣уБМ IPv4 х░Дх╜▒уВвуГЙуГмуВ╣уБЛуВТхИдхоЪуБЩ
+               уВЛуАВIPv6 уВвуГЙуГмуВ╣уБМ IPv4 х░Дх╜▒уВвуГЙуГмуВ╣уБзуБВуВМуБ░ true уБМш┐Ф
+               уБХуВМуВЛуАВ
+
+   (14)  IPv6 уБочЙ╣цоКуБкуВвуГЙуГмуВ╣уБлхп╛х┐ЬуБЩуВЛхЕихЯЯхдЙцХ░
+         уАРC шиАшкЮ APIуАС
+               const T_IN6_ADDR in6_addr_unspecified;
+               const T_IN6_ADDR in6_addr_linklocal_allnodes;
+               const T_IN6_ADDR in6_addr_linklocal_allrouters;
+
+         уАРцйЯшГ╜уАС
+                 IPv6 уБзуБпуАБуВвуГЙуГмуВ╣щХ╖уБМ 128 уГУуГГуГИя╝И16 уГРуВдуГИя╝ЙуБзуАБхАд
+               уВТуГЮуВпуГнуБзхоЪч╛йуБЩуВЛуБУуБиуБМуБзуБНуБкуБДуБЯуВБуБлчФицДПуБЧуБЯхЕихЯЯхдЙцХ░
+               уБзуБВуВКуАБф╗еф╕ЛуБоуВИуБЖуБлуАБ уГбуГвуГкцУНф╜ЬщЦвцХ░уВТхС╝уБ│хЗ║уБЧуБжуВ│уГФуГ╝уБЩуВЛуАВ
+                  memcpy(&myaddr.ipaddr, &in6_addr_unspecified, sizeof(T_IN6_ADDR));
+
+   (15)  IPv6 уБо IPV6_ADDRANY уБлхп╛х┐ЬуБЩуВЛхЕихЯЯхдЙцХ░
+         уАРC шиАшкЮ APIуАС
                const T_IN6_ADDR ipv6_addrany;
 
-         б┌╡б╟╜б█
-                 T_IPV6EP д╬ ipaddr е╒егб╝еые╔д╦бв├═ IPV4_ADDRANY дЄ┬х
-               ╞■д╣дыд╚днбвIPv4 д╟д╧бв
-
+         уАРцйЯшГ╜уАС
+                 T_IPV6EP уБо ipaddr уГХуВгуГ╝уГлуГЙуБлуАБхАд IPV4_ADDRANY уВТф╗г
+               хЕеуБЩуВЛуБиуБНуАБIPv4 уБзуБпуАБ
                   myaddr.ipaddr = IPV4_ADDRANY;
 
-               д╚╗╪─ъд╟дндыдмбвIPv6 д╟д╧бв╞▒══д╬╗╪─ъдмд╟днд╩ддд┐дсд╦═╤
-               ░╒д╖д┐┴┤░ш╩╤┐Їд╟двдъбв ░╩▓╝д╬дшджд╦бвесетеъ┴р║ю┤╪┐ЇдЄ╕╞
-               д╙╜╨д╖д╞е│е╘б╝д╣дыбг
-
+               уБицМЗхоЪуБзуБНуВЛуБМуАБIPv6 уБзуБпуАБхРМцзШуБоцМЗхоЪуБМуБзуБНуБкуБДуБЯуВБуБлчФи
+               цДПуБЧуБЯхЕихЯЯхдЙцХ░уБзуБВуВКуАБ ф╗еф╕ЛуБоуВИуБЖуБлуАБуГбуГвуГкцУНф╜ЬщЦвцХ░уВТхС╝
+               уБ│хЗ║уБЧуБжуВ│уГФуГ╝уБЩуВЛуАВ
                   memcpy(&myaddr.ipaddr, &ipv6_addrany, sizeof(T_IN6_ADDR));
 
-               д╩дкбвд│д╬┴┤░ш╩╤┐Їд╧е▐епеэд╟─ъ╡┴д╖д╞дддыбг 
+               уБкуБКуАБуБУуБохЕихЯЯхдЙцХ░уБпуГЮуВпуГнуБзхоЪч╛йуБЧуБжуБДуВЛуАВ 
 
-   (8)   TINET д╬е╨б╝е╕ечеє╛Ё╩єе▐епеэ
-         б┌C ╕└╕ь APIб█
+   (16)  TINET уБоуГРуГ╝уВ╕уГзуГ│цГЕха▒уГЮуВпуГн
+         уАРC шиАшкЮ APIуАС
                TINET_PRVER
 
-         б┌е╙е├е╚╟█╩мб█
-               е╙е├е╚12б┴15        есе╕еуб╝еъеъб╝е╣б╩╕╜║▀д╬├═д╧1б╦
-               е╙е├е╚4б┴11         е▐еде╩б╝еъеъб╝е╣б╩╕╜║▀д╬├═д╧5б╦
-               е╙е├е╚3б┴0          е╤е├е┴еье┘еыб╩╕╜║▀д╬├═д╧0б╦
+         уАРуГУуГГуГИщЕНхИЖуАС
+               уГУуГГуГИ12уАЬ15        уГбуВ╕уГгуГ╝уГкуГкуГ╝уВ╣я╝ИчП╛хЬиуБохАдуБп1я╝Й
+               уГУуГГуГИ4уАЬ11         уГЮуВдуГКуГ╝уГкуГкуГ╝уВ╣я╝ИчП╛хЬиуБохАдуБп7я╝Й
+               уГУуГГуГИ3уАЬ0          уГСуГГуГБуГмуГЩуГля╝ИчП╛хЬиуБохАдуБп0я╝Й
 
-         б┌едеєепеыб╝е╔е╒ебедеыб█
+         уАРуВдуГ│уВпуГлуГ╝уГЙуГХуВбуВдуГлуАС
                <net/net.h>
 
-   (9)   8 е╙е├е╚╦шд╦╗╪─ъд╖д┐ IPv4 еве╔еье╣дЄ 32 е╙е├е╚д╦д╣дые▐епеэ
-         б┌C ╕└╕ь APIб█
+   (17)  8 уГУуГГуГИцпОуБлцМЗхоЪуБЧуБЯ IPv4 уВвуГЙуГмуВ╣уВТ 32 уГУуГГуГИуБлуБЩуВЛуГЮуВпуГн
+         уАРC шиАшкЮ APIуАС
                T_IN4_ADDR addr = MAKE_IPV4_ADDR(uint8_t a, uint8_t b,
                                                 uint8_t c, uint8_t d);
 
-         б┌е╤ещесб╝е┐б█
-               uint8_t   a         IPv4еве╔еье╣д╬е╙е├е╚24б┴31
-               uint8_t   b         IPv4еве╔еье╣д╬е╙е├е╚16б┴23
-               uint8_t   c         IPv4еве╔еье╣д╬е╙е├е╚8б┴15
-               uint8_t   d         IPv4еве╔еье╣д╬е╙е├е╚0б┴7
+         уАРуГСуГйуГбуГ╝уВ┐уАС
+               uint8_t   a         IPv4уВвуГЙуГмуВ╣уБоуГУуГГуГИ24уАЬ31
+               uint8_t   b         IPv4уВвуГЙуГмуВ╣уБоуГУуГГуГИ16уАЬ23
+               uint8_t   c         IPv4уВвуГЙуГмуВ╣уБоуГУуГГуГИ8уАЬ15
+               uint8_t   d         IPv4уВвуГЙуГмуВ╣уБоуГУуГГуГИ0уАЬ7
 
-         б┌еъе┐б╝еєе╤ещесб╝е┐б█
-               T_IN4_ADDR          addr      32е╙е├е╚д╬IPv4еве╔еье╣
+         уАРуГкуВ┐уГ╝уГ│уГСуГйуГбуГ╝уВ┐уАС
+               T_IN4_ADDR          addr      32уГУуГГуГИуБоIPv4уВвуГЙуГмуВ╣
 
-         б┌едеєепеыб╝е╔е╒ебедеыб█
+         уАРуВдуГ│уВпуГлуГ╝уГЙуГХуВбуВдуГлуАС
                <netinet/in.h>
 
-         б┌╡б╟╜б█
-                 │╞екепе╞е├е╚д╬├═длдщ IPv4 еве╔еье╣дЄ└╕└од╣дыбг
+         уАРцйЯшГ╜уАС
+                 хРДуВкуВпуГЖуГГуГИуБохАдуБЛуВЙ IPv4 уВвуГЙуГмуВ╣уВТчФЯцИРуБЩуВЛуАВ
 
-   (10)  ░ь╚╠─ъ┐Їе▐епеэ
+   (18)  ф╕АшИмхоЪцХ░уГЮуВпуГн
 
-         TCP_REP_NONE        │║┼Ўд╣ды TCP ╝ї╔╒╕¤дм╠╡ддбг├═д╧б╩0б╦бг
-         TCP_CEP_NONE        │║┼Ўд╣ды TCP ─╠┐о├╝┼└дм╠╡ддбг├═д╧б╩0б╦бг
-         UDP_CEP_NONE        │║┼Ўд╣ды UDP ─╠┐о├╝┼└дм╠╡ддбг├═д╧б╩0б╦бг
+         TCP_REP_NONE        шй▓х╜УуБЩуВЛ TCP хПЧф╗ШхПгуБМчДбуБДуАВхАдуБпя╝И0я╝ЙуАВ
+         TCP_CEP_NONE        шй▓х╜УуБЩуВЛ TCP щАЪф┐бчлпчВ╣уБМчДбуБДуАВхАдуБпя╝И0я╝ЙуАВ
+         UDP_CEP_NONE        шй▓х╜УуБЩуВЛ UDP щАЪф┐бчлпчВ╣уБМчДбуБДуАВхАдуБпя╝И0я╝ЙуАВ
 
-6. 4  ▒■═╤е╫еэе░ещере│б╝еые╨е├еп┤╪┐Ї
+7. 4  х┐ЬчФиуГЧуГнуВ░уГйуГауВ│уГ╝уГлуГРуГГуВпщЦвцХ░
 
-  TINET длдщ╕╞╜╨д╡дьды▒■═╤е╫еэе░ещере│б╝еые╨е├еп┤╪┐Їд╟двдъбв▒■═╤е╫еэе░
-ещер┬жд╟═╤░╒д╣ды╔м═╫дмдвдыбг
+  TINET уБЛуВЙхС╝хЗ║уБХуВМуВЛх┐ЬчФиуГЧуГнуВ░уГйуГауВ│уГ╝уГлуГРуГГуВпщЦвцХ░уБзуБВуВКуАБх┐ЬчФиуГЧуГнуВ░
+уГйуГахБ┤уБзчФицДПуБЩуВЛх┐ЕшжБуБМуБВуВЛуАВ
 
-   (1)   IPv4 еве╔еье╣╜┼╩г╕б╜╨╗■д╬е│б╝еые╨е├еп┤╪┐Ї
-         б┌C ╕└╕ь APIб█
+   (1)   IPv4 уВвуГЙуГмуВ╣щЗНшдЗцдЬхЗ║цЩВуБоуВ│уГ╝уГлуГРуГГуВпщЦвцХ░
+         уАРC шиАшкЮ APIуАС
                boot_t reply = arp_callback_duplicated(uint8_t *shost);
 
-         б┌е╤ещесб╝е┐б█
-               uint8_t   shost     ╜┼╩г┴ъ╝ъд╬MACеве╔еье╣
+         уАРуГСуГйуГбуГ╝уВ┐уАС
+               uint8_t   shost     щЗНшдЗчЫ╕цЙЛуБоMACуВвуГЙуГмуВ╣
 
-         б┌еъе┐б╝еєе╤ещесб╝е┐б█
-               bool_t    reply     ╜┼╩гд╬─╠├╬
+         уАРуГкуВ┐уГ╝уГ│уГСуГйуГбуГ╝уВ┐уАС
+               bool_t    reply     щЗНшдЗуБощАЪчЯе
 
-         б┌едеєепеыб╝е╔е╒ебедеыб█
+         уАРуВдуГ│уВпуГлуГ╝уГЙуГХуВбуВдуГлуАС
                <netinet/if_ether.h>
 
-         б┌е│еєе╤едеы╗■е│еєе╒егеоехеьб╝е╖ечеєе╤ещесб╝е┐б█
+         уАРуВ│уГ│уГСуВдуГлцЩВуВ│уГ│уГХуВгуВоуГеуГмуГ╝уВ╖уГзуГ│уГСуГйуГбуГ╝уВ┐уАС
                ARP_CFG_CALLBACK_DUPLICATED
 
-         б┌╡б╟╜б█
-                 ╠сдъ├═д╦ TRUE дЄ╗╪─ъд╣дыд╚бвTINET д╟╜┼╩г┴ъ╝ъд╬ MAC ев
-               е╔еье╣дЄ syslog д╦╜╨╬╧д╖бв ╜┼╩г┴ъ╝ъд╦дт╜┼╩гд╖д┐д│д╚дЄ┼┴
-               дидыбгFALSE дЄ╗╪─ъд╣дыд╚▓┐дтд╖д╩ддбг
-
-7.  TOPPERS/ASP ┤─╢нд╦дкд▒дыедеєе╣е╚б╝еыд╚е╒ебедеыд╬║ю└обж╩╤╣╣
-
-7. 1  едеєе╣е╚б╝еы╝ъ╜ч
-
-   (1)   TOPPERS/ASP дЄедеєе╣е╚б╝еыд╣дыбг TOPPERS/ASP д╬едеєе╣е╚б╝еыд╦
-         ┤╪д╖д╞д╧бв TOPPERS/ASP елб╝е═еыецб╝е╢е║е▐е╦ехевеыб╩user.txtб╦
-         д╬б╓3.1. │л╚п┤─╢нд╬╜р╚ў б╫дЄ╗▓╛╚д╣дыд│д╚бг
-
-   (2)   TOPPERS/ASP ═╤ TINET ╟█╔█е╒ебедеыб╩tinet-asp-1.5.tar.gzб╦дЄ
-         TOPPERS/ASP еыб╝е╚е╟егеьепе╚еъд╟┼╕│лд╣дыбг
-
-7. 2  е╒ебедеыд╬║ю└обв└▀─ъ
-
-  еве╫еъе▒б╝е╖ечеєе╫еэе░ещерд╬┬╛д╦бв ╩╤╣╣бж┐╖╡м║ю└од╣д┘дне╒ебедеыд╚
-TINET е│еєе╒еге░еьб╝е┐д╟└╕└од╡дьдые╒ебедеыдЄ░╩▓╝д╦╝ид╣бг ┴┤д╞
-TOPPERS/ASP еыб╝е╚е╟егеьепе╚еъдлдщд╬┴ъ┬╨е╤е╣д╟двдъбв Makefile е▐епеэд╬
-░╒╠гдЄ░╩▓╝д╦╝ид╣бг
-
-   $(ARCH)         е╫еэе╗е├е╡░═┬╕╔Ї
-   $(TARGET)       е┐б╝е▓е├е╚░═┬╕╔Ї
-   $(NIC)          е═е├е╚еяб╝епедеєе┐е╒езб╝е╣
-   $(APPLDIR)      еве╫еъе▒б╝е╖ечеєе╫еэе░ещерд╬е╟егеьепе╚еъ
-   $(APPLNAME)     еве╫еъе▒б╝е╖ечеєе╫еэе░ещер╠╛
-
-   (1)   target/$(TARGET)/tinet_target_config.hб┌┐╖╡м║ю└об█
-         е╖е╣е╞ерд╦░═┬╕д╣ды TINET е│еєе╒егеоехеьб╝е╖ечеєбже╤ещесб╝е┐дЄ
-         ─ъ╡┴д╣дые╒ебедеыд╟двдыбг ╞т═╞д╦д─ддд╞д╧ tinet_config.pdf
-         б╩tinet_config.txtб╦дЄ╗▓╛╚д╣дыд│д╚бг
-
-   (2)   $(APPLDIR)/tinet_app_config.hб┌┐╖╡м║ю└об█
-         еве╫еъе▒б╝е╖ечеєд╦░═┬╕д╣ды TINET е│еєе╒егеоехеьб╝е╖ечеєбже╤ещ
-         есб╝е┐дЄ─ъ╡┴д╣дые╒ебедеыд╟двдыбг ╞т═╞д╦д─ддд╞д╧
-         tinet_config.pdfб╩tinet_config.txtб╦дЄ╗▓╛╚д╣дыд│д╚бг
-
-   (3)   tinet/netdev/$(NIC)/tinet_nic_config.hб┌┐╖╡м║ю└об█
-         е═е├е╚еяб╝епедеєе┐е╒езб╝е╣д╦░═┬╕д╣ды TINET е│еєе╒егеоехеьб╝е╖еч
-         еєбже╤ещесб╝е┐дЄ─ъ╡┴д╣дые╒ебедеыд╟двдыбг 
-
-   (4)   target/$(TARGET)/tinet_target_defs.hб┌┐╖╡м║ю└об█
-         е╫еэе╗е├е╡д╦░═┬╕д╣ды TCP/IP е╤ещесб╝е┐дЄ─ъ╡┴д╣дые╒ебедеыд╟дв
-         дыбг╞т═╞д╦д─ддд╞д╧ tinet_defs.pdfб╩tinet_defs.txtб╦дЄ╗▓╛╚д╣дыд│д╚бг
-
-   (5)   tinet/netdev/$(NIC)/tinet_nic_defs.hб┌┐╖╡м║ю└об█
-         е═е├е╚еяб╝епедеєе┐е╒езб╝е╣д╦░═┬╕д╣ды TCP/IP е╤ещесб╝е┐дЄ─ъ╡┴
-         д╣дые╒ебедеыд╟двдыбг ╞т═╞д╦д─ддд╞д╧ tinet_defs.pdf
-         б╩tinet_defs.txtб╦дЄ╗▓╛╚д╣дыд│д╚бг
-
-   (6)   $(APPLDIR)/tinet_$(APPLNAME).cfgб┌┐╖╡м║ю└об█
-         TINET е│еєе╒егеоехеьб╝е╖ечеєе╒ебедеыд╟двдыбг ╞т═╞д╦д─ддд╞д╧
-         б╓2.1 TOPPERS/ASP ┤─╢нд╦дкд▒ды TINET е│еєе╒еге░еьб╝е╖ечеєе╒еб
-         едеы б╫дЄ╗▓╛╚д╣дыд│д╚бг 
-
-   (7)   $(APPLDIR)/route_cfg.cб┌┐╖╡м║ю└об█
-         └┼┼кеыб╝е╞егеєе░дЄ└▀─ъд╣дые╒ебедеыд╟двдыбг ╞т═╞д╦д─ддд╞д╧б╓4.
-         еыб╝е╞егеєе░д╬└▀─ъ б╫дЄ╗▓╛╚д╣дыд│д╚бгд╩дкбве╟еге╒ейеые╚е▓б╝е╚
-         ежезедд╬д▀д╬е╖еєе╫еыд╩е═е├е╚еяб╝епд╟д╧бв е╡еєе╫еыеве╫еъе▒б╝е╖еч
-         еє echos д╬ route_cfg.c дЄд╜д╬д▐д▐╬о═╤д╟дндыбг
-
-   (8)   $(APPLDIR)/$(APPLNAME).cб┌╩╤╣╣б█
-         TINET дЄ╗╚═╤д╣дыд┐дсд╦бв ░╩▓╝д╬едеєепеыб╝е╔е╒ебедеыдЄ╗╪─ъд╣ды
-         ╔м═╫дмдвдыбг
-
-            #include "tinet_cfg.h"
-            #include <netinet/in.h>
-            #include <netinet/in_itron.h>
-
-   (9)   $(APPLDIR)/$(APPLNAME).cfgб┌╩╤╣╣б█
-         TINET ╞т╔Їд╟╗╚═╤д╣дыелб╝е═еыеке╓е╕езепе╚дЄ╝шдъ╣■дрд┐дсд╦бв
-         TINET е│еєе╒егеоехеьб╝е╖ечеєе╒ебедеыдЄедеєепеыб╝е╔д╣дыбг
-
-            INCLUDE("../tinet/tinet_asp.cfg");
-
-   (10)  $(APPLDIR)/Makefileб┌╩╤╣╣б█
-         ╩╤╣╣д╦д─ддд╞д╧б╓7.3 еве╫еъе▒б╝е╖ечеєд╬ Makefileб╫дЄ╗▓╛╚д╣дыд│д╚бг
-
-   (11)  $(APPLDIR)/tinet_cfg.cб┌╝л╞░└╕└об█
-         TCP ╝ї╔╒╕¤бвTCP ─╠┐о├╝┼└бв╡┌д╙ UDP ─╠┐о├╝┼└д╦┬╨▒■д╣ды╣╜┬д┬╬дм
-         └╕└од╡дьдые╒ебедеыд╟бв TOPPERS/ASP е│еєе╒еге░еьб╝е┐д╦дшдъ└╕└о
-         д╡дьдыбг еве╫еъе▒б╝е╖ечеєе╫еэе░ещербвTINET д╚╢жд╦е│еєе╤едеыд╖
-         д╞еъеєепд╣дыбг
-
-   (12)  $(APPLDIR)/tinet_kern.cfgб┌╝л╞░└╕└об█
-         TINET ╞т╔Їд╟╗╚═╤д╣дыелб╝е═еыеке╓е╕езепе╚д╬└┼┼к API дм└╕└од╡дь
-         дые╒ебедеыд╟бв TOPPERS/ASP е│еєе╒еге░еьб╝е┐д╦дшдъ└╕└од╡дьдыбг
-         TOPPERS/ASP д╬е╖е╣е╞ере│еєе╒егеоехеьб╝е╖ечеєе╒ебедеыб╩╔╕╜рд╟
-         д╧ $(APPLNAME).cfgб╦д╦едеєепеыб╝е╔д╣дыбг
-
-   (13)  $(APPLDIR)/tinet_cfg.hб┌╝л╞░└╕└об█
-         TCP ╝ї╔╒╕¤бвTCP ─╠┐о├╝┼└бв╡┌д╙ UDP ─╠┐о├╝┼└д╬ ID ╝л╞░│ф╔╒╖ы▓╠
-         е╒ебедеыд╟бвTOPPERS/ASP е│еєе╒еге░еьб╝е┐д╦дшдъ└╕└од╡дьдыбг
-
-7. 3  еве╫еъе▒б╝е╖ечеєд╬ Makefile
-
-7. 3. 1  еве╫еъе▒б╝е╖ечеєд╬ Makefile д╬╜д└╡
-
-  д│д│д╟д╧бв┤√д╦┬╕║▀д╣дыеве╫еъе▒б╝е╖ечеєд╬ Makefile д╦бвTINET дЄ┴╚д▀╣■
-дрд┐дсд╬╜д└╡╩¤╦бдЄ╜╥д┘дыбгTINET д╦╔╒┬░д╣дые╡еєе╫еые╫еэе░ещерд╬╣╜├█д╦д─
-ддд╞д╧бв б╓9.1 е╡еєе╫еыеве╫еъе▒б╝е╖ечеєд╬╣╜├█ б╫дЄ╗▓╛╚д╣дыд│д╚бг
-  ╔╕╜р┼кд╩ TOPPERS/ASP ┤─╢нд╦дкд▒дые╡еєе╫еыеве╫еъе▒б╝е╖ечеєд╬ Makefile
-д╬
-
-   #
-   #  еве╫еъе▒б╝е╖ечеєе╫еэе░ещерд╦┤╪д╣ды─ъ╡┴
-   #
-   APPLNAME = ...
-      ... ┼╙├ц╬м ...
-   ifdef APPLDIR
-     INCLUDES := $(INCLUDES) $(foreach dir,$(APPLDIR),-I$(dir))
-   endif
-
-д╬╕хд╦бв╝бд╦╝ид╣ TINET ═╤д╬─ъ╡┴дЄ─╔▓├д╣дыбг
-
-   #
-   #  е═е├е╚еяб╝епе╡б╝е╙е╣д╬─ъ╡┴
-   #
-   
-   #  е═е├е╚еяб╝епедеєе┐е╒езб╝е╣д╬┴к┬Є
-   
-   NET_IF = ether
-   
-   #  едб╝е╡е═е├е╚бже╟еге╨еде╣е╔ещеде╨д╬┴к┬Є
-   
-   NET_DEV = if_ed
-   
-   #  е═е├е╚еяб╝еп┴╪д╬┴к┬Єбв▓┐дьдл░ьд─┴к┬Єд╣дыбг
-   
-   SUPPORT_INET4 = true
-   #SUPPORT_INET6 = true
-   
-   #  е╚ещеєе╣е▌б╝е╚┴╪д╬┴к┬Є
-   
-   SUPPORT_TCP = true
-   #SUPPORT_UDP = true
-   
-   #
-   #  е╖е╣е╞ере╡б╝е╙е╣д╬ Makefile д╬едеєепеыб╝е╔
-   #
-   include $(SRCDIR)/tinet/Makefile.tinet
-
-7. 3. 2  еве╫еъе▒б╝е╖ечеєд╬ Makefile д╦дшды TINET д╦┴╚╣■др╡б╟╜д╬╗╪─ъ
-
-  еве╫еъе▒б╝е╖ечеєд╬ Makefile д╦дшды TINET д╦┴╚╣■др╡б╟╜дЄ╗╪─ъд╣ды╩¤╦б
-дЄ░╩▓╝д╦╝ид╣бг
-
-   (1)   е═е├е╚еяб╝епедеєе┐е╒езб╝е╣д╬┴к┬Є
-           едб╝е╡е═е├е╚д╬д▀┴к┬Єд╟дндыбг
-
-            NET_IF = ether
-
-   (2)   едб╝е╡е═е├е╚бже╟еге╨еде╣е╔ещеде╨д╬┴к┬Є
-           ░╩▓╝д╦╝ид╣─╠дъбв NET_DEV д╦едб╝е╡е═е├е╚бже╟еге╨еде╣е╔ещеде╨
-         дЄ─ъ╡┴д╣дыбг╕╜║▀бвTINET д╬╟█╔█е╒ебедеыд╟д╧бвNE2000 ╕▀┤╣д╬ NIC
-         д╬едб╝е╡е═е├е╚бже╟еге╨еде╣е╔ещеде╨д╬д▀─є╢бд╖д╞дддыбг 
-
-            NET_DEV = if_ed
-
-   (3)   е═е├е╚еяб╝еп┴╪д╬┴к┬Є
-           ░╩▓╝д╦╝ид╣─ъ╡┴длдщбвIPv4 д╚ IPv6 д╬▓┐дьдл░ьд─┴к┬Єд╣дыбг
-
-            SUPPORT_INET4 = true
-            #SUPPORT_INET6 = true
-
-   (4)   е╚ещеєе╣е▌б╝е╚┴╪д╬┴к┬Є
-           ░╩▓╝д╦╝ид╣─ъ╡┴длдщбв╔м═╫д╩е╫еэе╚е│еыдЄ┴к┬Єд╣дыбг 
-
-            SUPPORT_TCP = true
-            #SUPPORT_UDP = true
-
-7. 3. 3  е╖е╣е╞ере╡б╝е╙е╣═╤ Makefile.tinet д╬╩╤┐Ї
-
-  TINET д╧бв е╖е╣е╞ере╡б╝е╙е╣д╚д╖д╞ TOPPERS/ASP елб╝е═еыд╚┴╚╣чд╗д╞е│еє
-е╤едеыд╖д╞дддыбг TINET дЄ┴╚╣■древе╫еъе▒б╝е╖ечеє═╤д╬ Makefile д╟д╧бв
-TINET ═╤д╬ Makefile.tinet дЄбв░╩▓╝д╦╝ид╣едеєепеыб╝е╔д╦дшдъ╗╪─ъд╖д╞дддыбг
-
-   #
-   #  е╖е╣е╞ере╡б╝е╙е╣д╬ Makefile д╬едеєепеыб╝е╔
-   #
-   include $(SRCDIR)/tinet/Makefile.tinet
-
-д│д│д╟д╧бвTINET ═╤д╬ Makefile.tinet д╟─ъ╡┴д╖д╞ддды╩╤┐ЇдЄ░╩▓╝д╦╝ид╣бг
-
-   (1)   SYSSVC_DIR
-         е╖е╣е╞ере╡б╝е╙е╣д╬е╟егеьепе╚еъдЄ─╔▓├д╣дыбг TINET д╟д╧
-         $(TINET_DIR)
-         б╩├═д╧
-         $(TINET_ROOT)/net:$(TINET_ROOT)/netinet:$(TINET_ROOT)/netinet6б╦
-         дЄ─╔▓├д╖д╞дддыбг
-
-   (2)   SYSSVC_LCSRCS
-         е╖е╣е╞ере╡б╝е╙е╣д╬ещеде╓ещеъ▓╜д╣дые╜б╝е╣е╒ебедеыдЄ─╔▓├д╣дыбг
-         TINET д╟д╧ $(TINET_LCSRCS)б╩├═д╧ tcp_usrreq.cбвudp_usrreq.cб╦
-         дЄ─╔▓├д╖д╞дддыбг
-
-   (3)   SYSSVC_COBJS
-         е╖е╣е╞ере╡б╝е╙е╣д╬ C ╕└╕ьд╬еке╓е╕езепе╚е╒ебедеыдЄ─╔▓├д╣дыбг
-         TINET д╟д╧бв$(TINET_COBJS)б╩├═д╧бв┬┐┐Їд╬е╒ебедеыд╬д┐дсбв д│д│
-         д╟д╧╛╩╬мб╦дЄ─╔▓├д╖д╞дддыбг
-
-   (4)   SYSSVC_CFLAGS
-         е╖е╣е╞ере╡б╝е╙е╣дЄе│еєе╤едеыд╣дыд╚днд╬еке╫е╖ечеєд╟двдыбгTINET
-         д╟д╧ $(TINET_CFLAGS)б╩├═д╧╠д─ъ╡┴б╦дЄ─╔▓├д╖д╞дддыбг
-
-   (5)   SYSSVC_LIBS
-         е╖е╣е╞ере╡б╝е╙е╣д╬ещеде╓ещеъдЄ─╔▓├д╣дыбг TINET д╟д╧бв
-         $(LIBTINET)б╩├═д╧ libtinet.aб╦д╚ -lc дЄ─╔▓├д╖д╞дддыбг
-
-   (6)   CLEAN_FILES
-         make clean д╟бв░ь╜яд╦╛├╡юд╣дые╒ебедеыдЄ─╔▓├д╣дыбгTINET д╟д╧бв
-         $(TINET_CFG_OUT)
-         б╩├═д╧ tinet_kern.cfgбв tinet_cfg.hбв tinet_cfg.cбв
-         tinet_cfg1_out.*б╦д╚ $(MAKE_TINET_LIB)б╩├═д╧ libtinet.aб╦дЄ─╔
-         ▓├д╖д╞дддыбг
-
-8.  TOPPERS/JSP ┤─╢нд╦дкд▒дыедеєе╣е╚б╝еыд╚е╒ебедеыд╬║ю└обж╩╤╣╣
-
-8. 1  едеєе╣е╚б╝еы╝ъ╜ч
-
-  TOPPERS/JSP ┤─╢нд╟д╧бв "TINET е│еєе╒егеоехеьб╝е┐дЄ└╕└од╣дыбг░╩▓╝д╦╝ъ
-╜чдЄ╝ид╣бг
-
-   (1)   TOPPERS/JSP дЄедеєе╣е╚б╝еыд╣дыбг TOPPERS/JSP д╬едеєе╣е╚б╝еыд╦
-         ┤╪д╖д╞д╧бв TOPPERS/JSP елб╝е═еыецб╝е╢е║е▐е╦ехевеыб╩user.txtб╦
-         д╬б╓7. │л╚п┤─╢нбжедеєе╣е╚б╝еыбже▌б╝е╞егеєе░ б╫дЄ╗▓╛╚д╣дыд│д╚бг 
-
-   (2)   TOPPERS/JSP ═╤ TINET ╟█╔█е╒ебедеыб╩tinet-jsp-1.5.tar.gzб╦дЄ
-         TOPPERS/JSP еыб╝е╚е╟егеьепе╚еъд╟┼╕│лд╣дыбг
-
-   (3)   TINET е│еєе╒егеоехеьб╝е┐ tinet_cfgб╩cygwin д╟д╧ tinet_cfg.exeб╦
-         дЄ└╕└од╣дыбг
-
-         [1]   TINET е│еєе╒егеоехеьб╝е┐д╬е╟егеьепе╚еъд╧бв TOPPERS/JSP
-               еыб╝е╚е╟егеьепе╚еъд╬▓╝д╬ tinet/cfg д╟двдыбгд│д╬е╟егеьеп
-               е╚еъд╦░▄╞░д╣дыбг
-
-         [2]   make д╟ TINET е│еєе╒егеоехеьб╝е┐дЄ└╕└од╣дыбг
-
-8. 2  е╒ебедеыд╬║ю└обв└▀─ъ
-
-  еве╫еъе▒б╝е╖ечеєе╫еэе░ещерд╬┬╛д╦бв ╩╤╣╣бж┐╖╡м║ю└од╣д┘дне╒ебедеыд╚
-TINET е│еєе╒еге░еьб╝е┐д╟└╕└од╡дьдые╒ебедеыдЄ░╩▓╝д╦╝ид╣бг ┴┤д╞
-TOPPERS/JSP еыб╝е╚е╟егеьепе╚еъдлдщд╬┴ъ┬╨е╤е╣д╟двдъбв Makefile е▐епеэд╬
-░╒╠гдЄ░╩▓╝д╦╝ид╣бг
-
-   $(CPU)          е┐б╝е▓е├е╚ CPU
-   $(SYS)          е┐б╝е▓е├е╚е╖е╣е╞ер
-   $(NIC)          е═е├е╚еяб╝епедеєе┐е╒езб╝е╣
-   $(UNAME)        еве╫еъе▒б╝е╖ечеєе╫еэе░ещер╠╛
-
-д▐д┐бв $(APP_DIR) д╧ Makefile д╟д╧─ъ╡┴д╡дьд╞ддд╩дддмбвеве╫еъе▒б╝е╖ечеє
-е╫еэе░ещерд╬е╟егеьепе╚еъ╠╛дЄ░╒╠гд╖д╞дддыбг 
-
-   (1)   config/$(CPU)/tinet_cpu_config.hб┌┐╖╡м║ю└об█
-         е╫еэе╗е├е╡д╦░═┬╕д╣ды TINET е│еєе╒егеоехеьб╝е╖ечеєбже╤ещесб╝е┐
-         дЄ─ъ╡┴д╣дые╒ебедеыд╟двдыбг ╞т═╞д╦д─ддд╞д╧ tinet_config.pdf
-         б╩tinet_config.txtб╦дЄ╗▓╛╚д╣дыд│д╚бг
-
-   (2)   config/$(CPU)/$(SYS)/tinet_sys_config.hб┌┐╖╡м║ю└об█
-         е╖е╣е╞ерд╦░═┬╕д╣ды TINET е│еєе╒егеоехеьб╝е╖ечеєбже╤ещесб╝е┐дЄ
-         ─ъ╡┴д╣дые╒ебедеыд╟двдыбг ╞т═╞д╦д─ддд╞д╧ tinet_config.pdf
-         б╩tinet_config.txtб╦дЄ╗▓╛╚д╣дыд│д╚бг
-
-   (3)   $(APP_DIR)/tinet_app_config.hб┌┐╖╡м║ю└об█
-         еве╫еъе▒б╝е╖ечеєд╦░═┬╕д╣ды TINET е│еєе╒егеоехеьб╝е╖ечеєбже╤ещ
-         есб╝е┐дЄ─ъ╡┴д╣дые╒ебедеыд╟двдыбг ╞т═╞д╦д─ддд╞д╧
-         tinet_config.pdfб╩tinet_config.txtб╦дЄ╗▓╛╚д╣дыд│д╚бг
-
-   (4)   tinet/netdev/$(NIC)/tinet_nic_config.hб┌┐╖╡м║ю└об█
-         е═е├е╚еяб╝епедеєе┐е╒езб╝е╣д╦░═┬╕д╣ды TINET е│еєе╒егеоехеьб╝е╖еч
-         еєбже╤ещесб╝е┐дЄ─ъ╡┴д╣дые╒ебедеыд╟двдыбг 
-
-   (5)   config/$(CPU)/tinet_cpu_defs.hб┌┐╖╡м║ю└об█
-         е╫еэе╗е├е╡д╦░═┬╕д╣ды TCP/IP е╤ещесб╝е┐дЄ─ъ╡┴д╣дые╒ебедеыд╟дв
-         дыбг╞т═╞д╦д─ддд╞д╧ tinet_defs.pdfб╩tinet_defs.txtб╦дЄ╗▓╛╚д╣дыд│д╚бг
-
-   (6)   tinet/netdev/$(NIC)/tinet_nic_defs.hб┌┐╖╡м║ю└об█
-         е═е├е╚еяб╝епедеєе┐е╒езб╝е╣д╦░═┬╕д╣ды TCP/IP е╤ещесб╝е┐дЄ─ъ╡┴
-         д╣дые╒ебедеыд╟двдыбг ╞т═╞д╦д─ддд╞д╧ tinet_defs.pdf
-         б╩tinet_defs.txtб╦дЄ╗▓╛╚д╣дыд│д╚бг
-
-   (7)   $(APP_DIR)/tinet_$(UNAME).cfgб┌┐╖╡м║ю└об█
-         TINET е│еєе╒егеоехеьб╝е╖ечеєе╒ебедеыд╟двдыбг ╞т═╞д╦д─ддд╞д╧
-         б╓2.2 TOPPERS/JSP ┤─╢нд╦дкд▒ды TINET е│еєе╒еге░еьб╝е╖ечеєе╒еб
-         едеы б╫дЄ╗▓╛╚д╣дыд│д╚бг 
-
-   (8)   $(APP_DIR)/route_cfg.cб┌┐╖╡м║ю└об█
-         └┼┼кеыб╝е╞егеєе░дЄ└▀─ъд╣дые╒ебедеыд╟двдыбг ╞т═╞д╦д─ддд╞д╧б╓4.
-         еыб╝е╞егеєе░д╬└▀─ъ б╫дЄ╗▓╛╚д╣дыд│д╚бгд╩дкбве╟еге╒ейеые╚е▓б╝е╚
-         ежезедд╬д▀д╬е╖еєе╫еыд╩е═е├е╚еяб╝епд╟д╧бв е╡еєе╫еыеве╫еъе▒б╝е╖еч
-         еє echos д╬ route_cfg.c дЄд╜д╬д▐д▐╬о═╤д╟дндыбг
-
-   (9)   $(APP_DIR)/$(UNAME).cб┌╩╤╣╣б█
-         TINET дЄ╗╚═╤д╣дыд┐дсд╦бв ░╩▓╝д╬едеєепеыб╝е╔е╒ебедеыдЄ╗╪─ъд╣ды
-         ╔м═╫дмдвдыбг
-
-            #include "tinet_id.h"
-            #include <netinet/in.h>
-            #include <netinet/in_itron.h>
-
-   (10)  $(APP_DIR)/$(UNAME).cfgб┌╩╤╣╣б█
-         TINET ╞т╔Їд╟╗╚═╤д╣дыелб╝е═еыеке╓е╕езепе╚дЄ╝шдъ╣■дрд┐дсд╦бв
-         TINET е│еєе╒егеоехеьб╝е╖ечеєе╒ебедеыдЄедеєепеыб╝е╔д╣дыбг
-
-            #include "../tinet/tinet.cfg"
-
-   (11)  $(APP_DIR)/Makefileб┌╩╤╣╣б█
-         ╩╤╣╣д╦д─ддд╞д╧б╓8.3 еве╫еъе▒б╝е╖ечеєд╬ Makefileб╫дЄ╗▓╛╚д╣дыд│д╚бг
-
-   (12)  $(APP_DIR)/tinet_cfg.cб┌╝л╞░└╕└об█
-         TCP ╝ї╔╒╕¤бвTCP ─╠┐о├╝┼└бв╡┌д╙ UDP ─╠┐о├╝┼└д╦┬╨▒■д╣ды╣╜┬д┬╬дм
-         └╕└од╡дьдые╒ебедеыд╟бв TINET е│еєе╒еге░еьб╝е┐д╦дшдъ└╕└од╡дьдыбг
-         еве╫еъе▒б╝е╖ечеєе╫еэе░ещербв TINET д╚╢жд╦е│еєе╤едеыд╖д╞еъеєепд╣дыбг
-
-   (13)  $(APP_DIR)/tinet_kern.cfgб┌╝л╞░└╕└об█
-         TINET ╞т╔Їд╟╗╚═╤д╣дыелб╝е═еыеке╓е╕езепе╚д╬└┼┼к API дм└╕└од╡дь
-         дые╒ебедеыд╟бв TINET е│еєе╒еге░еьб╝е┐д╦дшдъ└╕└од╡дьдыбг
-         TOPPERS/JSP д╬е╖е╣е╞ере│еєе╒егеоехеьб╝е╖ечеєе╒ебедеыб╩╔╕╜рд╟
-         д╧ $(UNAME).cfgб╦д╦едеєепеыб╝е╔д╣дыбг
-
-   (14)  $(APP_DIR)/tinet_id.hб┌╝л╞░└╕└об█
-         TCP ╝ї╔╒╕¤бвTCP ─╠┐о├╝┼└бв╡┌д╙ UDP ─╠┐о├╝┼└д╬ ID ╝л╞░│ф╔╒╖ы▓╠
-         е╒ебедеыд╟бвTINET е│еєе╒еге░еьб╝е┐д╦дшдъ└╕└од╡дьдыбг
-
-8. 3  еве╫еъе▒б╝е╖ечеєд╬ Makefile
-
-8. 3. 1  еве╫еъе▒б╝е╖ечеєд╬ Makefile д╬╜д└╡
-
-  д│д│д╟д╧бв┤√д╦┬╕║▀д╣дыеве╫еъе▒б╝е╖ечеєд╬ Makefile д╦бвTINET дЄ┴╚д▀╣■
-дрд┐дсд╬╜д└╡╩¤╦бдЄ╜╥д┘дыбгTINET д╦╔╒┬░д╣дые╡еєе╫еые╫еэе░ещерд╬╣╜├█д╦д─
-ддд╞д╧бв б╓ 9.1 е╡еєе╫еыеве╫еъе▒б╝е╖ечеєд╬╣╜├█ б╫дЄ╗▓╛╚д╣дыд│д╚бг 
-  ╔╕╜р┼кд╩ TOPPERS/JSP ┤─╢нд╦дкд▒дые╡еєе╫еыеве╫еъе▒б╝е╖ечеєд╬ Makefile
-д╬
-
-   #
-   #  еве╫еъе▒б╝е╖ечеєе╫еэе░ещерд╦┤╪д╣ды─ъ╡┴
-   #
-      ... ┼╙├ц╬м ...
-   UTASK_LIBS =
-
-д╬╕хд╦бв╝бд╦╝ид╣ TINET ═╤д╬─ъ╡┴дЄ─╔▓├д╣дыбг
-
-   #
-   #  е═е├е╚еяб╝епе╡б╝е╙е╣д╬─ъ╡┴
-   #
-   
-   #  е═е├е╚еяб╝епедеєе┐е╒езб╝е╣д╬┴к┬Єбв▓┐дьдл░ьд─┴к┬Єд╣дыбг
-   
-   #NET_IF = loop
-   #NET_IF = ppp
-   NET_IF = ether
-   
-   #  едб╝е╡е═е├е╚бже╟еге╨еде╣е╔ещеде╨д╬┴к┬Є
-   
-   NET_DEV = if_ed
-   
-   #PPP_CFG_MODEM = true   # PPP д╟бвете╟ер└▄┬│д╬╛ь╣ч
-   
-   #  е═е├е╚еяб╝еп┴╪д╬┴к┬Єбв▓┐дьдл░ьд─┴к┬Єд╣дыбг
-   
-   SUPPORT_INET4 = true
-   #SUPPORT_INET6 = true
-   
-   #  е╚ещеєе╣е▌б╝е╚┴╪д╬┴к┬Є
-   
-   SUPPORT_TCP = true
-   #SUPPORT_UDP = true
-   
-   #
-   #  е▀е╔еыежезевд╬ Makefile д╬едеєепеыб╝е╔
-   #
-   include $(SRCDIR)/tinet/Makefile.tinet
-
-8. 3. 2  еве╫еъе▒б╝е╖ечеєд╬ Makefile д╦дшды TINET д╦┴╚╣■др╡б╟╜д╬╗╪─ъ
-
-  еве╫еъе▒б╝е╖ечеєд╬ Makefile д╦дшды TINET д╦┴╚╣■др╡б╟╜дЄ╗╪─ъд╣ды╩¤╦б
-дЄ░╩▓╝д╦╝ид╣бг
-
-   (1)   е═е├е╚еяб╝епедеєе┐е╒езб╝е╣д╬┴к┬Є
-           ░╩▓╝д╦╝ид╣─ъ╡┴длдщбв еыб╝е╫е╨е├епбве╖еъевеыедеєе┐е╒езб╝е╣дЄ
-         ═╤ддд┐ PPPбведб╝е╡е═е├е╚д╬▓┐дьдл░ьд─┴к┬Єд╣дыбгд┐д└д╖бв еыб╝е╫
-         е╨е├епд╚е╖еъевеыедеєе┐е╒езб╝е╣дЄ═╤ддд┐ PPP д╧╗▓╣═╝┬┴їд╟двдыбг
-
-            #NET_IF = loop
-            #NET_IF = ppp
-            NET_IF = ether
-
-   (2)   едб╝е╡е═е├е╚бже╟еге╨еде╣е╔ещеде╨д╬┴к┬Є
-           ░╩▓╝д╦╝ид╣─╠дъбв NET_DEV д╦едб╝е╡е═е├е╚бже╟еге╨еде╣е╔ещеде╨
-         дЄ─ъ╡┴д╣дыбг╕╜║▀бвTINET д╬╟█╔█е╒ебедеыд╦д╧бвNE2000 ╕▀┤╣д╬ NIC
-         д╬едб╝е╡е═е├е╚бже╟еге╨еде╣е╔ещеде╨д╬д▀─є╢бд╖д╞дддыбг 
-
-            NET_DEV = if_ed
-
-   (3)   ете╟ер└▄┬│д╬─ъ╡┴
-           PPP д╟бв ете╟ер└▄┬│д╬╛ь╣чд╧бв░╩▓╝д╬╣╘дЄ═н╕·д╦д╣дыбгд┐д└д╖бв
-         е╖еъевеыедеєе┐е╒езб╝е╣дЄ═╤ддд┐ PPP д╧╗▓╣═╝┬┴їд╟двдыбг
-
-            #PPP_CFG_MODEM = true   # PPP д╟бвете╟ер└▄┬│д╬╛ь╣ч
-
-   (4)   е═е├е╚еяб╝еп┴╪д╬┴к┬Є
-           ░╩▓╝д╦╝ид╣─ъ╡┴длдщбвIPv4 д╚ IPv6 д╬▓┐дьдл░ьд─┴к┬Єд╣дыбг
-
-            SUPPORT_INET4 = true
-            #SUPPORT_INET6 = true
-
-   (5)   е╚ещеєе╣е▌б╝е╚┴╪д╬┴к┬Є
-           ░╩▓╝д╦╝ид╣─ъ╡┴длдщбв╔м═╫д╩е╫еэе╚е│еыдЄ┴к┬Єд╣дыбг 
-
-            SUPPORT_TCP = true
-            #SUPPORT_UDP = true
-
-8. 3. 3  е▀е╔еыежезев═╤ Makefile.tinet д╬╩╤┐Ї
-
-  TINET д╧бв е▀е╔еыежезевд╚д╖д╞ TOPPERS/JSP елб╝е═еыд╚┴╚╣чд╗д╞е│еєе╤ед
-еыд╖д╞дддыбгTINET дЄ┴╚╣■древе╫еъе▒б╝е╖ечеє═╤д╬ Makefile д╟д╧бвTINET ═╤
-д╬ Makefile.tinet дЄбв░╩▓╝д╦╝ид╣едеєепеыб╝е╔д╦дшдъ╗╪─ъд╖д╞дддыбг
-
-   #
-   #  е▀е╔еыежезевд╬ Makefile д╬едеєепеыб╝е╔
-   #
-   include $(SRCDIR)/tinet/Makefile.tinet
-
-д│д│д╟д╧бвTINET ═╤д╬ Makefile.tinet д╟─ъ╡┴д╖д╞ддды╩╤┐ЇдЄ░╩▓╝д╦╝ид╣бг
-
-   (1)   MTASK_CFG
-         е▀е╔еыежезевд╬е│еєе╒егеоехеьб╝е╖ечеєе╒ебедеыб╩е╜б╝е╣б╦дЄ─╔▓├
-         д╣дыбгTINET д╟д╧бв
-         $(TINET_CFG)б╩├═д╧ tinet_$(UNAME).cfgб╦дЄ─╔▓├д╖д╞дддыбг
-
-   (2)   MTASK_KERNEL_CFG
-         е▀е╔еыежезевд╬е│еєе╒егеоехеьб╝е┐длдщ╜╨╬╧д╡дьбв TOPPERS/JSP д╬
-         е╖е╣е╞ере│еєе╒егеоехеьб╝е╖ечеєе╒ебедеыд╦едеєепеыб╝е╔д╡дьдые╒еб
-         едеыдЄ─╔▓├д╣дыбгTINET д╟д╧бв
-         $(TINET_KERNEL_CFG)б╩├═д╧бв tinet_kern.cfgбв tinet.cfgбвTINET
-         ╞т╔Їд╟╗╚═╤д╣дыелб╝е═еыеке╓е╕езепе╚дЄ─ъ╡┴д╖д╞дддые│еєе╒егеоех
-         еьб╝е╖ечеєе╒ебедеыб╦дЄ─╔▓├д╖д╞дддыбг 
-
-   (3)   MTASK_DIR
-         е▀е╔еыежезевд╬е╟егеьепе╚еъдЄ─╔▓├д╣дыбгTINET д╟д╧ $(TINET_DIR)
-         б╩├═д╧
-         $(TINET_ROOT)/net:$(TINET_ROOT)/netinet:$(TINET_ROOT)/netinet6б╦
-         дЄ─╔▓├д╖д╞дддыбг
-
-   (4)   MTASK_LCSRCS
-         е▀е╔еыежезевд╬ещеде╓ещеъ▓╜д╣дые╜б╝е╣е╒ебедеыдЄ─╔▓├д╣дыбгTINET
-         д╟д╧ $(TINET_LCSRCS)б╩├═д╧ tcp_usrreq.cбвudp_usrreq.cб╦дЄ─╔▓├
-         д╖д╞дддыбг
-
-   (5)   MTASK_COBJS
-         е▀е╔еыежезевд╬ C ╕└╕ьд╬еке╓е╕езепе╚е╒ебедеыдЄ─╔▓├д╣дыбг TINET
-         д╟д╧бв$(TINET_COBJS)б╩├═д╧бв┬┐┐Їд╬е╒ебедеыд╬д┐дсбв д│д│д╟д╧╛╩
-         ╬мб╦дЄ─╔▓├д╖д╞дддыбг
-
-   (6)   MTASK_CFLAGS
-         е▀е╔еыежезевдЄе│еєе╤едеыд╣дыд╚днд╬еке╫е╖ечеєд╟двдыбг TINET д╟
-         д╧ $(TINET_CFLAGS)б╩├═д╧╠д─ъ╡┴б╦дЄ─╔▓├д╖д╞дддыбг
-
-   (7)   MTASK_LIBS
-         е▀е╔еыежезевд╬ещеде╓ещеъдЄ─╔▓├д╣дыбг TINET д╟д╧бв $(LIBTINET)
-         б╩├═д╧ libtinet.aб╦д╚ -lc дЄ─╔▓├д╖д╞дддыбг
-
-   (8)   MTASK_CLEAN_FILES
-         make clean д╟бв░ь╜яд╦╛├╡юд╣дые╒ебедеыдЄ─╔▓├д╣дыбгTINET д╟д╧бв
-         $(TINET_CFG_OUT)
-         б╩├═д╧ tinet_kern.cfgбв tinet_id.hбв tinet_cfg.cб╦д╚
-         $(MAKE_TINET_LIB)
-         б╩├═д╧ libtinet.aб╦дЄ─╔▓├д╖д╞дддыбг
-
-9.  е╡еєе╫еыеве╫еъе▒б╝е╖ечеє
-
-  е╡еєе╫еыд╚д╖д╞бв░╩▓╝д╬еве╫еъе▒б╝е╖ечеєдЄ─є╢бд╖д╞дддыбгб┌б█╞тд╧б┌еве╫
-еъе▒б╝е╖ечеє╠╛бв┬╨▒■д╣дые═е├е╚еяб╝еп┴╪б█д╟двдыбг 
-
-   (1)   IPv6 TCP ECHO е╡б╝е╨б┌echos6бвIPv6б█
-           е═е├е╚еяб╝епеве╫еъе▒б╝е╖ечеєд╦╔м═╫д╩│╞е╒ебедеыд╬└▀─ъ╩¤╦бд╬
-         ╗▓╣═д╚д╩дыбв TCP еие│б╝е╡б╝е╨╡б╟╜д╬д▀д╬е╖еєе╫еыд╩еве╫еъе▒б╝е╖еч
-         еєд╟двдыбг
-   (2)   IPv4 TCP ECHO е╡б╝е╨б┌echos4бвIPv4б█
-           е═е├е╚еяб╝епеве╫еъе▒б╝е╖ечеєд╦╔м═╫д╩│╞е╒ебедеыд╬└▀─ъ╩¤╦бд╬
-         ╗▓╣═д╚д╩дыбв TCP еие│б╝е╡б╝е╨╡б╟╜д╬д▀д╬е╖еєе╫еыд╩еве╫еъе▒б╝е╖еч
-         еєд╟двдыбг
-   (3)   IPv6 UDP ECHO е╡б╝е╨б┌usrv6бвIPv6б█
-           е═е├е╚еяб╝епеве╫еъе▒б╝е╖ечеєд╦╔м═╫д╩│╞е╒ебедеыд╬└▀─ъ╩¤╦бд╬
-         ╗▓╣═д╚д╩дыбв UDP еие│б╝е╡б╝е╨╡б╟╜д╬д▀д╬е╖еєе╫еыд╩еве╫еъе▒б╝е╖еч
-         еєд╟двдыбг
-   (4)   IPv4 UDP ECHO е╡б╝е╨б┌usrv4бвIPv4б█
-           е═е├е╚еяб╝епеве╫еъе▒б╝е╖ечеєд╦╔м═╫д╩│╞е╒ебедеыд╬└▀─ъ╩¤╦бд╬
-         ╗▓╣═д╚д╩дыбв UDP еие│б╝е╡б╝е╨╡б╟╜д╬д▀д╬е╖еєе╫еыд╩еве╫еъе▒б╝е╖еч
-         еєд╟двдыбг
-   (5)   епещедевеєе╚е╡б╝е╨бже╗е├е╚б┌nservбвIPv6/IPv4б█
-           ░╩▓╝д╦╝ид╣е╡б╝е╨дм─є╢бд╡дьд╞дкдъбв ╔м═╫д╦▒■д╕д╞┴╚д▀╣■дре╡б╝
-         е╨дЄ┴к┬Єд╟дндыбг
-
-            [1]   WWW е╡б╝е╨
-            [2]   TCP еие│б╝е╡б╝е╨
-            [3]   UDP еие│б╝е╡б╝е╨
-            [4]   TCP е╟еге╣елб╝е╔е╡б╝е╨
-            [5]   ┤╩░╫е│еєе╜б╝еы
-
-         д▐д┐бвепещедевеєе╚д╚д╖д╞д╧░╩▓╝д╬╡б╟╜дм─є╢бд╡дьд╞дкдъбв ╔м═╫д╦
-         ▒■д╕д╞┴╚д▀╣■дрепещедевеєе╚дЄ┴к┬Єд╟дндыбг 
-
-            [1]   TCP еие│б╝епещедевеєе╚
-            [2]   UDP еие│б╝епещедевеєе╚
-            [3]   TCP е╟еге╣елб╝е╔епещедевеєе╚
-            [4]   UDP е╟еге╣елб╝е╔епещедевеєе╚
-            [5]   ping
-
-   (6)   TOPPERS ASP/JSP е╡еєе╫еые╫еэе░ещер sample1 д╬е═е├е╚еяб╝еп┬╨▒■
-         е╫еэе░ещерб┌sample1nбвIPv6/IPv4б█
-           TOPPERS/ASP д╚ TOPPERS/JSP д╬е╡еєе╫еые╫еэе░ещер sample1 д╬
-         е═е├е╚еяб╝еп┬╨▒■е╫еэе░ещерд╟двдыбгtelnet д╟└▄┬│д╣дыд╚бве╖еъев
-         еыд╬╞■╜╨╬╧дЄ░·дн╖╤ддд╟╝┬╣╘д╣дыбг└┌├╟д╣дыд╚бв ╕╡д╬е╖еъевеыд╦╞■
-         ╜╨╬╧дЄ╠сд╣бг
-   (7)   ║╟╛о╣╜└ое╡б╝е╨б┌minsvбвIPv4б█
-           WWW е╡б╝е╨бже┐е╣епд╚ TCP еие│б╝е╡б╝е╨бже┐е╣епд╬д▀длдщд╩ды║╟
-         ╛о╣╜└од╬е╡б╝е╨д╟двдыбгH8/3069F дм╞т┬вд╖д╞ддды RAMб╩16K е╨еде╚б╦
-         д╚ ROMб╩512K е╨еде╚б╦д╦╝¤д▐дъбв│░╔Їесетеъд╧╔╘═╫д╟двдыбг╕╜║▀д╧бв
-         ╔╩└ю─╠┐о╖╫┴їе╡б╝е╙е╣└╜ NKEV-010H8б╩TOPPERS/JSP еъеъб╝е╣ 1.4.2
-         д╬д▀б╦д╚╜й╖ю┼┼╗╥─╠╛ж└╜ H8/3069Fб╩TOPPERS/JSP еъеъб╝е╣ 1.4.1
-         ░╩╣▀д╚ TOPPERS/ASPб╦д╬е╖е╣е╞ерд╦┬╨▒■д╖д╞дддыбг
-
-9. 1  е╡еєе╫еыеве╫еъе▒б╝е╖ечеєд╬╣╜├█
-
-  TINET е╡еєе╫еыеве╫еъе▒б╝е╖ечеєд╬╣╜├█д╧бв TOPPERS/ASP ┤─╢нд╚
-TOPPERS/JSP ┤─╢нд╦дкд▒дыд╬е╡еєе╫еыеве╫еъе▒б╝е╖ечеєд╬╣╜├█д╚д█д▄╞▒д╕д╟двдыбг
-
-   (1)   TINET е│еєе╒егеоехеьб╝е╖ечеєе╣епеъе╫е╚д╬╝┬╣╘
-           TINET е╡еєе╫еыеве╫еъе▒б╝е╖ечеєд╬╣╜├█═╤е╟егеьепе╚еъдЄ║ю└од╖бв
-         TINET е│еєе╒егеоехеьб╝е╖ечеєе╣епеъе╫е╚дЄ╝┬╣╘д╣дыбг
-
-         [1]   TOPPERS/ASP ═╤ TINET е│еєе╒егеоехеьб╝е╖ечеєе╣епеъе╫е╚д╬
-               ╝┬╣╘
-
-                  $ mkdir NETOBJ
-                  $ cd NETOBJ
-                  $ perl ../tinet/tinet_asp_configure -T akih8_3069f_gcc -A echos6
-                                                      -i ether -v if_ed -n inet6 -s tcp
-
-               еке╫е╖ечеєб╩-Tбв-Aбв-aбв-Uбв-Lбв-fбв-Dбв-lбв-tбв-dбв -rбв
-               -pбв -gб╦д╧бвTOPPERS/ASP е│еєе╒егеоехеьб╝е╖ечеєе╣епеъе╫
-               е╚д╚╞▒д╕д╟двдыбг TOPPERS/ASP елб╝е═еыецб╝е╢б╝е║е▐е╦ехев
-               еыб╩user.txtб╦д╬б╓ г╡бее│еєе╒егеоехеьб╝е╖ечеєе╣епеъе╫е╚
-               д╬╗╚дд╩¤ б╫дЄ╗▓╛╚д╣дыд│д╚бгд╜д╬┬╛д╬еке╫е╖ечеєд╦д─ддд╞д╧бв
-               б╓9.2 TINET е│еєе╒егеоехеьб╝е╖ечеєе╣епеъе╫е╚д╬еке╫е╖еч
-               еє б╫дЄ╗▓╛╚д╣дыд│д╚бг 
-                 еве╫еъе▒б╝е╖ечеєд╚елб╝е═еыдЄ╩╠б╣д╦╣╜├█д╣ды╩¤╦бд╦д─дд
-               д╞д╧бв TOPPERS/ASP ┤─╢нд╦дкд▒дые╡еєе╫еыеве╫еъе▒б╝е╖ечеє
-               д╬╣╜├█д╚╞▒д╕д╟двдыбг TOPPERS/ASP елб╝е═еыецб╝е╢б╝е║е▐е╦ех
-               евеыб╩user.txtб╦д╬б╓3.5 еве╫еъе▒б╝е╖ечеєд╚елб╝е═еыдЄ╩╠
-               б╣д╦╣╜├█д╣ды╩¤╦б б╫дЄ╗▓╛╚д╣дыд│д╚бг 
-         [2]   TOPPERS/JSP ═╤ TINET е│еєе╒егеоехеьб╝е╖ечеєе╣епеъе╫е╚д╬
-               ╝┬╣╘
-
-                  $ mkdir NETOBJ
-                  $ cd NETOBJ
-                  $ perl ../tinet/tinet_jsp_configure -C h8 -S akih8_3069f -A echos6
-                                                      -i ether -v if_ed -n inet6 -s tcp
-
-               еке╫е╖ечеєб╩-Cбв -Sбв-Tбв-Aбв-Uбв-Lбв-Dбв-Pбв-pбв-lб╦д╧бв
-               TOPPERS/JSP е│еєе╒егеоехеьб╝е╖ечеєе╣епеъе╫е╚д╚╞▒д╕д╟дв
-               дыбг TOPPERS/JSP елб╝е═еыецб╝е╢б╝е║е▐е╦ехевеыб╩user.txtб╦
-               д╬б╓ 7.6 е│еєе╒егеоехеьб╝е╖ечеєе╣епеъе╫е╚д╬╗╚дд╩¤ б╫дЄ
-               ╗▓╛╚д╣дыд│д╚бг д╜д╬┬╛д╬еке╫е╖ечеєд╦д─ддд╞д╧бвб╓TINET е│
-               еєе╒егеоехеьб╝е╖ечеєе╣епеъе╫е╚д╬еке╫е╖ечеє б╫дЄ╗▓╛╚д╣дыд│д╚бг
-                 еве╫еъе▒б╝е╖ечеєд╚елб╝е═еыдЄ╩╠б╣д╦╣╜├█д╣ды╩¤╦бд╦д─дд
-               д╞д╧бв TOPPERS/JSP ┤─╢нд╦дкд▒дые╡еєе╫еыеве╫еъе▒б╝е╖ечеє
-               д╬╣╜├█д╚╞▒д╕д╟двдыбг TOPPERS/JSP елб╝е═еыецб╝е╢б╝е║е▐е╦ех
-               евеыб╩user.txtб╦д╬б╓7.5 еве╫еъе▒б╝е╖ечеєд╚елб╝е═еыдЄ╩╠
-               б╣д╦╣╜├█д╣ды╩¤╦б б╫дЄ╗▓╛╚д╣дыд│д╚бг 
-
-           ╛х╡нд╬╬уд╟бвTOPPERS/ASP ┤─╢нд╚ TOPPERS/JSP ┤─╢нд╬ддд║дьд╬╛ь
-         ╣чдтбве╟егеьепе╚еъ NETOBJ д╦░╩▓╝д╬е╒ебедеыдм└╕└од╡дьдыбг
-
-            Makefile                Makefile
-            echos6.c                е╡еєе╫еые╫еэе░ещер╦▄┬╬
-            echos6.h                е╡еєе╫еые╫еэе░ещерд╬е╪е├е└е╒ебедеы
-            echos6.cfg              е╡еєе╫еые╫еэе░ещер═╤ ASP е│еєе╒ег
-                                    еоехеьб╝е╖ечеєе╒ебедеы
-            tinet_echos6.cfg        е╡еєе╫еые╫еэе░ещер═╤ TINET е│еєе╒ег
-                                    еоехеьб╝е╖ечеєе╒ебедеы
-            route_cfg.c             е╡еєе╫еые╫еэе░ещер═╤еыб╝е╞егеєе░╔╜
-            tinet_app_config.h      е╡еєе╫еые╫еэе░ещер═╤е│еєе╤едеы╗■╗╪
-                                    ─ъе│еєе╒егеоехеьб╝е╖ечеє
-
-         ╔м═╫д╟двдьд╨бв Makefile дЄ╜д└╡д╣дыбг ╜д└╡д╦д─ддд╞д╧бв
-         TOPPERS/ASP ┤─╢нд╟д╧б╓7.3 еве╫еъе▒б╝е╖ечеєд╬ Makefileб╫бв
-         TOPPERS/JSP ┤─╢нд╟д╧б╓8.3 еве╫еъе▒б╝е╖ечеєд╬ Makefileб╫дЄ╗▓╛╚
-         д╣дыд│д╚бг
-           ░╩▓╝д╬е╡еєе╫еыеве╫еъе▒б╝е╖ечеєд╟д╧бв╣╜├█╛хд╬├э░╒дмдвдыбг │╞
-         ╛╧дЄ╗▓╛╚д╣дыд│д╚бг
-
-            [1]   б╓9.3 епещедевеєе╚е╡б╝е╨бже╗е├е╚б╫
-            [2]   б╓9.4 TOPPERS ASP/JSP е╡еєе╫еые╫еэе░ещер sample1 д╬
-                  е═е├е╚еяб╝еп┬╨▒■е╫еэе░ещерб╫
-            [3]   б╓9.5 ║╟╛о╣╜└ое╡б╝е╨б╫
-
-   (2)   tinet_app_config.h д╬└▀─ъ
-           IPv4 д╬╛ь╣чбв IP еве╔еье╣бве╡е╓е═е├е╚е▐е╣епбве╟еге╒ейеые╚е▓б╝
-         е╚ежезеддЄ╗╪─ъд╣дыбг
-
-         [1]   IPV4_ADDR_LOCAL
-               ╝л╩мд╬ IP еве╔еье╣дЄ╗╪─ъд╣дыбгд┐д└д╖бв PPP дЄ╗╚═╤д╣дыд╚
-               днбв┴ъ╝ъд╦│ф┼Ўд╞д╞дтдщдж╛ь╣чд╧ 0 дЄ╗╪─ъд╣дыд│д╚бгд╩дкбв
-               PPP д╧╗▓╣═╝┬┴їд╟двдыбг
-         [2]   IPV4_ADDR_REMOTE
-               ┴ъ╝ъд╬ IP еве╔еье╣дЄ╗╪─ъд╣дыбг д┐д└д╖бвPPP дЄ╗╚═╤д╣дыд╚
-               днбв┴ъ╝ъд╦│ф┼Ўд╞д╞дтдщдж╛ь╣чд╧ 0 дЄ╗╪─ъд╣дыд│д╚бгд╩дкбв
-               PPP д╧╗▓╣═╝┬┴їд╟двдыбг
-         [3]   IPV4_ADDR_LOCAL_MASK
-               е╡е╓е═е├е╚е▐е╣епдЄ╗╪─ъд╣дыбгд┐д└д╖бв е═е├е╚еяб╝епедеєе┐
-               е╒езб╝е╣дмедб╝е╡е═е├е╚д╬д╚дн═н╕·д╟двдыбг 
-         [4]   IPV4_ADDR_DEFAULT_GW
-               е╟еге╒ейеые╚е▓б╝е╚ежезеддЄ╗╪─ъд╣дыбгд┐д└д╖бв е═е├е╚еяб╝
-               епедеєе┐е╒езб╝е╣дмедб╝е╡е═е├е╚д╬д╚дн═н╕·д╟двдыбг 
-
-   (3)   route_cfg.c д╬└▀─ъ
-           е═е├е╚еяб╝епедеєе┐е╒езб╝е╣дмедб╝е╡е═е├е╚д╬╛ь╣чд╧бв еыб╝е╞ег
-         еєе░╔╜ routing_tbl дЄ└▀─ъд╣дыбгд┐д└д╖бве╟еге╒ейеые╚е▓б╝е╚ежез
-         едд╬д▀д╬е╖еєе╫еыд╩е═е├е╚еяб╝епд╟д╧бв ╩╤╣╣д╣ды╔м═╫д╧д╩ддбг 
-
-   (4)   е╡еєе╫еые╫еэе░ещерд╬е│еєе╤едеыбжеъеєеп
-           TINET е╡еєе╫еыеве╫еъе▒б╝е╖ечеєд╬╣╜├█═╤е╟егеьепе╚еъд╟бв е╡еє
-         е╫еые╫еэе░ещердЄе│еєе╤едеыбжеъеєепд╣дыбг е│еєе╤едеыбжеъеєепд╬
-         ╩¤╦бдЄ░╩▓╝д╦╝ид╣бг
-
-            $ make depend
-            $ make
-
-9. 2  TOPPERS/APS ═╤ TINET е│еєе╒егеоехеьб╝е╖ечеєе╣епеъе╫е╚д╬еке╫е╖ечеє
-
-  TOPPERS/ASP ┤─╢нд╟д╧бвеке╫е╖ечеєб╩-Tбв-Aбв-aбв-Uбв-Lбв-fбв-Dбв-lбв-tбв
--dбв-rбв-pбв-gб╦д╧бвTOPPERS/ASP е│еєе╒егеоехеьб╝е╖ечеєе╣епеъе╫е╚д╚╞▒д╕
-д╟двдыбгTINET е│еєе╒егеоехеьб╝е╖ечеєе╣епеъе╫е╚╞├═нд╬еке╫е╖ечеєдЄ░╩▓╝д╦╝ид╣бг
-
-   -e <tinetdir>           TINET д╬е╜б╝е╣д╬├╓длдьд╞дддые╟егеьепе╚еъ
-   -i <net_if>             е═е├е╚еяб╝епедеєе┐е╒езб╝е╣б╩╔м┐▄б╦
-                           <net_if> д╦д╧ etherбвpppбвloop д╬▓┐дьдлдЄ╗╪
-                           ─ъд╣дыбг
-   -v <net_dev>            едб╝е╡е═е├е╚бже╟еге╨еде╣е╔ещеде╨
-                           б╩е═е├е╚еяб╝епедеєе┐е╒езб╝е╣д╦ ether дЄ╗╪─ъ
-                           д╖д┐╛ь╣чд╧╔м┐▄б╦
-
-   -n <net_proto>          е═е├е╚еяб╝еп┴╪е╫еэе╚е│еыб╩╔м┐▄б╦
-                           <net_proto> д╦д╧ inet4бвinet6бвinet64m д╬▓┐
-                           дьдлдЄ╗╪─ъд╣дыбг е═е├е╚еяб╝еп┴╪д╚д╖д╞ IPv6
-                           д╚ IPv4 д╬╬╛╩¤дЄ┴╚д▀╣■др╛ь╣чд╧бв inet64m дЄ
-                           ╗╪─ъд╣дыбг
-   -s <trans_proto>        е╚ещеєе╣е▌б╝е╚┴╪е╫еэе╚е│еыб╩╔м┐▄б╦
-                           <trans_proto> д╦д╧ tcpбвudpбвtcp/udp д╬▓┐дь
-                           длдЄ╗╪─ъд╣дыбг
-
-9. 3  TOPPERS/JPS ═╤ TINET е│еєе╒егеоехеьб╝е╖ечеєе╣епеъе╫е╚д╬еке╫е╖ечеє
-
-  TOPPERS/JSP ┤─╢нд╟д╧бвеке╫е╖ечеєб╩-Cбв-Sбв-Tбв-Aбв-Uбв-Lбв-Dбв-Pбв-pбв
--lб╦д╧бвTOPPERS/JSP е│еєе╒егеоехеьб╝е╖ечеєе╣епеъе╫е╚д╚╞▒д╕д╟двдыбгд▐д┐бв
--d <dir> еке╫е╖ечеєдЄ╜№ддд┐ TOPPERS/JPS ═╤ TINET е│еєе╒егеоехеьб╝е╖еч
-еєе╣епеъе╫е╚╞├═нд╬еке╫е╖ечеєд╧бв TOPPERS/APS ═╤ TINET е│еєе╒егеоехеьб╝
-е╖ечеєе╣епеъе╫е╚д╬еке╫е╖ечеєд╚╞▒д╕д╟двдыбг ░╩▓╝д╦бв-d <dir> еке╫е╖ечеє
-дЄ╜╥д┘дыбг
-
-   -d <dir>                е╞еєе╫еьб╝е╚е╟егеьепе╚еъдЄ╗╪─ъд╣дыбг
-                           е╟е╒ейеые╚д╧ tinet/jsp_sample д╟двдыбг д╩дкбв
-                           TOPPERS/JSP д╬╞▒д╕еке╫е╖ечеєд╬е╟е╒ейеые╚д╧
-                           sample д╟двдыбг
-
-9. 4  епещедевеєе╚е╡б╝е╨бже╗е├е╚б┌nservбвIPv6/IPv4б█д╬╣╜├█
-
-  ░╩▓╝д╦╝ид╣е╡б╝е╨дм─є╢бд╡дьд╞дкдъбв╔м═╫д╦▒■д╕д╞┴╚д▀╣■дре╡б╝е╨дЄ┴к┬Єд╟
-дндыбг б╩б╦╞тд╧бвtinet/netapp ╞тд╦двдые╜б╝е╣е╒ебедеы╠╛д╟двдыбгд╩дкбве╟ег
-е╒ейеые╚д╟бв ITRON TCP/IP API ╗┼══д╬ TCP д╚ UDP д╬│╚─е╡б╟╜дм┴╚╣■д▐дьд╞
-дддыд╬д╟бв б╓9.3.2 ┤╩░╫е│еєе╜б╝еыд╬е│е▐еєе╔ б╫д╬ wtwбвwteбвwueбвwtd е│
-е▐еєе╔д╟бв д╜дьд╛дьд╬е╡б╝е╨бже┐е╣епдЄ╡п╞░д╣ды╔м═╫дмдвдыбг 
-
-   [1]   WWW е╡б╝е╨бже┐е╣епб╩wwws.cб╦
-         еыб╝е╚е┌б╝е╕д╬┬╛д╦бве═е├е╚еяб╝еп┼¤╖╫╛Ё╩єдЄ╔╜╝ид╣ды 2 е┌б╝е╕дл
-         дщ╣╜└од╡дьбве┐е╣еп┐Їд╧║╟┬ч 2 д╟двдыбг
-   [2]   TCP еие│б╝е╡б╝е╨бже┐е╣еп
-         tcp_echo_srv1.c д╚ tcp_echo_srv2.c д╬д╔д┴дщдлдЄ┴к┬Єд╣дыбг
-         tcp_echo_srv1.c дЄ┴к┬Єд╖д┐╛ь╣чбв╛╩е│е╘б╝ API дЄ╗╚═╤д╖д╞бве╬еє
-         е╓еэе├енеєе░е│б╝еыдЄ╗╚═╤д╖д╩дд╗■д╧бве┐е╣еп┐ЇдЄ 8 д▐д╟╗╪─ъ▓─╟╜
-         д╟двдыбг
-   [3]   UDP еие│б╝е╡б╝е╨бже┐е╣епб╩udp_echo_srv.cб╦
-   [4]   TCP е╟еге╣елб╝е╔е╡б╝е╨бже┐е╣епб╩tcp_discard_srv.cб╦
-   [5]   ┤╩░╫е│еєе╜б╝еыбже┐е╣епб╩dbg_cons.cб╦
-         е╖еъевеыедеєе┐е╒езб╝е╣д└д▒д╟д╩дпбвtelnet е╫еэе╚е│еыдЄ╗╚═╤д╖д╞бв
-         е═е├е╚еяб╝еп╖╨═│д╟═°═╤д╣дыд│д╚дт▓─╟╜д╟двдыбгtelnet д╟└▄┬│д╣ды
-         д╚бв е╖еъевеыд╬╞■╜╨╬╧дЄ░·дн╖╤ддд╟╝┬╣╘д╣дыбг└┌├╟д╣дыд╚бв╕╡д╬е╖
-         еъевеыд╦╞■╜╨╬╧дЄ╠сд╣бгд┐д└д╖бв TCP д╬е╬еєе╓еэе├енеєе░е│б╝еыдЄ
-         ┴╚╣■др╔м═╫дмдвдыбг
-
-д▐д┐бвепещедевеєе╚д╚д╖д╞д╧░╩▓╝д╬╡б╟╜дм─є╢бд╡дьд╞дкдъбв╔м═╫д╦▒■д╕д╞┴╚д▀
-╣■дрепещедевеєе╚дЄ┴к┬Єд╟дндыбг
-
-   [1]   TCP еие│б╝епещедевеєе╚бже┐е╣епб╩tcp_echo_cli.cб╦
-   [2]   UDP еие│б╝епещедевеєе╚бже┐е╣епб╩udp_echo_cli.cб╦
-   [3]   TCP е╟еге╣елб╝е╔епещедевеєе╚бже┐е╣епб╩tcp_discard_cli.cб╦
-   [4]   UDP е╟еге╣елб╝е╔епещедевеєе╚бже┐е╣епб╩udp_discard_cli.cб╦
-   [5]   pingб╩ping.cб╦
-
-9. 4. 1  Makefile д╬└▀─ъ
-
-   (1)   ┴╚╣■др╡б╟╜д╬┴к┬Є
-
-         [1]   TCP д╬╝ї┐оежегеєе╔е╨е├е╒ебд╬╛╩е│е╘б╝╡б╟╜
-                 е╡еєе╫еыеве╫еъе▒б╝е╖ечеєд╟бв TCP д╬╝ї┐оежегеєе╔е╨е├е╒еб
-               д╬╛╩е│е╘б╝╡б╟╜дЄ┴╚╣■др╛ь╣чд╧бв
-
-                  TCP_CFG_RWBUF_CSAVE_ONLY = true
-
-               д▐д┐д╧бв
-
-                  TCP_CFG_RWBUF_CSAVE = true
-
-               дЄ┴к┬Єд╣дыбгTCP_CFG_RWBUF_CSAVE_ONLY дЄ┴к┬Єд╣дыд╚бв TCP
-               ─╠┐о├╝┼└дЄ└╕└од╣ды└┼┼к API д╟двды TCP_CRE_CEP д╟бв ╝ї┐о
-               ежегеєе╔е╨е├е╒еб rbuf д╦бв есетеъеве╔еье╣дЄ╗╪─ъд╖д╞дтбв
-               е╫еэе╚е│еые╣е┐е├епд╧бв д│д╬╗╪─ъдЄ╠╡╗ыд╖д╞бвTCP д╬╝ї┐оежег
-               еєе╔е╨е├е╒ебд╬╛╩е│е╘б╝╡б╟╜д╦дшдъ╜ш═¤д╣дыбг д▐д┐бв
-               TCP_CFG_RWBUF_CSAVE дЄ┴к┬Єд╣дыд╚бв TCP_CRE_CEP д╟бв╝ї┐о
-               ежегеєе╔е╨е├е╒еб rbuf д╦бв NADRб╩NULLб╦дЄ╗╪─ъд╖д┐д╚днд╬
-               д▀бве╫еэе╚е│еые╣е┐е├епд╧ TCP д╬╝ї┐оежегеєе╔е╨е├е╒ебд╬╛╩
-               е│е╘б╝╡б╟╜д╦дшдъ╜ш═¤д╣дыбг
-
-         [2]   TCP д╬┴ў┐оежегеєе╔е╨е├е╒ебд╬╛╩е│е╘б╝╡б╟╜
-                 е╡еєе╫еыеве╫еъе▒б╝е╖ечеєд╟бв TCP д╬┴ў┐оежегеєе╔е╨е├е╒еб
-               д╬╛╩е│е╘б╝╡б╟╜дЄ┴╚╣■др╛ь╣чд╧бв
-
-                  TCP_CFG_SWBUF_CSAVE_ONLY = true
-
-               д▐д┐д╧бв
-
-                  TCP_CFG_SWBUF_CSAVE = true
-
-               дЄ┴к┬Єд╣дыбгTCP_CFG_SWBUF_CSAVE_ONLY дЄ┴к┬Єд╣дыд╚бв TCP
-               ─╠┐о├╝┼└дЄ└╕└од╣ды└┼┼к API д╟двды TCP_CRE_CEP д╟бв ┴ў┐о
-               ежегеєе╔е╨е├е╒еб rbuf д╦бв есетеъеве╔еье╣дЄ╗╪─ъд╖д╞дтбв
-               е╫еэе╚е│еые╣е┐е├епд╧бв д│д╬╗╪─ъдЄ╠╡╗ыд╖д╞бвTCP д╬┴ў┐оежег
-               еєе╔е╨е├е╒ебд╬╛╩е│е╘б╝╡б╟╜д╦дшдъ╜ш═¤д╣дыбг д▐д┐бв
-               TCP_CFG_SWBUF_CSAVE дЄ┴к┬Єд╣дыд╚бв TCP_CRE_CEP д╟бв┴ў┐о
-               ежегеєе╔е╨е├е╒еб rbuf д╦бв NADRб╩NULLб╦дЄ╗╪─ъд╖д┐д╚днд╬
-               д▀бве╫еэе╚е│еые╣е┐е├епд╧ TCP д╬┴ў┐оежегеєе╔е╨е├е╒ебд╬╛╩
-               е│е╘б╝╡б╟╜д╦дшдъ╜ш═¤д╣дыбг
-
-         [3]   TCP д╬е╬еєе╓еэе├енеєе░е│б╝еы
-                 е╡еєе╫еыеве╫еъе▒б╝е╖ечеєд╟бв TCP д╬е╬еєе╓еэе├енеєе░е│б╝
-               еыдЄ┴╚╣■др╛ь╣чд╧бв
-
-                  TCP_CFG_NON_BLOCKING = true
-
-               дЄ┴к┬Єд╣дыбг
-
-         [4]   UDP д╬е╬еєе╓еэе├енеєе░е│б╝еы
-                 е╡еєе╫еыеве╫еъе▒б╝е╖ечеєд╟бв UDP д╬е╬еєе╓еэе├енеєе░е│б╝
-               еыдЄ┴╚╣■др╛ь╣чд╧бв
-
-                  UDP_CFG_NON_BLOCKING = true
-
-               дЄ┴к┬Єд╣дыбг
-
-         [5]   ITRON TCP/IP API ╗┼══д╬ TCP д╬│╚─е╡б╟╜
-                 е╡еєе╫еыеве╫еъе▒б╝е╖ечеєд╟бв ITRON TCP/IP API ╗┼══д╬
-               TCP д╬│╚─е╡б╟╜дЄ┴╚╣■др╛ь╣чд╧бв
-
-                  TCP_CFG_EXTENTIONS = true
-
-               дЄ┴к┬Єд╣дыбге╟еге╒ейеые╚д╟ true д╦└▀─ъд╡дьд╞дддыбг
-
-         [6]   ITRON TCP/IP API ╗┼══д╬ UDP д╬│╚─е╡б╟╜
-                 е╡еєе╫еыеве╫еъе▒б╝е╖ечеєд╟бв ITRON TCP/IP API ╗┼══д╬
-               UDP д╬│╚─е╡б╟╜дЄ┴╚╣■др╛ь╣чд╧бв
-
-                  UDP_CFG_EXTENTIONS = true
-
-               дЄ┴к┬Єд╣дыбге╟еге╒ейеые╚д╟ true д╦└▀─ъд╡дьд╞дддыбг
-
-   (2)   е╬еєе╓еэе├енеєе░е│б╝еыбвITRON TCP/IP API ╗┼══д╬│╚─е╡б╟╜д╚╛╩е│
-         е╘б╝ API д╬┴к┬Є
-
-         [1]   TCP д╬е╬еєе╓еэе├енеєе░е│б╝еы
-                 е╡еєе╫еыеве╫еъе▒б╝е╖ечеєд╟бв TCP д╬е╬еєе╓еэе├енеєе░е│б╝
-               еыдЄ╗╚═╤д╣ды╛ь╣чд╧бв
-
-                  USE_TCP_NON_BLOCKING = true
-
-               дЄ┴к┬Єд╣дыбг
-
-         [2]   ITRON TCP/IP API ╗┼══д╬ TCP д╬│╚─е╡б╟╜
-                 е╡еєе╫еыеве╫еъе▒б╝е╖ечеєд╟бв ITRON TCP/IP API ╗┼══д╬
-               TCP д╬│╚─е╡б╟╜дЄ╗╚═╤д╣ды╛ь╣чд╧бв
-
-                  USE_TCP_EXTENTIONS = true
-
-               дЄ┴к┬Єд╣дыбге╟еге╒ейеые╚д╟ true д╦└▀─ъд╡дьд╞дддыбг
-
-         [3]   ╛╩е│е╘б╝ API
-                 е╡еєе╫еыеве╫еъе▒б╝е╖ечеєд╟бв╛╩е│е╘б╝ API дЄ╗╚═╤д╣ды╛ь╣чд╧бв
-
-                  USE_COPYSAVE_API = true
-
-               дЄ┴к┬Єд╣дыбг
-
-         [4]   UDP д╬е╬еєе╓еэе├енеєе░е│б╝еы
-                 е╡еєе╫еыеве╫еъе▒б╝е╖ечеєд╟бв UDP д╬е╬еєе╓еэе├енеєе░е│б╝
-               еыдЄ╗╚═╤д╣ды╛ь╣чд╧бв
-
-                  USE_UDP_NON_BLOCKING = true
-
-               дЄ┴к┬Єд╣дыбгд┐д└д╖бв е│б╝еые╨е├епд╚д╧╞▒╗■д╦╗╚═╤д╟днд╩ддбг 
-
-         [5]   ITRON TCP/IP API ╗┼══д╬ UDP д╬│╚─е╡б╟╜
-                 е╡еєе╫еыеве╫еъе▒б╝е╖ечеєд╟бв ITRON TCP/IP API ╗┼══д╬
-               UDP д╬│╚─е╡б╟╜дЄ╗╚═╤д╣ды╛ь╣чд╧бв
-
-                  USE_UDP_EXTENTIONS = true
-
-               дЄ┴к┬Єд╣дыбге╟еге╒ейеые╚д╟ true д╦└▀─ъд╡дьд╞дддыбг
-
-         [6]   UDP д╬е│б╝еые╨е├еп
-                 е╡еєе╫еыеве╫еъе▒б╝е╖ечеєд╟бв UDP д╬е│б╝еые╨е├епдЄ╗╚═╤
-               д╣ды╛ь╣чд╧бв
-
-                  USE_UDP_CALL_BACK = true
-
-               дЄ┴к┬Єд╣дыбг д┐д└д╖бве╬еєе╓еэе├енеєе░е│б╝еыд╚д╧╞▒╗■д╦╗╚
-               ═╤д╟днд╩ддбг
-
-   (3)   ╢ж─╠е╡б╝е╨е╫еэе░ещерд╬┴к┬Є
-
-         [1]   WWW е╡б╝е╨е╫еэе░ещердЄ╗╚═╤д╣ды╛ь╣чд╧бв ░╩▓╝д╬╣╘дЄ═н╕·д╦д╣дыбг
-
-                  USE_WWW_SRV = ture
-
-         [2]   UDP еие│б╝е╡б╝е╨е╫еэе░ещердЄ╗╚═╤д╣ды╛ь╣чд╧бв ░╩▓╝д╬╣╘дЄ
-               ═н╕·д╦д╣дыбг
-
-                  USE_UDP_ECHO_SRV = ture
-
-         [3]   TCP е╟еге╣елб╝е╔е╡б╝е╨е╫еэе░ещердЄ╗╚═╤д╣ды╛ь╣чд╧бв ░╩▓╝
-               д╬╣╘дЄ═н╕·д╦д╣дыбг
-
-                  USE_TCP_DISCARD_SRV = ture
-
-         [4]   ┴ў╝ї┐ое┐е╣еп╞▒░ь╖┐д╬ TCP еие│б╝е╡б╝е╨е╫еэе░ещердЄ╗╚═╤д╣
-               ды╛ь╣чд╧бв░╩▓╝д╬╣╘дЄ═н╕·д╦д╣дыбг
-
-                  TCP_ECHO_SRV = tcp_echo_srv1
-
-         [5]   ┴ў╝ї┐ое┐е╣еп╩м╬е╖┐д╬ TCP еие│б╝е╡б╝е╨е╫еэе░ещердЄ╗╚═╤д╣
-               ды╛ь╣чд╧бв░╩▓╝д╬╣╘дЄ═н╕·д╦д╣дыбг
-
-                  TCP_ECHO_SRV = tcp_echo_srv2
-
-         [6]   е╖еъевеы╖╨═│д╬д▀е│еєе╜б╝еы╞■╜╨╬╧дЄ╗╚═╤д╣ды╛ь╣чд╧бв ░╩▓╝
-               д╬╣╘дЄ═н╕·д╦д╣дыбг
-
-                  USE_DBG_CONS = true
-
-         [7]   е╖еъевеыд╚е═е├е╚еяб╝еп╖╨═│д╬е│еєе╜б╝еы╞■╜╨╬╧дЄ╗╚═╤д╣ды
-               ╛ь╣чд╧бв░╩▓╝д╬╣╘дЄ═н╕·д╦д╣дыбг
-
-                  USE_NET_CONS = true
-
-               д┐д└д╖бв е╬еєе╓еэе├енеєе░е│б╝еыдЄ┴╚╣■дєд└╗■д╬д▀═н╕·д╟двдыбг
-
-   (4)   ╢ж─╠епещедевеєе╚е╫еэе░ещерд╬┴к┬Є
-
-         [1]   TCP еие│б╝епещедевеєе╚е╫еэе░ещердЄ╗╚═╤д╣ды╛ь╣чд╧бв ░╩▓╝
-               д╬╣╘дЄ═н╕·д╦д╣дыбг
-
-                  USE_TCP_ECHO_CLI = ture
-
-         [2]   UDP еие│б╝епещедевеєе╚е╫еэе░ещердЄ╗╚═╤д╣ды╛ь╣чд╧бв ░╩▓╝
-               д╬╣╘дЄ═н╕·д╦д╣дыбг
-
-                  USE_UDP_ECHO_CLI = ture
-
-         [3]   TCP е╟еге╣елб╝е╔епещедевеєе╚е╫еэе░ещердЄ╗╚═╤д╣ды╛ь╣чд╧бв
-               ░╩▓╝д╬╣╘дЄ═н╕·д╦д╣дыбг
-
-                  USE_TCP_DISCARD_CLI = ture
-
-         [4]   UDP е╟еге╣елб╝е╔епещедевеєе╚е╫еэе░ещердЄ╗╚═╤д╣ды╛ь╣чд╧бв
-               ░╩▓╝д╬╣╘дЄ═н╕·д╦д╣дыбг
-
-                  USE_UDP_DISCARD_CLI = ture
-
-         [5]   PING епещедевеєе╚е╫еэе░ещердЄ╗╚═╤д╣ды╛ь╣чд╧бв░╩▓╝д╬╣╘дЄ
-               ═н╕·д╦д╣дыбг
-
-                  USE_PING = true
-
-   (5)   ╢ж─╠е╡б╝е╨е┐е╣еп┐Їд╬┴к┬Є
-
-         [1]   WWW е╡б╝е╨е┐е╣еп┐Їд╧░╩▓╝д╬╣╘д╟┴к┬Єд╣дыбгд┐д└д╖║╟┬ч 2 е┐
-               е╣епд╟двдыбг
-
-                  CDEFS := $(CDEFS) -DNUM_WWW_SRV_TASKS=2
-
-         [2]   TCP ECHO е╡б╝е╨е┐е╣еп┐ЇдЄ┴к┬Єд╣дыбгд┐д└д╖░╩▓╝д╬╛Є╖яд╬д╚
-               дн═н╕·д╟двдыбг
-
-               бжtcp_echo_srv1.c дЄ┴к┬Єд╖д┐бг
-               бж╛╩е│е╘б╝ API дЄ╗╚═╤д╣дыбг
-               бже╬еєе╓еэе├енеєе░е│б╝еыдЄ╗╚═╤д╖д╩ддбг
-
-               TCP ECHO е╡б╝е╨е┐е╣еп┐Їд╧░╩▓╝д╬╣╘д╟┴к┬Єд╣дыбгд┐д└д╖║╟┬ч
-               8 е┐е╣епд╟двдыбг
-
-                  CDEFS := $(CDEFS) -DNUM_TCP_ECHO_SRV_TASKS=8
-
-   (6)   ═╜╠є ID ┐Їд╬┴к┬Є
-
-         [1]   TCP/IPv4 ╝ї╔╒╕¤═╜╠є ID ┐Їд╧░╩▓╝д╬╣╘д╟┴к┬Єд╣дыбгд┐д└д╖║╟
-               ┬ч 2 д╟двдыбг
-
-                  CDEFS := $(CDEFS) -DNUM_VRID_TCP_REPS=2
-
-         [2]   TCP/IPv4 ─╠┐о├╝┼└═╜╠є ID ┐Їд╧░╩▓╝д╬╣╘д╟┴к┬Єд╣дыбгд┐д└д╖
-               ║╟┬ч 4 д╟двдыбг
-
-                  CDEFS := $(CDEFS) -DNUM_VRID_TCP_CEPS=4
-
-         [3]   UDP/IPv4 ─╠┐о├╝┼└═╜╠є ID ┐Їд╧░╩▓╝д╬╣╘д╟┴к┬Єд╣дыбгд┐д└д╖
-               ║╟┬ч 2 д╟двдыбг
-
-                  CDEFS := $(CDEFS) -DNUM_VRID_UDP_CEPS=2
-
-         [4]   TCP/IPv6 ╝ї╔╒╕¤═╜╠є ID ┐Їд╧░╩▓╝д╬╣╘д╟┴к┬Єд╣дыбгд┐д└д╖║╟
-               ┬ч 2 д╟двдыбг
-
-                  CDEFS := $(CDEFS) -DNUM_VRID_TCP6_REPS=2
-
-         [5]   TCP/IPv6 ─╠┐о├╝┼└═╜╠є ID ┐Їд╧░╩▓╝д╬╣╘д╟┴к┬Єд╣дыбгд┐д└д╖
-               ║╟┬ч 4 д╟двдыбг
-
-                  CDEFS := $(CDEFS) -DNUM_VRID_TCP6_CEPS=4
-
-         [6]   UDP/IPv6 ─╠┐о├╝┼└═╜╠є ID ┐Їд╧░╩▓╝д╬╣╘д╟┴к┬Єд╣дыбгд┐д└д╖
-               ║╟┬ч 2 д╟двдыбг
-
-                  CDEFS := $(CDEFS) -DNUM_VRID_UDP6_CEPS=2
-
-   (7)   д╜д╬┬╛
-
-         [1]   TCP д╬е╗е░есеєе╚е╡еде║дЄ MSS д╦д╣ды╛ь╣чд╧бв░╩▓╝д╬╣╘дЄ═н
-               ╕·д╦д╣дыбг
-
-                  CDEFS := $(CDEFS) -DUSE_TCP_MSS_SEG
-
-         [2]   IPv6 MMTU е╡еде║д╬е═е├е╚еяб╝епе╨е├е╒ебдЄ┴╚╣■др╛ь╣чд╧бв
-               ░╩▓╝д╬╣╘дЄ═н╕·д╦д╣дыбг
-
-                  CDEFS := $(CDEFS) -DUSE_IPV6_MMTU
-
-9. 4. 2  ┤╩░╫е│еєе╜б╝еыд╬е│е▐еєе╔
-
-  едеєе┐б╝е═е├е╚е╡б╝е╨бже╗е├е╚д╦┴╚д▀╣■д▐дьд╞ддды┤╩░╫е│еєе╜б╝еыд╬е│е▐еє
-е╔дЄ░╩▓╝д╦╝ид╣бг
-
-   cf                  tinet_app_config.h ┼∙д╟╗╪─ъд╡дьд┐бве│еєе╤едеы╗■
-                       е│еєе╒егеоехеьб╝е╖ечеєдЄ╔╜╝ид╣дыбг 
-
-   ct <cepid> [<fncd>] 
-                       е┌еєе╟егеєе░д╖д╞ддды TCP ─╠┐о├╝┼└ <cepid> д╬╜ш
-                       ═¤дЄенеуеєе╗еыд╣дыбгенеуеєе╗еыд╣ды╜ш═¤д╧ <fncd>
-                       д╟╗╪─ъд╣дыбг<fncd> дЄ╛╩╬мд╖д┐╛ь╣чд╧бв┴┤д╞д╬╜ш═¤
-                       дЄенеуеєе╗еыд╣дыбг
-
-   cu <cepid> [<fncd>] 
-                       е┌еєе╟егеєе░д╖д╞ддды UDP ─╠┐о├╝┼└ <cepid> д╬╜ш
-                       ═¤дЄенеуеєе╗еыд╣дыбгенеуеєе╗еыд╣ды╜ш═¤д╧ <fncd>
-                       д╟╗╪─ъд╣дыбг<fncd> дЄ╛╩╬мд╖д┐╛ь╣чд╧бв┴┤д╞д╬╜ш═¤
-                       е╖еъевеыд╚е═е├е╚еяб╝еп╖╨═│д╬е│еєе╜б╝еы╞■╜╨╬╧дЄ
-                       дЄенеуеєе╗еыд╣дыбг
-
-   dc                  е═е├е╚еяб╝епедеєе┐е╒езб╝е╣дм PPP д╬╗■бвд▐д┐д╧бв
-                       ╗╚═╤д╣ды╗■д╦═н╕·д╟двдъбв└▄┬│дЄ└┌├╟д╣дыбг д╩дкбв
-                       PPP д╧╗▓╣═╝┬┴їд╟двдыбг
-
-   dt <host> [<portno> [<repeat>]]
-                       TCP е╟еге╣елб╝е╔епещедевеєе╚бже┐е╣епдЄ╡п╞░д╖бв
-                       е╟еге╣елб╝е╔е╡б╝е╨ <host> д╦е╟еге╣елб╝е╔е╤е┐б╝
-                       еєдЄ┴ў┐од╣дыбг<portno> д╧бве╟еге╣елб╝е╔е╡б╝е╨д╬
-                       е▌б╝е╚╚╓╣цд╟бв╛╩╬м╗■б╩- дЄ╗╪─ъд╣дыб╦д╧ 9 д╟двдыбг
-                       <repeat> д╧бв╖лдъ╩╓д╖▓є┐Їд╟бв╛╩╬м╗■д╧ 1 д╟двдыбг
-
-   dts                 TCP е╟еге╣елб╝е╔епещедевеєе╚бже┐е╣епд╬╖лдъ╩╓д╖
-                       ╞░║юдЄ─ф╗▀д╣дыбг
-
-   du <host> [<portno> [<repeat>]]
-                       UDP е╟еге╣елб╝е╔епещедевеєе╚бже┐е╣епдЄ╡п╞░д╖бв
-                       е╟еге╣елб╝е╔е╡б╝е╨ <host> д╦е╟еге╣елб╝е╔е╤е┐б╝
-                       еєдЄ┴ў┐од╣дыбг<portno> д╧бве╟еге╣елб╝е╔е╡б╝е╨д╬
-                       е▌б╝е╚╚╓╣цд╟бв╛╩╬м╗■б╩- дЄ╗╪─ъд╣дыб╦д╧ 9 д╟двдыбг
-                       <repeat> д╧бв╖лдъ╩╓д╖▓є┐Їд╟бв╛╩╬м╗■д╧ 1 д╟двдыбг
-
-   dus                 UDP е╟еге╣елб╝е╔епещедевеєе╚бже┐е╣епд╬╖лдъ╩╓д╖
-                       ╞░║юдЄ─ф╗▀д╣дыбг
-
-   et <host> [<portno> [<repeat>]]
-                       TCP еие│б╝епещедевеєе╚бже┐е╣епдЄ╡п╞░д╖бв еие│б╝
-                       е╡б╝е╨ <host> д╦еие│б╝е╤е┐б╝еєдЄ┴ў┐од╣дыбг
-                       <portno> д╧бвеие│б╝е╡б╝е╨д╬е▌б╝е╚╚╓╣цд╟бв╛╩╬м╗■
-                       б╩- дЄ╗╪─ъд╣дыб╦д╧ 7 д╟двдыбг<repeat> д╧бв ╖лдъ
-                       ╩╓д╖▓є┐Їд╟бв╛╩╬м╗■д╧ 1 д╟двдыбг
-
-   ets                 TCP еие│б╝епещедевеєе╚бже┐е╣епд╬╖лдъ╩╓д╖╞░║юдЄ
-                       ─ф╗▀д╣дыбг
-
-   eu <host> [<portno>] [<msg> | <repeat>]
-                       UDP еие│б╝епещедевеєе╚бже┐е╣епдЄ╡п╞░д╖бв еие│б╝
-                       е╡б╝е╨ <host> д╦есе├е╗б╝е╕дЄ┴ў┐од╣дыбг <portno>
-                       д╧бв еие│б╝е╡б╝е╨д╬е▌б╝е╚╚╓╣цд╟бв╛╩╬м╗■б╩- дЄ╗╪
-                       ─ъд╣дыб╦д╧ 7 д╟двдыбг<repeat>б╩┐Ї╗·б╦дЄ╗╪─ъд╖д┐
-                       ╛ь╣чд╧бв ─ъ╖┐д╬есе├е╗б╝е╕дЄ <repeat> ▓є╖лдъ╩╓д╖
-                       ┴ў┐од╣дыбг<msg>б╩┐Ї╗·░╩│░б╦дЄ╗╪─ъд╖д┐╛ь╣чд╧бвесе├
-                       е╗б╝е╕ <msg> дЄ┴ў┐од╣дыбг
-
-   eus                 UDP еие│б╝епещедевеєе╚бже┐е╣епд╬╖лдъ╩╓д╖╞░║юдЄ
-                       ─ф╗▀д╣дыбг
-
-   i                   е═е├е╚еяб╝епедеєе┐е╒езб╝е╣дм PPP д╬╗■д╦═н╕·д╟дв
-                       дыбг─╛└▄└▄┬│д╬╛ь╣чд╧бв─╛д┴д╦ LCP дЄ╡п╞░д╖д╞бве╡б╝
-                       е╨д╦└▄┬│д╣дыбг ете╟ер└▄┬│д╬╛ь╣чд╧бве│еєе╤едеы╗■
-                       е│еєе╒егеоехеьб╝е╖ечеєд╬ MODEM_CFG_PHONE_NUMBER
-                       е╤ещесб╝е┐д╟╗╪─ъд╡дьд╞дддые╡б╝е╨д╦╚п╕╞д╣дыбг д╩
-                       дкбвPPP д╧╗▓╣═╝┬┴їд╟двдыбг
-
-   if [<addr> <mask>]  е═е├е╚еяб╝епедеєе┐е╒езб╝е╣дм PPP д╬╗■д╧бв IP ев
-                       е╔еье╣бве╡е╓е═е├е╚е▐е╣епбв е╓еэб╝е╔енеуе╣е╚еве╔
-                       еье╣дЄ╜╨╬╧д╣дыбг е═е├е╚еяб╝епедеєе┐е╒езб╝е╣дмедб╝
-                       е╡е═е├е╚д╟бв е═е├е╚еяб╝еп┴╪дм IPv4 д╬╗■д╧бв
-                       [<addr> <mask>] дЄ╗╪─ъд╟дндыбг [<addr> <mask>]
-                       дЄ╗╪─ъд╖д╩д▒дьд╨бвMAC еве╔еье╣бвIP еве╔еье╣бве╡
-                       е╓е═е├е╚е▐е╣епбв е╓еэб╝е╔енеуе╣е╚еве╔еье╣д╬╜╨╬╧
-                       д╬д▀╣╘джбг[<addr> <mask>] дЄ╗╪─ъд╖д┐╗■д╧бвIP ев
-                       еье╣бвIP еве╔еье╣бве╡е╓е═е├е╚е▐е╣епбве╓еэб╝е╔енеу
-                       е╔еье╣д╚е╡е╓е═е├е╚е▐е╣епдЄ╩╤╣╣д╖д┐╕хбв MAC еве╔
-                       е╣е╚еве╔еье╣дЄ╜╨╬╧д╣дыбг<addr> д╧бв IP еве╔еье╣бв
-                       <mask> д╧бве╡е╓е═е├е╚е▐е╣епд╟двдыбгд╩дкбвPPP д╧
-                       ╗▓╣═╝┬┴їд╟двдыбг
-
-   na                  е═е├е╚еяб╝епедеєе┐е╒езб╝е╣дмедб╝е╡е═е├е╚д╬╗■д╦
-                       ═н╕·д╟двдыбгIPv4 д╟д╧ ARP енеуе├е╖ехбвIPv6 д╟д╧
-                       ╢с╬┘еве╔еье╣енеуе├е╖ехд╬╛ї┬╓дЄ╜╨╬╧д╣дыбг 
-
-   nb                  е═е├е╚еяб╝епе╨е├е╒ебд╬┼¤╖╫╛Ё╩єдЄ╜╨╬╧д╣дыбг
-
-   nc                  е═е├е╚еяб╝еп┼¤╖╫╛Ё╩єдЄ╔╜╝ид╣дыбг
-
-   nr [<index> <target> <mask> <gateway>]
-                       е═е├е╚еяб╝епедеєе┐е╒езб╝е╣дмедб╝е╡е═е├е╚д╬д╚дн
-                       ═н╕·д╟двдыбг е═е├е╚еяб╝еп┴╪дм IPv4 д╬╗■д╧бв
-                       [<index> <target> <mask> <gateway>] дЄ╗╪─ъд╟дн
-                       дыбг [<index> <target> <mask> <gateway>] дЄ╗╪─ъ
-                       д╖д╩д▒дьд╨бв еыб╝е╞егеєе░╔╜д╬╜╨╬╧д╬д▀╣╘джбг
-                       [<index> <target> <mask> <gateway>] дЄ╗╪─ъд╖д┐
-                       ╗■д╧бв еыб╝е╞егеєе░╔╜дЄ╩╤╣╣д╖д┐╕хбвеыб╝е╞егеєе░
-                       ╔╜дЄ╜╨╬╧д╣дыбг<index> д╧бв ╖╨╧йеиеєе╚еъд╬едеєе╟е├
-                       епе╣бв<target> д╧бв╠▄╔╕е═е├е╚еяб╝епд╬ IP еве╔еь
-                       е╣бв<mask> д╧бв╠▄╔╕е═е├е╚еяб╝епд╬е╡е╓е═е├е╚е▐е╣
-                       епбв <gateway> д╧бве▓б╝е╚ежезедд╬ IP еве╔еье╣д╟двдыбг
-
-   nrl                 е═е├е╚еяб╝епедеєе┐е╒езб╝е╣дмедб╝е╡е═е├е╚д╟бв е═е├
-                       е╚еяб╝еп┴╪дм IPv6 д╬╗■д╦═н╕·д╟двдыбг е╟еге╒ейеы
-                       е╚еыб╝е┐бжеъе╣е╚дЄ╜╨╬╧д╣дыбг
-
-   nrp                 е═е├е╚еяб╝епедеєе┐е╒езб╝е╣дмедб╝е╡е═е├е╚д╟бв е═е├
-                       е╚еяб╝еп┴╪дм IPv6 д╬╗■д╦═н╕·д╟двдыбг е╫еье╒еге├
-                       епе╣еъе╣е╚дЄ╜╨╬╧д╣дыбг
-
-   nt                  TCP ─╠┐о├╝┼└д╚ TCP ╝ї╔╒╕¤д╬╛ї┬╓дЄ╔╜╝ид╣дыбг
-
-   nu                  UDP ─╠┐о├╝┼└д╬╛ї┬╓дЄ╔╜╝ид╣дыбг
-
-   p <host> [ <tmo> [<size>] ]
-                       е█е╣е╚ <host> д╦ ICMP е╤е▒е├е╚дЄ┴ў┐од╣дыбг<tmo>
-                       д╧е┐едеревеже╚├═б╩├▒░╠д╧╔├б╦д╟бв ╛╩╬м╗■б╩- дЄ╗╪
-                       ─ъд╣дыб╦д╧ 3 ╔├д╟двдыбг <size> д╧е╟б╝е┐е╡еде║д╟бв
-                       ╗╪─ъд╖д╩дд╛ь╣чд╧ 64 екепе╞е├е╚д╟двдыбг
-
-   ps                  е┐е╣епд╬╛ї┬╓дЄ╔╜╝ид╣дыбг
-
-   r <tskid>           е┐е╣еп <tskid> д╬┬╘д┴╛ї┬╓дЄ╢п└й┼кд╦▓Є╜№д╣дыбг
-
-   tt <repid>          ITRON TCP/IP API д╬ TCP д╬│╚─е╡б╟╜дЄ┴╚╣■др╔м═╫
-                       дмдвдыбгTCP ╝ї╔╒╕¤ <repid> дЄ║я╜№д╖бв┬╨▒■д╣дые╡б╝
-                       е╨дЄ─ф╗▀д╣дыбг
-
-   tu <cepid>          ITRON TCP/IP API д╬ UDP д╬│╚─е╡б╟╜дЄ┴╚╣■др╔м═╫
-                       дмдвдыбгUDP ─╠┐о├╝┼└ <cepid> дЄ║я╜№д╖бв┬╨▒■д╣ды
-                       е╡б╝е╨дЄ─ф╗▀д╣дыбг
-
-   w <tskid>           е┐е╣еп <tskid> дЄ╡п╛▓д╣дыбг
-
-   wtd                 ITRON TCP/IP API д╬ TCP д╬│╚─е╡б╟╜дЄ┴╚╣■др╔м═╫
-                       дмдвдыбгTCP е╟еге╣елб╝е╔е╡б╝е╨бже┐е╣епд╦ TCP ╝ї
-                       ╔╒╕¤д╚ TCP ─╠┐о├╝┼└дЄ│ф┼Ўд╞бвTCP е╟еге╣елб╝е╔е╡б╝
-                       е╨бже┐е╣епдЄ╡п╞░д╣дыбг
-
-   wte                 ITRON TCP/IP API д╬ TCP д╬│╚─е╡б╟╜дЄ┴╚╣■др╔м═╫
-                       дмдвдыбгTCP еие│б╝е╡б╝е╨бже┐е╣епд╦ TCP ╝ї╔╒╕¤д╚
-                       TCP ─╠┐о├╝┼└дЄ│ф┼Ўд╞бв TCP еие│б╝е╡б╝е╨бже┐е╣еп
-                       дЄ╡п╞░д╣дыбг
-
-   wtw                 ITRON TCP/IP API д╬ TCP д╬│╚─е╡б╟╜дЄ┴╚╣■др╔м═╫
-                       дмдвдыбг WWW е╡б╝е╨бже┐е╣епд╦ TCP ╝ї╔╒╕¤д╚ TCP
-                       ─╠┐о├╝┼└дЄ│ф┼Ўд╞бвWWW е╡б╝е╨бже┐е╣епдЄ╡п╞░д╣дыбг
-
-   wue                 ITRON UDP/IP API д╬ UDP д╬│╚─е╡б╟╜дЄ┴╚╣■др╔м═╫
-                       дмдвдыбгUDP еие│б╝е╡б╝е╨бже┐е╣епд╦ UDP ─╠┐о├╝┼└
-                       дЄ│ф┼Ўд╞бвUDP еие│б╝е╡б╝е╨бже┐е╣епдЄ╡п╞░д╣дыбг
-
-9. 5  sample1 д╬е═е├е╚еяб╝еп┬╨▒■е╫еэе░ещерб┌sample1nбвIPv6/IPv4б█д╬╣╜├█
-
-  TOPPERS/ASP д╚ TOPPERS/JSP д╬е╡еєе╫еые╫еэе░ещер sample1 д╬е═е├е╚еяб╝
-еп┬╨▒■е╫еэе░ещерд╟двдыбгtelnet д╟└▄┬│д╣дыд╚бв е╖еъевеыд╬╞■╜╨╬╧дЄ░·дн╖╤
-ддд╟╝┬╣╘д╣дыбг └┌├╟д╣дыд╚бв ╕╡д╬е╖еъевеыд╦╞■╜╨╬╧дЄ╠сд╣бг
-  ░╩▓╝д╦╣╜├█╩¤╦бдЄ╜╥д┘дыбг
-
-   (1)   ASP/JSP е│еєе╒егеоехеьб╝е╖ечеєе╣епеъе╫е╚д╬╝┬╣╘
-           д╜дьд╛дьд╬┤─╢нд╦дкд▒дые│еєе╒егеоехеьб╝е╖ечеєе╣епеъе╫е╚дЄ╝┬
-         ╣╘д╣дыбг░╩▓╝д╧бв TOPPERS/ASP ┤─╢нд╦дкд▒дые│еєе╒егеоехеьб╝е╖еч
-         еєе╣епеъе╫е╚д╬╝┬╣╘╬уд╟двдыбг
-
-            $ mkdir NETOBJ
-            $ cd NETOBJ
-            $ perl ../configure -T akih8_3069f_gcc
-
-   (2)   TINET е│еєе╒егеоехеьб╝е╖ечеєе╣епеъе╫е╚д╬╝┬╣╘
-           д╜дьд╛дьд╬┤─╢нд╦дкд▒ды TINET е│еєе╒егеоехеьб╝е╖ечеєе╣епеъе╫
-         е╚дЄ╝┬╣╘д╣дыбг д│д╬╗■бв еве╫еъе▒б╝е╖ечеєе╫еэе░ещер╠╛д╚д╖д╞
-         sample1n дЄ╗╪─ъд╣дыбг ░╩▓╝д╧бв TOPPERS/ASP ┤─╢нд╦дкд▒ды TINET
-         е│еєе╒егеоехеьб╝е╖ечеєе╣епеъе╫е╚д╬╝┬╣╘╬уд╟двдыбг 
-
-            $ perl ../tinet/tinet_asp_configure -T akih8_3069f_gcc -A sample1n
-                                                -i ether -v if_ed -n inet6 -s tcp
-
-   (3)   Makefile д╬╜д└╡
-           еве╫еъе▒б╝е╖ечеє╦▄┬╬б╩sample1n.cб╦д╚ TOPPERS/ASP д╚
-         TOPPERS/JSP д╬ sample1.c дЄ░ь╜яд╦е│еєе╤едеыбжеъеєепд╣дыд┐дсбв
-         Makefile дЄ╜д└╡д╣дыбг
-
-         [1]   TOPPERS/ASP ┤─╢н
-                 Makefile д╬ APPL_COBJS д╦ sample1.o дЄ─╔▓├д╣дыбг
-
-                  APPL_COBJS = $(APPLNAME).o sample1.o
-
-         [2]   TOPPERS/JSP ┤─╢н
-                 Makefile д╬ UTASK_COBJS д╦ sample1.o дЄ─╔▓├д╣дыбг
-
-                  UTASK_COBJS = $(UNAME).o sample1.o
-
-   (4)   sample1.c д╬╜д└╡
-           TOPPERS/ASP д╚ TOPPERS/JSP д╬ sample1.c д╬едеєепеыб╝е╔е╒еб
-         едеыд╬╗╪─ъ
-
-            #include "sample1.h"
-
-         д╬┴░д╦бв░╩▓╝д╬едеєепеыб╝е╔е╒ебедеыдЄ─╔▓├д╣дыбг 
-
-            #include "sample1n.h"
-
-   (5)   tinet_app_config.h д╬└▀─ъ
-           IPv4 д╬╛ь╣чбв IP еве╔еье╣бве╡е╓е═е├е╚е▐е╣епбве╟еге╒ейеые╚е▓б╝
-         е╚ежезеддЄ╗╪─ъд╣дыбг
-
-9. 6  ║╟╛о╣╜└ое╡б╝е╨б┌minsvбвIPv4б█д╬╣╜├█
-
-  WWW е╡б╝е╨бже┐е╣епд╚ TCP еие│б╝е╡б╝е╨бже┐е╣епд╬д▀длдщд╩ды║╟╛о╣╜└од╬
-е╡б╝е╨д╟двдыбгH8/3069F дм╞т┬вд╖д╞ддды RAMб╩16K е╨еде╚б╦д╚ ROMб╩512K е╨
-еде╚б╦д╦╝¤д▐дъбв│░╔Їесетеъд╧╔╘═╫д╟двдыбг╕╜║▀д╧бв╔╩└ю─╠┐о╖╫┴їе╡б╝е╙е╣└╜
-NKEV-010H8б╩TOPPERS/JSP еъеъб╝е╣ 1.4.2 д╬д▀б╦д╚╜й╖ю┼┼╗╥─╠╛ж└╜ H8/3069F
-б╩TOPPERS/JSP еъеъб╝е╣ 1.4.1 ░╩╣▀д╚ TOPPERS/ASPб╦д╬е╖е╣е╞ерд╦┬╨▒■д╖д╞дддыбг
-  │╞е╖е╣е╞ер░═┬╕╔Їд╬ Makefile.config д╬б╓╝┬╣╘┤─╢нд╬─ъ╡┴б╫д╟бв
-
-   # ROM▓╜ │░╔ЇRAM╠д╗╚═╤
-   #DBGENV := INMEM_ONLY
-
-дЄ═н╕·д╦д╖д╞бве│еєе╤едеыбжеъеєепд╣дыбг 
-
-10.  ╝╒╝н
-
-  ╦▄ TCP/IP е╫еэе╚е│еые╣е┐е├епд╧бв╝бд╬┴╚┐ед╬│з══д╬╕ц╗┘▒чд╦дшдъ╕ж╡цбж│л
-╚пдЄ╣╘ддд▐д╖д┐бг ┤╪╖╕│╞░╠д╦┤╢╝╒ддд┐д╖д▐д╣бг
-
-   (1)   ║т├─╦б┐═╞╗▒√╗║╢╚╡╗╜╤┐╢╢╜╡б╣╜══
-
-         [1]   ╗Ў╢╚╠╛б╩╝┬╗▄╟п┼┘б╦
-               ╣т┼┘╡╗╜╤│л╚п░╤┬ў╗Ў╢╚б╩╩┐└о 12 ╟п┼┘б╦
-         [2]   е╞б╝е▐╠╛
-               ┴╚╣■д▀╖┐└й╕це╖е╣е╞ер═╤ TCP/IP е╫еэе╚е│еые╣е┐е├епд╬│л╚п
-
-   (2)   │Ї╝░▓ё╝╥ NTT е╔е│ет╦╠│д╞╗╞╤╛о╦╥╗┘┼╣══
-   (3)   ╖╨║╤╗║╢╚╛╩┼ь╦╠╖╨║╤╗║╢╚╢╔б╩░╤┬ў└ш┤╔═¤╦б┐═: ║т├─╦б┐═д▀дфдо╗║╢╚
-         ┐╢╢╜╡б╣╜б╦══
-
-         [1]   ╗Ў╢╚╠╛б╩╝┬╗▄╟п┼┘б╦
-               ├╧░ш┐╖└╕е│еєе╜б╝е╖евер╕ж╡ц│л╚п╗Ў╢╚б╩╩┐└о 14бв15 ╟п┼┘б╦
-         [2]   е╞б╝е▐╠╛
-               ┴╚╣■д▀е╖е╣е╞ербжекб╝е╫еєе╫еще├е╚е█б╝ерд╬╣╜├█д╚д╜д╬╝┬═╤
-               ▓╜│л╚п
-
-   (4)   ╡▄╛ы╕й╗║╢╚╡╗╜╤┴э╣че╗еєе┐б╝══
-   (5)   TOPPERS е╫еэе╕езепе╚══
-   (6)   │Ї╝░▓ё╝╥еЇеге├е─══
-   (7)   ║т├─╦б┐═┼┼╡дбж┼┼╗╥╛Ё╩є│╪╜╤┐╢╢╜║т├─══
-
-         [1]   ┬ш 6 ▓є LSI IP е╟е╢едеєбжевеяб╝е╔ IP ╝ї╛▐
-              б╩2004 ╟пбв ╩┐└о 16 ╟п 5 ╖ю 20 ╞№б╦
-               екб╝е╫еєе╜б╝е╣д╬┴╚╣■д▀е╖е╣е╞ер═╤ TCP/IP
-               е╫еэе╚е│еые╣е┐е├еп : TINET
-         [2]   ┬ш 7 ▓є LSI IP е╟е╢едеєбжевеяб╝е╔ IP ╝ї╛▐
-              б╩2005 ╟пбв ╩┐└о 17 ╟п 5 ╖ю 19 ╞№б╦
-               ┴╚╣■д▀е╖е╣е╞ер═╤ IP е╨б╝е╕ечеє 6 ┬╨▒■ TCP/IP
-               е╫еэе╚е│еые╣е┐е├еп : TINET-1.2
-
-   (8)   │Ї╝░▓ё╝╥╦╠┼═┼┼╗╥══
-   (9)   ═н╕┬▓ё╝╥╔╩└ю─╠┐о╖╫┴їе╡б╝е╙е╣══
-   (10)  ╦╠│д╞╗╬й╣й╢╚╗ю╕│╛ь══
-
-         [1]   ╗Ў╢╚╠╛б╩╝┬╗▄╟п┼┘б╦
-               ╜┼┼└╬╬░ш╞├╩╠╕ж╡цб╩╩┐└о 17бв18 ╟п┼┘б╦
-         [2]   е╞б╝е▐╠╛
-               ┴╚╣■д▀е╖е╣е╞ер╕■д▒е═е├е╚еяб╝еп└▄┬│е╜е╒е╚ежезев╖▓д╬│л╚п
-
-11.  ещеде╗еєе╣
-
-  TINET д╧ FreeBSD дЄ╕╡д╦│л╚пдЄ╣╘д├д┐д┐дсбв TINET дЄ┤▐дре╜е╒е╚ежезевдЄбв
-┬╛д╬е╜е╒е╚ежезев│л╚пд╦╗╚═╤д╟днд╩дд╖┴д╟║╞╟█╔█д╣ды╛ь╣чб╩TOPPERS ещеде╗еє
-е╣ (3) д╦╡м─°д╡дьд╞ддды╖┴┬╓б╦д╧бв TOPPERS ещеде╗еєе╣ (3) д╬ (b) д╬╩є╣Ё
-д└д▒д╟д╧╔╘╜╜╩мд╟бв(a) д╦дшды╩¤╦бдм╔м═╫д╟двдыбг
-  ░╩▓╝д╦╝ид╣ TOPPERSбв FreeBSD дкдшд╙ FreeBSD д╪д╬е╜е╒е╚ежезевд╬┤є┬г╝╘
-д╬ещеде╗еєе╣╡м─ъд╦╜╛д├д╞бв║╞╟█╔█д╦╚╝дже╔енехесеєе╚б╩═°═╤╝╘е▐е╦ехевеыд╩
-д╔б╦д╦бвещеде╗еєе╣╔╜╝идЄ╣╘джд╚бг
+         уАРцйЯшГ╜уАС
+                 цИ╗уВКхАдуБл TRUE уВТцМЗхоЪуБЩуВЛуБиуАБTINET уБзщЗНшдЗчЫ╕цЙЛуБо MAC уВв
+               уГЙуГмуВ╣уВТ syslog уБлхЗ║хКЫуБЧуАБ щЗНшдЗчЫ╕цЙЛуБлуВВщЗНшдЗуБЧуБЯуБУуБиуВТф╝Э
+               уБИуВЛуАВFALSE уВТцМЗхоЪуБЩуВЛуБиф╜ХуВВуБЧуБкуБДуАВ
+
+8.  шмЭш╛Ю
+
+  цЬм TCP/IP уГЧуГнуГИуВ│уГлуВ╣уВ┐уГГуВпуБпуАБцмбуБоч╡Дч╣ФуБочЪЖцзШуБох╛бцФпцП┤уБлуВИуВКчаФчй╢уГ╗щЦЛ
+чЩ║уВТшбМуБДуБ╛уБЧуБЯуАВщЦвф┐ВхРДф╜НуБлцДЯшмЭуБДуБЯуБЧуБ╛уБЩуАВ 
+
+   (1)   ш▓бхЫгц│Хф║║щБУхдочФгценцКАшбУцМпшИИцйЯцзЛцзШ
+
+         [1]   ф║ЛценхРНя╝ИхоЯцЦ╜х╣┤х║жя╝Й
+               щлШх║жцКАшбУщЦЛчЩ║хзФшиЧф║Лценя╝Их╣│цИР 12 х╣┤х║жя╝Й
+         [2]   уГЖуГ╝уГЮхРН
+               ч╡Дш╛╝уБ┐хЮЛхИ╢х╛буВ╖уВ╣уГЖуГачФи TCP/IP уГЧуГнуГИуВ│уГлуВ╣уВ┐уГГуВпуБощЦЛчЩ║
+
+   (2)   цакх╝Пф╝Ъчд╛ NTT уГЙуВ│уГвхМЧц╡╖щБУшЛлх░ПчЙзцФпх║ЧцзШ
+   (3)   ч╡Мц╕ИчФгценчЬБцЭ▒хМЧч╡Мц╕ИчФгценх▒Ая╝ИхзФшиЧхЕИчобчРЖц│Хф║║: ш▓бхЫгц│Хф║║уБ┐уВДуБОчФгцен
+         цМпшИИцйЯцзЛя╝ЙцзШ
+
+         [1]   ф║ЛценхРНя╝ИхоЯцЦ╜х╣┤х║жя╝Й
+               хЬ░хЯЯцЦ░чФЯуВ│уГ│уВ╜уГ╝уВ╖уВвуГачаФчй╢щЦЛчЩ║ф║Лценя╝Их╣│цИР14х╣┤х║жуАЬ15х╣┤х║жя╝Й
+         [2]   уГЖуГ╝уГЮхРН
+               ч╡Дш╛╝уБ┐уВ╖уВ╣уГЖуГауГ╗уВкуГ╝уГЧуГ│уГЧуГйуГГуГИуГЫуГ╝уГауБоцзЛчпЙуБиуБЭуБохоЯчФихМЦщЦЛчЩ║
+
+   (4)   хоохЯОчЬМчФгценцКАшбУч╖ПхРИуВ╗уГ│уВ┐уГ╝цзШ
+   (5)   TOPPERS уГЧуГнуВ╕уВзуВпуГИцзШ
+   (6)   цакх╝Пф╝Ъчд╛уГ┤уВгуГГуГДцзШ
+   (7)   ш▓бхЫгц│Хф║║щЫ╗ц░ЧуГ╗щЫ╗хнРцГЕха▒хнжшбУцМпшИИш▓бхЫгцзШ
+
+         [1]   чмм 6 хЫЮ LSI IP уГЗуВ╢уВдуГ│уГ╗уВвуГпуГ╝уГЙ IP хПЧш│Ю
+              я╝И2004 х╣┤уАБ х╣│цИР 16 х╣┤ 5 цЬИ 20 цЧея╝Й
+               уВкуГ╝уГЧуГ│уВ╜уГ╝уВ╣уБоч╡Дш╛╝уБ┐уВ╖уВ╣уГЖуГачФи TCP/IP
+               уГЧуГнуГИуВ│уГлуВ╣уВ┐уГГуВп : TINET
+         [2]   чмм 7 хЫЮ LSI IP уГЗуВ╢уВдуГ│уГ╗уВвуГпуГ╝уГЙ IP хПЧш│Ю
+              я╝И2005 х╣┤уАБ х╣│цИР 17 х╣┤ 5 цЬИ 19 цЧея╝Й
+               ч╡Дш╛╝уБ┐уВ╖уВ╣уГЖуГачФи IP уГРуГ╝уВ╕уГзуГ│ 6 хп╛х┐Ь TCP/IP
+               уГЧуГнуГИуВ│уГлуВ╣уВ┐уГГуВп : TINET-1.2
+
+   (8)   цакх╝Пф╝Ъчд╛хМЧцЦЧщЫ╗хнРцзШ
+   (9)   цЬЙщЩРф╝Ъчд╛хУБх╖ЭщАЪф┐бшиИшгЕуВ╡уГ╝уГУуВ╣цзШ
+   (10)  хМЧц╡╖щБУчлЛх╖еценшйжщиУха┤цзШ
+
+         [1]   ф║ЛценхРНя╝ИхоЯцЦ╜х╣┤х║жя╝Й
+               щЗНчВ╣щаШхЯЯчЙ╣хИечаФчй╢я╝Их╣│цИР 17 х╣┤х║жуАЬ 18 х╣┤х║жя╝Й
+         [2]   уГЖуГ╝уГЮхРН
+               ч╡Дш╛╝уБ┐уВ╖уВ╣уГЖуГахРСуБСуГНуГГуГИуГпуГ╝уВпцОеч╢ЪуВ╜уГХуГИуВжуВзуВвч╛дуБощЦЛчЩ║
+
+   (11)  ч╖ПхЛЩчЬБхМЧц╡╖щБУч╖ПхРИщАЪф┐бх▒АцзШ
+
+         [1]   ф║ЛценхРНя╝ИхоЯцЦ╜х╣┤х║жя╝Й
+               цИжчХечЪДцГЕха▒щАЪф┐бчаФчй╢щЦЛчЩ║цОищА▓хИ╢х║жуАРSCOPEуАСуАМхЬ░хЯЯ ICT цМпшИИ
+               хЮЛчаФчй╢щЦЛчЩ║уАНя╝Их╣│цИР 22 х╣┤х║жуАЬх╣│цИР 23 х╣┤х║жя╝Й
+         [2]   уГЖуГ╝уГЮхРН
+               уГжуГУуВнуВ┐уВ╣уВ╡уГ╝уГУуВ╣уГЧуГйуГГуГИуГХуВйуГ╝уГауБлхп╛х┐ЬуБЧуБЯч╡Дш╛╝уБ┐уВ╖уВ╣
+               уГЖуГачФи TCP/IP уГЧуГнуГИуВ│уГлуВ╣уВ┐уГГуВпуБиуВ╡уГЭуГ╝уГИуВ╖уВ╣уГЖуГауБочаФчй╢щЦЛчЩ║
+
+   (12)  уГлуГНуВ╡уВ╣уВиуГмуВпуГИуГнуГЛуВпуВ╣цакх╝Пф╝Ъчд╛цзШ
+
+   (13)  ч╡Мц╕ИчФгценчЬБхМЧц╡╖щБУч╡Мц╕ИчФгценх▒АцзШ
+
+         [1]   ф║ЛценхРНя╝ИхоЯцЦ╜х╣┤х║жя╝Й
+               ф╕нх░Пф╝Бценч╡МхЦ╢цФпцП┤чнЙхп╛чнЦш▓╗шгЬхКйщЗСуАМцИжчХечЪДхЯ║чЫдцКАшбУщлШх║жхМЦцФпцП┤ф║ЛценуАН
+               я╝Их╣│цИР 26 х╣┤х║жуАЬх╣│цИР 28 х╣┤х║жя╝Й
+         [2]   уГЖуГ╝уГЮхРН
+               ш╛▓ценцйЯцв░уБоуБХуВЙуБкуВЛщлШх║жхМЦуБиц╡╖хдЦщА▓хЗ║уБлш│ЗуБЩуВЛ
+               цмбф╕Цф╗гщЫ╗хнРхИ╢х╛буВ╜уГХуГИуВжуВзуВвхЯ║чЫдуБощЦЛчЩ║
+
+9.  уГйуВдуВ╗уГ│уВ╣
+
+  TINET уБп FreeBSD уВТхЕГуБлщЦЛчЩ║уВТшбМуБгуБЯуБЯуВБуАБ TINET уВТхРлуВАуВ╜уГХуГИуВжуВзуВвуВТуАБ
+ф╗ЦуБоуВ╜уГХуГИуВжуВзуВвщЦЛчЩ║уБлф╜┐чФиуБзуБНуБкуБДх╜вуБзхЖНщЕНх╕ГуБЩуВЛха┤хРИя╝ИTOPPERS уГйуВдуВ╗уГ│
+уВ╣ (3) уБлшжПчиЛуБХуВМуБжуБДуВЛх╜вцЕЛя╝ЙуБпуАБ TOPPERS уГйуВдуВ╗уГ│уВ╣ (3) уБо (b) уБоха▒хСК
+уБауБСуБзуБпф╕НхНБхИЖуБзуАБ(a) уБлуВИуВЛцЦ╣ц│ХуБМх┐ЕшжБуБзуБВуВЛуАВ
+  ф╗еф╕ЛуБлчд║уБЩ TOPPERSуАБ FreeBSD уБКуВИуБ│ FreeBSD уБ╕уБоуВ╜уГХуГИуВжуВзуВвуБохпДш┤ИшАЕ
+уБоуГйуВдуВ╗уГ│уВ╣шжПхоЪуБлх╛УуБгуБжуАБхЖНщЕНх╕ГуБлф╝┤уБЖуГЙуВнуГеуГбуГ│уГИя╝ИхИйчФишАЕуГЮуГЛуГеуВвуГлуБк
+уБйя╝ЙуБлуАБуГйуВдуВ╗уГ│уВ╣шбичд║уВТшбМуБЖуБиуАВ
 
 (1)FreeBSD
 
@@ -2864,7 +1802,7 @@ NKEV-010H8б╩TOPPERS/JSP еъеъб╝е╣ 1.4.2 д╬д▀б╦д╚╜й╖ю┼┼╗╥─╠╛ж└╜ H8/3069F
     * SUCH DAMAGE.
     */
 
-(3)едб╝е╡е═е├е╚бже╟еге╨еде╣е╔ещеде╨
+(3)уВдуГ╝уВ╡уГНуГГуГИуГ╗уГЗуВгуГРуВдуВ╣уГЙуГйуВдуГР
 
    /*
     * Copyright (c) 1995, David Greenman
@@ -2948,37 +1886,165 @@ NKEV-010H8б╩TOPPERS/JSP еъеъб╝е╣ 1.4.2 д╬д▀б╦д╚╜й╖ю┼┼╗╥─╠╛ж└╜ H8/3069F
     * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
     */
 
-(6)TINET д╚ TOPPERS
+(6)TOPPERS/ASP
+
+   /*
+    *  TOPPERS/ASP Kernel
+    *      Toyohashi Open Platform for Embedded Real-Time Systems/
+    *      Advanced Standard Profile Kernel
+    * 
+    *  Copyright (C) 2000-2003 by Embedded and Real-Time Systems Laboratory
+    *                              Toyohashi Univ. of Technology, JAPAN
+    *  Copyright (C) 2004-2013 by Embedded and Real-Time Systems Laboratory
+    *              Graduate School of Information Science, Nagoya Univ., JAPAN
+    * 
+    *  ф╕КшиШшСЧф╜ЬцийшАЕуБпя╝Мф╗еф╕ЛуБо(1)уАЬ(4)уБоцЭбф╗╢уВТц║АуБЯуБЩха┤хРИуБлщЩРуВКя╝МцЬмуВ╜уГХуГИуВжуВз
+    *  уВвя╝ИцЬмуВ╜уГХуГИуВжуВзуВвуВТцФ╣хдЙуБЧуБЯуВВуБоуВТхРлуВАя╝Оф╗еф╕ЛхРМуБШя╝ЙуВТф╜┐чФиуГ╗шдЗшг╜уГ╗цФ╣
+    *  хдЙуГ╗хЖНщЕНх╕Гя╝Иф╗еф╕Ля╝МхИйчФиуБихС╝уБ╢я╝ЙуБЩуВЛуБУуБиуВТчДбхДЯуБзши▒шл╛уБЩуВЛя╝О
+    *  (1) цЬмуВ╜уГХуГИуВжуВзуВвуВТуВ╜уГ╝уВ╣уВ│уГ╝уГЙуБох╜вуБзхИйчФиуБЩуВЛха┤хРИуБлуБпя╝Мф╕КшиШуБошСЧф╜Ь
+    *      цийшбичд║я╝МуБУуБохИйчФицЭбф╗╢уБКуВИуБ│ф╕ЛшиШуБочДбф┐Эши╝шжПхоЪуБМя╝МуБЭуБоуБ╛уБ╛уБох╜вуБзуВ╜уГ╝
+    *      уВ╣уВ│уГ╝уГЙф╕нуБлхРлуБ╛уВМуБжуБДуВЛуБУуБия╝О
+    *  (2) цЬмуВ╜уГХуГИуВжуВзуВвуВТя╝МуГйуВдуГЦуГйуГкх╜вх╝ПуБкуБйя╝Мф╗ЦуБоуВ╜уГХуГИуВжуВзуВвщЦЛчЩ║уБлф╜┐
+    *      чФиуБзуБНуВЛх╜вуБзхЖНщЕНх╕ГуБЩуВЛха┤хРИуБлуБпя╝МхЖНщЕНх╕ГуБлф╝┤уБЖуГЙуВнуГеуГбуГ│уГИя╝ИхИйчФи
+    *      шАЕуГЮуГЛуГеуВвуГлуБкуБйя╝ЙуБля╝Мф╕КшиШуБошСЧф╜Ьцийшбичд║я╝МуБУуБохИйчФицЭбф╗╢уБКуВИуБ│ф╕ЛшиШ
+    *      уБочДбф┐Эши╝шжПхоЪуВТцО▓ш╝ЙуБЩуВЛуБУуБия╝О
+    *  (3) цЬмуВ╜уГХуГИуВжуВзуВвуВТя╝МцйЯхЩиуБлч╡ДуБ┐ш╛╝уВАуБкуБйя╝Мф╗ЦуБоуВ╜уГХуГИуВжуВзуВвщЦЛчЩ║уБлф╜┐
+    *      чФиуБзуБНуБкуБДх╜вуБзхЖНщЕНх╕ГуБЩуВЛха┤хРИуБлуБпя╝МцмбуБоуБДуБЪуВМуБЛуБоцЭбф╗╢уВТц║АуБЯуБЩуБУ
+    *      уБия╝О
+    *    (a) хЖНщЕНх╕ГуБлф╝┤уБЖуГЙуВнуГеуГбуГ│уГИя╝ИхИйчФишАЕуГЮуГЛуГеуВвуГлуБкуБйя╝ЙуБля╝Мф╕КшиШуБошСЧ
+    *        ф╜Ьцийшбичд║я╝МуБУуБохИйчФицЭбф╗╢уБКуВИуБ│ф╕ЛшиШуБочДбф┐Эши╝шжПхоЪуВТцО▓ш╝ЙуБЩуВЛуБУуБия╝О
+    *    (b) хЖНщЕНх╕ГуБох╜вцЕЛуВТя╝МхИеуБлхоЪуВБуВЛцЦ╣ц│ХуБлуВИуБгуБжя╝МTOPPERSуГЧуГнуВ╕уВзуВпуГИуБл
+    *        ха▒хСКуБЩуВЛуБУуБия╝О
+    *  (4) цЬмуВ╜уГХуГИуВжуВзуВвуБохИйчФиуБлуВИуВКчЫ┤цОечЪДуБ╛уБЯуБпщЦУцОечЪДуБлчФЯуБШуВЛуБДуБЛуБкуВЛцРН
+    *      хо│уБЛуВЙуВВя╝Мф╕КшиШшСЧф╜ЬцийшАЕуБКуВИуБ│TOPPERSуГЧуГнуВ╕уВзуВпуГИуВТхЕНш▓муБЩуВЛуБУуБия╝О
+    *      уБ╛уБЯя╝МцЬмуВ╜уГХуГИуВжуВзуВвуБоуГжуГ╝уВ╢уБ╛уБЯуБпуВиуГ│уГЙуГжуГ╝уВ╢уБЛуВЙуБоуБДуБЛуБкуВЛчРЖ
+    *      чФ▒уБлхЯ║уБеуБПшлЛц▒ВуБЛуВЙуВВя╝Мф╕КшиШшСЧф╜ЬцийшАЕуБКуВИуБ│TOPPERSуГЧуГнуВ╕уВзуВпуГИуВТ
+    *      хЕНш▓муБЩуВЛуБУуБия╝О
+    * 
+    *  цЬмуВ╜уГХуГИуВжуВзуВвуБпя╝МчДбф┐Эши╝уБзцПРф╛ЫуБХуВМуБжуБДуВЛуВВуБоуБзуБВуВЛя╝Оф╕КшиШшСЧф╜ЬцийшАЕуБК
+    *  уВИуБ│TOPPERSуГЧуГнуВ╕уВзуВпуГИуБпя╝МцЬмуВ╜уГХуГИуВжуВзуВвуБлщЦвуБЧуБжя╝МчЙ╣хоЪуБоф╜┐чФичЫочЪД
+    *  уБлхп╛уБЩуВЛщБйхРИцАзуВВхРлуВБуБжя╝МуБДуБЛуБкуВЛф┐Эши╝уВВшбМуВПуБкуБДя╝ОуБ╛уБЯя╝МцЬмуВ╜уГХуГИуВжуВз
+    *  уВвуБохИйчФиуБлуВИуВКчЫ┤цОечЪДуБ╛уБЯуБпщЦУцОечЪДуБлчФЯуБШуБЯуБДуБЛуБкуВЛцРНхо│уБлщЦвуБЧуБжуВВя╝МуБЭ
+    *  уБош▓мф╗╗уВТш▓ауВПуБкуБДя╝О
+    * 
+    *  $Id: kernel.h 2541 2013-10-13 15:16:25Z ertl-hiro $
+    */
+
+(7)TOPPERS/JSP
+
+   /*
+    *  TOPPERS/JSP Kernel
+    *      Toyohashi Open Platform for Embedded Real-Time Systems/
+    *      Just Standard Profile Kernel
+    * 
+    *  Copyright (C) 2000-2003 by Embedded and Real-Time Systems Laboratory
+    *                              Toyohashi Univ. of Technology, JAPAN
+    *  Copyright (C) 2004 by Embedded and Real-Time Systems Laboratory
+    *              Graduate School of Information Science, Nagoya Univ., JAPAN
+    * 
+    *  ф╕КшиШшСЧф╜ЬцийшАЕуБпя╝Мф╗еф╕ЛуБо (1)уАЬ(4) уБоцЭбф╗╢уБЛя╝МFree Software Foundation 
+    *  уБлуВИуБгуБжхЕмшбиуБХуВМуБжуБДуВЛ GNU General Public License уБо Version 2 уБлшиШ
+    *  ш┐░уБХуВМуБжуБДуВЛцЭбф╗╢уВТц║АуБЯуБЩха┤хРИуБлщЩРуВКя╝МцЬмуВ╜уГХуГИуВжуВзуВвя╝ИцЬмуВ╜уГХуГИуВжуВзуВв
+    *  уВТцФ╣хдЙуБЧуБЯуВВуБоуВТхРлуВАя╝Оф╗еф╕ЛхРМуБШя╝ЙуВТф╜┐чФиуГ╗шдЗшг╜уГ╗цФ╣хдЙуГ╗хЖНщЕНх╕Гя╝Иф╗еф╕Ля╝М
+    *  хИйчФиуБихС╝уБ╢я╝ЙуБЩуВЛуБУуБиуВТчДбхДЯуБзши▒шл╛уБЩуВЛя╝О
+    *  (1) цЬмуВ╜уГХуГИуВжуВзуВвуВТуВ╜уГ╝уВ╣уВ│уГ╝уГЙуБох╜вуБзхИйчФиуБЩуВЛха┤хРИуБлуБпя╝Мф╕КшиШуБошСЧф╜Ь
+    *      цийшбичд║я╝МуБУуБохИйчФицЭбф╗╢уБКуВИуБ│ф╕ЛшиШуБочДбф┐Эши╝шжПхоЪуБМя╝МуБЭуБоуБ╛уБ╛уБох╜вуБзуВ╜уГ╝
+    *      уВ╣уВ│уГ╝уГЙф╕нуБлхРлуБ╛уВМуБжуБДуВЛуБУуБия╝О
+    *  (2) цЬмуВ╜уГХуГИуВжуВзуВвуВТя╝МуГйуВдуГЦуГйуГкх╜вх╝ПуБкуБйя╝Мф╗ЦуБоуВ╜уГХуГИуВжуВзуВвщЦЛчЩ║уБлф╜┐
+    *      чФиуБзуБНуВЛх╜вуБзхЖНщЕНх╕ГуБЩуВЛха┤хРИуБлуБпя╝МхЖНщЕНх╕ГуБлф╝┤уБЖуГЙуВнуГеуГбуГ│уГИя╝ИхИйчФи
+    *      шАЕуГЮуГЛуГеуВвуГлуБкуБйя╝ЙуБля╝Мф╕КшиШуБошСЧф╜Ьцийшбичд║я╝МуБУуБохИйчФицЭбф╗╢уБКуВИуБ│ф╕ЛшиШ
+    *      уБочДбф┐Эши╝шжПхоЪуВТцО▓ш╝ЙуБЩуВЛуБУуБия╝О
+    *  (3) цЬмуВ╜уГХуГИуВжуВзуВвуВТя╝МцйЯхЩиуБлч╡ДуБ┐ш╛╝уВАуБкуБйя╝Мф╗ЦуБоуВ╜уГХуГИуВжуВзуВвщЦЛчЩ║уБлф╜┐
+    *      чФиуБзуБНуБкуБДх╜вуБзхЖНщЕНх╕ГуБЩуВЛха┤хРИуБлуБпя╝МцмбуБоуБДуБЪуВМуБЛуБоцЭбф╗╢уВТц║АуБЯуБЩуБУ
+    *      уБия╝О
+    *    (a) хЖНщЕНх╕ГуБлф╝┤уБЖуГЙуВнуГеуГбуГ│уГИя╝ИхИйчФишАЕуГЮуГЛуГеуВвуГлуБкуБйя╝ЙуБля╝Мф╕КшиШуБошСЧ
+    *        ф╜Ьцийшбичд║я╝МуБУуБохИйчФицЭбф╗╢уБКуВИуБ│ф╕ЛшиШуБочДбф┐Эши╝шжПхоЪуВТцО▓ш╝ЙуБЩуВЛуБУуБия╝О
+    *    (b) хЖНщЕНх╕ГуБох╜вцЕЛуВТя╝МхИеуБлхоЪуВБуВЛцЦ╣ц│ХуБлуВИуБгуБжя╝МTOPPERSуГЧуГнуВ╕уВзуВпуГИуБл
+    *        ха▒хСКуБЩуВЛуБУуБия╝О
+    *  (4) цЬмуВ╜уГХуГИуВжуВзуВвуБохИйчФиуБлуВИуВКчЫ┤цОечЪДуБ╛уБЯуБпщЦУцОечЪДуБлчФЯуБШуВЛуБДуБЛуБкуВЛцРН
+    *      хо│уБЛуВЙуВВя╝Мф╕КшиШшСЧф╜ЬцийшАЕуБКуВИуБ│TOPPERSуГЧуГнуВ╕уВзуВпуГИуВТхЕНш▓муБЩуВЛуБУуБия╝О
+    * 
+    *  цЬмуВ╜уГХуГИуВжуВзуВвуБпя╝МчДбф┐Эши╝уБзцПРф╛ЫуБХуВМуБжуБДуВЛуВВуБоуБзуБВуВЛя╝Оф╕КшиШшСЧф╜ЬцийшАЕуБК
+    *  уВИуБ│TOPPERSуГЧуГнуВ╕уВзуВпуГИуБпя╝МцЬмуВ╜уГХуГИуВжуВзуВвуБлщЦвуБЧуБжя╝МуБЭуБощБйчФихПпшГ╜цАзуВВ
+    *  хРлуВБуБжя╝МуБДуБЛуБкуВЛф┐Эши╝уВВшбМуВПуБкуБДя╝ОуБ╛уБЯя╝МцЬмуВ╜уГХуГИуВжуВзуВвуБохИйчФиуБлуВИуВКчЫ┤
+    *  цОечЪДуБ╛уБЯуБпщЦУцОечЪДуБлчФЯуБШуБЯуБДуБЛуБкуВЛцРНхо│уБлщЦвуБЧуБжуВВя╝МуБЭуБош▓мф╗╗уВТш▓ауВПуБкуБДя╝О
+    * 
+    *  @(#) $Id: kernel.h,v 1.22 2007/05/08 07:33:51 honda Exp $
+    */
+
+(8)TOPPERS/ASP/CFG
+
+   /*
+    *  TOPPERS Software
+    *      Toyohashi Open Platform for Embedded Real-Time Systems
+    *
+    *  Copyright (C) 2007-2012 by TAKAGI Nobuhisa
+    * 
+    *  ф╕КшиШшСЧф╜ЬцийшАЕуБпя╝Мф╗еф╕ЛуБо(1)уАЬ(4)уБоцЭбф╗╢уВТц║АуБЯуБЩха┤хРИуБлщЩРуВКя╝МцЬмуВ╜уГХуГИуВжуВз
+    *  уВвя╝ИцЬмуВ╜уГХуГИуВжуВзуВвуВТцФ╣хдЙуБЧуБЯуВВуБоуВТхРлуВАя╝Оф╗еф╕ЛхРМуБШя╝ЙуВТф╜┐чФиуГ╗шдЗшг╜уГ╗цФ╣
+    *  хдЙуГ╗хЖНщЕНх╕Гя╝Иф╗еф╕Ля╝МхИйчФиуБихС╝уБ╢я╝ЙуБЩуВЛуБУуБиуВТчДбхДЯуБзши▒шл╛уБЩуВЛя╝О
+    *  (1) цЬмуВ╜уГХуГИуВжуВзуВвуВТуВ╜уГ╝уВ╣уВ│уГ╝уГЙуБох╜вуБзхИйчФиуБЩуВЛха┤хРИуБлуБпя╝Мф╕КшиШуБошСЧф╜Ь
+    *      цийшбичд║я╝МуБУуБохИйчФицЭбф╗╢уБКуВИуБ│ф╕ЛшиШуБочДбф┐Эши╝шжПхоЪуБМя╝МуБЭуБоуБ╛уБ╛уБох╜вуБзуВ╜уГ╝
+    *      уВ╣уВ│уГ╝уГЙф╕нуБлхРлуБ╛уВМуБжуБДуВЛуБУуБия╝О
+    *  (2) цЬмуВ╜уГХуГИуВжуВзуВвуВТя╝МуГйуВдуГЦуГйуГкх╜вх╝ПуБкуБйя╝Мф╗ЦуБоуВ╜уГХуГИуВжуВзуВвщЦЛчЩ║уБлф╜┐
+    *      чФиуБзуБНуВЛх╜вуБзхЖНщЕНх╕ГуБЩуВЛха┤хРИуБлуБпя╝МхЖНщЕНх╕ГуБлф╝┤уБЖуГЙуВнуГеуГбуГ│уГИя╝ИхИйчФи
+    *      шАЕуГЮуГЛуГеуВвуГлуБкуБйя╝ЙуБля╝Мф╕КшиШуБошСЧф╜Ьцийшбичд║я╝МуБУуБохИйчФицЭбф╗╢уБКуВИуБ│ф╕ЛшиШ
+    *      уБочДбф┐Эши╝шжПхоЪуВТцО▓ш╝ЙуБЩуВЛуБУуБия╝О
+    *  (3) цЬмуВ╜уГХуГИуВжуВзуВвуВТя╝МцйЯхЩиуБлч╡ДуБ┐ш╛╝уВАуБкуБйя╝Мф╗ЦуБоуВ╜уГХуГИуВжуВзуВвщЦЛчЩ║уБлф╜┐
+    *      чФиуБзуБНуБкуБДх╜вуБзхЖНщЕНх╕ГуБЩуВЛха┤хРИуБлуБпя╝МцмбуБоуБДуБЪуВМуБЛуБоцЭбф╗╢уВТц║АуБЯуБЩуБУ
+    *      уБия╝О
+    *    (a) хЖНщЕНх╕ГуБлф╝┤уБЖуГЙуВнуГеуГбуГ│уГИя╝ИхИйчФишАЕуГЮуГЛуГеуВвуГлуБкуБйя╝ЙуБля╝Мф╕КшиШуБошСЧ
+    *        ф╜Ьцийшбичд║я╝МуБУуБохИйчФицЭбф╗╢уБКуВИуБ│ф╕ЛшиШуБочДбф┐Эши╝шжПхоЪуВТцО▓ш╝ЙуБЩуВЛуБУуБия╝О
+    *    (b) хЖНщЕНх╕ГуБох╜вцЕЛуВТя╝МхИеуБлхоЪуВБуВЛцЦ╣ц│ХуБлуВИуБгуБжя╝МTOPPERSуГЧуГнуВ╕уВзуВпуГИуБл
+    *        ха▒хСКуБЩуВЛуБУуБия╝О
+    *  (4) цЬмуВ╜уГХуГИуВжуВзуВвуБохИйчФиуБлуВИуВКчЫ┤цОечЪДуБ╛уБЯуБпщЦУцОечЪДуБлчФЯуБШуВЛуБДуБЛуБкуВЛцРН
+    *      хо│уБЛуВЙуВВя╝Мф╕КшиШшСЧф╜ЬцийшАЕуБКуВИуБ│TOPPERSуГЧуГнуВ╕уВзуВпуГИуВТхЕНш▓муБЩуВЛуБУуБия╝О
+    *      уБ╛уБЯя╝МцЬмуВ╜уГХуГИуВжуВзуВвуБоуГжуГ╝уВ╢уБ╛уБЯуБпуВиуГ│уГЙуГжуГ╝уВ╢уБЛуВЙуБоуБДуБЛуБкуВЛчРЖ
+    *      чФ▒уБлхЯ║уБеуБПшлЛц▒ВуБЛуВЙуВВя╝Мф╕КшиШшСЧф╜ЬцийшАЕуБКуВИуБ│TOPPERSуГЧуГнуВ╕уВзуВпуГИуВТ
+    *      хЕНш▓муБЩуВЛуБУуБия╝О
+    * 
+    *  цЬмуВ╜уГХуГИуВжуВзуВвуБпя╝МчДбф┐Эши╝уБзцПРф╛ЫуБХуВМуБжуБДуВЛуВВуБоуБзуБВуВЛя╝Оф╕КшиШшСЧф╜ЬцийшАЕуБК
+    *  уВИуБ│TOPPERSуГЧуГнуВ╕уВзуВпуГИуБпя╝МцЬмуВ╜уГХуГИуВжуВзуВвуБлщЦвуБЧуБжя╝МчЙ╣хоЪуБоф╜┐чФичЫочЪД
+    *  уБлхп╛уБЩуВЛщБйхРИцАзуВВхРлуВБуБжя╝МуБДуБЛуБкуВЛф┐Эши╝уВВшбМуВПуБкуБДя╝ОуБ╛уБЯя╝МцЬмуВ╜уГХуГИуВжуВз
+    *  уВвуБохИйчФиуБлуВИуВКчЫ┤цОечЪДуБ╛уБЯуБпщЦУцОечЪДуБлчФЯуБШуБЯуБДуБЛуБкуВЛцРНхо│уБлщЦвуБЧуБжуВВя╝МуБЭ
+    *  уБош▓мф╗╗уВТш▓ауВПуБкуБДя╝О
+    * 
+    */
+
+(9)TINET
 
    /*
     *  TINET (TCP/IP Protocol Stack)
     * 
-    *  Copyright (C) 2001-2006 by Dep. of Computer Science and Engineering
+    *  Copyright (C) 2001-2016 by Dep. of Computer Science and Engineering
     *                   Tomakomai National College of Technology, JAPAN
     *
-    *  ╛х╡н├°║ю╕в╝╘д╧бд░╩▓╝д╬ (1)б┴(4) д╬╛Є╖ядлбдFree Software Foundation 
-    *  д╦дшд├д╞╕°╔╜д╡дьд╞ддды GNU General Public License д╬ Version 2 д╦╡н
-    *  ╜╥д╡дьд╞ддды╛Є╖ядЄ╦■д┐д╣╛ь╣чд╦╕┬дъбд╦▄е╜е╒е╚ежезевб╩╦▄е╜е╒е╚ежезев
-    *  дЄ▓■╩╤д╖д┐дтд╬дЄ┤▐дрбе░╩▓╝╞▒д╕б╦дЄ╗╚═╤бж╩г└╜бж▓■╩╤бж║╞╟█╔█б╩░╩▓╝бд
-    *  ═°═╤д╚╕╞д╓б╦д╣дыд│д╚дЄ╠╡╜■д╟╡Ў┬·д╣дыбе
-    *  (1) ╦▄е╜е╒е╚ежезевдЄе╜б╝е╣е│б╝е╔д╬╖┴д╟═°═╤д╣ды╛ь╣чд╦д╧бд╛х╡нд╬├°║ю
-    *      ╕в╔╜╝ибдд│д╬═°═╤╛Є╖ядкдшд╙▓╝╡нд╬╠╡╩▌╛┌╡м─ъдмбдд╜д╬д▐д▐д╬╖┴д╟е╜б╝
-    *      е╣е│б╝е╔├цд╦┤▐д▐дьд╞дддыд│д╚бе
-    *  (2) ╦▄е╜е╒е╚ежезевдЄбдещеде╓ещеъ╖┴╝░д╩д╔бд┬╛д╬е╜е╒е╚ежезев│л╚пд╦╗╚
-    *      ═╤д╟днды╖┴д╟║╞╟█╔█д╣ды╛ь╣чд╦д╧бд║╞╟█╔█д╦╚╝дже╔енехесеєе╚б╩═°═╤
-    *      ╝╘е▐е╦ехевеыд╩д╔б╦д╦бд╛х╡нд╬├°║ю╕в╔╜╝ибдд│д╬═°═╤╛Є╖ядкдшд╙▓╝╡н
-    *      д╬╠╡╩▌╛┌╡м─ъдЄ╖╟║▄д╣дыд│д╚бе
-    *  (3) ╦▄е╜е╒е╚ежезевдЄбд╡б┤яд╦┴╚д▀╣■дрд╩д╔бд┬╛д╬е╜е╒е╚ежезев│л╚пд╦╗╚
-    *      ═╤д╟днд╩дд╖┴д╟║╞╟█╔█д╣ды╛ь╣чд╦д╧бд╝бд╬╛Є╖ядЄ╦■д┐д╣д│д╚бе
-    *    (a) ║╞╟█╔█д╦╚╝дже╔енехесеєе╚б╩═°═╤╝╘е▐е╦ехевеыд╩д╔б╦д╦бд╛х╡нд╬├°
-    *        ║ю╕в╔╜╝ибдд│д╬═°═╤╛Є╖ядкдшд╙▓╝╡нд╬╠╡╩▌╛┌╡м─ъдЄ╖╟║▄д╣дыд│д╚бе
-    *  (4) ╦▄е╜е╒е╚ежезевд╬═°═╤д╦дшдъ─╛└▄┼кд▐д┐д╧┤╓└▄┼кд╦└╕д╕дыдддлд╩ды┬╗
-    *      │▓длдщдтбд╛х╡н├°║ю╕в╝╘дкдшд╙TOPPERSе╫еэе╕езепе╚дЄ╠╚└╒д╣дыд│д╚бе
-    *
-    *  ╦▄е╜е╒е╚ежезевд╧бд╠╡╩▌╛┌д╟─є╢бд╡дьд╞дддыдтд╬д╟двдыбе╛х╡н├°║ю╕в╝╘дк
-    *  дшд╙TOPPERSе╫еэе╕езепе╚д╧бд╦▄е╜е╒е╚ежезевд╦┤╪д╖д╞бдд╜д╬┼м═╤▓─╟╜└ндт
-    *  ┤▐дсд╞бддддлд╩ды╩▌╛┌дт╣╘дяд╩ддбед▐д┐бд╦▄е╜е╒е╚ежезевд╬═°═╤д╦дшдъ─╛
-    *  └▄┼кд▐д┐д╧┤╓└▄┼кд╦└╕д╕д┐дддлд╩ды┬╗│▓д╦┤╪д╖д╞дтбдд╜д╬└╒╟ддЄ╔щдяд╩ддбе
+    *  ф╕КшиШшСЧф╜ЬцийшАЕуБпя╝Мф╗еф╕ЛуБо(1)уАЬ(4)уБоцЭбф╗╢уВТц║АуБЯуБЩха┤хРИуБлщЩРуВКя╝МцЬмуВ╜уГХуГИуВжуВз
+    *  уВвя╝ИцЬмуВ╜уГХуГИуВжуВзуВвуВТцФ╣хдЙуБЧуБЯуВВуБоуВТхРлуВАя╝Оф╗еф╕ЛхРМуБШя╝ЙуВТф╜┐чФиуГ╗шдЗшг╜уГ╗цФ╣
+    *  хдЙуГ╗хЖНщЕНх╕Гя╝Иф╗еф╕Ля╝МхИйчФиуБихС╝уБ╢я╝ЙуБЩуВЛуБУуБиуВТчДбхДЯуБзши▒шл╛уБЩуВЛя╝О
+    *  (1) цЬмуВ╜уГХуГИуВжуВзуВвуВТуВ╜уГ╝уВ╣уВ│уГ╝уГЙуБох╜вуБзхИйчФиуБЩуВЛха┤хРИуБлуБпя╝Мф╕КшиШуБошСЧф╜Ь
+    *      цийшбичд║я╝МуБУуБохИйчФицЭбф╗╢уБКуВИуБ│ф╕ЛшиШуБочДбф┐Эши╝шжПхоЪуБМя╝МуБЭуБоуБ╛уБ╛уБох╜вуБзуВ╜уГ╝
+    *      уВ╣уВ│уГ╝уГЙф╕нуБлхРлуБ╛уВМуБжуБДуВЛуБУуБия╝О
+    *  (2) цЬмуВ╜уГХуГИуВжуВзуВвуВТя╝МуГйуВдуГЦуГйуГкх╜вх╝ПуБкуБйя╝Мф╗ЦуБоуВ╜уГХуГИуВжуВзуВвщЦЛчЩ║уБлф╜┐
+    *      чФиуБзуБНуВЛх╜вуБзхЖНщЕНх╕ГуБЩуВЛха┤хРИуБлуБпя╝МхЖНщЕНх╕ГуБлф╝┤уБЖуГЙуВнуГеуГбуГ│уГИя╝ИхИйчФи
+    *      шАЕуГЮуГЛуГеуВвуГлуБкуБйя╝ЙуБля╝Мф╕КшиШуБошСЧф╜Ьцийшбичд║я╝МуБУуБохИйчФицЭбф╗╢уБКуВИуБ│ф╕ЛшиШ
+    *      уБочДбф┐Эши╝шжПхоЪуВТцО▓ш╝ЙуБЩуВЛуБУуБия╝О
+    *  (3) цЬмуВ╜уГХуГИуВжуВзуВвуВТя╝МцйЯхЩиуБлч╡ДуБ┐ш╛╝уВАуБкуБйя╝Мф╗ЦуБоуВ╜уГХуГИуВжуВзуВвщЦЛчЩ║уБлф╜┐
+    *      чФиуБзуБНуБкуБДх╜вуБзхЖНщЕНх╕ГуБЩуВЛха┤хРИуБлуБпя╝МцмбуБоуБДуБЪуВМуБЛуБоцЭбф╗╢уВТц║АуБЯуБЩуБУ
+    *      уБия╝О
+    *    (a) хЖНщЕНх╕ГуБлф╝┤уБЖуГЙуВнуГеуГбуГ│уГИя╝ИхИйчФишАЕуГЮуГЛуГеуВвуГлуБкуБйя╝ЙуБля╝Мф╕КшиШуБошСЧ
+    *        ф╜Ьцийшбичд║я╝МуБУуБохИйчФицЭбф╗╢уБКуВИуБ│ф╕ЛшиШуБочДбф┐Эши╝шжПхоЪуВТцО▓ш╝ЙуБЩуВЛуБУуБия╝О
+    *  (4) цЬмуВ╜уГХуГИуВжуВзуВвуБохИйчФиуБлуВИуВКчЫ┤цОечЪДуБ╛уБЯуБпщЦУцОечЪДуБлчФЯуБШуВЛуБДуБЛуБкуВЛцРН
+    *      хо│уБЛуВЙуВВя╝Мф╕КшиШшСЧф╜ЬцийшАЕуБКуВИуБ│TOPPERSуГЧуГнуВ╕уВзуВпуГИуВТхЕНш▓муБЩуВЛуБУуБия╝О
+    *      уБ╛уБЯя╝МцЬмуВ╜уГХуГИуВжуВзуВвуБоуГжуГ╝уВ╢уБ╛уБЯуБпуВиуГ│уГЙуГжуГ╝уВ╢уБЛуВЙуБоуБДуБЛуБкуВЛчРЖ
+    *      чФ▒уБлхЯ║уБеуБПшлЛц▒ВуБЛуВЙуВВя╝Мф╕КшиШшСЧф╜ЬцийшАЕуБКуВИуБ│TOPPERSуГЧуГнуВ╕уВзуВпуГИуВТ
+    *      хЕНш▓муБЩуВЛуБУуБия╝О
     * 
-    *  @(#) $Id: tinet.d,v 1.5 2009/12/24 05:41:48 abe Exp abe $
+    *  цЬмуВ╜уГХуГИуВжуВзуВвуБпя╝МчДбф┐Эши╝уБзцПРф╛ЫуБХуВМуБжуБДуВЛуВВуБоуБзуБВуВЛя╝Оф╕КшиШшСЧф╜ЬцийшАЕуБК
+    *  уВИуБ│TOPPERSуГЧуГнуВ╕уВзуВпуГИуБпя╝МцЬмуВ╜уГХуГИуВжуВзуВвуБлщЦвуБЧуБжя╝МчЙ╣хоЪуБоф╜┐чФичЫочЪД
+    *  уБлхп╛уБЩуВЛщБйхРИцАзуВВхРлуВБуБжя╝МуБДуБЛуБкуВЛф┐Эши╝уВВшбМуВПуБкуБДя╝ОуБ╛уБЯя╝МцЬмуВ╜уГХуГИуВжуВз
+    *  уВвуБохИйчФиуБлуВИуВКчЫ┤цОечЪДуБ╛уБЯуБпщЦУцОечЪДуБлчФЯуБШуБЯуБДуБЛуБкуВЛцРНхо│уБлщЦвуБЧуБжуВВя╝МуБЭ
+    *  уБош▓мф╗╗уВТш▓ауВПуБкуБДя╝О
+    * 
+    *  @(#) $Id: $
     */

@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: ppp.c,v 1.5 2009/12/24 05:42:40 abe Exp $
+ *  @(#) $Id: ppp.c 1.7 2017/6/1 8:49:5 abe $
  */
 
 /*
@@ -80,6 +80,8 @@
 #include <net/if.h>
 #include <net/if_ppp.h>
 #include <net/net.h>
+#include <net/net_endian.h>
+#include <net/net_var.h>
 #include <net/net_buf.h>
 #include <net/net_timer.h>
 #include <net/net_count.h>
@@ -88,6 +90,7 @@
 #include <net/ppp_hdlc.h>
 #include <net/ppp_fsm.h>
 #include <net/ppp_lcp.h>
+#include <net/ppp_ipv6cp.h>
 #include <net/ppp_ipcp.h>
 #include <net/ppp_ccp.h>
 #include <net/ppp_upap.h>
@@ -107,19 +110,26 @@ uint8_t	ppp_phase = PPP_PHASE_INITIALIZE;	/* リンクの状態		*/
 
 T_PPP_PROTENT *protocols[] = {
 	&lcp_protent,
+
+#ifdef _IP6_CFG
+	&ipv6cp_protent,
+#endif	/* of #ifdef _IP6_CFG */
+
+#ifdef _IP4_CFG
 	&ipcp_protent,
+#endif	/* of #ifdef _IP4_CFG */
 
 #ifdef SUPPORT_CCP
 	&ccp_protent,
-#endif	/* #ifdef SUPPORT_CCP */
+#endif	/* of #ifdef SUPPORT_CCP */
 
 #ifdef LCP_CFG_PAP
 	&pap_protent,
-#endif	/* #ifdef LCP_CFG_PAP */
+#endif	/* of #ifdef LCP_CFG_PAP */
 
 #ifdef LCP_CFG_CHAP
 	&chap_protent,
-#endif	/* #ifdef LCP_CFG_CHAP */
+#endif	/* of #ifdef LCP_CFG_CHAP */
 
 	NULL
 	};
@@ -222,9 +232,23 @@ ppp_output (T_NET_BUF *output, TMO tmout)
 
 #endif	/* of #ifdef PPP_CFG_MODEM */
 
+#ifdef _IP6_CFG
+	/* IPV6CP の接続完了まで待つ。*/
+	if ((error = wait_ipv6cp()) != E_OK)
+		goto buf_ret;
+#endif	/* of #ifdef _IP6_CFG */
+
+#ifdef _IP4_CFG
 	/* IPCP の接続完了まで待つ。*/
 	if ((error = wait_ipcp()) != E_OK)
 		goto buf_ret;
+#endif	/* of #ifdef _IP4_CFG */
+
+#ifdef _IP4_CFG
+	/* IPCP の接続完了まで待つ。*/
+	if ((error = wait_ipcp()) != E_OK)
+		goto buf_ret;
+#endif	/* of #ifdef _IP4_CFG */
 
 #ifdef PPP_IDLE_TIMEOUT
 	wai_sem(SEM_IDLE_TIMEOUT);
@@ -289,6 +313,7 @@ ppp_input_task(intptr_t exinf)
 	T_PPP_PROTENT	*proto;
 	ID		tskid;
 	int_t		ix;
+	uint8_t		rcount = 0;
 
 	/* ポートを初期設定する */
 	syscall(serial_opn_por(HDLC_PORTID));
@@ -321,27 +346,35 @@ ppp_input_task(intptr_t exinf)
 	/* PPP 出力タスクを起動する */
 	syscall(act_tsk(PPP_OUTPUT_TASK));
 
+	/* 乱数生成を初期化する。*/
+	net_srand(0);
+
 	while (true) {
 		if (tget_net_buf(&input, IF_PDU_SIZE, TMO_PPP_GET_NET_BUF) == E_OK) {
 			while (HDLC_read(input, IF_PDU_SIZE) != E_OK)
 				;
 			if (input->len > 0) {
 
-	#ifdef PPP_IDLE_TIMEOUT
+				/* 乱数生成を初期化する。*/
+				if (rcount == 0)
+					net_srand(input->len);
+				rcount ++;
+
+#ifdef PPP_IDLE_TIMEOUT
 				wai_sem(SEM_IDLE_TIMEOUT);
 				if (idle && ntohs(*GET_PPP_HDR(input)) != PPP_LCP) {
 					untimeout((FP)idle_timeout, NULL);
 					idle = false;
 					}
 				sig_sem(SEM_IDLE_TIMEOUT);
-	#endif	/* of #ifdef PPP_IDLE_TIMEOUT */
+#endif	/* of #ifdef PPP_IDLE_TIMEOUT */
 
 				parse_input(input);
 				}
 			else
 				syscall(rel_net_buf(input));
 
-	#ifdef PPP_IDLE_TIMEOUT
+#ifdef PPP_IDLE_TIMEOUT
 			wai_sem(SEM_IDLE_TIMEOUT);
 			if (!idle && ppp_phase == PPP_PHASE_NETWORK) {
 				timeout((FP)idle_timeout, NULL, PPP_IDLE_TIMEOUT);
@@ -352,7 +385,7 @@ ppp_input_task(intptr_t exinf)
 				idle = false;
 				}
 			sig_sem(SEM_IDLE_TIMEOUT);
-	#endif	/* of #ifdef PPP_IDLE_TIMEOUT */
+#endif	/* of #ifdef PPP_IDLE_TIMEOUT */
 
 			}
 		else {

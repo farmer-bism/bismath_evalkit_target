@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: esp_input.c,v 1.5 2009/12/24 05:48:16 abe Exp $
+ *  @(#) $Id: esp_input.c 1.7 2017/6/1 8:49:40 abe $
  */
 
 /*	$FreeBSD: src/sys/netinet6/esp_input.c,v 1.14 2002/08/24 04:48:13 ume Exp $	*/
@@ -87,22 +87,22 @@
 #include <net/if_arp.h>
 #include <net/ppp_ipcp.h>
 #include <net/net.h>
+#include <net/net_endian.h>
 #include <net/net_buf.h>
 #include <net/net_count.h>
 
 #include <netinet/in.h>
-#include <netinet6/in6.h>
-#include <netinet6/in6_var.h>
+#include <netinet/in_var.h>
+#include <netinet/ip.h>
+#include <netinet/ip_var.h>
+#include <netinet/ip_icmp.h>
 #include <netinet6/nd6.h>
-#include <netinet/ip6.h>
-#include <netinet6/ip6_var.h>
-#include <netinet/icmp6.h>
 #include <netinet6/ah.h>
 #include <netinet6/ah6.h>
 #include <netinet6/esp.h>
 #include <netinet6/esp6.h>
 
-#ifdef SUPPORT_INET6
+#ifdef _IP6_CFG
 
 /*
  *  esp6_input -- 暗号化ヘッダの入力関数
@@ -121,4 +121,4 @@ esp6_input (T_NET_BUF **inputp, uint_t *offp, uint_t *nextp)
 	return IPPROTO_DONE;
 	}
 
-#endif /* of #ifdef SUPPORT_INET6 */
+#endif /* of #ifdef _IP6_CFG */

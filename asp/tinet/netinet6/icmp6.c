@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: icmp6.c,v 1.5.4.1 2015/02/05 02:11:26 abe Exp abe $
+ *  @(#) $Id: icmp6.c 1.7 2017/6/1 8:49:41 abe $
  */
 
 /*	$FreeBSD: src/sys/netinet6/icmp66.c,v 1.6.2.6 2001/07/10 09:44:16 ume Exp $	*/
@@ -105,6 +105,7 @@
 #include <kernel.h>
 #include <sil.h>
 #include <t_syslog.h>
+#include "tinet_cfg.h"
 
 #endif	/* of #ifdef TARGET_KERNEL_ASP */
 
@@ -112,6 +113,7 @@
 
 #include <s_services.h>
 #include <t_services.h>
+#include "tinet_id.h"
 
 #endif	/* of #ifdef TARGET_KERNEL_JSP */
 
@@ -123,23 +125,23 @@
 #include <net/if_ppp.h>
 #include <net/ethernet.h>
 #include <net/net.h>
+#include <net/net_endian.h>
 #include <net/net_buf.h>
 #include <net/net_timer.h>
 #include <net/net_count.h>
 
 #include <netinet/in.h>
 #include <netinet/in_var.h>
-#include <netinet6/in6.h>
-#include <netinet6/in6_var.h>
-#include <netinet/ip6.h>
-#include <netinet6/ip6_var.h>
-#include <netinet/icmp6.h>
-#include <netinet6/nd6.h>
+#include <netinet/ip.h>
+#include <netinet/ip_var.h>
+#include <netinet/ip_icmp.h>
 #include <netinet/tcp.h>
-#include <netinet/tcp_timer.h>
 #include <netinet/tcp_var.h>
+#include <netinet/udp_var.h>
 
-#ifdef SUPPORT_INET6
+#include <netinet6/nd6.h>
+
+#ifdef _IP6_CFG
 
 /*
  *  変数
@@ -260,7 +262,7 @@ icmp6_echo_request (T_NET_BUF *input, uint_t off)
 
 	/* 次ヘッダとホップリミットを設定する。*/
 	ip6h->next = IPPROTO_ICMPV6;
-	ip6h->hlim = IP_DEFTTL;
+	ip6h->hlim = IP6_DEFTTL;
 
 	/* チェックサムを計算する。*/
 	icmp6h->sum = 0;
@@ -298,17 +300,28 @@ icmp6_notify_error(T_NET_BUF *input, uint_t poff)
 	/* 最終ヘッダを探索する。*/
 	loff = ip6_lasthdr(input, poff + ICMP6_HDR_SIZE, IPPROTO_IPV6, &next);
 
-	/* 最終ヘッダが TCP のみ対応する。*/
-	if (loff >= 0 && next == IPPROTO_TCP) {
-
-#ifdef SUPPORT_TCP
+	/* 最終ヘッダが TCP/UDP のみ対応する。*/
+	if (loff >= 0 && (next == IPPROTO_TCP || next == IPPROTO_UDP)) {
 
 		memcpy(GET_IP6_HDR(input), input->buf + (loff + ICMP6_HDR_SIZE),
 		                           input->len - (loff + ICMP6_HDR_SIZE));
 		input->len -= loff + ICMP6_HDR_SIZE;
-		tcp_notify(input, icmp6h->code == ICMP6_DST_UNREACH_NOPORT ? EV_CNNRF : EV_HURCH);
 
-#endif	/* of #ifdef SUPPORT_TCP */
+#if defined(SUPPORT_TCP)
+
+		if (next == IPPROTO_TCP)
+
+			tcp_notify(input, icmp6h->code == ICMP6_DST_UNREACH_NOPORT ? EV_CNNRF : EV_HURCH);
+
+#endif	/* of #if defined(SUPPORT_TCP) */
+
+#if defined(SUPPORT_UDP) && TNUM_UDP6_CEPID > 0
+
+		if (next == IPPROTO_UDP)
+
+			udp6_notify(input, icmp6h->code == ICMP6_DST_UNREACH_NOPORT ? EV_CNNRF : EV_HURCH);
+
+#endif	/* of #if defined(SUPPORT_UDP) && TNUM_UDP6_CEPID > 0 */
 
 		}
 	else
@@ -339,7 +352,8 @@ icmp6_mtudisc_update(T_NET_BUF *input, uint_t off, uint32_t mtu)
 
 #endif	/* of #if NUM_IN6_HOSTCACHE_ENTRY > 0 */
 
-#if NUM_REDIRECT_ROUTE_ENTRY > 0
+#if defined(NUM_IN6_REDIRECT_ROUTE_ENTRY)
+#if NUM_IN6_REDIRECT_ROUTE_ENTRY > 0
 
 /*
  *  icmp6_redirect_input -- 向け直しメッセージの処理
@@ -349,7 +363,7 @@ static void
 icmp6_redirect_input (T_NET_BUF *input, uint_t off)
 {
 	T_IP6_HDR		*ip6h;
-	T_IN6_ADDR		*gw;
+	const T_IN6_ADDR	*gw;
 	T_ND_REDIRECT_HDR	*rdh;
 	T_ND_OPT_HDR		*opth;
 	T_IFNET			*ifp = IF_GET_IFNET();
@@ -439,7 +453,8 @@ err_ret:
 	syscall(rel_net_buf(input));
 	}
 
-#endif	/* of #if NUM_REDIRECT_ROUTE_ENTRY > 0 */
+#endif	/* of #if NUM_IN6_REDIRECT_ROUTE_ENTRY > 0 */
+#endif	/* of #if defined(NUM_IN6_REDIRECT_ROUTE_ENTRY) */
 
 /*
  *  icmp6_input -- ICMP6 の入力関数
@@ -471,7 +486,7 @@ icmp6_input (T_NET_BUF **inputp, uint_t *offp, uint_t *nextp)
 	icmp6h = GET_ICMP6_HDR(input, off);
 
 	/* チェックサムを計算する。*/
-	if ((in6_cksum(input, IPPROTO_ICMPV6, off, ntohs(ip6h->plen) - (off - IF_IP_HDR_SIZE)) & 0xffff) != 0) {
+	if ((in6_cksum(input, IPPROTO_ICMPV6, off, ntohs(ip6h->plen) - (off - IF_IP6_HDR_SIZE)) & 0xffff) != 0) {
 		NET_COUNT_ICMP6(net_count_icmp6[NC_ICMP6_IN_ERR_PACKETS], 1);
 		NET_COUNT_MIB(icmp6_ifstat.ipv6IfIcmpInErrors, 1);
 		goto buf_rel;
@@ -529,18 +544,24 @@ icmp6_input (T_NET_BUF **inputp, uint_t *offp, uint_t *nextp)
 	case ND_REDIRECT:			/* 向け直し			*/
 		NET_COUNT_MIB(icmp6_ifstat.ipv6IfIcmpInRedirects, 1);
 
-#if NUM_REDIRECT_ROUTE_ENTRY > 0
+#if defined(NUM_IN6_REDIRECT_ROUTE_ENTRY)
+#if NUM_IN6_REDIRECT_ROUTE_ENTRY > 0
 
 		if (code != 0 || len < ND_REDIRECT_HDR_SIZE)
 			goto buf_rel;
 		icmp6_redirect_input(input, off);
 		return IPPROTO_DONE;
 
-#else	/* of #if NUM_REDIRECT_ROUTE_ENTRY > 0 */
+#else	/* of #if NUM_IN6_REDIRECT_ROUTE_ENTRY > 0 */
 
 		syslog(LOG_WARNING, "[ICMP6] redirect ignored.");
 
-#endif	/* of #if NUM_REDIRECT_ROUTE_ENTRY > 0 */
+#endif	/* of #if NUM_IN6_REDIRECT_ROUTE_ENTRY > 0 */
+#else	/* of #if defined(NUM_IN6_REDIRECT_ROUTE_ENTRY) */
+
+		syslog(LOG_WARNING, "[ICMP6] redirect ignored.");
+
+#endif	/* of #if defined(NUM_IN6_REDIRECT_ROUTE_ENTRY) */
 
 		break;
 
@@ -570,7 +591,7 @@ icmp6_input (T_NET_BUF **inputp, uint_t *offp, uint_t *nextp)
 	case ICMP6_ROUTER_RENUMBERING:		/* ルータ番号再設定		*/
 	case ICMP6_FQDN_QUERY:			/* FQDN 照会			*/
 	case ICMP6_FQDN_REPLY:			/* FQDN 応答			*/
-		syslog(LOG_WARNING, "[ICMP6] unsupported type: %d.", icmp6h->type);
+		syslog(LOG_INFO, "[ICMP6] unsupported type: %d.", icmp6h->type);
 		break;
 
 	default:
@@ -692,4 +713,4 @@ buf_rel:
 	syscall(rel_net_buf(input));
 	}
 
-#endif /* of #ifdef SUPPORT_INET6 */
+#endif /* of #ifdef _IP6_CFG */

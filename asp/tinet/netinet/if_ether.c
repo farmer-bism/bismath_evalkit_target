@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: if_ether.c,v 1.5.4.1 2015/02/05 02:10:53 abe Exp abe $
+ *  @(#) $Id: if_ether.c 1.7 2017/6/1 8:49:21 abe $
  */
 
 /*
@@ -93,6 +93,7 @@
 #include <net/ethernet.h>
 #include <net/if_arp.h>
 #include <net/net.h>
+#include <net/net_endian.h>
 #include <net/net_buf.h>
 #include <net/net_var.h>
 #include <net/net_timer.h>
@@ -105,7 +106,7 @@
 
 #include <net/if_var.h>
 
-#if defined(SUPPORT_INET4) && defined(SUPPORT_ETHER)
+#if defined(_IP4_CFG) && defined(SUPPORT_ETHER)
 
 /*
  *  ARP キャッシュエントリ
@@ -117,56 +118,8 @@ static T_ARP_ENTRY arp_cache[NUM_ARP_ENTRY];
  *  関数
  */
 
-static T_ARP_ENTRY *arp_lookup (T_IN4_ADDR addr, bool_t create);
 static void in_arpinput (T_IF_ADDR *ifaddr, T_NET_BUF *input);
 static void arp_timer (void *ignore);
-
-/*
- *  arp_lookup -- ARP キャッシュの探索と登録
- *
- *    注意: SEM_ARP_CACHE_LOCK を獲得した状態で呼出すこと
- */
-
-static T_ARP_ENTRY *
-arp_lookup (T_IN4_ADDR addr, bool_t create)
-{
-	int_t		ix, six;
-	uint16_t	min;
-
-	for (ix = NUM_ARP_ENTRY; ix -- > 0; ) {
-		if (arp_cache[ix].expire && arp_cache[ix].ip_addr == addr)
-			return &arp_cache[ix];
-		}
-
-	/* create が真なら、新たなエントリを登録する。*/
-	if (create) {
-
-		/* まず、空きがあれば、その空きを利用する。*/
-		for (ix = NUM_ARP_ENTRY; ix -- > 0; ) {
-			if (arp_cache[ix].expire == 0) {
-				arp_cache[ix].ip_addr = addr;
-				return &arp_cache[ix];
-				}
-			}
-
-		/*
-		 *  空きがなければ、タイムアウトまで時間が最短の
-		 *  エントリーを破棄して利用する。
-		 */
-		syslog(LOG_NOTICE, "[ARP] cache busy, size=%d", NUM_ARP_ENTRY);
-		min = 0xffff;
-		for (six = ix = NUM_ARP_ENTRY; ix -- > 0; )
-			if (arp_cache[ix].expire < min) {
-				six = ix;
-				min = arp_cache[ix].expire;
-				}
-		arp_cache[six].expire  = 0;
-		arp_cache[six].ip_addr = addr;
-		return &arp_cache[six];
-		}
-	else
-		return NULL;
-	}
 
 /*
  *  in_arpinput -- TCP/IP 用 ARP の入力関数
@@ -200,13 +153,16 @@ in_arpinput (T_IF_ADDR *ifaddr, T_NET_BUF *input)
 	/*
 	 *  送信ホストの IP アドレスが自分の場合は、重複しているので
 	 *  相手にも知らせる。
+	 *  ただし、自分と相手のアドレスが未定義（IPV4_ADDRANY）の時は何もしない。
 	 */
-	if (saddr == ifp->in_ifaddr.addr) {
+	if ((saddr == ifp->in4_ifaddr.addr) && (saddr != IPV4_ADDRANY)) {
 
 #ifdef ARP_CFG_CALLBACK_DUPLICATED
 
 		if (arp_callback_duplicated(et_arph->shost)) {
-			syslog(LOG_ERROR, "[ARP] IP address duplicated: %s", mac2str(NULL, et_arph->shost));
+			syslog(LOG_ERROR, "[ARP] IP address duplicated: %s",
+			                  ip2str(NULL, &ifp->in4_ifaddr.addr),
+			                  mac2str(NULL, et_arph->shost));
 			taddr = saddr;
 			goto reply;
 			}
@@ -215,7 +171,9 @@ in_arpinput (T_IF_ADDR *ifaddr, T_NET_BUF *input)
 
 #else	/* of #ifdef ARP_CFG_CALLBACK_DUPLICATED */
 
-		syslog(LOG_ERROR, "[ARP] IP address duplicated: %s", mac2str(NULL, et_arph->shost));
+		syslog(LOG_ERROR, "[ARP] IP address duplicated: %s",
+			          ip2str(NULL, &ifp->in4_ifaddr.addr),
+			          mac2str(NULL, et_arph->shost));
 		taddr = saddr;
 		goto reply;
 
@@ -230,7 +188,7 @@ in_arpinput (T_IF_ADDR *ifaddr, T_NET_BUF *input)
 	 *      解決も行っているが、本実装では、自分以外の IP
 	 *      アドレスの解決は行わない。
 	 */
-	if (taddr != ifp->in_ifaddr.addr)
+	if (taddr != ifp->in4_ifaddr.addr)
 		goto buf_rel;
 
 	/*
@@ -324,6 +282,53 @@ arp_timer (void *ignore)
 	}
 
 /*
+ *  arp_lookup -- ARP キャッシュの探索と登録
+ *
+ *    注意: SEM_ARP_CACHE_LOCK を獲得した状態で呼出すこと
+ */
+
+T_ARP_ENTRY *
+arp_lookup (T_IN4_ADDR addr, bool_t create)
+{
+	int_t		ix, six;
+	uint16_t	min;
+
+	for (ix = NUM_ARP_ENTRY; ix -- > 0; ) {
+		if (arp_cache[ix].expire && arp_cache[ix].ip_addr == addr)
+			return &arp_cache[ix];
+		}
+
+	/* create が真なら、新たなエントリを登録する。*/
+	if (create) {
+
+		/* まず、空きがあれば、その空きを利用する。*/
+		for (ix = NUM_ARP_ENTRY; ix -- > 0; ) {
+			if (arp_cache[ix].expire == 0) {
+				arp_cache[ix].ip_addr = addr;
+				return &arp_cache[ix];
+				}
+			}
+
+		/*
+		 *  空きがなければ、タイムアウトまで時間が最短の
+		 *  エントリーを破棄して利用する。
+		 */
+		syslog(LOG_NOTICE, "[ARP] cache busy, size=%d", NUM_ARP_ENTRY);
+		min = 0xffff;
+		for (six = ix = NUM_ARP_ENTRY; ix -- > 0; )
+			if (arp_cache[ix].expire < min) {
+				six = ix;
+				min = arp_cache[ix].expire;
+				}
+		arp_cache[six].expire  = 0;
+		arp_cache[six].ip_addr = addr;
+		return &arp_cache[six];
+		}
+	else
+		return NULL;
+	}
+
+/*
  *  arp_request -- MAC アドレス解決要求
  */
 
@@ -358,7 +363,7 @@ arp_request (T_IF_ADDR *ifaddr, T_IN4_ADDR dst)
 
 		/* イーサネット ARP ヘッダを設定する。*/
 		et_arph = GET_ETHER_ARP_HDR(arp_req);
-		src     = IF_GET_IFNET()->in_ifaddr.addr;
+		src     = IF_GET_IFNET()->in4_ifaddr.addr;
 		memcpy(et_arph->shost, ifaddr->lladdr, ETHER_ADDR_LEN);
 		memset(et_arph->thost, 0,              ETHER_ADDR_LEN);
 		ahtonl(et_arph->sproto, src);
@@ -443,7 +448,7 @@ arp_resolve (T_IF_ADDR *ifaddr, T_NET_BUF *output, T_IN4_ADDR gw)
 	 *    ・ホスト部の全ビットが 1 で、ネットワーク部がローカルアドレス
 	 */
 	if (gw == IPV4_ADDR_BROADCAST ||
-	    gw == ((ifp->in_ifaddr.addr & ifp->in_ifaddr.mask) | ~ifp->in_ifaddr.mask)) {
+	    gw == ((ifp->in4_ifaddr.addr & ifp->in4_ifaddr.mask) | ~ifp->in4_ifaddr.mask)) {
 		memcpy(eth->dhost, ether_broad_cast_addr, ETHER_ADDR_LEN);
 		return true;
 		}
@@ -492,4 +497,4 @@ arp_init (void)
 	timeout(arp_timer, NULL, ARP_TIMER_TMO);
 	}
 
-#endif	/* of #if defined(SUPPORT_INET4) && defined(SUPPORT_ETHER) */
+#endif	/* of #if defined(_IP4_CFG) && defined(SUPPORT_ETHER) */

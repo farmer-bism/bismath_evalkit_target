@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: in_subr.c,v 1.5.4.1 2015/02/05 02:10:53 abe Exp abe $
+ *  @(#) $Id: in_subr.c 1.7 2017/6/1 8:49:22 abe $
  */
 
 /*
@@ -70,7 +70,6 @@
 
 #include <kernel.h>
 #include <sil.h>
-#include <t_syslog.h>
 #include "kernel_cfg.h"
 
 #endif	/* of #ifdef TARGET_KERNEL_ASP */
@@ -90,429 +89,19 @@
 #include <net/if_loop.h>
 #include <net/if_ppp.h>
 #include <net/ethernet.h>
-#include <net/ppp_ipcp.h>
 #include <net/net.h>
+#include <net/net_endian.h>
 #include <net/net_var.h>
 #include <net/net_buf.h>
 #include <net/net_timer.h>
 
 #include <netinet/in.h>
-#include <netinet6/in6.h>
 #include <netinet/in_var.h>
-#include <netinet/in_itron.h>
 #include <netinet/ip.h>
 #include <netinet/ip_var.h>
-#include <netinet/tcp_timer.h>
+#include <netinet/in_itron.h>
 
 #include <net/if_var.h>
-
-#if defined(SUPPORT_INET4)
-
-/*
- *  in4_get_ifaddr -- インタフェースに設定されているアドレスを返す。
- */
-
-const T_IN4_ADDR *
-in4_get_ifaddr (int_t index)
-{
-	T_IFNET		*ifp = IF_GET_IFNET();
-
-	return &ifp->in_ifaddr.addr;
-	}
-
-/*
- *  ip2str -- IPv4 アドレスを文字列に変換する。
- */
-
-char *
-ip2str (char *buf, const T_IN4_ADDR *ipaddr)
-{
-	static char	addr_sbuf[NUM_IPV4ADDR_STR_BUFF][sizeof("123.123.123.123")];
-	static int_t	bix = NUM_IPV4ADDR_STR_BUFF;
-
-	char *start;
-
-	if (buf == NULL) {
-		syscall(wai_sem(SEM_IP2STR_BUFF_LOCK));
-		buf = addr_sbuf[-- bix];
-		if (bix <= 0)
-			bix = NUM_IPV4ADDR_STR_BUFF;
-		syscall(sig_sem(SEM_IP2STR_BUFF_LOCK));
-		}
-
-	start = buf;
-	buf += convert_hexdigit(buf, (uint_t)((*ipaddr >> 24) & 0xff), 10, 0, ' ');
-	*(buf ++) = '.';
-	buf += convert_hexdigit(buf, (uint_t)((*ipaddr >> 16) & 0xff), 10, 0, ' ');
-	*(buf ++) = '.';
-	buf += convert_hexdigit(buf, (uint_t)((*ipaddr >>  8) & 0xff), 10, 0, ' ');
-	*(buf ++) = '.';
-	buf += convert_hexdigit(buf, (uint_t)((*ipaddr      ) & 0xff), 10, 0, ' ');
-	*buf = '\0';
-	return start;
-	}
-
-/*
- *  in4_set_header -- IPv4 ヘッダを設定する。
- */
-
-ER
-in4_set_header (T_NET_BUF *nbuf, uint_t len,
-                T_IN4_ADDR *dstaddr, T_IN4_ADDR *srcaddr, uint8_t proto, uint8_t ttl)
-{
-	T_IP4_HDR	*ip4h = GET_IP4_HDR(nbuf);
-	T_IFNET		*ifp = IF_GET_IFNET();
-
-	/* IP ヘッダを設定する。*/
-	ip4h->vhl	= IP4_MAKE_VHL(IPV4_VERSION, IP4_HDR_SIZE >> 2);
-	ip4h->len	= htons(IP4_HDR_SIZE + len);
-	ip4h->proto	= proto;
-	ip4h->ttl	= ttl;
-	ip4h->type	= 0;
-	ip4h->id	= ip4h->flg_off = ip4h->sum = 0;
-
-	/* IP アドレスを設定する。*/
-	ip4h->dst	= htonl(*dstaddr);
-
-	if (srcaddr == NULL || *srcaddr == IPV4_ADDRANY)
-		ip4h->src = htonl(ifp->in_ifaddr.addr);
-	else
-		ip4h->src = htonl(*srcaddr);
-
-	return E_OK;
-	}
-
-/*
- *  in4_get_datagram -- IPv4 データグラムを獲得し、ヘッダを設定する。
- */
-
-ER
-in4_get_datagram (T_NET_BUF **nbuf, uint_t len, uint_t maxlen,
-                  T_IN4_ADDR *dstaddr, T_IN4_ADDR *srcaddr,
-                  uint8_t proto, uint8_t ttl, ATR nbatr, TMO tmout)
-{
-	ER	error;
-	uint_t	align;
-
-	/* データ長を 4 オクテット境界に調整する。*/
-	align = (len + 3) >> 2 << 2;
-
-	/* ネットワークバッファを獲得する。*/
-	if ((error = tget_net_buf_ex(nbuf, (uint_t)(IF_IP4_HDR_SIZE + align),
-	                                   (uint_t)(IF_IP4_HDR_SIZE + maxlen), nbatr, tmout)) != E_OK)
-		return error;
-
-	/*
-	 *  より大きなサイズのネットワークバッファを獲得する場合のみ長さを調整する。
-	 *  より小さなサイズのネットワークバッファの獲得は、送信ウィンドバッファの
-	 *  省コピー機能で使用され、実際に送信するまで、データサイズは決定できない。
-	 */
-	if ((nbatr & NBA_SEARCH_ASCENT) != 0)
-		(*nbuf)->len = (uint16_t)(IF_IP4_HDR_SIZE + len);
-
-	/* IP ヘッダを設定する。*/
-	if ((error = in4_set_header(*nbuf, len, dstaddr, srcaddr, proto, ttl)) != E_OK)
-		return error;
-
-	/* 4 オクテット境界までパディングで埋める。*/
-	if (align > len)
-		memset((GET_IP4_SDU(*nbuf) + len), 0, (size_t)(align - len));
-
-	return E_OK;
-	}
-
-/*
- *  in4_cksum -- IPv4 のトランスポート層ヘッダのチェックサムを計算する。
- *
- *  注意: 戻り値はネットワークバイトオーダ
- */
-
-uint16_t
-in4_cksum (T_NET_BUF *nbuf, uint8_t proto, uint_t off, uint_t len)
-{
-	uint32_t	sum;
-	uint_t		align;
-
-	/* 4 オクテット境界のデータ長 */
-	align = (len + 3) >> 2 << 2;
-
-	/* 4 オクテット境界までパディングで埋める。*/
-	if (align > len)
-		memset((uint8_t*)nbuf->buf + off + len, 0, (size_t)(align - len));
-
-	sum = in_cksum_sum(nbuf->buf + off, align)
-	    + in_cksum_sum(&GET_IP4_HDR(nbuf)->src, sizeof(T_IN4_ADDR) * 2)
-	    + len + proto;
-	sum = in_cksum_carry(sum);
-
-	return (uint16_t)(~htons((uint16_t)sum));
-	}
-
-/*
- *  in_cksum -- チェックサム計算関数、IPv4、ICMPv4 用
- *
- *  注意: data は 4 オクテット単位でパディングすること。
- *        data が 2 オクテット単位にアラインされていないと
- *        例外が発生する可能性がある。
- *        len  は 4 オクテット単位にアラインされていること。
- *
- *        戻り値はネットワークバイトオーダ
- */
-
-uint16_t
-in_cksum (void *data, uint_t len /*オクテット単位*/)
-{
-	uint16_t	sum;
-
-	sum = (uint16_t)in_cksum_carry(in_cksum_sum(data, len));
-	return (uint16_t)(~htons(sum));
-	}
-
-/*
- *  in4_is_dstaddr_accept -- 宛先アドレスとして正しいかチェックする。
- *
- *    注意: dstaddr は、
- *          TINET-1.2 からネットワークバイトオーダ、
- *          TINET-1.1 までは、ホストバイトオーダ
- */
-
-bool_t
-in4_is_dstaddr_accept (T_IN4_ADDR *myaddr, T_IN4_ADDR *dstaddr)
-{
-	if (*myaddr == IPV4_ADDRANY)
-		return ntohl(*dstaddr) == IF_GET_IFNET()->in_ifaddr.addr;
-	else
-		return ntohl(*dstaddr) == *myaddr;
-	}
-
-/*
- * in4_ifawithifp -- 宛先アドレスにふさわしい送信元アドレスを、
- *                   ネットワークインタフェースから探索する。
- *                   in6_ifawithifp をシミュレートするだけで、
- *                   エラーを返すことはない。
- */
-
-T_IN4_IFADDR *
-in4_ifawithifp (T_IFNET *ifp, T_IN4_ADDR *dst)
-{
-	return &ifp->in_ifaddr;
-	}
-
-/*
- *  in4_add_ifaddr -- インタフェースに IPv4 アドレスを設定する。
- */
-
-ER
-in4_add_ifaddr (T_IN4_ADDR addr, T_IN4_ADDR mask)
-{
-	T_IFNET	*ifp = IF_GET_IFNET();
-
-	ifp->in_ifaddr.addr = addr;
-	ifp->in_ifaddr.mask = mask;
-	return E_OK;
-	}
-
-#if NUM_ROUTE_ENTRY > 0
-
-/*
- *  in4_add_route -- 経路表にエントリを設定する。
- */
-
-ER
-in4_add_route (int_t index, T_IN4_ADDR target, T_IN4_ADDR mask, T_IN4_ADDR gateway)
-{
-
-	if (0 <= index && index < NUM_STATIC_ROUTE_ENTRY) {
-		routing_tbl[index].target  = target;
-		routing_tbl[index].mask    = mask;
-		routing_tbl[index].gateway = gateway;
-		return E_OK;
-		}
-	else
-		return E_PAR;
-	}
-
-#endif	/* of #if NUM_ROUTE_ENTRY > 0 */
-
-/*
- *  in4_rtalloc -- ルーティング表を探索する。
- */
-
-T_IN4_ADDR
-in4_rtalloc (T_IN4_ADDR dst)
-{
-	int_t ix;
-
-	for (ix = NUM_ROUTE_ENTRY; ix --; )
-		if ((routing_tbl[ix].flags & IN_RTF_DEFINED) &&
-		    (dst & routing_tbl[ix].mask) == routing_tbl[ix].target) {
-			if (routing_tbl[ix].gateway == 0)
-				return dst;
-			else {
-				return routing_tbl[ix].gateway;
-				}
-			}
-	return dst;
-	}
-
-#if NUM_REDIRECT_ROUTE_ENTRY > 0
-
-/*
- *  in4_rtredirect -- ルーティング表にエントリを登録する。
- *
- *    注意: 引数 tmo の単位は [ms]。
- */
-
-void
-in4_rtredirect (T_IN4_ADDR gateway, T_IN4_ADDR target, uint8_t flags, uint32_t tmo)
-{
-	T_IN_RTENTRY	*frt;
-
-	frt = in_rtnewentry(flags, tmo);
-	frt->gateway    = gateway;
-	frt->target     = target;
-	frt->mask       = 0xffffffff;
-	}
-
-#endif	/* of #if NUM_REDIRECT_ROUTE_ENTRY > 0 */
-
-/*
- *  in4_timer -- IPv4 共通タイマー
- *
- *    1秒周期で起動される。
- */
-
-static void
-in4_timer (void *ignore)
-{
-#if NUM_REDIRECT_ROUTE_ENTRY > 0
-
-	in_rttimer();
-
-#endif	/* of #if NUM_REDIRECT_ROUTE_ENTRY > 0 */
-
-#ifdef IP4_CFG_FRAGMENT
-
-	ip_frag_timer();
-
-#endif	/* of #ifdef IP4_CFG_FRAGMENT */
-
-	timeout(in4_timer, NULL, IN_TIMER_TMO);
-	}
-
-/*
- *  in4_init -- IPv4 共通機能を初期化する。
- */
-
-void
-in4_init (void)
-{
-#if NUM_REDIRECT_ROUTE_ENTRY > 0
-
-	in_rtinit();
-
-#endif	/* of #if NUM_REDIRECT_ROUTE_ENTRY > 0 */
-
-	timeout(in4_timer, NULL, IN_TIMER_TMO);
-	}
-
-#endif	/* of #if defined(SUPPORT_INET4) */
-
-#if NUM_REDIRECT_ROUTE_ENTRY > 0
-
-/*
- *  in_rtinit -- ルーティング表を初期化する。
- */
-
-void
-in_rtinit (void)
-{
-	int_t ix;
-
-	for (ix = 0; ix < NUM_STATIC_ROUTE_ENTRY; ix ++)
-		routing_tbl[ix].flags = IN_RTF_DEFINED;
-
-	for ( ; ix < NUM_ROUTE_ENTRY; ix ++)
-		routing_tbl[ix].flags = 0;
-	}
-
-/*
- *  in_rtnewentry -- 新しいエントリを獲得する。
- */
-
-T_IN_RTENTRY *
-in_rtnewentry (uint8_t flags, uint32_t tmo)
-{
-	SYSTIM		now;
-	T_IN_RTENTRY	*rt, *frt = NULL;
-	int_t		ix;
-
-	/* 空きエントリを探す。*/
-	for (ix = NUM_STATIC_ROUTE_ENTRY; ix < NUM_ROUTE_ENTRY; ix ++) {
-		rt = &routing_tbl[ix];
-		if ((routing_tbl[ix].flags & IN_RTF_DEFINED) == 0) {
-			frt = rt;
-			break;
-			}
-		}
-
-	/* expire の単位は [s]。*/
-	syscall(get_tim(&now));
-	now /= SYSTIM_HZ;
-
-	if (frt == NULL) {
-		/* 空きがなければ、有効時間がもっとも短いエントリを空きにする。*/
-		T_IN_RTENTRY	*srt = NULL;
-		int_t		diff, sdiff = INT_MAX;
-
-		syscall(wai_sem(SEM_IN_ROUTING_TBL));
-		for (ix = NUM_STATIC_ROUTE_ENTRY; ix < NUM_ROUTE_ENTRY; ix ++) {
-			rt = &routing_tbl[ix];
-			diff = (int_t)(rt->expire - now);
-			if (diff <= 0) {	/* rt->expire <= now */
-				/* 既に、有効時間が過ぎている。*/
-				frt = rt;
-				break;
-				}
-			else if (diff < sdiff) {
-				srt = rt;
-				sdiff = diff;
-				}
-			}
-		if (frt == NULL)
-			frt = srt;
-		frt->flags = 0;
-		syscall(sig_sem(SEM_IN_ROUTING_TBL));
-		}
-
-	frt->flags  = (uint8_t)(flags | IN_RTF_DEFINED);
-	frt->expire = now + tmo / SYSTIM_HZ;
-	return frt;
-	}
-
-/*
- *  in_rttimer -- ルーティング表の管理タイマー
- */
-
-void
-in_rttimer (void)
-{
-	SYSTIM	now;
-	int_t	ix;
-
-	/* expire の単位は [s]。*/
-	syscall(get_tim(&now));
-	now /= SYSTIM_HZ;
-
-	syscall(wai_sem(SEM_IN_ROUTING_TBL));
-	for (ix = NUM_STATIC_ROUTE_ENTRY; ix < NUM_ROUTE_ENTRY; ix ++)
-		if ((routing_tbl[ix].flags & IN_RTF_DEFINED) &&
-		    (int_t)(routing_tbl[ix].expire - now) <= 0)
-			routing_tbl[ix].flags = 0;
-	syscall(sig_sem(SEM_IN_ROUTING_TBL));
-	}
-
-#endif	/* of #if NUM_REDIRECT_ROUTE_ENTRY > 0 */
 
 /*
  *  in_cksum_sum -- チェックサムの合計計算関数
@@ -569,99 +158,354 @@ in_cksum_carry (uint32_t sum)
  *  in_strtfn -- API 機能コードの文字表現を返す。
  */
 
+typedef struct t_strtfn {
+	FN		fncd;	/* API 機能コード	*/
+	const char	*str;	/* 文字表現		*/
+	} T_STRTFN;
+
+const T_STRTFN strtfn[] = {
+	{ TEV_TCP_RCV_OOB,	"TEV_TCP_RCV_OOB" },
+	{ TFN_TCP_DEL_REP,	"TFN_TCP_DEL_REP" },
+	{ TFN_TCP_CRE_CEP,	"TFN_TCP_CRE_CEP" },
+	{ TFN_TCP_DEL_CEP,	"TFN_TCP_DEL_CEP" },
+	{ TFN_TCP_ACP_CEP,	"TFN_TCP_ACP_CEP" },
+	{ TFN_TCP_CON_CEP,	"TFN_TCP_CON_CEP" },
+	{ TFN_TCP_SHT_CEP,	"TFN_TCP_SHT_CEP" },
+	{ TFN_TCP_CLS_CEP,	"TFN_TCP_CLS_CEP" },
+	{ TFN_TCP_SND_DAT,	"TFN_TCP_SND_DAT" },
+	{ TFN_TCP_RCV_DAT,	"TFN_TCP_RCV_DAT" },
+	{ TFN_TCP_GET_BUF,	"TFN_TCP_GET_BUF" },
+	{ TFN_TCP_SND_BUF,	"TFN_TCP_SND_BUF" },
+	{ TFN_TCP_RCV_BUF,	"TFN_TCP_RCV_BUF" },
+	{ TFN_TCP_REL_BUF,	"TFN_TCP_REL_BUF" },
+	{ TFN_TCP_SND_OOB,	"TFN_TCP_SND_OOB" },
+	{ TFN_TCP_RCV_OOB,	"TFN_TCP_RCV_OOB" },
+	{ TFN_TCP_CAN_CEP,	"TFN_TCP_CAN_CEP" },
+	{ TFN_TCP_SET_OPT,	"TFN_TCP_SET_OPT" },
+	{ TFN_TCP_GET_OPT,	"TFN_TCP_GET_OPT" },
+	{ TFN_TCP_ALL,		"TFN_TCP_ALL"     },
+
+	{ TEV_UDP_RCV_DAT,	"TEV_UDP_RCV_DAT" },
+	{ TFN_UDP_DEL_CEP,	"TFN_UDP_DEL_CEP" },
+	{ TFN_UDP_SND_DAT,	"TFN_UDP_SND_DAT" },
+	{ TFN_UDP_RCV_DAT,	"TFN_UDP_RCV_DAT" },
+	{ TFN_UDP_CAN_CEP,	"TFN_UDP_CAN_CEP" },
+	{ TFN_UDP_SET_OPT,	"TFN_UDP_SET_OPT" },
+	{ TFN_UDP_GET_OPT,	"TFN_UDP_GET_OPT" },
+	};
+
 const char *
 in_strtfn (FN fncd)
 {
-	switch (fncd) {
+	int_t	ix;
 
-	/* TCP 関係 */
+	for (ix = sizeof(strtfn) / sizeof(T_STRTFN); ix -- > 0; )
+		if (strtfn[ix].fncd == fncd)
+			return strtfn[ix].str;
 
-	case TFN_TCP_CRE_REP:
-		return "TFN_TCP_CRE_REP";
-		break;
-	case TFN_TCP_DEL_REP:
-		return "TFN_TCP_DEL_REP";
-		break;
-	case TFN_TCP_CRE_CEP:
-		return "TFN_TCP_CRE_CEP";
-		break;
-	case TFN_TCP_DEL_CEP:
-		return "TFN_TCP_DEL_CEP";
-		break;
-	case TFN_TCP_ACP_CEP:
-		return "TFN_TCP_ACP_CEP";
-		break;
-	case TFN_TCP_CON_CEP:
-		return "TFN_TCP_CON_CEP";
-		break;
-	case TFN_TCP_SHT_CEP:
-		return "TFN_TCP_SHT_CEP";
-		break;
-	case TFN_TCP_CLS_CEP:
-		return "TFN_TCP_CLS_CEP";
-		break;
-	case TFN_TCP_SND_DAT:
-		return "TFN_TCP_SND_DAT";
-		break;
-	case TFN_TCP_RCV_DAT:
-		return "TFN_TCP_RCV_DAT";
-		break;
-	case TFN_TCP_GET_BUF:
-		return "TFN_TCP_GET_BUF";
-		break;
-	case TFN_TCP_SND_BUF:
-		return "TFN_TCP_SND_BUF";
-		break;
-	case TFN_TCP_RCV_BUF:
-		return "TFN_TCP_RCV_BUF";
-		break;
-	case TFN_TCP_REL_BUF:
-		return "TFN_TCP_REL_BUF";
-		break;
-	case TFN_TCP_SND_OOB:
-		return "TFN_TCP_SND_OOB";
-		break;
-	case TFN_TCP_RCV_OOB:
-		return "TFN_TCP_RCV_OOB";
-		break;
-	case TFN_TCP_CAN_CEP:
-		return "TFN_TCP_CAN_CEP";
-		break;
-	case TFN_TCP_SET_OPT:
-		return "TFN_TCP_SET_OPT";
-		break;
-	case TFN_TCP_GET_OPT:
-		return "TFN_TCP_GET_OPT";
-		break;
-	case TFN_TCP_ALL:
-		return "ALL";
-		break;
+	return "unknown TFN";
+	}
 
-	/* UDP 関係 */
+#if defined(_IP4_CFG)
 
-	case TFN_UDP_CRE_CEP:
-		return "TFN_UDP_CRE_CEP";
-		break;
-	case TFN_UDP_DEL_CEP:
-		return "TFN_UDP_DEL_CEP";
-		break;
-	case TFN_UDP_SND_DAT:
-		return "TFN_UDP_SND_DAT";
-		break;
-	case TFN_UDP_RCV_DAT:
-		return "TFN_UDP_RCV_DAT";
-		break;
-	case TFN_UDP_CAN_CEP:
-		return "TFN_UDP_CAN_CEP";
-		break;
-	case TFN_UDP_SET_OPT:
-		return "TFN_UDP_SET_OPT";
-		break;
-	case TFN_UDP_GET_OPT:
-		return "TFN_UDP_GET_OPT";
-		break;
+/*
+ *  ipv42str -- IPv4 アドレスを文字列に変換する。
+ */
 
-	default:
-		return "unknown TFN";
+char *
+ipv42str (char *buf, const T_IN4_ADDR *ipaddr)
+{
+	static char	addr_sbuf[NUM_IPV4ADDR_STR_BUFF][sizeof("123.123.123.123")];
+	static int_t	bix = NUM_IPV4ADDR_STR_BUFF;
+
+	char *start;
+
+	if (buf == NULL) {
+		syscall(wai_sem(SEM_IP2STR_BUFF_LOCK));
+		buf = addr_sbuf[-- bix];
+		if (bix <= 0)
+			bix = NUM_IPV4ADDR_STR_BUFF;
+		syscall(sig_sem(SEM_IP2STR_BUFF_LOCK));
+		}
+
+	start = buf;
+	buf += convert_hexdigit(buf, (uint_t)((*ipaddr >> 24) & 0xff), 10, 0, ' ');
+	*(buf ++) = '.';
+	buf += convert_hexdigit(buf, (uint_t)((*ipaddr >> 16) & 0xff), 10, 0, ' ');
+	*(buf ++) = '.';
+	buf += convert_hexdigit(buf, (uint_t)((*ipaddr >>  8) & 0xff), 10, 0, ' ');
+	*(buf ++) = '.';
+	buf += convert_hexdigit(buf, (uint_t)((*ipaddr      ) & 0xff), 10, 0, ' ');
+	*buf = '\0';
+	return start;
+	}
+
+#endif	/* of #if defined(_IP4_CFG) */
+
+/*
+ *  in6_is_addr_ipv4mapped -- IPv4 射影アドレスである事を検査する。
+ */
+
+bool_t
+in6_is_addr_ipv4mapped (const T_IN6_ADDR *addr)
+{
+	return IN6_IS_ADDR_V4MAPPED(addr);
+	}
+
+#if defined(_IP6_CFG) && defined(_IP4_CFG)
+
+/*
+ *  ip_exchg_addr -- IP アドレスを交換する。
+ */
+
+static void
+ip6_exchg_addr (T_NET_BUF *nbuf)
+{
+	T_IP6_HDR	*iph;
+	T_IN6_ADDR	ipaddr;
+
+	iph  = GET_IP6_HDR(nbuf);
+
+	/* IPv6 アドレスを交換する。*/
+	ipaddr = iph->src;
+	iph->src = iph->dst;
+	iph->dst = ipaddr;
+	}
+
+static void
+ip4_exchg_addr (T_NET_BUF *nbuf)
+{
+	T_IP4_HDR	*iph;
+	T_IN4_ADDR	ipaddr;
+
+	iph  = GET_IP4_HDR(nbuf);
+
+	/* IPv4 アドレスを交換する。*/
+	ipaddr = iph->src;
+	iph->src = iph->dst;
+	iph->dst = ipaddr;
+	}
+
+void
+ip_exchg_addr (T_NET_BUF *nbuf)
+{
+	if (GET_IP_VER(nbuf) == 6)
+		ip6_exchg_addr(nbuf);
+	else
+		ip4_exchg_addr(nbuf);
+	}
+
+#else	/* of #if defined(_IP6_CFG) && defined(_IP4_CFG) */
+
+/*
+ *  ip_exchg_addr -- IP アドレスを交換する。
+ */
+
+void
+ip_exchg_addr (T_NET_BUF *nbuf)
+{
+	T_IP_HDR	*iph;
+	T_IN_ADDR	ipaddr;
+
+	iph  = GET_IP_HDR(nbuf);
+
+	/* IP アドレスを交換する。*/
+	ipaddr = iph->src;
+	iph->src = iph->dst;
+	iph->dst = ipaddr;
+	}
+
+#endif	/* of #if defined(_IP6_CFG) && defined(_IP4_CFG) */
+
+#if defined(_IP6_CFG) && defined(_IP4_CFG)
+
+/*
+ *  inn_is_dstaddr_accept -- 宛先アドレスとして正しいかチェックする。
+ */
+
+bool_t
+inn_is_dstaddr_accept (T_IN6_ADDR *myaddr, T_NET_BUF *nbuf)
+{
+	if        (GET_IP_VER(nbuf)==IPV6_VERSION)
+		return INN6_IS_DSTADDR_ACCEPT(myaddr, nbuf);
+	else /*if (GET_IP_VER(nbuf)==IPV4_VERSION)*/ {
+		T_IP4_HDR	*ip4h;
+
+		ip4h  = GET_IP4_HDR(nbuf);
+		if (IN6_IS_ADDR_UNSPECIFIED(myaddr))
+			return ntohl(ip4h->dst) == IF_GET_IFNET()->in4_ifaddr.addr;
+		else {
+			T_IN6_ADDR	dstaddr;
+
+			return IN6_ARE_ADDR_EQUAL(myaddr, in6_make_ipv4mapped(&dstaddr, ntohl(ip4h->dst)));
+			}
 		}
 	}
+
+/*
+ *  inn_are_net_srcaddr_equal -- アドレスが同一かチェックする。
+ */
+
+bool_t
+inn_are_net_srcaddr_equal (T_IN6_ADDR *ipaddr, T_NET_BUF *nbuf)
+{
+	if        (GET_IP_VER(nbuf)==IPV6_VERSION)
+		return IN6_ARE_ADDR_EQUAL(ipaddr, &GET_IP6_HDR(nbuf)->src);
+	else /*if (GET_IP_VER(nbuf)==IPV4_VERSION)*/ {
+
+
+		T_IN6_ADDR	srcaddr;
+
+		return IN6_ARE_ADDR_EQUAL(ipaddr, in6_make_ipv4mapped(&srcaddr, ntohl(GET_IP4_HDR(nbuf)->src)));
+		}
+	}
+
+/*
+ *  inn_copy_to_host -- IP ヘッダからホスト表現変換して、IP アドレスをコピーする。
+ */
+
+void
+inn_copy_to_host (T_IN6_ADDR *dst, T_NET_BUF *nbuf)
+{
+	if        (GET_IP_VER(nbuf)==IPV6_VERSION)
+		memcpy(dst, &GET_IP6_HDR(nbuf)->src, sizeof(T_IN6_ADDR));
+	else /*if (GET_IP_VER(nbuf)==IPV4_VERSION)*/
+		in6_make_ipv4mapped(dst, ntohl(GET_IP4_HDR(nbuf)->src));
+
+	}
+
+/*
+ *  inn_get_datagram -- IPv6/IPv4 データグラムを獲得し、ヘッダを設定する。
+ */
+
+ER
+inn_get_datagram (T_NET_BUF **nbuf, uint_t len, uint_t maxlen,
+                  T_IN6_ADDR *dstaddr, T_IN6_ADDR *srcaddr,
+                  uint8_t next, uint8_t hlim, ATR nbatr, TMO tmout)
+{
+	if (IN6_IS_ADDR_V4MAPPED(dstaddr)) {
+		T_IN4_ADDR ip4dstaddr, ip4srcaddr;
+
+		ip4dstaddr = ntohl(dstaddr->s6_addr32[3]);
+		if (IN6_IS_ADDR_UNSPECIFIED(srcaddr))
+			ip4srcaddr = IF_GET_IFNET()->in4_ifaddr.addr;
+		else
+			ip4srcaddr = ntohl(srcaddr->s6_addr32[3]);
+
+		return in4_get_datagram(nbuf, len, maxlen, &ip4dstaddr, &ip4srcaddr, next, hlim, nbatr, tmout);
+		}
+	else
+		return in6_get_datagram(nbuf, len, maxlen, dstaddr, srcaddr, next, hlim, nbatr, tmout);
+	}
+
+/*
+ * inn_addrwithifp -- 宛先アドレスにふさわしい送信元アドレスを、
+ *                   ネットワークインタフェースから探索する。
+ */
+
+T_IN6_ADDR *
+inn_addrwithifp (T_IFNET *ifp, T_IN6_ADDR *src, T_IN6_ADDR *dst)
+{
+	T_IN6_IFADDR *ifaddr;
+
+	if (IN6_IS_ADDR_V4MAPPED(dst))
+		return in6_make_ipv4mapped (src, ifp->in4_ifaddr.addr);
+	else if ((ifaddr = in6_ifawithifp(ifp, dst)) == NULL)
+		return NULL;
+	else {
+		*src = ifaddr->addr;
+		return src;
+		}
+	}
+
+/*
+ *  inn_is_addr_multicast -- アドレスがマルチキャストアドレスかチェックする。
+ */
+
+bool_t
+inn_is_addr_multicast (T_IN6_ADDR *addr)
+{
+
+	if (IN6_IS_ADDR_V4MAPPED(addr))
+		return IN4_IS_ADDR_MULTICAST(ntohl(addr->s6_addr32[3]));
+	else
+		return IN6_IS_ADDR_MULTICAST(addr);
+	}
+
+#endif	/* of #if defined(_IP6_CFG) && defined(_IP4_CFG) */
+
+/*
+ *  バイトオーダ関数の定義
+ *
+ *    tinet/net/net.h でもバイトオーダの定義を行っているが、
+ *    tinet/net/net.h をインクルードしない
+ *    アプリケーションプログラム用に
+ *    ターゲット依存しないバイトオーダ関数を定義する。
+ */
+
+#if defined(_NET_CFG_BYTE_ORDER)
+
+#undef ntohs
+#undef htons
+#undef ntohl
+#undef htonl
+
+#if _NET_CFG_BYTE_ORDER == _NET_CFG_BIG_ENDIAN
+
+uint16_t
+ntohs (uint16_t net)
+{
+	return net;
+	}
+
+uint16_t
+htons (uint16_t host)
+{
+	return host;
+	}
+
+uint32_t
+ntohl (uint32_t net)
+{
+	return net;
+	}
+
+uint32_t
+htonl (uint32_t host)
+{
+	return host;
+	}
+
+#elif _NET_CFG_BYTE_ORDER == _NET_CFG_LITTLE_ENDIAN	/* of #if _NET_CFG_BYTE_ORDER == _NET_CFG_BIG_ENDIAN */
+
+uint16_t
+ntohs (uint16_t net)
+{
+	return NET_REV_ENDIAN_HWORD(net);
+	}
+
+uint16_t
+htons (uint16_t host)
+{
+	return NET_REV_ENDIAN_HWORD(host);
+	}
+
+uint32_t
+ntohl (uint32_t net)
+{
+	return NET_REV_ENDIAN_WORD(net);
+	}
+
+uint32_t
+htonl (uint32_t host)
+{
+	return NET_REV_ENDIAN_WORD(host);
+	}
+
+#else	/* #if _NET_CFG_BYTE_ORDER == _NET_CFG_BIG_ENDIAN */
+
+#error "_NET_CFG_BYTE_ORDER expected."
+
+#endif	/* #if _NET_CFG_BYTE_ORDER == _NET_CFG_BIG_ENDIAN */
+
+#endif	/* of #if defined(_NET_CFG_BYTE_ORDER) */

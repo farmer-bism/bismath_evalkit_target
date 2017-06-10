@@ -1,731 +1,749 @@
-                  TCP/IP �ץ��ȥ��륹���å���TINET��
-    ��꡼�� 1.5������ѥ��������ե�����졼������2009/10/1��
+    リリース 1.7、コンパイル時コンフィギュレーション［2014/11/13］
 
-1.  ����ѥ��������ե�����졼�����ˤĤ���
+1.  コンパイル時コンフィギュレーションについて
 
-  TCP/IP �ץ��ȥ��륹���å��ʰʲ� TINET�ˤγƼ勵���ߥ󥰤�ѥ�᡼��
-�� ����ѥ�����˻��ꤹ�뤿��Υ���ե�����졼��������⤹�롣 
-  TINET ��¿�ͤʥ������åȤ��б����뤿�ᡢ�ʲ��Υե��������Ѥ��Ƥ�
-�롣 ���ꤹ��ѥ�᡼���ϡ� ������Υե�����ǻ��ꤷ�Ƥ�褤�� �ޤ���
-Makefile �ǻ��ꤹ�뤳�Ȥ��ǽ�Ǥ��롣
+  TCP/IP プロトコルスタック（以下 TINET）の各種タイミングやパラメータ
+を、 コンパイル時に指定するためのコンフィギュレーションを解説する。 
+  TINET を、多様なターゲットに対応するため、以下のファイルを使用してい
+る。 指定するパラメータは、 いずれのファイルで指定してもよい。 また、
+Makefile で指定することも可能である。
 
    (1)   tinet_config.h
-           TINET ���Υѥ�᡼����������� �ʲ��Υե�����򥤥󥯥롼��
-         ���Ƥ��롣TINET �Υ롼�ȥǥ��쥯�ȥ���֤���
+           TINET 全体パラメータを定義し、 以下のファイルをインクルード
+         している。TINET のルートディレクトリに置く。
 
-   (2)   tinet_target_config.h��TOPPERS/ASP��
-           �������åȤ˰�¸����ѥ�᡼����������롣 �ƥ����ƥ�Υ���
-         ���åȰ�¸���Υǥ��쥯�ȥ���֤��� 
+   (2)   tinet_target_config.h（TOPPERS/ASP）
+           ターゲットに依存するパラメータを定義する。 各システムのター
+         ゲット依存部のディレクトリに置く。 
 
-   (3)   tinet_cpu_config.h��TOPPERS/JSP��
-           �ץ����å��˰�¸����ѥ�᡼����������롣config �Υץ�����
-         ��ά�ΤΥǥ��쥯�ȥ���֤���
+   (3)   tinet_cpu_config.h（TOPPERS/JSP）
+           プロセッサに依存するパラメータを定義する。config のプロセッ
+         サ略称のディレクトリに置く。
 
-   (4)   tinet_sys_config.h��TOPPERS/JSP��
-           �����ƥ�˰�¸����ѥ�᡼����������롣config �Υ����ƥ�ά
-         �ΤΥǥ��쥯�ȥ���֤���
+   (4)   tinet_sys_config.h（TOPPERS/JSP）
+           システムに依存するパラメータを定義する。config のシステム略
+         称のディレクトリに置く。
 
    (5)   tinet_app_config.h
-           ���ץꥱ�������ץ������˰�¸����ѥ�᡼����������롣
-         ���ץꥱ�������ץ������Υǥ��쥯�ȥ���֤��� 
+           アプリケーションプログラムに依存するパラメータを定義する。
+         アプリケーションプログラムのディレクトリに置く。 
 
    (6)   tinet_nic_config.h
-           �������ͥåȥ��󥿥ե������˰�¸����ѥ�᡼����������롣
-         tinet/netdev �Υͥåȥ�����󥿥ե������Υǥ��쥯�ȥ���֤���
-         �������� ���ѤΥͥåȥ�����󥿥ե���������̾���ե�����
-         nic_rename.h �ȥͥåȥ�����󥿥ե�����������ؿ����������
-         �ե�����򥤥󥯥롼�ɤ���褦�ˤʤäƤ��롣 
+           イーサネットインタフェースに依存するパラメータを定義する。
+         tinet/netdev のネットワークインタフェースのディレクトリに置く。
+         ただし、 汎用のネットワークインタフェース・別名化ファイル
+         nic_rename.h とネットワークインタフェースの制御関数を定義する
+         ファイルをインクルードするようになっている。 
 
-2.  ���ݡ��Ȥ���ͥåȥ����ǽ
+2.  サポートするネットワーク機能
 
-   (1)   SUPPORT_INET4
-         IPv4 ��ͭ���ˤ��롣��������SUPPORT_INET6 ��Ʊ���ˤϻ���Ǥ��ʤ���
+   (1)   SUPPORT_INET6
+         IPv6 を有効にする。
 
-   (2)   SUPPORT_INET6
-         IPv6 ��ͭ���ˤ��롣��������SUPPORT_INET4 ��Ʊ���ˤϻ���Ǥ��ʤ���
+   (2)   SUPPORT_INET4
+         IPv4 を有効にする。
 
-   (3)   SUPPORT_TCP
-         TCP ��ͭ���ˤ��롣
+   (3)   API_CFG_IP4MAPPED_ADDR
+         ネットワーク層として IPv6 を選択した場合、 IPv6 の API におけ
+         る IPv6 アドレスとして IPv4 射影アドレスを使用することを可能
+         にする。
 
-   (4)   SUPPORT_UDP
-         UDP ��ͭ���ˤ��롣
+   (4)   SUPPORT_TCP
+         TCP を有効にする。
 
-   (5)   SUPPORT_PPP
-         PPP ��ͭ���ˤ��롣�������� SUPPORT_LOOP �� SUPPORT_ETHER �Ȥ�
-         ��¾�Ǥ��ꡢ �����줫��Ļ���Ǥ��롣�ʤ���PPP �ϻ��ͼ����Ǥ��롣
+   (5)   SUPPORT_UDP
+         UDP を有効にする。
 
-   (6)   SUPPORT_LOOP
-         �롼�ץХå���ͭ���ˤ��롣 �������� SUPPORT_PPP ��
-         SUPPORT_ETHER �Ȥ���¾�Ǥ��ꡢ �����줫��Ļ���Ǥ��롣�ʤ���
-         �롼�ץХå��ϻ��ͼ����Ǥ��롣
+   (6)   SUPPORT_PPP
+         PPP を有効にする。 ただし、SUPPORT_LOOP と SUPPORT_ETHER とは
+         排他であり、いずれか一つ指定できる。なお、 PPP は参考実装である。
 
-   (7)   SUPPORT_ETHER
-         �������ͥåȥ��󥿥ե�������ͭ���ˤ��롣 �������� SUPPORT_PPP
-         �� SUPPORT_LOOP �Ȥ���¾�Ǥ��ꡢ�����줫��Ļ���Ǥ��롣
+   (7)   SUPPORT_LOOP
+         ループバックを有効にする。 ただし、 SUPPORT_PPP と
+         SUPPORT_ETHER とは排他であり、いずれか一つ指定できる。 なお、
+         ループバックは参考実装である。
 
-   (8)   SUPPORT_MIB
-         SNMP �Ѵ�������١�����MIB�ˤ˽�򤷤��ͥåȥ�����פμ���
-         ��ͭ���ˤ��롣��������TINET ���Τϡ���������١�����MIB�ˤ˽�
-         �򤷤��ͥåȥ�����פ��󶡤�������ǡ�SNMP �򥵥ݡ��Ȥ��Ƥ��ʤ���
+   (8)   SUPPORT_ETHER
+         イーサネットインタフェースを有効にする。 ただし、 SUPPORT_PPP
+         と SUPPORT_LOOP とは排他であり、いずれか一つ指定できる。
 
-3.  �ͥåȥ�����Τ˴ط�����ѥ�᡼��
+   (9)   SUPPORT_MIB
+         SNMP 用管理情報ベース（MIB）に準拠したネットワーク統計の取得
+         を有効にする。ただし、TINET 自体は、管理情報ベース（MIB）に準
+         拠したネットワーク統計を提供するだけで，SNMP をサポートしていない。
+
+3.  ネットワーク全体に関係するパラメータ
 
    (1)   NET_TIMER_STACK_SIZE
-         �ͥåȥ�������ޥ������Υ����å�����������ꤹ�롣 
+         ネットワークタイマタスクのスタックサイズを指定する。 
 
    (2)   NET_TIMER_PRIORITY
-         �ͥåȥ�������ޥ�������ͥ���٤���ꤹ�롣 
+         ネットワークタイマタスクの優先度を指定する。 
 
    (3)   NUM_NET_CALLOUT
-         �����ॢ���ȸƽФ�����10 �ʾ���ͤ���ꤹ�뤳�ȡ�
+         タイムアウト呼出し数、10 以上の値を指定すること。
 
    (4)   NUM_IN6_IFADDR_ENTRY
-         ���󥿥ե������Υ��ɥ쥹�ꥹ�ȡ�IPv6�ˤΥ���ȥ���Ǥ��롣
+         インタフェースのアドレスリスト（IPv6）のエントリ数である。
 
    (5)   NUM_MPF_NET_BUF_CSEG
-         �ե졼��إå� + IP �إå� + TCP �إå��������Υͥåȥ���Х�
-         �ե�������ꤹ�롣
+         フレームヘッダ + IP ヘッダ + TCP ヘッダサイズのネットワークバッ
+         ファ数を指定する。
 
    (6)   NUM_MPF_NET_BUF_64
-         ������ 64 �����ƥåȤΥͥåȥ���Хåե�������ꤹ�롣
+         サイズ 64 オクテットのネットワークバッファ数を指定する。
 
    (7)   NUM_MPF_NET_BUF_128
-         ������ 128 �����ƥåȤΥͥåȥ���Хåե�������ꤹ�롣
+         サイズ 128 オクテットのネットワークバッファ数を指定する。
 
    (8)   NUM_MPF_NET_BUF_256
-         ������ 256 �����ƥåȤΥͥåȥ���Хåե�������ꤹ�롣
+         サイズ 256 オクテットのネットワークバッファ数を指定する。
 
    (9)   NUM_MPF_NET_BUF_512
-         ������ 512 �����ƥåȤΥͥåȥ���Хåե�������ꤹ�롣
+         サイズ 512 オクテットのネットワークバッファ数を指定する。
 
    (10)  NUM_MPF_NET_BUF_1024
-         ������ 1024 �����ƥåȤΥͥåȥ���Хåե�������ꤹ�롣
+         サイズ 1024 オクテットのネットワークバッファ数を指定する。
 
    (11)  NUM_MPF_NET_BUF_IF_PDU
-         �ͥåȥ�����󥿥ե������κ��� PDU�ʥե졼��إå�Ĺ + MTU��
-         �������Υͥåȥ���Хåե�������ꤹ�롣 
+         ネットワークインタフェースの最大 PDU（フレームヘッダ長 + MTU）
+         サイズのネットワークバッファ数を指定する。 
 
-   (12)  NUM_MPF_NET_BUF_IP_MSS
-         �ե졼��إå� + IP MSS��576�˥������Υͥåȥ���Хåե���
-         ����ꤹ�롣
+   (12)  NUM_MPF_NET_BUF_IPV6_MMTU
+         フレームヘッダ + IPv6 MMTU（1280）サイズのネットワークバッファ
+         数を指定する。
 
-   (13)  NUM_MPF_NET_BUF_IPV6_MMTU
-         �ե졼��إå� + IPv6 MMTU��1280�˥������Υͥåȥ���Хåե�
-         ������ꤹ�롣
+   (13)  NUM_MPF_NET_BUF_IP_MSS
+         フレームヘッダ + IP MSS（576）サイズのネットワークバッファ数
+         を指定する。
 
    (14)  NUM_MPF_NET_BUF4_REASSM
-         IPv4 �Ѥκƹ����Хåե��������Υͥåȥ���Хåե�������ꤹ�롣
+         IPv4 用の再構成バッファサイズのネットワークバッファ数を指定する。
 
    (15)  NET_COUNT_ENABLE
-         ��¬����ͥåȥ�����׾���� �ץ��ȥ��뼱�̥ե饰�� OR ��
-         ���ꤹ�롣
+         計測するネットワーク統計情報を、 プロトコル識別フラグの OR で
+         指定する。
 
-         PROTO_FLG_PPP_HDLC            PPP �� HDLC �����׾���
-         PROTO_FLG_PPP_AUTH            PPP ��ǧ�ڤ˴ؤ������׾���
-         PROTO_FLG_PPP_LCP             PPP �� LCP �����׾���
-         PROTO_FLG_PPP_IPCP            PPP �� IPCP �����׾���
-         PROTO_FLG_PPP                 PPP �����׾���
-         PROTO_FLG_LOOP                �롼�ץХå������׾���
-         PROTO_FLG_ETHER_NIC           �������ͥåȥ��󥿥ե����������׾���
-         PROTO_FLG_ETHER               �������ͥåȤ����׾���
-         PROTO_FLG_ARP                 ARP �����׾���
-         PROTO_FLG_IP4                 IPv4 �����׾���
-         PROTO_FLG_ICMPv4              ICMPv4 �����׾���
-         PROTO_FLG_IP6                 IPv6 �����׾���
-         PROTO_FLG_ICMPv6              ICMPv6 �����׾���
-         PROTO_FLG_ND6                 ����õ�������׾���
-         PROTO_FLG_UDP                 UDP �����׾���
-         PROTO_FLG_TCP                 TCP �����׾���
-         PROTO_FLG_NET_BUF             �ͥåȥ���Хåե������׾���
+         PROTO_FLG_PPP_HDLC            PPP の HDLC の統計情報
+         PROTO_FLG_PPP_AUTH            PPP の認証に関する統計情報
+         PROTO_FLG_PPP_LCP             PPP の LCP の統計情報
+         PROTO_FLG_PPP_IPCP            PPP の IPCP の統計情報
+         PROTO_FLG_PPP                 PPP の統計情報
+         PROTO_FLG_LOOP                ループバックの統計情報
+         PROTO_FLG_ETHER_NIC           イーサネットインタフェースの統計情報
+         PROTO_FLG_ETHER               イーサネットの統計情報
+         PROTO_FLG_IP6                 IPv6 の統計情報
+         PROTO_FLG_ICMPv6              ICMPv6 の統計情報
+         PROTO_FLG_ND6                 近隣探索の統計情報
+         PROTO_FLG_IP4                 IPv4 の統計情報
+         PROTO_FLG_ICMPv4              ICMPv4 の統計情報
+         PROTO_FLG_ARP                 ARP の統計情報
+         PROTO_FLG_TCP                 TCP の統計情報
+         PROTO_FLG_UDP                 UDP の統計情報
+         PROTO_FLG_NET_BUF             ネットワークバッファの統計情報
 
-4.  ���ݡ��ȴؿ��˴ط�����ѥ�᡼��
+4.  サポート関数に関係するパラメータ
 
-   (1)   NUM_IPV4ADDR_STR_BUFF
-         ���ݡ��ȴؿ� ip2str �ˤ����ơ� TINET �����ǳ��ݤ���ʸ����Х�
-         �ե�������ꤹ�롣
+   (1)   NUM_IPV6ADDR_STR_BUFF
+         サポート関数 ipv62str において、 TINET 内部で確保する文字列バッ
+         ファ数を指定する。
 
-   (2)   NUM_IPV6ADDR_STR_BUFF
-         ���ݡ��ȴؿ� ipv62str �ˤ����ơ� TINET �����ǳ��ݤ���ʸ����Х�
-         �ե�������ꤹ�롣
+   (2)   NUM_IPV4ADDR_STR_BUFF
+         サポート関数 ip2str において、 TINET 内部で確保する文字列バッ
+         ファ数を指定する。
 
    (3)   NUM_MACADDR_STR_BUFF
-         ���ݡ��ȴؿ� mac2str �ˤ����ơ�TINET �����ǳ��ݤ���ʸ����Х�
-         �ե�������ꤹ�롣
+         サポート関数 mac2str において、TINET 内部で確保する文字列バッ
+         ファ数を指定する。
 
-5.  PPP �ط��Υѥ�᡼��
+5.  イーサネット関係のパラメータ
 
-  PPP �ϻ��ͼ����Ǥ��롣
-
-5. 1  PPP ���Τ˴ط�����ѥ�᡼��
-
-   (1)   NUM_DTQ_PPP_OUTPUT
-         PPP ���ϤΥǡ������塼����������ꤹ�롣 2 �ʾ���ͤ���ꤹ�뤳�ȡ�
-
-   (2)   PPP_INPUT_STACK_SIZE
-         PPP ���ϥ������Υ����å�����������ꤹ�롣
-
-   (3)   PPP_OUTPUT_STACK_SIZE
-         PPP ���ϥ������Υ����å�����������ꤹ�롣
-
-   (4)   PPP_INPUT_PRIORITY
-         PPP ���ϥ�������ͥ���٤���ꤹ�롣
-
-   (5)   PPP_OUTPUT_PRIORITY
-         PPP ���ϥ�������ͥ���٤���ꤹ�롣
-
-   (6)   TMO_PPP_GET_NET_BUF
-         ñ�̤� [ms] �ǡ� �����ѥͥåȥ���Хåե��γ��������ॢ����
-         ����ꤹ�롣ɸ���ͤ� 1000 [ms] �Ǥ��롣
-
-   (7)   PPP_IDLE_TIMEOUT
-         PPP ��³�����Ǥ���ޤǤΥ����ɥ���֤�NET_TIMER_HZ ���ܿ���
-         ���ꤹ�롣
-
-5. 2  ��ǥ�˴ؤ������
-
-   (1)   PPP_CFG_MODEM
-         ��ǥ���³�ξ����ꤹ�롣
-
-   (2)   MODEM_CFG_INIT
-         ��ǥ�ν����ʸ�������ꤹ�롣
-
-   (3)   MODEM_CFG_DIAL
-         �������륳�ޥ��ʸ�������ꤹ�롣 
-
-   (4)   MODEM_CFG_RETRY_CNT
-         ���������ȥ饤�����ɸ���ͤ� 3 ��Ǥ��롣
-
-   (5)   MODEM_CFG_RETRY_WAIT
-         ñ�̤� [ms] �ǡ����������ȥ饤�ޤǤ��Ԥ����֤���ꤹ�롣 ɸ
-         ���ͤ� 10,000 [ms] �Ǥ��롣
-
-   (6)   MODEM_CFG_PHONE_NUMBER
-         ��³���������ֹ����ꤹ�롣
-
-5. 3  HDLC �˴ؤ������
-
-   (1)   DEF_LOCAL_ACCM
-         ��ʬ����Ʊ������ʸ���ޥåס�ACCM�ˤ���ꤹ�롣ɸ���ͤ� XON ��
-         XOFF �Τ��Ѵ����뤳�Ȥ��̣���� 0x000a0000 �Ǥ��롣
-
-   (2)   DEF_REMOTE_ACCM
-         ������Ʊ������ʸ���ޥåס�ACCM�ˡ� ɸ��ν���ͤ������Ѵ���
-         �뤳�Ȥ��̣���� 0xffffffff �Ǥ��롣
-
-   (3)   HDLC_PORTID
-         PPP �˻��Ѥ��륷�ꥢ��ݡ����ֹ����ꤹ�롣
-
-5. 4  LCP �˴ؤ������
-
-   (1)   LCP_CFG_MRU
-         LCP �κ������ñ�̡�MRU�˥��ץ����򥵥ݡ��Ȥ���Ȥ��˻��ꤹ�롣
-
-   (2)   LCP_CFG_ACCM
-         LCP ����Ʊ������ʸ���ޥåס�ACCM�˥��ץ����򥵥ݡ��Ȥ����
-         ���˻��ꤹ�롣
-
-   (3)   LCP_CFG_MAGIC
-         LCP �Υޥ��å��ֹ楪�ץ����򥵥ݡ��Ȥ���Ȥ��˻��ꤹ�롣
-
-   (4)   LCP_CFG_PCOMP
-         LCP �Υץ��ȥ��������̥��ץ����򥵥ݡ��Ȥ���Ȥ��˻��ꤹ�롣
-
-   (5)   LCP_CFG_ACCOMP
-         LCP �Υ��ɥ쥹�����������̥��ץ����򥵥ݡ��Ȥ���Ȥ��˻��ꤹ�롣
-
-   (6)   LCP_CFG_PAP
-         LCP �Υѥ����ǧ�ڥץ��ȥ����PAP�˥��ץ����򥵥ݡ��Ȥ���
-         �Ȥ��˻��ꤹ�롣
-
-   (7)   LCP_CFG_CHAP
-         LCP �Υ����󥸥ϥ�ɥ�������ǧ�ڥץ��ȥ����CHAP�˥��ץ���
-         ��򥵥ݡ��Ȥ���Ȥ��˻��ꤹ�롣�������� ����̤�����Ǥ��롣 
-
-   (8)   LCP_ECHO_INTERVAL
-         �������������ǧ���뤿�ᡢ ��ü�֤Ǹ򴹤��륨������å�����
-         �Υ��󥿡��Х���֤���ꤹ�롣 �ͤ� NET_TIMER_HZ ���ܿ��ǻ���
-         ����ɸ���ͤ� (20*NET_TIMER_HZ) �Ǥ��롣�����������Υ��ץ����
-         �� LCP_CFG_MAGIC ����ꤷ���Ȥ��Τ�ͭ���Ǥ��롣
-
-   (9)   LCP_ECHO_FAILS
-         ��������å������μ��Բ������ꤹ�롣ɸ���ͤ� 3 ��Ǥ��롣��
-         ���������Υ��ץ����� LCP_CFG_MAGIC ����ꤷ���Ȥ��Τ�ͭ���Ǥ��롣
-
-   (10)  DEF_LCP_LOCAL_CFGS
-         ��ʬ�ι�������δ����ͤ���ꤹ�롣 
-
-   (11)  DEF_LCP_REMOTE_CFGS
-         ���˵�����������δ����ͤ���ꤹ�롣 
-
-5. 5  �ѥ����ǧ�ڥץ��ȥ����PAP�ˤ˴ؤ������
-
-   (1)   DEF_PAP_TIMEOUT
-         ���饤����ȥ⡼�ɤ�ǧ�ڤ�����Υ����ॢ�����ͤ���ꤹ�롣
-         �ͤ� NET_TIMER_HZ ���ܿ��ǻ��ꤷ�� ɸ���ͤ� (3*NET_TIMER_HZ)
-         �Ǥ��롣���ꤷ�ʤ��ȱʵפ��Ԥ����֤ˤʤ롣 
-
-   (2)   DEF_PAP_REQTIME
-         �����Х⡼�ɤ�ǧ�ڤ�����Υ����ॢ�����ͤ���ꤹ�롣 �ͤ�
-         NET_TIMER_HZ ���ܿ��ǻ��ꤷ�� ɸ���ͤ� (30*NET_TIMER_HZ) �Ǥ�
-         �롣 ���ꤷ�ʤ��ȱʵפ��Ԥ����֤ˤʤ롣
-
-   (3)   MAX_PAP_REXMT
-         ǧ���׵᥿���ॢ���Ȥκ�������������ꤹ�롣 ɸ���ͤ� 10 ��
-         �Ǥ��롣
-
-5. 6  ǧ�ڤ˴ؤ������
-
-   (1)   AUTH_CFG_CLIENT
-         ���饤����ȥ⡼�ɤξ����ꤹ�롣 AUTH_CFG_SERVER ��Ʊ���˻�
-         �ꤹ�뤳�Ȥ��ǽ�Ǥ��롣
-
-   (2)   AUTH_CFG_SERVER
-         �����Х⡼�ɤξ����ꤹ�롣 AUTH_CFG_CLIENT ��Ʊ���˻��ꤹ��
-         ���Ȥ��ǽ�Ǥ��롣
-
-   (3)   AUTH_LOCAL_USER
-         �����Х⡼�ɤξ�硢 ��������ǧ�ڥ桼��̾����ꤹ�롣 
-
-   (4)   AUTH_LOCAL_PASSWD
-         �����Х⡼�ɤξ�硢 ��������ǧ�ڥѥ���ɤ���ꤹ�롣 
-
-   (5)   AUTH_REMOTE_USER
-         ���饤����ȥ⡼�ɤξ�硢 ��������ǧ�ڥ桼��̾����ꤹ�롣 
-
-   (6)   AUTH_REMOTE_PASSWD
-         ���饤����ȥ⡼�ɤξ�硢 ��������ǧ�ڥѥ���ɤ���ꤹ�롣 
-
-6.  �������ͥåȴط��Υѥ�᡼��
-
-6. 1  �������ͥå����Τ˴ط�����ѥ�᡼��
+5. 1  イーサネット全体に関係するパラメータ
 
    (1)   NUM_DTQ_ETHER_OUTPUT
-         �������ͥåȽ��ϥǡ������塼����������ꤹ�롣 2 �ʾ���ͤ��
-         �ꤹ�뤳�ȡ�
+         イーサネット出力データキューサイズを指定する。 2 以上の値を指
+         定すること。
 
    (2)   ETHER_INPUT_STACK_SIZE
-         �������ͥå����ϥ������Υ����å�����������ꤹ�롣 
+         イーサネット入力タスクのスタックサイズを指定する。 
 
    (3)   ETHER_OUTPUT_STACK_SIZE
-         �������ͥåȽ��ϥ������Υ����å�����������ꤹ�롣 
+         イーサネット出力タスクのスタックサイズを指定する。 
 
    (4)   ETHER_INPUT_PRIORITY
-         �������ͥå����ϥ�������ͥ���٤���ꤹ�롣 
+         イーサネット入力タスクの優先度を指定する。 
 
    (5)   ETHER_OUTPUT_PRIORITY
-         �������ͥåȽ��ϥ�������ͥ���٤���ꤹ�롣 
+         イーサネット出力タスクの優先度を指定する。 
 
    (6)   ETHER_CFG_UNEXP_WARNING
-         �󥵥ݡ��ȥե졼��ηٹ��ɽ����������ꤹ�롣 
+         非サポートフレームの警告を表示する場合指定する。 
 
    (7)   ETHER_CFG_802_WARNING
-         IEEE 802.3 �ե졼��ηٹ��ɽ����������ꤹ�롣 �ʤ��� IEEE
-         802.3 �ե졼��ϥ��ݡ��Ȥ��Ƥ��ʤ���
+         IEEE 802.3 フレームの警告を表示する場合指定する。 なお、 IEEE
+         802.3 フレームはサポートしていない。
 
    (8)   ETHER_CFG_MCAST_WARNING
-         �ޥ�����㥹�Ȥηٹ��ɽ����������ꤹ�롣 
+         マルチキャストの警告を表示する場合指定する。 
 
    (9)   ETHER_CFG_ACCEPT_ALL
-         �ޥ�����㥹�ȡ� ���顼�ե졼��������������ꤹ�롣 
+         マルチキャスト、 エラーフレームも受信する場合指定する。 
 
    (10)  ETHER_NIC_CFG_RELEASE_NET_BUF
-         �������ͥåȽ��ϻ��ˡ�NIC �� net_buf ����������˻��ꤹ�롣
+         イーサネット出力時に、NIC で net_buf を開放する場合に指定する。
 
-6. 2  NIC��NE2000 �ߴ��˴ط��Υѥ�᡼��
+   (11)  ETHER_CFG_COLLECT_ADDR
+         指定すると一定周期（256 回のフレーム受信毎）に送信元の MAC ア
+         ドレスにより乱数を更新する。
+
+5. 2  NIC（NE2000 互換）関係のパラメータ
 
    (1)   IF_ED_CFG_16BIT
-         16 �ӥåȥ⡼�ɤǻ��Ѥ�����˻��ꤹ�롣�������� 16 �ӥåȥ⡼
-         �ɤ�̤�����Ǥ��롣
+         16 ビットモードで使用する場合に指定する。 ただし、16 ビットモー
+         ドは未実装である。
 
    (2)   NUM_IF_ED_TXBUF
-         �����ե졼��ΥХåե�������ꤹ�롣 ɸ���ͤ� 1 �Ǥ��롣
+         送信フレームのバッファ数を指定する。標準値は 1 である。 
 
    (3)   TMO_IF_ED_GET_NET_BUF
-         ñ�̤� [ms] �ǡ� �����ե졼���ѥͥåȥ���Хåե��γ�������
-         �ॢ���Ȥ���ꤹ�롣ɸ���ͤ� 1 [ms] �Ǥ��롣
+         単位は [ms] で、 受信フレーム用ネットワークバッファの獲得タイ
+         ムアウトを指定する。標準値は 1 [ms] である。
 
    (4)   TMO_IF_ED_XMIT
-         ���������ॢ�����ͤ���ꤹ�롣�ͤ� IF_TIMER_HZ ���ܿ��ǻ��ꤷ��
-         ɸ���ͤ� (2*IF_TIMER_HZ) �Ǥ��롣
+         送信タイムアウト値を指定する。値は IF_TIMER_HZ の倍数で指定し、
+         標準値は (2*IF_TIMER_HZ) である。
 
    (5)   IF_ED_CFG_ACCEPT_ALL
-         �ޥ�����㥹�ȡ� ���顼�ե졼��������������ꤹ�롣 
+         マルチキャスト、 エラーフレームも受信する場合指定する。 
 
-6. 3  NIC��RTL8019AS�˴ط��Υѥ�᡼��
+5. 3  NIC（RTL8019AS）関係のパラメータ
 
    (1)   ED_BASE_ADDRESS
-         NIC �Υ쥸�����Υ١������ɥ쥹����ꤹ�롣
+         NIC のレジスタのベースアドレスを指定する。
 
    (2)   INHNO_IF_ED
-         �������ֹ����ꤹ�롣
+         割り込み番号を指定する。
 
    (3)   ED_IER_IP_BIT
-         �����ߥ��͡��֥�쥸������IER�ˤ�����ӥåȤ���ꤹ�롣 
+         割り込みイネーブルレジスタ（IER）の制御ビットを指定する。 
 
    (4)   ED_IPR
-         ������ͥ��쥸������IPR�ˤ���ꤹ�롣
+         割り込み優先レジスタ（IPR）を指定する。
 
    (5)   ED_IPR_IP_BIT
-         ������ͥ��쥸������IPR�ˤ�����ӥåȤ���ꤹ�롣 
+         割り込み優先レジスタ（IPR）の制御ビットを指定する。 
 
    (6)   ED_RTL_CFG0_IRQS
-         �����ߥ��͡��֥�쥸������IER�ˤ�����ӥåȤ���ꤹ�롣 
+         割り込みイネーブルレジスタ（IER）の制御ビットを指定する。 
 
-7.  �롼�ץХå����󥿥ե������ط��Υѥ�᡼��
-
-  �롼�ץХå����󥿥ե������ϻ��ͼ����Ǥ��롣 
-
-   (1)   LOMTU
-         �롼�ץХå����󥿥ե������� MTU ����ꤹ�롣
-
-   (2)   NUM_DTQ_LOOP_OUTPUT
-         �롼�ץХå����󥿥ե������ν��ϥǡ������塼����������ꤹ�롣 
-
-   (3)   NUM_DTQ_LOOP_INPUT
-         �롼�ץХå����󥿥ե����������ϥǡ������塼����������ꤹ�롣 
-
-   (4)   LOOP_INPUT_STACK_SIZE
-         �롼�ץХå����󥿥ե����������ϥ������Υ����å�����������ꤹ�롣
-
-   (5)   LOOP_OUTPUT_STACK_SIZE
-         �롼�ץХå����󥿥ե������ν��ϥ������Υ����å�����������ꤹ�롣
-
-   (6)   LOOP_INPUT_PRIORITY
-         �롼�ץХå����󥿥ե����������ϥ�������ͥ���٤���ꤹ�롣 
-
-   (7)   LOOP_OUTPUT_PRIORITY
-         �롼�ץХå����󥿥ե������ν��ϥ�������ͥ���٤���ꤹ�롣 
-
-8.  ARP �ط��Υѥ�᡼��
+6.  ARP 関係のパラメータ
 
    (1)   NUM_ARP_ENTRY
-         ARP ����å��奨��ȥ������ꤹ�롣
+         ARP キャッシュエントリ数を指定する。
 
    (2)   ARP_CACHE_KEEP
-         ARP ����å���Υ����ॢ�����ͤ���ꤹ�롣 �ͤ� NET_TIMER_HZ
-         ���ܿ��ǻ��ꤷ��ɸ���ͤ� (20*60*NET_TIMER_HZ) �Ǥ��롣
+         ARP キャッシュのタイムアウト値を指定する。 値は NET_TIMER_HZ
+         の倍数で指定し、標準値は (20*60*NET_TIMER_HZ) である。
 
    (3)   TMO_ARP_GET_NET_BUF
-         ñ�̤� [ms] �ǡ� ���ɥ쥹����׵��ѥͥåȥ���Хåե��γ���
-         �����ॢ���Ȥ���ꤹ�롣ɸ���ͤ� 1000 [ms] �Ǥ��롣
+         単位は [ms] で、 アドレス解決要求用ネットワークバッファの獲得
+         タイムアウトを指定する。標準値は 1000 [ms] である。
 
    (4)   TMO_ARP_OUTPUT
-         ñ�̤� [ms] �ǡ�ARP ���ϥ����ॢ���Ȥ���ꤹ�롣ɸ���ͤ� 1000
-         [ms] �Ǥ��롣
+         単位は [ms] で、ARP 出力タイムアウトを指定する。標準値は 1000
+         [ms] である。
 
    (5)   ARP_CFG_CALLBACK_DUPLICATED
-         ���ꤹ��ȡ�ARP ���Ϥ� IP ���ɥ쥹�ν�ʣ�򸡽Ф������ˡ� ����
-         �ץ��������Ѱդ���������Хå��ؿ� arp_callback_duplicated
-         ��ƤӽФ���
+         指定すると、ARP 入力で IP アドレスの重複を検出した時に、 応用
+         プログラムで用意したコールバック関数 arp_callback_duplicated
+         を呼び出す。
 
-9.  DHCP �ط��Υѥ�᡼��
+7.  PPP 関係のパラメータ
 
-   (1)   DHCP_CFG
-         DHCP ��å����������������˻��ꤹ�롣 �������� TINET �ϡ�
-         DHCP ��������Ƥ��ʤ������ѥץ������ǡ� DHCP ��å��������
-         �����뤿�������Ǥ��롣�ޤ������ߤ� IPv4 �Τ�ͭ���Ǥ��롣
+  PPP は参考実装である。
 
-10.  IPv4/IPv6 ���̥ѥ�᡼��
+7. 1  PPP 全体に関係するパラメータ
+
+   (1)   NUM_DTQ_PPP_OUTPUT
+         PPP 出力のデータキューサイズを指定する。 2 以上の値を指定すること。
+
+   (2)   PPP_INPUT_STACK_SIZE
+         PPP 入力タスクのスタックサイズを指定する。
+
+   (3)   PPP_OUTPUT_STACK_SIZE
+         PPP 出力タスクのスタックサイズを指定する。
+
+   (4)   PPP_INPUT_PRIORITY
+         PPP 入力タスクの優先度を指定する。
+
+   (5)   PPP_OUTPUT_PRIORITY
+         PPP 出力タスクの優先度を指定する。
+
+   (6)   TMO_PPP_GET_NET_BUF
+         単位は [ms] で、 受信用ネットワークバッファの獲得タイムアウト
+         を指定する。標準値は 1000 [ms] である。
+
+   (7)   PPP_IDLE_TIMEOUT
+         PPP 接続を切断するまでのアイドル時間を、NET_TIMER_HZ の倍数で
+         指定する。
+
+7. 2  モデムに関する定義
+
+   (1)   PPP_CFG_MODEM
+         モデム接続の場合指定する。
+
+   (2)   MODEM_CFG_INIT
+         モデムの初期化文字列を指定する。
+
+   (3)   MODEM_CFG_DIAL
+         ダイアルコマンド文字列を指定する。 
+
+   (4)   MODEM_CFG_RETRY_CNT
+         ダイアルリトライ回数。標準値は 3 回である。
+
+   (5)   MODEM_CFG_RETRY_WAIT
+         単位は [ms] で、ダイアルリトライまでの待ち時間を指定する。 標
+         準値は 10,000 [ms] である。
+
+   (6)   MODEM_CFG_PHONE_NUMBER
+         接続相手の電話番号を指定する。
+
+7. 3  HDLC に関する定義
+
+   (1)   DEF_LOCAL_ACCM
+         自分の非同期制御文字マップ（ACCM）を指定する。標準値は XON と
+         XOFF のみ変換することを意味する 0x000a0000 である。
+
+   (2)   DEF_REMOTE_ACCM
+         相手の非同期制御文字マップ（ACCM）、 標準の初期値は全て変換す
+         ることを意味する 0xffffffff である。
+
+   (3)   HDLC_PORTID
+         PPP に使用するシリアルポート番号を指定する。
+
+7. 4  LCP に関する定義
+
+   (1)   LCP_CFG_MRU
+         LCP の最大受信単位（MRU）オプションをサポートするときに指定する。
+
+   (2)   LCP_CFG_ACCM
+         LCP の非同期制御文字マップ（ACCM）オプションをサポートすると
+         きに指定する。
+
+   (3)   LCP_CFG_MAGIC
+         LCP のマジック番号オプションをサポートするときに指定する。
+
+   (4)   LCP_CFG_PCOMP
+         LCP のプロトコル部圧縮オプションをサポートするときに指定する。
+
+   (5)   LCP_CFG_ACCOMP
+         LCP のアドレス・制御部圧縮オプションをサポートするときに指定する。
+
+   (6)   LCP_CFG_PAP
+         LCP のパスワード認証プロトコル（PAP）オプションをサポートする
+         ときに指定する。
+
+   (7)   LCP_CFG_CHAP
+         LCP のチャレンジハンドシェーク認証プロトコル（CHAP）オプショ
+         ンをサポートするときに指定する。ただし、 現在未実装である。 
+
+   (8)   LCP_ECHO_INTERVAL
+         相手の正常性を確認するため、 終端間で交換するエコーメッセージ
+         のインターバル時間を指定する。 値は NET_TIMER_HZ の倍数で指定
+         し、標準値は (20*NET_TIMER_HZ) である。ただし、このオプション
+         は LCP_CFG_MAGIC を指定したときのみ有効である。
+
+   (9)   LCP_ECHO_FAILS
+         エコーメッセージの失敗回数を指定する。標準値は 3 回である。た
+         だし、このオプションは LCP_CFG_MAGIC を指定したときのみ有効である。
+
+   (10)  DEF_LCP_LOCAL_CFGS
+         自分の構成情報の既定値を指定する。 
+
+   (11)  DEF_LCP_REMOTE_CFGS
+         相手に許す構成情報の既定値を指定する。 
+
+7. 5  パスワード認証プロトコル（PAP）に関する定義
+
+   (1)   DEF_PAP_TIMEOUT
+         クライアントモードで認証する場合のタイムアウト値を指定する。
+         値は NET_TIMER_HZ の倍数で指定し、 標準値は (3*NET_TIMER_HZ)
+         である。指定しないと永久に待ち状態になる。 
+
+   (2)   DEF_PAP_REQTIME
+         サーバモードで認証する場合のタイムアウト値を指定する。 値は
+         NET_TIMER_HZ の倍数で指定し、 標準値は (30*NET_TIMER_HZ) であ
+         る。 指定しないと永久に待ち状態になる。
+
+   (3)   MAX_PAP_REXMT
+         認証要求タイムアウトの最大再送回数を指定する。 標準値は 10 回
+         である。
+
+7. 6  認証に関する定義
+
+   (1)   AUTH_CFG_CLIENT
+         クライアントモードの場合指定する。 AUTH_CFG_SERVER と同時に指
+         定することも可能である。
+
+   (2)   AUTH_CFG_SERVER
+         サーバモードの場合指定する。 AUTH_CFG_CLIENT と同時に指定する
+         ことも可能である。
+
+   (3)   AUTH_LOCAL_USER
+         サーバモードの場合、 ログイン認証ユーザ名を指定する。 
+
+   (4)   AUTH_LOCAL_PASSWD
+         サーバモードの場合、 ログイン認証パスワードを指定する。 
+
+   (5)   AUTH_REMOTE_USER
+         クライアントモードの場合、 ログイン認証ユーザ名を指定する。 
+
+   (6)   AUTH_REMOTE_PASSWD
+         クライアントモードの場合、 ログイン認証パスワードを指定する。 
+
+8.  ループバックインタフェース関係のパラメータ
+
+  ループバックインタフェースは参考実装である。 
+
+   (1)   LOMTU
+         ループバックインタフェースの MTU を指定する。
+
+   (2)   NUM_DTQ_LOOP_OUTPUT
+         ループバックインタフェースの出力データキューサイズを指定する。 
+
+   (3)   NUM_DTQ_LOOP_INPUT
+         ループバックインタフェースの入力データキューサイズを指定する。 
+
+   (4)   LOOP_INPUT_STACK_SIZE
+         ループバックインタフェースの入力タスクのスタックサイズを指定する。
+
+   (5)   LOOP_OUTPUT_STACK_SIZE
+         ループバックインタフェースの出力タスクのスタックサイズを指定する。
+
+   (6)   LOOP_INPUT_PRIORITY
+         ループバックインタフェースの入力タスクの優先度を指定する。 
+
+   (7)   LOOP_OUTPUT_PRIORITY
+         ループバックインタフェースの出力タスクの優先度を指定する。 
+
+9.  DHCP 関係のパラメータ
+
+   (1)   DHCP6_CLI_CFG
+         DHCPv6 の DHCP メッセージを受信する場合に指定する。 ただし、
+         TINET は、 DHCPv6 を実装していない。応用プログラムで、DHCP メッ
+         セージを受信するための定義である。 
+
+   (2)   DHCP4_CLI_CFG
+         DHCPv4 の DHCP メッセージを受信する場合に指定する。 ただし、
+         TINET は、DHCPv4 を実装していない。応用プログラムで、 DHCP メッ
+         セージを受信するための定義である。 
+
+10.  IPv6/IPv4 共通パラメータ
 
    (1)   TMO_IN_REDIRECT
-         ����ľ����å����������ꤵ�줿�롼�ƥ��󥰾����ͭ�����֤��
-         �ꤹ�롣ɸ���ͤ� 10*60*1000 [ms] �Ǥ��롣
+         向け直しメッセージで設定されたルーティング情報の有効時間を指
+         定する。標準値は 10*60*1000 [ms] である。
 
-   (2)   NUM_STATIC_ROUTE_ENTRY
-         �롼�ƥ���ɽ����Ū�롼�ƥ��󥰥���ȥ������ꤹ�롣 
-
-   (3)   NUM_REDIRECT_ROUTE_ENTRY
-         �롼�ƥ���ɽ��ͽ����ݤ��롢 ����ľ����ICMP�ˤˤ��롼�ƥ�
-         �󥰥���ȥ������ꤹ�롣 0 ����ꤹ��ȡ�����ľ����ICMP�ˤ�
-         ̵�뤹�롣
-
-11.  IPv4 �ط��Υѥ�᡼��
-
-   (1)   IPV4_ADDR_LOCAL
-         ��ʬ�� IP ���ɥ쥹����ꤹ�롣��������PPP ����Ѥ���Ȥ��� ��
-         ��˳����ƤƤ�餦���� 0 ����ꤹ�뤳�ȡ�
-
-   (2)   IPV4_ADDR_REMOTE
-         ���� IP ���ɥ쥹����ꤹ�롣 ��������PPP ����Ѥ���Ȥ�����
-         ��˳����ƤƤ�餦���� 0 ����ꤹ�뤳�ȡ�
-
-   (3)   IPV4_ADDR_LOCAL_MASK
-         ���֥ͥåȥޥ�������ꤹ�롣�������� �ͥåȥ�����󥿥ե���
-         �����������ͥåȤΤȤ�ͭ���Ǥ��롣 
-
-   (4)   IPV4_ADDR_DEFAULT_GW
-         �ǥ��ե���ȥ����ȥ���������ꤹ�롣�������� �ͥåȥ������
-         ���ե��������������ͥåȤΤȤ�ͭ���Ǥ��롣 
-
-   (5)   IP4_CFG_FRAGMENT
-         �ǡ���������ʬ�䡦�ƹ����Ԥ����˻��ꤹ�롣 
-
-   (6)   NUM_IP4_FRAG_QUEUE
-         �ǡ��������ƹ������塼����������ꤹ�롣 ɸ���ͤ� 2 �Ǥ��롣
-
-   (7)   TMO_IP4_FRAG_GET_NET_BUF
-         �ǡ��������ƹ����ѥͥåȥ���Хåե��γ��������ॢ���Ȥ�
-         ���ꤹ�롣ɸ���ͤ� 1000 [ms] �Ǥ��롣
-
-   (8)   IP4_CFG_FRAG_REASSM_SIZE
-         �ǡ��������ƹ����ѥͥåȥ���Хåե��Υ���������ꤹ�롣
-         ɸ���ͤ� 4096 �Ǥ��롣
-
-12.  IPv6 �ط��Υѥ�᡼��
+11.  IPv6 関係のパラメータ
 
    (1)   IP6_CFG_FRAGMENT
-         �ǡ���������ʬ�䡦�ƹ����Ԥ����˻��ꤹ�롣 
+         データグラムの分割・再構成行う場合に指定する。 
 
    (2)   NUM_IP6_FRAG_QUEUE
-         �ǡ��������ƹ������塼����������ꤹ�롣 ɸ���ͤ� 2 �Ǥ��롣
+         データグラム再構成キューサイズを指定する。 標準値は 2 である。
 
    (3)   TMO_IP6_FRAG_GET_NET_BUF
-         �ǡ��������ƹ����ѥͥåȥ���Хåե��γ��������ॢ���Ȥ�
-         ���ꤹ�롣ɸ���ͤ� 1000 [ms] �Ǥ��롣
+         データグラム再構成用ネットワークバッファの獲得タイムアウトを
+         指定する。標準値は 1000 [ms] である。
 
    (4)   IP6_CFG_FRAG_REASSM_SIZE
-         �ǡ��������ƹ����ѥͥåȥ���Хåե��Υ���������ꤹ�롣
-         ɸ���ͤ� 4096 �Ǥ��롣
+         データグラム再構成用ネットワークバッファのサイズを指定する。
+         標準値は 4096 である。
 
-13.  ICMPv4/v6 �ط��Υѥ�᡼��
+   (5)   NUM_IN6_STATIC_ROUTE_ENTRY
+         ルーティング表の静的ルーティングエントリ数を指定する。 
+
+   (6)   NUM_IN6_REDIRECT_ROUTE_ENTRY
+         ルーティング表で予め確保する、 向け直し（ICMP）によるルーティ
+         ングエントリ数を指定する。0 を指定すると、 向け直し（ICMP）を
+         無視する。
+
+   (7)   IP6_CFG_IP4MAPPED_ADDR
+         IPv6 のみに対応するアプリケーションで IPv4 射影アドレスを利用
+         して、IPv4 データグラムを扱う場合に指定する。
+
+12.  IPv4 関係のパラメータ
+
+   (1)   IPV4_ADDR_LOCAL
+         自分の IP アドレスを指定する。 ただし、PPP を使用するとき、相
+         手に割当ててもらう場合は 0 を指定すること。
+
+   (2)   IPV4_ADDR_REMOTE
+         相手の IP アドレスを指定する。ただし、PPP を使用するとき、 相
+         手に割当ててもらう場合は 0 を指定すること。
+
+   (3)   IPV4_ADDR_LOCAL_MASK
+         サブネットマスクを指定する。 ただし、ネットワークインタフェー
+         スがイーサネットのとき有効である。 
+
+   (4)   IPV4_ADDR_DEFAULT_GW
+         ディフォルトゲートウェイを指定する。 ただし、ネットワークイン
+         タフェースがイーサネットのとき有効である。 
+
+   (5)   IP4_CFG_FRAGMENT
+         データグラムの分割・再構成行う場合に指定する。 
+
+   (6)   NUM_IP4_FRAG_QUEUE
+         データグラム再構成キューサイズを指定する。標準値は 2 である。 
+
+   (7)   TMO_IP4_FRAG_GET_NET_BUF
+         データグラム再構成用ネットワークバッファの獲得タイムアウトを
+         指定する。標準値は 1000 [ms] である。
+
+   (8)   IP4_CFG_FRAG_REASSM_SIZE
+         データグラム再構成用ネットワークバッファのサイズを指定する。
+         標準値は 4096 である。
+
+   (9)   NUM_IN4_STATIC_ROUTE_ENTRY
+         ルーティング表の静的ルーティングエントリ数を指定する。 
+
+   (10)  NUM_IN4_REDIRECT_ROUTE_ENTRY
+         ルーティング表で予め確保する、 向け直し（ICMP）によるルーティ
+         ングエントリ数を指定する。 0 を指定すると、向け直し（ICMP）を
+         無視する。
+
+13.  ICMPv6/v4 関係のパラメータ
 
    (1)   ICMP_REPLY_ERROR
-         ICMP ���顼��å�����������������˻��ꤹ�롣
+         ICMP エラーメッセージを送信する場合に指定する。
 
    (2)   TMO_ICMP_OUTPUT
-         ñ�̤� [ms] �ǡ� IP ���ϤΥ����ॢ���Ȥ���ꤹ�롣 ɸ���ͤ�
-         1000 [ms] �Ǥ��롣
+         単位は [ms] で、 IP 出力のタイムアウトを指定する。 標準値は
+         1000 [ms] である。
 
-14.  ����õ����ICMPv6�˴ط��Υѥ�᡼��
+14.  近隣探索（ICMPv6）関係のパラメータ
 
    (1)   IP6_CFG_AUTO_LINKLOCAL
-         ��󥯥������륢�ɥ쥹�μ�ư�����Ԥ����˻��ꤹ�롣 ��������
-         ���ߤϡ���ư����ʳ��˥��ɥ쥹�����ꤹ����ˡ���ʤ��Τǡ� ɬ��
-         ���ꤹ��ɬ�פ����롣
+         リンクローカルアドレスの自動設定を行う場合に指定する。 ただし、
+         現在は、自動設定以外にアドレスを設定する方法がないので、 必ず
+         指定する必要がある。
 
    (2)   NUM_IP6_DAD_COUNT
-         ��ʣ���ɥ쥹���Ф�����������������β���ǡ� 0 ����ꤹ��ȡ�
-         ��ʣ���ɥ쥹���Ф�Ԥ�ʤ���ɸ���ͤ� 1 �Ǥ��롣
+         重複アドレス検出で送信する近隣要請の回数で、 0 を指定すると、
+         重複アドレス検出を行わない。標準値は 1 である。
 
    (3)   NUM_ND6_CACHE_ENTRY
-         ���٥���å���Υ���ȥ���Ǥ��롣 
+         近隣キャッシュのエントリ数である。 
 
    (4)   NUM_ND6_DEF_RTR_ENTRY
-         �ǥ��ե���ȥ롼���ꥹ�ȤΥ���ȥ���ǡ������ͤ� 16 �Ǥ��롣0
-         ����ꤹ��ȥ롼�����Τ�������ʤ��� �����������ߤϡ��롼����
-         �Τμ����ʳ��˥����ȥ������륢�ɥ쥹�������ꤹ����ˡ���ʤ��� 
+         ディフォルトルータリストのエントリ数で、最大値は 16 である。0
+         を指定するとルータ通知を受信しない。 ただし、現在は、ルータ通
+         知の受信以外にサイトローカルアドレス等を設定する方法がない。 
 
    (5)   NUM_ND6_RTR_SOL_RETRY
-         ��ư���Υ롼���������ϲ���ǡ� 0 ����ꤹ��ȥ롼�����������
-         ���ʤ���
+         起動時のルータ要請出力回数で、 0 を指定するとルータ要請を出力
+         しない。
 
    (6)   NUM_ND6_PREFIX_ENTRY
-         �ץ�ե��å����ꥹ�ȤΥ���ȥ���ǡ������ͤ� 16 �Ǥ��롣
+         プレフィックスリストのエントリ数で、最大値は 16 である。
 
    (7)   NUM_IN6_HOSTCACHE_ENTRY
-         IPv6 �ѥۥ��Ⱦ��󥭥�å���Υ���ȥ���ǡ� 0 ����ꤹ���
-         IPv6 �ѥۥ��Ⱦ��󥭥�å�����ȹ��ޤʤ����ޤ������ξ�硢Path
-         MTU �ؤ��б������Ū�ˤʤ롣
+         IPv6 用ホスト情報キャッシュのエントリ数で、 0 を指定すると
+         IPv6 用ホスト情報キャッシュを組込まない。また、この場合、Path
+         MTU への対応も限定的になる。
 
    (8)   TMO_ND6_NS_OUTPUT
-         �����������ϥ����ॢ���Ȥ���ꤹ�롣ɸ���ͤ� 1000 [ms] �Ǥ��롣
+         近隣要請出力タイムアウトを指定する。標準値は 1000 [ms] である。
 
    (9)   TMO_ND6_NA_OUTPUT
-         �������ν��ϥ����ॢ���Ȥ���ꤹ�롣ɸ���ͤ� 1000 [ms] �Ǥ��롣
+         近隣通知出力タイムアウトを指定する。標準値は 1000 [ms] である。
 
    (10)  TMO_ND6_RS_OUTPUT
-         �롼���������ϥ����ॢ���Ȥ���ꤹ�롣ɸ���ͤ� 1000 [ms] �Ǥ��롣
+         ルータ要請出力タイムアウトを指定する。標準値は 1000 [ms] である。
 
    (11)  TMO_ND6_RTR_SOL_DELAY
-         �롼�����������ٱ����ꤹ�롣ɸ���ͤ� 1000 [ms] �Ǥ��롣
+         ルータ要請出力遅延を指定する。標準値は 1000 [ms] である。
 
    (12)  TMO_ND6_RTR_SOL_INTERVAL
-         �롼���������ϴֳ֤���ꤹ�롣ɸ���ͤ� 3000 [ms] �Ǥ��롣
+         ルータ要請出力間隔を指定する。標準値は 3000 [ms] である。
 
-15.  TCP �ط��Υѥ�᡼��
+15.  TCP 関係のパラメータ
 
    (1)   TCP_CFG_EXTENTIONS
-         ITRON TCP/IP API �� TCP �γ�ĥ��ǽ��ͭ���ˤ��롣
+         ITRON TCP/IP API の TCP の拡張機能を有効にする。
 
    (2)   MAX_TCP_SEG_SIZE
-         TCP �κ��祻�����ȥ���������ꤹ�롣 �����������ͥ������
-         �߻��˸򴹤�����祻�����ȥ������Ȥϰۤʤ롣 ɸ���ͤϰʲ���
-         �ͤǤ��롣
+         TCP の最大セグメントサイズを指定する。 ただし、コネクション開
+         設時に交換する最大セグメントサイズとは異なる。 標準値は以下の
+         値である。
 
             (IF_MTU - (IP_HDR_SIZE + TCP_HDR_SIZE))
 
    (3)   DEF_TCP_SND_SEG
-         �����κ��祻�����ȥ���������ꤹ�롣 �����������ͥ������
-         �߻���Ʊ���������Ȥǡ���꤫���ͤ�Ϳ����줿���ϡ� Ϳ�����
-         ���ͤ�Ĵ������롣
+         送信の最大セグメントサイズを指定する。 ただし、コネクション開
+         設時の同期セグメントで、相手から値が与えられた時は、 与えられ
+         た値に調整される。
 
    (4)   DEF_TCP_RCV_SEG
-         �����κ��祻�����ȥ���������ꤹ�롣 TCP_CFG_MAX_SEG �����
-         �������ϡ����ͥ�������߻��ˡ�TCP �� MSS ���ץ��������
-         �������롣�ʤ���RFC791 �Ǥϡ� �ۥ��ȤϾ��ʤ��Ȥ� 576 �����ƥ�
-         �ȼ����Ǥ��ʤ���Фʤ�ʤ��ȵ��ꤵ��Ƥ���Τǡ� TCP �إå���
-         IP �إå�ʬ������� 536 �ʲ��ˤʤ�ʤ��褦�ˤ��٤��Ǥ��롣
+         受信の最大セグメントサイズを指定する。 TCP_CFG_MAX_SEG を指定
+         した場合は、コネクション開設時に、TCP の MSS オプションで相手
+         に伝える。なお、RFC791 では、 ホストは少なくとも 576 オクテッ
+         ト受信できなければならないと規定されているので、 TCP ヘッダと
+         IP ヘッダ分を引いた 536 以下にならないようにすべきである。
 
    (5)   MAX_TCP_REALLOC_SIZE
-         ���������������Ȥν��֤������ؤ���Ȥ��� �����˥ͥåȥ��
-         �Хåե�������Ƥơ� �ǡ����򥳥ԡ����륵�����Τ������͡��㤨
-         �С�PPP �Ǥϡ� ��������ޤǡ� �����ƥåȿ��������Τ��ᡢ ����
-         PDU �������Υͥåȥ���Хåե�������˻Ȥ����� TCP �κƹ���
-         ���塼����α����Ƥ��ޤ��ȡ����� PDU �������Υͥåȥ���Х�
-         �ե�������Ƥ뤳�Ȥ��Ǥ��ʤ��ʤ뤿�ᡢ ���¤��ߤ��Ƥ��롣 
+         受信したセグメントの順番を入れ替えるとき、 新たにネットワーク
+         バッファを割当てて、 データをコピーするサイズのしきい値。例え
+         ば、PPP では、 受信するまで、 オクテット数が不明のため、 最大
+         PDU サイズのネットワークバッファを受信に使うが、 TCP の再構成
+         キューに保留されてしまうと、最大 PDU サイズのネットワークバッ
+         ファを割当てることができなくなるため、 制限を設けている。 
 
    (6)   TMO_TCP_GET_NET_BUF
-         ñ�̤� [ms] �ǡ� ���ϥ��������ѥͥåȥ���Хåե��γ�����
-         ���ॢ���Ȥ���ꤹ�롣ɸ���ͤ� 1000 [ms] �Ǥ��롣
+         単位は [ms] で、 出力セグメント用ネットワークバッファの獲得タ
+         イムアウトを指定する。標準値は 1000 [ms] である。
 
    (7)   TMO_TCP_OUTPUT
-         ñ�̤� [ms] �ǡ�TCP ���ϥ����ॢ���Ȥ���ꤹ�롣ɸ���ͤ� 1000
-         [ms] �Ǥ��롣
+         単位は [ms] で、TCP 出力タイムアウトを指定する。標準値は 1000
+         [ms] である。
 
    (8)   TCP_CFG_MAX_SEG
-         ���ͥ�������߻���Ʊ���������Ȥ˺��祻�����ȥ���������
-         ������Ĥ���������������ꤹ�롣 
+         コネクション開設時の同期セグメントに最大セグメントサイズオプ
+         ションをつけて送信する場合指定する。 
 
    (9)   TCP_CFG_DELAY_ACK
-         ��ǧ�������٤餻������ꤹ�롣
+         確認応答を遅らせる場合指定する。
 
    (10)  TCP_CFG_ALWAYS_KEEP
-         ��˥����ץ��饤�֤�������ꤹ�롣 
+         常にキープアライブする場合指定する。 
 
    (11)  TCP_OUT_TASK_STACK_SIZE
-         TCP ���ϥ������Υ����å�����������ꤹ�롣
+         TCP 出力タスクのスタックサイズを指定する。
 
    (12)  TCP_OUT_TASK_PRIORITY
-         TCP ���ϥ�������ͥ���٤���ꤹ�롣
+         TCP 出力タスクの優先度を指定する。
 
    (13)  NUM_TCP_TW_CEP_ENTRY
-         ���������� Time Wait ���֤� TCP �̿�ü����ʬΥ���뵡ǽ�ǡ�
-         Time Wait ���֤� TCP �̿�ü���Υ���ȥ������ꤹ�롣
+         タスクから Time Wait 状態の TCP 通信端点を分離する機能で、
+         Time Wait 状態の TCP 通信端点のエントリ数を指定する。
 
-   (14)  TCP_CFG_PASSIVE_OPEN
-         TCP �μ�ư�����ץ�ǽ���ȹ��ࡣ����������꡼�� 1.2 �Ȥθߴ�
-         ���Τ��ᡢtinet/tinet_config.h �˻��ꤵ��Ƥ��ꡢ����Ǥ��ȹ�
-         �ޤ��褦�ˤʤäƤ��롣 �������������ϡ�
-         tinet_app_config.h �ʤɤǡ� #undef �ˤ�ꡢ�ޥ��������̤���
-         �ˤ��롣
+   (14)  TCP_CFG_RWBUF_CSAVE_ONLY
+         TCP 通信端点の受信ウィンドバッファの省コピー機能を組込み、 こ
+         の機能のみ使用する。TCP 通信端点を生成する静的 API で、受信ウ
+         インドバッファの先頭アドレスの指定に、 応用プログラム内の配列
+         を指定しても無視する。
 
-   (15)  TCP_CFG_RWBUF_CSAVE_ONLY
-         TCP �̿�ü���μ���������ɥХåե��ξʥ��ԡ���ǽ���ȹ��ߡ� ��
-         �ε�ǽ�Τ߻��Ѥ��롣TCP �̿�ü��������������Ū API �ǡ�������
-         ����ɥХåե�����Ƭ���ɥ쥹�λ���ˡ� ���ѥץ�������������
-         ����ꤷ�Ƥ�̵�뤹�롣
+   (15)  TCP_CFG_RWBUF_CSAVE
+         TCP 通信端点の受信ウィンドバッファの省コピー機能を組込む。TCP
+         通信端点を生成する静的 API で、受信ウインドバッファの先頭アド
+         レスの指定に、応用プログラム内の配列を指定した場合は、 受信ウィ
+         ンドバッファの省コピー機能を使用しない。 
 
-   (16)  TCP_CFG_RWBUF_CSAVE
-         TCP �̿�ü���μ���������ɥХåե��ξʥ��ԡ���ǽ���ȹ��ࡣTCP
-         �̿�ü��������������Ū API �ǡ�����������ɥХåե�����Ƭ����
-         �쥹�λ���ˡ����ѥץ����������������ꤷ�����ϡ� ��������
-         ��ɥХåե��ξʥ��ԡ���ǽ����Ѥ��ʤ��� 
+   (16)  TCP_CFG_RWBUF_CSAVE_MAX_QUEUES
+         TCP 通信端点の受信ウィンドバッファの省コピー機能の、 受信ウィ
+         ンドバッファキューの最大エントリ数。 ただし、正常に受信したセ
+         グメントも破棄するため、再送回数が増加する。また、 指定しない
+         と制限しない。標準値は 2 である。
 
-   (17)  TCP_CFG_RWBUF_CSAVE_MAX_QUEUES
-         TCP �̿�ü���μ���������ɥХåե��ξʥ��ԡ���ǽ�Ρ� ��������
-         ��ɥХåե����塼�κ��票��ȥ���� ������������˼���������
-         �����Ȥ��˴����뤿�ᡢ������������ä��롣�ޤ��� ���ꤷ�ʤ�
-         �����¤��ʤ���ɸ���ͤ� 2 �Ǥ��롣
+   (17)  TCP_CFG_SWBUF_CSAVE_ONLY
+         TCP 通信端点の送信ウィンドバッファの省コピー機能を組込み、 こ
+         の機能のみ使用する。TCP 通信端点を生成する静的 API で、送信ウ
+         インドバッファの先頭アドレスの指定に、 応用プログラム内の配列
+         を指定しても無視する。
 
-   (18)  TCP_CFG_SWBUF_CSAVE_ONLY
-         TCP �̿�ü��������������ɥХåե��ξʥ��ԡ���ǽ���ȹ��ߡ� ��
-         �ε�ǽ�Τ߻��Ѥ��롣TCP �̿�ü��������������Ū API �ǡ�������
-         ����ɥХåե�����Ƭ���ɥ쥹�λ���ˡ� ���ѥץ�������������
-         ����ꤷ�Ƥ�̵�뤹�롣
+   (18)  TCP_CFG_SWBUF_CSAVE
+         TCP 通信端点の送信ウィンドバッファの省コピー機能を組込む。TCP
+         通信端点を生成する静的 API で、送信ウインドバッファの先頭アド
+         レスの指定に、 応用プログラム内の配列を指定した場合は、受信ウィ
+         ンドバッファの省コピー機能を使用しない。 
 
-   (19)  TCP_CFG_SWBUF_CSAVE
-         TCP �̿�ü��������������ɥХåե��ξʥ��ԡ���ǽ���ȹ��ࡣTCP
-         �̿�ü��������������Ū API �ǡ�����������ɥХåե�����Ƭ����
-         �쥹�λ���ˡ� ���ѥץ����������������ꤷ�����ϡ���������
-         ��ɥХåե��ξʥ��ԡ���ǽ����Ѥ��ʤ��� 
+   (19)  TCP_CFG_SWBUF_CSAVE_MAX_SIZE
+         TCP 通信端点の送信ウィンドバッファの省コピー機能で、 送信ウィ
+         ンドバッファに使用するネットワークバッファの最大サイズ。 標準
+         値は IF_PDU_SIZE である。
 
-   (20)  TCP_CFG_SWBUF_CSAVE_MAX_SIZE
-         TCP �̿�ü��������������ɥХåե��ξʥ��ԡ���ǽ�ǡ� ��������
-         ��ɥХåե��˻��Ѥ���ͥåȥ���Хåե��κ��祵������ ɸ��
-         �ͤ� IF_PDU_SIZE �Ǥ��롣
+   (20)  TCP_CFG_SWBUF_CSAVE_MIN_SIZE
+         TCP 通信端点の送信ウィンドバッファの省コピー機能で、 送信ウィ
+         ンドバッファに使用するネットワークバッファの最大サイズ。 標準
+         値は 0 である。
 
-   (21)  TCP_CFG_SWBUF_CSAVE_MIN_SIZE
-         TCP �̿�ü��������������ɥХåե��ξʥ��ԡ���ǽ�ǡ� ��������
-         ��ɥХåե��˻��Ѥ���ͥåȥ���Хåե��κ��祵������ ɸ��
-         �ͤ� 0 �Ǥ��롣
+   (21)  TCP_CFG_NON_BLOCKING
+         TCP のノンブロッキングコール機能を組込む。 ただし、 リリース
+         1.2 との互換性のため、tinet/tinet_config.h に指定されており、
+         既定では組込まれるようになっている。 指定を解除する場合は、
+         tinet_app_config.h などで、 #undef により、マクロ指定を未定義
+         にする。
 
-   (22)  TCP_CFG_NON_BLOCKING
-         TCP �ΥΥ�֥��å��󥰥����뵡ǽ���ȹ��ࡣ �������� ��꡼��
-         1.2 �Ȥθߴ����Τ��ᡢtinet/tinet_config.h �˻��ꤵ��Ƥ��ꡢ
-         ����Ǥ��ȹ��ޤ��褦�ˤʤäƤ��롣 �������������ϡ�
-         tinet_app_config.h �ʤɤǡ� #undef �ˤ�ꡢ�ޥ��������̤���
-         �ˤ��롣
+   (22)  TCP_CFG_TRACE
+         TCP ヘッダのトレース出力機能を組込む。
 
-   (23)  TCP_CFG_TRACE
-         TCP �إå��Υȥ졼�����ϵ�ǽ���ȹ��ࡣ
+   (23)  TCP_CFG_TRACE_IPV4_RADDR
+         トレース出力対象のリモートホストの IPv4 アドレスを指定する。
+         IPV4_ADDRANY を指定すると、全てのホストを対象とする。
 
-   (24)  TCP_CFG_TRACE_IPV4_RADDR
-         �ȥ졼�������оݤΥ�⡼�ȥۥ��Ȥ� IPv4 ���ɥ쥹����ꤹ�롣
-         IPV4_ADDRANY ����ꤹ��ȡ����ƤΥۥ��Ȥ��оݤȤ��롣
+   (24)  TCP_CFG_TRACE_LPORTNO
+         トレース出力対象のローカルホストのポート番号を指定する。
+         TCP_PORTANY を指定すると、全てのポート番号を対象にする。
 
-   (25)  TCP_CFG_TRACE_LPORTNO
-         �ȥ졼�������оݤΥ�������ۥ��ȤΥݡ����ֹ����ꤹ�롣
-         TCP_PORTANY ����ꤹ��ȡ����ƤΥݡ����ֹ���оݤˤ��롣
+   (25)  TCP_CFG_TRACE_RPORTNO
+         トレース出力対象のリモートホストのポート番号を指定する。
+         TCP_PORTANY を指定すると、全てのポート番号を対象にする。
 
-   (26)  TCP_CFG_TRACE_RPORTNO
-         �ȥ졼�������оݤΥ�⡼�ȥۥ��ȤΥݡ����ֹ����ꤹ�롣
-         TCP_PORTANY ����ꤹ��ȡ����ƤΥݡ����ֹ���оݤˤ��롣
+   (26)  TCP_CFG_URG_OFFSET
+         緊急データの最後のバイトのオフセット、値が -1 の場合は BSD の
+         実装と同じで、緊急ポインタは、 緊急データの最後のバイトの次の
+         バイトを差す。 値が 0 の場合は RFC1122 の規定と同じで、緊急ポ
+         インタは、緊急データの最後のバイトを差す。既定値は -1 である。
 
-   (27)  TCP_CFG_URG_OFFSET
-         �۵ޥǡ����κǸ�ΥХ��ȤΥ��ե��åȡ��ͤ� -1 �ξ��� BSD ��
-         ������Ʊ���ǡ��۵ޥݥ��󥿤ϡ� �۵ޥǡ����κǸ�ΥХ��Ȥμ���
-         �Х��Ȥ򺹤��� �ͤ� 0 �ξ��� RFC1122 �ε����Ʊ���ǡ��۵ޥ�
-         ���󥿤ϡ��۵ޥǡ����κǸ�ΥХ��Ȥ򺹤��������ͤ� -1 �Ǥ��롣
+   (27)  TCP_CFG_NON_BLOCKING_COMPAT14
+         ITRON TCP/IP API の仕様に定義されているコールバック関数の引数
+         p_parblk に関して、アドレス渡しが正しいが、TINET リリース 1.4
+         以前では値渡しとしていた。TINET リリース 1.5 以降では、この実
+         装上の誤りを修正した。このため、TINET リリース 1.4 以前と互換
+         性を維持するため TCP_CFG_NON_BLOCKING_COMPAT14 を指定すると、
+         UDP のコールバック関数の呼び出しで p_parblk を値渡しにする。
 
-   (28)  TCP_CFG_NON_BLOCKING_COMPAT14
-         ITRON TCP/IP API �λ��ͤ��������Ƥ��륳����Хå��ؿ��ΰ���
-         p_parblk �˴ؤ��ơ����ɥ쥹�Ϥ�������������TINET ��꡼�� 1.4
-         �����Ǥ����Ϥ��Ȥ��Ƥ�����TINET ��꡼�� 1.5 �ʹߤǤϡ����μ�
-         ����θ���������������Τ��ᡢTINET ��꡼�� 1.4 �����ȸߴ�
-         ����ݻ����뤿�� TCP_CFG_NON_BLOCKING_COMPAT14 ����ꤹ��ȡ�
-         UDP �Υ�����Хå��ؿ��θƤӽФ��� p_parblk �����Ϥ��ˤ��롣
-
-16.  UDP �ط��Υѥ�᡼��
+16.  UDP 関係のパラメータ
 
    (1)   UDP_CFG_EXTENTIONS
-         ITRON TCP/IP API �� UDP �γ�ĥ��ǽ��ͭ���ˤ��롣
+         ITRON TCP/IP API の UDP の拡張機能を有効にする。
 
    (2)   NUM_DTQ_UDP_RCVQ
-         �󥳡���Хå��� UDP �������塼�Υ���������ꤹ�롣
+         非コールバック用 UDP 受信キューのサイズを指定する。
 
    (3)   TMO_UDP_OUTPUT
-         ñ�̤� [ms] �ǡ�UDP ���ϥ����ॢ���Ȥ���ꤹ�롣ɸ���ͤ� 1000
-         [ms] �Ǥ��롣
+         単位は [ms] で、UDP 出力タイムアウトを指定する。標準値は 1000
+         [ms] である。
 
    (4)   UDP_CFG_IN_CHECKSUM
-         UDP �����ϥ����å�����θ�����Ԥ���硢���ꤹ�롣
+         UDP の入力チェックサムの検査を行う場合、指定する。
 
    (5)   UDP_CFG_OUT_CHECKSUM
-         UDP �ν��ϥ����å�����������Ԥ���硢���ꤹ�롣
+         UDP の出力チェックサムの設定を行う場合、指定する。
 
    (6)   UDP_CFG_NON_BLOCKING
-         UDP �ΥΥ�֥��å��󥰥����뵡ǽ���ȹ��ࡣ �������� ��꡼��
-         1.2 �Ȥθߴ����Τ��ᡢtinet/tinet_config.h �˻��ꤵ��Ƥ��ꡢ
-         ����Ǥ��ȹ��ޤ��褦�ˤʤäƤ��롣 �������������ϡ�
-         tinet_app_config.h �ʤɤǡ�#undef �ˤ�ꡢ �ޥ��������̤���
-         �ˤ��롣
+         UDP のノンブロッキングコール機能を組込む。 ただし、 リリース
+         1.2 との互換性のため、tinet/tinet_config.h に指定されており、
+         既定では組込まれるようになっている。 指定を解除する場合は、
+         tinet_app_config.h などで、#undef により、 マクロ指定を未定義
+         にする。
 
    (7)   NUM_DTQ_UDP_OUTPUT
-         UDP ���ϥǡ������塼����������ꤹ�롣 ���������Υ�֥��å���
-         ����������ȹ��������ͭ���Ǥ��롣 
+         UDP 出力データキューサイズを指定する。 ただし、ノンブロッキン
+         グコールを組込んだ時に有効である。 
 
    (8)   UDP_OUT_TASK_STACK_SIZE
-         UDP ���ϥ������Υ����å�����������ꤹ�롣 ���������Υ�֥���
-         ���󥰥�������ȹ��������ͭ���Ǥ��롣 
+         UDP 出力タスクのスタックサイズを指定する。 ただし、ノンブロッ
+         キングコールを組込んだ時に有効である。 
 
    (9)   UDP_OUT_TASK_PRIORITY
-         UDP ���ϥ�������ͥ���٤���ꤹ�롣 ���������Υ�֥��å��󥰥���
-         ����ȹ��������ͭ���Ǥ��롣
+         UDP 出力タスクの優先度を指定する。 ただし、ノンブロッキングコー
+         ルを組込んだ時に有効である。
 
    (10)  UDP_CFG_NON_BLOCKING_COMPAT14
-         ITRON TCP/IP API �λ��ͤ��������Ƥ��륳����Хå��ؿ��ΰ���
-         p_parblk �˴ؤ��ơ����ɥ쥹�Ϥ�������������TINET ��꡼�� 1.4
-         �����Ǥ����Ϥ��Ȥ��Ƥ�����TINET ��꡼�� 1.5 �ʹߤǤϡ����μ�
-         ����θ���������������Τ��ᡢTINET ��꡼�� 1.4 �����ȸߴ�
-         ����ݻ����뤿�� UDP_CFG_NON_BLOCKING_COMPAT14 ����ꤹ��ȡ�
-         UDP �Υ�����Хå��ؿ��θƤӽФ��� p_parblk �����Ϥ��ˤ��롣
+         ITRON TCP/IP API の仕様に定義されているコールバック関数の引数
+         p_parblk に関して、アドレス渡しが正しいが、TINET リリース 1.4
+         以前では値渡しとしていた。TINET リリース 1.5 以降では、この実
+         装上の誤りを修正した。このため、TINET リリース 1.4 以前と互換
+         性を維持するため UDP_CFG_NON_BLOCKING_COMPAT14 を指定すると、
+         UDP のコールバック関数の呼び出しで p_parblk を値渡しにする。

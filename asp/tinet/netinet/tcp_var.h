@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: tcp_var.h,v 1.5 2009/12/24 05:47:21 abe Exp $
+ *  @(#) $Id: tcp_var.h 1.7 2017/6/1 8:49:39 abe $
  */
 
 /*
@@ -74,43 +74,43 @@
  *  TCP ヘッダ・ペイロードアクセスマクロ
  */
 
-#define IP_TCP_HDR_SIZE			(IP_HDR_SIZE + TCP_HDR_SIZE)
-#define IF_IP_TCP_HDR_SIZE		(IF_IP_HDR_SIZE + TCP_HDR_SIZE)
-#define IF_IP_TCP_HDR_OFFSET		(IF_IP_HDR_SIZE)
-#define IF_IP_TCP_SDU_OFFSET		(IF_IP_TCP_HDR_SIZE)
-
 #define GET_TCP_HDR(nbuf,thoff)		((T_TCP_HDR*)((uint8_t*)((nbuf)->buf) + thoff))
 #define GET_TCP_OPT(nbuf,thoff)		((uint8_t*)((nbuf)->buf) + thoff + TCP_HDR_SIZE)
-#define GET_TCP_SDU(nbuf,thoff)		((uint8_t*)((nbuf)->buf) + thoff + GET_TCP_HDR_SIZE2(nbuf,thoff))
+#define GET_TCP_SDU(nbuf,thoff)		((uint8_t*)((nbuf)->buf) + thoff + GET_TCP_HDR_SIZE(nbuf,thoff))
 
 #define GET_TCP_HDR_OFFSET(nbuf)	(GET_IF_IP_HDR_SIZE(nbuf))
 
-#define GET_TCP_HDR_SIZE2(nbuf,thoff)	(TCP_HDR_LEN(GET_TCP_HDR(nbuf,thoff)->doff))
-#define GET_IP_TCP_HDR_SIZE2(nbuf,thoff) \
-					(GET_IP_HDR_SIZE(GET_IP_HDR(nbuf)) + GET_TCP_HDR_SIZE2(nbuf,thoff))
-#define GET_IF_IP_TCP_HDR_SIZE2(nbuf,thoff) \
-					(IF_HDR_SIZE + GET_IP_TCP_HDR_SIZE2(nbuf,thoff))
+#define GET_TCP_HDR_SIZE(nbuf,thoff)	(TCP_HDR_LEN(GET_TCP_HDR(nbuf,thoff)->doff))
+
+#define GET_IP_TCP_HDR_SIZE(nbuf,thoff) (GET_IP_HDR_SIZE(nbuf) + GET_TCP_HDR_SIZE(nbuf,thoff))
+#define GET_IF_IP_TCP_HDR_SIZE(nbuf,thoff) \
+					(IF_HDR_SIZE + GET_IP_TCP_HDR_SIZE(nbuf,thoff))
+#define IF_IP_TCP_HDR_SIZE(nbuf)	(IF_IP_HDR_SIZE(nbuf) + TCP_HDR_SIZE)
+#define IF_IP_TCP_HDR_OFFSET(nbuf)	(IF_IP_HDR_SIZE(nbuf))
+#define IF_IP_TCP_NET_HDR_SIZE(addr)	(IF_IP_NET_HDR_SIZE(addr) + TCP_HDR_SIZE)
+#define IF_IP_TCP_NET_HDR_OFFSET(addr)	(IF_IP_NET_HDR_SIZE(addr))
 
 /*
  *  TINET 1.1 との互換性のための定義
  */
 
-#if defined(SUPPORT_INET4)
+#if !defined(_IP6_CFG) && defined(_IP4_CFG)
 
 #define IP4_TCP_HDR_SIZE		IP_TCP_HDR_SIZE
 #define IF_IP4_TCP_HDR_SIZE		IF_IP_TCP_HDR_SIZE
-#define GET_IP4_TCP_HDR_SIZE(nbuf)	GET_IP_TCP_HDR_SIZE(nbuf)	
-#define GET_IF_IP4_TCP_HDR_SIZE(nbuf)	GET_IF_IP_TCP_HDR_SIZE(nbuf)	
+#define GET_IP4_TCP_HDR_SIZE(nbuf)	GET_IP_TCP_HDR_SIZE1(nbuf)	
+#define GET_IF_IP4_TCP_HDR_SIZE(nbuf)	GET_IF_IP_TCP_HDR_SIZE1(nbuf)	
 
-#endif	/* of #if defined(SUPPORT_INET4) */
+#endif	/* of #if !defined(_IP6_CFG) && defined(_IP4_CFG) */
 
 /*
  *  TINET 1.3 との互換性のための定義
  */
 
 #define	TMIN_TCP_CREPID			TMIN_TCP_REPID
-#define	TMIN_TCP_CCEPID			TMIN_TCP_CEPID
 #define	TNUM_TCP_CREPID			TNUM_TCP_REPID
+
+#define	TMIN_TCP_CCEPID			TMIN_TCP_CEPID
 #define	TNUM_TCP_CCEPID			TNUM_TCP_CEPID
 
 /*
@@ -120,26 +120,26 @@
 typedef ER	(*t_tcp_callback)(ID cepid, FN fncd, void *p_parblk);
 
 /*
+ * TCP で使用する変数の型の定義
+ */
+
+typedef uint32_t T_TCP_SEQ;
+typedef uint16_t T_TCP_SEG;
+typedef uint16_t T_TCP_WND;
+typedef int16_t T_TCP_TIME;
+
+/*
+ *  TCP タイマ変数
+ */
+
+#define NUM_TCP_TIMERS		4	/* TCP のタイマ数	*/
+
+/*
  *  TCP 受付口
  */
 
-/* IPv4 用 TCP 受付口 */
-typedef struct t_tcp4_rep {
-
-	/*
-	 * ITRON TCP/IP API、TCP 受付口と同じメンバ
-	 */
-	ATR		repatr;		/* 受付口属性		*/
-	T_IPV4EP	myaddr;		/* 自分のアドレス	*/
-
-#ifdef TCP_CFG_EXTENTIONS
-	uint16_t	flags;		/* 受付口フラグ		*/
-	ID		semid_lock;	/* 受付口ロック		*/
-#endif	/* of #ifdef TCP_CFG_EXTENTIONS */
-
-	} T_TCP4_REP;
-
 /* IPv6 用 TCP 受付口 */
+
 typedef struct t_tcp6_rep {
 
 	/*
@@ -155,13 +155,38 @@ typedef struct t_tcp6_rep {
 
 	} T_TCP6_REP;
 
-#if defined(SUPPORT_INET4)
-#define T_TCP_REP	T_TCP4_REP
-#endif
+/* IPv4 用 TCP 受付口 */
 
-#if defined(SUPPORT_INET6)
+typedef struct t_tcp4_rep {
+
+	/*
+	 * ITRON TCP/IP API、TCP 受付口と同じメンバ
+	 */
+	ATR		repatr;		/* 受付口属性		*/
+	T_IPV4EP	myaddr;		/* 自分のアドレス	*/
+
+#ifdef TCP_CFG_EXTENTIONS
+	uint16_t	flags;		/* 受付口フラグ		*/
+	ID		semid_lock;	/* 受付口ロック		*/
+#endif	/* of #ifdef TCP_CFG_EXTENTIONS */
+
+	} T_TCP4_REP;
+
+#if defined(_IP6_CFG)
+
 #define T_TCP_REP	T_TCP6_REP
-#endif
+
+#else	/* of #if defined(_IP6_CFG) */
+
+#if defined(_IP4_CFG)
+
+#define T_TCP_REP	T_TCP4_REP
+
+#endif	/* of #if defined(_IP4_CFG) */
+
+#endif	/* of #if defined(_IP6_CFG) */
+
+#define T_TCP_REP_DEFINED
 
 /*
  *  受付口フラグ
@@ -174,14 +199,15 @@ typedef struct t_tcp6_rep {
  *  TCP 通信端点
  */
 
-typedef uint32_t T_TCP_SEQ;
-typedef uint16_t T_TCP_SEG;
-typedef uint16_t T_TCP_WND;
+#ifndef T_NET_BUF_DEFINED
 
-/*
- * 通常の IPv4 TCP 通信端点
- */
-typedef struct t_tcp4_cep {
+typedef struct t_net_buf T_NET_BUF;
+
+#define T_NET_BUF_DEFINED
+
+#endif	/* of #ifndef T_NET_BUF_DEFINED */
+
+typedef struct t_tcp_cep {
 
 	/*
 	 * ITRON TCP/IP API、TCP 通信端点と同じメンバ
@@ -231,8 +257,14 @@ typedef struct t_tcp4_cep {
 
 #ifdef TCP_CFG_NON_BLOCKING
 
-	T_IPV4EP 	*p_dstaddr;	/* 相手のアドレスへのポインタ	*/
-	T_IPV4EP 	*p_myaddr;	/* 自分のアドレスへのポインタ	*/
+	T_IPEP 		*p_dstaddr;	/* 相手のアドレスへのポインタ	*/
+	T_IPEP	 	*p_myaddr;	/* 自分のアドレスへのポインタ	*/
+
+#if defined(_IP6_CFG) && defined(_IP4_CFG)
+	T_IPV4EP	*p_dstaddr4;	/* 相手のアドレスへのポインタ	*/
+	T_IPV4EP 	*p_myaddr4;	/* 自分のアドレスへのポインタ	*/
+#endif
+	
 	int16_t		snd_nblk_tfn;	/* 送信動作中の API 機能コード	*/
 	int16_t		rcv_nblk_tfn;	/* 受信動作中の API 機能コード	*/
 	void		*snd_data;	/* 送信データ領域の先頭アドレス	*/
@@ -246,21 +278,41 @@ typedef struct t_tcp4_cep {
 
 #ifdef TCP_CFG_SWBUF_CSAVE
 	T_NET_BUF	*swbufq;	/* 送信ウィンドバッファキュー	*/
-#endif	/* of #ifdef TCP_CFG_SWBUF_CSAVE */
+#endif
 
 	/*
 	 *  これ以降のメンバーは tcp_init_cep() 関数でゼロクリアーされる。
 	 */
 
 	T_TCP_TIME	timer[NUM_TCP_TIMERS];	/* TCP のタイマ		*/
-	T_IPV4EP	dstaddr;	/* 相手のアドレス		*/
-	T_IPV4EP	myaddr;		/* 自分のアドレス		*/
-	T_TCP4_REP	*rep;		/* 受付口			*/
+	T_IPEP		dstaddr;	/* 相手のアドレス		*/
+	T_IPEP		myaddr;		/* 自分のアドレス		*/
 	T_NET_BUF	*reassq;	/* 受信再構成キュー		*/
+
+#if defined(_IP6_CFG)
+
+#if defined(_IP4_CFG)
+
+	T_TCP4_REP	*rep4;		/* IPv4 用受付口		*/
+
+#endif	/* of #if defined(_IP4_CFG) */
+
+	T_TCP6_REP	*rep;		/* IPv6 用受付口		*/
+
+#else	/* of #if defined(_IP6_CFG) */
+
+#if defined(_IP4_CFG)
+
+	T_TCP4_REP	*rep;		/* IPv4 用受付口		*/
+
+#endif	/* of #if defined(_IP4_CFG) */
+
+#endif	/* of #if defined(_IP6_CFG) */
+
 
 #ifdef TCP_CFG_RWBUF_CSAVE
 	T_NET_BUF	*rwbufq;	/* 受信ウィンドバッファキュー	*/
-#endif	/* of #ifdef TCP_CFG_RWBUF_CSAVE */
+#endif
 
 #ifdef TCP_CFG_EXTENTIONS
 	T_TCP_HDR	*urg_tcph;	/* 緊急データ入りのセグメントの TCP ヘッダ	*/
@@ -297,179 +349,31 @@ typedef struct t_tcp4_cep {
 	uint8_t		dupacks;	/* 再送 ACK 数			*/
 
 #if defined(TCP_CFG_RWBUF_CSAVE) && defined(TCP_CFG_RWBUF_CSAVE_MAX_QUEUES)
-	uint8_t		rwbufq_entries;	/* 受信ウィンドバッファキューのエントリ数	*/
-#endif	/* of #if defined(TCP_CFG_RWBUF_CSAVE) && defined(TCP_CFG_RWBUF_CSAVE_MAX_QUEUES)	*/
+	uint16_t	rwbufq_entries;	/* 受信ウィンドバッファキューのエントリ数	*/
+#endif
 
-	} T_TCP4_CEP;
+	} T_TCP_CEP;
+
+#define T_TCP6_CEP	T_TCP_CEP
+#define T_TCP4_CEP	T_TCP_CEP
 
 /*
- * Time Wait 用 IPv4 TCP 通信端点
+ * Time Wait 用 TCP 通信端点
  */
-typedef struct t_tcp4_twcep {
+
+typedef struct t_tcp_twcep {
 	int_t		rbufsz;		/* 受信用ウィンドバッファサイズ	*/
 	T_TCP_TIME	timer_2msl;	/* 2MSL タイマ			*/
-	T_IPV4EP	dstaddr;	/* 相手のアドレス		*/
-	T_IPV4EP	myaddr;		/* 自分のアドレス		*/
+	T_IPEP		dstaddr;	/* 相手のアドレス		*/
+	T_IPEP		myaddr;		/* 自分のアドレス		*/
 	T_TCP_SEQ	snd_una;	/* 未確認の最小送信 SEQ つまり	*/
 					/* 確認された最大送信 SEQ	*/
 	T_TCP_SEQ	rcv_nxt;	/* 受信を期待している最小の SEQ	*/
 	uint16_t	rwbuf_count;	/* 受信ウィンドバッファの使用中サイズ	*/
 	uint8_t		fsm_state;	/* FSM 状態			*/
+	uint8_t	flags;			/* 通信端点フラグ		*/
 
-	} T_TCP4_TWCEP;
-
-/*
- * 通常の IPv6 TCP 通信端点
- */
-typedef struct t_tcp6_cep {
-
-	/*
-	 * ITRON TCP/IP API、TCP 通信端点と同じメンバ
-	 */
-	ATR		cepatr;		/* 通信端点属性			*/
-	void		*sbuf;		/* 送信用ウィンドバッファ	*/
-	int_t		sbufsz;		/* 送信用ウィンドバッファサイズ	*/
-	void		*rbuf;		/* 受信用ウィンドバッファ	*/
-	int_t		rbufsz;		/* 受信用ウィンドバッファサイズ	*/
-	t_tcp_callback	callback;	/* コールバック関数		*/
-
-	/*
-	 * TINET 独自のメンバ
-	 */
-	uint32_t	flags;		/* 通信端点フラグ		*/
-	ID		semid_lock;	/* 通信端点ロック		*/
-	ID		est_flgid;	/* コネクション状態イベントフラグ	*/
-	ID		snd_flgid;	/* 送信イベントフラグ		*/
-	ID		rcv_flgid;	/* 受信イベントフラグ		*/
-	ID		snd_tskid;	/* 送信タスク識別子		*/
-	ID		rcv_tskid;	/* 受信タスク識別子		*/
-	uint8_t		*sbuf_rptr;	/* 送信用読み出しポインタ		*/
-	uint8_t		*sbuf_wptr;	/* 送信用書き込みポインタ		*/
-	uint8_t		*rbuf_rptr;	/* 受信用読み出しポインタ		*/
-	uint8_t		*rbuf_wptr;	/* 受信用書き込みポインタ		*/
-	T_TCP_SEQ	snd_ssthresh;	/* 輻輳ウィンドサイズ(snd_cwnd)	*/
-					/* のしきい値			*/
-	T_TCP_TIME	rxtcur;		/* 現在の再送タイムアウト		*/
-	T_TCP_TIME	srtt;		/* 平滑化された RTT		*/
-	T_TCP_TIME	rttvar;		/* 平滑化された分散		*/
-	T_TCP_WND	snd_cwnd;	/* 輻輳ウィンドサイズ		*/
-
-	/*
-	 *  相手の最大受信セグメントサイズ	
-	 *
-	 *    オリジナルでは、一般のセグメントの最大サイズ (t_maxseg) と、
-	 *    オプション付きのセグメントの最大サイズ (t_maxopd) が別に
-	 *    なっている。これは、現在のインターネットでは、オプション付きの
-	 *    セグメントのほうが多いからと説明されているためである。
-	 *    本実装では、最大セグメントサイズオプション以外のオプションは
-	 *    実装しないので、t_maxseg の使用する。
-	 */
-	T_TCP_SEG	maxseg;
-
-	T_IPV6EP 	*p_dstaddr;	/* 相手のアドレスへのポインタ	*/
-	T_IPV6EP 	*p_myaddr;	/* 自分のアドレスへのポインタ	*/
-	int16_t		snd_tfn;	/* 送信動作中の API 機能コード	*/
-	int16_t		rcv_tfn;	/* 受信動作中の API 機能コード	*/
-
-#ifdef TCP_CFG_NON_BLOCKING
-
-	int16_t		snd_nblk_tfn;	/* 送信動作中の API 機能コード	*/
-	int16_t		rcv_nblk_tfn;	/* 受信動作中の API 機能コード	*/
-	void		*snd_data;	/* 送信データ領域の先頭アドレス	*/
-	int_t		snd_len;	/* 送信データ領域の長さ		*/
-	void		*rcv_data;	/* 受信データ領域の先頭アドレス	*/
-	int_t		rcv_len;	/* 受信データ領域の長さ		*/
-	void		**snd_p_buf;	/* 送信バッファへのポインタ	*/
-	void		**rcv_p_buf;	/* 受信バッファへのポインタ	*/
-
-#endif	/* of #ifdef TCP_CFG_NON_BLOCKING */
-
-#ifdef TCP_CFG_SWBUF_CSAVE
-	T_NET_BUF	*swbufq;	/* 送信ウィンドバッファキュー	*/
-#endif	/* of #ifdef TCP_CFG_SWBUF_CSAVE */
-
-	/*
-	 *  これ以降のメンバーは tcp_init_cep() 関数でゼロクリアーされる。
-	 */
-
-	T_TCP_TIME	timer[NUM_TCP_TIMERS];	/* TCP のタイマ		*/
-	T_IPV6EP	dstaddr;	/* 相手のアドレス		*/
-	T_IPV6EP	myaddr;		/* 自分のアドレス		*/
-	T_TCP6_REP	*rep;		/* 受付口			*/
-	T_NET_BUF	*reassq;	/* 受信再構成キュー		*/
-
-#ifdef TCP_CFG_RWBUF_CSAVE
-	T_NET_BUF	*rwbufq;	/* 受信ウィンドバッファキュー	*/
-#endif	/* of #ifdef TCP_CFG_RWBUF_CSAVE */
-
-#ifdef TCP_CFG_EXTENTIONS
-	T_TCP_HDR	*urg_tcph;	/* 緊急データ入りのセグメントの TCP ヘッダ	*/
-	T_TCP_SEQ	snd_up;		/* 送信した緊急ポインタ		*/
-	T_TCP_SEQ	rcv_up;		/* 受信した緊急ポインタ		*/
-#endif	/* of #ifdef TCP_CFG_EXTENTIONS */
-
-	T_TCP_SEQ	snd_una;	/* 未確認の最小送信 SEQ つまり	*/
-					/* 確認された最大送信 SEQ	*/
-	T_TCP_SEQ	snd_max;	/* 送信した最大 SEQ		*/
-	T_TCP_SEQ	snd_nxt;	/* 次に送信する SEQ		*/
-	T_TCP_SEQ	snd_old_nxt;	/* 元の snd_nxt			*/
-	T_TCP_SEQ	snd_wl1;	/* 前回ウィンドを更新した SEQ	*/
-	T_TCP_SEQ	snd_wl2;	/* 前回ウィンドを更新した ACK	*/
-	T_TCP_SEQ	iss;		/* 自分の SEQ の初期値		*/
-	T_TCP_SEQ	irs;		/* 相手の SEQ の初期値		*/
-	T_TCP_SEQ	rcv_nxt;	/* 受信を期待している最小の SEQ	*/
-	T_TCP_SEQ	rcv_adv;	/* 受信を期待している最大の SEQ	*/
-	T_TCP_SEQ	rcv_wnd;	/* 受信可能なウィンドサイズ	*/
-	T_TCP_SEQ	rtseq;		/* 時間計測を始めた SEQ		*/
-	T_TCP_SEQ	last_ack_sent;	/* 最後に送信した ACK		*/
-	T_TCP_TIME	idle;		/* アイドル時間			*/
-	ER		error;		/* 非同期に発生したエラー		*/
-	ER		net_error;	/* ネットワークのエラー状態	*/
-	T_TCP_WND	snd_wnd;	/* 相手の受信可能ウィンドサイズ	*/
-	T_TCP_WND	max_sndwnd;	/* 今までの最大送信ウィンドサイズ	*/
-	T_TCP_TIME	rtt;		/* 往復時間			*/
-	uint16_t	swbuf_count;	/* 送信ウィンドバッファの使用中サイズ	*/
-	uint16_t	rwbuf_count;	/* 受信ウィンドバッファの使用中サイズ	*/
-	uint16_t	rcv_buf_len;	/* tcp_rcv_buf の割当て長	*/
-	uint16_t	get_buf_len;	/* tcp_rcv_buf の割当て長	*/
-	uint8_t		rxtshift;	/* 再送信回数の log(2)		*/
-	uint8_t		fsm_state;	/* FSM 状態			*/
-	uint8_t		dupacks;	/* 再送 ACK 数			*/
-
-#if defined(TCP_CFG_RWBUF_CSAVE) && defined(TCP_CFG_RWBUF_CSAVE_MAX_QUEUES)
-	uint8_t		rwbufq_entries;	/* 受信ウィンドバッファキューのエントリ数	*/
-#endif	/* of #if defined(TCP_CFG_RWBUF_CSAVE) && defined(TCP_CFG_RWBUF_CSAVE_MAX_QUEUES)	*/
-
-	} T_TCP6_CEP;
-
-/*
- * Time Wait 用 IPv6 TCP 通信端点
- */
-typedef struct t_tcp6_twcep {
-	int_t		rbufsz;		/* 受信用ウィンドバッファサイズ	*/
-	T_TCP_TIME	timer_2msl;	/* 2MSL タイマ			*/
-	T_IPV6EP	dstaddr;	/* 相手のアドレス		*/
-	T_IPV6EP	myaddr;		/* 自分のアドレス		*/
-	T_TCP_SEQ	snd_una;	/* 未確認の最小送信 SEQ つまり	*/
-					/* 確認された最大送信 SEQ	*/
-	T_TCP_SEQ	iss;		/* 自分の SEQ の初期値		*/
-	T_TCP_SEQ	irs;		/* 相手の SEQ の初期値		*/
-	T_TCP_SEQ	rcv_nxt;	/* 受信を期待している最小の SEQ	*/
-	T_TCP_WND	snd_wnd;	/* 相手の受信可能ウィンドサイズ	*/
-	uint16_t	rwbuf_count;	/* 受信ウィンドバッファの使用中サイズ	*/
-	uint8_t		fsm_state;	/* FSM 状態			*/
-
-	} T_TCP6_TWCEP;
-
-#if defined(SUPPORT_INET4)
-#define T_TCP_CEP	T_TCP4_CEP
-#define T_TCP_TWCEP	T_TCP4_TWCEP
-#endif	/* of #if defined(SUPPORT_INET4) */
-
-#if defined(SUPPORT_INET6)
-#define T_TCP_CEP	T_TCP6_CEP
-#define T_TCP_TWCEP	T_TCP6_TWCEP
-#endif	/* of #if defined(SUPPORT_INET6) */
+	} T_TCP_TWCEP;
 
 #define T_TCP_CEP_DEFINED
 
@@ -477,33 +381,38 @@ typedef struct t_tcp6_twcep {
  *  TCP 通信端点の状態フラグ
  */
 
-#define TCP_CEP_FLG_ACK_NOW		ULONG_C(0x00000001)	/* 直ちに相手に ACK を送る。	*/
-#define TCP_CEP_FLG_DEL_ACK		ULONG_C(0x00000002)	/* ACK を遅延する。		*/
-#define TCP_CEP_FLG_SENT_FIN		ULONG_C(0x00000004)	/* FIN を送ってある。		*/
-#define TCP_CEP_FLG_NEED_SYN		ULONG_C(0x00000008)	/* SYN を送信する。		*/
-#define TCP_CEP_FLG_NEED_FIN		ULONG_C(0x00000010)	/* FIN を送信する。		*/
-#define TCP_CEP_FLG_FORCE		ULONG_C(0x00000020)	/* 強制送信。			*/
-#define TCP_CEP_FLG_NO_PUSH		ULONG_C(0x00000040)	/* push しない。		*/
-#define TCP_CEP_FLG_NO_DELAY		ULONG_C(0x00000080)	/* 遅延しない。			*/
-#define TCP_CEP_FLG_FORCE_CLEAR		ULONG_C(0x00000100)	/* 強制送信した後フラグをクリアーする。*/
-#define TCP_CEP_FLG_POST_OUTPUT		ULONG_C(0x00000200)	/* 送信を開始する。		*/
-#define TCP_CEP_FLG_RESERVE_OUTPUT	ULONG_C(0x00000400)	/* 送信を予約する。		*/
-#define TCP_CEP_FLG_DYNAMIC		ULONG_C(0x00001000)	/* 動的生成・削除可能通信端点。	*/
-#define TCP_CEP_FLG_VALID		ULONG_C(0x00002000)	/* 生成済みで有効な通信端点。	*/
-#define TCP_CEP_FLG_CLOSE_AFTER_OUTPUT	ULONG_C(0x00004000)	/* 送信した後コネクションを閉じる。*/
-#define TCP_CEP_FLG_RESTORE_NEXT_OUTPUT	ULONG_C(0x00008000)	/* 送信した後、snd_nxt を元に戻す。*/
+#define TCP_CEP_FLG_IPV4		ULONG_C(0x00000001)	/* IPv4 用。			*/
+#define TCP_CEP_FLG_ACK_NOW		ULONG_C(0x00000100)	/* 直ちに相手に ACK を送る。	*/
+#define TCP_CEP_FLG_DEL_ACK		ULONG_C(0x00000200)	/* ACK を遅延する。		*/
+#define TCP_CEP_FLG_SENT_FIN		ULONG_C(0x00000400)	/* FIN を送ってある。		*/
+#define TCP_CEP_FLG_NEED_SYN		ULONG_C(0x00000800)	/* SYN を送信する。		*/
+#define TCP_CEP_FLG_NEED_FIN		ULONG_C(0x00001000)	/* FIN を送信する。		*/
+#define TCP_CEP_FLG_FORCE		ULONG_C(0x00002000)	/* 強制送信。			*/
+#define TCP_CEP_FLG_NO_PUSH		ULONG_C(0x00004000)	/* push しない。		*/
+#define TCP_CEP_FLG_NO_DELAY		ULONG_C(0x00008000)	/* 遅延しない。			*/
+#define TCP_CEP_FLG_FORCE_CLEAR		ULONG_C(0x00010000)	/* 強制送信した後フラグをクリアーする。*/
+#define TCP_CEP_FLG_POST_OUTPUT		ULONG_C(0x00020000)	/* 送信を開始する。		*/
+#define TCP_CEP_FLG_RESERVE_OUTPUT	ULONG_C(0x00040000)	/* 送信を予約する。		*/
+#define TCP_CEP_FLG_DYNAMIC		ULONG_C(0x00100000)	/* 動的生成・削除可能通信端点。	*/
+#define TCP_CEP_FLG_VALID		ULONG_C(0x00200000)	/* 生成済みで有効な通信端点。	*/
+#define TCP_CEP_FLG_CLOSE_AFTER_OUTPUT	ULONG_C(0x00400000)	/* 送信した後コネクションを閉じる。*/
+#define TCP_CEP_FLG_RESTORE_NEXT_OUTPUT	ULONG_C(0x00800000)	/* 送信した後、snd_nxt を元に戻す。*/
 
 /* 送受信ウィンドバッファの省コピー機能 */
-#define TCP_CEP_FLG_WBCS_NBUF_REQ	ULONG_C(0x00080000)	/* ネットワークバッファ割当て要求	*/
-#define TCP_CEP_FLG_WBCS_MASK		ULONG_C(0x00070000)	/* マスク			*/
+#define TCP_CEP_FLG_WBCS_NBUF_REQ	ULONG_C(0x80000000)	/* ネットワークバッファ割当て要求*/
+#define TCP_CEP_FLG_WBCS_MASK		ULONG_C(0x70000000)	/* マスク			*/
 #define TCP_CEP_FLG_WBCS_FREE		ULONG_C(0x00000000)	/* 送信ウィンドバッファ未使用	*/
-#define TCP_CEP_FLG_WBCS_WOPEN_PEND	ULONG_C(0x00010000)	/* 相手の受信ウィンドの開き待ち	*/
-#define TCP_CEP_FLG_WBCS_NBUF_PEND	ULONG_C(0x00020000)	/* ネットワークバッファ予約待ち	*/
-#define TCP_CEP_FLG_WBCS_NBUF_RSVD	ULONG_C(0x00030000)	/* ネットワークバッファ予約済み	*/
-#define TCP_CEP_FLG_WBCS_NBUF_READY	ULONG_C(0x00040000)	/* ネットワークバッファ割当て済み	*/
-#define TCP_CEP_FLG_WBCS_SEND_READY	ULONG_C(0x00050000)	/* 送信可能			*/
-#define TCP_CEP_FLG_WBCS_SENT		ULONG_C(0x00060000)	/* 送信済みで、ACK待ち		*/
-#define TCP_CEP_FLG_WBCS_ACKED		ULONG_C(0x00070000)	/* 送信済みで、ACK完了		*/
+#define TCP_CEP_FLG_WBCS_WOPEN_PEND	ULONG_C(0x10000000)	/* 相手の受信ウィンドの開き待ち	*/
+#define TCP_CEP_FLG_WBCS_NBUF_PEND	ULONG_C(0x20000000)	/* ネットワークバッファ予約待ち	*/
+#define TCP_CEP_FLG_WBCS_NBUF_RSVD	ULONG_C(0x30000000)	/* ネットワークバッファ予約済み	*/
+#define TCP_CEP_FLG_WBCS_NBUF_READY	ULONG_C(0x40000000)	/* ネットワークバッファ割当て済み*/
+#define TCP_CEP_FLG_WBCS_SEND_READY	ULONG_C(0x50000000)	/* 送信可能			*/
+#define TCP_CEP_FLG_WBCS_SENT		ULONG_C(0x60000000)	/* 送信済みで、ACK待ち		*/
+#define TCP_CEP_FLG_WBCS_ACKED		ULONG_C(0x70000000)	/* 送信済みで、ACK完了		*/
+
+/* 初期化から除外するフラグの定義 */
+#define TCP_CEP_FLG_NOT_CLEAR		(TCP_CEP_FLG_WBCS_NBUF_REQ|TCP_CEP_FLG_WBCS_MASK|\
+					 TCP_CEP_FLG_DYNAMIC|TCP_CEP_FLG_VALID|TCP_CEP_FLG_IPV4)
 
 /*
  *  通信端点イベントフラグ
@@ -512,7 +421,7 @@ typedef struct t_tcp6_twcep {
 #define TCP_CEP_EVT_ESTABLISHED		ULONG_C(0x00000001)	/* コネクション確立		*/
 #define TCP_CEP_EVT_CLOSED		ULONG_C(0x00000002)	/* 未使用状態			*/
 #define TCP_CEP_EVT_SWBUF_READY		ULONG_C(0x00000004)	/* 送信ウィンドバッファ空き	*/
-#define TCP_CEP_EVT_RWBUF_READY		ULONG_C(0x00000008)	/* 送信ウィンドバッファデータあり	*/
+#define TCP_CEP_EVT_RWBUF_READY		ULONG_C(0x00000008)	/* 送信ウィンドバッファデータあり*/
 #define TCP_CEP_EVT_ALL			ULONG_C(0xffffffff)	/* 全イベント			*/
 
 /*
@@ -570,19 +479,26 @@ typedef struct t_tcp_q_hdr {
 	} T_TCP_Q_HDR;
 
 #define GET_TCP_Q_HDR(nbuf,thoff)	((T_TCP_Q_HDR*)((uint8_t*)((nbuf)->buf) + thoff))
-#define GET_TCP_IP_Q_HDR(nbuf)		((T_TCP_IP_Q_HDR*)GET_IP_HDR(nbuf))
 
 /*
  *  オブジェクト ID の最小値の定義
  */
 
-#define	TMIN_TCP_REPID		1	/* TCP 受付口   ID の最小値			*/
-#define	TMIN_TCP_CEPID		1	/* TCP 通信端点 ID の最小値			*/
-#define	TMIN_TCP_TWCEPID	1	/* Time Wait 用 TCP 通信端点 ID の最小値	*/
+#define	TMIN_TCP_REPID		1			/* TCP      受付口 ID の最小値			*/
+#define	TMIN_TCP6_REPID		1			/* TCP/IPv6 受付口 ID の最小値			*/
+#define	TMIN_TCP4_REPID		(TNUM_TCP6_REPID+1)	/* TCP/IPv4 受付口 ID の最小値			*/
+
+#define	TMIN_TCP_CEPID		1			/* TCP      通信端点 ID の最小値			*/
+#define	TMIN_TCP6_CEPID		1			/* TCP/IPv6 通信端点 ID の最小値			*/
+#define	TMIN_TCP4_CEPID		(TNUM_TCP6_CEPID+1)	/* TCP/IPv4 通信端点 ID の最小値			*/
+
+#define	TMIN_TCP_TWCEPID	1			/* Time Wait 用 TCP 通信端点 ID の最小値	*/
 
 /*
  *  制御セグメント（データなし）サイズのネットワークバッファ
  */
+
+#if defined(IF_HDR_SIZE) && defined(IP_HDR_SIZE)
 
 typedef struct t_net_buf_cseg {
 	uint16_t	len;	/* データの長さ		*/
@@ -598,7 +514,7 @@ typedef struct t_net_buf_cseg {
 				/* バッファ本体		*/
 	} T_NET_BUF_CSEG;
 
-#ifdef SUPPORT_MIB
+#endif	/* of #if defined(IF_HDR_SIZE) && defined(IP_HDR_SIZE) */
 
 /*
  *  SNMP の 管理情報ベース (MIB)
@@ -617,24 +533,50 @@ typedef struct t_tcp_stats {
 	uint32_t	tcpOutRsts;
 } T_TCP_STATS;
 
-#endif	/* of #ifdef SUPPORT_MIB */
-
 /*
  *  関数シミュレーションマクロ
  */
 
-#define VAID_TCP_REPID(id)	(TMIN_TCP_REPID<=(id)&&(id)<=tmax_tcp_repid)
-#define VAID_TCP_CEPID(id)	(TMIN_TCP_CEPID<=(id)&&(id)<=tmax_tcp_cepid)
+/* TCP 受付口 */
 
-#define INDEX_TCP_REP(id)	((id)-TMIN_TCP_REPID)
+#define VALID_TCP6_REPID(id)	(TMIN_TCP6_REPID<=(id)&&(id)<=tmax_tcp6_repid)
+#define VALID_TCP4_REPID(id)	(TMIN_TCP4_REPID<=(id)&&(id)<=tmax_tcp4_repid)
+
+#define INDEX_TCP6_REP(id)	((id)-TMIN_TCP6_REPID)
+#define INDEX_TCP4_REP(id)	((id)-TMIN_TCP4_REPID)
+
+#define GET_TCP6_REP(id)	(&(tcp6_rep[INDEX_TCP6_REP(id)]))
+#define GET_TCP4_REP(id)	(&(tcp4_rep[INDEX_TCP4_REP(id)]))
+
+#define GET_TCP6_REPID(rep)	((ID)(((rep)-tcp6_rep)+TMIN_TCP6_REPID))
+#define GET_TCP4_REPID(rep)	((ID)(((rep)-tcp4_rep)+TMIN_TCP4_REPID))
+
+#ifdef TCP_CFG_EXTENTIONS
+
+#define VALID_TCP_REP(rep)	(((rep)->flags&TCP_REP_FLG_VALID)!=0)
+#define DYNAMIC_TCP_REP(rep)	(((rep)->flags&TCP_REP_FLG_DYNAMIC)!=0)
+
+#else	/* of #ifdef TCP_CFG_EXTENTIONS */
+
+#define VALID_TCP_REP(rep)	(true)
+#define DYNAMIC_TCP_REP(rep)	(false)
+
+#endif	/* of #ifdef TCP_CFG_EXTENTIONS */
+
+/* TCP 通信端点 */
+
+#define VALID_TCP_CEPID(id)	(TMIN_TCP_CEPID<=(id)&&(id)<=tmax_tcp_cepid)
 #define INDEX_TCP_CEP(id)	((id)-TMIN_TCP_CEPID)
 
-#define GET_TCP_REP(id)		(&(tcp_rep[INDEX_TCP_REP(id)]))
 #define GET_TCP_CEP(id)		(&(tcp_cep[INDEX_TCP_CEP(id)]))
 
-#define GET_TCP_REPID(rep)	((ID)(((rep)-tcp_rep)+TMIN_TCP_REPID))
 #define GET_TCP_CEPID(cep)	((ID)(((cep)-tcp_cep)+TMIN_TCP_CEPID))
 #define GET_TCP_TWCEPID(cep)	((ID)(((cep)-tcp_twcep)+TMIN_TCP_TWCEPID))
+
+#define VALID_TCP_CEP(cep)	(((cep)->flags&TCP_CEP_FLG_VALID)!=0)
+#define DYNAMIC_TCP_CEP(cep)	(((cep)->flags&TCP_CEP_FLG_DYNAMIC)!=0)
+#define TCP_IS_CEP_IPV6(cep)	(((cep)->flags&TCP_CEP_FLG_IPV4)==0)
+#define TCP_IS_CEP_IPV4(cep)	(((cep)->flags&TCP_CEP_FLG_IPV4)!=0)
 
 #define IS_TFN_TCP_RCV(t)	((t)==TFN_TCP_ACP_CEP||(t)==TFN_TCP_RCV_DAT||\
 				 (t)==TFN_TCP_CLS_CEP||\
@@ -650,37 +592,49 @@ typedef struct t_tcp_stats {
 
 #define VALID_URG_POINTER(urg)	(TCP_CFG_URG_OFFSET==0||urg!=0)
 
-#define VALID_TCP_CEP(cep)	(((cep)->flags&TCP_CEP_FLG_VALID)!=0)
-#define DYNAMIC_TCP_CEP(cep)	(((cep)->flags&TCP_CEP_FLG_DYNAMIC)!=0)
-
-#ifdef TCP_CFG_EXTENTIONS
-
-#define VALID_TCP_REP(rep)	(((rep)->flags&TCP_REP_FLG_VALID)!=0)
-#define DYNAMIC_TCP_REP(rep)	(((rep)->flags&TCP_REP_FLG_DYNAMIC)!=0)
-
-#else	/* of #ifdef TCP_CFG_EXTENTIONS */
-
-#define VALID_TCP_REP(rep)	(true)
-#define DYNAMIC_TCP_REP(rep)	(false)
-
-#endif	/* of #ifdef TCP_CFG_EXTENTIONS */
-
 /*
  *  全域変数
  */
 
-extern T_TCP_REP tcp_rep[];
-extern T_TCP_CEP tcp_cep[];
 extern uint8_t tcp_initialized;
-extern const ID tmax_tcp_repid;
-extern const ID tmax_tcp_cepid;
-extern T_TCP_TWCEP tcp_twcep[];
-
-#ifdef SUPPORT_MIB
 
 extern T_TCP_STATS tcp_stats;
 
-#endif	/* of #ifdef SUPPORT_MIB */
+/* TCP 受付口 */
+
+extern T_TCP6_REP tcp6_rep[];
+extern T_TCP4_REP tcp4_rep[];
+
+#if defined(SUPPORT_INET6)
+#define tcp_rep	tcp6_rep
+#elif defined(SUPPORT_INET4)
+#define tcp_rep	tcp4_rep
+#endif
+
+extern const ID tmax_tcp_repid;
+
+#if defined(SUPPORT_INET6) && defined(SUPPORT_INET4)
+extern const ID tmax_tcp6_repid;
+extern const ID tmax_tcp4_repid;
+#else
+#define tmax_tcp6_repid	tmax_tcp_repid
+#define tmax_tcp4_repid	tmax_tcp_repid
+#endif
+
+/* TCP 通信端点 */
+
+extern T_TCP_CEP tcp_cep[];
+extern T_TCP_TWCEP tcp_twcep[];
+
+extern const ID tmax_tcp_cepid;
+
+#if defined(SUPPORT_INET6) && defined(SUPPORT_INET4)
+extern const ID tmax_tcp6_cepid;
+extern const ID tmax_tcp4_cepid;
+#else
+#define tmax_tcp6_cepid	tmax_tcp_cepid
+#define tmax_tcp4_cepid	tmax_tcp_cepid
+#endif
 
 /*
  *  Inline 関数
@@ -865,9 +819,10 @@ extern T_TCP_CEP *tcp_close (T_TCP_CEP *cep);
 extern T_TCP_CEP *tcp_drop  (T_TCP_CEP *cep, ER errno);
 extern void tcp_respond (T_NET_BUF *nbuf, T_TCP_CEP *cep,
                          T_TCP_SEQ ack, T_TCP_SEQ seq, uint_t rbfree, uint8_t flags);
-extern void tcp_set_header (T_NET_BUF *nbuf, T_TCP_CEP *cep, uint_t thoff, uint_t optlen);
 extern ER tcp_get_segment (T_NET_BUF **nbuf, T_TCP_CEP *cep,
                            uint_t optlen, uint_t len, uint_t maxlen, ATR nbatr, TMO tmout);
+extern ER tcpn_get_segment (T_NET_BUF **nbuf, T_TCP_CEP *cep,
+                            uint_t optlen, uint_t len, uint_t maxlen, ATR nbatr, TMO tmout);
 extern void tcp_init_cep (T_TCP_CEP *cep);
 extern void tcp_notify (T_NET_BUF *input, int code);
 extern T_TCP_TIME tcp_rexmt_val (T_TCP_CEP *cep);
@@ -875,7 +830,6 @@ extern void tcp_set_persist_timer (T_TCP_CEP *cep);
 extern void tcp_cancel_timers (T_TCP_CEP *cep);
 extern void tcp_alloc_auto_port (T_TCP_CEP *cep);
 extern ER tcp_alloc_port (T_TCP_CEP *cep, uint16_t portno);
-extern void tcp_move_twcep (T_TCP_CEP *cep);
 extern ER tcp_lock_cep (ID cepid, T_TCP_CEP **p_cep, FN tfn);
 extern void tcp_free_reassq (T_TCP_CEP *cep);
 extern ER tcp_can_send_more (T_TCP_CEP *cep, FN fncd, TMO tmout);
@@ -884,6 +838,10 @@ extern uint8_t tcp_move_ra2rw (T_TCP_CEP *cep, uint8_t flags);
 extern uint8_t tcp_write_raque (T_NET_BUF *input, T_TCP_CEP *cep, uint_t thoff, uint8_t flags);
 extern ER tcp_wait_rwbuf (T_TCP_CEP *cep, TMO tmout);
 extern T_TCP_CEP *tcp_user_closed (T_TCP_CEP *cep);
+extern T_TCP_CEP *tcp_find_cep (T_NET_BUF *input, uint_t off);
+extern T_TCP_TWCEP*tcp_find_twcep (T_NET_BUF *input, uint_t off);
+extern bool_t tcp_is_addr_accept (T_NET_BUF *input, uint_t off);
+extern void tcp_move_twcep (T_TCP_CEP *cep);
 
 /*
  *  TCP 通信端点の受信ウィンドバッファ用関数
@@ -971,16 +929,6 @@ extern T_NET_BUF *tcp_push_res_nbuf_ncs (T_NET_BUF *buf);
 extern T_NET_BUF *tcp_pull_res_nbuf_ncs (ATR nbatr);
 extern void tcp_alloc_swbuf_ncs (T_TCP_CEP *cep);
 extern bool_t tcp_is_swbuf_full_ncs (T_TCP_CEP *cep);
-
-/*
- *  tcp_find_cep -- ポート番号から TCP 通信端点を得る。
- *
- *    注意: myaddr は、
- *          TINET-1.2 からネットワークバイトオーダ、
- *          TINET-1.1 までは、ホストバイトオーダ
- */
-extern T_TCP_CEP *tcp_find_cep (T_IN_ADDR *dstaddr,  uint16_t dstport,
-                                T_IN_ADDR *peeraddr, uint16_t peerport);
 
 /*
  *  TCP ヘッダのトレース出力機能用関数

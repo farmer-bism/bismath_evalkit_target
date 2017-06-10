@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: ip6.h,v 1.5.4.1 2015/02/05 02:10:53 abe Exp abe $
+ *  @(#) $Id: ip6.h 1.7 2017/6/1 8:49:37 abe $
  */
 
 /*	$FreeBSD: src/sys/netinet/ip6.h,v 1.2.2.2 2001/07/03 11:01:46 ume Exp $	*/
@@ -100,8 +100,6 @@
  
 #ifndef _IP6_H_
 #define _IP6_H_
-
-#ifdef SUPPORT_INET6
 
 /*
  *  IPv6 の定義、RFC2460 参照
@@ -261,7 +259,7 @@ typedef struct t_ip6_frag_hdr {
 #define IPV6_MAXPACKET	UINT_C(65535)	/* ジャンボペイロードを除く最大パケットサイズ	*/
 
 /*
- *  IPv4 と IPv6 をコンパイル時に選択するためのマクロ
+ *  IPv6 と IPv4 をコンパイル時に選択するためのマクロ
  */
 
 /*
@@ -272,19 +270,24 @@ typedef struct t_ip6_frag_hdr {
 
 /* ルータ通知を受信する場合は、通知された値 */
 
-#define IP_DEFTTL	ip6_defhlim
+#define IP6_DEFTTL	ip6_defhlim
 
 #else	/* #if NUM_ND6_DEF_RTR_ENTRY > 0 */
 
 /* ルータ通知を受信しない場合の値は既定値 */
 
-#define IP_DEFTTL	IPV6_DEFHLIM
+#define IP6_DEFTTL	IPV6_DEFHLIM
 
 #endif	/* #if NUM_ND6_DEF_RTR_ENTRY > 0 */
 
+/* IPv4 と IPv6 をコンパイル時に選択するためのマクロ */
+
+#ifdef _IP6_CFG
+
 #define IP_HDR_SIZE	IP6_HDR_SIZE
 #define T_IP_HDR	T_IP6_HDR
+#define IP_DEFTTL	IP6_DEFTTL
 
-#endif	/* of #ifdef SUPPORT_INET6 */
+#endif	/* of #ifdef _IP6_CFG */
 
 #endif	/* of #ifndef _IP6_H_ */

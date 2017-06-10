@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: in6.h,v 1.5.4.1 2015/02/05 02:11:26 abe Exp abe $
+ *  @(#) $Id: in6.h 1.7 2017/6/1 8:49:48 abe $
  */
 
 /*	$FreeBSD: src/sys/netinet6/in6.h,v 1.7.2.4 2001/07/04 09:45:23 ume Exp $	*/
@@ -102,6 +102,12 @@
 #define _IN6_H_
 
 /*
+ *  IPv6 アドレス構造
+ *
+ *    RFC4291（RFC1884、RFC2373、RFC3513 のアップデート）
+ */
+
+/*
  *  IPv6 アドレス
  */
 
@@ -149,40 +155,6 @@ typedef struct t_in6_addr T_IN6_ADDR;
 	    UINT_C(0x00), UINT_C(0x00), UINT_C(0x00), UINT_C(0x02) }}}
 
 /*
- *  アドレスの定義
- */
-
-#ifdef _NET_CFG_BYTE_ORDER
-
-#if _NET_CFG_BYTE_ORDER == _NET_CFG_BIG_ENDIAN
-
-#define IPV6_ADDR_INT32_ONE		ULONG_C(0x00000001)
-#define IPV6_ADDR_INT32_TWO		ULONG_C(0x00000002)
-#define IPV6_ADDR_INT32_0000FFFF	ULONG_C(0x0000ffff)
-#define IPV6_ADDR_INT32_MNL		ULONG_C(0xff010000)
-#define IPV6_ADDR_INT32_MLL		ULONG_C(0xff020000)
-#define IPV6_ADDR_INT32_ULL		ULONG_C(0xfe800000)
-#define IPV6_ADDR_INT16_ULL		UINT_C(0xfe80)
-#define IPV6_ADDR_INT16_USL		UINT_C(0xfec0)
-#define IPV6_ADDR_INT16_MLL		UINT_C(0xff02)
-
-#elif _NET_CFG_BYTE_ORDER == _NET_CFG_LITTLE_ENDIAN
-
-#define IPV6_ADDR_INT32_ONE		ULONG_C(0x01000000)
-#define IPV6_ADDR_INT32_TWO		ULONG_C(0x02000000)
-#define IPV6_ADDR_INT32_0000FFFF	ULONG_C(0xffff0000)
-#define IPV6_ADDR_INT32_MNL		ULONG_C(0x000001ff)
-#define IPV6_ADDR_INT32_MLL		ULONG_C(0x000002ff)
-#define IPV6_ADDR_INT32_ULL		ULONG_C(0x000080fe)
-#define IPV6_ADDR_INT16_ULL		UINT_C(0x80fe)
-#define IPV6_ADDR_INT16_USL		UINT_C(0xc0fe)
-#define IPV6_ADDR_INT16_MLL		UINT_C(0x02ff)
-
-#endif	/* #if _NET_CFG_BYTE_ORDER == _NET_CFG_BIG_ENDIAN */
-
-#endif	/* of #ifdef _NET_CFG_BYTE_ORDER */
-
-/*
  *  特別なアドレスのチェック
  */
 
@@ -196,19 +168,6 @@ typedef struct t_in6_addr T_IN6_ADDR;
 #define IN6_IS_ADDR_LOOPBACK(a)		\
 	(memcmp((void *)(a), (void *)&in6_addr_unspecified, sizeof(T_IN6_ADDR) - 1) == 0 && \
 	 (a)->s6_addr8[15] == 0x01)
-
-/* IPv4 互換 */
-
-#define IN6_IS_ADDR_V4COMPAT(a)		\
-	(memcmp((void *)(a), (void *)&in6_addr_unspecified, sizeof(T_IN6_ADDR) - 4) == 0 && \
-	 (a)->s6_addr32[3] > IPV6_ADDR_INT32_ONE)
-
-/* IPv4 マップ */
-
-#define IN6_IS_ADDR_V4MAPPED(a)		\
-	(((a)->s6_addr32[0] == ULONG_C(0x00000000)) && \
-	 ((a)->s6_addr32[1] == ULONG_C(0x00000000)) && \
-	 ((a)->s6_addr32[2] == IPV6_ADDR_INT32_0000FFFF))
 
 /*
  *  スコープ ID
@@ -247,14 +206,6 @@ typedef struct t_in6_addr T_IN6_ADDR;
 
 #define IN6_IS_ADDR_MULTICAST(a)	((a)->s6_addr8[0] == UINT_C(0xff))
 
-/* 要請マルチキャスト */
-
-#define IN6_IS_ADDR_NS_MULTICAST(a)	\
-	(((a)->s6_addr32[0] == IPV6_ADDR_INT32_MLL) && \
-	 ((a)->s6_addr32[1] == ULONG_C(0x00000000)) && \
-	 ((a)->s6_addr32[2] == IPV6_ADDR_INT32_ONE) && \
-	 ((a)->s6_addr8[12] == UINT_C(0xff)))
-
 /*
  *  同一のチェック
  */
@@ -271,7 +222,8 @@ typedef struct t_in6_addr T_IN6_ADDR;
  *  規定値と制限値
  */
 
-#define IPV6_DEFAULT_MULTICAST_HOPS	1	/* マルチキャスト時のホップリミットの規定値 */
+#define IPV6_DEFAULT_MULTICAST_HOPS	1	/* マルチキャスト時のホップリミットの規定値	*/
+#define ND6_INFINITE_LIFETIME		0xffffffff	/* アドレスの無制限有効時間		*/
 
 /*
  *  ITRON TCP/IPv6 アドレス/ポート番号の定義
@@ -281,6 +233,8 @@ typedef struct t_ipv6ep {
 	T_IN6_ADDR	ipaddr;		/* IPv6 アドレス	*/
 	uint16_t	portno;		/* ポート番号	*/
 	} T_IPV6EP;
+
+#define T_IPV6EP_DEFINED
 
 /*
  *  ITRON/TCP/IP 用 IP アドレスの定義
@@ -299,10 +253,6 @@ typedef struct t_tcp6_crep {
 	/* 実装依存 */
 	} T_TCP6_CREP;
 
-#if defined(SUPPORT_INET6)
-#define T_TCP_CREP	T_TCP6_CREP
-#endif
-
 /*
  *  動的生成用 IPv6 UDP 通信端点
  */
@@ -314,30 +264,6 @@ typedef struct t_udp6_ccep {
 	FP		callback;	/* コールバック関数		*/
 	/* 実装依存 */
 	} T_UDP6_CCEP;
-
-#if defined(SUPPORT_INET6)
-#define T_UDP_CCEP	T_UDP6_CCEP
-#endif
-
-/*
- *  IPv4 と IPv6 をコンパイル時に選択するためのマクロ
- */
-
-#if defined(SUPPORT_INET6)
-
-#define T_IN_ADDR			T_IN6_ADDR
-#define T_IPEP				T_IPV6EP
-#define IP_ADDRANY			IPV6_ADDRANY
-
-#define IN_ARE_ADDR_EQUAL(n,h)		IN6_ARE_ADDR_EQUAL(n,h)
-#define IN_ARE_NET_ADDR_EQUAL(n,h)	IN6_ARE_ADDR_EQUAL(n,h)
-#define IN_COPY_TO_NET(d,s)		memcpy(d,s,sizeof(T_IN6_ADDR))
-#define IN_COPY_TO_HOST(d,s)		memcpy(d,s,sizeof(T_IN6_ADDR))
-#define IN_IS_ADDR_MULTICAST(a)		IN6_IS_ADDR_MULTICAST(a)
-#define IN_IS_NET_ADDR_MULTICAST(a)	IN6_IS_ADDR_MULTICAST(a)
-#define IN_IS_ADDR_ANY(a)		IN6_IS_ADDR_UNSPECIFIED(a)
-
-#endif	/* of #if defined(SUPPORT_INET6) */
 
 /*
  *  前方参照
@@ -355,9 +281,9 @@ typedef struct t_ifnet T_IFNET;
  *  全域変数
  */
 
-extern T_IN6_ADDR in6_addr_unspecified;
-extern T_IN6_ADDR in6_addr_linklocal_allnodes;
-extern T_IN6_ADDR in6_addr_linklocal_allrouters;
+extern const T_IN6_ADDR in6_addr_unspecified;
+extern const T_IN6_ADDR in6_addr_linklocal_allnodes;
+extern const T_IN6_ADDR in6_addr_linklocal_allrouters;
 
 #define ipv6_addrany	in6_addr_unspecified
 
@@ -365,8 +291,13 @@ extern T_IN6_ADDR in6_addr_linklocal_allrouters;
  *  TINET 独自 API
  */
 
-extern char *ipv62str (char *buf, const T_IN6_ADDR *p_ip6addr);
-extern ER_UINT in6_get_maxnum_ifaddr (void);
+extern char *ipv62str (char *buf, const T_IN6_ADDR *p_addr);
+extern uint_t in6_get_maxnum_ifaddr (void);
 extern const T_IN6_ADDR *in6_get_ifaddr (int_t index);
+extern ER in6_upd_ifaddr (T_IN6_ADDR *addr, uint_t prefixlen,
+                          uint32_t vltime, uint32_t pltime);
+extern ER in6_del_ifaddr (T_IN6_ADDR *addr);
+extern T_IN6_ADDR *in6_make_ipv4mapped (T_IN6_ADDR *dst, T_IN4_ADDR src);
+extern bool_t in6_is_addr_ipv4mapped (const T_IN6_ADDR *addr);
 
 #endif	/* of #ifndef _IN6_H_ */

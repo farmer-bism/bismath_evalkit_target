@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: if_ed.c,v 1.5.4.1 2015/02/05 02:12:02 abe Exp abe $
+ *  @(#) $Id: if_ed.c 1.7 2017/6/1 8:49:51 abe $
  */
 
 /*
@@ -146,11 +146,11 @@ T_IF_SOFTC if_softc = {
 	SEM_IF_ED_SBUF_READY,			/* 送信セマフォ			*/
 	SEM_IF_ED_RBUF_READY,			/* 受信セマフォ			*/
 
-#ifdef SUPPORT_INET6
+#ifdef _IP6_CFG
 
 	IF_MADDR_INIT,				/* マルチキャストアドレスリスト	*/
 
-#endif	/* of #ifdef SUPPORT_INET6 */
+#endif	/* of #ifdef _IP6_CFG */
 	};
 
 /*
@@ -164,7 +164,7 @@ static void ed_stop (T_ED_SOFTC *sc);
 static void ed_init_sub (T_IF_SOFTC *ic);
 static void ed_setrcr (T_IF_SOFTC *ic);
 
-#ifdef SUPPORT_INET6
+#ifdef _IP6_CFG
 
 static uint32_t ds_crc (uint8_t *addr);
 static void ds_getmcaf (T_IF_SOFTC *ic, uint32_t *mcaf);
@@ -261,7 +261,7 @@ ed_addmulti (T_IF_SOFTC *ic)
 	return E_OK;
 	}
 
-#endif	/* of #ifdef SUPPORT_INET6 */
+#endif	/* of #ifdef _IP6_CFG */
 
 /*
  * ed_pio_readmem -- プログラム I/O を使って NIC のデータを読み込む
@@ -524,7 +524,7 @@ ed_init_sub (T_IF_SOFTC *ic)
 
 	}
 
-#ifndef SUPPORT_INET6
+#ifndef _IP6_CFG
 
 /*
  * ed_setrcr -- 受信構成レジスタ (RCR) を設定する。
@@ -578,7 +578,7 @@ ed_setrcr (T_IF_SOFTC *ic)
 	            ED_CR_RD2 | ED_CR_PAGE0 | ED_CR_STA);
 	}
 
-#endif	/* of #ifndef SUPPORT_INET6 */
+#endif	/* of #ifndef _IP6_CFG */
 
 /*
  * ed_reset -- ed ネットワークインタフェースをリセットする。

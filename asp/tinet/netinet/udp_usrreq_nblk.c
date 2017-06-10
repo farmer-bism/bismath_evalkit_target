@@ -1,7 +1,7 @@
 /*
  *  TINET (UDP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: udp_usrreq_nblk.c,v 1.5.4.1 2015/02/05 02:10:53 abe Exp abe $
+ *  @(#) $Id: udp_usrreq_nblk.c 1.7 2017/6/1 8:49:28 abe $
  */
 
 /*
@@ -74,6 +74,7 @@
 #include <kernel.h>
 #include <sil.h>
 #include "kernel_cfg.h"
+#include "tinet_cfg.h"
 
 #endif	/* of #ifdef TARGET_KERNEL_ASP */
 
@@ -82,6 +83,7 @@
 #include <s_services.h>
 #include <t_services.h>
 #include "kernel_id.h"
+#include "tinet_id.h"
 
 #endif	/* of #ifdef TARGET_KERNEL_JSP */
 
@@ -93,44 +95,21 @@
 #include <net/if_loop.h>
 #include <net/ethernet.h>
 #include <net/net.h>
+#include <net/net_endian.h>
 #include <net/net_buf.h>
 #include <net/net_count.h>
 #include <net/ppp_ipcp.h>
 
 #include <netinet/in.h>
-#include <netinet6/in6.h>
 #include <netinet/in_var.h>
 #include <netinet/in_itron.h>
 #include <netinet/ip.h>
 #include <netinet/ip_var.h>
 #include <netinet/ip_icmp.h>
-#include <netinet6/in6_var.h>
-#include <netinet/ip6.h>
-#include <netinet6/ip6_var.h>
-#include <netinet6/nd6.h>
-#include <netinet/icmp6.h>
 #include <netinet/udp.h>
 #include <netinet/udp_var.h>
 
 #ifdef SUPPORT_UDP
-
-/*
- *  IPv4 と IPv6 の切り替えマクロ
- */
-
-#if defined(SUPPORT_INET4)
-
-#define UDP_SND_DAT	udp_snd_dat
-#define UDP_RCV_DAT	udp_rcv_dat
-
-#endif	/* of #if defined(SUPPORT_INET4) */
-
-#if defined(SUPPORT_INET6)
-
-#define UDP_SND_DAT	udp6_snd_dat
-#define UDP_RCV_DAT	udp6_rcv_dat
-
-#endif	/* of #if defined(SUPPORT_INET6) */
 
 /*
  *  TINET をライブラリ化しない場合は、全ての機能を
@@ -139,354 +118,80 @@
 
 #ifndef UDP_CFG_LIBRARY
 
-#define __udp_can_snd
-#define __udp_can_rcv
-#define __udp_snd_dat
-#define __udp_rcv_dat
+#define __udp_can_snd_nblk
+#define __udp_can_rcv_nblk
+#define __udp_snd_dat_nblk
+#define __udp_rcv_dat_nblk
 
 #endif	/* of #ifndef UDP_CFG_LIBRARY */
 
 #ifdef UDP_CFG_NON_BLOCKING
 
-#ifdef __udp_can_snd
-
 /*
- *  udp_can_snd -- ペンディングしている送信のキャンセル
+ *  IPv6 と IPv4 で引数が異なる関数のコンパイル
  */
 
-ER
-udp_can_snd (T_UDP_CEP *cep, ER error)
-{
-	if (cep->snd_p_dstaddr != NULL) {	/* ノンブロッキングコールでペンディング中 */
-		if (IS_PTR_DEFINED(cep->callback))
-
-#ifdef TCP_CFG_NON_BLOCKING_COMPAT14
-
-			(*cep->callback)(GET_UDP_CEPID(cep), TFN_UDP_SND_DAT, (void*)error);
-
-#else	/* of #ifdef TCP_CFG_NON_BLOCKING_COMPAT14 */
-
-			(*cep->callback)(GET_UDP_CEPID(cep), TFN_UDP_SND_DAT, (void*)&error);
-
-#endif	/* of #ifdef TCP_CFG_NON_BLOCKING_COMPAT14 */
-
-		else
-			error = E_OBJ;
-		cep->snd_p_dstaddr = NULL;
-		}
-	else if (cep->snd_tskid != TA_NULL) {	/* 非ノンブロッキングコールでペンディング中 */
-
-#ifdef UDP_CFG_EXTENTIONS
-
-		/* 待ち中に発生したエラー情報を設定する。*/
-		cep->error = error;
-
-#endif	/* of #ifdef UDP_CFG_EXTENTIONS */
-
-		error = rel_wai(cep->snd_tskid);
-		cep->snd_tskid = TA_NULL;
-		}
-	else					/* どちらでもないならペンディングしていない */
-		error = EV_NOPND;
-
-	return error;
-	}
-
-#endif	/* of #ifdef __udp_can_snd */
-
-#ifdef __udp_can_rcv
-
-/*
- *  udp_can_rcv -- ペンディングしている受信のキャンセル
- */
-
-ER
-udp_can_rcv (T_UDP_CEP *cep, ER error)
-{
-	if (cep->rcv_p_dstaddr != NULL) {	/* ノンブロッキングコールでペンディング中 */
-		if (IS_PTR_DEFINED(cep->callback))
-
-#ifdef TCP_CFG_NON_BLOCKING_COMPAT14
-
-			(*cep->callback)(GET_UDP_CEPID(cep), TFN_UDP_RCV_DAT, (void*)error);
-
-#else	/* of #ifdef TCP_CFG_NON_BLOCKING_COMPAT14 */
-
-			(*cep->callback)(GET_UDP_CEPID(cep), TFN_UDP_RCV_DAT, (void*)&error);
-
-#endif	/* of #ifdef TCP_CFG_NON_BLOCKING_COMPAT14 */
-
-		else
-			error = E_OBJ;
-		cep->rcv_p_dstaddr = NULL;
-		}
-	else if (cep->rcv_tskid != TA_NULL) {	/* 非ノンブロッキングコールでペンディング中 */
-
-#ifdef UDP_CFG_EXTENTIONS
-
-		/* 待ち中に発生したエラー情報を設定する。*/
-		cep->error = error;
-
-#endif	/* of #ifdef UDP_CFG_EXTENTIONS */
-
-		error = rel_wai(cep->rcv_tskid);
-		cep->rcv_tskid = TA_NULL;
-		}
-	else					/* どちらでもないならペンディングしていない */
-		error = EV_NOPND;
-
-	return error;
-	}
-
-#endif	/* of #ifdef __udp_can_rcv */
-
-#ifdef __udp_snd_dat
-
-/*
- *  udp_snd_dat -- パケットの送信【標準機能】
- */
-
-ER_UINT
-UDP_SND_DAT (ID cepid, T_IPEP *p_dstaddr, void *data, int_t len, TMO tmout)
-{
-	T_UDP_CEP	*cep;
-	ER		error;
-
-	/* p_dstaddr または data が NULL ならエラー */
-	if (p_dstaddr == NULL || data == NULL)
-		return E_PAR;
-
-	/* データ長をチェックする。*/
-	if (len < 0 || len + IP_HDR_SIZE + UDP_HDR_SIZE > IF_MTU)
-		return E_PAR;
-
-	/* UDP 通信端点 ID をチェックする。*/
-	if (!VALID_UDP_CEPID(cepid))
-		return E_ID;
-
-	/* UDP 通信端点を得る。*/
-	cep = GET_UDP_CEP(cepid);
-
-	/* UDP 通信端点をチェックする。*/
-	if (!VALID_UDP_CEP(cep))
-		return E_NOEXS;
-
-	/*
-	 *  自ポート番号が UDP_PORTANY なら、自動で割り当てる。
-	 */
-	if (cep->myaddr.portno == UDP_PORTANY) {
-		if ((error = udp_alloc_auto_port(cep)) != E_OK)
-			return error;
-		}
-
-	/*
-	 * タイムアウトをチェックする。
-	 */
-
-	if (tmout == TMO_NBLK) {	/* ノンブロッキングコール */
-
-		/* 通信端点をロックする。*/
-		syscall(wai_sem(cep->semid_lock));
-
-		if (cep->snd_p_dstaddr != NULL) {
-
-			/* ノンブロッキングコールでペンディング中 */
-			error = E_QOVR;
-
-			/* 通信端点をロックを解除する。*/
-			syscall(sig_sem(cep->semid_lock));
-			}
-		else if (cep->snd_tskid != TA_NULL) {
-
-			/* 非ノンブロッキングコールでペンディング中 */
-			error = E_OBJ;
-
-			/* 通信端点をロックを解除する。*/
-			syscall(sig_sem(cep->semid_lock));
-			}
-		else {
-
-			cep->snd_p_dstaddr = p_dstaddr;
-			cep->snd_data	= data;
-			cep->snd_len	= len;
-
-			/* 通信端点をロックを解除する。*/
-			syscall(sig_sem(cep->semid_lock));
-
-			cep->flags |= UDP_CEP_FLG_POST_OUTPUT;
-			sig_sem(SEM_UDP_POST_OUTPUT);
-			error = E_WBLK;
-			}
-		}
-	else {				/* 非ノンブロッキングコール */
-	
-		/* 通信端点をロックする。*/
-		syscall(wai_sem(cep->semid_lock));
-
-		if (cep->snd_p_dstaddr != NULL) {
-
-			/* ノンブロッキングコールでペンディング中 */
-			error = E_OBJ;
-
-			/* 通信端点をロックを解除する。*/
-			syscall(sig_sem(cep->semid_lock));
-			}
-		else if (cep->snd_tskid != TA_NULL) {
-
-			/* 非ノンブロッキングコールでペンディング中 */
-			error = E_QOVR;
-
-			/* 通信端点をロックを解除する。*/
-			syscall(sig_sem(cep->semid_lock));
-			}
-		else {
-
-			/* 現在のタスク識別子を記録する。*/
-			get_tid(&(cep->snd_tskid));
-
-			/* 通信端点をロックを解除する。*/
-			syscall(sig_sem(cep->semid_lock));
-
-			/* パケットを送信する。*/
-			error = udp_send_data(cep, p_dstaddr, data, len, tmout);
-			}
-		}
-
-	return error;
-	}
-
-#endif	/* of #ifdef __udp_snd_dat */
-
-#ifdef __udp_rcv_dat
-
-/*
- *  udp_rcv_dat -- パケットの受信【標準機能】
- */
-
-ER_UINT
-UDP_RCV_DAT (ID cepid, T_IPEP *p_dstaddr, void *data, int_t len, TMO tmout)
-{
-	T_NET_BUF	*input;
-	T_UDP_CEP	*cep;
-	T_UDP_HDR	*udph;
-	ER_UINT		error;
-	uint_t		ulen, uhoff;
-
-	/* p_dstaddr または data が NULL か、len < 0 ならエラー */
-	if (p_dstaddr == NULL || data == NULL || len < 0)
-		return E_PAR;
-
-	/* UDP 通信端点 ID をチェックする。*/
-	if (!VALID_UDP_CEPID(cepid))
-		return E_ID;
-
-	/* UDP 通信端点を得る。*/
-	cep = GET_UDP_CEP(cepid);
-
-	/* UDP 通信端点をチェックする。*/
-	if (!VALID_UDP_CEP(cep))
-		return E_NOEXS;
-
-	/*
-	 * タイムアウトをチェックする。
-	 */
-
-	if (tmout == TMO_NBLK) {	/* ノンブロッキングコール */
-
-		/* 通信端点をロックする。*/
-		syscall(wai_sem(cep->semid_lock));
-
-		if (cep->rcv_p_dstaddr != NULL)
-
-			/* ノンブロッキングコールでペンディング中 */
-			error = E_QOVR;
-
-		else if (cep->rcv_tskid != TA_NULL)
-
-			/* 非ノンブロッキングコールでペンディング中 */
-			error = E_OBJ;
-		else {
-			cep->rcv_p_dstaddr = p_dstaddr;
-			cep->rcv_data	= data;
-			cep->rcv_len	= len;
-			error = E_WBLK;
-			}
-
-		/* 通信端点をロックを解除する。*/
-		syscall(sig_sem(cep->semid_lock));
-		return error;
-		}
-	else {				/* 非ノンブロッキングコール */
-
-		/* 通信端点をロックする。*/
-		syscall(wai_sem(cep->semid_lock));
-
-		if (cep->rcv_p_dstaddr != NULL) {
-
-			/* ノンブロッキングコールでペンディング中 */
-			error = E_OBJ;
-
-			/* 通信端点をロックを解除する。*/
-			syscall(sig_sem(cep->semid_lock));
-			}
-		else if (cep->rcv_tskid != TA_NULL) {
-
-			/* 非ノンブロッキングコールでペンディング中 */
-			error = E_QOVR;
-
-			/* 通信端点をロックを解除する。*/
-			syscall(sig_sem(cep->semid_lock));
-			}
-		else {
-
-			/* 現在のタスク識別子を記録する。*/
-			get_tid(&(cep->rcv_tskid));
-
-			/* 通信端点をロックを解除する。*/
-			syscall(sig_sem(cep->semid_lock));
-
-			/* 入力があるまで待つ。*/
-			if (cep->cb_netbuf != NULL) {
-
-				/*
-				 *  ここにくる場合は、コールバック関数の中から
-				 *  udp_rcv_dat を呼び出していることになり、
-				 *  すでに入力済みである。
-				 */
-				input = cep->cb_netbuf;
-				cep->cb_netbuf = NULL;
-				}
-			else if ((error = trcv_dtq(cep->rcvqid, (intptr_t*)&input, tmout)) != E_OK) {
-				cep->rcv_tskid = TA_NULL;
-				return error;
-				}
-
-			/* p_dstaddr を設定する。*/
-			uhoff = (uint_t)GET_UDP_HDR_OFFSET(input);
-			udph = GET_UDP_HDR(input, uhoff);
-			p_dstaddr->portno = ntohs(udph->sport);
-			IN_COPY_TO_HOST(&p_dstaddr->ipaddr, &GET_IP_HDR(input)->src);
-
-			/* データをバッファに移す。*/
-			ulen = ntohs(udph->ulen);
-			if (ulen - UDP_HDR_SIZE > len)
-				error = E_BOVR;
-			else {
-				len   =     (int_t)(ulen - UDP_HDR_SIZE);
-				error = (ER_UINT)(ulen - UDP_HDR_SIZE);
-				}
-
-			memcpy(data, GET_UDP_SDU(input, uhoff), (size_t)len);
-
-			syscall(rel_net_buf(input));
-
-			cep->rcv_tskid = TA_NULL;
-			}
-		return error;
-		}
-	}
-
-#endif	/* of #ifdef __udp_rcv_dat */
+#undef	IN_COPY_TO_HOST
+
+#if defined(SUPPORT_INET6) && TNUM_UDP6_CEPID > 0
+
+#define UDP_SND_DAT		udp6_snd_dat
+#define UDP_RCV_DAT		udp6_rcv_dat
+#define UDP_CAN_SND		udp6_can_snd
+#define UDP_CAN_RCV		udp6_can_rcv
+#define UDP_ALLOC_AUTO_PORT	udp6_alloc_auto_port
+#define UDP_SEND_DATA		udp6_send_data
+#define VALID_UDP_CEPID		VALID_UDP6_CEPID
+#define GET_UDP_CEP		GET_UDP6_CEP
+#define GET_UDP_CEPID		GET_UDP6_CEPID
+#define T_UDP_CEP		T_UDP6_CEP
+#define T_IPEP			T_IPV6EP
+#define API_PROTO		API_PROTO_IPV6
+
+#if defined(SUPPORT_INET4)
+#define IN_COPY_TO_HOST		inn_copy_to_host
+#else
+#define IN_COPY_TO_HOST		IN6_COPY_TO_HOST
+#endif
+
+#include <netinet/udpn_usrreq_nblk.c>
+
+#undef	UDP_SND_DAT
+#undef	UDP_RCV_DAT
+#undef	UDP_CAN_SND
+#undef	UDP_CAN_RCV
+#undef	UDP_ALLOC_AUTO_PORT
+#undef	UDP_SEND_DATA
+#undef	VALID_UDP_CEPID
+#undef	GET_UDP_CEP
+#undef	GET_UDP_CEPID
+#undef	T_UDP_CEP
+#undef  T_IPEP
+#undef  API_PROTO
+#undef	IN_COPY_TO_HOST
+
+#endif	/* of #if defined(SUPPORT_INET6) && TNUM_UDP6_CEPID > 0 */
+
+#if defined(SUPPORT_INET4) && TNUM_UDP4_CEPID > 0
+
+#define UDP_SND_DAT		udp_snd_dat
+#define UDP_RCV_DAT		udp_rcv_dat
+#define UDP_CAN_SND		udp4_can_snd
+#define UDP_CAN_RCV		udp4_can_rcv
+#define UDP_ALLOC_AUTO_PORT	udp4_alloc_auto_port
+#define UDP_SEND_DATA		udp4_send_data
+#define VALID_UDP_CEPID		VALID_UDP4_CEPID
+#define GET_UDP_CEP		GET_UDP4_CEP
+#define GET_UDP_CEPID		GET_UDP4_CEPID
+#define T_UDP_CEP		T_UDP4_CEP
+#define T_IPEP			T_IPV4EP
+#define API_PROTO		API_PROTO_IPV4
+
+#define IN_COPY_TO_HOST		IN4_COPY_TO_HOST
+
+#include <netinet/udpn_usrreq_nblk.c>
+
+#endif	/* of #if defined(SUPPORT_INET4) && TNUM_UDP4_CEPID > 0 */
 
 #endif	/* of #ifdef UDP_CFG_NON_BLOCKING */
 

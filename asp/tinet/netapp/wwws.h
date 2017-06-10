@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: wwws.h,v 1.5 2009/12/24 05:44:56 abe Exp $
+ *  @(#) $Id: wwws.h 1.7 2017/6/1 8:50:27 abe $
  */
 
 #ifndef _WWWS_H_
@@ -37,18 +37,6 @@
 /* 
  *  WWW サーバ
  */
-
-#include <tinet_defs.h>
-
-#include <net/if.h>
-#include <net/if_ppp.h>
-#include <net/if_loop.h>
-#include <net/ethernet.h>
-
-#include <netinet6/in6.h>
-#include <netinet/ip.h>
-#include <netinet/ip6.h>
-#include <netinet/tcp.h>
 
 #ifdef TOPPERS_S810_CLG3_85
 #define	WWW_SRV_STACK_SIZE		768		/* タスクのスタックサイズ	*/
@@ -61,33 +49,33 @@
  *  TCP 送受信ウインドバッファサイズ
  */
 
-#if defined(NUM_MPF_NET_BUF_IF_PDU) && NUM_MPF_NET_BUF_IF_PDU > 0
-
-#define WWW_SRV_SWBUF_SIZE	((IF_MTU-(IP_HDR_SIZE+TCP_HDR_SIZE))*1)
-
-#else	/* of #if defined(NUM_MPF_NET_BUF_IF_PDU) && NUM_MPF_NET_BUF_IF_PDU > 0 */
-
-#if defined(SUPPORT_INET4)
-#define WWW_SRV_SWBUF_SIZE	(TCP_MSS)
-#endif
+#if defined(USE_TCP_MSS_SEG) || defined(USE_IPV6_MMTU)
 
 #if defined(SUPPORT_INET6)
-#define WWW_SRV_SWBUF_SIZE	(TCP6_MSS)
+#define WWW_SRV_SWBUF_SIZE	(1024)
+#elif defined(SUPPORT_INET4)
+#define WWW_SRV_SWBUF_SIZE	(512)
 #endif
 
-#endif	/* of #if defined(NUM_MPF_NET_BUF_IF_PDU) && NUM_MPF_NET_BUF_IF_PDU > 0 */
+#else	/* of #if defined(USE_TCP_MSS_SEG) || defined(USE_IPV6_MMTU) */
 
-#if defined(SUPPORT_INET4)
-#define WWW_SRV_RWBUF_SIZE	(TCP_MSS)
-#endif
+#define WWW_SRV_SWBUF_SIZE	(2048)
+
+#endif	/* of #if defined(USE_TCP_MSS_SEG) || defined(USE_IPV6_MMTU) */
 
 #if defined(SUPPORT_INET6)
-#define WWW_SRV_RWBUF_SIZE	(TCP6_MSS)
+#define WWW_SRV_RWBUF_SIZE	(1024)
+#elif defined(SUPPORT_INET4)
+#define WWW_SRV_RWBUF_SIZE	(512)
 #endif
 
 #define WWW_RBUFF_SIZE		(WWW_SRV_RWBUF_SIZE)
 #define WWW_LINE_SIZE		80
 #define WWW_NUM_FIELDS		4
+
+/*
+ *  タスク数
+ */
 
 #ifndef _MACRO_ONLY
 
@@ -127,11 +115,23 @@ typedef struct www_rwbuf {
 extern void	www_srv_task (intptr_t exinf);
 
 /*
- *  TCP 送受信バッファ
+ *  変数
  */
+
+/* TCP 送受信ウィンドバッファ */
+
+#ifdef NUM_WWW_SRV_TASKS
 
 extern uint8_t www_srv_swbuf[NUM_WWW_SRV_TASKS][WWW_SRV_SWBUF_SIZE];
 extern uint8_t www_srv_rwbuf[NUM_WWW_SRV_TASKS][WWW_SRV_RWBUF_SIZE];
+
+#endif	/* of #ifdef NUM_WWW_SRV_TASKS */
+
+/*
+ *  関数
+ */
+
+extern ER	wakeup_www_srv (char apip);
 
 #endif	/* of #ifndef _MACRO_ONLY */
 

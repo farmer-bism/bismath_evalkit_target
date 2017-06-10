@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: tcp_output.c,v 1.5.4.1 2015/02/05 02:10:53 abe Exp abe $
+ *  @(#) $Id: tcp_output.c 1.7 2017/6/1 8:49:24 abe $
  */
 
 /*
@@ -92,24 +92,22 @@
 #include <net/if_loop.h>
 #include <net/ethernet.h>
 #include <net/net.h>
+#include <net/net_endian.h>
+#include <net/net_var.h>
 #include <net/net_buf.h>
 #include <net/net_timer.h>
 #include <net/net_count.h>
 
 #include <netinet/in.h>
-#include <netinet6/in6.h>
 #include <netinet/in_var.h>
 #include <netinet/in_itron.h>
 #include <netinet/ip.h>
 #include <netinet/ip_var.h>
-#include <netinet6/in6_var.h>
-#include <netinet/ip6.h>
-#include <netinet6/ip6_var.h>
 #include <netinet/tcp.h>
-#include <netinet/tcp_timer.h>
 #include <netinet/tcp_var.h>
 #include <netinet/tcp_fsm.h>
 #include <netinet/tcp_seq.h>
+#include <netinet/tcp_timer.h>
 
 #ifdef SUPPORT_TCP
 
@@ -149,7 +147,7 @@ send_segment (bool_t *sendalot, T_TCP_CEP *cep, uint_t doff, uint_t win, uint_t 
 {
 	T_NET_BUF	*output;
 	T_TCP_HDR	*tcph;
-	uint_t		optlen;
+	uint_t		optlen, hdr_offset;
 	ER		error;
 
 #ifdef TCP_CFG_OPT_MSS
@@ -209,8 +207,8 @@ send_segment (bool_t *sendalot, T_TCP_CEP *cep, uint_t doff, uint_t win, uint_t 
 		 *  この時は、len を 0 にして、処理を継続する。
 		 */
 		len = 0;
-		if ((error = tcp_get_segment(&output, cep, optlen,
-	                                    len, (uint_t)(net_buf_max_siz() - IF_IP_TCP_HDR_SIZE),
+		if ((error = tcpn_get_segment(&output, cep, optlen,
+	                                    len, (uint_t)net_buf_max_siz(),
 	                                    NBA_SEARCH_ASCENT, TMO_TCP_GET_NET_BUF)) != E_OK) {
 			if (cep->timer[TCP_TIM_REXMT] == 0)
 				cep->timer[TCP_TIM_REXMT] = cep->rxtcur;
@@ -221,8 +219,8 @@ send_segment (bool_t *sendalot, T_TCP_CEP *cep, uint_t doff, uint_t win, uint_t 
 #elif defined(TCP_CFG_SWBUF_CSAVE)	/* of #if defined(TCP_CFG_SWBUF_CSAVE_ONLY) */
 
 	if (IS_PTR_DEFINED(cep->sbuf)) {
-		if ((error = tcp_get_segment(&output, cep, optlen,
-		                             len, (uint_t)(net_buf_max_siz() - IF_IP_TCP_HDR_SIZE),
+		if ((error = tcpn_get_segment(&output, cep, optlen,
+		                             len, (uint_t)net_buf_max_siz(),
 		                             NBA_SEARCH_ASCENT, TMO_TCP_GET_NET_BUF)) != E_OK) {
 			if (cep->timer[TCP_TIM_REXMT] == 0)
 				cep->timer[TCP_TIM_REXMT] = cep->rxtcur;
@@ -246,8 +244,8 @@ send_segment (bool_t *sendalot, T_TCP_CEP *cep, uint_t doff, uint_t win, uint_t 
 		 *  この時は、len を 0 にして、処理を継続する。
 		 */
 		len = 0;
-		if ((error = tcp_get_segment(&output, cep, optlen,
-	                                    len, (uint_t)(net_buf_max_siz() - IF_IP_TCP_HDR_SIZE),
+		if ((error = tcpn_get_segment(&output, cep, optlen,
+	                                    len, (uint_t)net_buf_max_siz(),
 	                                    NBA_SEARCH_ASCENT, TMO_TCP_GET_NET_BUF)) != E_OK) {
 			if (cep->timer[TCP_TIM_REXMT] == 0)
 				cep->timer[TCP_TIM_REXMT] = cep->rxtcur;
@@ -257,8 +255,8 @@ send_segment (bool_t *sendalot, T_TCP_CEP *cep, uint_t doff, uint_t win, uint_t 
 
 #else	/* of #if defined(TCP_CFG_SWBUF_CSAVE_ONLY) */
 
-	if ((error = tcp_get_segment(&output, cep, optlen,
-	                             len, (uint_t)(net_buf_max_siz() - IF_IP_TCP_HDR_SIZE),
+	if ((error = tcpn_get_segment(&output, cep, optlen,
+	                             len, (uint_t)net_buf_max_siz(),
 	                             NBA_SEARCH_ASCENT, TMO_TCP_GET_NET_BUF)) != E_OK) {
 		if (cep->timer[TCP_TIM_REXMT] == 0)
 			cep->timer[TCP_TIM_REXMT] = cep->rxtcur;
@@ -271,12 +269,13 @@ send_segment (bool_t *sendalot, T_TCP_CEP *cep, uint_t doff, uint_t win, uint_t 
 	 *  TCP オプションの設定を行う。
 	 *  本実装では、最大セグメントサイズのみ設定する。
 	 */
+	hdr_offset = IF_IP_TCP_HDR_OFFSET(output);
 	if (flags & TCP_FLG_SYN) {
 		cep->snd_nxt = cep->iss;
 
 #ifdef TCP_CFG_OPT_MSS
 
-		optp = GET_TCP_OPT(output, IF_IP_TCP_HDR_OFFSET);
+		optp = GET_TCP_OPT(output, hdr_offset);
 		*optp ++ = TCP_OPT_MAXSEG;
 		*optp ++ = TCP_OPT_LEN_MAXSEG;
 		*(uint16_t*)optp = htons(DEF_TCP_RCV_SEG);
@@ -323,7 +322,7 @@ send_segment (bool_t *sendalot, T_TCP_CEP *cep, uint_t doff, uint_t win, uint_t 
 		cep->snd_nxt --;
 		}
 
-	tcph = GET_TCP_HDR(output, IF_IP_TCP_HDR_OFFSET);
+	tcph = GET_TCP_HDR(output, hdr_offset);
 
 	/*
 	 *  SEQ、ACK、フラグの設定。
@@ -378,11 +377,10 @@ send_segment (bool_t *sendalot, T_TCP_CEP *cep, uint_t doff, uint_t win, uint_t 
 	 *  チェックサムを設定する。
 	 */
 	tcph->sum = 0;
-	tcph->sum = IN_CKSUM(output, IPPROTO_TCP, (uint_t)GET_TCP_HDR_OFFSET(output),
-		             GET_TCP_HDR_SIZE2(output, IF_IP_TCP_HDR_OFFSET) + len);
+	tcph->sum = IN_CKSUM(output, IPPROTO_TCP, hdr_offset, GET_TCP_HDR_SIZE(output, hdr_offset) + len);
 
 	/* ネットワークバッファ長を調整する。*/
-	output->len = (uint16_t)(GET_IF_IP_TCP_HDR_SIZE2(output, IF_IP_TCP_HDR_OFFSET) + len);
+	output->len = (uint16_t)(GET_IF_IP_TCP_HDR_SIZE(output, hdr_offset) + len);
 
 	/*
 	 *  タイマの調整
@@ -489,8 +487,7 @@ err_ret:
 	 * ・送受信ウィンドバッファの省コピー機能
 	 * ・動的な通信端点の生成・削除機能
 	 */
-	cep->flags &= (TCP_CEP_FLG_WBCS_NBUF_REQ | TCP_CEP_FLG_WBCS_MASK | 
-	               TCP_CEP_FLG_DYNAMIC       | TCP_CEP_FLG_VALID);
+	cep->flags &= TCP_CEP_FLG_NOT_CLEAR;
 
 	return error;
 	}
@@ -863,9 +860,9 @@ tcptsk_alloc_swbufq (T_TCP_CEP *cep)
 
 #endif	/* of #ifdef TCP_CFG_NON_BLOCKING */
 
-		if ((error = tcp_get_segment(&cep->swbufq, cep, 0,
-		                             (uint_t) TCP_CFG_SWBUF_CSAVE_MIN_SIZE,
-		                             (uint_t)(TCP_CFG_SWBUF_CSAVE_MAX_SIZE - IF_IP_TCP_HDR_SIZE),
+		if ((error = tcpn_get_segment(&cep->swbufq, cep, 0,
+		                             (uint_t)TCP_CFG_SWBUF_CSAVE_MIN_SIZE,
+		                             (uint_t)TCP_CFG_SWBUF_CSAVE_MAX_SIZE,
 		                             (ATR)(NBA_SEARCH_DESCENT |
 		                                   NBA_RESERVE_TCP    |
 		                                   (GET_TCP_CEPID(cep) & NBA_ID_MASK)), TMO_POL)) != E_OK) {
@@ -887,17 +884,12 @@ tcptsk_alloc_swbufq (T_TCP_CEP *cep)
 				/* 送信ウィンドバッファの書き込みアドレスを設定する。*/
 				len = TCP_GET_SWBUF_ADDR(cep, cep->snd_p_buf);
 
+				/* コールバック関数を呼び出す。*/
 #ifdef TCP_CFG_NON_BLOCKING_COMPAT14
-
-				/* コールバック関数を呼び出す。*/
 				(*cep->callback)(GET_TCP_CEPID(cep), cep->snd_nblk_tfn, (void*)(uint32_t)len);
-
-#else	/* of #ifdef TCP_CFG_NON_BLOCKING_COMPAT14 */
-
-				/* コールバック関数を呼び出す。*/
+#else
 				(*cep->callback)(GET_TCP_CEPID(cep), cep->snd_nblk_tfn, (void*)&len);
-
-#endif	/* of #ifdef TCP_CFG_NON_BLOCKING_COMPAT14 */
+#endif
 
 
 				/* 記憶されているタスク ID と API 機能コードをクリアーする。*/
@@ -923,17 +915,13 @@ tcptsk_alloc_swbufq (T_TCP_CEP *cep)
 
 				/* フラグを、送信可能に設定し、強制的に送信する。*/
 				cep->flags |= TCP_CEP_FLG_FORCE | TCP_CEP_FLG_FORCE_CLEAR | TCP_CEP_FLG_POST_OUTPUT;
+
+				/* コールバック関数を呼び出す。*/
 #ifdef TCP_CFG_NON_BLOCKING_COMPAT14
-
-				/* コールバック関数を呼び出す。*/
 				(*cep->callback)(GET_TCP_CEPID(cep), cep->snd_nblk_tfn, (void*)(uint32_t)len);
-
-#else	/* of #ifdef TCP_CFG_NON_BLOCKING_COMPAT14 */
-
-				/* コールバック関数を呼び出す。*/
+#else
 				(*cep->callback)(GET_TCP_CEPID(cep), cep->snd_nblk_tfn, (void*)&len);
-
-#endif	/* of #ifdef TCP_CFG_NON_BLOCKING_COMPAT14 */
+#endif
 
 
 				/* 記憶されているタスク ID と API 機能コードをクリアーする。*/
@@ -998,12 +986,12 @@ tcp_output_task (intptr_t exinf)
 
 	tcp_init();
 
-#ifdef SUPPORT_INET6
+#ifdef _IP6_CFG
 
 	/* IPv6 のステートレス・アドレス自動設定を実行する。*/
 	in6_if_up(IF_GET_IFNET());
 
-#endif	/* of #ifdef SUPPORT_INET6 */
+#endif	/* of #ifdef _IP6_CFG */
 
 	while (true) {
 
@@ -1082,17 +1070,11 @@ tcp_output_task (intptr_t exinf)
 					else if ((error = tcp_alloc_port(cep, cep->p_myaddr->portno)) != E_OK) {
 
 						if (IS_PTR_DEFINED(cep->callback))
-
 #ifdef TCP_CFG_NON_BLOCKING_COMPAT14
-
 							(*cep->callback)(GET_TCP_CEPID(cep), cep->snd_nblk_tfn, (void*)error);
-
-#else	/* of #ifdef TCP_CFG_NON_BLOCKING_COMPAT14 */
-
+#else
 							(*cep->callback)(GET_TCP_CEPID(cep), cep->snd_nblk_tfn, (void*)&error);
-
-#endif	/* of #ifdef TCP_CFG_NON_BLOCKING_COMPAT14 */
-
+#endif
 						else
 							syslog(LOG_WARNING, "[TCP] no call back, CEP: %d.", GET_TCP_CEPID(cep));
 

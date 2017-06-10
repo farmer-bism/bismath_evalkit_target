@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: tcp_echo_srv2.c,v 1.5 2009/12/24 05:44:56 abe Exp $
+ *  @(#) $Id: tcp_echo_srv2.c 1.7 2017/6/1 8:50:0 abe $
  */
 
 /* 
@@ -69,12 +69,11 @@
 #include <netinet/in.h>
 #include <netinet/in_itron.h>
 #include <netinet/ip.h>
-#include <netinet/ip6.h>
 #include <netinet/tcp.h>
 
 #include <netapp/netapp.h>
 #include <netapp/netapp_var.h>
-#include <netapp/echo.h>
+#include <netapp/tcp_echo_srv2.h>
 
 #ifdef USE_TCP_ECHO_SRV2
 
@@ -160,11 +159,11 @@ callback_nblk_tcp_echo_srv (ID cepid, FN fncd, void *p_parblk)
 			snd_count = snd_total = rcv_count = rcv_total = chars = 0;
 			snd_error = 1;
 			ena_rcv   = true;
-			syslog(LOG_NOTICE, "[TES:%02d CBN] connected:  %6ld, from: %s.%d",
+			syslog(LOG_NOTICE, "[TES:%02u CBN] connect: %6lu, from: %s.%d",
 			                   cepid, now / SYSTIM_HZ, IP2STR(NULL, &dst.ipaddr), dst.portno);
 			}
 		else
-			syslog(LOG_NOTICE, "[TES:%02d CBN] accept error: %s\n", cepid, itron_strerror(rcv_error));
+			syslog(LOG_NOTICE, "[TES:%02u CBN] accept error: %s\n", cepid, itron_strerror(rcv_error));
 
 		syscall(sig_sem(SEM_TCP_ECHO_SRV_RCV_READY));
 		break;
@@ -175,7 +174,7 @@ callback_nblk_tcp_echo_srv (ID cepid, FN fncd, void *p_parblk)
 			head = *sptr;
 			tail = *(sptr + slen - 1);
 #ifdef SHOW_RCV_RANGE
-			syslog(LOG_NOTICE, "[TES:%02d CBN] send len: %4d, data %02x -> %02x",
+			syslog(LOG_NOTICE, "[TES:%02u CBN] send len: %4u, data %02x -> %02x",
 			                   cepid, (uint16_t)slen, head, tail);
 #endif	/* of #ifdef SHOW_RCV_RANGE */
 			snd_count ++;
@@ -204,7 +203,7 @@ callback_nblk_tcp_echo_srv (ID cepid, FN fncd, void *p_parblk)
 			syscall(sig_sem(SEM_TCP_ECHO_SRV_LOCK));
 			}
 		else {
-			syslog(LOG_NOTICE, "[TES:%02d CBN] send error = %s", cepid, itron_strerror(snd_error));
+			syslog(LOG_NOTICE, "[TES:%02u CBN] send error = %s", cepid, itron_strerror(snd_error));
 			sig_sem(SEM_TCP_ECHO_SRV_SND_READY);
 			}
 		break;
@@ -215,7 +214,7 @@ callback_nblk_tcp_echo_srv (ID cepid, FN fncd, void *p_parblk)
 			head = *rptr;
 			tail = *(rptr + rlen - 1);
 #ifdef SHOW_RCV_RANGE
-			syslog(LOG_NOTICE, "[TES:%02d CBN] recv len: %4d, data %02x -> %02x",
+			syslog(LOG_NOTICE, "[TES:%02u CBN] recv len: %4u, data %02x -> %02x",
 			                   cepid, (uint16_t)rlen, head, tail);
 #endif	/* of #ifdef SHOW_RCV_RANGE */
 			rcv_count ++;
@@ -245,7 +244,7 @@ callback_nblk_tcp_echo_srv (ID cepid, FN fncd, void *p_parblk)
 			}
 		else {
 			if (rlen < 0)
-				syslog(LOG_NOTICE, "[TES:%02d CBN] recv error = %s", cepid, itron_strerror(rcv_error));
+				syslog(LOG_NOTICE, "[TES:%02u CBN] recv error = %s", cepid, itron_strerror(rcv_error));
 			sig_sem(SEM_TCP_ECHO_SRV_RCV_READY);
 			}
 		break;
@@ -253,9 +252,9 @@ callback_nblk_tcp_echo_srv (ID cepid, FN fncd, void *p_parblk)
 	case TFN_TCP_CLS_CEP:
 		snd_error = *(ER*)p_parblk;
 		if (snd_error != E_OK)
-			syslog(LOG_NOTICE, "[TES:%02d CBN] close error = %s", cepid, itron_strerror(snd_error));
+			syslog(LOG_NOTICE, "[TES:%02u CBN] close error = %s", cepid, itron_strerror(snd_error));
 
-		syslog(LOG_NOTICE, "[TES:%02d CBN] finished:   %6ld, snd: %4d, rcv: %4d, len: %ld",
+		syslog(LOG_NOTICE, "[TES:%02u CBN] finish:  %6lu, snd: %4u, rcv: %4u, len: %ld",
 		                   cepid, now / SYSTIM_HZ, snd_count, rcv_count, snd_total);
 
 		sig_sem(SEM_TCP_ECHO_SRV_CLS_READY);
@@ -282,12 +281,12 @@ tcp_echo_srv_rcv (ID cepid, ID repid)
 	uint16_t	blen;
 
 	if ((error = psnd_dtq(DTQ_TCP_ECHO_SRV_SND, (intptr_t)cepid)) != E_OK) {
-		syslog(LOG_NOTICE, "[TES:%02d RCV] sync error: %s", cepid, itron_strerror(error));
+		syslog(LOG_NOTICE, "[TES:%02u RCV] sync error: %s", cepid, itron_strerror(error));
 		return error;
 		}
 
 	if ((error = TCP_ACP_CEP(cepid, repid, &dst, TMO_NBLK)) != E_WBLK) {
-		syslog(LOG_NOTICE, "[TES:%02d ACP] accept error = %s", cepid, itron_strerror(error));
+		syslog(LOG_NOTICE, "[TES:%02u ACP] accept error = %s", cepid, itron_strerror(error));
 		return error;
 		}
 
@@ -299,8 +298,8 @@ tcp_echo_srv_rcv (ID cepid, ID repid)
 		return rcv_error;
 
 #ifdef USE_TCP_EXTENTIONS
-	if ((error = free_tcp_rep(repid, true)) != E_OK) {
-		syslog(LOG_NOTICE, "[TES:%02d DEL] REP delete error: %s", cepid, itron_strerror(error));
+	if ((error = FREE_TCP_REP(repid, true)) != E_OK) {
+		syslog(LOG_NOTICE, "[TES:%02u DEL] REP delete error: %s", cepid, itron_strerror(error));
 		return error;
 		}
 #endif	/* of #ifdef USE_TCP_EXTENTIONS */
@@ -317,7 +316,7 @@ tcp_echo_srv_rcv (ID cepid, ID repid)
 
 		/* 受信する。*/
 		if ((error = tcp_rcv_dat(cepid, rptr, blen, TMO_NBLK)) != E_WBLK) {
-			syslog(LOG_NOTICE, "[TES:%02d RCV] recv error = %s", cepid, itron_strerror(error));
+			syslog(LOG_NOTICE, "[TES:%02u RCV] recv error = %s", cepid, itron_strerror(error));
 			break;
 			}
 
@@ -358,7 +357,7 @@ tcp_echo_srv_snd_task(intptr_t exinf)
 	syslog(LOG_NOTICE, "[TCP ECHO SRV (NBLK) SND:%d] started.", tskid);
 	while (true) {
 		if ((error = rcv_dtq(DTQ_TCP_ECHO_SRV_SND, (intptr_t*)&cepid)) != E_OK) {
-			syslog(LOG_NOTICE, "[TES:%02d SND] sync error: %s",
+			syslog(LOG_NOTICE, "[TES:%02u SND] sync error: %s",
 			                   cepid, itron_strerror(error));
 			continue;
 			}
@@ -386,7 +385,7 @@ tcp_echo_srv_snd_task(intptr_t exinf)
 
 			/* 送信する。*/
 			if ((error = tcp_snd_dat(cepid, sptr, blen, TMO_NBLK)) != E_WBLK) {
-				syslog(LOG_NOTICE, "[TES:%02d SND] send error = %s", cepid, itron_strerror(error));
+				syslog(LOG_NOTICE, "[TES:%02u SND] send error = %s", cepid, itron_strerror(error));
 				break;
 				}
 			}
@@ -397,11 +396,11 @@ tcp_echo_srv_snd_task(intptr_t exinf)
 
 #ifdef USE_TCP_SHT_CEP
 		if ((error = tcp_sht_cep(cepid)) != E_OK)
-			syslog(LOG_NOTICE, "[TES:%02d SND] shutdown error = %s", cepid, itron_strerror(error));
+			syslog(LOG_NOTICE, "[TES:%02u SND] shutdown error = %s", cepid, itron_strerror(error));
 #endif	/* of #ifdef USE_TCP_SHT_CEP */
 
 		if ((error = tcp_cls_cep(cepid, TMO_NBLK)) != E_WBLK) {
-			syslog(LOG_NOTICE, "[TES:%02d SND] close error = %s", cepid, itron_strerror(error));
+			syslog(LOG_NOTICE, "[TES:%02u SND] close error = %s", cepid, itron_strerror(error));
 			}
 
 		pol_sem(SEM_TCP_ECHO_SRV_SND_READY);
@@ -425,24 +424,24 @@ tcp_echo_srv_rcv (ID cepid, ID repid)
 	char		head, tail;
 
 	if ((error = psnd_dtq(DTQ_TCP_ECHO_SRV_SND, (intptr_t)cepid)) != E_OK) {
-		syslog(LOG_NOTICE, "[TES:%02d RCV] sync error: %s", cepid, itron_strerror(error));
+		syslog(LOG_NOTICE, "[TES:%02u RCV] sync error: %s", cepid, itron_strerror(error));
 		return error;
 		}
 
 	if ((error = TCP_ACP_CEP(cepid, repid, &dst, TMO_FEVR)) != E_OK) {
-		syslog(LOG_NOTICE, "[TES:%02d ACP] accept error = %s", cepid, itron_strerror(error));
+		syslog(LOG_NOTICE, "[TES:%02u ACP] accept error = %s", cepid, itron_strerror(error));
 		return error;
 		}
 
 #ifdef USE_TCP_EXTENTIONS
-	if ((error = free_tcp_rep(repid, true)) != E_OK) {
-		syslog(LOG_NOTICE, "[TES:%02d DEL] REP delete error: %s", cepid, itron_strerror(error));
+	if ((error = FREE_TCP_REP(repid, true)) != E_OK) {
+		syslog(LOG_NOTICE, "[TES:%02u DEL] REP delete error: %s", cepid, itron_strerror(error));
 		return error;
 		}
 #endif	/* of #ifdef USE_TCP_EXTENTIONS */
 
 	syscall(get_tim(&now));
-	syslog(LOG_NOTICE, "[TES:%02d ACP] connected:  %6ld, from: %s.%d",
+	syslog(LOG_NOTICE, "[TES:%02u ACP] connect: %6lu, from: %s.%d",
 	                   cepid, now / SYSTIM_HZ, IP2STR(NULL, &dst.ipaddr), dst.portno);
 	sptr = rptr = buffer;
 	snd_count = snd_total = rcv_count = rcv_total = chars = 0;
@@ -460,14 +459,14 @@ tcp_echo_srv_rcv (ID cepid, ID repid)
 		/* 受信する。*/
 		if ((rlen = tcp_rcv_dat(cepid, rptr, blen, TMO_FEVR)) <= 0) {
 			if (rlen < 0)
-				syslog(LOG_NOTICE, "[TES:%02d RCV] recv error = %s",
+				syslog(LOG_NOTICE, "[TES:%02u RCV] recv error = %s",
 				                   cepid, itron_strerror(rlen));
 			break;
 			}
 		head = *rptr;
 		tail = *(rptr + rlen - 1);
 #ifdef SHOW_RCV_RANGE
-		syslog(LOG_NOTICE, "[TES:%02d RCV] len: %4d, data %02x -> %02x",
+		syslog(LOG_NOTICE, "[TES:%02u RCV] len: %4u, data %02x -> %02x",
 		                   cepid, (uint16_t)rlen, head, tail);
 #endif	/* of #ifdef SHOW_RCV_RANGE */
 		rcv_count ++;
@@ -530,7 +529,7 @@ tcp_echo_srv_snd_task(intptr_t exinf)
 	syslog(LOG_NOTICE, "[TCP ECHO SRV SND:%d] started.", tskid);
 	while (true) {
 		if ((error = rcv_dtq(DTQ_TCP_ECHO_SRV_SND, (intptr_t*)&cepid)) != E_OK) {
-			syslog(LOG_NOTICE, "[TES:%02d SND] sync error: %s",
+			syslog(LOG_NOTICE, "[TES:%02u SND] sync error: %s",
 			                   cepid, itron_strerror(error));
 			continue;
 			}
@@ -553,14 +552,14 @@ tcp_echo_srv_snd_task(intptr_t exinf)
 			syscall(sig_sem(SEM_TCP_ECHO_SRV_LOCK));
 
 			if ((slen = tcp_snd_dat(cepid, sptr, blen, TMO_FEVR)) <= 0) {
-				syslog(LOG_NOTICE, "[TES:%02d SND] send error = %s", cepid, itron_strerror(slen));
+				syslog(LOG_NOTICE, "[TES:%02u SND] send error = %s", cepid, itron_strerror(slen));
 				break;
 				}
 
 			head = *sptr;
 			tail = *(sptr + slen - 1);
 #ifdef SHOW_RCV_RANGE
-			syslog(LOG_NOTICE, "[TES:%02d SND] len: %4d, data %02x -> %02x",
+			syslog(LOG_NOTICE, "[TES:%02u SND] len: %4u, data %02x -> %02x",
 			                   cepid, (uint16_t)slen, head, tail);
 #endif	/* of #ifdef SHOW_RCV_RANGE */
 			snd_count ++;
@@ -601,14 +600,14 @@ tcp_echo_srv_snd_task(intptr_t exinf)
 
 #ifdef USE_TCP_SHT_CEP
 		if ((error = tcp_sht_cep(cepid)) != E_OK)
-			syslog(LOG_NOTICE, "[TES:%02d SND] shtudown error = %s", cepid, itron_strerror(error));
+			syslog(LOG_NOTICE, "[TES:%02u SND] shtudown error = %s", cepid, itron_strerror(error));
 #endif	/* of #ifdef USE_TCP_SHT_CEP */
 
 		if ((error = tcp_cls_cep(cepid, TMO_FEVR)) != E_OK)
-			syslog(LOG_NOTICE, "[TES:%02d SND] close error = %s", cepid, itron_strerror(error));
+			syslog(LOG_NOTICE, "[TES:%02u SND] close error = %s", cepid, itron_strerror(error));
 
 		get_tim(&now);
-		syslog(LOG_NOTICE, "[TES:%02d SND] finished:   %6ld, snd: %4d, rcv: %4d, len: %ld",
+		syslog(LOG_NOTICE, "[TES:%02u SND] finish:  %6lu, snd: %4u, rcv: %4u, len: %ld",
 		                   cepid, now / SYSTIM_HZ, snd_count, rcv_count, snd_total);
 
 		sig_sem(SEM_TCP_ECHO_SRV_CLS_READY);
@@ -645,7 +644,7 @@ get_tcp_rep (ID *repid)
 	memcpy(&crep.myaddr.ipaddr, &ipv6_addrany, sizeof(T_IN6_ADDR));
 #endif
 
-	return alloc_tcp_rep(repid, tskid, &crep);
+	return ALLOC_TCP_REP(repid, tskid, &crep);
 	}
 
 /*
@@ -680,7 +679,7 @@ get_tcp_cep (ID *cepid)
 	ccep.callback = NULL;
 #endif
 
-	return alloc_tcp_cep(cepid, tskid, &ccep);
+	return ALLOC_TCP_CEP(cepid, tskid, &ccep);
 	}
 
 /*
@@ -710,13 +709,13 @@ tcp_echo_srv_rcv_task (intptr_t exinf)
 				break;
 				}
 			else if ((error = tcp_echo_srv_rcv(cepid, repid)) != E_OK) {
-				error = free_tcp_rep(repid, error != E_DLT);
+				error = FREE_TCP_REP(repid, error != E_DLT);
 				break;
 				}
 			}
 
 		if ((error = free_tcp_cep(cepid)) != E_OK)
-			syslog(LOG_NOTICE, "[TES:%02d EXT] CEP delete error: %s", cepid, itron_strerror(error));
+			syslog(LOG_NOTICE, "[TES:%02u EXT] CEP delete error: %s", cepid, itron_strerror(error));
 
 		}
 	}

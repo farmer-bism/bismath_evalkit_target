@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: if6_ether.c,v 1.5.4.1 2015/02/05 02:11:26 abe Exp abe $
+ *  @(#) $Id: if6_ether.c 1.7 2017/6/1 8:49:41 abe $
  */
 
 /*
@@ -86,27 +86,29 @@
 #include <net/ethernet.h>
 #include <net/if_arp.h>
 #include <net/net.h>
+#include <net/net_endian.h>
 #include <net/net_timer.h>
 #include <net/net_buf.h>
 #include <net/net_count.h>
 
 #include <netinet/in.h>
+#include <netinet/in_var.h>
 #include <netinet/ip.h>
 #include <netinet/if_ether.h>
 
 #include <netinet6/in6.h>
 #include <netinet6/in6_var.h>
 
-#include <net/if6_var.h>
+#include <net/if_var.h>
 
-#if defined(SUPPORT_INET6) && defined(SUPPORT_ETHER)
+#if defined(_IP6_CFG) && defined(SUPPORT_ETHER)
 
 /*
  *  ether_map_ipv6_multicast -- IPv6 マルチキャストアドレスからイーサネット・マルチキャストアドレスへの変換
  */
 
 void
-ether_map_ipv6_multicast (T_ETHER_ADDR *eaddr, T_IN6_ADDR *maddr)
+ether_map_ipv6_multicast (T_ETHER_ADDR *eaddr, const T_IN6_ADDR *maddr)
 {
 	eaddr->lladdr[0] = UINT_C(0x33);
 	eaddr->lladdr[1] = UINT_C(0x33);
@@ -116,4 +118,4 @@ ether_map_ipv6_multicast (T_ETHER_ADDR *eaddr, T_IN6_ADDR *maddr)
 	eaddr->lladdr[5] = maddr->s6_addr8[15];
 	}
 
-#endif /* of #if defined(SUPPORT_INET6) && defined(SUPPORT_ETHER) */
+#endif /* of #if defined(_IP6_CFG) && defined(SUPPORT_ETHER) */

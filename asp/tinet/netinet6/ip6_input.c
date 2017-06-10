@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: ip6_input.c,v 1.5.4.1 2015/02/05 02:11:26 abe Exp abe $
+ *  @(#) $Id: ip6_input.c 1.7 2017/6/1 8:49:43 abe $
  */
 
 /*	$FreeBSD: src/sys/netinet6/ip6_input.c,v 1.11.2.10 2001/07/24 19:10:18 brooks Exp $	*/
@@ -104,6 +104,8 @@
 
 #include <kernel.h>
 #include <sil.h>
+#include <t_syslog.h>
+#include "tinet_cfg.h"
 
 #endif	/* of #ifdef TARGET_KERNEL_ASP */
 
@@ -111,6 +113,7 @@
 
 #include <s_services.h>
 #include <t_services.h>
+#include "tinet_id.h"
 
 #endif	/* of #ifdef TARGET_KERNEL_JSP */
 
@@ -123,26 +126,26 @@
 #include <net/ethernet.h>
 #include <net/ppp_ipcp.h>
 #include <net/net.h>
+#include <net/net_endian.h>
 #include <net/net_buf.h>
 #include <net/net_count.h>
 
 #include <netinet/in.h>
-#include <netinet6/in6.h>
-#include <netinet6/in6_var.h>
-#include <netinet6/nd6.h>
-#include <netinet/ip6.h>
-#include <netinet6/ip6_var.h>
-#include <netinet/icmp6.h>
-#include <netinet6/ah6.h>
-#include <netinet6/esp6.h>
+#include <netinet/in_var.h>
+#include <netinet/ip.h>
+#include <netinet/ip_var.h>
+#include <netinet/ip_icmp.h>
 #include <netinet/tcp.h>
-#include <netinet/tcp_timer.h>
 #include <netinet/tcp_var.h>
 #include <netinet/udp_var.h>
 
-#include <net/if6_var.h>
+#include <netinet6/nd6.h>
+#include <netinet6/ah6.h>
+#include <netinet6/esp6.h>
 
-#ifdef SUPPORT_INET6
+#include <net/if_var.h>
+
+#ifdef _IP6_CFG
 
 /*
  *  関数
@@ -169,17 +172,17 @@ static const T_PROTO_SWITCH proto_switch[] = {
 			IPPROTO_NONE		},	/* 次ヘッダ無し		*/
 	{ icmp6_input,	IPPROTO_ICMPV6		},
 
-#ifdef SUPPORT_UDP
-
-	{ udp_input,	IPPROTO_UDP		},
-
-#endif	/* of #ifdef SUPPORT_UDP */
-
-#ifdef SUPPORT_TCP
+#if defined(SUPPORT_TCP)
 
 	{ tcp_input,	IPPROTO_TCP		},
 
-#endif	/* of #ifdef SUPPORT_TCP */
+#endif	/* of #if defined(SUPPORT_TCP) */
+
+#if defined(SUPPORT_UDP) && TNUM_UDP6_CEPID > 0
+
+	{ udp6_input,	IPPROTO_UDP		},
+
+#endif	/* of #if defined(SUPPORT_UDP) && TNUM_UDP6_CEPID > 0 */
 
 	};
 
@@ -639,7 +642,7 @@ ip6_remove_exthdrs (T_NET_BUF *nbuf)
 	uint_t	next;
 
 	/* 開始オフセットを IP ヘッダに設定する。*/
-	off = ((uint8_t *)GET_IP_HDR(nbuf)) - nbuf->buf;
+	off = ((uint8_t *)GET_IP6_HDR(nbuf)) - nbuf->buf;
 
 	/* 最終ヘッダを探索する。*/
 	off = ip6_lasthdr(nbuf, off, IPPROTO_IPV6, &next);
@@ -649,14 +652,14 @@ ip6_remove_exthdrs (T_NET_BUF *nbuf)
 	else {
 		uint_t sdu;
 
-		sdu = GET_IP_SDU(nbuf) - nbuf->buf;
+		sdu = GET_IP6_SDU(nbuf) - nbuf->buf;
 		if (off > sdu) {
 			memmove(nbuf->buf + sdu, nbuf->buf + off, off - sdu);
-			GET_IP_HDR(nbuf)->plen -= off - sdu;
+			GET_IP6_HDR(nbuf)->plen -= off - sdu;
 			nbuf->len              -= off - sdu;
 			}
 		}
 	return E_OK;
 	}
 
-#endif /* of #ifdef SUPPORT_INET6 */
+#endif /* of #ifdef _IP6_CFG */

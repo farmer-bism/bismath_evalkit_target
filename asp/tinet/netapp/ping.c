@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: ping.c,v 1.5 2009/12/24 05:44:56 abe Exp $
+ *  @(#) $Id: ping.c 1.7 2017/6/1 8:49:57 abe $
  */
 
 /* 
@@ -60,6 +60,7 @@
 #include <net/ppp_var.h>
 #include <net/ppp_ipcp.h>
 #include <net/net.h>
+#include <net/net_endian.h>
 #include <net/net_buf.h>
 #include <net/net_timer.h>
 #include <net/net_count.h>
@@ -73,13 +74,18 @@
 
 #ifdef USE_PING
 
+#if defined(SUPPORT_INET4)
+
 /*
  *  変数
  */
 
-static uint16_t	icmp_id = 0;
+#if 0
 static uint16_t	curr_icmp_id;
 static uint16_t	curr_icmp_len;
+#endif
+
+static uint16_t	icmp_id = 0;
 static SYSTIM	icmp_start_time;
 
 /*
@@ -89,7 +95,7 @@ static SYSTIM	icmp_start_time;
 static void
 icmp_reply_timeout (void *arg)
 {
-	syslog(LOG_NOTICE, "[PING] request timeout.");
+	syslog(LOG_NOTICE, "[PING4] request timeout.");
 	}
 
 /*
@@ -99,12 +105,15 @@ icmp_reply_timeout (void *arg)
 void
 icmp_echo_reply (T_NET_BUF *input, uint_t ihoff)
 {
-	SYSTIM time;
+	SYSTIM		time;
+	T_IN4_ADDR	addr;
 
 	syscall(get_tim(&time));
+	addr = ntohl(GET_IP4_HDR(input)->src);
 	untimeout(icmp_reply_timeout, NULL);
-	syslog(LOG_NOTICE, "[PING] reply, %d [ms].",
-	                   (time - icmp_start_time) * 1000 / SYSTIM_HZ);
+	syslog(LOG_NOTICE, "[PING4] reply: %5ld [ms] from: %s",
+	                   (time - icmp_start_time) * 1000 / SYSTIM_HZ,
+	                   ip2str(NULL, &addr));
 	}
 
 /*
@@ -142,8 +151,10 @@ ping4 (T_IN4_ADDR *addr, uint_t tmo, uint_t len)
 	icmp4h->sum = in_cksum(icmp4h, ICMP4_HDR_SIZE + len);
 
 	/* 応答チェック用の変数を設定する。*/
+#if 0
 	curr_icmp_id  = icmp_id ++;
 	curr_icmp_len = len;
+#endif
 
 	NET_COUNT_MIB(icmp_stats.icmpOutMsgs, 1);
 	NET_COUNT_MIB(icmp_stats.icmpOutEchos, 1);
@@ -155,5 +166,7 @@ ping4 (T_IN4_ADDR *addr, uint_t tmo, uint_t len)
 	timeout(icmp_reply_timeout, NULL, tmo * NET_TIMER_HZ);
 
 	}
+
+#endif	/* of #if defined(SUPPORT_INET4) */
 
 #endif	/* of #ifdef USE_PING */

@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: if_ppp.h,v 1.5 2009/12/24 05:42:40 abe Exp $
+ *  @(#) $Id: if_ppp.h 1.7 2017/6/1 8:49:13 abe $
  */
 
 /*
@@ -58,20 +58,42 @@
 #ifdef SUPPORT_PPP
 
 /*
+ *  PPP アドレスの定義（ダミー）
+ */
+
+typedef struct t_ppp_addr {
+	uint8_t		lladdr[0];
+	} T_PPP_ADDR;
+
+/*
  *  インタフェースの選択マクロ
  */
 
-#define T_IF_HDR		T_PPP_HDR	/* インタフェースのヘッダ			*/
-#define IF_HDR_ALIGN		2		/* ヘッダのアライン単位			*/
-#define IF_MTU			DEF_PPP_MTU	/* インタフェースの MTU			*/
-						/* インタフェースの IPv4 アドレス		*/
-#define IF_PROTO_IP		PPP_IP		/* インタフェースの IP プロトコル指定	*/
+#define T_IF_HDR		T_PPP_HDR		/* インタフェースのヘッダ		*/
+#define T_IF_ADDR		T_PPP_ADDR		/* インタフェースのアドレス			*/
+#define IF_HDR_ALIGN		2			/* ヘッダのアライン単位			*/
+#define IF_MTU			DEF_PPP_MTU		/* インタフェースの MTU			*/
 
 #define IF_OUTPUT(o,d,g,t)	ppp_output(o,t)		/* インタフェースの出力関数		*/
 #define IF_RAW_OUTPUT(o,t)	ppp_output(o,t)		/* インタフェースの出力関数、アドレス解決無し*/
-							/* インタフェースのプロトコル設定関数	*/
 #define IF_SET_PROTO(b,p)	(*GET_PPP_HDR(b) = htons(p))
-#define IF_GET_IFNET()		ppp_get_ifnet()		/* ネットワークインタフェース構造体を返す。		*/
+							/* インタフェースのプロトコル設定関数	*/
+#define IF_SOFTC_TO_IFADDR(s)	((T_IF_ADDR*)(s)->ifaddr.lladdr)
+							/* ソフトウェア情報から PPP アドレスを取り出す	*/
+#define IF_GET_IFNET()		ppp_get_ifnet()		/* ネットワークインタフェース構造体を返す。*/
+#define IF_SRAND()		(0)			/* インターフェースの乱数初期値			*/
+
+/* IPv4 関係 */
+
+#define IF_PROTO_IP		PPP_IP			/* インタフェースの IPv4 プロトコル指定	*/
+
+/* IPv6 関係 */
+
+#define MAX_IF_MADDR_CNT	0			/* インタフェースのマルチキャストアドレス配列の最大サイズ*/
+#define IF_PROTO_IPV6		PPP_IPV6		/* インタフェースの IPv6 プロトコル指定	*/
+#define IF_IN6_NEED_CACHE(i)	(false)			/* 近隣探索キャッシュを使用する。	*/
+#define IF_IN6_IFID(i,a)	get_rand_ifid(i,a)	/* インタフェース識別子の設定		*/
+#define IF_IN6_RESOLVE_MULTICAST(i,m)	{}		/* インタフェースのマルチキャストアドレスへの変換		*/
 
 /*
  *  MTU (MRU) に関する定義
@@ -119,7 +141,9 @@ typedef struct t_net_buf T_NET_BUF;
  *  ネットワークインタフェースに依存しないソフトウェア情報
  */
 
-struct t_if_softc { };
+struct t_if_softc {
+	T_IF_ADDR	ifaddr;		/* ネットワークインタフェースのアドレス	*/
+	};
 
 /*
  *  関数

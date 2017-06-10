@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: ip_icmp.c,v 1.5.4.1 2015/02/05 02:10:53 abe Exp abe $
+ *  @(#) $Id: ip_icmp.c 1.7 2017/6/1 8:49:23 abe $
  */
 
 /*
@@ -75,6 +75,7 @@
 #include <sil.h>
 #include <t_syslog.h>
 #include "kernel_cfg.h"
+#include "tinet_cfg.h"
 
 #endif	/* of #ifdef TARGET_KERNEL_ASP */
 
@@ -82,6 +83,7 @@
 
 #include <s_services.h>
 #include <t_services.h>
+#include "tinet_id.h"
 
 #endif	/* of #ifdef TARGET_KERNEL_JSP */
 
@@ -94,6 +96,7 @@
 #include <net/ethernet.h>
 #include <net/ppp_ipcp.h>
 #include <net/net.h>
+#include <net/net_endian.h>
 #include <net/net_buf.h>
 #include <net/net_timer.h>
 #include <net/net_count.h>
@@ -105,8 +108,12 @@
 #include <netinet/ip_icmp.h>
 #include <netinet/icmp_var.h>
 #include <netinet/tcp.h>
-#include <netinet/tcp_timer.h>
 #include <netinet/tcp_var.h>
+#include <netinet/udp_var.h>
+
+#include <net/if_var.h>
+
+#if defined(_IP4_CFG)
 
 /*
  *  変数
@@ -129,11 +136,13 @@ T_ICMP_STATS icmp_stats;
 static void icmp_echo (T_NET_BUF *input, uint_t ihoff);
 static void icmp_unreach (T_NET_BUF *input, uint_t ihoff);
 
+#if defined(NUM_REDIRECT_ROUTE_ENTRY)
 #if NUM_REDIRECT_ROUTE_ENTRY > 0
 
 static void icmp_redirect (T_NET_BUF *input, uint_t ihoff);
 
 #endif	/* of #if NUM_REDIRECT_ROUTE_ENTRY > 0 */
+#endif	/* of #if defined(NUM_REDIRECT_ROUTE_ENTRY) */
 
 /*
  *  icmp_echo -- エコー要求を受信したときの処理
@@ -146,34 +155,42 @@ icmp_echo (T_NET_BUF *input, uint_t ihoff)
 {
 	T_IP4_HDR	*ip4h;
 	T_ICMP4_HDR	*icmp4h;
-	T_IN4_ADDR	addr;
+	T_IFNET		*ifp = IF_GET_IFNET();
 
 	NET_COUNT_MIB(icmp_stats.icmpInEchos, 1);
 
-	/* メッセージの型をエコー要求 (8) から エコー応答 (0) に	*/
-	/* 変更して送り返す。					*/
+	/* IPv4 アドレスが未定義の時は応答しない。*/
+	if (!IN4_IS_ADDR_ANY(&ifp->in4_ifaddr.addr)) {
 
-	icmp4h = GET_ICMP4_HDR(input, ihoff);
-	icmp4h->type = ICMP4_ECHO_REPLY;
+		/*
+		 *  メッセージの型をエコー要求 (8) から
+		 *  エコー応答 (0) に変更して送り返す。
+		 */
 
-	/* IP ヘッダの宛先と発信元を交換する。*/
-	ip4h      = GET_IP4_HDR(input);
-	addr      = ip4h->src;
-	ip4h->src = ip4h->dst;
-	ip4h->dst = addr;
+		icmp4h = GET_ICMP4_HDR(input, ihoff);
+		icmp4h->type = ICMP4_ECHO_REPLY;
 
-	/* チェックサムを計算する。*/
-	icmp4h->sum = 0;
-	icmp4h->sum = in_cksum(icmp4h,
-	                       (uint_t)(((input->len - GET_IF_IP4_HDR_SIZE(input)) + 3) >> 2 << 2));
+		/*
+		 *  宛先アドレスは受信したメッセージの送信元アドレス。
+		 *  送信元アドレスは自 IPv4 アドレス。
+		 */
+		ip4h      = GET_IP4_HDR(input);
+		ip4h->dst = ip4h->src;
+		ip4h->src = htonl(ifp->in4_ifaddr.addr);
 
-	/* 送信する。*/
-	NET_COUNT_ICMP4(net_count_icmp4.out_octets,
-	               input->len - GET_IF_IP4_HDR_SIZE(input));
-	NET_COUNT_ICMP4(net_count_icmp4.out_packets, 1);
-	NET_COUNT_MIB(icmp_stats.icmpOutMsgs, 1);
-	NET_COUNT_MIB(icmp_stats.icmpOutEchoReps, 1);
-	ip_output(input, TMO_ICMP_OUTPUT);
+		/* チェックサムを計算する。*/
+		icmp4h->sum = 0;
+		icmp4h->sum = in_cksum(icmp4h,
+		                       (uint_t)(((input->len - GET_IF_IP4_HDR_SIZE(input)) + 3) >> 2 << 2));
+
+		/* 送信する。*/
+		NET_COUNT_ICMP4(net_count_icmp4.out_octets,
+		               input->len - GET_IF_IP4_HDR_SIZE(input));
+		NET_COUNT_ICMP4(net_count_icmp4.out_packets, 1);
+		NET_COUNT_MIB(icmp_stats.icmpOutMsgs, 1);
+		NET_COUNT_MIB(icmp_stats.icmpOutEchoReps, 1);
+		ip_output(input, TMO_ICMP_OUTPUT);
+		}
 	}
 
 /*
@@ -211,21 +228,33 @@ icmp_unreach (T_NET_BUF *input, uint_t ihoff)
 	ip4h   = (T_IP4_HDR*)GET_ICMP4_SDU(input, ihoff);
 	code  = GET_ICMP4_HDR(input, ihoff)->code;
 	error = code2error[code];
-	if (ip4h->proto == IPPROTO_TCP) {
 
-#ifdef SUPPORT_TCP
+	/* 最終ヘッダが TCP/UDP のみ対応する。*/
+	if (ip4h->proto == IPPROTO_TCP || ip4h->proto == IPPROTO_UDP) {
 
 		memcpy(GET_IP4_HDR(input), ip4h, input->len - (IP4_HDR_SIZE + ICMP4_HDR_SIZE));
 		input->len -= IP4_HDR_SIZE + ICMP4_HDR_SIZE;
-		tcp_notify(input, error);
 
-#endif	/* of #ifdef SUPPORT_TCP */
+#if defined(SUPPORT_TCP)
+
+		if (ip4h->proto == IPPROTO_TCP)
+			tcp_notify(input, error);
+
+#endif	/* of #if defined(SUPPORT_TCP) */
+
+#if defined(SUPPORT_UDP) && TNUM_UDP4_CEPID > 0
+
+		if (ip4h->proto == IPPROTO_UDP)
+			udp4_notify(input, error);
+
+#endif	/* of #if defined(SUPPORT_UDP) && TNUM_UDP4_CEPID > 0 */
 
 		}
 	else
 		syslog(LOG_NOTICE, "[ICMP] error, code: %d.", code);
 	}
 
+#if defined(NUM_REDIRECT_ROUTE_ENTRY)
 #if NUM_REDIRECT_ROUTE_ENTRY > 0
 
 /*
@@ -263,6 +292,7 @@ icmp_redirect (T_NET_BUF *input, uint_t ihoff)
 	}
 
 #endif	/* of #if NUM_REDIRECT_ROUTE_ENTRY > 0 */
+#endif	/* of #if defined(NUM_REDIRECT_ROUTE_ENTRY) */
 
 /*
  *  icmp_input -- ICMP の入力関数
@@ -313,11 +343,11 @@ icmp_input (T_NET_BUF **inputp, uint_t *offp, uint_t *nextp)
 		break;
 	case ICMP4_ECHO_REPLY:
 
-#ifdef ICMP_CFG_CALLBACK_ECHO_REPLY
+#if defined(SUPPORT_INET4) && defined(ICMP_CFG_CALLBACK_ECHO_REPLY)
 
 		icmp_echo_reply(input, *offp);
 
-#endif	/* of #ifdef ICMP_CFG_CALLBACK_ECHO_REPLY */
+#endif	/* of #if defined(SUPPORT_INET4) && defined(ICMP_CFG_CALLBACK_ECHO_REPLY) */
 
 		break;
 	case ICMP4_UNREACH:
@@ -325,6 +355,7 @@ icmp_input (T_NET_BUF **inputp, uint_t *offp, uint_t *nextp)
 		break;
 	case ICMP4_REDIRECT:
 
+#if defined(NUM_REDIRECT_ROUTE_ENTRY)
 #if NUM_REDIRECT_ROUTE_ENTRY > 0
 
 		addr = ntohl(icmp4h->data.addr);
@@ -337,6 +368,12 @@ icmp_input (T_NET_BUF **inputp, uint_t *offp, uint_t *nextp)
 		syslog(LOG_INFO, "[ICMP] redirect ignored, addr: %s.", ip2str(NULL, &addr));
 
 #endif	/* of #if NUM_REDIRECT_ROUTE_ENTRY > 0 */
+#else	/* of #if defined(NUM_REDIRECT_ROUTE_ENTRY) */
+
+		addr = ntohl(icmp4h->data.addr);
+		syslog(LOG_INFO, "[ICMP] redirect ignored, addr: %s.", ip2str(NULL, &addr));
+
+#endif	/* of #if defined(NUM_REDIRECT_ROUTE_ENTRY) */
 
 		break;
 	default:
@@ -370,7 +407,7 @@ icmp_error (uint8_t code, T_NET_BUF *input)
 	uint_t		len, ip4hl, align;
 
 	ip4h  = GET_IP4_HDR(input);
-	ip4hl = GET_IP4_HDR_SIZE(ip4h);
+	ip4hl = GET_IP4_HDR_SIZE(input);
 
 	/* 送信用の IP データグラムを獲得する。*/
 	if (input->len - ip4hl < 8)
@@ -416,3 +453,5 @@ icmp_error (uint8_t code, T_NET_BUF *input)
 	}
 
 #endif	/* of #ifdef ICMP_REPLY_ERROR */
+
+#endif	/* of #if defined(_IP4_CFG) */

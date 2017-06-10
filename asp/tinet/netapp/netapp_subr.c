@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: netapp_subr.c,v 1.5 2009/12/24 05:44:56 abe Exp $
+ *  @(#) $Id: netapp_subr.c 1.7 2017/6/1 8:49:56 abe $
  */
 
 /* 
@@ -43,6 +43,8 @@
 #include <kernel.h>
 #include <sil.h>
 #include <syssvc/serial.h>
+#include <syssvc/logtask.h>
+#include <t_syslog.h>
 #include "kernel_cfg.h"
 #include "tinet_cfg.h"
 
@@ -61,14 +63,253 @@
 #include <tinet_config.h>
 
 #include <net/net.h>
+#include <net/net_endian.h>
 
 #include <netinet/in.h>
 #include <netinet/in_itron.h>
 
 #include <netapp/netapp.h>
 #include <netapp/netapp_var.h>
+#include <netapp/resolver.h>
 
 #ifdef USE_NETAPP_SUBR
+
+/*
+ *  IPv6 と IPv4 で引数が異なる関数のコンパイル
+ */
+
+#if defined(SUPPORT_INET6)
+
+#ifdef USE_TCP_EXTENTIONS
+
+const ID vrid_tcp6_cep[] =
+{
+#if NUM_VRID_TCP6_CEPS >= 1
+	TCP6_RSV_CEPID1,
+#endif
+#if NUM_VRID_TCP6_CEPS >= 2
+	TCP6_RSV_CEPID2,
+#endif
+#if NUM_VRID_TCP6_CEPS >= 3
+	TCP6_RSV_CEPID3,
+#endif
+#if NUM_VRID_TCP6_CEPS >= 4
+	TCP6_RSV_CEPID4,
+#endif
+	};
+
+const ID vrid_tcp6_rep[] =
+{
+#if NUM_VRID_TCP6_REPS >= 1
+	TCP6_RSV_REPID1,
+#endif
+#if NUM_VRID_TCP6_REPS >= 2
+	TCP6_RSV_REPID2,
+#endif
+	};
+
+ID tskid_tcp6_cep[NUM_VRID_TCP6_CEPS];
+ID tskid_tcp6_rep[NUM_VRID_TCP6_REPS];
+
+#endif	/* #ifdef USE_TCP_EXTENTIONS */
+
+#ifdef USE_UDP_EXTENTIONS
+
+const ID vrid_udp6_cep[] =
+{
+#if NUM_VRID_UDP6_CEPS >= 1
+	UDP6_RSV_CEPID1,
+#endif
+#if NUM_VRID_UDP6_CEPS >= 2
+	UDP6_RSV_CEPID2,
+#endif
+	};
+
+ID tskid_udp6_cep[NUM_VRID_UDP6_CEPS];
+
+#endif	/* #ifdef USE_UDP_EXTENTIONS */
+
+#undef	TCP_CRE_REP
+#undef	UDP_CRE_CEP
+#undef	UDP_DEL_CEP
+#undef	TCP_IS_CEPID
+#undef  ALLOC_TCP_REP
+#undef  ALLOC_TCP_CEP
+#undef  ALLOC_UDP_CEP
+#undef  FREE_TCP_REP
+#undef  FREE_TCP_CEP
+#undef  FREE_UDP_CEP
+#undef	T_TCPN_CREP
+#undef	T_UDPN_CCEP
+#undef	NUM_VRID_TCP_CEPS
+#undef	NUM_VRID_TCP_REPS
+#undef	NUM_VRID_UDP_CEPS
+#undef	VRID_TCP_CEP
+#undef	VRID_UDP_CEP
+#undef	VRID_TCP_REP
+#undef	TSKID_TCP_CEP
+#undef	TSKID_TCP_REP
+#undef	TSKID_UDP_CEP
+#undef	API_IPPROTO
+
+#define TCP_CRE_REP		tcp6_cre_rep
+#define UDP_CRE_CEP		udp6_cre_cep
+#define UDP_DEL_CEP		udp6_del_cep
+
+#define TCP_IS_CEPID		tcp6_is_cepid
+#define ALLOC_TCP_REP		alloc_tcp6_rep
+#define ALLOC_TCP_CEP		alloc_tcp6_cep
+#define ALLOC_UDP_CEP		alloc_udp6_cep
+#define FREE_TCP_REP		free_tcp6_rep
+#define FREE_TCP_CEP		free_tcp6_cep
+#define FREE_UDP_CEP		free_udp6_cep
+#define T_TCPN_CREP		T_TCP6_CREP
+#define T_UDPN_CCEP		T_UDP6_CCEP
+#define NUM_VRID_TCP_CEPS	NUM_VRID_TCP6_CEPS
+#define NUM_VRID_TCP_REPS	NUM_VRID_TCP6_REPS
+#define NUM_VRID_UDP_CEPS	NUM_VRID_UDP6_CEPS
+#define VRID_TCP_CEP		vrid_tcp6_cep
+#define VRID_TCP_REP		vrid_tcp6_rep
+#define VRID_UDP_CEP		vrid_udp6_cep
+#define TSKID_TCP_CEP		tskid_tcp6_cep
+#define TSKID_TCP_REP		tskid_tcp6_rep
+#define TSKID_UDP_CEP		tskid_udp6_cep
+#define API_IPPROTO		API_PROTO_IPV6
+
+#include <netapp/netappn_subr.c>
+
+#endif	/* of #if defined(SUPPORT_INET6) */
+
+#if defined(SUPPORT_INET4)
+
+#ifdef USE_TCP_EXTENTIONS
+
+const ID vrid_tcp4_cep[] =
+{
+#if NUM_VRID_TCP4_CEPS >= 1
+	TCP4_RSV_CEPID1,
+#endif
+#if NUM_VRID_TCP4_CEPS >= 2
+	TCP4_RSV_CEPID2,
+#endif
+#if NUM_VRID_TCP4_CEPS >= 3
+	TCP4_RSV_CEPID3,
+#endif
+#if NUM_VRID_TCP4_CEPS >= 4
+	TCP4_RSV_CEPID4,
+#endif
+	};
+
+const ID vrid_tcp4_rep[] =
+{
+#if NUM_VRID_TCP4_REPS >= 1
+	TCP4_RSV_REPID1,
+#endif
+#if NUM_VRID_TCP4_REPS >= 2
+	TCP4_RSV_REPID2,
+#endif
+	};
+
+ID tskid_tcp4_cep[NUM_VRID_TCP4_CEPS];
+ID tskid_tcp4_rep[NUM_VRID_TCP4_REPS];
+
+#endif	/* #ifdef USE_TCP_EXTENTIONS */
+
+#ifdef USE_UDP_EXTENTIONS
+
+const ID vrid_udp4_cep[] =
+{
+#if NUM_VRID_UDP4_CEPS >= 1
+	UDP4_RSV_CEPID1,
+#endif
+#if NUM_VRID_UDP4_CEPS >= 2
+	UDP4_RSV_CEPID2,
+#endif
+	};
+
+ID tskid_udp4_cep[NUM_VRID_UDP4_CEPS];
+
+#endif	/* #ifdef USE_UDP_EXTENTIONS */
+
+#undef	TCP_CRE_REP
+#undef	UDP_CRE_CEP
+#undef	UDP_DEL_CEP
+#undef	TCP_IS_CEPID
+#undef  ALLOC_TCP_REP
+#undef  ALLOC_TCP_CEP
+#undef  ALLOC_UDP_CEP
+#undef  FREE_TCP_REP
+#undef  FREE_TCP_CEP
+#undef  FREE_UDP_CEP
+#undef	T_TCPN_CREP
+#undef	T_UDPN_CCEP
+#undef	NUM_VRID_TCP_CEPS
+#undef	NUM_VRID_TCP_REPS
+#undef	NUM_VRID_UDP_CEPS
+#undef	VRID_TCP_CEP
+#undef	VRID_TCP_REP
+#undef	VRID_UDP_CEP
+#undef	TSKID_TCP_CEP
+#undef	TSKID_TCP_REP
+#undef	TSKID_UDP_CEP
+#undef	API_IPPROTO
+
+#define TCP_CRE_REP		tcp_cre_rep
+#define UDP_CRE_CEP		udp_cre_cep
+#define UDP_DEL_CEP		udp_del_cep
+#define TCP_IS_CEPID		tcp4_is_cepid
+#define ALLOC_TCP_REP		alloc_tcp4_rep
+#define ALLOC_TCP_CEP		alloc_tcp4_cep
+#define ALLOC_UDP_CEP		alloc_udp4_cep
+#define FREE_TCP_REP		free_tcp4_rep
+#define FREE_TCP_CEP		free_tcp4_cep
+#define FREE_UDP_CEP		free_udp4_cep
+#define T_TCPN_CREP		T_TCP_CREP
+#define T_UDPN_CCEP		T_UDP_CCEP
+#define NUM_VRID_TCP_CEPS	NUM_VRID_TCP4_CEPS
+#define NUM_VRID_TCP_REPS	NUM_VRID_TCP4_REPS
+#define NUM_VRID_UDP_CEPS	NUM_VRID_UDP4_CEPS
+#define VRID_TCP_CEP		vrid_tcp4_cep
+#define VRID_TCP_REP		vrid_tcp4_rep
+#define VRID_UDP_CEP		vrid_udp4_cep
+#define TSKID_TCP_CEP		tskid_tcp4_cep
+#define TSKID_TCP_REP		tskid_tcp4_rep
+#define TSKID_UDP_CEP		tskid_udp4_cep
+#define API_IPPROTO		API_PROTO_IPV4
+
+#include <netapp/netappn_subr.c>
+
+#endif	/* of #if defined(SUPPORT_INET4) */
+
+#undef	TCP_CRE_REP
+#undef  ALLOC_TCPN_REP
+#undef  ALLOC_TCPN_CEP
+#undef  ALLOC_UDPN_CEP
+#undef  FREE_TCPN_REP
+#undef  FREE_TCPN_CEP
+#undef  FREE_UDPN_CEP
+#undef	T_TCPN_CREP
+#undef	NUM_VRID_TCP_REPS
+#undef	NUM_VRID_UDP_CEPS
+#undef	VRID_TCP_CEP
+#undef	VRID_TCP_REP
+#undef	VRID_UDP_CEP
+#undef	TSKID_TCP_CEP
+#undef	TSKID_TCP_REP
+#undef	TSKID_UDP_CEP
+
+/*
+ *  変数
+ */
+
+static uint32_t rand_next = ULONG_C(1);
+
+#if !defined(SUPPORT_INET6) && defined(SUPPORT_INET4)
+
+const T_IN6_ADDR in6_addr_unspecified =
+	IPV6_ADDR_UNSPECIFIED_INIT;
+
+#endif	/* of #if !defined(SUPPORT_INET6) && defined(SUPPORT_INET4) */
 
 /*
  *  シリアルポートへの書式付文字列出力ライブラリ
@@ -82,6 +323,30 @@
 
 const char radhex[] = "0123456789abcdef";
 const char radHEX[] = "0123456789ABCDEF";
+
+/*
+ *  netapp_rand -- 乱数を返す。
+ */
+
+uint32_t
+netapp_rand (void)
+{
+	rand_next = (rand_next * 99991 + 12345) & ULONG_C(0x7fffffff);
+	return rand_next;
+	}
+
+/*
+ *  srand -- 乱数を初期化する。
+ */
+
+void
+netapp_srand (uint32_t seed)
+{
+	SYSTIM now;
+
+	syscall(get_tim(&now));
+	rand_next += now + seed;
+	}
 
 #ifndef USE_NET_CONS
 
@@ -160,8 +425,6 @@ cons_putnumber(ID portid, ulong_t 	val, int_t radix,
 	return pchars;
 	}
 
-#if defined(SUPPORT_INET4)
-
 /*
  *  put_ipv4addr -- IPv4 アドレス出力
  */
@@ -185,12 +448,6 @@ put_ipv4addr (ID portid, T_IN4_ADDR *addr, int_t width)
 	return len;
 	}
 
-#define PUT_IPADDR(p,a,w)	put_ipv4addr(p,a,w)
-
-#endif	/* of #if defined(SUPPORT_INET4) */
-
-#if defined(SUPPORT_INET6)
-
 /*
  *  ipv6addr -- IPv6 アドレス出力
  */
@@ -198,10 +455,10 @@ put_ipv4addr (ID portid, T_IN4_ADDR *addr, int_t width)
 int_t
 put_ipv6addr (ID portid, const T_IN6_ADDR *addr, int_t width)
 {
-	int_t	len = 0, ix;
+	int_t	len = 0, ix, len6;
 	bool_t	omit = false, zero = false;
 
-	if (addr == NULL) {
+	if (addr == NULL || IN6_IS_ADDR_UNSPECIFIED(addr)) {
 		cons_putchar(portid, '0');
 		cons_putchar(portid, ':');
 		cons_putchar(portid, ':');
@@ -209,7 +466,11 @@ put_ipv6addr (ID portid, const T_IN6_ADDR *addr, int_t width)
 		len = 4;
 		}
 	else {
-		for (ix = 0; ix < sizeof(T_IN6_ADDR) / 2; ix ++) {
+		if (in6_is_addr_ipv4mapped(addr))
+			len6 = sizeof(T_IN6_ADDR) / 2 - 2;
+		else
+			len6 = sizeof(T_IN6_ADDR) / 2;
+		for (ix = 0; ix < len6; ix ++) {
 			if (omit) {
 				len += cons_putnumber(portid, ntohs(addr->s6_addr16[ix]), 16, radhex, 0, false, ' '); 
 				if (ix < 7) {
@@ -233,15 +494,18 @@ put_ipv6addr (ID portid, const T_IN6_ADDR *addr, int_t width)
 				}
 			}
 
+		if (len6 == sizeof(T_IN6_ADDR) / 2 - 2) {
+			T_IN4_ADDR ip4addr;
+
+			ip4addr = ntohl(addr->s6_addr32[3]);
+			len += put_ipv4addr(portid, &ip4addr, 0);
+			}
+
 		for ( ; len < width; len ++)
 			cons_putchar(portid, ' ');
 		}
 	return len;
 	}
-
-#define PUT_IPADDR(p,a,w)	put_ipv6addr(p,a,w)
-
-#endif	/* of #if defined(SUPPORT_INET6) */
 
 /*
  *  put_macaddr -- MAC アドレス出力
@@ -274,11 +538,8 @@ cons_printf (ID portid, const char *fmt, ...)
 	va_list	ap;
 	long_t	val;
 	char	padchar, *str;
-	int_t	ch, width, longflag, left;
-
-#if defined(SUPPORT_INET4)
+	int_t	ch, width, longflag, shortflag, left;
 	T_IN4_ADDR	*addr;
-#endif	/* of #if defined(SUPPORT_INET4) */
 
 	va_start(ap, fmt);
 	while ((ch = *fmt ++) != '\0') {
@@ -287,10 +548,10 @@ cons_printf (ID portid, const char *fmt, ...)
 			continue;
 			}
 
-		width = longflag = 0;
+		width = longflag = shortflag = 0;
 		padchar = ' ';
 
-		if (ch == '-') {		/* 左詰め */
+		if (*fmt == '-') {		/* 左詰め */
 			fmt ++;
 			left = -1;
 			}
@@ -309,6 +570,11 @@ cons_printf (ID portid, const char *fmt, ...)
 
 		while (ch == 'l') {		/* long (long) の指定 */
 			longflag ++;
+			ch = *fmt ++;
+			}
+
+		while (ch == 'h') {		/* short の指定 */
+			shortflag ++;
 			ch = *fmt ++;
 			}
 
@@ -357,25 +623,38 @@ cons_printf (ID portid, const char *fmt, ...)
 
 		case 'I':
 
-#if defined(SUPPORT_INET4)
-
-			addr = va_arg(ap, T_IN4_ADDR *);
-			put_ipv4addr(portid, addr, width);
-
-#endif	/* of #if defined(SUPPORT_INET4) */
+			if (longflag) {
+				str = va_arg(ap, char*);
+				put_ipv6addr(portid, (T_IN6_ADDR *)str, width);
+				}
+			else if (shortflag) {
+				addr = va_arg(ap, T_IN4_ADDR *);
+				put_ipv4addr(portid, addr, width);
+				}
+			else {
 
 #if defined(SUPPORT_INET6)
 
-			str = va_arg(ap, char*);
-			put_ipv6addr(portid, (T_IN6_ADDR *)str, width);
+				str = va_arg(ap, char*);
+				put_ipv6addr(portid, (T_IN6_ADDR *)str, width);
+
+#else	/* of #if defined(SUPPORT_INET6) */
+
+#if defined(SUPPORT_INET4)
+
+				addr = va_arg(ap, T_IN4_ADDR *);
+				put_ipv4addr(portid, addr, width);
+
+#endif	/* of #if defined(SUPPORT_INET4) */
 
 #endif	/* of #if defined(SUPPORT_INET6) */
 
+				}
 			break;
 
 		case 'M':
 			str = va_arg(ap, char*);
-			put_macaddr(portid, str, width);
+			put_macaddr(portid, (uint8_t *)str, width);
 			break;
 
 		case '%':
@@ -392,6 +671,58 @@ cons_printf (ID portid, const char *fmt, ...)
 
 		}
 	va_end(ap);
+	}
+
+/*
+ *  host2msg16 -- 16ビットの値を、バイトオーダーを調整してメッセージに書き込む。
+ */
+
+void
+host2msg16 (void *msg, uint16_t host_data)
+{
+	uint16_t	msg_data;
+
+	msg_data = htons(host_data);
+	memcpy(msg, &msg_data, sizeof(msg_data));
+	}
+
+/*
+ *  host2msg32 -- 32ビットの値を、バイトオーダーを調整してメッセージに書き込む。
+ */
+
+void
+host2msg32 (void *msg, uint32_t host_data)
+{
+	uint32_t	msg_data;
+
+	msg_data = htonl(host_data);
+	memcpy(msg, &msg_data, sizeof(msg_data));
+	}
+
+/*
+ *  msg2host16 -- 16ビットの値を、バイトオーダーを調整してメッセージから読み出す。
+ */
+
+uint16_t
+msg2host16 (void *msg)
+{
+	uint16_t	host_data;
+
+	memcpy(&host_data, msg, sizeof(host_data));
+	return htons(host_data);
+	}
+
+/*
+ *  msg2host32 -- 32ビットの値を、バイトオーダーを調整してメッセージから読み出す。
+ */
+
+uint32_t
+msg2host32 (void *msg)
+{
+	uint32_t	host_data;
+
+	memcpy(&host_data, msg, sizeof(host_data));
+	return htonl(host_data);
 	}
 
 /*
@@ -415,7 +746,7 @@ get_ipv4addr (T_IN4_ADDR *addr, char *line)
 {
 	int_t oct;
 
-	*addr = 0;
+	*addr = IPV4_ADDRANY;
 	while ('0' <= *line && *line <= '9') {
 		oct = 0;
 		while ('0' <= *line && *line <= '9')
@@ -424,10 +755,14 @@ get_ipv4addr (T_IN4_ADDR *addr, char *line)
 		if (*line == '.')
 			line ++;
 		}
+#if 1
+	return *addr == IPV4_ADDRANY ? NULL : line;
+#else
 	return line;
+#endif
 	}
 
-#if defined(SUPPORT_INET6)
+#if defined(SUPPORT_INET6) || defined(USE_RESOLVER)
 
 /*
  *  get_ipv6addr -- 文字列の IPv6 アドレスを T_IN6_ADDR 値に変換する。
@@ -437,43 +772,59 @@ char *
 get_ipv6addr (T_IN6_ADDR *addr, char *line)
 {
 	int_t word, ix = 0, omit = 0, six;
+	char *ipv4line;
 
 	memset(addr, 0, sizeof(T_IN6_ADDR));
-	while (ix < 8 &&
-	       (('0' <= *line && *line <= '9') ||
-	        ('a' <= *line && *line <= 'f') ||
-	        ('A' <= *line && *line <= 'F'))) {
-		word = 0;
-		while (('0' <= *line && *line <= '9') ||
- 	               ('a' <= *line && *line <= 'f') ||
-	               ('A' <= *line && *line <= 'F')) {
-			if      ('0' <= *line && *line <= '9')
-				word = (word << 4) + (*line ++) - '0';
-			else if ('a' <= *line && *line <= 'f')
-				word = (word << 4) + (*line ++) - 'a' + 10;
-			else if ('A' <= *line && *line <= 'F')
-				word = (word << 4) + (*line ++) - 'A' + 10;
-			}
-		addr->s6_addr16[ix ++] = htons(word);
-		if (*line == ':') {
-			line ++;
+
+	/*
+	 * IPv4 アドレス（数字.）を検出したら IPv4 アドレスとして入力し、
+	 * IPv4 射影アドレスに変換する。
+	 */
+	for (ipv4line = line; '0' <= *ipv4line && *ipv4line <= '9'; ipv4line ++)
+		;
+	if (*ipv4line == '.') {
+		T_IN4_ADDR ipv4addr;
+
+		line = get_ipv4addr(&ipv4addr, line);
+		in6_make_ipv4mapped (addr, ipv4addr);
+		}
+	else {
+		while (ix < 8 &&
+		       (('0' <= *line && *line <= '9') ||
+		        ('a' <= *line && *line <= 'f') ||
+		        ('A' <= *line && *line <= 'F'))) {
+			word = 0;
+			while (('0' <= *line && *line <= '9') ||
+ 		               ('a' <= *line && *line <= 'f') ||
+		               ('A' <= *line && *line <= 'F')) {
+				if      ('0' <= *line && *line <= '9')
+					word = (word << 4) + (*line ++) - '0';
+				else if ('a' <= *line && *line <= 'f')
+					word = (word << 4) + (*line ++) - 'a' + 10;
+				else if ('A' <= *line && *line <= 'F')
+					word = (word << 4) + (*line ++) - 'A' + 10;
+				}
+			addr->s6_addr16[ix ++] = htons(word);
 			if (*line == ':') {
-				omit = ix;
 				line ++;
+				if (*line == ':') {
+					omit = ix;
+					line ++;
+					}
 				}
 			}
-		}
-	if (omit > 0) {
-		six = 7;
-		while (ix > omit) {
-			addr->s6_addr16[six --] = addr->s6_addr16[-- ix];
-			addr->s6_addr16[ ix   ] = 0;
+		if (omit > 0) {
+			six = 7;
+			while (ix > omit) {
+				addr->s6_addr16[six --] = addr->s6_addr16[-- ix];
+				addr->s6_addr16[ ix   ] = 0;
+				}
 			}
 		}
 	return line;
 	}
 
-#endif	/* of #if defined(SUPPORT_INET6) */
+#endif	/* of #if defined(SUPPORT_INET6) || defined(USE_RESOLVER) */
 
 /*
  *  デバッグ行入力
@@ -558,200 +909,320 @@ get_xuint (uint_t *val, char *line)
 	return line;
 	}
 
-#ifdef USE_TCP_EXTENTIONS
-
-const ID vrid_tcp_rep[] =
-{
-#if NUM_VRID_TCP_REPS >= 1
-	TCP_RSV_REPID1,
-#endif
-#if NUM_VRID_TCP_REPS >= 2
-	TCP_RSV_REPID2,
-#endif
-	};
-
-const ID vrid_tcp_cep[] =
-{
-#if NUM_VRID_TCP_CEPS >= 1
-	TCP_RSV_CEPID1,
-#endif
-#if NUM_VRID_TCP_CEPS >= 2
-	TCP_RSV_CEPID2,
-#endif
-#if NUM_VRID_TCP_CEPS >= 3
-	TCP_RSV_CEPID3,
-#endif
-#if NUM_VRID_TCP_CEPS >= 4
-	TCP_RSV_CEPID4,
-#endif
-	};
-
-ID tskid_tcp_rep[NUM_VRID_TCP_REPS];
-ID tskid_tcp_cep[NUM_VRID_TCP_CEPS];
+#ifdef USE_RESOLVER
 
 /*
- *  alloc_tcp_rep -- TCP 受付口を獲得する。
+ *  dns_strtype -- DNS の type の文字列を返す。
  */
 
-ER
-alloc_tcp_rep (ID *repid, ID tskid, T_TCP_CREP *crep)
+const char *
+dns_strtype (uint_t type)
 {
-	int_t	ix;
+	switch (type) {
+	case DNS_TYPE_A:
+		return "A";
+		break;
+	case DNS_TYPE_NS:
+		return "NS";
+		break;
+	case DNS_TYPE_CNAME:
+		return "CNAME";
+		break;
+	case DNS_TYPE_SOA:
+		return "SOA";
+		break;
+	case DNS_TYPE_PTR:
+		return "PTR";
+		break;
+	case DNS_TYPE_AAAA:
+		return "AAAA";
+		break;
+	default:
+		return "unknown type";
+		break;
+		}
+	}
 
-	*repid = TCP_REP_NONE;
-	syscall(wai_sem(SEM_ALLOC_TCP_REP_LOCK));
-	for (ix = NUM_VRID_TCP_REPS; ix -- > 0; ) {
-		if (tskid_tcp_rep[ix] == TSK_NONE) {
-			*repid = vrid_tcp_rep[ix];
-			tskid_tcp_rep[ix] = tskid;
-			break;
+/*
+ *  dns_strclass -- DNS の class を表示する。
+ */
+
+const char *
+dns_strclass (uint_t class)
+{
+	switch (class) {
+	case DNS_CLASS_IN:
+		return "IN";
+		break;
+	default:
+		return "unknown class";
+		break;
+		}
+	}
+
+/*
+ *  resolv_hoststr -- 文字列のFQDN・ホスト名・IPv6/IPv4 アドレスを解析する。
+ */
+
+#define IS_HOSTCH_DIGIT(c)	(('0'<=(c)&&(c)<='9'))
+#define IS_HOSTCH_XDIGIT(c)	(IS_HOSTCH_DIGIT(c)||('a'<=(c)&&(c)<='f')||('A'<=(c)&&(c)<='F'))
+#define IS_HOSTCH_ALPHA(c)	(('a'<=(c)&&(c)<='z')||('A'<=(c)&&(c)<='z'))
+#define IS_HOSTCH_ALNUM(c)	(IS_HOSTCH_ALPHA(c)||IS_HOSTCH_DIGIT(c))
+#define IS_HOSTCH_IPV6ADDR(c)	(IS_HOSTCH_XDIGIT(c)||(c)==':')
+#define IS_HOSTCH_IPV4ADDR(c)	(IS_HOSTCH_DIGIT(c)||(c)=='.')
+#define IS_HOSTCH_IPADDR(c)	(IS_HOSTCH_XDIGIT(c)||(c)==':'||(c)=='.')
+#define IS_HOSTCH_NAME_FIRST(c)	(IS_HOSTCH_ALPHA(c))
+#define IS_HOSTCH_NAME(c)	(IS_HOSTCH_ALNUM(c)||(c)=='-'||(c)=='.')
+#define IS_HOSTCH_BLANK(c)	((c)=='\0'||(c)==' '||(c)=='\t')
+
+char *
+resolv_hoststr (uint_t *flags, char *hostname, uint_t name_size, char *line)
+{
+	char *h, *p;
+
+	h = hostname;
+	p = line = skip_blanks(line);
+
+	if (IS_HOSTCH_IPADDR(*p)) {
+		while (IS_HOSTCH_DIGIT(*p)) {
+			if (h - hostname > name_size)
+				return NULL;
+			*h ++ = *p ++;
+			}
+		if (p > line && *p == '.') {
+			while (IS_HOSTCH_IPV4ADDR(*p)) {
+				if (h - hostname > name_size)
+					return NULL;
+				*h ++ = *p ++;
+				}
+			if (IS_HOSTCH_BLANK(*p)) {
+				*flags |= HOSTSTR_IPV4;
+				*h = '\0';
+				return p;
+				}
+			}
+		else if (IS_HOSTCH_IPADDR(*p)) {
+			while (IS_HOSTCH_IPADDR(*p)) {
+				if (h - hostname > name_size)
+					return NULL;
+				*h ++ = *p ++;
+				}
+			if (IS_HOSTCH_BLANK(*p)) {
+				*flags |= HOSTSTR_IPV6;
+				*h = '\0';
+				return p;
+				}
+			}
+		h = hostname;
+		p = line;
+		}
+
+	if (IS_HOSTCH_NAME_FIRST(*p)) {
+		*flags |= HOSTSTR_HOSTNAME;
+		while (IS_HOSTCH_NAME(*p)) {
+			if (h - hostname > name_size)
+				return NULL;
+			if (*p == '.')
+				*flags |= HOSTSTR_FQDN;
+			*h ++ = *p ++;
 			}
 		}
-	syscall(sig_sem(SEM_ALLOC_TCP_REP_LOCK));
-
-	if (*repid == TCP_REP_NONE)
-		return E_NOEXS;
 	else
-		return TCP_CRE_REP(*repid, crep);
+		*flags |= HOSTSTR_OTHER;
+
+	*h = '\0';
+	return p;
 	}
 
 /*
- *  free_tcp_rep -- TCP 受付口を解放する。
+ *  show_dns_domain_name -- DNS のドメイン名を表示する。
  */
 
-ER
-free_tcp_rep (ID repid, bool_t call_tcp_del_rep)
+uint_t
+show_dns_domain_name (ID portid, uint8_t *hdr, uint_t offset)
 {
-	int_t	ix;
+	uint8_t	*ptr;
+	uint_t	c;
 
-	syscall(wai_sem(SEM_ALLOC_TCP_REP_LOCK));
-	for (ix = NUM_VRID_TCP_REPS; ix -- > 0; ) {
-		if (repid == vrid_tcp_rep[ix]) {
-			tskid_tcp_rep[ix] = TSK_NONE;
+	ptr = hdr + offset;
+	while (*ptr) {
+		if ((*ptr & DNS_MSG_COMP_MARK) == DNS_MSG_COMP_MARK) {
+			show_dns_domain_name(portid, hdr, (*ptr & ~DNS_MSG_COMP_MARK) << 8 | *(ptr + 1));
+			ptr += 2;
 			break;
 			}
+		else {
+			for (c = 1; c <= *ptr; c++)
+				cons_printf(portid, "%c", *(ptr + c));
+			ptr += *ptr + 1;
+			if (*ptr)
+				cons_printf(portid, ".");
+			}
 		}
-	syscall(sig_sem(SEM_ALLOC_TCP_REP_LOCK));
-
-	if (call_tcp_del_rep)
-		return tcp_del_rep(repid);
-	else
-		return E_OK;
+	return ptr - hdr;
 	}
 
 /*
- *  alloc_tcp_cep -- TCP 通信端点を獲得する。
+ *  resolv_options -- アドレス解決のオプション解析
  */
 
-ER
-alloc_tcp_cep (ID *cepid, ID tskid, T_TCP_CCEP *ccep)
+char *
+resolv_options (uint_t *flags, char *line, char apip)
 {
-	int_t	ix;
-
-	*cepid = TCP_CEP_NONE;
-	syscall(wai_sem(SEM_ALLOC_TCP_CEP_LOCK));
-	for (ix = NUM_VRID_TCP_CEPS; ix -- > 0; ) {
-		if (tskid_tcp_cep[ix] == TSK_NONE) {
-			*cepid = vrid_tcp_cep[ix];
-			tskid_tcp_cep[ix] = tskid;
-			break;
-			}
-		}
-	syscall(sig_sem(SEM_ALLOC_TCP_CEP_LOCK));
-
-	if (*cepid == TCP_CEP_NONE)
-		return E_NOEXS;
-	else
-		return tcp_cre_cep(*cepid, ccep);
-	}
-
-/*
- *  free_tcp_cep -- TCP 通信端点を解放する。
- */
-
-ER
-free_tcp_cep (ID cepid)
-{
-	int_t	ix;
-
-	syscall(wai_sem(SEM_ALLOC_TCP_CEP_LOCK));
-	for (ix = NUM_VRID_TCP_CEPS; ix -- > 0; ) {
-		if (cepid == vrid_tcp_cep[ix]) {
-			tskid_tcp_cep[ix] = TSK_NONE;
-			break;
-			}
-		}
-	syscall(sig_sem(SEM_ALLOC_TCP_CEP_LOCK));
-
-	return tcp_del_cep(cepid);
-	}
-
-#endif	/* of #ifdef USE_TCP_EXTENTIONS */
-
-#ifdef USE_UDP_EXTENTIONS
-
-const ID vrid_udp_cep[] =
-{
-#if NUM_VRID_UDP_CEPS >= 1
-	UDP_RSV_CEPID1,
+#if defined(SUPPORT_INET6)
+	T_IN6_ADDR	in6_addr;
 #endif
-#if NUM_VRID_UDP_CEPS >= 2
-	UDP_RSV_CEPID2,
+
+#if defined(SUPPORT_INET4)
+	T_IN4_ADDR	in4_addr;
 #endif
-	};
 
-ID tskid_udp_cep[NUM_VRID_UDP_CEPS];
+	line = skip_blanks(line);
 
-/*
- *  alloc_udp_cep -- UDP 通信端点を獲得する。
- */
+#if defined(SUPPORT_INET6)
 
-ER
-alloc_udp_cep (ID *cepid, ID tskid, T_UDP_CCEP *ccep)
-{
-	int_t	ix;
+#if defined(SUPPORT_INET4)
 
-	*cepid = UDP_CEP_NONE;
-	syscall(wai_sem(SEM_ALLOC_UDP_CEP_LOCK));
-	for (ix = NUM_VRID_UDP_CEPS; ix -- > 0; ) {
-		if (tskid_udp_cep[ix] == TSK_NONE) {
-			*cepid = vrid_udp_cep[ix];
-			tskid_udp_cep[ix] = tskid;
-			break;
-			}
-		}
-	syscall(sig_sem(SEM_ALLOC_UDP_CEP_LOCK));
-
-	if (*cepid == UDP_CEP_NONE)
-		return E_NOEXS;
+	*flags |= DNS_LUP_FLAGS_PROTO_IPV6 | DNS_LUP_FLAGS_PROTO_IPV4;
+	if (apip == API_PROTO_IPV4)
+		*flags |= DNS_LUP_FLAGS_QTYPE_A;
 	else
-		return UDP_CRE_CEP(*cepid, ccep);
+		*flags |= DNS_LUP_FLAGS_QTYPE_AAAA;
+
+	if (*line == '-') {
+		line ++;
+		if (*line == '6') {
+			line ++;
+			*flags &= ~DNS_LUP_FLAGS_PROTO_IPV4;
+			}
+		else if (*line == '4') {
+			line ++;
+			*flags &= ~DNS_LUP_FLAGS_PROTO_IPV6;
+			}
+		if (*line == 'Q' || *line == 'q') {
+			*flags &= ~DNS_LUP_FLAGS_QTYPE_A;
+			line ++;                   
+			}
+		else if (*line == 'A' || *line == 'a') {
+			*flags &= ~DNS_LUP_FLAGS_QTYPE_AAAA;
+			line ++;                   
+			}
+		while (*line && !(*line == ' ' || *line == '\t'))
+			line ++;
+		}
+
+#else	/* of #if defined(SUPPORT_INET4) */
+
+	*flags = DNS_LUP_FLAGS_PROTO_IPV6 | DNS_LUP_FLAGS_QTYPE_AAAA;
+	if (*line == '-') {
+		line ++;
+		while (*line && !(*line == ' ' || *line == '\t'))
+			line ++;
+		}
+
+#endif	/* of #if defined(SUPPORT_INET4) */
+
+#else	/* of #if defined(SUPPORT_INET6) */
+
+#if defined(SUPPORT_INET4)
+
+	*flags = DNS_LUP_FLAGS_PROTO_IPV4 | DNS_LUP_FLAGS_QTYPE_A;
+	if (*line == '-') {
+		line ++;
+		while (*line && !(*line == ' ' || *line == '\t'))
+			line ++;
+		}
+
+#endif	/* of #if defined(SUPPORT_INET4) */
+
+#endif	/* of #if defined(SUPPORT_INET6) */
+
+#if defined(SUPPORT_INET6)
+
+	if (*flags | DNS_LUP_FLAGS_PROTO_IPV6) {
+		/*
+		 *  IPv6 で DNS サーバに照会することが指定されても、
+		 *  サーバの IPv6 アドレスが未定義の時は、指定を外す。
+		 */
+		dns_in6_get_addr(&in6_addr);
+		if (IN6_IS_ADDR_UNSPECIFIED(&in6_addr))
+			*flags &= ~DNS_LUP_FLAGS_PROTO_IPV6;
+		}
+
+#endif	/* of #if defined(SUPPORT_INET6) */
+
+#if defined(SUPPORT_INET4)
+
+	if (*flags | DNS_LUP_FLAGS_PROTO_IPV4) {
+		/*
+		 *  IPv4 で DNS サーバに照会することが指定されても、
+		 *  サーバの IPv4 アドレスが未定義の時は、指定を外す。
+		 */
+		dns_in4_get_addr(&in4_addr);
+		if (in4_addr == IPV4_ADDRANY)
+			*flags &= ~DNS_LUP_FLAGS_PROTO_IPV4;
+		}
+
+#endif	/* of #if defined(SUPPORT_INET4) */
+
+	return line;
 	}
 
+#endif	/* of #ifdef USE_RESOLVER */
+
 /*
- *  free_udp_cep -- UDP 通信端点を解放する。
+ *  lookup_ipaddr -- ホスト名・リテラルのIPアドレスをIP アドレスに変換する。
  */
 
-ER
-free_udp_cep (ID cepid, bool_t call_udp_del_cep)
+char *
+lookup_ipaddr (T_IN_ADDR *addr, char *line, char apip)
 {
-	int_t	ix;
 
-	syscall(wai_sem(SEM_ALLOC_UDP_CEP_LOCK));
-	for (ix = NUM_VRID_UDP_CEPS; ix -- > 0; ) {
-		if (cepid == vrid_udp_cep[ix]) {
-			tskid_udp_cep[ix] = TSK_NONE;
-			break;
-			}
+#ifdef USE_RESOLVER
+
+	static char hostname[DBG_LINE_SIZE + 1];
+
+	ER_UINT	error;
+	uint_t	flags = 0;
+	char	*last;
+
+	line = skip_blanks(resolv_options(&flags, line, apip));
+	if ((last = resolv_hoststr(&flags, hostname, sizeof(hostname), line)) == NULL) {
+		cons_printf(CONSOLE_PORTID, "unknown host: %s.\n", hostname);
+		return NULL;
 		}
-	syscall(sig_sem(SEM_ALLOC_UDP_CEP_LOCK));
 
-	if (call_udp_del_cep)
-		return udp_del_cep(cepid);
-	else
-		return E_OK;
+	switch (flags & DNS_LUP_FLAGS_NAME_MASK) {
+	case DNS_LUP_FLAGS_NAME_IPV4:
+	case DNS_LUP_FLAGS_NAME_IPV6:
+		line = GET_IPADDR(addr, line);		/* IP Address by Literal */
+		break;
+
+	case DNS_LUP_FLAGS_NAME_HOST:
+	case DNS_LUP_FLAGS_NAME_FQDN:
+		line = last;
+		if ((flags & (DNS_LUP_FLAGS_PROTO_IPV6 | DNS_LUP_FLAGS_PROTO_IPV4)) == 0) {
+			cons_printf(CONSOLE_PORTID, "DNS server not available.\n");
+			return NULL;
+			}
+
+		flags |= DNS_LUP_OPCODE_FORWARD;
+		if ((error = dns_host_addr(flags, hostname, addr)) != E_OK) {
+			cons_printf(CONSOLE_PORTID, "error: %s.\n", itron_strerror(error));
+			return NULL;
+			}
+		break;
+
+		}
+
+	return line;
+
+#else	/* of #ifdef USE_RESOLVER */
+
+	return GET_IPADDR(addr, skip_blanks(line));		/* IP Address by Literal */
+
+#endif	 /* of #ifdef USE_RESOLVER */
+
 	}
-
-#endif	/* of #ifdef USE_UDP_EXTENTIONS */
 
 #endif	/* of #ifdef USE_NETAPP_SUBR */

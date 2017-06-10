@@ -1,7 +1,7 @@
 /*
  *  TINET (TCP/IP Protocol Stack)
  * 
- *  Copyright (C) 2001-2009 by Dep. of Computer Science and Engineering
+ *  Copyright (C) 2001-2017 by Dep. of Computer Science and Engineering
  *                   Tomakomai National College of Technology, JAPAN
  *
  *  上記著作権者は，以下の (1)〜(4) の条件か，Free Software Foundation 
@@ -28,7 +28,7 @@
  *  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
  *  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
  * 
- *  @(#) $Id: sample1n.c,v 1.5.4.1 2015/02/05 02:08:29 abe Exp abe $
+ *  @(#) $Id: sample1n.c 1.7 2017/6/1 8:50:30 abe $
  */
 
 /* 
@@ -91,15 +91,17 @@ uint8_t tcp_rwbuf[TCP_RWBUF_SIZE];
 bool_t		connected	= false;	/* コネクションの状態	*/
 bool_t		wait_accept	= false;	/* 接続要求待ち中	*/
 
+#ifdef SUPPORT_INET6
+
+T_IPV6EP	dst;
+
+#else	/* of #ifdef SUPPORT_INET6 */
+
 #ifdef SUPPORT_INET4
 
 T_IPV4EP	dst;
 
 #endif	/* of #ifdef SUPPORT_INET4 */
-
-#ifdef SUPPORT_INET6
-
-T_IPV6EP	dst;
 
 #endif	/* of #ifdef SUPPORT_INET6 */
 
@@ -116,17 +118,19 @@ uint8_t		addr[sizeof("0123:4567:89ab:cdef:0123:4567:89ab:cdef")];
  *  ネットワーク層の選択
  */
 
+#ifdef SUPPORT_INET6
+
+#define TCP_ACP_CEP(c,r,d,t)	tcp6_acp_cep(c,r,d,t)
+#define IP2STR(s,a)		ipv62str(s,a)
+
+#else	/* of #ifdef SUPPORT_INET6 */
+
 #ifdef SUPPORT_INET4
 
 #define TCP_ACP_CEP(c,r,d,t)	tcp_acp_cep(c,r,d,t)
 #define IP2STR(s,a)		ip2str(s,a)
 
 #endif	/* of #ifdef SUPPORT_INET4 */
-
-#ifdef SUPPORT_INET6
-
-#define TCP_ACP_CEP(c,r,d,t)	tcp6_acp_cep(c,r,d,t)
-#define IP2STR(s,a)		ipv62str(s,a)
 
 #endif	/* of #ifdef SUPPORT_INET6 */
 
@@ -422,56 +426,11 @@ put_num(ID cepid, ULONGEST val, int_t radix, const char *radchar, int_t width, b
 	return pchars;
 	}
 
-#ifdef SUPPORT_INET4
-
-/*
- *  put_ipv4addr -- IPv4 アドレス出力
- */
-
-static int_t
-put_ipv4addr (ID cepid, ULONGEST *addr, int_t width)
-{
-	int_t len = 3;	/* 3 は '.' の文字数 */
-
-#if _NET_CFG_BYTE_ORDER == _NET_CFG_BIG_ENDIAN
-
-	len += put_num(cepid, (*addr >> 24) & 0xff, 10, radhex, 0, false, ' '); 
-	put_char(cepid, '.');
-	len += put_num(cepid, (*addr >> 16) & 0xff, 10, radhex, 0, false, ' '); 
-	put_char(cepid, '.');
-	len += put_num(cepid, (*addr >>  8) & 0xff, 10, radhex, 0, false, ' '); 
-	put_char(cepid, '.');
-	len += put_num(cepid,  *addr        & 0xff, 10, radhex, 0, false, ' '); 
-
-#else	/* of #if _NET_CFG_BYTE_ORDER == _NET_CFG_BIG_ENDIAN */
-
-	len += put_num(cepid,  *addr        & 0xff, 10, radhex, 0, false, ' '); 
-	put_char(cepid, '.');
-	len += put_num(cepid, (*addr >>  8) & 0xff, 10, radhex, 0, false, ' '); 
-	put_char(cepid, '.');
-	len += put_num(cepid, (*addr >> 16) & 0xff, 10, radhex, 0, false, ' '); 
-	put_char(cepid, '.');
-	len += put_num(cepid, (*addr >> 24) & 0xff, 10, radhex, 0, false, ' '); 
-
-#endif	/* of #if _NET_CFG_BYTE_ORDER == _NET_CFG_BIG_ENDIAN */
-
-	for ( ; len < width; len ++)
-		put_char(cepid, ' ');
-
-	return len;
-	}
-
-#define PUT_IPADDR(p,a,w)	put_ipv4addr(p,a,w)
-
-#endif	/* of #ifdef SUPPORT_INET4 */
-
-#ifdef SUPPORT_INET6
-
 /*
  *  ipv6addr -- IPv6 アドレス出力
  */
 
-static int_t
+int_t
 put_ipv6addr (ID cepid, const T_IN6_ADDR *addr, int_t width)
 {
 	int_t	len = 0, ix;
@@ -515,9 +474,42 @@ put_ipv6addr (ID cepid, const T_IN6_ADDR *addr, int_t width)
 	return len;
 	}
 
-#define PUT_IPADDR(p,a,w)	put_ipv6addr(p,a,w)
+/*
+ *  put_ipv4addr -- IPv4 アドレス出力
+ */
 
-#endif	/* of #ifdef SUPPORT_INET6 */
+int_t
+put_ipv4addr (ID cepid, ULONGEST *addr, int_t width)
+{
+	int_t len = 3;	/* 3 は '.' の文字数 */
+
+#if _NET_CFG_BYTE_ORDER == _NET_CFG_BIG_ENDIAN
+
+	len += put_num(cepid, (*addr >> 24) & 0xff, 10, radhex, 0, false, ' '); 
+	put_char(cepid, '.');
+	len += put_num(cepid, (*addr >> 16) & 0xff, 10, radhex, 0, false, ' '); 
+	put_char(cepid, '.');
+	len += put_num(cepid, (*addr >>  8) & 0xff, 10, radhex, 0, false, ' '); 
+	put_char(cepid, '.');
+	len += put_num(cepid,  *addr        & 0xff, 10, radhex, 0, false, ' '); 
+
+#else	/* of #if _NET_CFG_BYTE_ORDER == _NET_CFG_BIG_ENDIAN */
+
+	len += put_num(cepid,  *addr        & 0xff, 10, radhex, 0, false, ' '); 
+	put_char(cepid, '.');
+	len += put_num(cepid, (*addr >>  8) & 0xff, 10, radhex, 0, false, ' '); 
+	put_char(cepid, '.');
+	len += put_num(cepid, (*addr >> 16) & 0xff, 10, radhex, 0, false, ' '); 
+	put_char(cepid, '.');
+	len += put_num(cepid, (*addr >> 24) & 0xff, 10, radhex, 0, false, ' '); 
+
+#endif	/* of #if _NET_CFG_BYTE_ORDER == _NET_CFG_BIG_ENDIAN */
+
+	for ( ; len < width; len ++)
+		put_char(cepid, ' ');
+
+	return len;
+	}
 
 /*
  *  put_macaddr -- MAC アドレス出力
@@ -585,7 +577,7 @@ net_syslog (uint_t prio, const char *format, ...)
 	SYSLOG	log;
 	va_list	ap;
 	char	padchar, *str;
-	int_t	ch, width, longflag, left, i, c;
+	int_t	ch, width, longflag, shortflag, left, i, c;
 
 	if (connected) {
 		syscall(wai_sem(SEM_TCP_SYSLOG));
@@ -596,7 +588,7 @@ net_syslog (uint_t prio, const char *format, ...)
 				continue;
 				}
 
-			width = longflag = 0;
+			width = longflag = shortflag = 0;
 			padchar = ' ';
 
 			if (ch == '-') {		/* 左詰め */
@@ -618,6 +610,11 @@ net_syslog (uint_t prio, const char *format, ...)
 
 			while (ch == 'l') {		/* long (long) の指定 */
 				longflag ++;
+				ch = *format ++;
+				}
+
+			while (ch == 'h') {		/* short の指定 */
+				shortflag ++;
 				ch = *format ++;
 				}
 
@@ -662,19 +659,33 @@ net_syslog (uint_t prio, const char *format, ...)
 
 			case 'I':
 
-#ifdef SUPPORT_INET4
-
-				val = GET_ARG(ap, longflag);
-				put_ipv4addr(TCP_CEPID, (ULONGEST *)val, width);
-
-#endif	/* of #ifdef SUPPORT_INET4 */
+				if (longflag) {
+					str = va_arg(ap, char*);
+					put_ipv6addr(TCP_CEPID, (T_IN6_ADDR *)str, width);
+					}
+				else if (shortflag) {
+					val = GET_ARG(ap, longflag);
+					put_ipv4addr(TCP_CEPID, (ULONGEST *)val, width);
+					}
+				else {
 
 #ifdef SUPPORT_INET6
 
-				str = va_arg(ap, char*);
-				put_ipv6addr(TCP_CEPID, (T_IN6_ADDR *)str, width);
+					str = va_arg(ap, char*);
+					put_ipv6addr(TCP_CEPID, (T_IN6_ADDR *)str, width);
+
+#else	/* of #ifdef SUPPORT_INET6 */
+
+#ifdef SUPPORT_INET4
+
+					val = GET_ARG(ap, longflag);
+					put_ipv4addr(TCP_CEPID, (ULONGEST *)val, width);
+
+#endif	/* of #ifdef SUPPORT_INET4 */
 
 #endif	/* of #ifdef SUPPORT_INET6 */
+
+					}
 
 				break;
 
