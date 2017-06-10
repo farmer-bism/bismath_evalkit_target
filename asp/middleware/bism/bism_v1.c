@@ -92,14 +92,22 @@ BISM Log format
 #define BISM_SET_OK 1
 #define ERROR_CLASS_FORMAT -1
 #define ERROR_END_OF_ELEMENT -2
+#define ERROR_NOT_INITED -3
 
 PTPCLK ptp_time;
 
+#define BISM_IDLE 0
+#define BISM_LOGGING 1
+
+uint8_t bism_state = BISM_IDLE;
+
 void bism_init(uint8_t* log_file){
   bism_io_init(log_file);
+  bism_state = BISM_LOGGING;
 }
 
 void bism_close(){
+  bism_state = BISM_IDLE;
   bism_io_close();
 }
 
@@ -109,6 +117,9 @@ int8_t bism_set_event(bism_log *blog, uint32_t bevent_cls, ...){
   uint8_t* log_p;
   uint16_t element;
 
+  if(bism_state == BISM_IDLE)
+    return ERROR_NOT_INITED;
+  
   va_start(list, bevent_cls);
 
   log_header = T1_TIMER_LEN_MASK; //Timer len is 64bit.
@@ -172,6 +183,9 @@ int8_t bism_set_event(bism_log *blog, uint32_t bevent_cls, ...){
 
 void bism_write(bism_log *blog){
   uint32_t w_len, w_count;
+  if(bism_state == BISM_IDLE)
+    return 0;
+  
   wai_sem(BISM_WRITE_FUNC_SEM);
   w_len = 0;
   w_count = blog->len;
@@ -182,5 +196,7 @@ void bism_write(bism_log *blog){
 }
 
 void bism_push(){
+  if(bism_state == BISM_IDLE)
+    return 0;
   bism_push_block();
 }
