@@ -1,12 +1,12 @@
 /*
  *  TOPPERS Software
  *      Toyohashi Open Platform for Embedded Real-Time Systems
- * 
+ *
  *  Copyright (C) 2000-2003 by Embedded and Real-Time Systems Laboratory
  *                              Toyohashi Univ. of Technology, JAPAN
  *  Copyright (C) 2004-2012 by Embedded and Real-Time Systems Laboratory
  *              Graduate School of Information Science, Nagoya Univ., JAPAN
- * 
+ *
  *  上記著作権者は，以下の(1)〜(4)の条件を満たす場合に限り，本ソフトウェ
  *  ア（本ソフトウェアを改変したものを含む．以下同じ）を使用・複製・改
  *  変・再配布（以下，利用と呼ぶ）することを無償で許諾する．
@@ -29,13 +29,13 @@
  *      また，本ソフトウェアのユーザまたはエンドユーザからのいかなる理
  *      由に基づく請求からも，上記著作権者およびTOPPERSプロジェクトを
  *      免責すること．
- * 
+ *
  *  本ソフトウェアは，無保証で提供されているものである．上記著作権者お
  *  よびTOPPERSプロジェクトは，本ソフトウェアに関して，特定の使用目的
  *  に対する適合性も含めて，いかなる保証も行わない．また，本ソフトウェ
  *  アの利用により直接的または間接的に生じたいかなる損害に関しても，そ
  *  の責任を負わない．
- * 
+ *
  *  $Id: trace_config.h 2420 2012-11-11 06:34:11Z ertl-hiro $
  */
 
@@ -55,7 +55,7 @@
  *  トレースログバッファのサイズ
  */
 #ifndef TCNT_TRACE_BUFFER
-#define TCNT_TRACE_BUFFER	1024
+#define TCNT_TRACE_BUFFER	32
 #endif /* TCNT_TRACE_BUFFER */
 
 /*
@@ -130,7 +130,7 @@ extern ER	trace_wri_log(TRACE *p_trace);
  */
 extern ER	trace_rea_log(TRACE *p_trace);
 
-/* 
+/*
  *  トレースログのダンプ（trace_dump.c）
  *
  *  トレースログをダンプする．終了処理ルーチンとして登録することも想定
@@ -171,11 +171,11 @@ extern void	trace_write_3(uint_t type, intptr_t arg1, intptr_t arg2,
 /*
  *  トレースログ方法の設定
  */
-#define LOG_TSKSTAT(p_tcb)		trace_2(LOG_TYPE_TSKSTAT, p_tcb, p_tcb->tstat)
+//#define LOG_TSKSTAT(p_tcb)		trace_2(LOG_TYPE_TSKSTAT, p_tcb, p_tcb->tstat)
 
-#define LOG_DSP_LEAVE(p_tcb)	trace_1(LOG_TYPE_DSP|LOG_LEAVE, p_tcb)
+//#define LOG_DSP_LEAVE(p_tcb)	trace_1(LOG_TYPE_DSP|LOG_LEAVE, p_tcb)
 
-#define LOG_SYSLOG_WRI_LOG_ENTER(prio, p_syslog) \
+//#define LOG_SYSLOG_WRI_LOG_ENTER(prio, p_syslog)                  \
 								trace_wri_log((TRACE *) p_syslog)
 
 #endif /* TOPPERS_TRACE_CONFIG_H */

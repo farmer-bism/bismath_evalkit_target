@@ -27,6 +27,9 @@ typedef enum use_device_id{
 #ifdef USE_EPTPC_0
   DEV_EPTPC0,
 #endif
+#ifdef USE_CMTW_0
+  DEV_CMTW0,
+#endif
   NUM_TARGET_DEVICE
 }dnode_id;
 

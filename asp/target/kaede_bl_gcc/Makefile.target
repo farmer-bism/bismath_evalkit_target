@@ -56,15 +56,6 @@ SYSSVC_COBJS := $(SYSSVC_COBJS) target_serial.o tinet_target_config.o
 CFG_TABS := $(CFG_TABS) --cfg1-def-table $(TARGETDIR)/target_def.csv
 
 #
-#  トレースログ記録のサンプルコードに関する定義
-#
-ifeq ($(ENABLE_TRACE),true)
-	COPTS := $(COPTS) -DTOPPERS_ENABLE_TRACE
-	KERNEL_DIR := $(KERNEL_DIR) $(SRCDIR)/arch/logtrace
-	KERNEL_COBJS := $(KERNEL_COBJS) trace_config.o trace_dump.o
-endif
-
-#
 #  各セグメントの開始アドレスの定義
 #
 TEXT_START_ADDRESS =
@@ -109,4 +100,3 @@ $(OBJFILE): $(TARGETDIR)/target_check.tf
 #  プロセッサ依存部のインクルード
 #
 include $(SRCDIR)/arch/rx_$(TOOL)/$(PRC)/Makefile.prc
-

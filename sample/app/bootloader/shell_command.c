@@ -32,7 +32,7 @@ int8_t cmd_boot(uint8_t argc, int8_t *argv[])
   shell_close_connection();
   tslp_tsk(1000);
   if(argc == 0)
-    boot_elf("asp_boot");
+    boot_elf("asp");
   else
     boot_elf(argv[0]);
 

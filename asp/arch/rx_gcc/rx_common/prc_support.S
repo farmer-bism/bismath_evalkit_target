@@ -1,13 +1,13 @@
-; 
+;
 ;   TOPPERS/ASP Kernel
 ;       Toyohashi Open Platform for Embedded Real-Time Systems/
 ;       Advanced Standard Profile Kernel
-;  
+;
 ;   Copyright (C) 2000-2003 by Embedded and Real-Time Systems Laboratory
 ;                               Toyohashi Univ. of Technology, JAPAN
 ;   Copyright (C) 2007      by Embedded and Real-Time Systems Laboratory
 ;               Graduate School of Information Science, Nagoya Univ., JAPAN
-;  
+;
 ;   Copyright (C) 2010 by Witz Corporation, JAPAN
 ;   Copyright (C) 2015-  by Hisashi Hata, JAPAN
 ;   上記著作権者は，以下の(1)〜(4)の条件を満たす場合に限り，本ソフトウェ
@@ -32,13 +32,13 @@
 ;       また，本ソフトウェアのユーザまたはエンドユーザからのいかなる理
 ;       由に基づく請求からも，上記著作権者およびTOPPERSプロジェクトを
 ;       免責すること．
-;  
+;
 ;   本ソフトウェアは，無保証で提供されているものである．上記著作権者お
 ;   よびTOPPERSプロジェクトは，本ソフトウェアに関して，特定の使用目的
 ;   に対する適合性も含めて，いかなる保証も行わない．また，本ソフトウェ
 ;   アの利用により直接的または間接的に生じたいかなる損害に関しても，そ
 ;   の責任を負わない．
-;  
+;
 ;
 
 ;
@@ -90,7 +90,7 @@
 ;
 #define TOPPERS_MACRO_ONLY
 #include "offset.h"
-#include "asm_config.h"
+#include "asm_config.inc"
 
 .text
 .balign 4
@@ -99,7 +99,7 @@
 ;
 
 	.extern	__kernel_istkpt
-	
+
 	.extern	__kernel_p_runtsk
 	.extern	__kernel_p_schedtsk
 	.extern	__kernel_reqflg
@@ -126,22 +126,22 @@
 	.global	_sil_dly_nse
 
 .if LOG_INH_ENTER == 1
-	.extern	_kernel_log_inh_enter
+	.extern	__kernel_log_inh_enter
 .endif	; LOG_INH_ENTER == 1
 .if LOG_INH_LEAVE == 1
-	.extern	_kernel_log_inh_leave
+	.extern	__kernel_log_inh_leave
 .endif	; LOG_INH_LEAVE == 1
 .if LOG_EXC_ENTER == 1
-	.extern	_kernel_log_exc_enter
+	.extern	__kernel_log_exc_enter
 .endif	; LOG_EXC_ENTER == 1
 .if LOG_EXC_LEAVE == 1
-	.extern	_kernel_log_exc_leave
+	.extern	__kernel_log_exc_leave
 .endif	; LOG_EXC_LEAVE == 1
 .if LOG_DSP_ENTER == 1
-	.extern	_kernel_log_dsp_enter
+	.extern	__kernel_log_dsp_enter
 .endif	; LOG_DSP_ENTER == 1
 .if LOG_DSP_LEAVE == 1
-	.extern	_kernel_log_dsp_leave
+	.extern	__kernel_log_dsp_leave
 .endif	; LOG_DSP_LEAVE == 1
 
 ;
@@ -331,7 +331,7 @@ __kernel_start_dispatch:
 ;  なお, p_runtsk のアドレス取得だけは行なう.
 ;
 __exit_and_dispatch:
-	mov.l	#__kernel_p_runtsk, r15     
+	mov.l	#__kernel_p_runtsk, r15
 
 ;
 ; ディスパッチャ本体
@@ -341,7 +341,7 @@ __exit_and_dispatch:
 ;
 ;  dispatcher 呼出時のスタック:
 ;	・__kernel_dispatch からきた場合			: タスクスタック
-;	・exit_and_dispatch からきた場合: 
+;	・exit_and_dispatch からきた場合:
 ;		exit_task からきた場合					: タスクスタック
 ;		カーネル起動時(__kernel_start_dispatch)	: 割込みスタック
 ;	・ret_int からきた場合						: タスクスタック
@@ -351,10 +351,10 @@ dispatcher:
 .if LOG_DSP_ENTER == 1
 	push.l	r15
 	mov.l	r14, r1						; 引数(ディスパッチ元TCB)を設定
-	bsr		_kernel_log_dsp_enter
-	pop.l	r15
+	bsr		__kernel_log_dsp_enter
+	pop	    r15
 .endif
-	mov.l	#__kernel_p_schedtsk, r5     
+	mov.l	#__kernel_p_schedtsk, r5
 	mov.l	[r5], [r15]					; p_schedtsk を p_runtsk に
 	mov.l	[r15], r14
 	cmp		#0, r14
@@ -363,8 +363,8 @@ dispatcher:
 .if LOG_DSP_LEAVE == 1
 	push.l	r14
 	mov.l	r14, r1						; 引数(ディスパッチ先TCB)を設定
-	bsr		_kernel_log_dsp_leave
-	pop.l	r14
+	bsr		__kernel_log_dsp_leave
+	pop     r14
 .endif
 	ld_TCB_pc	r5, r14, r4
 	jmp		r5					; 実行再開番地へジャンプ
@@ -439,7 +439,7 @@ __kernel_call_exit_kernel:
 ;	・使用スタックはタスクスタック
 ;	・reqflg = true
 ;
-;  ここでは, ディスパッチャモードに変更し, reqflgをOFFにしてから, 
+;  ここでは, ディスパッチャモードに変更し, reqflgをOFFにしてから,
 ;  遅延ディスパッチの有無を判断する.
 ;
 
@@ -467,7 +467,7 @@ ret_int:
 .endif
 	mov.l	#__kernel_reqflg, r5
 	mov.l	#0, [r5]					; reqflg <--- FALSE
-	mov.l	#__kernel_p_runtsk, r15     
+	mov.l	#__kernel_p_runtsk, r15
 	mov.l	[r15], r14
 	mov.l	#__kernel_dspflg, r5		; dspflg が FALSE なら ret_int_r へ
 	mov.l	[r5], r5
@@ -601,7 +601,7 @@ interrupt_from_int:		; 多重割込み
 
 .if	LOG_INH_ENTER == 1
 	push.l	r2
-	bsr		_kernel_log_inh_enter		; ログトレース関数の呼出し
+	bsr		__kernel_log_inh_enter		; ログトレース関数の呼出し
 							; 引数の割込み要因番号は既にr1に入っている
 	pop		r2
 .endif
@@ -610,7 +610,7 @@ interrupt_from_int:		; 多重割込み
 
 .if	LOG_INH_LEAVE == 1
 	pop		r1							; 引数に割込み要因番号を設定
-	bsr		_kernel_log_inh_leave		; ログトレース関数の呼出し
+	bsr		__kernel_log_inh_leave		; ログトレース関数の呼出し
 .endif
 
 	clrpsw	i							; 割込み禁止(CPUロック状態)
@@ -765,7 +765,7 @@ exception_from_int:		; 多重割込み
 
 .if LOG_EXC_ENTER == 1
 	pushm	r2-r3
-	bsr		_kernel_log_exc_enter		; ログトレース関数の呼出し
+	bsr		__kernel_log_exc_enter		; ログトレース関数の呼出し
 							; 引数の割込み要因番号は既にr1に入っている
 	popm	r2-r3
 .endif
@@ -775,7 +775,7 @@ exception_from_int:		; 多重割込み
 
 .if	LOG_EXC_LEAVE == 1
 	pop		r1							; 引数に割込み要因番号を設定
-	bsr		_kernel_log_exc_leave		; ログトレース関数の呼出し
+	bsr		__kernel_log_exc_leave		; ログトレース関数の呼出し
 .endif
 
 	clrpsw	i							; ここからは必ず割込み禁止
@@ -848,4 +848,3 @@ sil_dly_nse_ret:
 	rts
 
 	.end
-

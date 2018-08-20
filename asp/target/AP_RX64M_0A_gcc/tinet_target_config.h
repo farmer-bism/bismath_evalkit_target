@@ -141,7 +141,7 @@
  */
 #define NUM_ND6_RTR_SOL_RETRY	3
 
-#define IP6_CFG_FRAGMENT		/* データグラムの分割・再構成行う場合はコメントを外す。	*/
+//#define IP6_CFG_FRAGMENT		/* データグラムの分割・再構成行う場合はコメントを外す。	*/
 #define NUM_IP6_FRAG_QUEUE	2	/* データグラム再構成キューサイズ			*/
 #define IP6_CFG_FRAG_REASSM_SIZE	4096	/* IPv6 再構成バッファサイズ			*/
 
@@ -253,7 +253,6 @@
 /*#define ETHER_CFG_UNEXP_WARNING	 非サポートフレームの警告を表示するときはコメントを外す。		*/
 /*#define ETHER_CFG_802_WARNING		 IEEE 802.3 フレームの警告を表示するときはコメントを外す。		*/
 /*#define ETHER_CFG_MCAST_WARNING	 マルチキャストの警告を表示するときはコメントを外す。		*/
-#define ETHER_CFG_MULTICAST			/* マルチキャストを送受信 */
 
 /*
  *  アドレスリストに関する定義。
@@ -448,6 +447,53 @@
 
 #if 1
 
+#ifdef SUPPORT_INET6
+
+#ifdef SUPPORT_INET4
+
+#define NET_COUNT_ENABLE	(0			\
+				| PROTO_FLG_PPP_HDLC	\
+				| PROTO_FLG_PPP_PAP	\
+				| PROTO_FLG_PPP_LCP	\
+				| PROTO_FLG_PPP_IPCP	\
+				| PROTO_FLG_PPP		\
+				| PROTO_FLG_LOOP	\
+				| PROTO_FLG_ETHER_NIC	\
+				| PROTO_FLG_ETHER	\
+				| PROTO_FLG_IP6		\
+				| PROTO_FLG_ICMP6	\
+				| PROTO_FLG_ND6		\
+				| PROTO_FLG_ARP		\
+				| PROTO_FLG_IP4		\
+				| PROTO_FLG_ICMP4	\
+				| PROTO_FLG_TCP		\
+				| PROTO_FLG_UDP		\
+				| PROTO_FLG_NET_BUF	\
+				)
+
+#else	/* of #ifdef SUPPORT_INET4 */
+
+#define NET_COUNT_ENABLE	(0			\
+				| PROTO_FLG_PPP_HDLC	\
+				| PROTO_FLG_PPP_PAP	\
+				| PROTO_FLG_PPP_LCP	\
+				| PROTO_FLG_PPP_IPCP	\
+				| PROTO_FLG_PPP		\
+				| PROTO_FLG_LOOP	\
+				| PROTO_FLG_ETHER_NIC	\
+				| PROTO_FLG_ETHER	\
+				| PROTO_FLG_IP6		\
+				| PROTO_FLG_ICMP6	\
+				| PROTO_FLG_ND6		\
+				| PROTO_FLG_TCP		\
+				| PROTO_FLG_UDP		\
+				| PROTO_FLG_NET_BUF	\
+				)
+
+#endif	/* of #ifdef SUPPORT_INET4 */
+
+#else	/* of #ifdef SUPPORT_INET6 */
+
 #ifdef SUPPORT_INET4
 
 #define NET_COUNT_ENABLE	(0			\
@@ -462,31 +508,12 @@
 				| PROTO_FLG_ARP		\
 				| PROTO_FLG_IP4		\
 				| PROTO_FLG_ICMP4	\
-				| PROTO_FLG_UDP		\
 				| PROTO_FLG_TCP		\
+				| PROTO_FLG_UDP		\
 				| PROTO_FLG_NET_BUF	\
 				)
 
 #endif	/* of #ifdef SUPPORT_INET4 */
-
-#ifdef SUPPORT_INET6
-
-#define NET_COUNT_ENABLE	(0			\
-				| PROTO_FLG_PPP_HDLC	\
-				| PROTO_FLG_PPP_PAP	\
-				| PROTO_FLG_PPP_LCP	\
-				| PROTO_FLG_PPP_IPCP	\
-				| PROTO_FLG_PPP		\
-				| PROTO_FLG_LOOP	\
-				| PROTO_FLG_ETHER_NIC	\
-				| PROTO_FLG_ETHER	\
-				| PROTO_FLG_IP6		\
-				| PROTO_FLG_ICMP6	\
-				| PROTO_FLG_ND6		\
-				| PROTO_FLG_UDP		\
-				| PROTO_FLG_TCP		\
-				| PROTO_FLG_NET_BUF	\
-				)
 
 #endif	/* of #ifdef SUPPORT_INET6 */
 
@@ -496,6 +523,7 @@
 				)
 
 #endif	/* of #if 0 */
+
 
 #ifndef TOPPERS_MACRO_ONLY
 

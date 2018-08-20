@@ -1,10 +1,10 @@
 /*
  *  TOPPERS Software
  *      Toyohashi Open Platform for Embedded Real-Time Systems
- * 
+ *
  *  Copyright (C) 2007-2011 by Embedded and Real-Time Systems Laboratory
  *              Graduate School of Information Science, Nagoya Univ., JAPAN
- * 
+ *
  *  上記著作権者は，以下の(1)〜(4)の条件を満たす場合に限り，本ソフトウェ
  *  ア（本ソフトウェアを改変したものを含む．以下同じ）を使用・複製・改
  *  変・再配布（以下，利用と呼ぶ）することを無償で許諾する．
@@ -27,13 +27,13 @@
  *      また，本ソフトウェアのユーザまたはエンドユーザからのいかなる理
  *      由に基づく請求からも，上記著作権者およびTOPPERSプロジェクトを
  *      免責すること．
- * 
+ *
  *  本ソフトウェアは，無保証で提供されているものである．上記著作権者お
  *  よびTOPPERSプロジェクトは，本ソフトウェアに関して，特定の使用目的
  *  に対する適合性も含めて，いかなる保証も行わない．また，本ソフトウェ
  *  アの利用により直接的または間接的に生じたいかなる損害に関しても，そ
  *  の責任を負わない．
- * 
+ *
  *  $Id: trace_dump.c 2420 2012-11-11 06:34:11Z ertl-hiro $
  */
 
@@ -45,7 +45,7 @@
 #include "task.h"
 #include <log_output.h>
 
-/* 
+/*
  *  カーネル情報の取出し
  */
 static intptr_t
@@ -94,7 +94,7 @@ get_tskstat(intptr_t info)
 	return((intptr_t) tstatstr);
 }
 
-/* 
+/*
  *  トレースログの表示
  */
 static void
@@ -113,9 +113,21 @@ trace_print(TRACE *p_trace, void (*putc)(char))
 		traceinfo[1] = get_tskstat(p_trace->loginfo[1]);
 		tracemsg = "task %d becomes %s.";
 		break;
+	case LOG_TYPE_DSP|LOG_ENTER:
+		traceinfo[0] = get_tskid(p_trace->loginfo[0]);
+		tracemsg = "dispatch from task %d";
+		break;
 	case LOG_TYPE_DSP|LOG_LEAVE:
 		traceinfo[0] = get_tskid(p_trace->loginfo[0]);
-		tracemsg = "dispatch to task %d.";
+		tracemsg = "dispatch to task %d";
+		break;
+	case LOG_TYPE_INH|LOG_ENTER:
+		traceinfo[0] = p_trace->loginfo[0];
+		tracemsg = "enter int no. %d";
+		break;
+	case LOG_TYPE_INH|LOG_LEAVE:
+		traceinfo[0] = p_trace->loginfo[0];
+		tracemsg = "leave int no. %d.";
 		break;
 	case LOG_TYPE_COMMENT:
 		for (i = 1; i < TMAX_LOGINFO; i++) {
@@ -138,9 +150,13 @@ trace_print(TRACE *p_trace, void (*putc)(char))
 	(*putc)('\n');
 }
 
-/* 
+/*
  *  トレースログのダンプ
  */
+extern uint_t	trace_count;				/* トレースログバッファ中のログの数 */
+extern uint_t	trace_head;					/* 先頭のトレースログの格納位置 */
+extern uint_t	trace_tail;					/* 次のトレースログの格納位置 */
+
 void
 trace_dump(intptr_t exinf)
 {

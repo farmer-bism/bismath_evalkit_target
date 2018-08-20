@@ -26,6 +26,9 @@ USE_SCIG_0 ?= true
 #USE_EPTPC_0 ?= true
 USE_EPTPC_0 ?= false
 
+#USE_CMTW_0 ?= true
+USE_CMTW_0 ?= false
+
 #
 # Device driver's COPTS
 #
@@ -57,4 +60,7 @@ ifeq ($(USE_EPTPC_0),true)
 USE_COPTS := $(USE_COPTS) -DUSE_EPTPC_0
 endif
 
+ifeq ($(USE_CMTW_0),true)
+USE_COPTS := $(USE_COPTS) -DUSE_CMTW_0
+endif
 COPTS := $(COPTS) $(USE_COPTS)

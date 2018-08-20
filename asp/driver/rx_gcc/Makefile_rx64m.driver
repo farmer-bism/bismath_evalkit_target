@@ -24,3 +24,7 @@ endif
 ifeq ($(USE_EPTPC_0),true)
 include $(DRIVERDIR)/Makefile.EPTPC
 endif
+
+ifeq ($(USE_CMTW_0),true)
+include $(DRIVERDIR)/Makefile.CMTW
+endif

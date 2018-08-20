@@ -191,8 +191,8 @@
  *  RX63N Ethernet Controler に関する定義
  */
 
-#define NUM_IF_EDMAC_TXBUF	9 /* 送信バッファ数  (IF_RX62N_TX_BUF_PAGE_SIZE * NUM_IF_RX62N_TXBUF) > (max flame size(1518 byte) *1.5)  */
-#define NUM_IF_EDMAC_RXBUF  12  /* 受信バッファ数 (IF_RX62N_RX_BUF_PAGE_SIZE * NUM_IF_EDMAC_TXBUF) > (max flame size(1518 byte) * 2)*/
+#define NUM_IF_EDMAC_TXBUF	9 /* 送信バッファ数  (IF_EDMAC_TX_BUF_PAGE_SIZE * NUM_IF_EDMAC_TXBUF) > (max flame size(1518 byte) *1.5)  */
+#define NUM_IF_EDMAC_RXBUF  12  /* 受信バッファ数 (IF_EDMAC_RX_BUF_PAGE_SIZE * NUM_IF_EDMAC_TXBUF) > (max flame size(1518 byte) * 2)*/
 //#define IF_EDMAC_BUF_PAGE_SIZE	1518	/* バッファサイズ */
 #define IF_EDMAC_RX_BUF_PAGE_SIZE (256+16+20+20+8) /* size of rx buffr(data+ether header(aligned 4) +ip header + tcp header + ajust align 32) */
 #define IF_EDMAC_TX_BUF_PAGE_SIZE (256+16+20+20) /* size of tx buffr(data+ether header(aligned 4) +ip header + tcp header) */
@@ -206,7 +206,7 @@
 /*
  *  イーサネット出力時に、NIC で net_buf を開放する場合に指定する。
  *
- *  注意: 以下の指定は、指定例であり、if_rx62n では、
+ *  注意: 以下の指定は、指定例であり、if_EDMACa では、
  *        開放しないので、以下のコメントを外してはならない。
  */
 
@@ -246,7 +246,6 @@
 /*#define ETHER_CFG_UNEXP_WARNING	 非サポートフレームの警告を表示するときはコメントを外す。		*/
 /*#define ETHER_CFG_802_WARNING		 IEEE 802.3 フレームの警告を表示するときはコメントを外す。		*/
 /*#define ETHER_CFG_MCAST_WARNING	 マルチキャストの警告を表示するときはコメントを外す。		*/
-#define ETHER_CFG_MULTICAST			/* マルチキャストを送受信 */
 
 /*
  *  アドレスリストに関する定義。
@@ -441,6 +440,53 @@
 
 #if 1
 
+#ifdef SUPPORT_INET6
+
+#ifdef SUPPORT_INET4
+
+#define NET_COUNT_ENABLE	(0			\
+				| PROTO_FLG_PPP_HDLC	\
+				| PROTO_FLG_PPP_PAP	\
+				| PROTO_FLG_PPP_LCP	\
+				| PROTO_FLG_PPP_IPCP	\
+				| PROTO_FLG_PPP		\
+				| PROTO_FLG_LOOP	\
+				| PROTO_FLG_ETHER_NIC	\
+				| PROTO_FLG_ETHER	\
+				| PROTO_FLG_IP6		\
+				| PROTO_FLG_ICMP6	\
+				| PROTO_FLG_ND6		\
+				| PROTO_FLG_ARP		\
+				| PROTO_FLG_IP4		\
+				| PROTO_FLG_ICMP4	\
+				| PROTO_FLG_TCP		\
+				| PROTO_FLG_UDP		\
+				| PROTO_FLG_NET_BUF	\
+				)
+
+#else	/* of #ifdef SUPPORT_INET4 */
+
+#define NET_COUNT_ENABLE	(0			\
+				| PROTO_FLG_PPP_HDLC	\
+				| PROTO_FLG_PPP_PAP	\
+				| PROTO_FLG_PPP_LCP	\
+				| PROTO_FLG_PPP_IPCP	\
+				| PROTO_FLG_PPP		\
+				| PROTO_FLG_LOOP	\
+				| PROTO_FLG_ETHER_NIC	\
+				| PROTO_FLG_ETHER	\
+				| PROTO_FLG_IP6		\
+				| PROTO_FLG_ICMP6	\
+				| PROTO_FLG_ND6		\
+				| PROTO_FLG_TCP		\
+				| PROTO_FLG_UDP		\
+				| PROTO_FLG_NET_BUF	\
+				)
+
+#endif	/* of #ifdef SUPPORT_INET4 */
+
+#else	/* of #ifdef SUPPORT_INET6 */
+
 #ifdef SUPPORT_INET4
 
 #define NET_COUNT_ENABLE	(0			\
@@ -455,31 +501,12 @@
 				| PROTO_FLG_ARP		\
 				| PROTO_FLG_IP4		\
 				| PROTO_FLG_ICMP4	\
-				| PROTO_FLG_UDP		\
 				| PROTO_FLG_TCP		\
+				| PROTO_FLG_UDP		\
 				| PROTO_FLG_NET_BUF	\
 				)
 
 #endif	/* of #ifdef SUPPORT_INET4 */
-
-#ifdef SUPPORT_INET6
-
-#define NET_COUNT_ENABLE	(0			\
-				| PROTO_FLG_PPP_HDLC	\
-				| PROTO_FLG_PPP_PAP	\
-				| PROTO_FLG_PPP_LCP	\
-				| PROTO_FLG_PPP_IPCP	\
-				| PROTO_FLG_PPP		\
-				| PROTO_FLG_LOOP	\
-				| PROTO_FLG_ETHER_NIC	\
-				| PROTO_FLG_ETHER	\
-				| PROTO_FLG_IP6		\
-				| PROTO_FLG_ICMP6	\
-				| PROTO_FLG_ND6		\
-				| PROTO_FLG_UDP		\
-				| PROTO_FLG_TCP		\
-				| PROTO_FLG_NET_BUF	\
-				)
 
 #endif	/* of #ifdef SUPPORT_INET6 */
 
@@ -490,14 +517,15 @@
 
 #endif	/* of #if 0 */
 
+
 #ifndef TOPPERS_MACRO_ONLY
 
 /*
  *  関数
  */
 
-extern void rx62n_bus_init (void);
-extern void rx62n_inter_init (void);
+extern void edmac_bus_init (void);
+extern void edmac_inter_init (void);
 extern void edmac_hard_init_hook (void);
 
 static inline void enable_eth_int(){

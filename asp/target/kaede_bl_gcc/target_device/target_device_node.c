@@ -1,7 +1,7 @@
 /*
- * Copyright (c) 2015- Hisashi Hata       
- * Released under the toppers license     
- * https://www.toppers.jp/license.html    
+ * Copyright (c) 2015- Hisashi Hata
+ * Released under the toppers license
+ * https://www.toppers.jp/license.html
  */
 
 #include <kernel.h>
@@ -31,6 +31,10 @@
   extern dev_node_t eptpc_node_0;
   void target_dev_ini_eptpc_0();
 #endif
+#ifdef USE_CMTW_0
+  extern dev_node_t cmtw_node_0;
+  void target_dev_ini_cmtw_0();
+#endif
 
 dev_info_t dev_info[NUM_TARGET_DEVICE] = {
   {0x0, NULL}, //NULL DEVICE
@@ -50,7 +54,10 @@ dev_info_t dev_info[NUM_TARGET_DEVICE] = {
   {0x0, &scig_node_0},
 #endif
 #ifdef USE_EPTPC_0
-  {0x0, &eptpc_node_0}
+  {0x0, &eptpc_node_0},
+#endif
+#ifdef USE_CMTW_0
+  {0x0, &cmtw_node_0}
 #endif
 };
 
@@ -72,5 +79,8 @@ void target_device_init(){
 #endif
 #ifdef USE_EPTPC_0
   target_dev_ini_eptpc_0();
+#endif
+#ifdef USE_CMTW_0
+  target_dev_ini_cmtw_0();
 #endif
 }

@@ -112,13 +112,21 @@ extern void	target_exit( void )	NoReturn;
  *    ログ出力する箇所を1で定義
  *    ログ出力しない箇所を0で定義
  */
+#ifdef TOPPERS_ENABLE_TRACE
+#define LOG_DSP_ENTER	( 1 )
+#define LOG_DSP_LEAVE	( 1 )
+#define LOG_INH_ENTER	( 0 )
+#define LOG_INH_LEAVE	( 0 )
+#define LOG_EXC_ENTER	( 0 )
+#define LOG_EXC_LEAVE	( 0 )
+#else
 #define LOG_DSP_ENTER	( 0 )
 #define LOG_DSP_LEAVE	( 0 )
 #define LOG_INH_ENTER	( 0 )
 #define LOG_INH_LEAVE	( 0 )
 #define LOG_EXC_ENTER	( 0 )
 #define LOG_EXC_LEAVE	( 0 )
-
+#endif
 
 #ifdef TOPPERS_ENABLE_TRACE
 #include "logtrace/trace_config.h"
